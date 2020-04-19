@@ -17,14 +17,14 @@ export const findBookById = (id: number): Book => findById<Book>(books, id);
 
 export const fetchBooks = (): Book[] => books.map(({ id }) => findBookById(id));
 
+const fetchBooksByAuthorId = (id: number): Book[] =>
+  fetchBooks().filter((book) => book.authorId === id);
+
 export const findAuthorById = (id: number): Author => {
   const author = findById<Author>(authors, id);
+  const authorsBooks = fetchBooksByAuthorId(author.id);
 
-  const bookIds = books
-    .filter(({ authorId }) => author.id === authorId)
-    .map(({ id: bookId }) => bookId);
-
-  return { ...author, bookIds };
+  return { ...author, bookIds: authorsBooks.map((book) => book.id) };
 };
 
 export const fetchAuthors = (): Author[] =>
