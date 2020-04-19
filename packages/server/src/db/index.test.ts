@@ -42,12 +42,27 @@ describe(".fetchBooks", () => {
 
 describe(".findAuthorById", () => {
   it("returns an author", () => {
-    expect(findAuthorById(2)).toEqual({
+    const author = findAuthorById(2);
+    expect(author).toEqual({
       id: 2,
+      bookIds: [8, 9, 10, 11, 12, 13, 14],
       name: "James S. A. Corey",
       photo: {
         url:
           "http://examples.devmastery.pl/assets/images/book-authors/james-s-a-corey.jpg",
+      },
+    });
+  });
+
+  it("returns an author", () => {
+    const author = findAuthorById(3);
+    expect(author).toEqual({
+      id: 3,
+      bookIds: [15, 16, 17, 18, 19, 20],
+      name: "Andrzej Sapkowski",
+      photo: {
+        url:
+            "http://examples.devmastery.pl/assets/images/book-authors/andrzej-sapkowski.jpg",
       },
     });
   });

@@ -17,8 +17,15 @@ export const findBookById = (id: number): Book => findById<Book>(books, id);
 
 export const fetchBooks = (): Book[] => books.map(({ id }) => findBookById(id));
 
-export const findAuthorById = (id: number): Author =>
-  findById<Author>(authors, id);
+export const findAuthorById = (id: number): Author => {
+  const author = findById<Author>(authors, id);
+
+  const bookIds = books
+    .filter(({ authorId }) => author.id === authorId)
+    .map(({ id: bookId }) => bookId);
+
+  return { ...author, bookIds };
+};
 
 export const fetchAuthors = (): Author[] =>
   authors.map(({ id }) => findAuthorById(id));
