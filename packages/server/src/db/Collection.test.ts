@@ -6,12 +6,14 @@ interface Book {
   title: string;
 }
 
-const collection = new Collection<Book>([
+const books = [
   { id: 1, authorId: 1, title: "Harry Potter and the Sorcerer's Stone" },
   { id: 2, authorId: 2, title: "Leviathan Wakes" },
   { id: 3, authorId: 3, title: "Blood of Elves" },
   { id: 4, authorId: 3, title: "Time of contempt" },
-]);
+];
+
+const collection = new Collection<Book>(books);
 
 describe("Collection", () => {
   describe(".find", () => {
@@ -34,21 +36,13 @@ describe("Collection", () => {
   describe(".findOne", () => {
     it("resolves with a document that matches the query", async () => {
       let document = await collection.findOne({ id: 1 });
-      expect(document).toEqual({
-        id: 1,
-        authorId: 1,
-        title: "Harry Potter and the Sorcerer's Stone",
-      });
+      expect(document).toEqual(books[0]);
 
       document = await collection.findOne({ authorId: 3 });
-      expect(document).toEqual({
-        id: 3,
-        authorId: 3,
-        title: "Blood of Elves",
-      });
+      expect(document).toEqual(books[2]);
     });
 
-    it("rejects with error when a document cannot be found", () => {
+    it("rejects with an error when a document cannot be found", () => {
       return collection.findOne({ authorId: 100 }).catch((error) => {
         expect(error.message).toEqual("Document not found!");
       });

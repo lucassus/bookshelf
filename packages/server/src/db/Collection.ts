@@ -1,4 +1,3 @@
-// A dummy collection that mimics mongodb interface
 export class Collection<T> {
   constructor(private documents: T[]) {}
 
