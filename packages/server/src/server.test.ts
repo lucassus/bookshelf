@@ -41,43 +41,87 @@ it("fetches authors along with books", async () => {
 
   // Then
   expect(res.data).not.toBeUndefined();
-  expect(res.data.authors).toEqual([
-    {
-      books: [
-        { title: "Harry Potter and the Sorcerer's Stone" },
-        { title: "Harry Potter and the Chamber of Secrets" },
-        { title: "Harry Potter and the Prisoner of Azkaban" },
-        { title: "Harry Potter and the Goblet of Fire" },
-        { title: "Harry Potter and the Order of the Phoenix" },
-        { title: "Harry Potter and the Half-Blood Prince" },
-        { title: "Harry Potter and the Deathly Hallows" },
+  expect(res.data).toMatchInlineSnapshot(`
+    Object {
+      "authors": Array [
+        Object {
+          "books": Array [
+            Object {
+              "title": "Harry Potter and the Sorcerer's Stone",
+            },
+            Object {
+              "title": "Harry Potter and the Chamber of Secrets",
+            },
+            Object {
+              "title": "Harry Potter and the Prisoner of Azkaban",
+            },
+            Object {
+              "title": "Harry Potter and the Goblet of Fire",
+            },
+            Object {
+              "title": "Harry Potter and the Order of the Phoenix",
+            },
+            Object {
+              "title": "Harry Potter and the Half-Blood Prince",
+            },
+            Object {
+              "title": "Harry Potter and the Deathly Hallows",
+            },
+          ],
+          "name": "J. K. Rowling",
+        },
+        Object {
+          "books": Array [
+            Object {
+              "title": "Leviathan Wakes",
+            },
+            Object {
+              "title": "Caliban's War",
+            },
+            Object {
+              "title": "Abaddon's Gate",
+            },
+            Object {
+              "title": "Cibola Burn",
+            },
+            Object {
+              "title": "Nemesis Games",
+            },
+            Object {
+              "title": "Babylon's Ashes",
+            },
+            Object {
+              "title": "Persepolis Rising",
+            },
+          ],
+          "name": "James S. A. Corey",
+        },
+        Object {
+          "books": Array [
+            Object {
+              "title": "Tiamat's Wrath",
+            },
+            Object {
+              "title": "Blood of Elves",
+            },
+            Object {
+              "title": "Time of contempt",
+            },
+            Object {
+              "title": "Baptism of fire",
+            },
+            Object {
+              "title": "The tower of the swallow",
+            },
+            Object {
+              "title": "The lady of the lake",
+            },
+          ],
+          "name": "Andrzej Sapkowski",
+        },
       ],
-      name: "J. K. Rowling",
-    },
-    {
-      books: [
-        { title: "Leviathan Wakes" },
-        { title: "Caliban's War" },
-        { title: "Abaddon's Gate" },
-        { title: "Cibola Burn" },
-        { title: "Nemesis Games" },
-        { title: "Babylon's Ashes" },
-        { title: "Persepolis Rising" },
-      ],
-      name: "James S. A. Corey",
-    },
-    {
-      books: [
-        { title: "Tiamat's Wrath" },
-        { title: "Blood of Elves" },
-        { title: "Time of contempt" },
-        { title: "Baptism of fire" },
-        { title: "The tower of the swallow" },
-        { title: "The lady of the lake" },
-      ],
-      name: "Andrzej Sapkowski",
-    },
-  ]);
+    }
+  `);
 });
 
 it("fetches books along with authors", async () => {
@@ -100,126 +144,130 @@ it("fetches books along with authors", async () => {
 
   // Then
   expect(res.data).not.toBeUndefined();
-  expect(res.data.books).toEqual([
-    {
-      title: "Harry Potter and the Sorcerer's Stone",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Harry Potter and the Chamber of Secrets",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Harry Potter and the Prisoner of Azkaban",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Harry Potter and the Goblet of Fire",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Harry Potter and the Order of the Phoenix",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Harry Potter and the Half-Blood Prince",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Harry Potter and the Deathly Hallows",
-      author: {
-        name: "J. K. Rowling",
-      },
-    },
-    {
-      title: "Leviathan Wakes",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Caliban's War",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Abaddon's Gate",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Cibola Burn",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Nemesis Games",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Babylon's Ashes",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Persepolis Rising",
-      author: {
-        name: "James S. A. Corey",
-      },
-    },
-    {
-      title: "Tiamat's Wrath",
-      author: {
-        name: "Andrzej Sapkowski",
-      },
-    },
-    {
-      title: "Blood of Elves",
-      author: {
-        name: "Andrzej Sapkowski",
-      },
-    },
-    {
-      title: "Time of contempt",
-      author: {
-        name: "Andrzej Sapkowski",
-      },
-    },
-    {
-      title: "Baptism of fire",
-      author: {
-        name: "Andrzej Sapkowski",
-      },
-    },
-    {
-      title: "The tower of the swallow",
-      author: {
-        name: "Andrzej Sapkowski",
-      },
-    },
-    {
-      title: "The lady of the lake",
-      author: {
-        name: "Andrzej Sapkowski",
-      },
-    },
-  ]);
+  expect(res.data).toMatchInlineSnapshot(`
+    Object {
+      "books": Array [
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Sorcerer's Stone",
+        },
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Chamber of Secrets",
+        },
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Prisoner of Azkaban",
+        },
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Goblet of Fire",
+        },
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Order of the Phoenix",
+        },
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Half-Blood Prince",
+        },
+        Object {
+          "author": Object {
+            "name": "J. K. Rowling",
+          },
+          "title": "Harry Potter and the Deathly Hallows",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Leviathan Wakes",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Caliban's War",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Abaddon's Gate",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Cibola Burn",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Nemesis Games",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Babylon's Ashes",
+        },
+        Object {
+          "author": Object {
+            "name": "James S. A. Corey",
+          },
+          "title": "Persepolis Rising",
+        },
+        Object {
+          "author": Object {
+            "name": "Andrzej Sapkowski",
+          },
+          "title": "Tiamat's Wrath",
+        },
+        Object {
+          "author": Object {
+            "name": "Andrzej Sapkowski",
+          },
+          "title": "Blood of Elves",
+        },
+        Object {
+          "author": Object {
+            "name": "Andrzej Sapkowski",
+          },
+          "title": "Time of contempt",
+        },
+        Object {
+          "author": Object {
+            "name": "Andrzej Sapkowski",
+          },
+          "title": "Baptism of fire",
+        },
+        Object {
+          "author": Object {
+            "name": "Andrzej Sapkowski",
+          },
+          "title": "The tower of the swallow",
+        },
+        Object {
+          "author": Object {
+            "name": "Andrzej Sapkowski",
+          },
+          "title": "The lady of the lake",
+        },
+      ],
+    }
+  `);
 });
