@@ -41,7 +41,7 @@ describe(".fetchBooks", () => {
 });
 
 describe(".findAuthorById", () => {
-  it("returns an author", () => {
+  it("returns an author with id=2", () => {
     const author = findAuthorById(2);
     expect(author).toEqual({
       id: 2,
@@ -54,7 +54,7 @@ describe(".findAuthorById", () => {
     });
   });
 
-  it("returns an author", () => {
+  it("returns an author with id=3", () => {
     const author = findAuthorById(3);
     expect(author).toEqual({
       id: 3,
@@ -62,7 +62,7 @@ describe(".findAuthorById", () => {
       name: "Andrzej Sapkowski",
       photo: {
         url:
-            "http://examples.devmastery.pl/assets/images/book-authors/andrzej-sapkowski.jpg",
+          "http://examples.devmastery.pl/assets/images/book-authors/andrzej-sapkowski.jpg",
       },
     });
   });
