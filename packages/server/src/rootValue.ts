@@ -1,9 +1,9 @@
-import { fetchAuthors, fetchBooks, fetchUsers } from "./db";
+import { db } from "./db";
 
 export const rootValue = {
   message: "Hello World!",
 
-  books: fetchBooks(),
-  authors: fetchAuthors(),
-  users: fetchUsers(),
+  books: db.books.find(),
+  authors: db.authors.find(),
+  users: db.users.find(),
 };

@@ -1,11 +1,11 @@
-import { findAuthorById, findBookById } from "./db";
+import { db } from "./db";
 import { Author, Book } from "./types";
 
 export const resolvers = {
   Book: {
-    author: (parent: Book) => findAuthorById(parent.authorId),
+    author: (parent: Book) => db.authors.findOne({ id: parent.authorId }),
   },
   Author: {
-    books: (parent: Author) => parent.bookIds.map((id) => findBookById(id)),
+    books: (parent: Author) => db.books.find({ authorId: parent.id }),
   },
 };
