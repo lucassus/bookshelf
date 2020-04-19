@@ -3,6 +3,7 @@ export interface DbRecord {
 }
 
 export interface Book extends DbRecord {
+  authorId: Author["id"],
   title: string;
   cover: {
     url: string;

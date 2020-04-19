@@ -12,6 +12,7 @@ describe(".findBookById", () => {
     const book = findBookById(1);
     expect(book).toEqual({
       id: 1,
+      authorId: 1,
       title: "Harry Potter and the Sorcerer's Stone",
       cover: {
         url:

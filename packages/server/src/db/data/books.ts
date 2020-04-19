@@ -3,6 +3,7 @@ import { Book } from "../../types";
 export const books: Book[] = [
   {
     id: 1,
+    authorId: 1,
     title: "Harry Potter and the Sorcerer's Stone",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry1.jpg",
@@ -10,6 +11,7 @@ export const books: Book[] = [
   },
   {
     id: 2,
+    authorId: 1,
     title: "Harry Potter and the Chamber of Secrets",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
@@ -17,6 +19,7 @@ export const books: Book[] = [
   },
   {
     id: 3,
+    authorId: 1,
     title: "Harry Potter and the Prisoner of Azkaban",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry3.jpg",
@@ -24,6 +27,7 @@ export const books: Book[] = [
   },
   {
     id: 4,
+    authorId: 1,
     title: "Harry Potter and the Goblet of Fire",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
@@ -31,6 +35,7 @@ export const books: Book[] = [
   },
   {
     id: 5,
+    authorId: 1,
     title: "Harry Potter and the Order of the Phoenix",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry5.jpg",
@@ -38,6 +43,7 @@ export const books: Book[] = [
   },
   {
     id: 6,
+    authorId: 1,
     title: "Harry Potter and the Half-Blood Prince",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry6.jpg",
@@ -45,6 +51,7 @@ export const books: Book[] = [
   },
   {
     id: 7,
+    authorId: 1,
     title: "Harry Potter and the Deathly Hallows",
     cover: {
       url: "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
@@ -52,6 +59,7 @@ export const books: Book[] = [
   },
   {
     id: 8,
+    authorId: 2,
     title: "Leviathan Wakes",
     cover: {
       url:
@@ -60,6 +68,7 @@ export const books: Book[] = [
   },
   {
     id: 9,
+    authorId: 2,
     title: "Caliban's War",
     cover: {
       url:
@@ -68,6 +77,7 @@ export const books: Book[] = [
   },
   {
     id: 10,
+    authorId: 2,
     title: "Abaddon's Gate",
     cover: {
       url:
@@ -76,6 +86,7 @@ export const books: Book[] = [
   },
   {
     id: 11,
+    authorId: 2,
     title: "Cibola Burn",
     cover: {
       url:
@@ -84,6 +95,7 @@ export const books: Book[] = [
   },
   {
     id: 12,
+    authorId: 2,
     title: "Nemesis Games",
     cover: {
       url:
@@ -92,6 +104,7 @@ export const books: Book[] = [
   },
   {
     id: 13,
+    authorId: 2,
     title: "Babylon's Ashes",
     cover: {
       url:
@@ -100,6 +113,7 @@ export const books: Book[] = [
   },
   {
     id: 14,
+    authorId: 2,
     title: "Persepolis Rising",
     cover: {
       url:
@@ -108,6 +122,7 @@ export const books: Book[] = [
   },
   {
     id: 15,
+    authorId: 3,
     title: "Tiamat's Wrath",
     cover: {
       url:
@@ -116,6 +131,7 @@ export const books: Book[] = [
   },
   {
     id: 16,
+    authorId: 3,
     title: "Blood of Elves",
     cover: {
       url:
@@ -124,6 +140,7 @@ export const books: Book[] = [
   },
   {
     id: 17,
+    authorId: 3,
     title: "Time of contempt",
     cover: {
       url:
@@ -132,6 +149,7 @@ export const books: Book[] = [
   },
   {
     id: 18,
+    authorId: 3,
     title: "Baptism of fire",
     cover: {
       url:
@@ -140,6 +158,7 @@ export const books: Book[] = [
   },
   {
     id: 19,
+    authorId: 3,
     title: "The tower of the swallow",
     cover: {
       url:
@@ -148,6 +167,7 @@ export const books: Book[] = [
   },
   {
     id: 20,
+    authorId: 3,
     title: "The lady of the lake",
     cover: {
       url:
