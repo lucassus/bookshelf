@@ -5,6 +5,7 @@ import React from "react";
 import { App, MESSAGE_QUERY } from "./App";
 
 test("renders learn react link", async () => {
+  // Given
   const mocks = [
     {
       request: {
@@ -18,13 +19,15 @@ test("renders learn react link", async () => {
     }
   ];
 
+  // When
   const { getByText } = render(
     <MockedProvider mocks={mocks}>
       <App />
     </MockedProvider>
   );
-  expect(getByText("Message is loading...")).toBeInTheDocument();
 
+  // Then
+  expect(getByText("Message is loading...")).toBeInTheDocument();
   await waitForElementToBeRemoved(() => getByText("Message is loading..."));
   expect(getByText("Hello Test!")).toBeInTheDocument();
 });
