@@ -1,18 +1,18 @@
+interface Image {
+  url: string;
+}
+
 export interface Book {
   id: number;
   authorId: Author["id"];
   title: string;
-  cover: {
-    url: string;
-  };
+  cover: Image;
 }
 
 export interface Author {
   id: number;
   name: string;
-  photo: {
-    url: string;
-  };
+  photo: Image;
 }
 
 export interface User {
@@ -20,9 +20,7 @@ export interface User {
   name: string;
   email: string;
   avatar: {
-    image: {
-      url: string;
-    };
+    image: Image;
     color: string;
   };
 }
