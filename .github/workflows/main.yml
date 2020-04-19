@@ -20,6 +20,9 @@ jobs:
     - name: Lint
       run: yarn workspace @bookshelf/server lint
 
+    - name: Test
+      run: yarn workspace @bookshelf/server test
+
     ## Web
 
     - name: Install packages
