@@ -4,7 +4,7 @@ import React from "react";
 
 import { App, MESSAGE_QUERY } from "./App";
 
-test("renders learn react link", async () => {
+test("renders the message", async () => {
   // Given
   const mocks = [
     {
