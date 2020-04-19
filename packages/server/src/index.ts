@@ -1,14 +1,4 @@
-import { ApolloServer } from "apollo-server";
-
-import { rootValue } from "./rootValue";
-import { typeDefs } from "./typeDefs";
-
-const server = new ApolloServer({
-  typeDefs,
-  rootValue,
-  introspection: true,
-  playground: true,
-});
+import { server } from "./server";
 
 const PORT = process.env.PORT || 4000;
 
