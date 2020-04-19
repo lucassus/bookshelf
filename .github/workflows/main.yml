@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '13.x'
+
+    ## Server
+
+    - name: Install packages
+      run: yarn workspace @bookshelf/server install
+
+    ## Web
+
+    - name: Install packages
+      run: yarn workspace @bookshelf/web install
+
+    - name: Test
+      run: yarn workspace @bookshelf/web test
