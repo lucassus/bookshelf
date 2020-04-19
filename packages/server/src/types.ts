@@ -9,7 +9,6 @@ export interface Book {
 
 export interface Author {
   id: number;
-  bookIds?: Book["id"][];
   name: string;
   photo: {
     url: string;
