@@ -22,5 +22,8 @@ jobs:
     - name: Install packages
       run: yarn workspace @bookshelf/web install
 
+    - name: Lint
+        run: yarn workspace @bookshelf/web lint
+
     - name: Test
       run: yarn workspace @bookshelf/web test
