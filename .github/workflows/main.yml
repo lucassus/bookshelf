@@ -17,13 +17,16 @@ jobs:
     - name: Install packages
       run: yarn workspace @bookshelf/server install
 
+    - name: Lint
+      run: yarn workspace @bookshelf/server lint
+
     ## Web
 
     - name: Install packages
       run: yarn workspace @bookshelf/web install
 
     - name: Lint
-        run: yarn workspace @bookshelf/web lint
+      run: yarn workspace @bookshelf/web lint
 
     - name: Test
       run: yarn workspace @bookshelf/web test

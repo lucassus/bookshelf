@@ -1,3 +1,3 @@
 export const rootValue = {
-  message: "Hello World!"
+  message: "Hello World!",
 };
