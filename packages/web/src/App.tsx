@@ -1,19 +1,32 @@
+import {gql, NetworkStatus, useQuery} from "@apollo/client";
 import React from 'react';
 
-export const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+export const MESSAGE_QUERY = gql`
+  query getMessage {
+    message
+  }
+`;
+
+export const App: React.FunctionComponent = () => {
+  const { data, networkStatus } = useQuery<{ message: string }>(
+      MESSAGE_QUERY,
+      {
+        notifyOnNetworkStatusChange: true
+      }
+  );
+
+  if (networkStatus === NetworkStatus.loading) {
+    return <span>Message is loading...</span>;
+  }
+
+  return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Edit <code>src/App.tsx</code> and save to reload.
+          </p>
+            {data?.message}
+        </header>
+      </div>
+  );
+};
