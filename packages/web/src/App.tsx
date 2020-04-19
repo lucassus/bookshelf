@@ -17,8 +17,8 @@ export const App: React.FunctionComponent = () => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
