@@ -19,17 +19,20 @@ describe("Collection", () => {
       const documents = await collection.find();
       expect(documents).toHaveLength(4);
     });
-  });
 
-  describe(".find with query params", () => {
-    test("resolved with all documents that matches the query", async () => {
+    it("resolves with documents that matches the query", async () => {
       const documents = await collection.find({ authorId: 3 });
       expect(documents).toHaveLength(2);
+    });
+
+    it("resolves with an empty array when the query does not match any documents", async () => {
+      const documents = await collection.find({ authorId: 1000 });
+      expect(documents).toHaveLength(0);
     });
   });
 
   describe(".findOne", () => {
-    it("resolves with find document that matches the query", async () => {
+    it("resolves with a document that matches the query", async () => {
       let document = await collection.findOne({ id: 1 });
       expect(document).toEqual({
         id: 1,
