@@ -17,5 +17,6 @@ it("fetches the message", async () => {
   const res = await query({ query: MESSAGE_QUERY });
 
   // Then
-  expect(res.data.message).toEqual("Hello World!");
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.message).toEqual("Hello World!");
 });
