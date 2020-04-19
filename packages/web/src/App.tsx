@@ -12,7 +12,7 @@ export const App: React.FunctionComponent = () => {
     notifyOnNetworkStatusChange: true
   });
 
-  if (networkStatus === NetworkStatus.loading) {
+  if (!data || networkStatus === NetworkStatus.loading) {
     return <span>Message is loading...</span>;
   }
 
@@ -22,7 +22,7 @@ export const App: React.FunctionComponent = () => {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        {data?.message}
+        {data.message}
       </header>
     </div>
   );
