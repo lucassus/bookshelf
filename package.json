@@ -1,0 +1,16 @@
+{
+  "name": "bookshelf",
+  "version": "1.0.0",
+  "repository": "git@github.com:lucassus/bookshelf.git",
+  "author": "Łukasz Bandzarewicz <lukasz.bandzarewicz@gmail.com>",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"yarn workspace @bookshelf/server start\""
+  },
+  "dependencies": {
+    "concurrently": "5.1.0"
+  }
+}
