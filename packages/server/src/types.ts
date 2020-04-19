@@ -1,8 +1,5 @@
-export interface DbRecord {
+export interface Book {
   id: number;
-}
-
-export interface Book extends DbRecord {
   authorId: Author["id"];
   title: string;
   cover: {
@@ -10,7 +7,8 @@ export interface Book extends DbRecord {
   };
 }
 
-export interface Author extends DbRecord {
+export interface Author {
+  id: number;
   bookIds?: Book["id"][];
   name: string;
   photo: {
@@ -18,7 +16,8 @@ export interface Author extends DbRecord {
   };
 }
 
-export interface User extends DbRecord {
+export interface User {
+  id: number;
   name: string;
   email: string;
   avatar: {
