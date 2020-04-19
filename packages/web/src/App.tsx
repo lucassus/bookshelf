@@ -16,14 +16,5 @@ export const App: React.FunctionComponent = () => {
     return <span>Message is loading...</span>;
   }
 
-  return (
-    <div>
-      <header>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        {data.message}
-      </header>
-    </div>
-  );
+  return <div>{data.message}</div>;
 };
