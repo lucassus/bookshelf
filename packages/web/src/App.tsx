@@ -1,5 +1,5 @@
-import {gql, NetworkStatus, useQuery} from "@apollo/client";
-import React from 'react';
+import { gql, NetworkStatus, useQuery } from "@apollo/client";
+import React from "react";
 
 export const MESSAGE_QUERY = gql`
   query getMessage {
@@ -8,25 +8,13 @@ export const MESSAGE_QUERY = gql`
 `;
 
 export const App: React.FunctionComponent = () => {
-  const { data, networkStatus } = useQuery<{ message: string }>(
-      MESSAGE_QUERY,
-      {
-        notifyOnNetworkStatusChange: true
-      }
-  );
+  const { data, networkStatus } = useQuery<{ message: string }>(MESSAGE_QUERY, {
+    notifyOnNetworkStatusChange: true
+  });
 
-  if (networkStatus === NetworkStatus.loading) {
+  if (!data || networkStatus === NetworkStatus.loading) {
     return <span>Message is loading...</span>;
   }
 
-  return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-            {data?.message}
-        </header>
-      </div>
-  );
+  return <div>{data.message}</div>;
 };
