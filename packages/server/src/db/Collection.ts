@@ -1,11 +1,11 @@
 // A dummy collection that mimics mongodb interface
-export class Collection<T extends { id: number }> {
+export class Collection<T> {
   constructor(private documents: T[]) {}
 
   find(query: Partial<T> = {}): Promise<T[]> {
     const byQuery = (document) =>
-      Object.entries(query).reduce((result, [field, value]) => {
-        return result && document[field] === value;
+      Object.entries(query).reduce((matches, [field, value]) => {
+        return matches && document[field] === value;
       }, true);
 
     return Promise.resolve(this.documents.filter(byQuery));
