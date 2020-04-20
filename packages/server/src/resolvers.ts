@@ -1,7 +1,6 @@
+import { ASSETS_BASE_URL } from "./config";
 import { db } from "./db";
 import { Author, Book, User } from "./db/types";
-
-const ASSETS_BASE_URL = "http://examples.devmastery.pl/assets";
 
 interface Image {
   path: string;
