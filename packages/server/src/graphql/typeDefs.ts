@@ -10,8 +10,10 @@ export const typeDefs = gql`
 
     authors: [Author!]!
     randomAuthor: Author!
-      
+
     books: [Book!]!
+    randomBook: Book!
+
     users: [User!]!
   }
 
