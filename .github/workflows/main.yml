@@ -12,10 +12,10 @@ jobs:
       with:
         node-version: '13.x'
 
-    ## Server
-
     - name: Install packages
-      run: yarn workspace @bookshelf/server install
+      run: yarn install
+
+    ## Server
 
     - name: Lint
       run: yarn workspace @bookshelf/server lint
@@ -24,9 +24,6 @@ jobs:
       run: yarn workspace @bookshelf/server test
 
     ## Web
-
-    - name: Install packages
-      run: yarn workspace @bookshelf/web install
 
     - name: Lint
       run: yarn workspace @bookshelf/web lint
