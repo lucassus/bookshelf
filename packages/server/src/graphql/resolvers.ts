@@ -1,4 +1,5 @@
 import { Author, Book, User } from "../db/types";
+import { Context } from "../server";
 
 interface Image {
   path: string;
@@ -6,7 +7,7 @@ interface Image {
 
 export const resolvers = {
   Book: {
-    author: (book: Book, args, { db }) =>
+    author: (book: Book, args, { db }: Context) =>
       db.authors.findOne({ id: book.authorId }),
 
     cover: (book: Book): Image => ({
@@ -15,7 +16,7 @@ export const resolvers = {
   },
 
   Author: {
-    books: (author: Author, args, { db }) =>
+    books: (author: Author, args, { db }: Context) =>
       db.books.find({ authorId: author.id }),
 
     photo: (author: Author): Image => ({
@@ -30,14 +31,15 @@ export const resolvers = {
   },
 
   Image: {
-    url: (image: Image, args, context) => context.assetsBaseUrl + image.path,
+    url: (image: Image, args, context: Context) =>
+      context.assetsBaseUrl + image.path,
   },
 
   Query: {
     message: () => "Hello World!",
 
-    books: (rootValue, args, { db }) => db.books.find(),
-    authors: (rootValue, args, { db }) => db.authors.find(),
-    users: (rootValue, args, { db }) => db.users.find(),
+    books: (rootValue, args, { db }: Context) => db.books.find(),
+    authors: (rootValue, args, { db }: Context) => db.authors.find(),
+    users: (rootValue, args, { db }: Context) => db.users.find(),
   },
 };
