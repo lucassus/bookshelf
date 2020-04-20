@@ -26,4 +26,11 @@ export const resolvers = {
   Image: {
     url: (parent: Image, args, context) => context.assetsBaseUrl + parent.path,
   },
+  Query: {
+    message: () => "Hello World!",
+
+    books: () => db.books.find(),
+    authors: () => db.authors.find(),
+    users: () => db.users.find(),
+  },
 };
