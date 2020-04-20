@@ -48,4 +48,12 @@ describe("Collection", () => {
       });
     });
   });
+
+  describe(".findRandom", () => {
+    it("resolves with a random document", async () => {
+      jest.spyOn(Math, 'random').mockReturnValue(0.4);
+      const document = await collection.findRandom();
+      expect(document).toEqual(books[1]);
+    });
+  });
 });
