@@ -1,4 +1,3 @@
-import { ASSETS_BASE_URL } from "./config";
 import { db } from "./db";
 import { Author, Book, User } from "./db/types";
 
@@ -25,6 +24,6 @@ export const resolvers = {
     }),
   },
   Image: {
-    url: (parent: Image) => ASSETS_BASE_URL + parent.path,
+    url: (parent: Image, args, context) => context.assetsBaseUrl + parent.path,
   },
 };
