@@ -1,6 +1,7 @@
 import { gql } from "apollo-server";
 import { createTestClient } from "apollo-server-testing";
 
+import { db } from "./db";
 import { server } from "./server";
 
 it("fetches the message", async () => {
@@ -18,7 +19,7 @@ it("fetches the message", async () => {
 
   // Then
   expect(res.data).not.toBeUndefined();
-  expect(res.data.message).toEqual("Hello World!");
+  expect(res.data!.message).toEqual("Hello World!");
 });
 
 it("fetches books", async () => {
@@ -863,4 +864,70 @@ it("fetches books along with authors and books again", async () => {
       ],
     }
   `);
+});
+
+it("fetches a random author", async () => {
+  // Given
+  jest.spyOn(db.authors, "findRandom").mockResolvedValue({
+    id: 1,
+    name: "Szczepan Twardoch",
+    photoPath: "/sczepan.jpg",
+  });
+
+  const { query } = createTestClient(server);
+
+  const RANDOM_AUTHOR_QUERY = gql`
+    query {
+      randomAuthor {
+        name
+        photo {
+          url
+        }
+      }
+    }
+  `;
+
+  // When
+  const res = await query({ query: RANDOM_AUTHOR_QUERY });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.randomAuthor).toMatchInlineSnapshot(`
+    Object {
+      "name": "Szczepan Twardoch",
+      "photo": Object {
+        "url": "http://examples.devmastery.pl/assets/sczepan.jpg",
+      },
+    }
+  `);
+});
+
+it("fetches a random book", async () => {
+  // Given
+  jest.spyOn(db.books, "findRandom").mockResolvedValue({
+    id: 1,
+    authorId: 1,
+    title: "Król",
+    coverPath: "/krol.jpg",
+  });
+
+  const { query } = createTestClient(server);
+
+  const RANDOM_BOOK_QUERY = gql`
+    query {
+      randomBook {
+        title
+        cover {
+          url
+        }
+      }
+    }
+  `;
+
+  // When
+  const res = await query({ query: RANDOM_BOOK_QUERY });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.randomAuthor).toMatchInlineSnapshot(`undefined`);
 });

@@ -39,7 +39,11 @@ export const resolvers = {
     message: () => "Hello World!",
 
     books: (rootValue, args, { db }: Context) => db.books.find(),
+    randomBook: (rootValue, args, { db }: Context) => db.books.findRandom(),
+
     authors: (rootValue, args, { db }: Context) => db.authors.find(),
+    randomAuthor: (rootValue, args, { db }: Context) => db.authors.findRandom(),
+
     users: (rootValue, args, { db }: Context) => db.users.find(),
   },
 };
