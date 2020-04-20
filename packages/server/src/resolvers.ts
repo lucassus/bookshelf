@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { Author, Book, Image } from "./types";
+import { Author, Book, Image } from "./db/types";
 
 const ASSETS_BASE_URL = "http://examples.devmastery.pl/assets";
 

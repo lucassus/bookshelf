@@ -1,4 +1,4 @@
-import { Author, Book, User } from "../types";
+import { Author, Book, User } from "./types";
 import { Collection } from "./Collection";
 import { authors } from "./data/authors";
 import { books } from "./data/books";
