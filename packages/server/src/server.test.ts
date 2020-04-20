@@ -2,6 +2,7 @@ import { gql } from "apollo-server";
 import { createTestClient } from "apollo-server-testing";
 
 import { server } from "./server";
+import { db } from "./db";
 
 it("fetches the message", async () => {
   // Given
@@ -18,7 +19,7 @@ it("fetches the message", async () => {
 
   // Then
   expect(res.data).not.toBeUndefined();
-  expect(res.data.message).toEqual("Hello World!");
+  expect(res.data!.message).toEqual("Hello World!");
 });
 
 it("fetches books", async () => {
@@ -861,6 +862,42 @@ it("fetches books along with authors and books again", async () => {
           "title": "The lady of the lake",
         },
       ],
+    }
+  `);
+});
+
+it("fetches a random author", async () => {
+  // Given
+  jest.spyOn(db.authors, "findRandom").mockResolvedValue({
+    id: 1,
+    name: "Szczepan Twardoch",
+    photoPath: "/sczepan.jpg",
+  });
+
+  const { query } = createTestClient(server);
+
+  const RANDOM_AUTHOR_QUERY = gql`
+    query {
+      randomAuthor {
+        name
+        photo {
+          url
+        }
+      }
+    }
+  `;
+
+  // When
+  const res = await query({ query: RANDOM_AUTHOR_QUERY });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.randomAuthor).toMatchInlineSnapshot(`
+    Object {
+      "name": "Szczepan Twardoch",
+      "photo": Object {
+        "url": "http://examples.devmastery.pl/assets/sczepan.jpg",
+      },
     }
   `);
 });

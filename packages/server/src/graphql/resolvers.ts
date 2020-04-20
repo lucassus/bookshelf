@@ -40,6 +40,7 @@ export const resolvers = {
 
     books: (rootValue, args, { db }: Context) => db.books.find(),
     authors: (rootValue, args, { db }: Context) => db.authors.find(),
+    randomAuthor: (rootValue, args, { db }: Context) => db.authors.findRandom(),
     users: (rootValue, args, { db }: Context) => db.users.find(),
   },
 };
