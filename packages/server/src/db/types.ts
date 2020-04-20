@@ -1,18 +1,14 @@
-export interface Image {
-  path: string;
-}
-
 export interface Book {
   id: number;
   authorId: Author["id"];
   title: string;
-  cover: Image;
+  coverPath: string;
 }
 
 export interface Author {
   id: number;
   name: string;
-  photo: Image;
+  photoPath: string;
 }
 
 export interface User {
@@ -20,7 +16,7 @@ export interface User {
   name: string;
   email: string;
   avatar: {
-    image: Image;
+    imagePath: string;
     color: string;
   };
 }
