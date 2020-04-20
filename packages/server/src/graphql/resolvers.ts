@@ -1,5 +1,5 @@
-import { db } from "./db";
-import { Author, Book, User } from "./db/types";
+import { db } from "../db";
+import { Author, Book, User } from "../db/types";
 
 interface Image {
   path: string;
