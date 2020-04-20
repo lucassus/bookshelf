@@ -1,4 +1,3 @@
-import { db } from "../db";
 import { Author, Book, User } from "../db/types";
 
 interface Image {
@@ -7,30 +6,38 @@ interface Image {
 
 export const resolvers = {
   Book: {
-    author: (parent: Book) => db.authors.findOne({ id: parent.authorId }),
-    cover: (parent): Image => ({
-      path: parent.coverPath,
+    author: (book: Book, args, { db }) =>
+      db.authors.findOne({ id: book.authorId }),
+
+    cover: (book: Book): Image => ({
+      path: book.coverPath,
     }),
   },
+
   Author: {
-    books: (parent: Author) => db.books.find({ authorId: parent.id }),
-    photo: (parent): Image => ({
-      path: parent.photoPath,
+    books: (author: Author, args, { db }) =>
+      db.books.find({ authorId: author.id }),
+
+    photo: (author: Author): Image => ({
+      path: author.photoPath,
     }),
   },
+
   Avatar: {
-    image: (parent: User["avatar"]): Image => ({
-      path: parent.imagePath,
+    image: (avatar: User["avatar"]): Image => ({
+      path: avatar.imagePath,
     }),
   },
+
   Image: {
-    url: (parent: Image, args, context) => context.assetsBaseUrl + parent.path,
+    url: (image: Image, args, context) => context.assetsBaseUrl + image.path,
   },
+
   Query: {
     message: () => "Hello World!",
 
-    books: () => db.books.find(),
-    authors: () => db.authors.find(),
-    users: () => db.users.find(),
+    books: (rootValue, args, { db }) => db.books.find(),
+    authors: (rootValue, args, { db }) => db.authors.find(),
+    users: (rootValue, args, { db }) => db.users.find(),
   },
 };
