@@ -6,7 +6,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Sorcerer's Stone",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry1.jpg",
+      path: "/images/book-covers/harry1.jpg",
     },
   },
   {
@@ -14,7 +14,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Chamber of Secrets",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
+      path: "/images/book-covers/harry2.jpg",
     },
   },
   {
@@ -22,7 +22,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Prisoner of Azkaban",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry3.jpg",
+      path: "/images/book-covers/harry3.jpg",
     },
   },
   {
@@ -30,7 +30,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Goblet of Fire",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
+      path: "/images/book-covers/harry4.jpg",
     },
   },
   {
@@ -38,7 +38,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Order of the Phoenix",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry5.jpg",
+      path: "/images/book-covers/harry5.jpg",
     },
   },
   {
@@ -46,7 +46,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Half-Blood Prince",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry6.jpg",
+      path: "/images/book-covers/harry6.jpg",
     },
   },
   {
@@ -54,7 +54,7 @@ export const books: Book[] = [
     authorId: 1,
     title: "Harry Potter and the Deathly Hallows",
     cover: {
-      url: "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
+      path: "/images/book-covers/harry7.jpg",
     },
   },
   {
@@ -62,8 +62,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Leviathan Wakes",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse1.jpg",
+      path: "/images/book-covers/expanse1.jpg",
     },
   },
   {
@@ -71,8 +70,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Caliban's War",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
+      path: "/images/book-covers/expanse2.jpg",
     },
   },
   {
@@ -80,8 +78,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Abaddon's Gate",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse3.jpg",
+      path: "/images/book-covers/expanse3.jpg",
     },
   },
   {
@@ -89,8 +86,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Cibola Burn",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
+      path: "/images/book-covers/expanse4.jpg",
     },
   },
   {
@@ -98,8 +94,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Nemesis Games",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse5.jpg",
+      path: "/images/book-covers/expanse5.jpg",
     },
   },
   {
@@ -107,8 +102,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Babylon's Ashes",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse6.jpg",
+      path: "/images/book-covers/expanse6.jpg",
     },
   },
   {
@@ -116,8 +110,7 @@ export const books: Book[] = [
     authorId: 2,
     title: "Persepolis Rising",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse7.jpg",
+      path: "/images/book-covers/expanse7.jpg",
     },
   },
   {
@@ -125,8 +118,7 @@ export const books: Book[] = [
     authorId: 3,
     title: "Tiamat's Wrath",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/expanse8.jpg",
+      path: "/images/book-covers/expanse8.jpg",
     },
   },
   {
@@ -134,8 +126,7 @@ export const books: Book[] = [
     authorId: 3,
     title: "Blood of Elves",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg",
+      path: "/images/book-covers/witcher1.jpg",
     },
   },
   {
@@ -143,8 +134,7 @@ export const books: Book[] = [
     authorId: 3,
     title: "Time of contempt",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher2.jpg",
+      path: "/images/book-covers/witcher2.jpg",
     },
   },
   {
@@ -152,8 +142,7 @@ export const books: Book[] = [
     authorId: 3,
     title: "Baptism of fire",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
+      path: "/images/book-covers/witcher3.jpg",
     },
   },
   {
@@ -161,8 +150,7 @@ export const books: Book[] = [
     authorId: 3,
     title: "The tower of the swallow",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher4.jpg",
+      path: "/images/book-covers/witcher4.jpg",
     },
   },
   {
@@ -170,8 +158,7 @@ export const books: Book[] = [
     authorId: 3,
     title: "The lady of the lake",
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
+      path: "/images/book-covers/witcher5.jpg",
     },
   },
 ];

@@ -1,5 +1,7 @@
 import { db } from "./db";
-import { Author, Book } from "./types";
+import { Author, Book, Image } from "./types";
+
+const ASSETS_BASE_URL = "http://examples.devmastery.pl/assets";
 
 export const resolvers = {
   Book: {
@@ -7,5 +9,8 @@ export const resolvers = {
   },
   Author: {
     books: (parent: Author) => db.books.find({ authorId: parent.id }),
+  },
+  Image: {
+    url: (parent: Image) => ASSETS_BASE_URL + parent.path,
   },
 };

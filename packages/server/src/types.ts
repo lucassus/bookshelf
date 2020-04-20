@@ -1,5 +1,5 @@
-interface Image {
-  url: string;
+export interface Image {
+  path: string;
 }
 
 export interface Book {
