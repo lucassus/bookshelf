@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
 
-import { Author } from "../components/Author";
-import { AuthorInterface } from "../types";
+import { AuthorCard } from "../components/AuthorCard";
+import { Author } from "../types";
 
 const ALL_AUTHORS_QUERY = gql`
   query {
@@ -17,7 +17,7 @@ const ALL_AUTHORS_QUERY = gql`
 
 export const AuthorsPage: React.FunctionComponent = () => {
   const { loading, error, data } = useQuery<{
-    authors: AuthorInterface[];
+    authors: Author[];
   }>(ALL_AUTHORS_QUERY);
 
   if (loading) {
@@ -31,7 +31,7 @@ export const AuthorsPage: React.FunctionComponent = () => {
   return (
     <div>
       {data.authors.map((author: any) => (
-        <Author key={author.name} author={author} />
+        <AuthorCard key={author.name} author={author} />
       ))}
     </div>
   );

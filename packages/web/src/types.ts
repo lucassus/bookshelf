@@ -2,8 +2,7 @@ interface Image {
   url: string;
 }
 
-// TODO: Figure out how to avoid naming collisions
-export interface AuthorInterface {
+export interface Author {
   name: string;
   photo: Image;
 }
