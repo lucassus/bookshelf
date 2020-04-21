@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@sandbox/*": ["packages/*/src"]
-    }
+    },
+    "sourceMap": true
   }
 }
