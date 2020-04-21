@@ -8,11 +8,9 @@
     "packages/*"
   ],
   "scripts": {
-    "server:test": "yarn workspace @bookshelf/server test",
-    "server:start": "yarn workspace @bookshelf/server start",
-    "web:test": "yarn workspace @bookshelf/web test",
-    "web:start": "yarn workspace @bookshelf/web start",
-    "start": "concurrently --kill-others-on-fail \"yarn server:start\" \"yarn web:start\""
+    "server": "yarn workspace @bookshelf/server",
+    "web": "yarn workspace @bookshelf/web",
+    "start": "concurrently --kill-others-on-fail \"yarn server start\" \"yarn web start\""
   },
   "dependencies": {
     "concurrently": "5.1.0"

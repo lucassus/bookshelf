@@ -18,15 +18,21 @@ jobs:
     ## Server
 
     - name: Lint
-      run: yarn workspace @bookshelf/server lint
+      run: yarn server lint
 
     - name: Test
-      run: yarn workspace @bookshelf/server test
+      run: yarn server test
+
+    - name: Build
+      run: yarn server build
 
     ## Web
 
     - name: Lint
-      run: yarn workspace @bookshelf/web lint
+      run: yarn web lint
 
     - name: Test
-      run: yarn workspace @bookshelf/web test
+      run: yarn web test
+
+    - name: Build
+      run: yarn web build
