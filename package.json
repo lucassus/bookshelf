@@ -4,13 +4,18 @@
   "repository": "git@github.com:lucassus/bookshelf.git",
   "author": "Łukasz Bandzarewicz <lukasz.bandzarewicz@gmail.com>",
   "private": true,
+  "engines": {
+    "node": "13.x"
+  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
-    "start": "concurrently --kill-others-on-fail \"yarn server start\" \"yarn web start\""
+    "build": "yarn server build",
+    "start": "node packages/server/dist/index.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server start\" \"yarn web start\""
   },
   "dependencies": {
     "concurrently": "5.1.0"
