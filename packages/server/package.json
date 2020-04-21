@@ -20,6 +20,8 @@
     "typescript": "3.8.3"
   },
   "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsc",
     "start": "nodemon",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx",

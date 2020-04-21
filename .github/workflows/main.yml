@@ -23,6 +23,9 @@ jobs:
     - name: Test
       run: yarn workspace @bookshelf/server test
 
+    - name: Build
+      run: yarn workspace @bookshelf/server build
+
     ## Web
 
     - name: Lint
@@ -30,3 +33,6 @@ jobs:
 
     - name: Test
       run: yarn workspace @bookshelf/web test
+
+    - name: Build
+      run: yarn workspace @bookshelf/web build
