@@ -1,6 +1,11 @@
+import express from "express";
+
 import { PORT } from "./config";
 import { server } from "./server";
 
-server.listen({ port: PORT }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+const app = express();
+server.applyMiddleware({ app });
+
+app.listen({ port: PORT }, () => {
+  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
 });

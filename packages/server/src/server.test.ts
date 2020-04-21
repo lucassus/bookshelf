@@ -1,4 +1,4 @@
-import { gql } from "apollo-server";
+import { gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
 
 import { db } from "./db";
