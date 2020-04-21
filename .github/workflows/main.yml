@@ -21,7 +21,7 @@ jobs:
       run: yarn server lint
 
     - name: Test
-      run: yarn server test
+      run: yarn server test --coverage
 
     - name: Build
       run: yarn server build
@@ -32,7 +32,7 @@ jobs:
       run: yarn web lint
 
     - name: Test
-      run: yarn web test
+      run: yarn web test --coverage
 
     - name: Build
       run: yarn web build
