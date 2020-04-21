@@ -13,7 +13,7 @@
   "scripts": {
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
-    "build": "yarn server build && yarn web build",
+    "build": "yarn server build && yarn web build --mode production",
     "start": "node packages/server/dist/index.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server start\" \"yarn web start\""
   },
