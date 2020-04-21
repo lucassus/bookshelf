@@ -24,7 +24,7 @@
     "build": "yarn clean && tsc",
     "start": "nodemon",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint . --ext .ts",
     "test": "jest"
   }
 }
