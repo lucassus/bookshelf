@@ -36,8 +36,6 @@ export const resolvers = {
   },
 
   Query: {
-    message: () => "Hello World!",
-
     books: (rootValue, args, { db }: Context) => db.books.find(),
     randomBook: (rootValue, args, { db }: Context) => db.books.findRandom(),
 

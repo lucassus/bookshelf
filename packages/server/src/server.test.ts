@@ -4,24 +4,6 @@ import { createTestClient } from "apollo-server-testing";
 import { db } from "./db";
 import { server } from "./server";
 
-it("fetches the message", async () => {
-  // Given
-  const { query } = createTestClient(server);
-
-  const MESSAGE_QUERY = gql`
-    query {
-      message
-    }
-  `;
-
-  // When
-  const res = await query({ query: MESSAGE_QUERY });
-
-  // Then
-  expect(res.data).not.toBeUndefined();
-  expect(res.data!.message).toEqual("Hello World!");
-});
-
 it("fetches books", async () => {
   // Given
   const { query } = createTestClient(server);
