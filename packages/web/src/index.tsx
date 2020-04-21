@@ -8,12 +8,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { App } from "./App";
-
-const URL = "http://localhost:4000";
+import { GRAPHQL_ENDPOINT } from "./config";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({ uri: URL }),
+  link: new HttpLink({ uri: GRAPHQL_ENDPOINT }),
   queryDeduplication: false
 });
 

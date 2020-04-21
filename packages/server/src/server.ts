@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server";
+import { ApolloServer } from "apollo-server-express";
 
 import { ASSETS_BASE_URL } from "./config";
 import { db } from "./db";
