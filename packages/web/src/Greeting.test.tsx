@@ -2,7 +2,7 @@ import { MockedProvider } from "@apollo/client/testing";
 import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 
-import { App, MESSAGE_QUERY } from "./App";
+import { Greeting, MESSAGE_QUERY } from "./Greeting";
 
 test("renders the message", async () => {
   // Given
@@ -22,7 +22,7 @@ test("renders the message", async () => {
   // When
   const { getByText } = render(
     <MockedProvider mocks={mocks}>
-      <App />
+      <Greeting />
     </MockedProvider>
   );
 

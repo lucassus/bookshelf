@@ -7,8 +7,8 @@ import {
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { App } from "./App";
 import { GRAPHQL_ENDPOINT } from "./config";
+import { Greeting } from "./Greeting";
 import { AuthorsPage } from "./pages/AuthorsPage";
 
 const client = new ApolloClient({
@@ -20,7 +20,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Greeting />
       <AuthorsPage />
     </ApolloProvider>
   </React.StrictMode>,
