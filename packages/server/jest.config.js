@@ -1,7 +1,9 @@
+const package = require("./package.json");
+
 module.exports = {
   displayName: {
     color: "blue",
-    name: "server"
+    name: package.name
   },
   testEnvironment: "node",
   maxWorkers: 2,
