@@ -1,6 +1,8 @@
 module.exports = {
-  name: "web",
-  displayName: "web",
+  displayName: {
+    color: "green",
+    name: "web"
+  },
   maxWorkers: 2,
   setupFilesAfterEnv: ["./src/setupTests.ts"],
   testPathIgnorePatterns: [

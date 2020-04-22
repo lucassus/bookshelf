@@ -1,6 +1,8 @@
 module.exports = {
-  name: "server",
-  displayName: "server",
+  displayName: {
+    color: "blue",
+    name: "server"
+  },
   testEnvironment: "node",
   maxWorkers: 2,
   testPathIgnorePatterns: [
