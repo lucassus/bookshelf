@@ -929,5 +929,81 @@ it("fetches a random book", async () => {
 
   // Then
   expect(res.data).not.toBeUndefined();
-  expect(res.data!.randomAuthor).toMatchInlineSnapshot(`undefined`);
+  expect(res.data!.randomBook).toMatchInlineSnapshot(`
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/krol.jpg",
+      },
+      "title": "Król",
+    }
+  `);
+});
+
+it("fetches users", async () => {
+  const { query } = createTestClient(server);
+
+  const USERS_QUERY = gql`
+    query {
+      users {
+        name
+        email
+        avatar {
+          color
+          image {
+            url
+          }
+        }
+      }
+    }
+  `;
+
+  // When
+  const res = await query({ query: USERS_QUERY });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.users).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "avatar": Object {
+          "color": "yellow",
+          "image": Object {
+            "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+          },
+        },
+        "email": "alice@example.com",
+        "name": "Alice",
+      },
+      Object {
+        "avatar": Object {
+          "color": "green",
+          "image": Object {
+            "url": "http://examples.devmastery.pl/assets/images/avatars/m10.png",
+          },
+        },
+        "email": "bob@example.com",
+        "name": "Bob",
+      },
+      Object {
+        "avatar": Object {
+          "color": "red",
+          "image": Object {
+            "url": "http://examples.devmastery.pl/assets/images/avatars/w2.png",
+          },
+        },
+        "email": "celine@example.com",
+        "name": "Celine",
+      },
+      Object {
+        "avatar": Object {
+          "color": "blue",
+          "image": Object {
+            "url": "http://examples.devmastery.pl/assets/images/avatars/m25.png",
+          },
+        },
+        "email": "dan@example.com",
+        "name": "Dan",
+      },
+    ]
+  `);
 });

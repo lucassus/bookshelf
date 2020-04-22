@@ -1,4 +1,7 @@
 module.exports = {
+  name: "server",
+  displayName: "server",
+  testEnvironment: "node",
   maxWorkers: 2,
   testPathIgnorePatterns: [
     "/dist/",
