@@ -4,6 +4,7 @@ Example react and graphql project made during https://kursreacta.pl/gql course.
 
 https://graphql-bookshelf.herokuapp.com/
 
+![CI](https://github.com/lucassus/bookshelf/workflows/CI/badge.svg)
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/lucassus/bookshelf/master.svg?style=flat-square)](https://codecov.io/gh/lucassus/bookshelf/)
 
 ## Installation
