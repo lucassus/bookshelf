@@ -18,10 +18,8 @@
     "start": "node packages/server/dist/index.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server start\" \"yarn web start\""
   },
-  "dependencies": {
-    "concurrently": "5.1.0"
-  },
   "devDependencies": {
+    "concurrently": "5.1.0",
     "jest": "25.4.0",
     "ts-jest": "25.4.0"
   }
