@@ -4,7 +4,6 @@ const path = require("path");
 
 module.exports = {
   mode: "none",
-  devtool: "source-map",
   entry: [
     "./src/index.tsx"
   ],
@@ -32,14 +31,27 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ["file-loader"]
+      },
+      {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: [
+          {
+            loader: "ts-loader",
+            options: { transpileOnly: true }
+          }
+        ],
         exclude: "/node_modules/"
       }
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({template: "index.html"})
+    new HtmlWebpackPlugin({template: "src/index.html"})
   ]
 }

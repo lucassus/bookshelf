@@ -1,20 +1,16 @@
-import { gql, NetworkStatus, useQuery } from "@apollo/client";
+import { Typography, Container, CssBaseline } from "@material-ui/core";
 import React from "react";
 
-export const MESSAGE_QUERY = gql`
-  query getMessage {
-    message
-  }
-`;
+import { AuthorsPage } from "./pages/AuthorsPage";
 
-export const App: React.FunctionComponent = () => {
-  const { data, networkStatus } = useQuery<{ message: string }>(MESSAGE_QUERY, {
-    notifyOnNetworkStatusChange: true
-  });
-
-  if (!data || networkStatus === NetworkStatus.loading) {
-    return <span>Message is loading...</span>;
-  }
-
-  return <div>{data.message}</div>;
-};
+export const App: React.FunctionComponent = () => (
+  <>
+    <CssBaseline />
+    <Container maxWidth="lg">
+      <Typography component="h1" variant="h3">
+        Personal Library
+      </Typography>
+      <AuthorsPage />
+    </Container>
+  </>
+);
