@@ -1,15 +1,15 @@
+import { gql, useQuery } from "@apollo/client";
 import {
   CircularProgress,
   Container,
   Grid,
   Typography
 } from "@material-ui/core";
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
 import { Alert } from "@material-ui/lab";
+import React from "react";
 
-import { User } from "../types";
 import { UserAvatar } from "../components/UserAvatar";
+import { User } from "../types";
 
 export const USERS_QUERY = gql`
   query {
