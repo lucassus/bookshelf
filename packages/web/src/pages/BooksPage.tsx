@@ -49,15 +49,9 @@ export const BooksPage: React.FunctionComponent = () => {
         Books
       </Typography>
 
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-        spacing={3}
-      >
+      <Grid container spacing={3}>
         {data.books.map((book) => (
-          <Grid item key={book.title}>
+          <Grid item key={book.title} xs={12} sm={6} md={4}>
             <BookCard book={book} />
           </Grid>
         ))}
