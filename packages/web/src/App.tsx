@@ -1,11 +1,16 @@
-import { Box, Typography } from "@material-ui/core";
+import { Typography, Container, CssBaseline } from "@material-ui/core";
 import React from "react";
 
 import { AuthorsPage } from "./pages/AuthorsPage";
 
 export const App: React.FunctionComponent = () => (
-  <Box display="flex" flexDirection="column">
-    <Typography variant="h2">Personal Library</Typography>
-    <AuthorsPage />
-  </Box>
+  <>
+    <CssBaseline />
+    <Container maxWidth="lg">
+      <Typography component="h1" variant="h3">
+        Personal Library
+      </Typography>
+      <AuthorsPage />
+    </Container>
+  </>
 );

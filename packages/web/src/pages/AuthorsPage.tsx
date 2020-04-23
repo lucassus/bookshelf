@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
-import { Alert } from "@material-ui/lab";
 import { Box, CircularProgress } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { AuthorCard } from "../components/AuthorCard";
