@@ -1,5 +1,10 @@
+import { Container, Typography } from "@material-ui/core";
 import React from "react";
 
 export const UsersPage: React.FunctionComponent = () => (
-  <div>Users page goes here...</div>
+  <Container>
+    <Typography variant="h4" component="h2">
+      Users
+    </Typography>
+  </Container>
 );

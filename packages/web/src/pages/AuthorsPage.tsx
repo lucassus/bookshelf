@@ -1,5 +1,10 @@
 import { gql, useQuery } from "@apollo/client";
-import { CircularProgress, Grid } from "@material-ui/core";
+import {
+  CircularProgress,
+  Container,
+  Grid,
+  Typography
+} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import React from "react";
 
@@ -36,18 +41,24 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="space-around"
-      alignItems="center"
-      spacing={3}
-    >
-      {data.authors.map((author: any) => (
-        <Grid item key={author.name}>
-          <AuthorCard author={author} />
-        </Grid>
-      ))}
-    </Grid>
+    <Container>
+      <Typography variant="h4" component="h2">
+        Authors
+      </Typography>
+
+      <Grid
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+        spacing={3}
+      >
+        {data.authors.map((author) => (
+          <Grid item key={author.name}>
+            <AuthorCard author={author} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
