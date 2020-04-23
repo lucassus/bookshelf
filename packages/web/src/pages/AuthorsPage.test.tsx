@@ -48,4 +48,27 @@ describe("<AuthorsPage />", () => {
     expect(getByText("J. K. Rowling")).toBeInTheDocument();
     expect(getByText("Andrzej Sapkowski")).toBeInTheDocument();
   });
+
+  it("renders error alert when request fails", async () => {
+    // Given
+    const mocks = [
+      {
+        request: {
+          query: AUTHORS_QUERY
+        },
+        error: new Error()
+      }
+    ];
+
+    // When
+    const { getByText } = render(
+      <MockedProvider mocks={mocks}>
+        <AuthorsPage />
+      </MockedProvider>
+    );
+
+    // Then
+    await waitForElementToBeRemoved(() => getByText("Loading authors..."));
+    expect(getByText("Could not load authors...")).toBeInTheDocument();
+  });
 });
