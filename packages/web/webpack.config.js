@@ -4,9 +4,7 @@ const path = require("path");
 
 module.exports = {
   mode: "none",
-  entry: [
-    "./src/index.tsx"
-  ],
+  entry: ["./src/index.tsx"],
   output: {
     chunkFilename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist")
@@ -19,10 +17,10 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
+          chunks: "all"
+        }
+      }
+    }
   },
   target: "web",
   resolve: {
@@ -48,10 +46,13 @@ module.exports = {
         ],
         exclude: "/node_modules/"
       }
-    ],
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({template: "src/index.html"})
-  ]
-}
+    new HtmlWebpackPlugin({ template: "src/index.html" })
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
+};
