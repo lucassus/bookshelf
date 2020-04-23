@@ -7,8 +7,8 @@ export const users: User[] = [
     email: "alice@example.com",
     avatar: {
       imagePath: "/images/avatars/w13.png",
-      color: "yellow",
-    },
+      color: "yellow"
+    }
   },
   {
     id: 2,
@@ -16,8 +16,8 @@ export const users: User[] = [
     email: "bob@example.com",
     avatar: {
       imagePath: "/images/avatars/m10.png",
-      color: "green",
-    },
+      color: "green"
+    }
   },
   {
     id: 3,
@@ -25,8 +25,8 @@ export const users: User[] = [
     email: "celine@example.com",
     avatar: {
       imagePath: "/images/avatars/w2.png",
-      color: "red",
-    },
+      color: "red"
+    }
   },
   {
     id: 4,
@@ -34,7 +34,7 @@ export const users: User[] = [
     email: "dan@example.com",
     avatar: {
       imagePath: "/images/avatars/m25.png",
-      color: "blue",
-    },
-  },
+      color: "blue"
+    }
+  }
 ];

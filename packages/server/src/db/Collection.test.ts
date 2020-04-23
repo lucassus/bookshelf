@@ -10,7 +10,7 @@ const books = [
   { id: 1, authorId: 1, title: "Harry Potter and the Sorcerer's Stone" },
   { id: 2, authorId: 2, title: "Leviathan Wakes" },
   { id: 3, authorId: 3, title: "Blood of Elves" },
-  { id: 4, authorId: 3, title: "Time of contempt" },
+  { id: 4, authorId: 3, title: "Time of contempt" }
 ];
 
 const collection = new Collection<Book>(books);

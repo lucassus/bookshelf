@@ -2,7 +2,7 @@ import {
   ApolloClient,
   ApolloProvider,
   HttpLink,
-  InMemoryCache,
+  InMemoryCache
 } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -13,7 +13,7 @@ import { GRAPHQL_ENDPOINT } from "./config";
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({ uri: GRAPHQL_ENDPOINT }),
-  queryDeduplication: false,
+  queryDeduplication: false
 });
 
 ReactDOM.render(
