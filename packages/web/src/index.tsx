@@ -7,6 +7,7 @@ import {
 import React from "react";
 import ReactDOM from "react-dom";
 import "typeface-roboto";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { App } from "./App";
 import { GRAPHQL_ENDPOINT } from "./config";
@@ -20,7 +21,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
