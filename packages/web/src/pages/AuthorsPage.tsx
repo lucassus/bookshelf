@@ -3,6 +3,7 @@ import React from "react";
 
 import { AuthorCard } from "../components/AuthorCard";
 import { Author } from "../types";
+import { Box } from "@material-ui/core";
 
 export const AUTHORS_QUERY = gql`
   query {
@@ -29,10 +30,10 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <div>
+    <Box display="flex" flexDirection="row">
       {data.authors.map((author: any) => (
         <AuthorCard key={author.name} author={author} />
       ))}
-    </div>
+    </Box>
   );
 };
