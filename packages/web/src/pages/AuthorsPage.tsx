@@ -1,9 +1,10 @@
 import { gql, useQuery } from "@apollo/client";
+import { Alert } from "@material-ui/lab";
+import { Box, CircularProgress } from "@material-ui/core";
 import React from "react";
 
 import { AuthorCard } from "../components/AuthorCard";
 import { Author } from "../types";
-import { Box } from "@material-ui/core";
 
 export const AUTHORS_QUERY = gql`
   query {
@@ -22,17 +23,24 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }>(AUTHORS_QUERY);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <CircularProgress />
+        <span>Loading authors...</span>
+      </div>
+    );
   }
 
   if (error || !data) {
-    return <p>Could not load authors...</p>;
+    return <Alert severity="error">Could not load authors...</Alert>;
   }
 
   return (
-    <Box display="flex" flexDirection="row">
+    <Box display="flex" flexDirection="row" flexWrap="wrap" alignItems="center">
       {data.authors.map((author: any) => (
-        <AuthorCard key={author.name} author={author} />
+        <Box key={author.name} m={1}>
+          <AuthorCard author={author} />
+        </Box>
       ))}
     </Box>
   );

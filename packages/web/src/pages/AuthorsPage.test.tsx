@@ -42,8 +42,8 @@ describe("<AuthorsPage />", () => {
     );
 
     // Then
-    expect(getByText("Loading...")).toBeInTheDocument();
-    await waitForElementToBeRemoved(() => getByText("Loading..."));
+    expect(getByText("Loading authors...")).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => getByText("Loading authors..."));
 
     expect(getByText("J. K. Rowling")).toBeInTheDocument();
     expect(getByText("Andrzej Sapkowski")).toBeInTheDocument();
