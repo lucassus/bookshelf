@@ -36,7 +36,13 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      direction="row"
+      justify="space-around"
+      alignItems="center"
+      spacing={3}
+    >
       {data.authors.map((author: any) => (
         <Grid item key={author.name}>
           <AuthorCard author={author} />
