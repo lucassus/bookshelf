@@ -7,11 +7,8 @@ module.exports = {
   },
   testEnvironment: "node",
   maxWorkers: 2,
-  testPathIgnorePatterns: [
-    "/dist/",
-    "/node_modules/"
-  ],
+  testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    "^.+\\.ts$": "ts-jest"
   }
 };
