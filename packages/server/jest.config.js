@@ -1,6 +1,10 @@
+const package = require("./package.json");
+
 module.exports = {
-  name: "server",
-  displayName: "server",
+  displayName: {
+    color: "blue",
+    name: package.name
+  },
   testEnvironment: "node",
   maxWorkers: 2,
   testPathIgnorePatterns: [

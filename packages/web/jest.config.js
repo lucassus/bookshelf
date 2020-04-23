@@ -1,6 +1,10 @@
+const package = require("./package.json");
+
 module.exports = {
-  name: "web",
-  displayName: "web",
+  displayName: {
+    color: "green",
+    name: package.name
+  },
   maxWorkers: 2,
   setupFilesAfterEnv: ["./src/setupTests.ts"],
   testPathIgnorePatterns: [

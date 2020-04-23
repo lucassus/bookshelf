@@ -19,6 +19,7 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server start\" \"yarn web start\""
   },
   "devDependencies": {
+    "@types/jest": "25.2.1",
     "concurrently": "5.1.0",
     "jest": "25.4.0",
     "ts-jest": "25.4.0"
