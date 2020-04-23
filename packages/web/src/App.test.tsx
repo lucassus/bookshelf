@@ -9,14 +9,14 @@ test("renders the message", async () => {
   const mocks = [
     {
       request: {
-        query: MESSAGE_QUERY
+        query: MESSAGE_QUERY,
       },
       result: {
         data: {
-          message: "Hello Test!"
-        }
-      }
-    }
+          message: "Hello Test!",
+        },
+      },
+    },
   ];
 
   // When

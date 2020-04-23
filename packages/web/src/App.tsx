@@ -9,7 +9,7 @@ export const MESSAGE_QUERY = gql`
 
 export const App: React.FunctionComponent = () => {
   const { data, networkStatus } = useQuery<{ message: string }>(MESSAGE_QUERY, {
-    notifyOnNetworkStatusChange: true
+    notifyOnNetworkStatusChange: true,
   });
 
   if (!data || networkStatus === NetworkStatus.loading) {
