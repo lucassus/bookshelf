@@ -7,6 +7,12 @@ export interface Author {
   photo: Image;
 }
 
+export interface Book {
+  title: string;
+  cover: Image;
+  author: Author;
+}
+
 export interface User {
   name: string;
   email: string;

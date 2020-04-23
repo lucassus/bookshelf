@@ -11,6 +11,7 @@ import { Routes, Route, Link as RouterLink } from "react-router-dom";
 
 import { AuthorsPage } from "./pages/AuthorsPage";
 import { UsersPage } from "./pages/UsersPage";
+import { BooksPage } from "./pages/BooksPage";
 
 export const App: React.FunctionComponent = () => (
   <>
@@ -24,6 +25,9 @@ export const App: React.FunctionComponent = () => (
 
         <nav>
           <Button component={RouterLink} to="/">
+            Books
+          </Button>
+          <Button component={RouterLink} to="/authors">
             Authors
           </Button>
           <Button component={RouterLink} to="/users">
@@ -35,7 +39,8 @@ export const App: React.FunctionComponent = () => (
 
     <Container maxWidth="lg">
       <Routes>
-        <Route path="/" element={<AuthorsPage />} />
+        <Route path="/" element={<BooksPage />} />
+        <Route path="/authors" element={<AuthorsPage />} />
         <Route path="/users" element={<UsersPage />} />
       </Routes>
     </Container>
