@@ -11,8 +11,8 @@ export const resolvers = {
       db.authors.findOne({ id: book.authorId }),
 
     cover: (book: Book): Image => ({
-      path: book.coverPath,
-    }),
+      path: book.coverPath
+    })
   },
 
   Author: {
@@ -20,19 +20,19 @@ export const resolvers = {
       db.books.find({ authorId: author.id }),
 
     photo: (author: Author): Image => ({
-      path: author.photoPath,
-    }),
+      path: author.photoPath
+    })
   },
 
   Avatar: {
     image: (avatar: User["avatar"]): Image => ({
-      path: avatar.imagePath,
-    }),
+      path: avatar.imagePath
+    })
   },
 
   Image: {
     url: (image: Image, args, context: Context) =>
-      context.assetsBaseUrl + image.path,
+      context.assetsBaseUrl + image.path
   },
 
   Query: {
@@ -44,6 +44,6 @@ export const resolvers = {
     authors: (rootValue, args, { db }: Context) => db.authors.find(),
     randomAuthor: (rootValue, args, { db }: Context) => db.authors.findRandom(),
 
-    users: (rootValue, args, { db }: Context) => db.users.find(),
-  },
+    users: (rootValue, args, { db }: Context) => db.users.find()
+  }
 };

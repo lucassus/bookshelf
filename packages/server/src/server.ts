@@ -12,7 +12,7 @@ export interface Context {
 
 const context: Context = {
   assetsBaseUrl: ASSETS_BASE_URL,
-  db,
+  db
 };
 
 export const server = new ApolloServer({
@@ -20,5 +20,5 @@ export const server = new ApolloServer({
   resolvers,
   context,
   introspection: true,
-  playground: true,
+  playground: true
 });

@@ -871,7 +871,7 @@ it("fetches a random author", async () => {
   jest.spyOn(db.authors, "findRandom").mockResolvedValue({
     id: 1,
     name: "Szczepan Twardoch",
-    photoPath: "/sczepan.jpg",
+    photoPath: "/sczepan.jpg"
   });
 
   const { query } = createTestClient(server);
@@ -908,7 +908,7 @@ it("fetches a random book", async () => {
     id: 1,
     authorId: 1,
     title: "Król",
-    coverPath: "/krol.jpg",
+    coverPath: "/krol.jpg"
   });
 
   const { query } = createTestClient(server);

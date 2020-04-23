@@ -8,5 +8,5 @@ import { Author, Book, User } from "./types";
 export const db = {
   books: new Collection<Book>(books),
   authors: new Collection<Author>(authors),
-  users: new Collection<User>(users),
+  users: new Collection<User>(users)
 };
