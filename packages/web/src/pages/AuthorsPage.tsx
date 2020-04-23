@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { Box, CircularProgress } from "@material-ui/core";
+import { CircularProgress, Grid } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import React from "react";
 
@@ -36,12 +36,12 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Box display="flex" flexDirection="row" flexWrap="wrap" alignItems="center">
+    <Grid container spacing={3}>
       {data.authors.map((author: any) => (
-        <Box key={author.name} m={1}>
+        <Grid item key={author.name}>
           <AuthorCard author={author} />
-        </Box>
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 };
