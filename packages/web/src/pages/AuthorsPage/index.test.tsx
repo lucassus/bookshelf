@@ -4,8 +4,8 @@ import React from "react";
 import { MemoryRouter } from "react-router";
 
 import { Author } from "../../types.generated";
-import { AuthorsPage } from "./index";
 import { GetAuthorsDocument } from "./GetAuthors.generated";
+import { AuthorsPage } from "./index";
 
 describe("<AuthorsPage />", () => {
   it("renders list of authors", async () => {

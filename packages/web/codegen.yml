@@ -1,25 +1,37 @@
 overwrite: true
+
 schema:
   '../server/src/**/*.ts':
     noRequire: true
+
 documents: "src/**/*.graphql"
+
 generates:
   src/types.generated.ts:
     plugins:
       - "typescript"
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+
   src/:
-    preset: near-operation-file
-    presetConfig:
-      extension: .generated.tsx
-      baseTypesPath: generated/graphql.ts
     plugins:
       - typescript-operations
       - typescript-react-apollo
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: types.generated.ts
     config:
+      gqlImport: @apollo/client#gql
       reactApolloVersion: 3
       withHooks: true
       withComponent: false
       withHOC: false
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+
   ./graphql.schema.json:
     plugins:
       - "introspection"

@@ -6,6 +6,12 @@ module.exports = {
       files: ["*.test.ts", "*.test.tsx"],
       env: { jest: true },
       extends: ["plugin:jest/recommended", "plugin:testing-library/recommended"]
+    },
+    {
+      files: "*.generated.tsx",
+      rules: {
+        "import/no-duplicates": "off"
+      }
     }
   ],
   rules: {

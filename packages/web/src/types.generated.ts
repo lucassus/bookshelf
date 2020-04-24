@@ -9,7 +9,7 @@ export type Scalars = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: "Query";
   authors: Array<Author>;
   author?: Maybe<Author>;
   randomAuthor: Author;
@@ -18,42 +18,41 @@ export type Query = {
   users: Array<User>;
 };
 
-
 export type QueryAuthorArgs = {
-  id: Scalars['Int'];
+  id: Scalars["Int"];
 };
 
 export type Author = {
-   __typename?: 'Author';
-  id: Scalars['Int'];
-  name: Scalars['String'];
+  __typename?: "Author";
+  id: Scalars["Int"];
+  name: Scalars["String"];
   photo: Image;
   books?: Maybe<Array<Maybe<Book>>>;
 };
 
 export type Book = {
-   __typename?: 'Book';
-  id: Scalars['Int'];
-  title: Scalars['String'];
+  __typename?: "Book";
+  id: Scalars["Int"];
+  title: Scalars["String"];
   cover: Image;
   author?: Maybe<Author>;
 };
 
 export type User = {
-   __typename?: 'User';
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  email: Scalars['String'];
+  __typename?: "User";
+  id: Scalars["Int"];
+  name: Scalars["String"];
+  email: Scalars["String"];
   avatar: Avatar;
 };
 
 export type Image = {
-   __typename?: 'Image';
-  url: Scalars['String'];
+  __typename?: "Image";
+  url: Scalars["String"];
 };
 
 export type Avatar = {
-   __typename?: 'Avatar';
+  __typename?: "Avatar";
   image: Image;
-  color: Scalars['String'];
+  color: Scalars["String"];
 };

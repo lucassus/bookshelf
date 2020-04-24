@@ -1,8 +1,8 @@
-import * as Types from "../../types.generated";
-
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import * as ApolloReactCommon from "@apollo/client";
 import * as ApolloReactHooks from "@apollo/client";
+
+import * as Types from "../../types.generated";
 
 export type GetAuthorsQueryVariables = {};
 

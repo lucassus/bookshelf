@@ -8,7 +8,7 @@ import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { AuthorCard } from "../../components/AuthorCard";
-import { useGetAuthorsQuery } from "../../types.generated";
+import { useGetAuthorsQuery } from "./GetAuthors.generated";
 
 export const AuthorsPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetAuthorsQuery();
