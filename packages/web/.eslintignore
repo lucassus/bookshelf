@@ -2,4 +2,5 @@ coverage
 dist
 node_modules
 src/generated
+src/**/*.generated.tsx
 jest.config.js

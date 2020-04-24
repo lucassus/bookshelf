@@ -7,8 +7,14 @@ generates:
   src/generated/graphql.tsx:
     plugins:
       - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: generated/graphql.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
     config:
       reactApolloVersion: 3
       withHooks: true

@@ -8,7 +8,7 @@ import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { UserAvatar } from "../../components/UserAvatar";
-import { useGetUsersQuery } from "../../generated/graphql";
+import { useGetUsersQuery } from "./GetUsers.generated";
 
 export const UsersPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetUsersQuery();

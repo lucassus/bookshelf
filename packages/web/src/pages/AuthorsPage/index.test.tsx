@@ -3,8 +3,9 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author, GetAuthorsDocument } from "../../generated/graphql";
+import { Author } from "../../generated/graphql";
 import { AuthorsPage } from "./index";
+import { GetAuthorsDocument } from "./GetAuthors.generated";
 
 describe("<AuthorsPage />", () => {
   it("renders list of authors", async () => {
