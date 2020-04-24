@@ -1,41 +1,21 @@
-import {
-  Typography,
-  Container,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  Button
-} from "@material-ui/core";
+import { Container, CssBaseline } from "@material-ui/core";
 import React from "react";
-import { Routes, Route, Link as RouterLink } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
+import { AppTopBar } from "./components/AppTopBar";
 import { AuthorsPage } from "./pages/AuthorsPage";
+import { BooksPage } from "./pages/BooksPage";
 import { UsersPage } from "./pages/UsersPage";
 
 export const App: React.FunctionComponent = () => (
   <>
     <CssBaseline />
-
-    <AppBar position="relative">
-      <Toolbar>
-        <Typography variant="h6" component="h1">
-          Personal Library
-        </Typography>
-
-        <nav>
-          <Button component={RouterLink} to="/">
-            Authors
-          </Button>
-          <Button component={RouterLink} to="/users">
-            Users
-          </Button>
-        </nav>
-      </Toolbar>
-    </AppBar>
+    <AppTopBar />
 
     <Container maxWidth="lg">
       <Routes>
-        <Route path="/" element={<AuthorsPage />} />
+        <Route path="/" element={<BooksPage />} />
+        <Route path="/authors" element={<AuthorsPage />} />
         <Route path="/users" element={<UsersPage />} />
       </Routes>
     </Container>
