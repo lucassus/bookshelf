@@ -1,3 +1,5 @@
+ignore:
+  - packages/web/src/generated
 coverage:
   status:
     project:
