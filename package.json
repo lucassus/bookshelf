@@ -16,10 +16,12 @@
     "test": "jest",
     "build": "yarn server build && yarn web build --mode production",
     "start": "node packages/server/dist/index.js",
-    "dev": "concurrently --raw --kill-others-on-fail \"yarn server start\" \"yarn web start\""
+    "dev": "concurrently --raw --kill-others-on-fail \"yarn server start\" \"yarn web start\"",
+    "introspect-schema": "apollo-codegen introspect-schema http://localhost:4000/graphql --output packages/web/schema.json"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
+    "apollo-codegen": "0.20.2",
     "concurrently": "5.1.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb-typescript": "7.2.1",
