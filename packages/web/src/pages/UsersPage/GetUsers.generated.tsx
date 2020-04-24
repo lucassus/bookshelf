@@ -1,43 +1,35 @@
-import * as Types from '../../generated/graphql';
+import * as Types from "../../types.generated";
 
-import gql from 'graphql-tag';
-import * as ApolloReactCommon from '@apollo/client';
-import * as ApolloReactHooks from '@apollo/client';
+import gql from "graphql-tag";
+import * as ApolloReactCommon from "@apollo/client";
+import * as ApolloReactHooks from "@apollo/client";
 
 export type GetUsersQueryVariables = {};
 
-
-export type GetUsersQuery = (
-  { __typename?: 'Query' }
-  & { users: Array<(
-    { __typename?: 'User' }
-    & Pick<Types.User, 'id' | 'name'>
-    & { avatar: (
-      { __typename?: 'Avatar' }
-      & Pick<Types.Avatar, 'color'>
-      & { image: (
-        { __typename?: 'Image' }
-        & Pick<Types.Image, 'url'>
-      ) }
-    ) }
-  )> }
-);
-
+export type GetUsersQuery = { __typename?: "Query" } & {
+  users: Array<
+    { __typename?: "User" } & Pick<Types.User, "id" | "name"> & {
+        avatar: { __typename?: "Avatar" } & Pick<Types.Avatar, "color"> & {
+            image: { __typename?: "Image" } & Pick<Types.Image, "url">;
+          };
+      }
+  >;
+};
 
 export const GetUsersDocument = gql`
-    query GetUsers {
-  users {
-    id
-    name
-    avatar {
-      image {
-        url
+  query GetUsers {
+    users {
+      id
+      name
+      avatar {
+        image {
+          url
+        }
+        color
       }
-      color
     }
   }
-}
-    `;
+`;
 
 /**
  * __useGetUsersQuery__
@@ -54,12 +46,33 @@ export const GetUsersDocument = gql`
  *   },
  * });
  */
-export function useGetUsersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
-        return ApolloReactHooks.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, baseOptions);
-      }
-export function useGetUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, baseOptions);
-        }
+export function useGetUsersQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GetUsersQuery,
+    GetUsersQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<GetUsersQuery, GetUsersQueryVariables>(
+    GetUsersDocument,
+    baseOptions
+  );
+}
+export function useGetUsersLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GetUsersQuery,
+    GetUsersQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(
+    GetUsersDocument,
+    baseOptions
+  );
+}
 export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
-export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
-export type GetUsersQueryResult = ApolloReactCommon.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
+export type GetUsersLazyQueryHookResult = ReturnType<
+  typeof useGetUsersLazyQuery
+>;
+export type GetUsersQueryResult = ApolloReactCommon.QueryResult<
+  GetUsersQuery,
+  GetUsersQueryVariables
+>;

@@ -4,7 +4,7 @@ schema:
     noRequire: true
 documents: "src/**/*.graphql"
 generates:
-  src/generated/graphql.tsx:
+  src/types.generated.ts:
     plugins:
       - "typescript"
   src/:

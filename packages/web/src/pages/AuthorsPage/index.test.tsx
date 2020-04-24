@@ -3,7 +3,7 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author } from "../../generated/graphql";
+import { Author } from "../../types.generated";
 import { AuthorsPage } from "./index";
 import { GetAuthorsDocument } from "./GetAuthors.generated";
 

@@ -2,7 +2,7 @@ import { Avatar, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
-import { User } from "../generated/graphql";
+import { User } from "../types.generated";
 
 const useStyles = makeStyles((theme) => ({
   large: {
