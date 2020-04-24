@@ -14,6 +14,7 @@ import { User } from "../types";
 export const USERS_QUERY = gql`
   query {
     users {
+      id
       name
       avatar {
         image {
@@ -57,7 +58,7 @@ export const UsersPage: React.FunctionComponent = () => {
         spacing={3}
       >
         {data.users.map((user) => (
-          <Grid item key={user.email}>
+          <Grid item key={user.id}>
             <UserAvatar user={user} />
           </Grid>
         ))}
