@@ -1,22 +1,14 @@
-import { useQuery } from "@apollo/client";
 import { Container, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
-import {
-  GetAuthorQuery,
-  GetAuthorQueryVariables
-} from "../../generated/graphql";
-import { GetAuthor } from "./query";
+import { useGetAuthorQuery } from "../../generated/graphql";
 
 export const AuthorPage: React.FunctionComponent = () => {
   const params = useParams();
 
-  const { loading, error, data } = useQuery<
-    GetAuthorQuery,
-    GetAuthorQueryVariables
-  >(GetAuthor, {
+  const { loading, error, data } = useGetAuthorQuery({
     variables: { id: parseInt(params.id, 10) }
   });
 

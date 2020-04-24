@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import {
   CircularProgress,
   Container,
@@ -9,11 +8,10 @@ import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { UserAvatar } from "../../components/UserAvatar";
-import { GetUsersQuery } from "../../generated/graphql";
-import { GetUsers } from "./query";
+import { useGetUsersQuery } from "../../generated/graphql";
 
 export const UsersPage: React.FunctionComponent = () => {
-  const { loading, error, data } = useQuery<GetUsersQuery>(GetUsers);
+  const { loading, error, data } = useGetUsersQuery();
 
   if (loading) {
     return (
