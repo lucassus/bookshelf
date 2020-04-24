@@ -43,6 +43,6 @@
     "test": "jest",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
-    "generate-types": "apollo-codegen generate src/**/*.query.ts --schema schema.json --target typescript --add-typename --output src/__generated__/types.ts"
+    "generate-types": "apollo-codegen generate src/**/query.ts --schema schema.json --target typescript --add-typename --output src/__generated__/types.ts"
   }
 }

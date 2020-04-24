@@ -8,9 +8,9 @@ import {
 import { Alert } from "@material-ui/lab";
 import React from "react";
 
-import { GetBooksQuery } from "../__generated__/types";
-import { BookCard } from "../components/BookCard";
-import { GetBooks } from "./BooksPage.query";
+import { GetBooksQuery } from "../../__generated__/types";
+import { BookCard } from "../../components/BookCard";
+import { GetBooks } from "./query";
 
 export const BooksPage: React.FunctionComponent = () => {
   const { loading, error, data } = useQuery<GetBooksQuery>(GetBooks);
