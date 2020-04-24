@@ -14,6 +14,7 @@ import { Author } from "../types";
 export const AUTHORS_QUERY = gql`
   query {
     authors {
+      id
       name
       photo {
         url
