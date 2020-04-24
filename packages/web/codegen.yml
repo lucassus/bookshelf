@@ -2,7 +2,7 @@ overwrite: true
 schema:
   '../server/src/**/*.ts':
     noRequire: true
-documents: "src/**/*.ts"
+documents: "src/**/*.graphql"
 generates:
   src/generated/graphql.tsx:
     plugins:

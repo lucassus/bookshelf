@@ -3,9 +3,8 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author } from "../../generated/graphql";
+import { Author, GetAuthorsDocument } from "../../generated/graphql";
 import { AuthorsPage } from "./index";
-import { GetAuthors } from "./query";
 
 describe("<AuthorsPage />", () => {
   it("renders list of authors", async () => {
@@ -13,7 +12,7 @@ describe("<AuthorsPage />", () => {
     const mocks = [
       {
         request: {
-          query: GetAuthors
+          query: GetAuthorsDocument
         },
         result: {
           data: {
@@ -60,7 +59,7 @@ describe("<AuthorsPage />", () => {
     const mocks = [
       {
         request: {
-          query: GetAuthors
+          query: GetAuthorsDocument
         },
         error: new Error()
       }
