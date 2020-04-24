@@ -2,10 +2,10 @@ import { Container, CssBaseline } from "@material-ui/core";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { AuthorsPage } from "./pages/AuthorsPage";
-import { UsersPage } from "./pages/UsersPage";
-import { BooksPage } from "./pages/BooksPage";
 import { AppTopBar } from "./components/AppTopBar";
+import { AuthorsPage } from "./pages/AuthorsPage";
+import { BooksPage } from "./pages/BooksPage";
+import { UsersPage } from "./pages/UsersPage";
 
 export const App: React.FunctionComponent = () => (
   <>
