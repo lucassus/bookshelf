@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
-import { useGetAuthorQuery } from "./GetAuthor.generated";
+import { useGetAuthorQuery } from "./queries.generated";
 
 export const AuthorPage: React.FunctionComponent = () => {
   const params = useParams();
