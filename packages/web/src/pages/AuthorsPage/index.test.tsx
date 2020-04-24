@@ -3,8 +3,9 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author } from "../types";
-import { AUTHORS_QUERY, AuthorsPage } from "./AuthorsPage";
+import { Author } from "../../types";
+import { AuthorsPage } from "./index";
+import { GetAuthors } from "./query";
 
 describe("<AuthorsPage />", () => {
   it("renders list of authors", async () => {
@@ -12,7 +13,7 @@ describe("<AuthorsPage />", () => {
     const mocks = [
       {
         request: {
-          query: AUTHORS_QUERY
+          query: GetAuthors
         },
         result: {
           data: {
@@ -59,7 +60,7 @@ describe("<AuthorsPage />", () => {
     const mocks = [
       {
         request: {
-          query: AUTHORS_QUERY
+          query: GetAuthors
         },
         error: new Error()
       }
