@@ -11,6 +11,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "yarn web generate",
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
     "test": "jest",
