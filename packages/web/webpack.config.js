@@ -7,7 +7,8 @@ module.exports = {
   entry: ["./src/index.tsx"],
   output: {
     chunkFilename: "[name].[contenthash].js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/"
   },
   optimization: {
     runtimeChunk: "single",

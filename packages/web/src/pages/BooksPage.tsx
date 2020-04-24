@@ -14,6 +14,7 @@ import { Book } from "../types";
 const BOOKS_QUERY = gql`
   query {
     books {
+      id
       title
       cover {
         url
@@ -51,7 +52,7 @@ export const BooksPage: React.FunctionComponent = () => {
 
       <Grid container spacing={3}>
         {data.books.map((book) => (
-          <Grid item key={book.title} xs={12} sm={6} md={4}>
+          <Grid item key={book.id} xs={12} sm={6} md={4}>
             <BookCard book={book} />
           </Grid>
         ))}

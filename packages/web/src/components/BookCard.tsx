@@ -29,20 +29,21 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Paper>
-        <Card className={classes.root}>
-          <CardMedia className={classes.cover} image={book.cover.url} />
-          <CardContent>
-            <Typography component="h3" noWrap>
-              {book.title}
-            </Typography>
+    <Paper>
+      <Card className={classes.root}>
+        <CardMedia className={classes.cover} image={book.cover.url} />
+        <CardContent>
+          <Typography component="h3" noWrap>
+            {book.title}
+          </Typography>
+
+          {book.author && (
             <Typography component="h4" noWrap>
               {book.author.name}
             </Typography>
-          </CardContent>
-        </Card>
-      </Paper>
-    </div>
+          )}
+        </CardContent>
+      </Card>
+    </Paper>
   );
 };

@@ -14,6 +14,7 @@ import { Author } from "../types";
 export const AUTHORS_QUERY = gql`
   query {
     authors {
+      id
       name
       photo {
         url
@@ -54,7 +55,7 @@ export const AuthorsPage: React.FunctionComponent = () => {
         spacing={3}
       >
         {data.authors.map((author) => (
-          <Grid item key={author.name}>
+          <Grid item key={author.id}>
             <AuthorCard author={author} />
           </Grid>
         ))}

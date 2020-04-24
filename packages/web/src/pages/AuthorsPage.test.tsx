@@ -1,6 +1,7 @@
 import { MockedProvider } from "@apollo/client/testing";
 import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
+import { MemoryRouter } from "react-router";
 
 import { Author } from "../types";
 import { AUTHORS_QUERY, AuthorsPage } from "./AuthorsPage";
@@ -17,12 +18,14 @@ describe("<AuthorsPage />", () => {
           data: {
             authors: [
               {
+                id: 1,
                 name: "J. K. Rowling",
                 photo: {
                   url: "http://example.com/rowling.jpg"
                 }
               },
               {
+                id: 2,
                 name: "Andrzej Sapkowski",
                 photo: {
                   url: "http://example.com/rowling.jpg"
@@ -37,7 +40,9 @@ describe("<AuthorsPage />", () => {
     // When
     const { getByText } = render(
       <MockedProvider mocks={mocks}>
-        <AuthorsPage />
+        <MemoryRouter>
+          <AuthorsPage />
+        </MemoryRouter>
       </MockedProvider>
     );
 
