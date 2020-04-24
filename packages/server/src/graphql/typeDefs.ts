@@ -9,7 +9,7 @@ export const typeDefs = gql`
     message: String!
 
     authors: [Author!]!
-    author(id: ID!): Author
+    author(id: Int!): Author
     randomAuthor: Author!
 
     books: [Book!]!
@@ -19,18 +19,21 @@ export const typeDefs = gql`
   }
 
   type Author {
+    id: Int!
     name: String!
     photo: Image!
     books: [Book]
   }
 
   type Book {
+    id: Int!
     title: String!
     cover: Image!
     author: Author
   }
 
   type User {
+    id: Int!
     name: String!
     email: String!
     avatar: Avatar!

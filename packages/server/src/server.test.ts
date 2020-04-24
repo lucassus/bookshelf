@@ -11,6 +11,7 @@ it("fetches books", async () => {
   const BOOKS_QUERY = gql`
     query {
       books {
+        id
         title
         cover {
           url
@@ -31,120 +32,140 @@ it("fetches books", async () => {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry1.jpg",
           },
+          "id": 1,
           "title": "Harry Potter and the Sorcerer's Stone",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
           },
+          "id": 2,
           "title": "Harry Potter and the Chamber of Secrets",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry3.jpg",
           },
+          "id": 3,
           "title": "Harry Potter and the Prisoner of Azkaban",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
           },
+          "id": 4,
           "title": "Harry Potter and the Goblet of Fire",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry5.jpg",
           },
+          "id": 5,
           "title": "Harry Potter and the Order of the Phoenix",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry6.jpg",
           },
+          "id": 6,
           "title": "Harry Potter and the Half-Blood Prince",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
           },
+          "id": 7,
           "title": "Harry Potter and the Deathly Hallows",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse1.jpg",
           },
+          "id": 8,
           "title": "Leviathan Wakes",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
           },
+          "id": 9,
           "title": "Caliban's War",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse3.jpg",
           },
+          "id": 10,
           "title": "Abaddon's Gate",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
           },
+          "id": 11,
           "title": "Cibola Burn",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse5.jpg",
           },
+          "id": 12,
           "title": "Nemesis Games",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse6.jpg",
           },
+          "id": 13,
           "title": "Babylon's Ashes",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse7.jpg",
           },
+          "id": 14,
           "title": "Persepolis Rising",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse8.jpg",
           },
+          "id": 15,
           "title": "Tiamat's Wrath",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg",
           },
+          "id": 16,
           "title": "Blood of Elves",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher2.jpg",
           },
+          "id": 17,
           "title": "Time of contempt",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
           },
+          "id": 18,
           "title": "Baptism of fire",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher4.jpg",
           },
+          "id": 19,
           "title": "The tower of the swallow",
         },
         Object {
           "cover": Object {
             "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
           },
+          "id": 20,
           "title": "The lady of the lake",
         },
       ],
@@ -261,6 +282,7 @@ it("fetches an author", async () => {
   const AUTHOR_QUERY = gql`
     query {
       author(id: 1) {
+        id
         name
         books {
           title
@@ -300,6 +322,7 @@ it("fetches an author", async () => {
             "title": "Harry Potter and the Deathly Hallows",
           },
         ],
+        "id": 1,
         "name": "J. K. Rowling",
       },
     }
