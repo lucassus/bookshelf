@@ -255,6 +255,57 @@ it("fetches authors along with books", async () => {
   `);
 });
 
+it("fetches an author", async () => {
+  const { query } = createTestClient(server);
+
+  const AUTHOR_QUERY = gql`
+    query {
+      author(id: 1) {
+        name
+        books {
+          title
+        }
+      }
+    }
+  `;
+
+  // When
+  const res = await query({ query: AUTHOR_QUERY });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchInlineSnapshot(`
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+    }
+  `);
+});
+
 it("fetches books along with authors and books again", async () => {
   // Given
   const { query } = createTestClient(server);

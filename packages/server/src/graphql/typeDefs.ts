@@ -9,6 +9,7 @@ export const typeDefs = gql`
     message: String!
 
     authors: [Author!]!
+    author(id: ID!): Author
     randomAuthor: Author!
 
     books: [Book!]!

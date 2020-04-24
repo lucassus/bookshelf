@@ -41,6 +41,8 @@ export const resolvers = {
 
     authors: (rootValue, args, { db }: Context) => db.authors.find(),
     randomAuthor: (rootValue, args, { db }: Context) => db.authors.findRandom(),
+    author: (rootValue, args, { db }: Context) =>
+      db.authors.findOne({ id: parseInt(args.id, 10) }),
 
     users: (rootValue, args, { db }: Context) => db.users.find()
   }
