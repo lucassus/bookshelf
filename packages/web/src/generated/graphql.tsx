@@ -1,10 +1,7 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
 import * as ApolloReactCommon from '@apollo/client';
-import * as ApolloReactComponents from '@apollo/client';
-import * as ApolloReactHoc from '@apollo/client';
+import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -152,25 +149,31 @@ export const GetAuthorDocument = gql`
   }
 }
     `;
-export type GetAuthorComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetAuthorQuery, GetAuthorQueryVariables>, 'query'> & ({ variables: GetAuthorQueryVariables; skip?: boolean; } | { skip: boolean; });
 
-    export const GetAuthorComponent = (props: GetAuthorComponentProps) => (
-      <ApolloReactComponents.Query<GetAuthorQuery, GetAuthorQueryVariables> query={GetAuthorDocument} {...props} />
-    );
-    
-export type GetAuthorProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetAuthorQuery, GetAuthorQueryVariables>
-    } & TChildProps;
-export function withGetAuthor<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetAuthorQuery,
-  GetAuthorQueryVariables,
-  GetAuthorProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetAuthorQuery, GetAuthorQueryVariables, GetAuthorProps<TChildProps, TDataName>>(GetAuthorDocument, {
-      alias: 'getAuthor',
-      ...operationOptions
-    });
-};
+/**
+ * __useGetAuthorQuery__
+ *
+ * To run a query within a React component, call `useGetAuthorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAuthorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAuthorQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAuthorQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetAuthorQuery, GetAuthorQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetAuthorQuery, GetAuthorQueryVariables>(GetAuthorDocument, baseOptions);
+      }
+export function useGetAuthorLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetAuthorQuery, GetAuthorQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetAuthorQuery, GetAuthorQueryVariables>(GetAuthorDocument, baseOptions);
+        }
+export type GetAuthorQueryHookResult = ReturnType<typeof useGetAuthorQuery>;
+export type GetAuthorLazyQueryHookResult = ReturnType<typeof useGetAuthorLazyQuery>;
 export type GetAuthorQueryResult = ApolloReactCommon.QueryResult<GetAuthorQuery, GetAuthorQueryVariables>;
 export const GetAuthorsDocument = gql`
     query GetAuthors {
@@ -183,25 +186,30 @@ export const GetAuthorsDocument = gql`
   }
 }
     `;
-export type GetAuthorsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetAuthorsQuery, GetAuthorsQueryVariables>, 'query'>;
 
-    export const GetAuthorsComponent = (props: GetAuthorsComponentProps) => (
-      <ApolloReactComponents.Query<GetAuthorsQuery, GetAuthorsQueryVariables> query={GetAuthorsDocument} {...props} />
-    );
-    
-export type GetAuthorsProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetAuthorsQuery, GetAuthorsQueryVariables>
-    } & TChildProps;
-export function withGetAuthors<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetAuthorsQuery,
-  GetAuthorsQueryVariables,
-  GetAuthorsProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetAuthorsQuery, GetAuthorsQueryVariables, GetAuthorsProps<TChildProps, TDataName>>(GetAuthorsDocument, {
-      alias: 'getAuthors',
-      ...operationOptions
-    });
-};
+/**
+ * __useGetAuthorsQuery__
+ *
+ * To run a query within a React component, call `useGetAuthorsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAuthorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAuthorsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAuthorsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetAuthorsQuery, GetAuthorsQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetAuthorsQuery, GetAuthorsQueryVariables>(GetAuthorsDocument, baseOptions);
+      }
+export function useGetAuthorsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetAuthorsQuery, GetAuthorsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetAuthorsQuery, GetAuthorsQueryVariables>(GetAuthorsDocument, baseOptions);
+        }
+export type GetAuthorsQueryHookResult = ReturnType<typeof useGetAuthorsQuery>;
+export type GetAuthorsLazyQueryHookResult = ReturnType<typeof useGetAuthorsLazyQuery>;
 export type GetAuthorsQueryResult = ApolloReactCommon.QueryResult<GetAuthorsQuery, GetAuthorsQueryVariables>;
 export const GetBooksDocument = gql`
     query GetBooks {
@@ -217,25 +225,30 @@ export const GetBooksDocument = gql`
   }
 }
     `;
-export type GetBooksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetBooksQuery, GetBooksQueryVariables>, 'query'>;
 
-    export const GetBooksComponent = (props: GetBooksComponentProps) => (
-      <ApolloReactComponents.Query<GetBooksQuery, GetBooksQueryVariables> query={GetBooksDocument} {...props} />
-    );
-    
-export type GetBooksProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetBooksQuery, GetBooksQueryVariables>
-    } & TChildProps;
-export function withGetBooks<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetBooksQuery,
-  GetBooksQueryVariables,
-  GetBooksProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetBooksQuery, GetBooksQueryVariables, GetBooksProps<TChildProps, TDataName>>(GetBooksDocument, {
-      alias: 'getBooks',
-      ...operationOptions
-    });
-};
+/**
+ * __useGetBooksQuery__
+ *
+ * To run a query within a React component, call `useGetBooksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBooksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBooksQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetBooksQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetBooksQuery, GetBooksQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetBooksQuery, GetBooksQueryVariables>(GetBooksDocument, baseOptions);
+      }
+export function useGetBooksLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetBooksQuery, GetBooksQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetBooksQuery, GetBooksQueryVariables>(GetBooksDocument, baseOptions);
+        }
+export type GetBooksQueryHookResult = ReturnType<typeof useGetBooksQuery>;
+export type GetBooksLazyQueryHookResult = ReturnType<typeof useGetBooksLazyQuery>;
 export type GetBooksQueryResult = ApolloReactCommon.QueryResult<GetBooksQuery, GetBooksQueryVariables>;
 export const GetUsersDocument = gql`
     query GetUsers {
@@ -251,23 +264,28 @@ export const GetUsersDocument = gql`
   }
 }
     `;
-export type GetUsersComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GetUsersQuery, GetUsersQueryVariables>, 'query'>;
 
-    export const GetUsersComponent = (props: GetUsersComponentProps) => (
-      <ApolloReactComponents.Query<GetUsersQuery, GetUsersQueryVariables> query={GetUsersDocument} {...props} />
-    );
-    
-export type GetUsersProps<TChildProps = {}, TDataName extends string = 'data'> = {
-      [key in TDataName]: ApolloReactHoc.DataValue<GetUsersQuery, GetUsersQueryVariables>
-    } & TChildProps;
-export function withGetUsers<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
-  TProps,
-  GetUsersQuery,
-  GetUsersQueryVariables,
-  GetUsersProps<TChildProps, TDataName>>) {
-    return ApolloReactHoc.withQuery<TProps, GetUsersQuery, GetUsersQueryVariables, GetUsersProps<TChildProps, TDataName>>(GetUsersDocument, {
-      alias: 'getUsers',
-      ...operationOptions
-    });
-};
+/**
+ * __useGetUsersQuery__
+ *
+ * To run a query within a React component, call `useGetUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUsersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUsersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, baseOptions);
+      }
+export function useGetUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, baseOptions);
+        }
+export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
+export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
 export type GetUsersQueryResult = ApolloReactCommon.QueryResult<GetUsersQuery, GetUsersQueryVariables>;

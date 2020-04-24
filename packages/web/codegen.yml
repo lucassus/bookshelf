@@ -11,6 +11,9 @@ generates:
       - "typescript-react-apollo"
     config:
       reactApolloVersion: 3
+      withHooks: true
+      withComponent: false
+      withHOC: false
   ./graphql.schema.json:
     plugins:
       - "introspection"
