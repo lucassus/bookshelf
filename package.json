@@ -16,7 +16,7 @@
     "test": "jest",
     "build": "yarn server build && yarn web build --mode production",
     "start": "node packages/server/dist/index.js",
-    "dev": "concurrently --raw --kill-others-on-fail \"yarn server start\" \"yarn web start\""
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn server start' 'yarn web start'"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

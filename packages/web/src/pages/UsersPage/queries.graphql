@@ -1,0 +1,12 @@
+query GetUsers {
+  users {
+    id
+    name
+    avatar {
+      image {
+        url
+      }
+      color
+    }
+  }
+}

@@ -6,13 +6,5 @@ module.exports = {
       env: { jest: true },
       extends: ["plugin:jest/recommended"]
     }
-  ],
-  rules: {
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        devDependencies: true
-      }
-    ]
-  }
+  ]
 };

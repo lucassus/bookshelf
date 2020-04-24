@@ -1,3 +1,6 @@
+ignore:
+  - packages/web/src/generated
+  - packages/web/src/**/*.generated.tsx
 coverage:
   status:
     project:

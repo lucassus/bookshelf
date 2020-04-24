@@ -1,4 +1,3 @@
-import { gql, useQuery } from "@apollo/client";
 import {
   CircularProgress,
   Container,
@@ -8,25 +7,11 @@ import {
 import { Alert } from "@material-ui/lab";
 import React from "react";
 
-import { AuthorCard } from "../components/AuthorCard";
-import { Author } from "../types";
-
-export const AUTHORS_QUERY = gql`
-  query {
-    authors {
-      id
-      name
-      photo {
-        url
-      }
-    }
-  }
-`;
+import { AuthorCard } from "../../components/AuthorCard";
+import { useGetAuthorsQuery } from "./queries.generated";
 
 export const AuthorsPage: React.FunctionComponent = () => {
-  const { loading, error, data } = useQuery<{
-    authors: Author[];
-  }>(AUTHORS_QUERY);
+  const { loading, error, data } = useGetAuthorsQuery();
 
   if (loading) {
     return (
