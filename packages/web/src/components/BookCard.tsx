@@ -8,7 +8,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
-import { Book } from "../types";
+import { Book } from "../generated/graphql";
 
 const useStyles = makeStyles({
   root: {

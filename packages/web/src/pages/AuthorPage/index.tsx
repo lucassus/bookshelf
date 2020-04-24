@@ -3,11 +3,11 @@ import { Container, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import { BookCard } from "../../components/BookCard";
 import {
   GetAuthorQuery,
   GetAuthorQueryVariables
-} from "../../__generated__/types";
-import { BookCard } from "../../components/BookCard";
+} from "../../generated/graphql";
 import { GetAuthor } from "./query";
 
 export const AuthorPage: React.FunctionComponent = () => {

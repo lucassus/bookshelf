@@ -1,5 +1,5 @@
 coverage
 dist
 node_modules
-src/__generated__
+src/generated
 jest.config.js

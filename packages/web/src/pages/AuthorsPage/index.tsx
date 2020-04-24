@@ -8,8 +8,8 @@ import {
 import { Alert } from "@material-ui/lab";
 import React from "react";
 
-import { GetAuthorsQuery } from "../../__generated__/types";
 import { AuthorCard } from "../../components/AuthorCard";
+import { GetAuthorsQuery } from "../../generated/graphql";
 import { GetAuthors } from "./query";
 
 export const AuthorsPage: React.FunctionComponent = () => {
