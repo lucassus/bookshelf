@@ -10,9 +10,6 @@ generates:
   src/types.generated.ts:
     plugins:
       - "typescript"
-    hooks:
-      afterOneFileWrite:
-        - eslint --fix
 
   src/:
     plugins:
@@ -28,9 +25,6 @@ generates:
       withHooks: true
       withComponent: false
       withHOC: false
-    hooks:
-      afterOneFileWrite:
-        - eslint --fix
 
   ./graphql.schema.json:
     plugins:
