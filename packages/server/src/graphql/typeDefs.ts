@@ -6,8 +6,6 @@ export const typeDefs = gql`
   }
 
   type Query {
-    message: String!
-
     authors: [Author!]!
     author(id: Int!): Author
     randomAuthor: Author!
