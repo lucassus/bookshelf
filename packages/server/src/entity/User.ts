@@ -4,12 +4,12 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  Index
+  Index,
+  CreateDateColumn,
+  UpdateDateColumn
 } from "typeorm";
 
 import { Avatar } from "./Avatar";
-
-// TODO: Add created_at, updated_at
 
 @Entity()
 export class User {
@@ -26,4 +26,10 @@ export class User {
   @OneToOne(() => Avatar, { cascade: true })
   @JoinColumn({ name: "avatar_id" })
   avatar: Avatar;
+
+  @CreateDateColumn({ name: "created_at" })
+  created_at: Date;
+
+  @UpdateDateColumn({ name: "updated_at" })
+  updated_at: Date;
 }

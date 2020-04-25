@@ -1,9 +1,11 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from "typeorm";
 
 import { Author } from "./Author";
@@ -22,4 +24,10 @@ export class Book {
   @ManyToOne(() => Author, (author) => author.books)
   @JoinColumn({ name: "author_id" })
   author: Author;
+
+  @CreateDateColumn({ name: "created_at" })
+  created_at: Date;
+
+  @UpdateDateColumn({ name: "updated_at" })
+  updated_at: Date;
 }

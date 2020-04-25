@@ -1,4 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from "typeorm";
 
 import { Book } from "./Book";
 
@@ -15,4 +22,10 @@ export class Author {
 
   @OneToMany(() => Book, (book) => book.author, { cascade: true })
   books: Book[];
+
+  @CreateDateColumn({ name: "created_at" })
+  created_at: Date;
+
+  @UpdateDateColumn({ name: "updated_at" })
+  updated_at: Date;
 }
