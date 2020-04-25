@@ -25,7 +25,7 @@ export class User {
 
   @OneToOne(() => Avatar, { cascade: true })
   @JoinColumn({ name: "avatar_id" })
-  avatar: Avatar;
+  avatar: Promise<Avatar>;
 
   @CreateDateColumn({ name: "created_at" })
   created_at: Date;

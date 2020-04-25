@@ -23,7 +23,7 @@ export class Book {
 
   @ManyToOne(() => Author, (author) => author.books)
   @JoinColumn({ name: "author_id" })
-  author: Author;
+  author: Promise<Author>;
 
   @CreateDateColumn({ name: "created_at" })
   created_at: Date;
