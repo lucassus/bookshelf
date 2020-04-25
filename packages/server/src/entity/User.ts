@@ -4,7 +4,8 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  Index
+  Index,
+  BaseEntity
 } from "typeorm";
 
 import { Avatar } from "./Avatar";
@@ -12,7 +13,7 @@ import { Avatar } from "./Avatar";
 // TODO: Add created_at, updated_at
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

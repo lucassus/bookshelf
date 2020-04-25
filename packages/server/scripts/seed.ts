@@ -1,39 +1,48 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 
-import ormconfig from "../ormconfig";
+import config from "../ormconfig";
 import { Author } from "../src/entity/Author";
 import { Avatar } from "../src/entity/Avatar";
 import { Book } from "../src/entity/Book";
 import { User } from "../src/entity/User";
 
-createConnection(ormconfig)
-  .then(async (connection) => {
-    const avatar = new Avatar();
-    avatar.imagePath = "/images/avatars/w13.png";
-    avatar.color = "yellow";
-    await connection.manager.save(avatar);
+// TODO: Improve this script
 
-    const user = new User();
-    user.name = "Alice";
-    user.email = "alice@example.com";
-    user.avatar = avatar;
-    await connection.manager.save(user);
+createConnection(config)
+  .then(async () => {
+    const avatar = Avatar.create({
+      imagePath: "/images/avatars/w13.png",
+      color: "yellow"
+    });
+    await avatar.save();
 
-    const users = await connection.manager.find(User);
+    const user = User.create({
+      name: "Alice",
+      email: "alice@example.com",
+      avatar
+    });
+    await user.save();
+
+    const users = await User.find();
     console.log({ users });
 
-    const author = new Author();
-    author.name = "Andrzej Sapkowski";
-    author.photoPath = "/images/book-authors/andrzej-sapkowski.jpg";
-    await connection.manager.save(author);
+    const author = Author.create({
+      name: "Andrzej Sapkowski",
+      photoPath: "/images/book-authors/andrzej-sapkowski.jpg"
+    });
+    await author.save();
 
-    const book = new Book();
-    book.title = "Blood of Elves";
-    book.coverPath = "/images/book-covers/witcher1.jpg";
-    book.author = author;
-    await connection.manager.save(book);
+    const book = Book.create({
+      title: "Blood of Elves",
+      coverPath: "/images/book-covers/witcher1.jpg",
+      author
+    });
+    await book.save();
 
     process.exit(0);
   })
-  .catch((error) => console.log(error));
+  .catch((error) => {
+    console.log(error);
+    process.exit(1);
+  });

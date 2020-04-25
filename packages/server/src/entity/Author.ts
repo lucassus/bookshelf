@@ -1,9 +1,15 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from "typeorm";
 
 import { Book } from "./Book";
 
 @Entity()
-export class Author {
+export class Author extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
