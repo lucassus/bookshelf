@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import "reflect-metadata";
 
 import { PORT } from "./config";
 import { server } from "./server";
