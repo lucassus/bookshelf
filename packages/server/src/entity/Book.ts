@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   Entity,
   JoinColumn,
@@ -10,7 +9,7 @@ import {
 import { Author } from "./Author";
 
 @Entity()
-export class Book extends BaseEntity {
+export class Book {
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -1,7 +1,7 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Avatar extends BaseEntity {
+export class Avatar {
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -4,8 +4,7 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  Index,
-  BaseEntity
+  Index
 } from "typeorm";
 
 import { Avatar } from "./Avatar";
@@ -13,7 +12,7 @@ import { Avatar } from "./Avatar";
 // TODO: Add created_at, updated_at
 
 @Entity()
-export class User extends BaseEntity {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,7 +23,7 @@ export class User extends BaseEntity {
   @Index({ unique: true })
   email: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => Avatar, { cascade: true })
   @JoinColumn({ name: "avatar_id" })
   avatar: Avatar;
 }

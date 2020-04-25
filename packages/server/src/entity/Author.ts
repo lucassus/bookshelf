@@ -1,15 +1,9 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn
-} from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { Book } from "./Book";
 
 @Entity()
-export class Author extends BaseEntity {
+export class Author {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,6 +13,6 @@ export class Author extends BaseEntity {
   @Column({ name: "photo_path" })
   photoPath: string;
 
-  @OneToMany(() => Book, (book) => book.author)
+  @OneToMany(() => Book, (book) => book.author, { cascade: true })
   books: Book[];
 }
