@@ -5,12 +5,12 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: "first_name" })
-  firstName: string;
+  // TODO: Add not null constraint
+  @Column()
+  name: string;
 
-  @Column({ name: "last_name" })
-  lastName: string;
-
+  // TODO: Add not null constraint
+  // TODO: Add unique constraint
   @Column()
   email: string;
 }
