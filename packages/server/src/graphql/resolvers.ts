@@ -1,8 +1,8 @@
-import { Context } from "../server";
-import { Avatar } from "../entity/Avatar";
 import { Author } from "../entity/Author";
+import { Avatar } from "../entity/Avatar";
 import { Book } from "../entity/Book";
 import { User } from "../entity/User";
+import { Context } from "../server";
 
 interface Image {
   path: string;
