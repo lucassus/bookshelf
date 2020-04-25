@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn
+} from "typeorm";
 
 import { Author } from "./Author";
 
@@ -14,5 +20,6 @@ export class Book {
   coverPath: string;
 
   @ManyToOne(() => Author, (author) => author.books)
+  @JoinColumn({ name: "author_id" })
   author: Author;
 }
