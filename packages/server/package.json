@@ -23,6 +23,9 @@
     "start": "nodemon",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "test": "jest",
+    "typeorm": "ts-node ../../node_modules/typeorm/cli.js",
+    "db:recreate": "yarn typeorm schema:drop && yarn typeorm schema:sync",
+    "db:seed": "yarn db:recreate && yarn ts-node scripts/seed.ts"
   }
 }
