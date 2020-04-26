@@ -17,13 +17,18 @@ const startServer = async () => {
     res.sendFile(path.join(distDir, "index.html"));
   });
 
-  app.listen({ port: PORT }, () => {
+  app.listen({ port: PORT });
+
+  return server;
+};
+
+startServer()
+  .then((server) => {
     console.log(
       `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
     );
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
   });
-};
-
-startServer().catch((error) => {
-  console.error(error);
-});
