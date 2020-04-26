@@ -20,7 +20,7 @@ export class Author {
   @Column({ name: "photo_path" })
   photoPath: string;
 
-  @OneToMany(() => Book, (book) => book.author, { cascade: true })
+  @OneToMany(() => Book, (book) => book.author)
   books: Promise<Book[]>;
 
   @CreateDateColumn({ name: "created_at" })

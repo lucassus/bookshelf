@@ -25,7 +25,6 @@
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "typeorm": "ts-node ../../node_modules/typeorm/cli.js",
-    "db:recreate": "yarn typeorm schema:drop && yarn typeorm schema:sync",
-    "db:seed": "yarn db:recreate && yarn ts-node scripts/seed.ts"
+    "db:seed": "yarn ts-node scripts/seed.ts"
   }
 }

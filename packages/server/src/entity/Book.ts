@@ -21,6 +21,9 @@ export class Book {
   @Column({ name: "cover_path" })
   coverPath: string;
 
+  @Column({ name: "author_id" })
+  authorId: number;
+
   @ManyToOne(() => Author, (author) => author.books)
   @JoinColumn({ name: "author_id" })
   author: Promise<Author>;
