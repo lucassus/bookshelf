@@ -1,12 +1,15 @@
 import express from "express";
 import path from "path";
 import "reflect-metadata";
+import { createConnection } from "typeorm";
 
+import config from "../ormconfig";
 import { PORT } from "./config";
 import { createServer } from "./server";
 
 const startServer = async () => {
-  const server = await createServer();
+  const connection = await createConnection(config);
+  const server = createServer(connection);
 
   const app = express();
   server.applyMiddleware({ app });

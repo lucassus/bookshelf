@@ -1,7 +1,6 @@
 import { ApolloServer } from "apollo-server-express";
-import { Connection, createConnection } from "typeorm";
+import { Connection } from "typeorm";
 
-import config from "../ormconfig";
 import { ASSETS_BASE_URL } from "./config";
 import { resolvers } from "./graphql/resolvers";
 import { typeDefs } from "./graphql/typeDefs";
@@ -11,19 +10,14 @@ export interface Context {
   connection: Connection;
 }
 
-export const createServer = async () => {
-  const connection = await createConnection(config);
-
-  const context: Context = {
-    assetsBaseUrl: ASSETS_BASE_URL,
-    connection
-  };
-
-  return new ApolloServer({
+export const createServer = (connection: Connection) =>
+  new ApolloServer({
     typeDefs,
     resolvers,
-    context,
+    context: {
+      assetsBaseUrl: ASSETS_BASE_URL,
+      connection
+    } as Context,
     introspection: true,
     playground: true
   });
-};
