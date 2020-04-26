@@ -11,7 +11,7 @@ import {
 
 import { Avatar } from "./Avatar";
 
-@Entity()
+@Entity({ name: "users" })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -23,6 +23,7 @@ export class User {
   @Index({ unique: true })
   email: string;
 
+  // TODO: Add eager load
   @OneToOne(() => Avatar, { cascade: true })
   @JoinColumn({ name: "avatar_id" })
   avatar: Promise<Avatar>;
