@@ -23,10 +23,9 @@ export class User {
   @Index({ unique: true })
   email: string;
 
-  // TODO: Add eager load
-  @OneToOne(() => Avatar, { cascade: true })
+  @OneToOne(() => Avatar, { cascade: true, eager: true })
   @JoinColumn({ name: "avatar_id" })
-  avatar: Promise<Avatar>;
+  avatar: Avatar;
 
   @CreateDateColumn({ name: "created_at" })
   created_at: Date;
