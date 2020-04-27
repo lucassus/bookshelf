@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "3.0.0-beta.44",
-    "@material-ui/core": "4.9.11",
+    "@material-ui/core": "4.9.12",
     "@material-ui/lab": "4.0.0-alpha.50",
     "react": "16.13.1",
     "react-dom": "16.13.1",
