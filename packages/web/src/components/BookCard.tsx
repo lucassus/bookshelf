@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 type Props = {
-  book: Book;
+  book: Partial<Book>;
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
