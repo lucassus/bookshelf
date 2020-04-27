@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "outDir": "dist",
-    "rootDirs": ["src", "stories"],
+    "rootDir": "src",
     "sourceMap": true
   },
   "include": ["src"]

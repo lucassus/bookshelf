@@ -33,7 +33,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
       <Card className={classes.root}>
         <CardMedia className={classes.cover} image={book.cover.url} />
         <CardContent>
-          <Typography component="h3" noWrap>
+          <Typography component="h3" variant="h3" noWrap>
             {book.title}
           </Typography>
 
