@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`fetches a random book 1`] = `
+Object {
+  "cover": Object {
+    "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher4.jpg",
+  },
+  "title": "The tower of the swallow",
+}
+`;
+
 exports[`fetches an author 1`] = `
 Object {
   "author": Object {

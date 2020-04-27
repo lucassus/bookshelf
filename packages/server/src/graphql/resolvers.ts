@@ -1,6 +1,7 @@
 import { Author } from "../entity/Author";
 import { Avatar } from "../entity/Avatar";
 import { Book } from "../entity/Book";
+import { BookRepository } from "../entity/BookRepository";
 import { User } from "../entity/User";
 import { Context } from "../server";
 
@@ -36,12 +37,7 @@ export const resolvers = {
     books: (rootValue, args, { connection }: Context) =>
       connection.manager.find(Book),
     randomBook: (rootValue, args, { connection }: Context) =>
-      connection
-        .getRepository(Book)
-        .createQueryBuilder()
-        .orderBy("RANDOM()")
-        .limit(1)
-        .getOne(),
+      connection.getCustomRepository(BookRepository).findRandom(),
 
     authors: (rootValue, args, { connection }: Context) =>
       connection.manager.find(Author),

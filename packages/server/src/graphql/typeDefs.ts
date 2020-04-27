@@ -8,7 +8,6 @@ export const typeDefs = gql`
   type Query {
     authors: [Author!]!
     author(id: Int!): Author
-    randomAuthor: Author!
 
     books: [Book!]!
     randomBook: Book!

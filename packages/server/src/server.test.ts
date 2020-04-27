@@ -2,6 +2,8 @@ import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
 import { getConnection } from "typeorm";
 
+import { Author } from "./entity/Author";
+import { Book } from "./entity/Book";
 import { createServer } from "./server";
 import { createTestConnection } from "./testUtils/createTestConnection";
 import { loadFixtures } from "./testUtils/fixtures";
@@ -116,78 +118,39 @@ it("fetches books along with authors and books again", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
-// it("fetches a random author", async () => {
-//   // Given
-//   jest.spyOn(db.authors, "findRandom").mockResolvedValue({
-//     id: 1,
-//     name: "Szczepan Twardoch",
-//     photoPath: "/sczepan.jpg"
-//   });
-//
-//   const { query } = createTestClient(server);
-//
-//   const RANDOM_AUTHOR_QUERY = gql`
-//     query {
-//       randomAuthor {
-//         name
-//         photo {
-//           url
-//         }
-//       }
-//     }
-//   `;
-//
-//   // When
-//   const res = await query({ query: RANDOM_AUTHOR_QUERY });
-//
-//   // Then
-//   expect(res.data).not.toBeUndefined();
-//   expect(res.data!.randomAuthor).toMatchInlineSnapshot(`
-//     Object {
-//       "name": "Szczepan Twardoch",
-//       "photo": Object {
-//         "url": "http://examples.devmastery.pl/assets/sczepan.jpg",
-//       },
-//     }
-//   `);
-// });
+it("fetches a random book", async () => {
+  // Given
+  const connection = getConnection();
+  await connection.createQueryBuilder().delete().from(Book).execute();
+  const author = await connection.manager.findOne(Author, {
+    name: "Andrzej Sapkowski"
+  });
+  await connection.manager.save(Book, {
+    authorId: author.id,
+    title: "The tower of the swallow",
+    coverPath: "/images/book-covers/witcher4.jpg"
+  });
 
-// it("fetches a random book", async () => {
-//   // Given
-//   jest.spyOn(db.books, "findRandom").mockResolvedValue({
-//     id: 1,
-//     authorId: 1,
-//     title: "Król",
-//     coverPath: "/krol.jpg"
-//   });
-//
-//   const { query } = createTestClient(server);
-//
-//   const RANDOM_BOOK_QUERY = gql`
-//     query {
-//       randomBook {
-//         title
-//         cover {
-//           url
-//         }
-//       }
-//     }
-//   `;
-//
-//   // When
-//   const res = await query({ query: RANDOM_BOOK_QUERY });
-//
-//   // Then
-//   expect(res.data).not.toBeUndefined();
-//   expect(res.data!.randomBook).toMatchInlineSnapshot(`
-//     Object {
-//       "cover": Object {
-//         "url": "http://examples.devmastery.pl/assets/krol.jpg",
-//       },
-//       "title": "Król",
-//     }
-//   `);
-// });
+  const { query } = createTestClient(server);
+
+  const RANDOM_BOOK_QUERY = gql`
+    query {
+      randomBook {
+        title
+        cover {
+          url
+        }
+      }
+    }
+  `;
+
+  // When
+  const res = await query({ query: RANDOM_BOOK_QUERY });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.randomBook).toMatchSnapshot();
+});
 
 it("fetches users", async () => {
   const { query } = createTestClient(server);
