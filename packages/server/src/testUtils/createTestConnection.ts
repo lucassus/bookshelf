@@ -1,3 +1,4 @@
+import path from "path";
 import { createConnection } from "typeorm";
 
 export const createTestConnection = () =>
@@ -5,7 +6,7 @@ export const createTestConnection = () =>
     type: "sqlite",
     database: ":memory:",
     dropSchema: true,
-    entities: ["src/entity/**/*.ts"],
+    entities: [path.join(__dirname, "../entity/**/*.ts")],
     synchronize: true,
     logging: false
   });
