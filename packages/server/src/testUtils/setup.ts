@@ -1,20 +1,14 @@
-import path from "path";
-import { Connection, createConnection } from "typeorm";
+import { Connection } from "typeorm";
 
+import { createDatabaseConnection } from "../createDatabaseConnection";
 import { loadFixtures } from "./fixtures";
 
 let connection: Connection;
 
 beforeEach(async () => {
-  connection = await createConnection({
-    type: "sqlite",
-    database: ":memory:",
-    dropSchema: true,
-    entities: [path.join(__dirname, "../entity/**/*.ts")],
-    synchronize: true,
-    logging: false
-  });
-
+  connection = await createDatabaseConnection();
+  await connection.dropDatabase();
+  await connection.synchronize();
   await loadFixtures();
 });
 

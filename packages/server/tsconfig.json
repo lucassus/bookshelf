@@ -3,10 +3,7 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [
-      "es5",
-      "es6"
-    ],
     "outDir": "dist"
-  }
+  },
+  "include": ["scripts", "src"]
 }

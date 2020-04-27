@@ -1,14 +1,6 @@
-import { ConnectionOptionsReader, createConnection } from "typeorm";
+import { createConnection } from "typeorm";
 
-const connectionOptionsReader = new ConnectionOptionsReader({
-  root: process.cwd()
-});
+import connectionOptions from "./ormconfig";
 
-export const createDatabaseConnection = async () => {
-  const connectionOptions = await connectionOptionsReader.get("default");
-
-  return createConnection({
-    ...connectionOptions,
-    entities: ["./src/entity/**/*.ts"]
-  });
-};
+export const createDatabaseConnection = async () =>
+  createConnection(connectionOptions);

@@ -25,7 +25,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
     "test": "jest",
-    "typeorm": "ts-node ../../node_modules/typeorm/cli.js",
+    "typeorm": "ts-node ../../node_modules/typeorm/cli.js --config src/ormconfig.ts",
     "db:seed": "yarn ts-node scripts/seed.ts"
   }
 }
