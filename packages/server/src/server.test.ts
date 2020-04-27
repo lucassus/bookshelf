@@ -5,21 +5,12 @@ import { getConnection } from "typeorm";
 import { Author } from "./entity/Author";
 import { Book } from "./entity/Book";
 import { createServer } from "./server";
-import { createTestConnection } from "./testUtils/createTestConnection";
-import { loadFixtures } from "./testUtils/fixtures";
 
 let server: ApolloServer;
 
 beforeEach(async () => {
-  const connection = await createTestConnection();
-  await loadFixtures();
-
-  server = createServer(connection);
-});
-
-afterEach(() => {
   const connection = getConnection();
-  return connection.close();
+  server = createServer(connection);
 });
 
 it("fetches books", async () => {
