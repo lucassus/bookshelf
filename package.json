@@ -11,11 +11,10 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "yarn web generate",
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
     "test": "jest",
-    "build": "yarn server build && yarn web build --mode production",
+    "build": "yarn server build && yarn web codegen && yarn web build --mode production",
     "start": "node packages/server/dist/index.js",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn server start' 'yarn web start'"
   },

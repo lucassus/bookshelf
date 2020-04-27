@@ -23,7 +23,7 @@ jobs:
       run: yarn install
 
     - name: Generate GrapQL components
-      run: yarn web generate
+      run: yarn web codegen
 
     - name: Test
       run: yarn test --coverage
