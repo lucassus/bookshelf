@@ -1,14 +1,13 @@
 import express from "express";
 import path from "path";
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 
-import config from "../ormconfig";
 import { PORT } from "./config";
+import { createDatabaseConnection } from "./createDatabaseConnection";
 import { createServer } from "./server";
 
 const startServer = async () => {
-  const connection = await createConnection(config);
+  const connection = await createDatabaseConnection();
   const server = createServer(connection);
 
   const app = express();

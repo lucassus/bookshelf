@@ -1,11 +1,10 @@
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 
-import config from "../ormconfig";
+import { createDatabaseConnection } from "../src/createDatabaseConnection";
 import { loadFixtures } from "../src/testUtils/fixtures";
 
 const seed = async () => {
-  const connection = await createConnection(config);
+  const connection = await createDatabaseConnection();
   await connection.synchronize(true);
   await loadFixtures();
 };

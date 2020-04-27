@@ -1,4 +1,4 @@
-module.exports = {
+export = {
   type: "postgres",
   host: "localhost",
   port: 5432,
@@ -7,7 +7,6 @@ module.exports = {
   database: "bookshelf_development",
   synchronize: true,
   logging: true,
-  entities: ["src/entity/**/*.ts"],
   cli: {
     entitiesDir: "src/entity"
   }
