@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 });
 
 type Props = {
-  author: Author;
+  author: Partial<Author>;
 };
 
 export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => {
