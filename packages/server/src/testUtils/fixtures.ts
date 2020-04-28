@@ -1,7 +1,6 @@
 import { getConnection } from "typeorm";
 
 import { Author } from "../database/entity/Author";
-import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { User } from "../database/entity/User";
 
