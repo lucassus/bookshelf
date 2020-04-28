@@ -1,12 +1,12 @@
 import { Connection } from "typeorm";
 
-import { createDatabaseConnection } from "../createDatabaseConnection";
+import { createConnection } from "../database/createConnection";
 import { loadFixtures } from "./fixtures";
 
 let connection: Connection;
 
 beforeEach(async () => {
-  connection = await createDatabaseConnection();
+  connection = await createConnection();
   await connection.dropDatabase();
   await connection.synchronize();
   await loadFixtures();

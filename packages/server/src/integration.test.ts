@@ -2,8 +2,8 @@ import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
 import { getConnection } from "typeorm";
 
-import { Author } from "./entity/Author";
-import { Book } from "./entity/Book";
+import { Author } from "./database/entity/Author";
+import { Book } from "./database/entity/Book";
 import { createServer } from "./server";
 
 let server: ApolloServer;

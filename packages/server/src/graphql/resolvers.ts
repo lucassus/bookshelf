@@ -1,8 +1,8 @@
-import { Author } from "../entity/Author";
-import { Avatar } from "../entity/Avatar";
-import { Book } from "../entity/Book";
-import { BookRepository } from "../entity/BookRepository";
-import { User } from "../entity/User";
+import { BookRepository } from "../database/BookRepository";
+import { Author } from "../database/entity/Author";
+import { Avatar } from "../database/entity/Avatar";
+import { Book } from "../database/entity/Book";
+import { User } from "../database/entity/User";
 import { Context } from "../server";
 
 interface Image {
@@ -36,7 +36,7 @@ export const resolvers = {
   Query: {
     // TODO: It produces quite a lot of n+1 queries
     books: (rootValue, args, { connection }: Context) =>
-      connection.manager.find(Book),
+      connection.manager.find(Book, { relations: ["author"] }),
     randomBook: (rootValue, args, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 
