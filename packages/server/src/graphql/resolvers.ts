@@ -1,4 +1,8 @@
-import { Author, Book, User } from "../db/types";
+import { Author } from "../entity/Author";
+import { Avatar } from "../entity/Avatar";
+import { Book } from "../entity/Book";
+import { BookRepository } from "../entity/BookRepository";
+import { User } from "../entity/User";
 import { Context } from "../server";
 
 interface Image {
@@ -7,25 +11,19 @@ interface Image {
 
 export const resolvers = {
   Book: {
-    author: (book: Book, args, { db }: Context) =>
-      db.authors.findOne({ id: book.authorId }),
-
     cover: (book: Book): Image => ({
       path: book.coverPath
     })
   },
 
   Author: {
-    books: (author: Author, args, { db }: Context) =>
-      db.books.find({ authorId: author.id }),
-
     photo: (author: Author): Image => ({
       path: author.photoPath
     })
   },
 
   Avatar: {
-    image: (avatar: User["avatar"]): Image => ({
+    image: (avatar: Avatar): Image => ({
       path: avatar.imagePath
     })
   },
@@ -36,14 +34,18 @@ export const resolvers = {
   },
 
   Query: {
-    books: (rootValue, args, { db }: Context) => db.books.find(),
-    randomBook: (rootValue, args, { db }: Context) => db.books.findRandom(),
+    // TODO: It produces quite a lot of n+1 queries
+    books: (rootValue, args, { connection }: Context) =>
+      connection.manager.find(Book),
+    randomBook: (rootValue, args, { connection }: Context) =>
+      connection.getCustomRepository(BookRepository).findRandom(),
 
-    authors: (rootValue, args, { db }: Context) => db.authors.find(),
-    randomAuthor: (rootValue, args, { db }: Context) => db.authors.findRandom(),
-    author: (rootValue, args, { db }: Context) =>
-      db.authors.findOne({ id: args.id }),
+    authors: (rootValue, args, { connection }: Context) =>
+      connection.manager.find(Author),
+    author: (rootValue, args, { connection }: Context) =>
+      connection.manager.findOneOrFail(Author, args.id),
 
-    users: (rootValue, args, { db }: Context) => db.users.find()
+    users: (rootValue, args, { connection }: Context) =>
+      connection.manager.find(User)
   }
 };

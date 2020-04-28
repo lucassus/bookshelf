@@ -7,6 +7,7 @@ module.exports = {
   },
   testEnvironment: "node",
   maxWorkers: 2,
+  setupFilesAfterEnv: ["./src/testUtils/setup.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
     "^.+\\.ts$": "ts-jest"

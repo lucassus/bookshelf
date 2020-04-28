@@ -1,3 +1,9 @@
+export enum Environment {
+  production = "production",
+  development = "development",
+  test = "test"
+}
+
 export const PORT = process.env.PORT || 4000;
 
 export const ASSETS_BASE_URL =

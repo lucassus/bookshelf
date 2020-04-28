@@ -5,21 +5,28 @@
   "dependencies": {
     "apollo-server-express": "2.12.0",
     "express": "4.17.1",
-    "graphql": "15.0.0"
+    "graphql": "15.0.0",
+    "pg": "8.0.3",
+    "reflect-metadata": "0.1.13",
+    "typeorm": "0.2.24"
   },
   "devDependencies": {
     "@types/express": "4.17.6",
     "apollo-server-testing": "2.12.0",
     "nodemon": "2.0.3",
+    "sqlite3": "4.1.1",
     "ts-node": "8.9.1",
     "typescript": "3.8.3"
   },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
-    "start": "nodemon",
+    "start": "node dist/src/index.js",
+    "dev": "nodemon",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "test": "jest",
+    "typeorm": "ts-node ../../node_modules/typeorm/cli.js --config src/ormconfig.ts",
+    "db:seed": "yarn ts-node scripts/seed.ts"
   }
 }

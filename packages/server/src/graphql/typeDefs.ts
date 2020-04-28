@@ -8,7 +8,6 @@ export const typeDefs = gql`
   type Query {
     authors: [Author!]!
     author(id: Int!): Author
-    randomAuthor: Author!
 
     books: [Book!]!
     randomBook: Book!
@@ -20,14 +19,14 @@ export const typeDefs = gql`
     id: Int!
     name: String!
     photo: Image!
-    books: [Book]
+    books: [Book!]!
   }
 
   type Book {
     id: Int!
     title: String!
     cover: Image!
-    author: Author
+    author: Author!
   }
 
   type User {

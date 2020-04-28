@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type Props = {
-  user: User;
+  user: Partial<User>;
 };
 
 export const UserAvatar: React.FunctionComponent<Props> = ({ user }) => {
