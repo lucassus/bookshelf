@@ -5,6 +5,7 @@ import { loadFixtures } from "../src/testUtils/fixtures";
 
 const seed = async () => {
   const connection = await createDatabaseConnection();
+  await connection.dropDatabase();
   await connection.synchronize(true);
   await loadFixtures();
 };

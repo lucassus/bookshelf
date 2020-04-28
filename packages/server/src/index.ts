@@ -13,7 +13,7 @@ const startServer = async () => {
   const app = express();
   server.applyMiddleware({ app });
 
-  const distDir = path.join(__dirname, "../../web/dist");
+  const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
   app.get("/*", (req, res) => {
     res.sendFile(path.join(distDir, "index.html"));

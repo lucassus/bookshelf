@@ -9,13 +9,20 @@ export = {
   ...{
     [Environment.production]: {
       type: "postgres",
-      url: process.env.DATABASE_URL
+      url: process.env.DATABASE_URL,
+
+      // TODO: A workaround for heroku and ssl issues,
+      //  see https://github.com/typeorm/typeorm/issues/278#issuecomment-614345011
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false
+        }
+      }
     },
     [Environment.development]: {
       type: "postgres",
-      host: "localhost",
-      port: 5432,
-      database: "bookshelf_development",
+      url: "postgres://localhost:5432/bookshelf_development",
       synchronize: true,
       logging: true
     },

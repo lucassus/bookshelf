@@ -14,9 +14,9 @@
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
     "test": "jest",
-    "build": "yarn server build && yarn web codegen && yarn web build --mode production",
-    "start": "node packages/server/dist/src/index.js",
-    "dev": "concurrently --raw --kill-others-on-fail 'yarn server start' 'yarn web start'"
+    "build": "yarn server build && yarn web build",
+    "start": "yarn server start",
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn server dev' 'yarn web dev'"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

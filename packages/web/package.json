@@ -45,11 +45,11 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --mode development",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "build": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
+    "dev": "webpack-dev-server --mode development",
     "test": "jest",
     "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "lint": "eslint . --ext .ts,.tsx"
   }
 }

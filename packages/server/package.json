@@ -21,7 +21,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
-    "start": "nodemon",
+    "start": "node dist/src/index.js",
+    "dev": "nodemon",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
     "test": "jest",
