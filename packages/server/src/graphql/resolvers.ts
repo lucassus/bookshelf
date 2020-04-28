@@ -1,7 +1,7 @@
+import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
-import { BookRepository } from "../database/BookRepository";
 import { User } from "../database/entity/User";
 import { Context } from "../server";
 

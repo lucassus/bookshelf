@@ -22,7 +22,7 @@ export = {
     },
     [Environment.development]: {
       url: "postgres://localhost:5432/bookshelf_development",
-      synchronize: true,
+      synchronize: false,
       logging: true
     },
     [Environment.test]: {
