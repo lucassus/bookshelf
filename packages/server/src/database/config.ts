@@ -3,12 +3,12 @@ import path from "path";
 import { Environment } from "../config";
 
 export = {
+  type: "postgres",
   synchronize: false,
   logging: true,
   entities: [path.join(__dirname, "entity/**/*.{js,ts}")],
   ...{
     [Environment.production]: {
-      type: "postgres",
       url: process.env.DATABASE_URL,
 
       // TODO: A workaround for heroku and ssl issues,
@@ -21,7 +21,6 @@ export = {
       }
     },
     [Environment.development]: {
-      type: "postgres",
       url: "postgres://localhost:5432/bookshelf_development",
       synchronize: true,
       logging: true
