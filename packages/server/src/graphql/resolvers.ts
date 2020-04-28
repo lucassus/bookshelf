@@ -1,8 +1,8 @@
-import { Author } from "../entity/Author";
-import { Avatar } from "../entity/Avatar";
-import { Book } from "../entity/Book";
-import { BookRepository } from "../entity/BookRepository";
-import { User } from "../entity/User";
+import { Author } from "../database/entity/Author";
+import { Avatar } from "../database/entity/Avatar";
+import { Book } from "../database/entity/Book";
+import { BookRepository } from "../database/BookRepository";
+import { User } from "../database/entity/User";
 import { Context } from "../server";
 
 interface Image {

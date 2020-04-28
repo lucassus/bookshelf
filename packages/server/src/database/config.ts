@@ -1,6 +1,6 @@
 import path from "path";
 
-import { Environment } from "./config";
+import { Environment } from "../config";
 
 export = {
   synchronize: false,
