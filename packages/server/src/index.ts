@@ -3,11 +3,11 @@ import path from "path";
 import "reflect-metadata";
 
 import { PORT } from "./config";
-import { createDatabaseConnection } from "./createDatabaseConnection";
+import { createConnection } from "./database/createConnection";
 import { createServer } from "./server";
 
 const startServer = async () => {
-  const connection = await createDatabaseConnection();
+  const connection = await createConnection();
   const server = createServer(connection);
 
   const app = express();
