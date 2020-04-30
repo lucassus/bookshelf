@@ -5,7 +5,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { Alert, Pagination } from "@material-ui/lab";
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 
 import { BookCard } from "../../components/BookCard";
 import { useGetBooksQuery } from "./queries.generated";
@@ -14,11 +14,17 @@ const LIMIT = 9;
 
 // TODO: Keep the current page in the url query params
 export const BooksPage: React.FunctionComponent = () => {
-  const [page, setPage] = useState(1);
-
-  const { data, loading, error } = useGetBooksQuery({
-    variables: { limit: LIMIT, offset: (page - 1) * LIMIT }
+  const { loading, data, fetchMore, error } = useGetBooksQuery({
+    variables: { limit: LIMIT }
   });
+
+  const handlePageChange = useCallback(
+    (_, page: number) => {
+      const offset = (page - 1) * LIMIT;
+      return fetchMore({ variables: { offset } });
+    },
+    [fetchMore]
+  );
 
   if (loading) {
     return (
@@ -48,8 +54,7 @@ export const BooksPage: React.FunctionComponent = () => {
       </Grid>
 
       <Pagination
-        onChange={(_, newPage) => setPage(newPage)}
-        page={page}
+        onChange={handlePageChange}
         count={Math.ceil(data.books.total / LIMIT)}
         shape="rounded"
         size="large"

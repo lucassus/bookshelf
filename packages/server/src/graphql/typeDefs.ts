@@ -9,7 +9,7 @@ export const typeDefs = gql`
     authors: [Author!]!
     author(id: Int!): Author
 
-    books(limit: Int = 9, offset: Int = 0): PaginatedBooks
+    books(offset: Int = 0, limit: Int = 9): PaginatedBooks
     randomBook: Book!
 
     users: [User!]!

@@ -34,6 +34,7 @@ export const resolvers = {
   },
 
   Query: {
+    // TODO: Figure out how to type args
     books: async (rootValue, args, { connection }: Context) => {
       // TODO: It produces quite a lot of n+1 queries
       const rows = await connection.manager.find(Book, {
