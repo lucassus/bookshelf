@@ -33,25 +33,25 @@ export const resolvers = {
       context.assetsBaseUrl + image.path
   },
 
+  // TODO: Figure out how to type args
   Query: {
-    // TODO: Figure out how to type args
-    books: async (rootValue, args, { connection }: Context) => {
-      // TODO: It produces quite a lot of n+1 queries
-      const rows = await connection.manager.find(Book, {
+    booksCount: (rootValue, args, { connection }: Context) =>
+      connection.manager.count(Book),
+
+    // TODO: It produces quite a lot of n+1 queries
+    books: async (rootValue, args, { connection }: Context) =>
+      connection.manager.find(Book, {
         take: args.limit,
         skip: args.offset,
         relations: ["author"]
-      });
+      }),
 
-      const total = await connection.manager.count(Book);
-
-      return { rows, total };
-    },
     randomBook: (rootValue, args, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 
     authors: (rootValue, args, { connection }: Context) =>
       connection.manager.find(Author),
+
     author: (rootValue, args, { connection }: Context) =>
       connection.manager.findOneOrFail(Author, args.id),
 

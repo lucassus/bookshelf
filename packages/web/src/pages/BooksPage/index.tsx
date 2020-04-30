@@ -47,7 +47,7 @@ export const BooksPage: React.FunctionComponent = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        {data.books.rows.map((book) => (
+        {data.books.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={4}>
             <BookCard book={book} />
           </Grid>
@@ -57,7 +57,7 @@ export const BooksPage: React.FunctionComponent = () => {
       <Box m={2} display="flex" justifyContent="center">
         <Pagination
           onChange={handlePageChange}
-          count={Math.ceil(data.books.total / LIMIT)}
+          count={Math.ceil(data.booksCount / LIMIT)}
           shape="rounded"
           size="large"
         />

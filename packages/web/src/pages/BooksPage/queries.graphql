@@ -1,16 +1,13 @@
 query GetBooks($limit: Int, $offset: Int) {
+  booksCount
   books(limit: $limit, offset: $offset) {
-    rows {
-      id
-      title
-      cover {
-        url
-      }
-      author {
-        name
-      }
+    id
+    title
+    cover {
+      url
     }
-
-    total
+    author {
+      name
+    }
   }
 }

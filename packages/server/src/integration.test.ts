@@ -19,15 +19,13 @@ it("fetches books", async () => {
 
   const BOOKS_QUERY = gql`
     query {
+      booksCount
       books {
-        rows {
-          id
-          title
-          cover {
-            url
-          }
+        id
+        title
+        cover {
+          url
         }
-        total
       }
     }
   `;
@@ -93,13 +91,11 @@ it("fetches books along with authors and books again", async () => {
   const BOOKS_QUERY = gql`
     query {
       books {
-        rows {
-          title
-          author {
-            name
-            books {
-              title
-            }
+        title
+        author {
+          name
+          books {
+            title
           }
         }
       }

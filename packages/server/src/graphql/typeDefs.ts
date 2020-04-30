@@ -9,15 +9,11 @@ export const typeDefs = gql`
     authors: [Author!]!
     author(id: Int!): Author
 
-    books(offset: Int = 0, limit: Int = 9): PaginatedBooks
+    booksCount: Int!
+    books(offset: Int = 0, limit: Int = 9): [Book!]!
     randomBook: Book!
 
     users: [User!]!
-  }
-
-  type PaginatedBooks {
-    rows: [Book!]!
-    total: Int!
   }
 
   type Author {
