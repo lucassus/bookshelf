@@ -12,7 +12,6 @@ import { useGetBooksQuery } from "./queries.generated";
 
 const LIMIT = 9;
 
-// TODO: Return total pages from the server
 // TODO: Keep the current page in the url query params
 export const BooksPage: React.FunctionComponent = () => {
   const [page, setPage] = useState(1);
@@ -41,7 +40,7 @@ export const BooksPage: React.FunctionComponent = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        {data.books.map((book) => (
+        {data.books.rows.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={4}>
             <BookCard book={book} />
           </Grid>
@@ -51,7 +50,7 @@ export const BooksPage: React.FunctionComponent = () => {
       <Pagination
         onChange={(_, newPage) => setPage(newPage)}
         page={page}
-        count={3}
+        count={Math.ceil(data.books.total / LIMIT)}
         shape="rounded"
         size="large"
       />

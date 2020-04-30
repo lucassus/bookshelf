@@ -34,13 +34,18 @@ export const resolvers = {
   },
 
   Query: {
-    // TODO: It produces quite a lot of n+1 queries
-    books: (rootValue, args, { connection }: Context) =>
-      connection.manager.find(Book, {
+    books: async (rootValue, args, { connection }: Context) => {
+      // TODO: It produces quite a lot of n+1 queries
+      const rows = await connection.manager.find(Book, {
         take: args.limit,
         skip: args.offset,
         relations: ["author"]
-      }),
+      });
+
+      const total = await connection.manager.count(Book);
+
+      return { rows, total };
+    },
     randomBook: (rootValue, args, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 
