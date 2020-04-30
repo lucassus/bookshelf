@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 type Props = {
-  book: Partial<Book>;
+  book: Book;
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
@@ -33,15 +33,13 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
       <Card className={classes.root}>
         <CardMedia className={classes.cover} image={book.cover.url} />
         <CardContent>
-          <Typography component="h3" variant="h3" noWrap>
+          <Typography component="h3" noWrap>
             {book.title}
           </Typography>
 
-          {book.author && (
-            <Typography component="h4" noWrap>
-              {book.author.name}
-            </Typography>
-          )}
+          <Typography component="h4" noWrap>
+            {book.author.name}
+          </Typography>
         </CardContent>
       </Card>
     </Paper>

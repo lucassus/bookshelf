@@ -11,16 +11,17 @@ export default {
 };
 
 export const simple = () => {
-  const book: Partial<Book> = {
+  const book: Book = {
     id: 1,
     title: text("Title", "Blood of Elves"),
     author: {
       id: 1,
-      name: "Andrzej Sapkowski",
+      name: text("Author Name", "Andrzej Sapkowski"),
       photo: {
         url:
           "http://examples.devmastery.pl/assets/images/book-authors/andrzej-sapkowski.jpg"
-      }
+      },
+      books: []
     },
     cover: {
       url:
