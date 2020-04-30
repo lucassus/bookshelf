@@ -128,87 +128,10 @@ Object {
   "books": Array [
     Object {
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry1.jpg",
-      },
-      "id": 1,
-      "title": "Harry Potter and the Sorcerer's Stone",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
-      },
-      "id": 2,
-      "title": "Harry Potter and the Chamber of Secrets",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry3.jpg",
-      },
-      "id": 3,
-      "title": "Harry Potter and the Prisoner of Azkaban",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
-      },
-      "id": 4,
-      "title": "Harry Potter and the Goblet of Fire",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry5.jpg",
-      },
-      "id": 5,
-      "title": "Harry Potter and the Order of the Phoenix",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry6.jpg",
-      },
-      "id": 6,
-      "title": "Harry Potter and the Half-Blood Prince",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
-      },
-      "id": 7,
-      "title": "Harry Potter and the Deathly Hallows",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse1.jpg",
-      },
-      "id": 8,
-      "title": "Leviathan Wakes",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
-      },
-      "id": 9,
-      "title": "Caliban's War",
-    },
-    Object {
-      "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse3.jpg",
       },
       "id": 10,
       "title": "Abaddon's Gate",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
-      },
-      "id": 11,
-      "title": "Cibola Burn",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse5.jpg",
-      },
-      "id": 12,
-      "title": "Nemesis Games",
     },
     Object {
       "cover": Object {
@@ -219,17 +142,10 @@ Object {
     },
     Object {
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse7.jpg",
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
       },
-      "id": 14,
-      "title": "Persepolis Rising",
-    },
-    Object {
-      "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse8.jpg",
-      },
-      "id": 15,
-      "title": "Tiamat's Wrath",
+      "id": 18,
+      "title": "Baptism of fire",
     },
     Object {
       "cover": Object {
@@ -240,17 +156,94 @@ Object {
     },
     Object {
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher2.jpg",
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
       },
-      "id": 17,
-      "title": "Time of contempt",
+      "id": 9,
+      "title": "Caliban's War",
     },
     Object {
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
       },
-      "id": 18,
-      "title": "Baptism of fire",
+      "id": 11,
+      "title": "Cibola Burn",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
+      },
+      "id": 2,
+      "title": "Harry Potter and the Chamber of Secrets",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
+      },
+      "id": 7,
+      "title": "Harry Potter and the Deathly Hallows",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
+      },
+      "id": 4,
+      "title": "Harry Potter and the Goblet of Fire",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry6.jpg",
+      },
+      "id": 6,
+      "title": "Harry Potter and the Half-Blood Prince",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry5.jpg",
+      },
+      "id": 5,
+      "title": "Harry Potter and the Order of the Phoenix",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry3.jpg",
+      },
+      "id": 3,
+      "title": "Harry Potter and the Prisoner of Azkaban",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry1.jpg",
+      },
+      "id": 1,
+      "title": "Harry Potter and the Sorcerer's Stone",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse1.jpg",
+      },
+      "id": 8,
+      "title": "Leviathan Wakes",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse5.jpg",
+      },
+      "id": 12,
+      "title": "Nemesis Games",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse7.jpg",
+      },
+      "id": 14,
+      "title": "Persepolis Rising",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
+      },
+      "id": 20,
+      "title": "The lady of the lake",
     },
     Object {
       "cover": Object {
@@ -261,10 +254,17 @@ Object {
     },
     Object {
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse8.jpg",
       },
-      "id": 20,
-      "title": "The lady of the lake",
+      "id": 15,
+      "title": "Tiamat's Wrath",
+    },
+    Object {
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher2.jpg",
+      },
+      "id": 17,
+      "title": "Time of contempt",
     },
   ],
 }
@@ -277,204 +277,33 @@ Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
+            "title": "Leviathan Wakes",
           },
           Object {
-            "title": "Harry Potter and the Chamber of Secrets",
+            "title": "Caliban's War",
           },
           Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
+            "title": "Abaddon's Gate",
           },
           Object {
-            "title": "Harry Potter and the Goblet of Fire",
+            "title": "Cibola Burn",
           },
           Object {
-            "title": "Harry Potter and the Order of the Phoenix",
+            "title": "Nemesis Games",
           },
           Object {
-            "title": "Harry Potter and the Half-Blood Prince",
+            "title": "Babylon's Ashes",
           },
           Object {
-            "title": "Harry Potter and the Deathly Hallows",
+            "title": "Persepolis Rising",
+          },
+          Object {
+            "title": "Tiamat's Wrath",
           },
         ],
-        "name": "J. K. Rowling",
+        "name": "James S. A. Corey",
       },
-      "title": "Harry Potter and the Sorcerer's Stone",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Chamber of Secrets",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Prisoner of Azkaban",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Goblet of Fire",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Order of the Phoenix",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Half-Blood Prince",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Deathly Hallows",
+      "title": "Abaddon's Gate",
     },
     Object {
       "author": Object {
@@ -506,7 +335,53 @@ Object {
         ],
         "name": "James S. A. Corey",
       },
-      "title": "Leviathan Wakes",
+      "title": "Babylon's Ashes",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Blood of Elves",
+          },
+          Object {
+            "title": "Time of contempt",
+          },
+          Object {
+            "title": "Baptism of fire",
+          },
+          Object {
+            "title": "The tower of the swallow",
+          },
+          Object {
+            "title": "The lady of the lake",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "Baptism of fire",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Blood of Elves",
+          },
+          Object {
+            "title": "Time of contempt",
+          },
+          Object {
+            "title": "Baptism of fire",
+          },
+          Object {
+            "title": "The tower of the swallow",
+          },
+          Object {
+            "title": "The lady of the lake",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "Blood of Elves",
     },
     Object {
       "author": Object {
@@ -570,7 +445,210 @@ Object {
         ],
         "name": "James S. A. Corey",
       },
-      "title": "Abaddon's Gate",
+      "title": "Cibola Burn",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Chamber of Secrets",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Deathly Hallows",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Goblet of Fire",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Half-Blood Prince",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Order of the Phoenix",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Prisoner of Azkaban",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Sorcerer's Stone",
     },
     Object {
       "author": Object {
@@ -602,7 +680,7 @@ Object {
         ],
         "name": "James S. A. Corey",
       },
-      "title": "Cibola Burn",
+      "title": "Leviathan Wakes",
     },
     Object {
       "author": Object {
@@ -666,39 +744,53 @@ Object {
         ],
         "name": "James S. A. Corey",
       },
-      "title": "Babylon's Ashes",
+      "title": "Persepolis Rising",
     },
     Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Leviathan Wakes",
+            "title": "Blood of Elves",
           },
           Object {
-            "title": "Caliban's War",
+            "title": "Time of contempt",
           },
           Object {
-            "title": "Abaddon's Gate",
+            "title": "Baptism of fire",
           },
           Object {
-            "title": "Cibola Burn",
+            "title": "The tower of the swallow",
           },
           Object {
-            "title": "Nemesis Games",
-          },
-          Object {
-            "title": "Babylon's Ashes",
-          },
-          Object {
-            "title": "Persepolis Rising",
-          },
-          Object {
-            "title": "Tiamat's Wrath",
+            "title": "The lady of the lake",
           },
         ],
-        "name": "James S. A. Corey",
+        "name": "Andrzej Sapkowski",
       },
-      "title": "Persepolis Rising",
+      "title": "The lady of the lake",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Blood of Elves",
+          },
+          Object {
+            "title": "Time of contempt",
+          },
+          Object {
+            "title": "Baptism of fire",
+          },
+          Object {
+            "title": "The tower of the swallow",
+          },
+          Object {
+            "title": "The lady of the lake",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "The tower of the swallow",
     },
     Object {
       "author": Object {
@@ -753,99 +845,7 @@ Object {
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Blood of Elves",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Blood of Elves",
-          },
-          Object {
-            "title": "Time of contempt",
-          },
-          Object {
-            "title": "Baptism of fire",
-          },
-          Object {
-            "title": "The tower of the swallow",
-          },
-          Object {
-            "title": "The lady of the lake",
-          },
-        ],
-        "name": "Andrzej Sapkowski",
-      },
       "title": "Time of contempt",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Blood of Elves",
-          },
-          Object {
-            "title": "Time of contempt",
-          },
-          Object {
-            "title": "Baptism of fire",
-          },
-          Object {
-            "title": "The tower of the swallow",
-          },
-          Object {
-            "title": "The lady of the lake",
-          },
-        ],
-        "name": "Andrzej Sapkowski",
-      },
-      "title": "Baptism of fire",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Blood of Elves",
-          },
-          Object {
-            "title": "Time of contempt",
-          },
-          Object {
-            "title": "Baptism of fire",
-          },
-          Object {
-            "title": "The tower of the swallow",
-          },
-          Object {
-            "title": "The lady of the lake",
-          },
-        ],
-        "name": "Andrzej Sapkowski",
-      },
-      "title": "The tower of the swallow",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Blood of Elves",
-          },
-          Object {
-            "title": "Time of contempt",
-          },
-          Object {
-            "title": "Baptism of fire",
-          },
-          Object {
-            "title": "The tower of the swallow",
-          },
-          Object {
-            "title": "The lady of the lake",
-          },
-        ],
-        "name": "Andrzej Sapkowski",
-      },
-      "title": "The lady of the lake",
     },
   ],
 }
