@@ -29,33 +29,37 @@ export const resolvers = {
   },
 
   Image: {
-    url: (image: Image, args, context: Context) =>
-      context.assetsBaseUrl + image.path
+    url: (image: Image, args: any, { assetsBaseUrl }: Context) =>
+      assetsBaseUrl + image.path
   },
 
   // TODO: Figure out how to type args
   Query: {
-    booksCount: (rootValue, args, { connection }: Context) =>
+    booksCount: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.count(Book),
 
     // TODO: It produces quite a lot of n+1 queries
-    books: async (rootValue, args, { connection }: Context) =>
+    books: async (
+      rootValue: any,
+      args: { limit: number; offset: number },
+      { connection }: Context
+    ) =>
       connection.manager.find(Book, {
         take: args.limit,
         skip: args.offset,
         relations: ["author"]
       }),
 
-    randomBook: (rootValue, args, { connection }: Context) =>
+    randomBook: (rootValue: any, args: any, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 
-    authors: (rootValue, args, { connection }: Context) =>
+    authors: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(Author),
 
-    author: (rootValue, args, { connection }: Context) =>
+    author: (rootValue: any, args: { id: number }, { connection }: Context) =>
       connection.manager.findOneOrFail(Author, args.id),
 
-    users: (rootValue, args, { connection }: Context) =>
+    users: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(User)
   }
 };

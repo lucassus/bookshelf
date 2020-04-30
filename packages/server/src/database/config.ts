@@ -1,6 +1,6 @@
 import path from "path";
 
-import { Environment } from "../config";
+import { ENVIRONMENT, Environment } from "../config";
 
 export = {
   type: "postgres",
@@ -30,5 +30,5 @@ export = {
       database: ":memory:",
       logging: false
     }
-  }[process.env.NODE_ENV || Environment.development]
+  }[ENVIRONMENT as Environment]
 };

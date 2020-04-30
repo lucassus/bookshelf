@@ -1,6 +1,9 @@
-import { createConnection as createTypeormConnection } from "typeorm";
+import {
+  ConnectionOptions,
+  createConnection as createTypeormConnection
+} from "typeorm";
 
 import connectionOptions from "./config";
 
 export const createConnection = async () =>
-  createTypeormConnection(connectionOptions);
+  createTypeormConnection(connectionOptions as ConnectionOptions);

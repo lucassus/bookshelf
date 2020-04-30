@@ -114,7 +114,7 @@ it("fetches a random book", async () => {
   // Given
   const connection = getConnection();
   await connection.createQueryBuilder().delete().from(Book).execute();
-  const author = await connection.manager.findOne(Author, {
+  const author = await connection.manager.findOneOrFail(Author, {
     name: "Andrzej Sapkowski"
   });
   await connection.manager.save(Book, {

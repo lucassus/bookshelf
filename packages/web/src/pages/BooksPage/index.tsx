@@ -13,7 +13,6 @@ import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
 
-// TODO: Keep the current page in the url query params
 export const BooksPage: React.FunctionComponent = () => {
   const { loading, data, fetchMore, error } = useGetBooksQuery({
     variables: { limit: PER_PAGE }
@@ -27,9 +26,10 @@ export const BooksPage: React.FunctionComponent = () => {
     [fetchMore]
   );
 
-  const totalPages = useMemo(() => Math.ceil(data.booksCount / PER_PAGE), [
-    data.booksCount
-  ]);
+  const totalPages = useMemo(
+    () => (data ? Math.ceil(data.booksCount / PER_PAGE) : 1),
+    [data]
+  );
 
   if (loading) {
     return (
@@ -40,7 +40,7 @@ export const BooksPage: React.FunctionComponent = () => {
     );
   }
 
-  if (error) {
+  if (error || !data) {
     return <Alert severity="error">Could not load books...</Alert>;
   }
 
