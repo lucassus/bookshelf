@@ -10,7 +10,7 @@ export default {
   decorators: [withKnobs]
 };
 
-export const simple = () => {
+export const Basic = () => {
   const book: Book = {
     id: 1,
     title: text("Title", "Blood of Elves"),

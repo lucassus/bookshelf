@@ -11,7 +11,7 @@ export default {
   decorators: [withKnobs]
 };
 
-export const simple = () => {
+export const Basic = () => {
   const author: Author = {
     id: 1,
     name: text("Author Name", "J. K. Rowling"),
