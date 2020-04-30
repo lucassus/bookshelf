@@ -1,4 +1,5 @@
 import {
+  Box,
   CircularProgress,
   Container,
   Grid,
@@ -36,7 +37,7 @@ export const BooksPage: React.FunctionComponent = () => {
   }
 
   if (error) {
-    return <Alert severity="error">Could not load users...</Alert>;
+    return <Alert severity="error">Could not load books...</Alert>;
   }
 
   return (
@@ -53,12 +54,14 @@ export const BooksPage: React.FunctionComponent = () => {
         ))}
       </Grid>
 
-      <Pagination
-        onChange={handlePageChange}
-        count={Math.ceil(data.books.total / LIMIT)}
-        shape="rounded"
-        size="large"
-      />
+      <Box m={2} display="flex" justifyContent="center">
+        <Pagination
+          onChange={handlePageChange}
+          count={Math.ceil(data.books.total / LIMIT)}
+          shape="rounded"
+          size="large"
+        />
+      </Box>
     </Container>
   );
 };

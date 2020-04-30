@@ -19,7 +19,7 @@ export const AuthorPage: React.FunctionComponent = () => {
   return (
     <Container>
       <Typography variant="h4" component="h2">
-        Author {data.author.name} books
+        Author {data.author.name}
       </Typography>
 
       <Grid container spacing={3}>
