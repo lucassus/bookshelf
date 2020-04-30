@@ -1,29 +1,47 @@
 import {
+  Box,
   CircularProgress,
   Container,
   Grid,
   Typography
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import React from "react";
+import { Alert, Pagination } from "@material-ui/lab";
+import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
 import { useGetBooksQuery } from "./queries.generated";
 
+const PER_PAGE = 8;
+
 export const BooksPage: React.FunctionComponent = () => {
-  const { data, loading, error } = useGetBooksQuery();
+  const { loading, data, fetchMore, error } = useGetBooksQuery({
+    variables: { limit: PER_PAGE }
+  });
+
+  const handlePageChange = useCallback(
+    (_, page: number) => {
+      const offset = (page - 1) * PER_PAGE;
+      return fetchMore({ variables: { offset } });
+    },
+    [fetchMore]
+  );
+
+  const totalPages = useMemo(
+    () => (data ? Math.ceil(data.booksCount / PER_PAGE) : 1),
+    [data]
+  );
 
   if (loading) {
     return (
       <div>
         <CircularProgress />
-        <span>Loading users...</span>
+        <span>Loading books...</span>
       </div>
     );
   }
 
-  if (error) {
-    return <Alert severity="error">Could not load users...</Alert>;
+  if (error || !data) {
+    return <Alert severity="error">Could not load books...</Alert>;
   }
 
   return (
@@ -39,6 +57,15 @@ export const BooksPage: React.FunctionComponent = () => {
           </Grid>
         ))}
       </Grid>
+
+      <Box m={2} display="flex" justifyContent="center">
+        <Pagination
+          onChange={handlePageChange}
+          count={totalPages}
+          shape="rounded"
+          size="large"
+        />
+      </Box>
     </Container>
   );
 };

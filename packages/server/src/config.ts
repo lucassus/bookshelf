@@ -4,6 +4,8 @@ export enum Environment {
   test = "test"
 }
 
+export const ENVIRONMENT = process.env.NODE_ENV || Environment.development;
+
 export const PORT = process.env.PORT || 4000;
 
 export const ASSETS_BASE_URL =

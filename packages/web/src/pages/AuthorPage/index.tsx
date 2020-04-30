@@ -8,18 +8,19 @@ import { useGetAuthorQuery } from "./queries.generated";
 export const AuthorPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
 
-  const { loading, error, data } = useGetAuthorQuery({
+  const { error, data } = useGetAuthorQuery({
     variables: { id: parseInt(params.id, 10) }
   });
 
-  if (loading || error) {
+  // TODO: Add a generic 404 page
+  if (error || !data || !data.author) {
     return null;
   }
 
   return (
     <Container>
       <Typography variant="h4" component="h2">
-        Author {data.author.name} books
+        Author {data.author.name}
       </Typography>
 
       <Grid container spacing={3}>

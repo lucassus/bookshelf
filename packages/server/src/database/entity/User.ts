@@ -23,12 +23,12 @@ export class User {
   @Index({ unique: true })
   email: string;
 
-  @Column({ name: "avatar_id" })
-  avatarId: number;
-
   @OneToOne(() => Avatar, { cascade: true, eager: true })
   @JoinColumn({ name: "avatar_id" })
   avatar: Avatar;
+
+  @Column({ name: "avatar_id" })
+  avatarId: number;
 
   @CreateDateColumn({ name: "created_at" })
   created_at: Date;

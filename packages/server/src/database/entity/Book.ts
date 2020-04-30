@@ -10,7 +10,7 @@ import {
 
 import { Author } from "./Author";
 
-@Entity({ name: "books" })
+@Entity({ name: "books", orderBy: { title: "ASC" } })
 export class Book {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,12 +21,12 @@ export class Book {
   @Column({ name: "cover_path" })
   coverPath: string;
 
-  @Column({ name: "author_id" })
-  authorId: number;
-
   @ManyToOne(() => Author, (author) => author.books)
   @JoinColumn({ name: "author_id" })
   author: Promise<Author>;
+
+  @Column({ name: "author_id" })
+  authorId: number;
 
   @CreateDateColumn({ name: "created_at" })
   created_at: Date;

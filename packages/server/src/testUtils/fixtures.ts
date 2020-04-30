@@ -26,7 +26,7 @@ function loadAuthors() {
 async function loadBooks() {
   const { manager } = getConnection();
 
-  let author = await manager.findOne(Author, { name: "J. K. Rowling" });
+  let author = await manager.findOneOrFail(Author, { name: "J. K. Rowling" });
   await manager.insert(Book, [
     {
       authorId: author.id,
@@ -65,7 +65,7 @@ async function loadBooks() {
     }
   ]);
 
-  author = await manager.findOne(Author, { name: "James S. A. Corey" });
+  author = await manager.findOneOrFail(Author, { name: "James S. A. Corey" });
   await manager.insert(Book, [
     {
       authorId: author.id,
@@ -109,7 +109,7 @@ async function loadBooks() {
     }
   ]);
 
-  author = await manager.findOne(Author, { name: "Andrzej Sapkowski" });
+  author = await manager.findOneOrFail(Author, { name: "Andrzej Sapkowski" });
   await manager.insert(Book, [
     {
       authorId: author.id,

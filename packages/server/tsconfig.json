@@ -3,7 +3,8 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "strictPropertyInitialization": false
   },
   "include": ["scripts", "src"]
 }
