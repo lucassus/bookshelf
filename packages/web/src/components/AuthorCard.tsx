@@ -1,13 +1,8 @@
-import {
-  Card,
-  CardActionArea,
-  CardMedia,
-  Typography,
-  ButtonBase
-} from "@material-ui/core";
+import { Card, CardActionArea, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+// @ts-ignore
+import { useNavigate } from "react-router-dom";
 
 import { Author } from "../types.generated";
 
@@ -24,19 +19,20 @@ type Props = {
 
 export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
+  const handleClick = () => navigate(`/authors/${author.id}`);
 
   return (
-    <ButtonBase to={`/authors/${author.id}`} component={RouterLink} p={0}>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={author.photo.url}
-            title={author.name}
-          />
-          <Typography component="h2">{author.name}</Typography>
-        </CardActionArea>
-      </Card>
-    </ButtonBase>
+    <Card>
+      <CardActionArea onClick={handleClick}>
+        <CardMedia
+          className={classes.media}
+          image={author.photo.url}
+          title={author.name}
+        />
+        <Typography component="h2">{author.name}</Typography>
+      </CardActionArea>
+    </Card>
   );
 };
