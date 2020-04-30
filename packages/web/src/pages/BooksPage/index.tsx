@@ -6,26 +6,30 @@ import {
   Typography
 } from "@material-ui/core";
 import { Alert, Pagination } from "@material-ui/lab";
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
 import { useGetBooksQuery } from "./queries.generated";
 
-const LIMIT = 9;
+const PER_PAGE = 8;
 
 // TODO: Keep the current page in the url query params
 export const BooksPage: React.FunctionComponent = () => {
   const { loading, data, fetchMore, error } = useGetBooksQuery({
-    variables: { limit: LIMIT }
+    variables: { limit: PER_PAGE }
   });
 
   const handlePageChange = useCallback(
     (_, page: number) => {
-      const offset = (page - 1) * LIMIT;
+      const offset = (page - 1) * PER_PAGE;
       return fetchMore({ variables: { offset } });
     },
     [fetchMore]
   );
+
+  const totalPages = useMemo(() => Math.ceil(data.booksCount / PER_PAGE), [
+    data.booksCount
+  ]);
 
   if (loading) {
     return (
@@ -57,7 +61,7 @@ export const BooksPage: React.FunctionComponent = () => {
       <Box m={2} display="flex" justifyContent="center">
         <Pagination
           onChange={handlePageChange}
-          count={Math.ceil(data.booksCount / LIMIT)}
+          count={totalPages}
           shape="rounded"
           size="large"
         />
