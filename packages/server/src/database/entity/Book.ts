@@ -10,7 +10,7 @@ import {
 
 import { Author } from "./Author";
 
-@Entity({ name: "books" })
+@Entity({ name: "books", orderBy: { title: "ASC" } })
 export class Book {
   @PrimaryGeneratedColumn()
   id: number;

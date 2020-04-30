@@ -36,12 +36,7 @@ export const resolvers = {
   Query: {
     // TODO: It produces quite a lot of n+1 queries
     books: (rootValue, args, { connection }: Context) =>
-      connection.manager.find(Book, {
-        order: {
-          title: "ASC"
-        },
-        relations: ["author"]
-      }),
+      connection.manager.find(Book, { relations: ["author"] }),
     randomBook: (rootValue, args, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 
