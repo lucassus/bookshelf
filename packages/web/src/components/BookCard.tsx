@@ -15,14 +15,17 @@ const useStyles = makeStyles({
     display: "flex"
   },
   cover: {
-    height: 100,
+    height: 150,
     minWidth: 100,
     width: 100
+  },
+  title: {
+    fontSize: 32
   }
 });
 
 type Props = {
-  book: Partial<Book>;
+  book: Book;
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
@@ -33,15 +36,18 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
       <Card className={classes.root}>
         <CardMedia className={classes.cover} image={book.cover.url} />
         <CardContent>
-          <Typography component="h3" noWrap>
+          <Typography component="h3" variant="h5" noWrap>
             {book.title}
           </Typography>
 
-          {book.author && (
-            <Typography component="h4" noWrap>
-              {book.author.name}
-            </Typography>
-          )}
+          <Typography
+            component="h4"
+            variant="body2"
+            color="textSecondary"
+            noWrap
+          >
+            {book.author.name}
+          </Typography>
         </CardContent>
       </Card>
     </Paper>

@@ -8,6 +8,7 @@ import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { UserAvatar } from "../../components/UserAvatar";
+import { User } from "../../types.generated";
 import { useGetUsersQuery } from "./queries.generated";
 
 export const UsersPage: React.FunctionComponent = () => {
@@ -41,7 +42,7 @@ export const UsersPage: React.FunctionComponent = () => {
       >
         {data.users.map((user) => (
           <Grid item key={user.id}>
-            <UserAvatar user={user} />
+            <UserAvatar user={user as User} />
           </Grid>
         ))}
       </Grid>

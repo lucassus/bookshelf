@@ -1,6 +1,7 @@
 coverage
 dist
 node_modules
+storybook-static
 src/**/*.generated.ts
 src/**/*.generated.tsx
 jest.config.js
