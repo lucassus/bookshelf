@@ -46,5 +46,8 @@ jobs:
     - name: Lint
       run: yarn web lint
 
-    - name: Build
+    - name: Build storybbok
+      run: yarn web storybook:build
+
+    - name: Build web app
       run: yarn web build

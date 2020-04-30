@@ -59,6 +59,6 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
     "storybook": "start-storybook --port 6006 --ci",
-    "build-storybook": "build-storybook"
+    "storybook:build": "build-storybook"
   }
 }
