@@ -4,7 +4,7 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { Alert, Pagination } from "@material-ui/lab";
 import React from "react";
 
 import { BookCard } from "../../components/BookCard";
@@ -13,11 +13,15 @@ import { useGetBooksQuery } from "./queries.generated";
 export const BooksPage: React.FunctionComponent = () => {
   const { data, loading, error } = useGetBooksQuery();
 
+  const handleChangePage = (event, page: number) => {
+    console.log({ page });
+  };
+
   if (loading) {
     return (
       <div>
         <CircularProgress />
-        <span>Loading users...</span>
+        <span>Loading books...</span>
       </div>
     );
   }
@@ -39,6 +43,13 @@ export const BooksPage: React.FunctionComponent = () => {
           </Grid>
         ))}
       </Grid>
+
+      <Pagination
+        onChange={handleChangePage}
+        count={10}
+        shape="rounded"
+        size="large"
+      />
     </Container>
   );
 };
