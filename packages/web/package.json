@@ -18,7 +18,7 @@
     "@graphql-codegen/introspection": "1.13.3",
     "@graphql-codegen/near-operation-file-preset": "1.13.3",
     "@graphql-codegen/typescript": "1.13.3",
-    "@graphql-codegen/typescript-operations": "1.13.3",
+    "@graphql-codegen/typescript-operations": "1.13.4",
     "@graphql-codegen/typescript-react-apollo": "1.13.3",
     "@storybook/addon-actions": "5.3.18",
     "@storybook/addon-info": "5.3.18",
