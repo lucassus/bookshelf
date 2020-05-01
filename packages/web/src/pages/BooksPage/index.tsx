@@ -3,13 +3,13 @@ import {
   CircularProgress,
   Container,
   Grid,
-  Typography,
-  Button
+  Typography
 } from "@material-ui/core";
-import { Alert, Pagination } from "@material-ui/lab";
+import { Pagination } from "@material-ui/lab";
 import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
@@ -32,6 +32,7 @@ export const BooksPage: React.FunctionComponent = () => {
     [data]
   );
 
+  // TODO: Create a generic loading spinner
   if (loading) {
     return (
       <div>
@@ -41,20 +42,8 @@ export const BooksPage: React.FunctionComponent = () => {
     );
   }
 
-  // TODO: Create a generic component with retry button
   if (error || !data) {
-    return (
-      <Alert
-        severity="error"
-        action={
-          <Button color="inherit" size="small" onClick={() => refetch()}>
-            Retry
-          </Button>
-        }
-      >
-        Could not load books...
-      </Alert>
-    );
+    return <ErrorAlert message="Could not load books..." onRetry={refetch} />;
   }
 
   return (
