@@ -9,13 +9,16 @@ import { useGetAuthorQuery } from "./queries.generated";
 export const AuthorPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
 
-  const { error, data } = useGetAuthorQuery({
+  const { loading, data, error } = useGetAuthorQuery({
     variables: { id: parseInt(params.id, 10) }
   });
 
-  // TODO: Add a generic 404 page
-  if (error || !data || !data.author) {
-    return null;
+  if (loading) {
+    return <span>Loading author...</span>;
+  }
+
+  if (error || !data) {
+    return <span>Count not load author!</span>;
   }
 
   return (
