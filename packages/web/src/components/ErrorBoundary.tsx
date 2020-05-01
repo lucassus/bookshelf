@@ -1,5 +1,7 @@
 import React from "react";
 
+import { ErrorAlert } from "./ErrorAlert";
+
 type State = {
   error: Error | null;
 };
@@ -19,7 +21,7 @@ export class ErrorBoundary extends React.Component<{}, State> {
     const { children } = this.props;
 
     if (error) {
-      return <h1>{error.message}</h1>;
+      return <ErrorAlert message={error.message || "Something went wrong!"} />;
     }
 
     return children;
