@@ -1,15 +1,15 @@
 overwrite: true
 
 schema:
-  ../server/src/**/*.ts:
+  ../server/src/graphql/**/*.ts:
     noRequire: true
 
-documents: "src/**/*.graphql"
+documents: src/**/*.graphql
 
 generates:
   src/types.generated.ts:
     plugins:
-      - "typescript"
+      - typescript
 
   src/:
     plugins:
@@ -28,4 +28,4 @@ generates:
 
   ./graphql.schema.json:
     plugins:
-      - "introspection"
+      - introspection
