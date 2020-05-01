@@ -169,3 +169,32 @@ it("fetches users", async () => {
   expect(res.data).not.toBeUndefined();
   expect(res.data!.users).toMatchSnapshot();
 });
+
+it("updates book favourite", async () => {
+  // Given
+  const connection = getConnection();
+  const book = await connection.manager.findOneOrFail(Book, 1);
+  expect(book.favourite).toBe(false);
+
+  const { mutate } = createTestClient(server);
+
+  const UPDATE_QUERY = gql`
+    mutation {
+      updateBookFavourite(id: ${book.id}, favourite: true) {
+        id
+        title
+        favourite
+      }
+    }
+  `;
+
+  // When
+  const res = await mutate({
+    mutation: UPDATE_QUERY,
+    variables: { id: book.id, favourite: true }
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.updateBookFavourite).toMatchSnapshot();
+});

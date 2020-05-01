@@ -3,6 +3,7 @@ import { gql } from "apollo-server-express";
 export const typeDefs = gql`
   schema {
     query: Query
+    mutation: Mutation
   }
 
   type Query {
@@ -16,6 +17,10 @@ export const typeDefs = gql`
     users: [User!]!
   }
 
+  type Mutation {
+    updateBookFavourite(id: Int!, favourite: Boolean): Book!
+  }
+
   type Author {
     id: Int!
     name: String!
@@ -27,6 +32,7 @@ export const typeDefs = gql`
     id: Int!
     title: String!
     cover: Image!
+    favourite: Boolean!
     author: Author
   }
 
