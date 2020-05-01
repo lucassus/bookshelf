@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
-    "@graphql-codegen/cli": "1.13.3",
+    "@graphql-codegen/cli": "1.13.4",
     "@graphql-codegen/introspection": "1.13.3",
     "@graphql-codegen/near-operation-file-preset": "1.13.3",
     "@graphql-codegen/typescript": "1.13.3",
