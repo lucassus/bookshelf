@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -6,9 +7,10 @@ import {
   Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import React, { useState } from "react";
 
 import { Book } from "../types.generated";
+import { useUpdateBookFavouriteMutation } from "./BookCard.queries.generated";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +33,23 @@ type Props = {
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const classes = useStyles();
 
+  const [favourite, setFavourite] = useState(book.favourite);
+  const [updateFavourite, { loading }] = useUpdateBookFavouriteMutation();
+
+  // TODO: Implement optimistic updates
+  const handleUpdateFavourite = async () => {
+    const updatedFavourite = !favourite;
+
+    await updateFavourite({
+      variables: {
+        id: book.id,
+        favourite: updatedFavourite
+      }
+    });
+
+    setFavourite(updatedFavourite);
+  };
+
   return (
     <Paper>
       <Card className={classes.root}>
@@ -50,6 +69,10 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
               {book.author.name}
             </Typography>
           )}
+
+          <Button onClick={handleUpdateFavourite} disabled={loading}>
+            Favourite: {favourite ? "true" : "false"}
+          </Button>
         </CardContent>
       </Card>
     </Paper>

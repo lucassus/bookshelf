@@ -1,0 +1,6 @@
+mutation UpdateBookFavourite($id: Int!, $favourite: Boolean) {
+  updateBookFavourite(id: $id, favourite: $favourite) {
+    id
+    favourite
+  }
+}
