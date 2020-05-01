@@ -4,10 +4,10 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { AuthorCard } from "../../components/AuthorCard";
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorsQuery } from "./queries.generated";
 
 export const AuthorsPage: React.FunctionComponent = () => {
@@ -23,7 +23,7 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <Alert severity="error">Could not load authors...</Alert>;
+    return <ErrorAlert message="Could not load authors..." />;
   }
 
   return (

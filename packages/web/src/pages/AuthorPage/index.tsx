@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorQuery } from "./queries.generated";
 
 export const AuthorPage: React.FunctionComponent = () => {
@@ -17,7 +18,7 @@ export const AuthorPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <span>Count not load author!</span>;
+    return <ErrorAlert message="Count not load author!" />;
   }
 
   return (

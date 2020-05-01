@@ -4,9 +4,9 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import React from "react";
 
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserAvatar } from "../../components/UserAvatar";
 import { useGetUsersQuery } from "./queries.generated";
 
@@ -23,7 +23,7 @@ export const UsersPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <Alert severity="error">Could not load users...</Alert>;
+    return <ErrorAlert message="Could not load users..." />;
   }
 
   return (
