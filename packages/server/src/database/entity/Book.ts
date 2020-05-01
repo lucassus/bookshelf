@@ -28,6 +28,9 @@ export class Book {
   @Column({ name: "author_id" })
   authorId: number;
 
+  @Column({ default: false })
+  favourite: boolean;
+
   @CreateDateColumn({ name: "created_at" })
   created_at: Date;
 
