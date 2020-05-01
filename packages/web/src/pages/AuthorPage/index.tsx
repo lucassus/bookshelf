@@ -3,7 +3,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
-import { Book } from "../../types.generated";
 import { useGetAuthorQuery } from "./queries.generated";
 
 export const AuthorPage: React.FunctionComponent = () => {
@@ -28,9 +27,9 @@ export const AuthorPage: React.FunctionComponent = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        {data.author.books.map((book) => (
+        {data.author.books!.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book as Book} />
+            <BookCard book={book} />
           </Grid>
         ))}
       </Grid>

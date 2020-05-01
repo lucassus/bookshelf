@@ -19,8 +19,8 @@ export const typeDefs = gql`
   type Author {
     id: Int!
     name: String!
-    photo: Image!
-    books: [Book!]!
+    photo: Image
+    books: [Book!]
   }
 
   type Book {

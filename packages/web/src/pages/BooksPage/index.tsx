@@ -9,7 +9,6 @@ import { Alert, Pagination } from "@material-ui/lab";
 import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
-import { Book } from "../../types.generated";
 import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
@@ -54,7 +53,7 @@ export const BooksPage: React.FunctionComponent = () => {
       <Grid container spacing={3}>
         {data.books.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book as Book} />
+            <BookCard book={book} />
           </Grid>
         ))}
       </Grid>
