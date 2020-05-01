@@ -3,7 +3,8 @@ import {
   CircularProgress,
   Container,
   Grid,
-  Typography
+  Typography,
+  Button
 } from "@material-ui/core";
 import { Alert, Pagination } from "@material-ui/lab";
 import React, { useCallback, useMemo } from "react";
@@ -14,7 +15,7 @@ import { useGetBooksQuery } from "./queries.generated";
 const PER_PAGE = 8;
 
 export const BooksPage: React.FunctionComponent = () => {
-  const { loading, data, fetchMore, error } = useGetBooksQuery({
+  const { loading, data, error, fetchMore, refetch } = useGetBooksQuery({
     variables: { limit: PER_PAGE }
   });
 
@@ -40,8 +41,20 @@ export const BooksPage: React.FunctionComponent = () => {
     );
   }
 
+  // TODO: Create a generic component with retry button
   if (error || !data) {
-    return <Alert severity="error">Could not load books...</Alert>;
+    return (
+      <Alert
+        severity="error"
+        action={
+          <Button color="inherit" size="small" onClick={() => refetch()}>
+            Retry
+          </Button>
+        }
+      >
+        Could not load books...
+      </Alert>
+    );
   }
 
   return (
