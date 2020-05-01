@@ -17,26 +17,26 @@ describe("<ErrorAlert />", () => {
     const { queryByText, message } = renderComponent();
 
     expect(queryByText(message)).toBeInTheDocument();
-    expect(queryByText("Retry")).not.toBeInTheDocument();
+    expect(queryByText("Try again")).not.toBeInTheDocument();
   });
 
   describe("when onRetry is not given", () => {
     it("does not render the retry button", () => {
       const { queryByText } = renderComponent({ onRetry: undefined });
-      expect(queryByText("Retry")).not.toBeInTheDocument();
+      expect(queryByText("Try again")).not.toBeInTheDocument();
     });
   });
 
   describe("when onRetry callback is given", () => {
     it("renders the retry button", () => {
       const { queryByText } = renderComponent({ onRetry: jest.fn() });
-      expect(queryByText("Retry")).toBeInTheDocument();
+      expect(queryByText("Try again")).toBeInTheDocument();
     });
 
     it("calls the given callback on click", () => {
       const { getByText, onRetry } = renderComponent({ onRetry: jest.fn() });
 
-      fireEvent.click(getByText("Retry"));
+      fireEvent.click(getByText("Try again"));
       expect(onRetry).toHaveBeenCalled();
     });
   });

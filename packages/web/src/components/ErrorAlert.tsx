@@ -17,7 +17,7 @@ export const ErrorAlert: React.FunctionComponent<Props> = ({
       action={
         onRetry && (
           <Button color="inherit" size="small" onClick={onRetry}>
-            Retry
+            Try again
           </Button>
         )
       }
