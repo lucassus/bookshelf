@@ -7,7 +7,7 @@ export const typeDefs = gql`
 
   type Query {
     authors: [Author!]!
-    author(id: Int!): Author
+    author(id: Int!): Author!
 
     booksCount: Int!
     books(offset: Int = 0, limit: Int = 9): [Book!]!
@@ -19,15 +19,15 @@ export const typeDefs = gql`
   type Author {
     id: Int!
     name: String!
-    photo: Image!
-    books: [Book!]!
+    photo: Image
+    books: [Book!]
   }
 
   type Book {
     id: Int!
     title: String!
     cover: Image!
-    author: Author!
+    author: Author
   }
 
   type User {

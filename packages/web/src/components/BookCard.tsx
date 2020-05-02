@@ -40,14 +40,16 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
             {book.title}
           </Typography>
 
-          <Typography
-            component="h4"
-            variant="body2"
-            color="textSecondary"
-            noWrap
-          >
-            {book.author.name}
-          </Typography>
+          {book.author && (
+            <Typography
+              component="h4"
+              variant="body2"
+              color="textSecondary"
+              noWrap
+            >
+              {book.author.name}
+            </Typography>
+          )}
         </CardContent>
       </Card>
     </Paper>

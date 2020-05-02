@@ -4,11 +4,10 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import React from "react";
 
 import { AuthorCard } from "../../components/AuthorCard";
-import { Author } from "../../types.generated";
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorsQuery } from "./queries.generated";
 
 export const AuthorsPage: React.FunctionComponent = () => {
@@ -24,10 +23,9 @@ export const AuthorsPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <Alert severity="error">Could not load authors...</Alert>;
+    return <ErrorAlert message="Could not load authors..." />;
   }
 
-  // TODO: Find a solution for ugly `author as Author` casting
   return (
     <Container>
       <Typography variant="h4" component="h2">
@@ -43,7 +41,7 @@ export const AuthorsPage: React.FunctionComponent = () => {
       >
         {data.authors.map((author) => (
           <Grid item key={author.id}>
-            <AuthorCard author={author as Author} />
+            <AuthorCard author={author} />
           </Grid>
         ))}
       </Grid>

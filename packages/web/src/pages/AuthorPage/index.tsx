@@ -3,19 +3,22 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
-import { Book } from "../../types.generated";
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorQuery } from "./queries.generated";
 
 export const AuthorPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
 
-  const { error, data } = useGetAuthorQuery({
+  const { loading, data, error } = useGetAuthorQuery({
     variables: { id: parseInt(params.id, 10) }
   });
 
-  // TODO: Add a generic 404 page
-  if (error || !data || !data.author) {
-    return null;
+  if (loading) {
+    return <span>Loading author...</span>;
+  }
+
+  if (error || !data) {
+    return <ErrorAlert message="Count not load author!" />;
   }
 
   return (
@@ -25,9 +28,9 @@ export const AuthorPage: React.FunctionComponent = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        {data.author.books.map((book) => (
+        {data.author.books!.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book as Book} />
+            <BookCard book={book} />
           </Grid>
         ))}
       </Grid>

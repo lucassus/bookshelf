@@ -5,17 +5,17 @@ import {
   Grid,
   Typography
 } from "@material-ui/core";
-import { Alert, Pagination } from "@material-ui/lab";
+import { Pagination } from "@material-ui/lab";
 import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
-import { Book } from "../../types.generated";
+import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
 
 export const BooksPage: React.FunctionComponent = () => {
-  const { loading, data, fetchMore, error } = useGetBooksQuery({
+  const { loading, data, error, fetchMore, refetch } = useGetBooksQuery({
     variables: { limit: PER_PAGE }
   });
 
@@ -32,6 +32,7 @@ export const BooksPage: React.FunctionComponent = () => {
     [data]
   );
 
+  // TODO: Create a generic loading spinner
   if (loading) {
     return (
       <div>
@@ -42,7 +43,7 @@ export const BooksPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <Alert severity="error">Could not load books...</Alert>;
+    return <ErrorAlert message="Could not load books..." onRetry={refetch} />;
   }
 
   return (
@@ -54,7 +55,7 @@ export const BooksPage: React.FunctionComponent = () => {
       <Grid container spacing={3}>
         {data.books.map((book) => (
           <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book as Book} />
+            <BookCard book={book} />
           </Grid>
         ))}
       </Grid>

@@ -7,6 +7,7 @@ query GetBooks($limit: Int, $offset: Int) {
       url
     }
     author {
+      id
       name
     }
   }
