@@ -11,17 +11,19 @@ import { BooksPage } from "./pages/BooksPage";
 import { UsersPage } from "./pages/UsersPage";
 
 export const App: React.FunctionComponent = () => (
-  <ErrorBoundary>
+  <>
     <CssBaseline />
-    <AppTopBar />
+    <ErrorBoundary>
+      <AppTopBar />
 
-    <Container maxWidth="lg">
-      <Routes>
-        <Route path="/" element={<BooksPage />} />
-        <Route path="/authors" element={<AuthorsPage />} />
-        <Route path="/authors/:id" element={<AuthorPage />} />
-        <Route path="/users" element={<UsersPage />} />
-      </Routes>
-    </Container>
-  </ErrorBoundary>
+      <Container maxWidth="lg">
+        <Routes>
+          <Route path="/" element={<BooksPage />} />
+          <Route path="/authors" element={<AuthorsPage />} />
+          <Route path="/authors/:id" element={<AuthorPage />} />
+          <Route path="/users" element={<UsersPage />} />
+        </Routes>
+      </Container>
+    </ErrorBoundary>
+  </>
 );
