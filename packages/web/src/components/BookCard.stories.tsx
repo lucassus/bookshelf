@@ -1,8 +1,10 @@
+import { MockedProvider } from "@apollo/client/testing";
 import { withKnobs, text } from "@storybook/addon-knobs";
 import React from "react";
 
 import { Book } from "../types.generated";
 import { BookCard } from "./BookCard";
+import { UpdateBookFavouriteDocument } from "./BookCard.queries.generated";
 
 export default {
   title: "BookCard",
@@ -10,10 +12,29 @@ export default {
   decorators: [withKnobs]
 };
 
+// TODO: It could handle only one response
+const mocks = [
+  {
+    request: {
+      query: UpdateBookFavouriteDocument,
+      variables: { id: 1, favourite: true }
+    },
+    result: {
+      data: {
+        updateBookFavourite: {
+          id: 1,
+          favourite: true
+        }
+      }
+    }
+  }
+];
+
 export const Basic = () => {
   const book: Book = {
     id: 1,
     title: text("Title", "Blood of Elves"),
+    favourite: false,
     author: {
       id: 1,
       name: text("Author Name", "Andrzej Sapkowski"),
@@ -29,5 +50,10 @@ export const Basic = () => {
     }
   };
 
-  return <BookCard book={book} />;
+  // TODO: Use resolvers?
+  return (
+    <MockedProvider mocks={mocks}>
+      <BookCard book={book} />
+    </MockedProvider>
+  );
 };

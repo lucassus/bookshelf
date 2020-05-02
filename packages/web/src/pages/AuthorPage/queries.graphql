@@ -4,6 +4,7 @@ query GetAuthor($id: Int!) {
     books {
       id
       title
+      favourite
       cover {
         url
       }
