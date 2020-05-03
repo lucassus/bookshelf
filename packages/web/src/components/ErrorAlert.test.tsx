@@ -6,7 +6,7 @@ import { ErrorAlert } from "./ErrorAlert";
 describe("<ErrorAlert />", () => {
   const renderComponent = ({
     message = "Something went wrong!",
-    onRetry
+    onRetry = jest.fn()
   }: Partial<React.ComponentProps<typeof ErrorAlert>> = {}) => ({
     ...render(<ErrorAlert message={message} onRetry={onRetry} />),
     message,
@@ -29,12 +29,13 @@ describe("<ErrorAlert />", () => {
 
   describe("when onRetry callback is given", () => {
     it("renders the retry button", () => {
-      const { queryByText } = renderComponent({ onRetry: jest.fn() });
+      const { queryByText } = renderComponent();
       expect(queryByText("Try again")).toBeInTheDocument();
     });
 
     it("calls the given callback on click", () => {
-      const { getByText, onRetry } = renderComponent({ onRetry: jest.fn() });
+      const onRetry = jest.fn();
+      const { getByText } = renderComponent({ onRetry });
 
       fireEvent.click(getByText("Try again"));
       expect(onRetry).toHaveBeenCalled();
