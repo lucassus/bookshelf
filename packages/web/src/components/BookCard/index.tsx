@@ -1,13 +1,17 @@
 import {
-  Button,
   Card,
   CardContent,
   CardMedia,
+  IconButton,
   Paper,
   Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import {
+  Star as StarIcon,
+  StarBorder as StarBorderIcon
+} from "@material-ui/icons";
+import React, { useCallback } from "react";
 
 import { Book } from "../../types.generated";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
@@ -35,6 +39,14 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
 
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 
+  const handleToggleFavourite = useCallback(
+    () =>
+      updateFavourite({
+        variables: { id: book.id, favourite: !book.favourite }
+      }),
+    [updateFavourite, book]
+  );
+
   return (
     <Paper>
       <Card className={classes.root}>
@@ -55,15 +67,14 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
             </Typography>
           )}
 
-          <Button
-            onClick={() =>
-              updateFavourite({
-                variables: { id: book.id, favourite: !book.favourite }
-              })
+          <IconButton
+            onClick={handleToggleFavourite}
+            aria-label={
+              book.favourite ? "Remove from favourites" : "Add to favourites"
             }
           >
-            {book.favourite ? "Remove from favourites" : "Add to favourites"}
-          </Button>
+            {book.favourite ? <StarIcon /> : <StarBorderIcon />}
+          </IconButton>
         </CardContent>
       </Card>
     </Paper>

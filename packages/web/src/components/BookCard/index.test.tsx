@@ -33,14 +33,14 @@ describe("<BookCard />", () => {
       }
     ];
 
-    const { getByText } = render(
+    const { getByLabelText } = render(
       <MockedProvider mocks={mocks}>
         <BookCard book={book} />
       </MockedProvider>
     );
 
     // When
-    fireEvent.click(getByText("Add to favourites"));
+    fireEvent.click(getByLabelText("Add to favourites"));
 
     // Then
     await waitFor(() => expect(mutationCalled).toBe(true));
