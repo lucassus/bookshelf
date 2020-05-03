@@ -1,29 +1,12 @@
-import { render, fireEvent } from "@testing-library/react";
-import React from "react";
+import { fireEvent } from "@testing-library/react";
 
+import { createComponentRenderer } from "../testUtils";
 import { ErrorAlert } from "./ErrorAlert";
 
-type ComponentProps = React.ComponentProps<typeof ErrorAlert>;
-
-// TODO: Dry it
-function renderComponent(props: Partial<ComponentProps> = {}) {
-  const baseProps: ComponentProps = {
-    message: "Something went wrong!",
-    onRetry: undefined
-  };
-
-  const { rerender, ...rest } = render(
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <ErrorAlert {...baseProps} {...props} />
-  );
-
-  return {
-    rerender: (newProps: Partial<ComponentProps> = {}) =>
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      rerender(<ErrorAlert {...baseProps} {...props} {...newProps} />),
-    ...rest
-  };
-}
+const renderComponent = createComponentRenderer(ErrorAlert, {
+  message: "Something went wrong!",
+  onRetry: undefined
+});
 
 describe("<ErrorAlert />", () => {
   it("renders the given messages", () => {

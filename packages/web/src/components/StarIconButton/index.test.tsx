@@ -1,31 +1,14 @@
-import { render, fireEvent } from "@testing-library/react";
-import React from "react";
+import { fireEvent } from "@testing-library/react";
 
+import { createComponentRenderer } from "../../testUtils";
 import { StarIconButton } from "./index";
 
-type ComponentProps = React.ComponentProps<typeof StarIconButton>;
-
-// TODO: Dry it
-function renderComponent(props: Partial<ComponentProps> = {}) {
-  const baseProps: ComponentProps = {
-    labelOn: "Remove from favourites",
-    labelOff: "Add to favourites",
-    toggled: false,
-    onToggle: () => {}
-  };
-
-  const { rerender, ...rest } = render(
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <StarIconButton {...baseProps} {...props} />
-  );
-
-  return {
-    rerender: (newProps: Partial<ComponentProps> = {}) =>
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      rerender(<StarIconButton {...baseProps} {...props} {...newProps} />),
-    ...rest
-  };
-}
+const renderComponent = createComponentRenderer(StarIconButton, {
+  labelOn: "Remove from favourites",
+  labelOff: "Add to favourites",
+  toggled: false,
+  onToggle: () => {}
+});
 
 describe("<StarIconButton />", () => {
   it("renders the label", () => {
