@@ -3,21 +3,37 @@ import React from "react";
 
 import { ErrorAlert } from "./ErrorAlert";
 
+type ComponentProps = React.ComponentProps<typeof ErrorAlert>;
+
+// TODO: Dry it
+function renderComponent(props: Partial<ComponentProps> = {}) {
+  const baseProps: ComponentProps = {
+    message: "Something went wrong!",
+    onRetry: undefined
+  };
+
+  const { rerender, ...rest } = render(
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <ErrorAlert {...baseProps} {...props} />
+  );
+
+  return {
+    rerender: (newProps: Partial<ComponentProps> = {}) =>
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      rerender(<ErrorAlert {...baseProps} {...props} {...newProps} />),
+    ...rest
+  };
+}
+
 describe("<ErrorAlert />", () => {
-  const renderComponent = ({
-    message = "Something went wrong!",
-    onRetry = jest.fn()
-  }: Partial<React.ComponentProps<typeof ErrorAlert>> = {}) => ({
-    ...render(<ErrorAlert message={message} onRetry={onRetry} />),
-    message,
-    onRetry
-  });
-
   it("renders the given messages", () => {
-    const { queryByText, message } = renderComponent();
+    const { queryByText, rerender } = renderComponent({
+      message: "Something went wrong!"
+    });
+    expect(queryByText("Something went wrong!")).toBeInTheDocument();
 
-    expect(queryByText(message)).toBeInTheDocument();
-    expect(queryByText("Try again")).not.toBeInTheDocument();
+    rerender({ message: "Some other message" });
+    expect(queryByText("Some other message")).toBeInTheDocument();
   });
 
   describe("when onRetry is not given", () => {
@@ -29,7 +45,7 @@ describe("<ErrorAlert />", () => {
 
   describe("when onRetry callback is given", () => {
     it("renders the retry button", () => {
-      const { queryByText } = renderComponent();
+      const { queryByText } = renderComponent({ onRetry: jest.fn() });
       expect(queryByText("Try again")).toBeInTheDocument();
     });
 
