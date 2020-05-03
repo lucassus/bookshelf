@@ -1,7 +1,7 @@
 import { fireEvent } from "@testing-library/react";
 
-import { createComponentRenderer } from "../testUtils";
-import { ErrorAlert } from "./ErrorAlert";
+import { createComponentRenderer } from "../../testUtils";
+import { ErrorAlert } from "./index";
 
 const renderComponent = createComponentRenderer(ErrorAlert, {
   message: "Something went wrong!",
