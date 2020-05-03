@@ -9,8 +9,8 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
-import { Book } from "../types.generated";
-import { useUpdateBookFavouriteMutation } from "./BookCard.queries.generated";
+import { Book } from "../../types.generated";
+import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 const useStyles = makeStyles({
   root: {

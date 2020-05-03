@@ -2,9 +2,9 @@ import { MockedProvider } from "@apollo/client/testing";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 
-import { Book } from "../types.generated";
-import { BookCard } from "./BookCard";
-import { UpdateBookFavouriteDocument } from "./BookCard.queries.generated";
+import { Book } from "../../types.generated";
+import { BookCard } from "./index";
+import { UpdateBookFavouriteDocument } from "./queries.generated";
 
 describe("<BookCard />", () => {
   it("handles add to favourites", async () => {
