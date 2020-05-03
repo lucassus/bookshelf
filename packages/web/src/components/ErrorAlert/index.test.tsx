@@ -27,9 +27,18 @@ describe("<ErrorAlert />", () => {
   });
 
   describe("when onRetry callback is given", () => {
-    it("renders the retry button", () => {
+    it("renders the retry button with default label", () => {
       const { queryByText } = renderComponent({ onRetry: jest.fn() });
       expect(queryByText("Try again")).toBeInTheDocument();
+    });
+
+    it("renders the retry button with the given label", () => {
+      const { queryByText } = renderComponent({
+        onRetry: jest.fn(),
+        retryButtonLabel: "Custom retry button label"
+      });
+
+      expect(queryByText("Custom retry button label")).toBeInTheDocument();
     });
 
     it("calls the given callback on click", () => {

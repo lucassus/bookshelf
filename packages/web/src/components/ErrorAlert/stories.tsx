@@ -16,8 +16,15 @@ export const Basic = () => {
   return <ErrorAlert message={message} />;
 };
 
-export const WithRetry = () => {
+export const WithRetryButton = () => {
   const message = text("Message", "Could not load books...");
+  const retryButtonLabel = text("Retry button label", "Try again");
 
-  return <ErrorAlert message={message} onRetry={action("retry-pressed")} />;
+  return (
+    <ErrorAlert
+      message={message}
+      onRetry={action("retry-pressed")}
+      retryButtonLabel={retryButtonLabel}
+    />
+  );
 };
