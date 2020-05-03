@@ -2,18 +2,14 @@ import {
   Card,
   CardContent,
   CardMedia,
-  IconButton,
   Paper,
   Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Star as StarIcon,
-  StarBorder as StarBorderIcon
-} from "@material-ui/icons";
 import React, { useCallback } from "react";
 
 import { Book } from "../../types.generated";
+import { StarIconButton } from "../StarIconButton";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 const useStyles = makeStyles({
@@ -67,14 +63,12 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
             </Typography>
           )}
 
-          <IconButton
-            onClick={handleToggleFavourite}
-            aria-label={
-              book.favourite ? "Remove from favourites" : "Add to favourites"
-            }
-          >
-            {book.favourite ? <StarIcon /> : <StarBorderIcon />}
-          </IconButton>
+          <StarIconButton
+            labelOn="Remove from favourites"
+            labelOff="Add to favourites"
+            toggled={book.favourite}
+            onToggle={handleToggleFavourite}
+          />
         </CardContent>
       </Card>
     </Paper>
