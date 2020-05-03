@@ -3,7 +3,7 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author } from "../../types.generated";
+import { createAuthor } from "../../testUtils/factories";
 import { AuthorsPage } from "./index";
 import { GetAuthorsDocument } from "./queries.generated";
 
@@ -18,21 +18,9 @@ describe("<AuthorsPage />", () => {
         result: {
           data: {
             authors: [
-              {
-                id: 1,
-                name: "J. K. Rowling",
-                photo: {
-                  url: "http://example.com/rowling.jpg"
-                }
-              },
-              {
-                id: 2,
-                name: "Andrzej Sapkowski",
-                photo: {
-                  url: "http://example.com/rowling.jpg"
-                }
-              }
-            ] as Author[]
+              createAuthor({ id: 1, name: "J. K. Rowling" }),
+              createAuthor({ id: 2, name: "Andrzej Sapkowski" })
+            ]
           }
         }
       }

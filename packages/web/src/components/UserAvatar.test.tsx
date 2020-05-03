@@ -1,24 +1,16 @@
-import { createComponentRenderer } from "../testUtils";
-import { User } from "../types.generated";
+import { createComponentRenderer } from "../testUtils/createComponentRenderer";
+import { createUser } from "../testUtils/factories";
 import { UserAvatar } from "./UserAvatar";
 
-const user: User = {
-  id: 1,
-  name: "Bob",
-  email: "bob@rmail.com",
-  avatar: {
-    color: "blue",
-    image: {
-      url: "http://images.com/avatar.png"
-    }
-  }
-};
-
-const renderComponent = createComponentRenderer(UserAvatar, {
-  user
-});
-
 describe("<UserAvatar />", () => {
+  const user = createUser({
+    name: "Bob"
+  });
+
+  const renderComponent = createComponentRenderer(UserAvatar, {
+    user
+  });
+
   it("renders and matches the snapshot", () => {
     const { getByText, rerender } = renderComponent();
     expect(getByText("Bob")).toBeInTheDocument();

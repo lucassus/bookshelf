@@ -1,14 +1,14 @@
 import { fireEvent } from "@testing-library/react";
 
-import { createComponentRenderer } from "../../testUtils";
+import { createComponentRenderer } from "../../testUtils/createComponentRenderer";
 import { ErrorAlert } from "./index";
 
-const renderComponent = createComponentRenderer(ErrorAlert, {
-  message: "Something went wrong!",
-  onRetry: undefined
-});
-
 describe("<ErrorAlert />", () => {
+  const renderComponent = createComponentRenderer(ErrorAlert, {
+    message: "Something went wrong!",
+    onRetry: undefined
+  });
+
   it("renders the given messages", () => {
     const { queryByText, rerender } = renderComponent({
       message: "Something went wrong!"

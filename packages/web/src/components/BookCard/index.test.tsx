@@ -2,24 +2,16 @@ import { MockedProvider } from "@apollo/client/testing";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 
-import { Book } from "../../types.generated";
+import { createBook } from "../../testUtils/factories";
 import { BookCard } from "./index";
 import { UpdateBookFavouriteDocument } from "./queries.generated";
 
 describe("<BookCard />", () => {
   it("handles add to favourites", async () => {
     // Given
-    const book: Book = {
-      id: 1,
-      title: "Test book",
-      favourite: false,
-      cover: {
-        url: "https://books.com/cover.png"
-      }
-    };
+    const book = createBook({ id: 1 });
 
     let mutationCalled = false;
-
     const mocks = [
       {
         request: {

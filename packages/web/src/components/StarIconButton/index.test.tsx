@@ -1,16 +1,16 @@
 import { fireEvent } from "@testing-library/react";
 
-import { createComponentRenderer } from "../../testUtils";
+import { createComponentRenderer } from "../../testUtils/createComponentRenderer";
 import { StarIconButton } from "./index";
 
-const renderComponent = createComponentRenderer(StarIconButton, {
-  labelOn: "Remove from favourites",
-  labelOff: "Add to favourites",
-  toggled: false,
-  onToggle: () => {}
-});
-
 describe("<StarIconButton />", () => {
+  const renderComponent = createComponentRenderer(StarIconButton, {
+    labelOn: "Remove from favourites",
+    labelOff: "Add to favourites",
+    toggled: false,
+    onToggle: () => {}
+  });
+
   it("renders the label", () => {
     const { getByLabelText, rerender } = renderComponent({
       labelOn: "Remove",
