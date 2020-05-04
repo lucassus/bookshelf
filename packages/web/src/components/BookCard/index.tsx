@@ -35,6 +35,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
 
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 
+  // TODO: Optimistic updates
   const handleToggleFavourite = useCallback(
     () =>
       updateFavourite({
