@@ -9,6 +9,6 @@ module.exports = {
   setupFilesAfterEnv: ["./src/setupTests.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.(ts|tsx)$": "ts-jest"
   }
 };
