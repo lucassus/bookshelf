@@ -22,7 +22,7 @@ module.exports = {
           "src/**/*.test.{ts,tsx}",
           "src/**/*.stories.tsx",
           "src/**/stories.tsx",
-          "src/createComponentRenderer.ts"
+          "src/testUtils/**/*.ts"
         ]
       }
     ],
