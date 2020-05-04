@@ -506,3 +506,11 @@ Array [
   },
 ]
 `;
+
+exports[`updates book favourite 1`] = `
+Object {
+  "favourite": true,
+  "id": 1,
+  "title": "Harry Potter and the Sorcerer's Stone",
+}
+`;

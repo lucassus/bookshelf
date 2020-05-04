@@ -61,5 +61,18 @@ export const resolvers = {
 
     users: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(User)
+  },
+
+  Mutation: {
+    updateBookFavourite: async (
+      rootValue: any,
+      { id, favourite }: { id: number; favourite: boolean },
+      { connection }: Context
+    ) => {
+      const book = await connection.manager.findOneOrFail(Book, id);
+      book.favourite = favourite;
+
+      return connection.manager.save(book);
+    }
   }
 };

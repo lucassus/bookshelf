@@ -6,9 +6,11 @@ import {
   Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import React, { useCallback } from "react";
 
-import { Book } from "../types.generated";
+import { Book } from "../../types.generated";
+import { StarIconButton } from "../StarIconButton";
+import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +33,16 @@ type Props = {
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const classes = useStyles();
 
+  const [updateFavourite] = useUpdateBookFavouriteMutation();
+
+  const handleToggleFavourite = useCallback(
+    () =>
+      updateFavourite({
+        variables: { id: book.id, favourite: !book.favourite }
+      }),
+    [updateFavourite, book]
+  );
+
   return (
     <Paper>
       <Card className={classes.root}>
@@ -50,6 +62,13 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
               {book.author.name}
             </Typography>
           )}
+
+          <StarIconButton
+            labelOn="Remove from favourites"
+            labelOff="Add to favourites"
+            toggled={book.favourite}
+            onToggle={handleToggleFavourite}
+          />
         </CardContent>
       </Card>
     </Paper>

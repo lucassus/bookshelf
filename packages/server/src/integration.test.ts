@@ -17,21 +17,21 @@ it("fetches books", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const BOOKS_QUERY = gql`
-    query {
-      booksCount
-      books {
-        id
-        title
-        cover {
-          url
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        booksCount
+        books {
+          id
+          title
+          cover {
+            url
+          }
         }
       }
-    }
-  `;
-
-  // When
-  const res = await query({ query: BOOKS_QUERY });
+    `
+  });
 
   // Then
   expect(res.data).not.toBeUndefined();
@@ -42,19 +42,19 @@ it("fetches authors along with books", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const AUTHORS_QUERY = gql`
-    query {
-      authors {
-        name
-        books {
-          title
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        authors {
+          name
+          books {
+            title
+          }
         }
       }
-    }
-  `;
-
-  // When
-  const res = await query({ query: AUTHORS_QUERY });
+    `
+  });
 
   // Then
   expect(res.data).not.toBeUndefined();
@@ -64,20 +64,20 @@ it("fetches authors along with books", async () => {
 it("fetches an author", async () => {
   const { query } = createTestClient(server);
 
-  const AUTHOR_QUERY = gql`
-    query {
-      author(id: 1) {
-        id
-        name
-        books {
-          title
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        author(id: 1) {
+          id
+          name
+          books {
+            title
+          }
         }
       }
-    }
-  `;
-
-  // When
-  const res = await query({ query: AUTHOR_QUERY });
+    `
+  });
 
   // Then
   expect(res.data).not.toBeUndefined();
@@ -88,22 +88,22 @@ it("fetches books along with authors and books again", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const BOOKS_QUERY = gql`
-    query {
-      books {
-        title
-        author {
-          name
-          books {
-            title
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        books {
+          title
+          author {
+            name
+            books {
+              title
+            }
           }
         }
       }
-    }
-  `;
-
-  // When
-  const res = await query({ query: BOOKS_QUERY });
+    `
+  });
 
   // Then
   expect(res.data).not.toBeUndefined();
@@ -125,19 +125,19 @@ it("fetches a random book", async () => {
 
   const { query } = createTestClient(server);
 
-  const RANDOM_BOOK_QUERY = gql`
-    query {
-      randomBook {
-        title
-        cover {
-          url
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        randomBook {
+          title
+          cover {
+            url
+          }
         }
       }
-    }
-  `;
-
-  // When
-  const res = await query({ query: RANDOM_BOOK_QUERY });
+    `
+  });
 
   // Then
   expect(res.data).not.toBeUndefined();
@@ -147,25 +147,56 @@ it("fetches a random book", async () => {
 it("fetches users", async () => {
   const { query } = createTestClient(server);
 
-  const USERS_QUERY = gql`
-    query {
-      users {
-        name
-        email
-        avatar {
-          color
-          image {
-            url
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        users {
+          name
+          email
+          avatar {
+            color
+            image {
+              url
+            }
           }
         }
       }
-    }
-  `;
-
-  // When
-  const res = await query({ query: USERS_QUERY });
+    `
+  });
 
   // Then
   expect(res.data).not.toBeUndefined();
   expect(res.data!.users).toMatchSnapshot();
+});
+
+it("updates book favourite", async () => {
+  // Given
+  const connection = getConnection();
+
+  const book = await connection.manager.findOneOrFail(Book, 1);
+  expect(book.favourite).toBe(false);
+
+  const { mutate } = createTestClient(server);
+
+  // When
+  const res = await mutate({
+    mutation: gql`
+      mutation {
+        updateBookFavourite(id: ${book.id}, favourite: true) {
+          id
+          title
+          favourite
+        }
+      }
+    `,
+    variables: { id: book.id, favourite: true }
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.updateBookFavourite).toMatchSnapshot();
+
+  const updatedBook = await connection.manager.findOneOrFail(Book, 1);
+  expect(updatedBook.favourite).toBe(true);
 });

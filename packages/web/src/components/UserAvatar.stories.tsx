@@ -1,7 +1,7 @@
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 
-import { User } from "../types.generated";
+import { createUser } from "../testUtils/factories";
 import { UserAvatar } from "./UserAvatar";
 
 export default {
@@ -11,17 +11,6 @@ export default {
 };
 
 export const Basic = () => {
-  const user: User = {
-    id: 1,
-    name: text("User Name", "Bob"),
-    email: "bob@email.com",
-    avatar: {
-      image: {
-        url: "http://examples.devmastery.pl/assets/images/avatars/m25.png"
-      },
-      color: "yellow"
-    }
-  };
-
+  const user = createUser({ name: text("User Name", "Bob") });
   return <UserAvatar user={user} />;
 };

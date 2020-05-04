@@ -3,12 +3,12 @@ module.exports = {
   extends: ["airbnb/hooks", "prettier/react"],
   overrides: [
     {
-      files: ["*.test.{ts,tsx}"],
+      files: ["src/*.test.{ts,tsx}"],
       env: { jest: true },
       extends: ["plugin:jest/recommended", "plugin:testing-library/recommended"]
     },
     {
-      files: "*.generated.tsx",
+      files: "src/*.generated.tsx",
       rules: {
         "import/no-duplicates": "off"
       }
@@ -17,7 +17,14 @@ module.exports = {
   rules: {
     "import/no-extraneous-dependencies": [
       "error",
-      { devDependencies: ["**/*.test.{ts,tsx}", "**/*.stories.tsx"] }
+      {
+        devDependencies: [
+          "src/**/*.test.{ts,tsx}",
+          "src/**/*.stories.tsx",
+          "src/**/stories.tsx",
+          "src/testUtils/**/*.ts"
+        ]
+      }
     ],
     "jsx-a11y/label-has-associated-control": "off",
     "no-param-reassign": [
