@@ -17,6 +17,9 @@ export class Author {
   @Column()
   name: string;
 
+  @Column({ default: "" })
+  bio: string;
+
   @Column({ name: "photo_path" })
   photoPath: string;
 
