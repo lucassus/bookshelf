@@ -59,7 +59,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
               color="textSecondary"
               noWrap
             >
-              {book.author.name}
+              Written by {book.author.name}
             </Typography>
           )}
 
