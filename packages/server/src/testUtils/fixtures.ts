@@ -285,6 +285,8 @@ async function loadUsers() {
     {
       name: "Alice",
       email: "alice@example.com",
+      info: `Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer.`,
+
       avatar: {
         imagePath: "/images/avatars/w13.png",
         color: "yellow"
@@ -293,6 +295,7 @@ async function loadUsers() {
     {
       name: "Bob",
       email: "bob@example.com",
+      info: `Twitter fan. Social media expert. Hardcore explorer. Communicator. Amateur coffee lover.`,
       avatar: {
         imagePath: "/images/avatars/m10.png",
         color: "green"
@@ -301,6 +304,7 @@ async function loadUsers() {
     {
       name: "Celine",
       email: "celine@example.com",
+      info: `Wannabe pop culture specialist. Tv scholar. Lifelong social media practitioner. Music geek. Falls down a lot.`,
       avatar: {
         imagePath: "/images/avatars/w2.png",
         color: "red"
@@ -309,6 +313,7 @@ async function loadUsers() {
     {
       name: "Dan",
       email: "dan@example.com",
+      info: `Professional problem solver. Devoted explorer. Gamer. Unapologetic bacon guru.`,
       avatar: {
         imagePath: "/images/avatars/m25.png",
         color: "blue"
