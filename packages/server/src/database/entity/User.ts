@@ -23,6 +23,9 @@ export class User {
   @Index({ unique: true })
   email: string;
 
+  @Column({ default: "" })
+  info: string;
+
   @OneToOne(() => Avatar, { cascade: true, eager: true })
   @JoinColumn({ name: "avatar_id" })
   avatar: Avatar;

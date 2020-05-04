@@ -18,6 +18,9 @@ export class Book {
   @Column()
   title: string;
 
+  @Column({ default: "" })
+  description: string;
+
   @Column({ name: "cover_path" })
   coverPath: string;
 
