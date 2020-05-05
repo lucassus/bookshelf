@@ -38,6 +38,51 @@ it("fetches books", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
+it("fetches a book", async () => {
+  // Given
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        book(id: 2) {
+          id
+          title
+          description
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+});
+
+it("responds with error when book cannot be found", async () => {
+  // Given
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        book(id: 200) {
+          id
+          title
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).toBe(null);
+  expect(res.errors![0].message).toEqual(
+    'Could not find any entity of type "Book" matching: 200'
+  );
+});
+
 it("fetches authors along with books", async () => {
   // Given
   const { query } = createTestClient(server);
@@ -71,6 +116,7 @@ it("fetches an author", async () => {
         author(id: 1) {
           id
           name
+          bio
           books {
             title
           }
@@ -154,6 +200,7 @@ it("fetches users", async () => {
         users {
           name
           email
+          info
           avatar {
             color
             image {
@@ -168,6 +215,33 @@ it("fetches users", async () => {
   // Then
   expect(res.data).not.toBeUndefined();
   expect(res.data!.users).toMatchSnapshot();
+});
+
+it("fetches a user", async () => {
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        user(id: 1) {
+          name
+          email
+          info
+          avatar {
+            color
+            image {
+              url
+            }
+          }
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.user).toMatchSnapshot();
 });
 
 it("updates book favourite", async () => {

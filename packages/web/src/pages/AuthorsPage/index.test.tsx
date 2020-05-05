@@ -5,8 +5,8 @@ import { MemoryRouter } from "react-router";
 
 import { AuthorsPage } from "./index";
 import {
-  GetAuthorsDocumentErrorMock,
-  GetAuthorsDocumentMock
+  GetAuthorsDocumentMock,
+  GetAuthorsDocumentErrorMock
 } from "./queries.mock";
 
 describe("<AuthorsPage />", () => {
