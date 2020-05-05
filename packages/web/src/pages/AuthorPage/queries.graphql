@@ -1,4 +1,4 @@
-query GetAuthor($id: Int!) {
+query GetAuthor($id: ID!) {
   author(id: $id) {
     name
     books {

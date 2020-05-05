@@ -45,14 +45,15 @@ it("fetches a book", async () => {
   // When
   const res = await query({
     query: gql`
-      query {
-        book(id: 2) {
+      query GetBook($id: ID!) {
+        book(id: $id) {
           id
           title
           description
         }
       }
-    `
+    `,
+    variables: { id: 2 }
   });
 
   // Then
@@ -67,19 +68,20 @@ it("responds with error when book cannot be found", async () => {
   // When
   const res = await query({
     query: gql`
-      query {
-        book(id: 200) {
+      query GetBook($id: ID!) {
+        book(id: $id) {
           id
           title
         }
       }
-    `
+    `,
+    variables: { id: 200 }
   });
 
   // Then
   expect(res.data).toBe(null);
   expect(res.errors![0].message).toEqual(
-    'Could not find any entity of type "Book" matching: 200'
+    'Could not find any entity of type "Book" matching: "200"'
   );
 });
 
@@ -112,8 +114,8 @@ it("fetches an author", async () => {
   // When
   const res = await query({
     query: gql`
-      query {
-        author(id: 1) {
+      query GetAuthor($id: ID!) {
+        author(id: $id) {
           id
           name
           bio
@@ -122,7 +124,8 @@ it("fetches an author", async () => {
           }
         }
       }
-    `
+    `,
+    variables: { id: 1 }
   });
 
   // Then
@@ -223,8 +226,8 @@ it("fetches a user", async () => {
   // When
   const res = await query({
     query: gql`
-      query {
-        user(id: 1) {
+      query GetUser($id: ID!) {
+        user(id: $id) {
           name
           email
           info
@@ -236,7 +239,8 @@ it("fetches a user", async () => {
           }
         }
       }
-    `
+    `,
+    variables: { id: 1 }
   });
 
   // Then
@@ -256,8 +260,8 @@ it("updates book favourite", async () => {
   // When
   const res = await mutate({
     mutation: gql`
-      mutation {
-        updateBookFavourite(id: ${book.id}, favourite: true) {
+      mutation UpdateBookFavourite($id: ID!, $favourite: Boolean) {
+        updateBookFavourite(id: $id, favourite: $favourite) {
           id
           title
           favourite

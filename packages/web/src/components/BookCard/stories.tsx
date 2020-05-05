@@ -32,7 +32,7 @@ const mocks = [
 
 export const Basic = () => {
   const book = createBook({
-    id: 1,
+    id: "1",
     title: text("Title", "Blood of Elves"),
     favourite: false,
     author: createAuthor({

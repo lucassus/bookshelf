@@ -8,7 +8,7 @@ import { UpdateBookFavouriteDocument } from "./queries.generated";
 
 describe("<BookCard />", () => {
   const book = createBook({
-    id: 1,
+    id: "1",
     author: createAuthor({ name: "Andrzej Sapkowski" })
   });
 
@@ -29,7 +29,7 @@ describe("<BookCard />", () => {
       {
         request: {
           query: UpdateBookFavouriteDocument,
-          variables: { id: 1, favourite: true }
+          variables: { id: "1", favourite: true }
         },
         result: () => {
           mutationCalled = true;

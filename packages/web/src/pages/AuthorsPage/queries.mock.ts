@@ -10,8 +10,8 @@ export const GetAuthorsDocumentMock: MockedResponse = {
   result: {
     data: {
       authors: [
-        createAuthor({ id: 1, name: "J. K. Rowling" }),
-        createAuthor({ id: 2, name: "Andrzej Sapkowski" })
+        createAuthor({ id: "1", name: "J. K. Rowling" }),
+        createAuthor({ id: "2", name: "Andrzej Sapkowski" })
       ]
     }
   }

@@ -50,7 +50,7 @@ export const resolvers = {
         relations: ["author"]
       }),
 
-    book: (rootValue: any, args: { id: number }, { connection }: Context) =>
+    book: (rootValue: any, args: { id: string }, { connection }: Context) =>
       connection.manager.findOneOrFail(Book, args.id),
 
     randomBook: (rootValue: any, args: any, { connection }: Context) =>
@@ -59,20 +59,20 @@ export const resolvers = {
     authors: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(Author),
 
-    author: (rootValue: any, args: { id: number }, { connection }: Context) =>
+    author: (rootValue: any, args: { id: string }, { connection }: Context) =>
       connection.manager.findOneOrFail(Author, args.id),
 
     users: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(User),
 
-    user: (rootValue: any, args: { id: number }, { connection }: Context) =>
+    user: (rootValue: any, args: { id: string }, { connection }: Context) =>
       connection.manager.findOneOrFail(User, args.id)
   },
 
   Mutation: {
     updateBookFavourite: async (
       rootValue: any,
-      { id, favourite }: { id: number; favourite: boolean },
+      { id, favourite }: { id: string; favourite: boolean },
       { connection }: Context
     ) => {
       const book = await connection.manager.findOneOrFail(Book, id);
