@@ -50,6 +50,9 @@ export const resolvers = {
         relations: ["author"]
       }),
 
+    book: (rootValue: any, args: { id: number }, { connection }: Context) =>
+      connection.manager.findOneOrFail(Book, args.id),
+
     randomBook: (rootValue: any, args: any, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 

@@ -38,6 +38,28 @@ it("fetches books", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
+it("fetches a book", async () => {
+  // Given
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        book(id: 2) {
+          id
+          title
+          description
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+});
+
 it("fetches authors along with books", async () => {
   // Given
   const { query } = createTestClient(server);
@@ -71,6 +93,7 @@ it("fetches an author", async () => {
         author(id: 1) {
           id
           name
+          bio
           books {
             title
           }
@@ -154,6 +177,7 @@ it("fetches users", async () => {
         users {
           name
           email
+          info
           avatar {
             color
             image {

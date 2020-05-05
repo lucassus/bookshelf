@@ -12,6 +12,7 @@ export const typeDefs = gql`
 
     booksCount: Int!
     books(offset: Int = 0, limit: Int = 9): [Book!]!
+    book(id: Int!): Book!
     randomBook: Book!
 
     users: [User!]!
@@ -24,6 +25,7 @@ export const typeDefs = gql`
   type Author {
     id: Int!
     name: String!
+    bio: String!
     photo: Image
     books: [Book!]
   }
@@ -31,6 +33,7 @@ export const typeDefs = gql`
   type Book {
     id: Int!
     title: String!
+    description: String!
     cover: Image!
     favourite: Boolean!
     author: Author
@@ -39,6 +42,7 @@ export const typeDefs = gql`
   type User {
     id: Int!
     name: String!
+    info: String!
     email: String!
     avatar: Avatar!
   }
