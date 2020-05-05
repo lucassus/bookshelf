@@ -13,7 +13,7 @@ export default {
 
 export const Basic = () => {
   const author: Author = {
-    id: 1,
+    id: "1",
     name: text("Author Name", "J. K. Rowling"),
     photo: {
       url:

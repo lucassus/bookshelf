@@ -10,7 +10,7 @@ export const AuthorPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
 
   const { loading, data, error } = useGetAuthorQuery({
-    variables: { id: parseInt(params.id, 10) }
+    variables: { id: params.id }
   });
 
   if (loading) {

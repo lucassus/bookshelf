@@ -3,7 +3,7 @@ import { Author, Book, User } from "../types.generated";
 type Factory<T> = (attributes?: Partial<T>) => T;
 
 export const createAuthor: Factory<Author> = (attributes = {}) => ({
-  id: 1,
+  id: "1",
   name: "J. K. Rowling",
   bio: "As a child, Rowling often wrote fantasy stories",
   photo: {
@@ -14,7 +14,7 @@ export const createAuthor: Factory<Author> = (attributes = {}) => ({
 });
 
 export const createBook: Factory<Book> = (attributes = {}) => ({
-  id: 1,
+  id: "1",
   title: "Test book",
   description: "Lorem impsum",
   favourite: false,
@@ -25,7 +25,7 @@ export const createBook: Factory<Book> = (attributes = {}) => ({
 });
 
 export const createUser: Factory<User> = (attributes = {}) => ({
-  id: 1,
+  id: "1",
   name: "Bob",
   info: "Professional problem solver.",
   email: "bob@email.com",
