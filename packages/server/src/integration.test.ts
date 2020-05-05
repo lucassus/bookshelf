@@ -60,6 +60,29 @@ it("fetches a book", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
+it("responds with error when book cannot be found", async () => {
+  // Given
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        book(id: 200) {
+          id
+          title
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).toBe(null);
+  expect(res.errors![0].message).toEqual(
+    'Could not find any entity of type "Book" matching: 200'
+  );
+});
+
 it("fetches authors along with books", async () => {
   // Given
   const { query } = createTestClient(server);
