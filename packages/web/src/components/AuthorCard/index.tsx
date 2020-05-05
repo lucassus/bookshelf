@@ -4,7 +4,7 @@ import React from "react";
 // @ts-ignore
 import { useNavigate } from "react-router-dom";
 
-import { Author } from "../types.generated";
+import { Author } from "../../types.generated";
 
 const useStyles = makeStyles({
   media: {

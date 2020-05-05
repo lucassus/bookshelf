@@ -1,5 +1,6 @@
 import { gql } from "apollo-server-express";
 
+// TODO: Figure out why I cannot use `bio: String!` etc.
 export const typeDefs = gql`
   schema {
     query: Query
@@ -26,7 +27,7 @@ export const typeDefs = gql`
   type Author {
     id: Int!
     name: String!
-    bio: String!
+    bio: String
     photo: Image
     books: [Book!]
   }
@@ -34,7 +35,7 @@ export const typeDefs = gql`
   type Book {
     id: Int!
     title: String!
-    description: String!
+    description: String
     cover: Image!
     favourite: Boolean!
     author: Author
@@ -43,7 +44,7 @@ export const typeDefs = gql`
   type User {
     id: Int!
     name: String!
-    info: String!
+    info: String
     email: String!
     avatar: Avatar!
   }

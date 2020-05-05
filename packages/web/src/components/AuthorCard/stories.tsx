@@ -2,8 +2,8 @@ import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author } from "../types.generated";
-import { AuthorCard } from "./AuthorCard";
+import { Author } from "../../types.generated";
+import { AuthorCard } from "./index";
 
 export default {
   title: "AuthorCard",
