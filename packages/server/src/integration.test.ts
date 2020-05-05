@@ -217,6 +217,33 @@ it("fetches users", async () => {
   expect(res.data!.users).toMatchSnapshot();
 });
 
+it("fetches a user", async () => {
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        user(id: 1) {
+          name
+          email
+          info
+          avatar {
+            color
+            image {
+              url
+            }
+          }
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data!.user).toMatchSnapshot();
+});
+
 it("updates book favourite", async () => {
   // Given
   const connection = getConnection();

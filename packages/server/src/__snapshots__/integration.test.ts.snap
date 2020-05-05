@@ -23,6 +23,20 @@ Object {
 }
 `;
 
+exports[`fetches a user 1`] = `
+Object {
+  "avatar": Object {
+    "color": "yellow",
+    "image": Object {
+      "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+    },
+  },
+  "email": "alice@example.com",
+  "info": "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer.",
+  "name": "Alice",
+}
+`;
+
 exports[`fetches an author 1`] = `
 Object {
   "author": Object {

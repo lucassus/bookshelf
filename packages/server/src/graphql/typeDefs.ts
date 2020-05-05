@@ -16,6 +16,7 @@ export const typeDefs = gql`
     randomBook: Book!
 
     users: [User!]!
+    user(id: Int!): User!
   }
 
   type Mutation {
