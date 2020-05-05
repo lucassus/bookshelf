@@ -9,23 +9,23 @@ export const typeDefs = gql`
 
   type Query {
     authors: [Author!]!
-    author(id: Int!): Author!
+    author(id: ID!): Author!
 
     booksCount: Int!
     books(offset: Int = 0, limit: Int = 9): [Book!]!
-    book(id: Int!): Book!
+    book(id: ID!): Book!
     randomBook: Book!
 
     users: [User!]!
-    user(id: Int!): User!
+    user(id: ID!): User!
   }
 
   type Mutation {
-    updateBookFavourite(id: Int!, favourite: Boolean): Book!
+    updateBookFavourite(id: ID!, favourite: Boolean): Book!
   }
 
   type Author {
-    id: Int!
+    id: ID!
     name: String!
     bio: String
     photo: Image
@@ -33,7 +33,7 @@ export const typeDefs = gql`
   }
 
   type Book {
-    id: Int!
+    id: ID!
     title: String!
     description: String
     cover: Image!
@@ -42,7 +42,7 @@ export const typeDefs = gql`
   }
 
   type User {
-    id: Int!
+    id: ID!
     name: String!
     info: String
     email: String!

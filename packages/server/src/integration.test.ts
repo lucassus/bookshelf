@@ -79,7 +79,7 @@ it("responds with error when book cannot be found", async () => {
   // Then
   expect(res.data).toBe(null);
   expect(res.errors![0].message).toEqual(
-    'Could not find any entity of type "Book" matching: 200'
+    'Could not find any entity of type "Book" matching: "200"'
   );
 });
 
