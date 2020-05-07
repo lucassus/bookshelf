@@ -9,8 +9,8 @@
     "@material-ui/lab": "4.0.0-alpha.52",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-router": "6.0.0-alpha.3",
-    "react-router-dom": "6.0.0-alpha.3",
+    "react-router": "6.0.0-alpha.4",
+    "react-router-dom": "6.0.0-alpha.4",
     "typeface-roboto": "0.0.75"
   },
   "devDependencies": {

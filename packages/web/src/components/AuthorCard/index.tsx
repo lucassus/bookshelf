@@ -1,7 +1,6 @@
 import { Card, CardActionArea, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-// @ts-ignore
 import { useNavigate } from "react-router-dom";
 
 import { Author } from "../../types.generated";
