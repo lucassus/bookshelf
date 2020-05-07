@@ -5,10 +5,9 @@ module.exports = {
     color: "green",
     name: package.name
   },
+  preset: "ts-jest",
+  testEnvironment: "node",
   maxWorkers: 1,
   setupFilesAfterEnv: ["./src/setupTests.ts"],
-  testPathIgnorePatterns: ["/dist/", "/node_modules/"],
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
-  }
+  testPathIgnorePatterns: ["/dist/", "/node_modules/"]
 };
