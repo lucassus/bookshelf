@@ -2,7 +2,7 @@ import path from "path";
 
 import { ENVIRONMENT, Environment } from "../config";
 
-export = {
+export const connectionOptions = {
   type: "postgres",
   synchronize: false,
   logging: true,
