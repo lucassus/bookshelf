@@ -35,8 +35,8 @@ export class Book {
   favourite: boolean;
 
   @CreateDateColumn({ name: "created_at" })
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: "updated_at" })
-  updated_at: Date;
+  updatedAt: Date;
 }
