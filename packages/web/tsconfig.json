@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "target": "es5",
+    "module": "es6",
     "jsx": "react",
     "outDir": "dist",
     "rootDir": "src",

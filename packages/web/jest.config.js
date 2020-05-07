@@ -1,3 +1,5 @@
+const path = require("path");
+
 const package = require("./package.json");
 
 module.exports = {
@@ -9,6 +11,9 @@ module.exports = {
   setupFilesAfterEnv: ["./src/setupTests.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
+    "^.+\\.(ts|tsx)$": [
+      "babel-jest",
+      { configFile: path.join(__dirname, "babel.config.js") }
+    ]
   }
 };
