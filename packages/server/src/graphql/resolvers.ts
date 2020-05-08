@@ -3,7 +3,7 @@ import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { User } from "../database/entity/User";
-import { toInternalId, toExternalId } from "../database/helpers";
+import { secureId } from "../database/helpers";
 import { Context } from "../server";
 
 interface Image {
@@ -12,21 +12,21 @@ interface Image {
 
 export const resolvers = {
   Book: {
-    id: (book: Book) => toExternalId(book.id, "Book"),
+    id: (book: Book) => secureId.toExternal(book.id, "Book"),
     cover: (book: Book): Image => ({
       path: book.coverPath
     })
   },
 
   Author: {
-    id: (author: Author) => toExternalId(author.id, "Author"),
+    id: (author: Author) => secureId.toExternal(author.id, "Author"),
     photo: (author: Author): Image => ({
       path: author.photoPath
     })
   },
 
   User: {
-    id: (user: User) => toExternalId(user.id, "User")
+    id: (user: User) => secureId.toExternal(user.id, "User")
   },
 
   Avatar: {
@@ -58,7 +58,7 @@ export const resolvers = {
       }),
 
     book: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(Book, toInternalId(args.id)),
+      connection.manager.findOneOrFail(Book, secureId.toInternal(args.id)),
 
     randomBook: (rootValue: any, args: any, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
@@ -67,13 +67,13 @@ export const resolvers = {
       connection.manager.find(Author),
 
     author: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(Author, toInternalId(args.id)),
+      connection.manager.findOneOrFail(Author, secureId.toInternal(args.id)),
 
     users: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(User),
 
     user: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(User, toInternalId(args.id))
+      connection.manager.findOneOrFail(User, secureId.toInternal(args.id))
   },
 
   Mutation: {
@@ -84,7 +84,7 @@ export const resolvers = {
     ) => {
       const book = await connection.manager.findOneOrFail(
         Book,
-        toInternalId(args.id)
+        secureId.toInternal(args.id)
       );
       book.favourite = args.favourite;
 
