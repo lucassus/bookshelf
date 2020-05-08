@@ -574,6 +574,7 @@ Object {
       "title": "Harry Potter and the Sorcerer's Stone",
     },
   ],
+  "id": "MS1BdXRob3I=",
   "name": "J. K. Rowling",
 }
 `;
@@ -581,9 +582,12 @@ Object {
 exports[`fetching anything fetches Book 1`] = `
 Object {
   "__typename": "Book",
-  "author": Object {
-    "name": "J. K. Rowling",
-  },
+  "description": "The Dursleys were so mean and hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike
+
+      And strike it does. For in Harry's second year at Hogwarts, fresh torments and horrors arise, including an outrageously stuck-up new professor, Gilderoy Lockhart, a spirit named Moaning Myrtle who haunts the girls' bathroom, and the unwanted attentions of Ron Weasley's younger sister, Ginny.
+      
+      But each of these seem minor annoyances when the real trouble begins, and someone -- or something -- starts turning Hogwarts students to stone. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past is finally told? Or could it be the one everyone at Hogwarts most suspects . . . Harry Potter himself?",
+  "favourite": false,
   "id": "Mi1Cb29r",
   "title": "Harry Potter and the Chamber of Secrets",
 }
@@ -593,6 +597,7 @@ exports[`fetching anything fetches User 1`] = `
 Object {
   "__typename": "User",
   "email": "alice@example.com",
+  "id": "MS1Vc2Vy",
   "name": "Alice",
 }
 `;

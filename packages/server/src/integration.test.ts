@@ -285,25 +285,28 @@ describe("fetching anything", () => {
         __typename
 
         ... on Author {
+          id
           name
           books {
             title
           }
         }
 
-        ... on Book {
-          id
-          title
-          author {
-            name
-          }
-        }
+        ...bookFields
 
         ... on User {
+          id
           name
           email
         }
       }
+    }
+
+    fragment bookFields on Book {
+      id
+      title
+      description
+      favourite
     }
   `;
 
