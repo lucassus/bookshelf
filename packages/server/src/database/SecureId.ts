@@ -2,8 +2,8 @@ interface SecureIdOptions {
   separator: string;
 }
 
-// TODO: Extract it to the separate library
-export class SecureId {
+// TODO: Extract it to the separate library - @bookshelf/secure-id
+export class SecureId<Types = string> {
   static encode = (value: string) => Buffer.from(value).toString("base64");
 
   static decode = (encoded: string) =>
@@ -11,7 +11,7 @@ export class SecureId {
 
   constructor(private options: SecureIdOptions = { separator: "-" }) {}
 
-  toExternal(id: number | string, type?: string) {
+  toExternal(id: number | string, type?: Types) {
     return SecureId.encode(
       [id, type].filter(Boolean).join(this.options.separator)
     );

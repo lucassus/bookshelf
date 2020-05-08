@@ -1,3 +1,7 @@
 import { SecureId } from "./SecureId";
 
-export const secureId = new SecureId({ separator: "-" });
+type EntityTypes = "Author" | "Book" | "User";
+
+export const secureId = new SecureId<EntityTypes>({
+  separator: "-"
+});

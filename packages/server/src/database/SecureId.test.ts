@@ -9,7 +9,7 @@ describe("SecureId", () => {
   });
 
   describe(".toExternal", () => {
-    const secureId = new SecureId();
+    const secureId = new SecureId<"Author" | "Book" | "User">();
 
     it("returns a string", () => {
       expect(secureId.toExternal(123)).toEqual(expect.any(String));
@@ -24,7 +24,9 @@ describe("SecureId", () => {
     });
 
     it("can encode it with type", () => {
+      expect(secureId.toExternal(1, "Author")).toEqual("MS1BdXRob3I=");
       expect(secureId.toExternal(1, "Book")).toEqual("MS1Cb29r");
+      expect(secureId.toExternal(1, "User")).toEqual("MS1Vc2Vy");
     });
   });
 
