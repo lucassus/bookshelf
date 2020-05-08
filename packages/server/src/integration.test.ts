@@ -1,16 +1,17 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection } from "typeorm";
+import { Connection, getConnection } from "typeorm";
 
 import { Author } from "./database/entity/Author";
 import { Book } from "./database/entity/Book";
 import { secureId } from "./database/helpers";
 import { createServer } from "./server";
 
+let connection: Connection;
 let server: ApolloServer;
 
 beforeEach(async () => {
-  const connection = getConnection();
+  connection = getConnection();
   server = createServer(connection);
 });
 
@@ -162,7 +163,6 @@ it("fetches books along with authors and books again", async () => {
 
 it("fetches a random book", async () => {
   // Given
-  const connection = getConnection();
   await connection.createQueryBuilder().delete().from(Book).execute();
   const author = await connection.manager.findOneOrFail(Author, {
     name: "Andrzej Sapkowski"
@@ -251,8 +251,6 @@ it("fetches a user", async () => {
 
 it("updates book favourite", async () => {
   // Given
-  const connection = getConnection();
-
   const book = await connection.manager.findOneOrFail(Book, 1);
   expect(book.favourite).toBe(false);
 
@@ -278,4 +276,56 @@ it("updates book favourite", async () => {
 
   const updatedBook = await connection.manager.findOneOrFail(Book, 1);
   expect(updatedBook.favourite).toBe(true);
+});
+
+describe("fetching anything", () => {
+  const anythingQuery = gql`
+    query GetAnything($id: ID!) {
+      anything(id: $id) {
+        __typename
+      }
+    }
+  `;
+
+  it("fetches Author", async () => {
+    // Given
+    const { query } = createTestClient(server);
+
+    // When
+    const res = await query({
+      query: anythingQuery,
+      variables: { id: secureId.toExternal(1, "Author") }
+    });
+
+    // Then
+    expect(res.data!.anything).toMatchSnapshot();
+  });
+
+  it("fetches Book", async () => {
+    // Given
+    const { query } = createTestClient(server);
+
+    // When
+    const res = await query({
+      query: anythingQuery,
+      variables: { id: secureId.toExternal(2, "Book") }
+    });
+
+    // Then
+    expect(res.data!.anything).toMatchSnapshot();
+  });
+
+  it("fetches User", async () => {
+    // Given
+    const { query } = createTestClient(server);
+
+    // When
+    const res = await query({
+      query: anythingQuery,
+      variables: { id: secureId.toExternal(1, "User") }
+    });
+
+    // Then
+    expect(res.data!.anything).toMatchSnapshot();
+  });
 });

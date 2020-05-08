@@ -1,3 +1,5 @@
+import { Connection } from "typeorm";
+
 import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
@@ -9,6 +11,27 @@ import { Context } from "../server";
 interface Image {
   path: string;
 }
+
+const getAnythingByExternalId = (
+  externalId: string,
+  connection: Connection
+) => {
+  const [id, type] = secureId.toInternalAndType(externalId);
+
+  if (type === "Author") {
+    return connection.manager.findOneOrFail(Author, id);
+  }
+
+  if (type === "Book") {
+    return connection.manager.findOneOrFail(Book, id);
+  }
+
+  if (type === "User") {
+    return connection.manager.findOneOrFail(User, id);
+  }
+
+  return null;
+};
 
 export const resolvers = {
   Book: {
@@ -38,6 +61,11 @@ export const resolvers = {
   Image: {
     url: (image: Image, args: any, { assetsBaseUrl }: Context) =>
       assetsBaseUrl + image.path
+  },
+
+  Anything: {
+    __resolveType: (anything: Author | Book | User) =>
+      Object.getPrototypeOf(anything).constructor.name
   },
 
   // TODO: Figure out how to type the args
@@ -73,7 +101,10 @@ export const resolvers = {
       connection.manager.find(User),
 
     user: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(User, secureId.toInternal(args.id))
+      connection.manager.findOneOrFail(User, secureId.toInternal(args.id)),
+
+    anything: (rootValue: any, args: { id: string }, { connection }: Context) =>
+      getAnythingByExternalId(args.id, connection)
   },
 
   Mutation: {

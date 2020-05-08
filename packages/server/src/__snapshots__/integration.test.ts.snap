@@ -548,6 +548,24 @@ Array [
 ]
 `;
 
+exports[`fetching anything fetches Author 1`] = `
+Object {
+  "__typename": "Author",
+}
+`;
+
+exports[`fetching anything fetches Book 1`] = `
+Object {
+  "__typename": "Book",
+}
+`;
+
+exports[`fetching anything fetches User 1`] = `
+Object {
+  "__typename": "User",
+}
+`;
+
 exports[`updates book favourite 1`] = `
 Object {
   "favourite": true,

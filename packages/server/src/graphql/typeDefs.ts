@@ -18,11 +18,15 @@ export const typeDefs = gql`
 
     users: [User!]!
     user(id: ID!): User!
+
+    anything(id: ID!): Anything!
   }
 
   type Mutation {
     updateBookFavourite(id: ID!, favourite: Boolean): Book!
   }
+
+  union Anything = Author | Book | User
 
   type Author {
     id: ID!
