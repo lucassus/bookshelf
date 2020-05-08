@@ -8,7 +8,7 @@ Object {
       And strike it does. For in Harry's second year at Hogwarts, fresh torments and horrors arise, including an outrageously stuck-up new professor, Gilderoy Lockhart, a spirit named Moaning Myrtle who haunts the girls' bathroom, and the unwanted attentions of Ron Weasley's younger sister, Ginny.
       
       But each of these seem minor annoyances when the real trouble begins, and someone -- or something -- starts turning Hogwarts students to stone. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past is finally told? Or could it be the one everyone at Hogwarts most suspects . . . Harry Potter himself?",
-    "id": "2",
+    "id": "Mi1Cb29r",
     "title": "Harry Potter and the Chamber of Secrets",
   },
 }
@@ -72,7 +72,7 @@ Object {
         "title": "Harry Potter and the Sorcerer's Stone",
       },
     ],
-    "id": "1",
+    "id": "MS1BdXRob3I=",
     "name": "J. K. Rowling",
   },
 }
@@ -167,63 +167,63 @@ Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse3.jpg",
       },
-      "id": "10",
+      "id": "MTAtQm9vaw==",
       "title": "Abaddon's Gate",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse6.jpg",
       },
-      "id": "13",
+      "id": "MTMtQm9vaw==",
       "title": "Babylon's Ashes",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
       },
-      "id": "18",
+      "id": "MTgtQm9vaw==",
       "title": "Baptism of fire",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg",
       },
-      "id": "16",
+      "id": "MTYtQm9vaw==",
       "title": "Blood of Elves",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
       },
-      "id": "9",
+      "id": "OS1Cb29r",
       "title": "Caliban's War",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
       },
-      "id": "11",
+      "id": "MTEtQm9vaw==",
       "title": "Cibola Burn",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
       },
-      "id": "2",
+      "id": "Mi1Cb29r",
       "title": "Harry Potter and the Chamber of Secrets",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
       },
-      "id": "7",
+      "id": "Ny1Cb29r",
       "title": "Harry Potter and the Deathly Hallows",
     },
     Object {
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
       },
-      "id": "4",
+      "id": "NC1Cb29r",
       "title": "Harry Potter and the Goblet of Fire",
     },
   ],
@@ -551,7 +551,7 @@ Array [
 exports[`updates book favourite 1`] = `
 Object {
   "favourite": true,
-  "id": "1",
+  "id": "MS1Cb29r",
   "title": "Harry Potter and the Sorcerer's Stone",
 }
 `;

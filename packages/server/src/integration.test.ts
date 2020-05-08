@@ -4,6 +4,7 @@ import { getConnection } from "typeorm";
 
 import { Author } from "./database/entity/Author";
 import { Book } from "./database/entity/Book";
+import { toExternalId } from "./database/helpers";
 import { createServer } from "./server";
 
 let server: ApolloServer;
@@ -53,7 +54,7 @@ it("fetches a book", async () => {
         }
       }
     `,
-    variables: { id: 2 }
+    variables: { id: toExternalId(2, "Book") }
   });
 
   // Then
@@ -75,7 +76,7 @@ it("responds with error when book cannot be found", async () => {
         }
       }
     `,
-    variables: { id: 200 }
+    variables: { id: toExternalId(200, "Book") }
   });
 
   // Then
@@ -125,7 +126,7 @@ it("fetches an author", async () => {
         }
       }
     `,
-    variables: { id: 1 }
+    variables: { id: toExternalId(1, "Author") }
   });
 
   // Then
@@ -240,7 +241,7 @@ it("fetches a user", async () => {
         }
       }
     `,
-    variables: { id: 1 }
+    variables: { id: toExternalId(1, "User") }
   });
 
   // Then
@@ -268,7 +269,7 @@ it("updates book favourite", async () => {
         }
       }
     `,
-    variables: { id: book.id, favourite: true }
+    variables: { id: toExternalId(book.id, "Book"), favourite: true }
   });
 
   // Then

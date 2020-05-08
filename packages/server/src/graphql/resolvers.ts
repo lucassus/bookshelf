@@ -3,6 +3,7 @@ import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { User } from "../database/entity/User";
+import { toInternalId, toExternalId } from "../database/helpers";
 import { Context } from "../server";
 
 interface Image {
@@ -11,15 +12,21 @@ interface Image {
 
 export const resolvers = {
   Book: {
+    id: (book: Book) => toExternalId(book.id, "Book"),
     cover: (book: Book): Image => ({
       path: book.coverPath
     })
   },
 
   Author: {
+    id: (author: Author) => toExternalId(author.id, "Author"),
     photo: (author: Author): Image => ({
       path: author.photoPath
     })
+  },
+
+  User: {
+    id: (user: User) => toExternalId(user.id, "User")
   },
 
   Avatar: {
@@ -33,7 +40,7 @@ export const resolvers = {
       assetsBaseUrl + image.path
   },
 
-  // TODO: Figure out how to type args
+  // TODO: Figure out how to type the args
   Query: {
     booksCount: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.count(Book),
@@ -51,7 +58,7 @@ export const resolvers = {
       }),
 
     book: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(Book, args.id),
+      connection.manager.findOneOrFail(Book, toInternalId(args.id)),
 
     randomBook: (rootValue: any, args: any, { connection }: Context) =>
       connection.getCustomRepository(BookRepository).findRandom(),
@@ -60,23 +67,26 @@ export const resolvers = {
       connection.manager.find(Author),
 
     author: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(Author, args.id),
+      connection.manager.findOneOrFail(Author, toInternalId(args.id)),
 
     users: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.find(User),
 
     user: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      connection.manager.findOneOrFail(User, args.id)
+      connection.manager.findOneOrFail(User, toInternalId(args.id))
   },
 
   Mutation: {
     updateBookFavourite: async (
       rootValue: any,
-      { id, favourite }: { id: string; favourite: boolean },
+      args: { id: string; favourite: boolean },
       { connection }: Context
     ) => {
-      const book = await connection.manager.findOneOrFail(Book, id);
-      book.favourite = favourite;
+      const book = await connection.manager.findOneOrFail(
+        Book,
+        toInternalId(args.id)
+      );
+      book.favourite = args.favourite;
 
       return connection.manager.save(book);
     }
