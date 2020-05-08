@@ -352,3 +352,37 @@ describe("fetching anything", () => {
     expect(res.data!.anything).toMatchSnapshot();
   });
 });
+
+it("fetches with aliases", async () => {
+  // Given
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        something: book(id: "${secureId.toExternal(1, "Book")}") {
+          id
+          externalId: id
+          headline: title
+          description
+        }
+        
+        author(id: "${secureId.toExternal(1, "Author")}") {
+          id
+          headline: name
+          description: bio
+        }
+        
+        user(id: "${secureId.toExternal(1, "User")}") {
+          id
+          headline: name
+          description: info
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).toMatchSnapshot();
+});
