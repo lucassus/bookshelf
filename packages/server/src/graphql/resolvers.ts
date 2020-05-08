@@ -12,10 +12,10 @@ interface Image {
   path: string;
 }
 
-const getAnythingByExternalId = (
+const findAnythingOrFail = (
   externalId: string,
   connection: Connection
-) => {
+): Promise<Author | Book | User> => {
   const [id, type] = secureId.toInternalAndType(externalId);
 
   if (type === "Author") {
@@ -30,7 +30,7 @@ const getAnythingByExternalId = (
     return connection.manager.findOneOrFail(User, id);
   }
 
-  return null;
+  throw Error(`Unknown type: ${type}`);
 };
 
 export const resolvers = {
@@ -104,7 +104,7 @@ export const resolvers = {
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id)),
 
     anything: (rootValue: any, args: { id: string }, { connection }: Context) =>
-      getAnythingByExternalId(args.id, connection)
+      findAnythingOrFail(args.id, connection)
   },
 
   Mutation: {

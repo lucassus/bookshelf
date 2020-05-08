@@ -351,6 +351,21 @@ describe("fetching anything", () => {
     // Then
     expect(res.data!.anything).toMatchSnapshot();
   });
+
+  it("responds with errors for unknown type", async () => {
+    // Given
+    const { query } = createTestClient(server);
+
+    // When
+    const res = await query({
+      query: GetAnythingQuery,
+      // @ts-ignore
+      variables: { id: secureId.toExternal(1, "UnknownType") }
+    });
+
+    // Then
+    expect(res.errors![0].message).toEqual("Unknown type: UnknownType");
+  });
 });
 
 it("fetches with aliases", async () => {
