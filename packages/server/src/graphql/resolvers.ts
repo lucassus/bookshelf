@@ -12,6 +12,8 @@ interface Image {
   path: string;
 }
 
+// TODO: Refactor and better errors handling
+// TODO: Typesafe entity type?
 const getAnythingByExternalId = (
   externalId: string,
   connection: Connection

@@ -279,21 +279,25 @@ it("updates book favourite", async () => {
 });
 
 describe("fetching anything", () => {
-  const anythingQuery = gql`
-    query GetAnything($id: ID!) {
-      anything(id: $id) {
-        __typename
-      }
-    }
-  `;
-
   it("fetches Author", async () => {
     // Given
     const { query } = createTestClient(server);
 
     // When
     const res = await query({
-      query: anythingQuery,
+      query: gql`
+        query GetAnything($id: ID!) {
+          anything(id: $id) {
+            __typename
+            ... on Author {
+              name
+              books {
+                title
+              }
+            }
+          }
+        }
+      `,
       variables: { id: secureId.toExternal(1, "Author") }
     });
 
@@ -307,7 +311,20 @@ describe("fetching anything", () => {
 
     // When
     const res = await query({
-      query: anythingQuery,
+      query: gql`
+        query GetAnything($id: ID!) {
+          anything(id: $id) {
+            __typename
+            ... on Book {
+              id
+              title
+              author {
+                name
+              }
+            }
+          }
+        }
+      `,
       variables: { id: secureId.toExternal(2, "Book") }
     });
 
@@ -321,7 +338,17 @@ describe("fetching anything", () => {
 
     // When
     const res = await query({
-      query: anythingQuery,
+      query: gql`
+        query GetAnything($id: ID!) {
+          anything(id: $id) {
+            __typename
+            ... on User {
+              name
+              email
+            }
+          }
+        }
+      `,
       variables: { id: secureId.toExternal(1, "User") }
     });
 

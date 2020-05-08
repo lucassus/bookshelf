@@ -551,18 +551,49 @@ Array [
 exports[`fetching anything fetches Author 1`] = `
 Object {
   "__typename": "Author",
+  "books": Array [
+    Object {
+      "title": "Harry Potter and the Chamber of Secrets",
+    },
+    Object {
+      "title": "Harry Potter and the Deathly Hallows",
+    },
+    Object {
+      "title": "Harry Potter and the Goblet of Fire",
+    },
+    Object {
+      "title": "Harry Potter and the Half-Blood Prince",
+    },
+    Object {
+      "title": "Harry Potter and the Order of the Phoenix",
+    },
+    Object {
+      "title": "Harry Potter and the Prisoner of Azkaban",
+    },
+    Object {
+      "title": "Harry Potter and the Sorcerer's Stone",
+    },
+  ],
+  "name": "J. K. Rowling",
 }
 `;
 
 exports[`fetching anything fetches Book 1`] = `
 Object {
   "__typename": "Book",
+  "author": Object {
+    "name": "J. K. Rowling",
+  },
+  "id": "Mi1Cb29r",
+  "title": "Harry Potter and the Chamber of Secrets",
 }
 `;
 
 exports[`fetching anything fetches User 1`] = `
 Object {
   "__typename": "User",
+  "email": "alice@example.com",
+  "name": "Alice",
 }
 `;
 
