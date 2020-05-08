@@ -1,5 +1,6 @@
 import { Container, CssBaseline } from "@material-ui/core";
 import React from "react";
+// @ts-ignore
 import { Route, Routes } from "react-router-dom";
 
 import { AppTopBar } from "./components/AppTopBar";
