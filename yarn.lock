@@ -13722,10 +13722,10 @@ typeorm@0.2.24:
     yargonaut "^1.1.2"
     yargs "^13.2.1"
 
-typescript@3.9.0-beta:
-  version "3.9.0-beta"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.0-beta.tgz#3d73e2e2797904562d9d6840387a9794fdce4bc8"
-  integrity sha512-8KFblEWBTXath2UwPQ9Ho7/fAEcBragPwmUALeeSymCpJlHOll6gV/1YTY96e+iqeDJ174JM2EJ/ymWbbQRyHw==
+typescript@3.9.0-dev.20200427:
+  version "3.9.0-dev.20200427"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.0-dev.20200427.tgz#e42d606d938575dfb7b0b66f04a31b5f0eb0be57"
+  integrity sha512-ja/GhL7BHT+VQZiLoYMGJt2CP1Pdr0EhYefv4LLw4tVooSuCDB8SDKT/i/HwsoPgQ4ZaYfg1vPl+1RhiO3bwJg==
 
 ua-parser-js@^0.7.18:
   version "0.7.21"
