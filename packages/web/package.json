@@ -19,7 +19,7 @@
     "@babel/preset-react": "7.9.4",
     "@babel/preset-typescript": "7.9.0",
     "@graphql-codegen/cli": "1.13.5",
-    "@graphql-codegen/introspection": "1.13.5",
+    "@graphql-codegen/introspection": "1.15.0",
     "@graphql-codegen/near-operation-file-preset": "1.13.5",
     "@graphql-codegen/typescript": "1.13.5",
     "@graphql-codegen/typescript-operations": "1.13.5",
