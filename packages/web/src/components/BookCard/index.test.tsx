@@ -1,6 +1,7 @@
 import { MockedProvider } from "@apollo/client/testing";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
+import { MemoryRouter } from "react-router";
 
 import { createAuthor, createBook } from "../../testUtils/factories";
 import { BookCard } from "./index";
@@ -13,13 +14,17 @@ describe("<BookCard />", () => {
   });
 
   it("displays author's name", () => {
-    const { getByText } = render(
-      <MockedProvider>
-        <BookCard book={book} />
-      </MockedProvider>
+    render(
+      <MemoryRouter>
+        <MockedProvider>
+          <BookCard book={book} />
+        </MockedProvider>
+      </MemoryRouter>
     );
 
-    expect(getByText("Written by Andrzej Sapkowski")).toBeInTheDocument();
+    expect(
+      screen.getByText("Written by Andrzej Sapkowski")
+    ).toBeInTheDocument();
   });
 
   it("handles add to favourites", async () => {
@@ -38,14 +43,16 @@ describe("<BookCard />", () => {
       }
     ];
 
-    const { getByLabelText } = render(
-      <MockedProvider mocks={mocks}>
-        <BookCard book={book} />
-      </MockedProvider>
+    render(
+      <MemoryRouter>
+        <MockedProvider mocks={mocks}>
+          <BookCard book={book} />
+        </MockedProvider>
+      </MemoryRouter>
     );
 
     // When
-    fireEvent.click(getByLabelText("Add to favourites"));
+    fireEvent.click(screen.getByLabelText("Add to favourites"));
 
     // Then
     await waitFor(() => expect(mutationCalled).toBe(true));

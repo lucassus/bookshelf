@@ -3,13 +3,13 @@ import {
   Star as StarIcon,
   StarBorder as StarBorderIcon
 } from "@material-ui/icons";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 type Props = {
   labelOn?: string;
   labelOff?: string;
   toggled: boolean;
-  onToggle: () => any;
+  onToggle: MouseEventHandler;
 };
 
 export const StarIconButton: React.FunctionComponent<Props> = ({

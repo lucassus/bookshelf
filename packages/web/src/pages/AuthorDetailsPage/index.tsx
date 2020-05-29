@@ -6,7 +6,7 @@ import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorQuery } from "./queries.generated";
 
-export const AuthorPage: React.FunctionComponent = () => {
+export const AuthorDetailsPage: React.FunctionComponent = () => {
   const params = useParams<{ id: string }>();
 
   const { loading, data, error } = useGetAuthorQuery({
