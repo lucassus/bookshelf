@@ -7,7 +7,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useCallback } from "react";
+import React, { MouseEvent } from "react";
 // @ts-ignore
 import { useNavigate } from "react-router-dom";
 
@@ -39,13 +39,13 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
 
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 
-  const handleToggleFavourite = useCallback(
-    () =>
-      updateFavourite({
-        variables: { id: book.id, favourite: !book.favourite }
-      }),
-    [updateFavourite, book]
-  );
+  const handleToggleFavourite = (event: MouseEvent) => {
+    event.stopPropagation();
+
+    updateFavourite({
+      variables: { id: book.id, favourite: !book.favourite }
+    });
+  };
 
   const handleClick = () => navigate(`/books/${book.id}`);
 
