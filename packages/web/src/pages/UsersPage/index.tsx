@@ -2,9 +2,11 @@ import {
   CircularProgress,
   Container,
   Grid,
+  Link,
   Typography
 } from "@material-ui/core";
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserAvatar } from "../../components/UserAvatar";
@@ -41,7 +43,14 @@ export const UsersPage: React.FunctionComponent = () => {
       >
         {data.users.map((user) => (
           <Grid item key={user.id}>
-            <UserAvatar user={user} />
+            <Link
+              component={RouterLink}
+              to={`/users/${user.id}`}
+              color="inherit"
+              underline="none"
+            >
+              <UserAvatar user={user} />
+            </Link>
           </Grid>
         ))}
       </Grid>
