@@ -1,0 +1,15 @@
+query GetBook($id: ID!) {
+  book(id: $id) {
+    id
+    title
+    description
+    favourite
+    author {
+      id
+      name
+    }
+    cover {
+      url
+    }
+  }
+}

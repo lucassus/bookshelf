@@ -1,6 +1,7 @@
 import { MockedProvider } from "@apollo/client/testing";
 import { withKnobs, text } from "@storybook/addon-knobs";
 import React from "react";
+import { MemoryRouter } from "react-router";
 
 import { createAuthor, createBook } from "../../testUtils/factories";
 import { BookCard } from "./index";
@@ -41,8 +42,10 @@ export const Basic = () => {
   });
 
   return (
-    <MockedProvider mocks={mocks}>
-      <BookCard book={book} />
-    </MockedProvider>
+    <MemoryRouter>
+      <MockedProvider mocks={mocks}>
+        <BookCard book={book} />
+      </MockedProvider>
+    </MemoryRouter>
   );
 };
