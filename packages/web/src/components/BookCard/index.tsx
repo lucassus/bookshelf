@@ -54,6 +54,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
       <Card>
         <CardActionArea
           onClick={handleClick}
+          component="div"
           className={classes.cardActionArea}
         >
           <CardMedia className={classes.cover} image={book.cover.url} />
