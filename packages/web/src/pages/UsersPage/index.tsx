@@ -18,9 +18,7 @@ export const UsersPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Typography variant="h4" component="h2">
-        Users
-      </Typography>
+      <h4>Users</h4>
 
       <Grid
         container

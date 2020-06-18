@@ -35,15 +35,9 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
         >
           <CardMedia image={book.cover.url} />
           <CardContent>
-            <Typography component="h3" variant="h5">
-              {book.title}
-            </Typography>
+            <h5>{book.title}</h5>
 
-            {book.author && (
-              <Typography component="h4" variant="body2" color="textSecondary">
-                Written by {book.author.name}
-              </Typography>
-            )}
+            {book.author && <h4>Written by {book.author.name}</h4>}
 
             <StarIconButton
               labelOn="Remove from favourites"

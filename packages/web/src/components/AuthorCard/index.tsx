@@ -17,7 +17,7 @@ export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => {
     <Card>
       <CardActionArea onClick={handleClick}>
         <CardMedia image={author.photo!.url} title={author.name} />
-        <Typography component="h2">{author.name}</Typography>
+        <h2>{author.name}</h2>
       </CardActionArea>
     </Card>
   );

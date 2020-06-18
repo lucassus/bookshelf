@@ -19,15 +19,14 @@ export const BookDetailsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Count not load book!" />;
   }
 
+  // TODO: <p/> or something better
   return (
     <div>
-      <Typography variant="h2">{data.book.title}</Typography>
+      <h2>{data.book.title}</h2>
 
-      {data.book.author && (
-        <Typography variant="h3">Written by {data.book.author.name}</Typography>
-      )}
+      {data.book.author && <h3>Written by {data.book.author.name}</h3>}
 
-      <Typography>{data.book.description}</Typography>
+      <p>{data.book.description}</p>
     </div>
   );
 };

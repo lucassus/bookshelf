@@ -23,7 +23,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   return (
     <div>
       <UserAvatar user={data.user} />
-      <Typography>{data.user.info}</Typography>
+      <h3>{data.user.info}</h3>
     </div>
   );
 };

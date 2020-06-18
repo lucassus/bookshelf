@@ -34,9 +34,7 @@ export const BooksPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Typography variant="h4" component="h2">
-        Books
-      </Typography>
+      <h4>Books</h4>
 
       <Grid container spacing={3}>
         {data.books.map((book) => (

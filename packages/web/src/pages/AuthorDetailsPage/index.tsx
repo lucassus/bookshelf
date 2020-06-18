@@ -22,9 +22,7 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Typography variant="h4" component="h2">
-        Author {data.author.name}
-      </Typography>
+      <h4>Author {data.author.name}</h4>
 
       <Grid container spacing={3}>
         {data.author.books!.map((book) => (

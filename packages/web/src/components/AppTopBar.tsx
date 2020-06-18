@@ -1,12 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// TODO: Rename it ot AppNav
 export const AppTopBar = () => (
-  <div>
+  <nav>
     <h1>Personal Library</h1>
 
-    <Link to="/">Books</Link>
-    <Link to="/authors">Authors</Link>
-    <Link to="/users">Users</Link>
-  </div>
+    <ul>
+      <li>
+        <Link to="/">Books</Link>
+      </li>
+
+      <li>
+        <Link to="/authors">Authors</Link>
+      </li>
+
+      <li>
+        <Link to="/users">Users</Link>
+      </li>
+    </ul>
+  </nav>
 );
