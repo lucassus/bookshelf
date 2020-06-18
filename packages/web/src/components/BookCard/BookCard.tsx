@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Book } from "../../types.generated";
 import { StarIconButton } from "../StarIconButton/StarIconButton";
+import styles from "./BookCard.module.scss";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 type Props = {
@@ -21,21 +22,28 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <img src={book.cover.url} alt="Book cover" />
       <div>
         <h3>
           <Link to={`/books/${book.id}`}>{book.title}</Link>
         </h3>
 
-        {book.author && <h4>Written by {book.author.name}</h4>}
+        {book.author && (
+          <span className={styles.writtenBy}>
+            Written by{" "}
+            <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
+          </span>
+        )}
 
-        <StarIconButton
-          labelOn="Remove from favourites"
-          labelOff="Add to favourites"
-          toggled={book.favourite}
-          onToggle={handleToggleFavourite}
-        />
+        <div className={styles.buttons}>
+          <StarIconButton
+            labelOn="Remove from favourites"
+            labelOff="Add to favourites"
+            toggled={book.favourite}
+            onToggle={handleToggleFavourite}
+          />
+        </div>
       </div>
     </div>
   );

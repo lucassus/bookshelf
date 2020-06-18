@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: .5em;
+  max-width: 300px;
+
+  img {
+    height: 150px;
+    margin-right: 1em;
+    width: 100px;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    margin-top: 0px;
+    margin-bottom: .2em;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+.writtenBy {
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+}
+
+.buttons {
+  margin-top: 1em;
+}

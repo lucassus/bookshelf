@@ -6,7 +6,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AuthorDetailsPage } from "./pages/AuthorDetailsPage";
 import { AuthorsPage } from "./pages/AuthorsPage";
 import { BookDetailsPage } from "./pages/BookDetailsPage";
-import { BooksPage } from "./pages/BooksPage";
+import { BooksPage } from "./pages/BooksPage/BooksPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";
 import { UsersPage } from "./pages/UsersPage";
 

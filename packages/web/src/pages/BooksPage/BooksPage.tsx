@@ -3,6 +3,7 @@ import React, { useCallback, useMemo } from "react";
 import { BookCard } from "../../components/BookCard/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { Pagination } from "../../components/Pagination";
+import styles from "./BooksPage.module.scss";
 import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
@@ -37,9 +38,11 @@ export const BooksPage: React.FunctionComponent = () => {
     <div>
       <h2>Books</h2>
 
-      {data.books.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
+      <div className={styles.list}>
+        {data.books.map((book) => (
+          <BookCard key={book.id} book={book} />
+        ))}
+      </div>
 
       <Pagination onChange={handlePageChange} count={totalPages} />
     </div>
