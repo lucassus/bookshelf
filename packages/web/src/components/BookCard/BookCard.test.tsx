@@ -22,9 +22,7 @@ describe("<BookCard />", () => {
       </MemoryRouter>
     );
 
-    expect(
-      screen.getByText("Written by Andrzej Sapkowski")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Andrzej Sapkowski")).toBeInTheDocument();
   });
 
   it("handles add to favourites", async () => {
