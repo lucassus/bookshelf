@@ -19,7 +19,6 @@ export const BookDetailsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Count not load book!" />;
   }
 
-  // TODO: <p/> or something better
   return (
     <div>
       <h2>{data.book.title}</h2>
