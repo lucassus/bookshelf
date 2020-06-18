@@ -9,12 +9,7 @@ export const UsersPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetUsersQuery();
 
   if (loading) {
-    return (
-      <div>
-        <CircularProgress />
-        <span>Loading users...</span>
-      </div>
-    );
+    return <span>Loading users...</span>;
   }
 
   if (error || !data) {

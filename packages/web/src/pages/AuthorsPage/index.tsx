@@ -8,12 +8,7 @@ export const AuthorsPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetAuthorsQuery();
 
   if (loading) {
-    return (
-      <div>
-        <CircularProgress />
-        <span>Loading authors...</span>
-      </div>
-    );
+    return <span>Loading authors...</span>;
   }
 
   if (error || !data) {

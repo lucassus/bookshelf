@@ -24,14 +24,8 @@ export const BooksPage: React.FunctionComponent = () => {
     [data]
   );
 
-  // TODO: Create a generic loading spinner
   if (loading) {
-    return (
-      <div>
-        <CircularProgress />
-        <span>Loading books...</span>
-      </div>
-    );
+    return <span>Loading books...</span>;
   }
 
   if (error || !data) {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "../Alert";
 
 type Props = {
   message: string;
