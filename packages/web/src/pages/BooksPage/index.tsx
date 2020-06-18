@@ -3,6 +3,7 @@ import React, { useCallback, useMemo } from "react";
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetBooksQuery } from "./queries.generated";
+import { Pagination } from "../../components/Pagination";
 
 const PER_PAGE = 8;
 
@@ -12,7 +13,7 @@ export const BooksPage: React.FunctionComponent = () => {
   });
 
   const handlePageChange = useCallback(
-    (_, page: number) => {
+    (page: number) => {
       const offset = (page - 1) * PER_PAGE;
       return fetchMore({ variables: { offset } });
     },
@@ -40,12 +41,7 @@ export const BooksPage: React.FunctionComponent = () => {
         <BookCard key={book.id} book={book} />
       ))}
 
-      <Pagination
-        onChange={handlePageChange}
-        count={totalPages}
-        shape="rounded"
-        size="large"
-      />
+      <Pagination onChange={handlePageChange} count={totalPages} />
     </div>
   );
 };
