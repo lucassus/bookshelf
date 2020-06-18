@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorQuery } from "./queries.generated";
+import styles from "./AuthorDetailsPage.module.scss";
 
 export const AuthorDetailsPage: React.FunctionComponent = () => {
   const params = useParams();
@@ -24,8 +25,21 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
     <div>
       <h2>Author {data.author.name}</h2>
 
-      {data.author.books &&
-        data.author.books.map((book) => <BookCard key={book.id} book={book} />)}
+      <div className={styles.info}>
+        {data.author.photo && (
+          <img src={data.author.photo.url} alt={data.author.name} />
+        )}
+
+        <article>{data.author.bio}</article>
+      </div>
+
+      {data.author.books && (
+        <div className={styles.booksList}>
+          {data.author.books.map((book) => (
+            <BookCard key={book.id} book={book} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
