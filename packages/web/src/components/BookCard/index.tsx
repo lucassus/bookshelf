@@ -9,6 +9,7 @@ type Props = {
   book: Book;
 };
 
+// TODO: Move to the separate module, do the same for others
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 

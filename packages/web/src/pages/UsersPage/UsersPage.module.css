@@ -1,0 +1,16 @@
+/* TODO: Prettier for formatting css */
+.usersList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* TODO: Refactor to use scss */
+.usersList a {
+  text-decoration: none;
+}
+
+.usersList a:visited {
+  color: inherit;
+}
