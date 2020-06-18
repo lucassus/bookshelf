@@ -1,11 +1,3 @@
-import {
-  Box,
-  CircularProgress,
-  Container,
-  Grid,
-  Typography
-} from "@material-ui/core";
-import { Pagination } from "@material-ui/lab";
 import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";

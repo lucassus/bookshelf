@@ -1,8 +1,3 @@
-import { IconButton } from "@material-ui/core";
-import {
-  Star as StarIcon,
-  StarBorder as StarBorderIcon
-} from "@material-ui/icons";
 import React, { MouseEventHandler } from "react";
 
 type Props = {

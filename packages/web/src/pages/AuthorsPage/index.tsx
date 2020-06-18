@@ -1,9 +1,3 @@
-import {
-  CircularProgress,
-  Container,
-  Grid,
-  Typography
-} from "@material-ui/core";
 import React from "react";
 
 import { AuthorCard } from "../../components/AuthorCard";

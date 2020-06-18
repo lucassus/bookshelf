@@ -1,12 +1,3 @@
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Paper,
-  Typography
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import React, { MouseEvent } from "react";
 // @ts-ignore
 import { useNavigate } from "react-router-dom";
@@ -15,26 +6,11 @@ import { Book } from "../../types.generated";
 import { StarIconButton } from "../StarIconButton";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
-const useStyles = makeStyles({
-  cardActionArea: {
-    display: "flex"
-  },
-  cover: {
-    height: 150,
-    minWidth: 100,
-    width: 100
-  },
-  content: {
-    flex: "auto"
-  }
-});
-
 type Props = {
   book: Book;
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  const classes = useStyles();
   const navigate = useNavigate();
 
   const [updateFavourite] = useUpdateBookFavouriteMutation();
@@ -57,8 +33,8 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
           component="div"
           className={classes.cardActionArea}
         >
-          <CardMedia className={classes.cover} image={book.cover.url} />
-          <CardContent className={classes.content}>
+          <CardMedia image={book.cover.url} />
+          <CardContent>
             <Typography component="h3" variant="h5">
               {book.title}
             </Typography>
