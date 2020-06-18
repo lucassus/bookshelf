@@ -7,8 +7,12 @@ type Props = {
 };
 
 export const UserAvatar: React.FunctionComponent<Props> = ({ user }) => (
-  <div>
-    <img src={user.avatar.image.url} alt={user.name} />
-    <h3>{user.name}</h3>
-  </div>
+  <figure>
+    <img
+      src={user.avatar.image.url}
+      alt={user.name}
+      style={{ borderRadius: "50%" }}
+    />
+    <figcaption>{user.name}</figcaption>
+  </figure>
 );

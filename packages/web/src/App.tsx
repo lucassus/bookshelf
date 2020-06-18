@@ -14,13 +14,15 @@ export const App: React.FunctionComponent = () => (
   <ErrorBoundary>
     <AppTopBar />
 
-    <Routes>
-      <Route path="/" element={<BooksPage />} />
-      <Route path="/books/:id" element={<BookDetailsPage />} />
-      <Route path="/authors" element={<AuthorsPage />} />
-      <Route path="/authors/:id" element={<AuthorDetailsPage />} />
-      <Route path="/users" element={<UsersPage />} />
-      <Route path="/users/:id" element={<UserDetailsPage />} />
-    </Routes>
+    <main>
+      <Routes>
+        <Route path="/" element={<BooksPage />} />
+        <Route path="/books/:id" element={<BookDetailsPage />} />
+        <Route path="/authors" element={<AuthorsPage />} />
+        <Route path="/authors/:id" element={<AuthorDetailsPage />} />
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/users/:id" element={<UserDetailsPage />} />
+      </Routes>
+    </main>
   </ErrorBoundary>
 );
