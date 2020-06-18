@@ -5,8 +5,6 @@ type Props = {
   onChange: (page: number) => any;
 };
 
-// TODO: Write test, prettify and refactor
-// TODO: Create a storybook
 export const Pagination: React.FunctionComponent<Props> = ({
   count,
   onChange
