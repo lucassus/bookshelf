@@ -2,7 +2,7 @@ import React, { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 import { Book } from "../../types.generated";
-import { StarIconButton } from "../StarIconButton/StarIconButton";
+import { StarIconButton } from "../StarIconButton";
 import styles from "./BookCard.module.scss";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 

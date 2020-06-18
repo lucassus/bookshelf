@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AuthorCard } from "../../components/AuthorCard/AuthorCard";
+import { AuthorCard } from "../../components/AuthorCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import styles from "./AuthorsPage.module.scss";
 import { useGetAuthorsQuery } from "./queries.generated";
