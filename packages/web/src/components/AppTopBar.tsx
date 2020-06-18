@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import styles from "./AppTopBar.module.scss";
+
 export const AppTopBar = () => (
-  <header>
+  <header className={styles.container}>
     <nav>
-      <h1>Personal Library</h1>
+      <h1>
+        <Link to="/">Personal Library</Link>
+      </h1>
 
       <ul>
         <li>

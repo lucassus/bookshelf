@@ -1,0 +1,1 @@
+export { AuthorsPage } from "./AuthorsPage";

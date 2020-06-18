@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { AppTopBar } from "./components/AppTopBar";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AuthorDetailsPage } from "./pages/AuthorDetailsPage";
-import { AuthorsPage } from "./pages/AuthorsPage";
+import { AuthorsPage } from "./pages/AuthorsPage/AuthorsPage";
 import { BookDetailsPage } from "./pages/BookDetailsPage";
 import { BooksPage } from "./pages/BooksPage/BooksPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";

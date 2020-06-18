@@ -3,7 +3,7 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { AuthorsPage } from "./index";
+import { AuthorsPage } from "./AuthorsPage";
 import {
   GetAuthorsDocumentMock,
   GetAuthorsDocumentErrorMock
