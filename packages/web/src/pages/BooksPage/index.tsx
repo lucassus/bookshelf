@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 
-import { BookCard } from "../../components/BookCard";
+import { BookCard } from "../../components/BookCard/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { Pagination } from "../../components/Pagination";
 import { useGetBooksQuery } from "./queries.generated";

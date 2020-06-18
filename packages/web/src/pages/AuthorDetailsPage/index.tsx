@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCard } from "../../components/BookCard";
+import { BookCard } from "../../components/BookCard/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorQuery } from "./queries.generated";
 

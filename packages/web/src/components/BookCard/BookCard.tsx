@@ -2,14 +2,13 @@ import React, { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 import { Book } from "../../types.generated";
-import { StarIconButton } from "../StarIconButton";
+import { StarIconButton } from "../StarIconButton/StarIconButton";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 type Props = {
   book: Book;
 };
 
-// TODO: Move to the separate module, do the same for others
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 

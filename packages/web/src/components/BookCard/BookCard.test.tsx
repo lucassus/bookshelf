@@ -4,7 +4,7 @@ import React from "react";
 import { MemoryRouter } from "react-router";
 
 import { createAuthor, createBook } from "../../testUtils/factories";
-import { BookCard } from "./index";
+import { BookCard } from "./BookCard";
 import { UpdateBookFavouriteDocument } from "./queries.generated";
 
 describe("<BookCard />", () => {

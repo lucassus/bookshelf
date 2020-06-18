@@ -2897,6 +2897,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-icons@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-3.0.0.tgz#27ca2823a6add881d06a371bfff093afc1b9c829"
+  integrity sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg==
+  dependencies:
+    react-icons "*"
+
 "@types/react-router-dom@5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.5.tgz#7c334a2ea785dbad2b2dcdd83d2cf3d9973da090"
@@ -5532,14 +5539,6 @@ css-loader@^3.0.0:
     postcss-value-parser "^4.0.3"
     schema-utils "^2.6.6"
     semver "^6.3.0"
-
-css-modules-typescript-loader@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/css-modules-typescript-loader/-/css-modules-typescript-loader-4.0.0.tgz#17c0924107f45c7d9998fb59be5c59d6398aac5c"
-  integrity sha512-K6ii0+kt2i3sHN+VKTWdF728x+N4PFitsjE8aldUO+N98XlZhanJYIEZrnh4FMTZzDvOjyBialU0LnkCSeeUig==
-  dependencies:
-    line-diff "^2.0.1"
-    loader-utils "^1.2.3"
 
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
@@ -9499,11 +9498,6 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-levdist@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/levdist/-/levdist-1.0.0.tgz#91d7a3044964f2ccc421a0477cac827fe75c5718"
-  integrity sha1-kdejBElk8szEIaBHfKyCf+dcVxg=
-
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
@@ -9531,13 +9525,6 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-line-diff@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/line-diff/-/line-diff-2.1.0.tgz#4c407100471b4ebe1617bf37e877554a67abaa08"
-  integrity sha512-EciuZHwQfFG5ITBdIjN+zyJtcJXRVgbDSxtv6sz8BBf16rw4iGRO28AwIDVlNSoKlpDzp1UzRti54j3wBlU9Fw==
-  dependencies:
-    levdist "^1.0.0"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -11857,6 +11844,13 @@ react-hotkeys@2.0.0:
   integrity sha512-3n3OU8vLX/pfcJrR3xJ1zlww6KS1kEJt0Whxc4FiGV+MJrQ1mYSYI3qS/11d2MJDFm8IhOXMTFQirfu6AVOF6Q==
   dependencies:
     prop-types "^15.6.1"
+
+react-icons@*, react-icons@3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.10.0.tgz#6c217a2dde2e8fa8d293210023914b123f317297"
+  integrity sha512-WsQ5n1JToG9VixWilSo1bHv842Cj5aZqTGiS3Ud47myF6aK7S/IUY2+dHcBdmkQcCFRuHsJ9OMUI0kTDfjyZXQ==
+  dependencies:
+    camelcase "^5.0.0"
 
 react-input-autosize@^2.2.2:
   version "2.2.2"

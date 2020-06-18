@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import React, { useState } from "react";
 
-import { StarIconButton } from "./index";
+import { StarIconButton } from "./StarIconButton";
 
 export default {
   title: "StarIconButton",

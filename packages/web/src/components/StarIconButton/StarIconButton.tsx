@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 type Props = {
   labelOn?: string;
@@ -7,7 +8,6 @@ type Props = {
   onToggle: MouseEventHandler;
 };
 
-// TODO: Add nice icons
 export const StarIconButton: React.FunctionComponent<Props> = ({
   labelOn,
   labelOff,
@@ -15,6 +15,6 @@ export const StarIconButton: React.FunctionComponent<Props> = ({
   onToggle
 }) => (
   <button onClick={onToggle} aria-label={toggled ? labelOn : labelOff}>
-    {toggled ? "x" : "o"}
+    {toggled ? <FaStar /> : <FaRegStar />}
   </button>
 );
