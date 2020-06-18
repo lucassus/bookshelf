@@ -36,22 +36,16 @@ export const BooksPage: React.FunctionComponent = () => {
     <div>
       <h4>Books</h4>
 
-      <Grid container spacing={3}>
-        {data.books.map((book) => (
-          <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book} />
-          </Grid>
-        ))}
-      </Grid>
+      {data.books.map((book) => (
+        <BookCard key={book.id} book={book} />
+      ))}
 
-      <Box m={2} display="flex" justifyContent="center">
-        <Pagination
-          onChange={handlePageChange}
-          count={totalPages}
-          shape="rounded"
-          size="large"
-        />
-      </Box>
+      <Pagination
+        onChange={handlePageChange}
+        count={totalPages}
+        shape="rounded"
+        size="large"
+      />
     </div>
   );
 };

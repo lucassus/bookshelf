@@ -24,13 +24,9 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
     <div>
       <h4>Author {data.author.name}</h4>
 
-      <Grid container spacing={3}>
-        {data.author.books!.map((book) => (
-          <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book} />
-          </Grid>
-        ))}
-      </Grid>
+      {data.author.books!.map((book) => (
+        <BookCard key={book.id} book={book} />
+      ))}
     </div>
   );
 };

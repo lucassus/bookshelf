@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserAvatar } from "../../components/UserAvatar";
@@ -20,26 +20,11 @@ export const UsersPage: React.FunctionComponent = () => {
     <div>
       <h4>Users</h4>
 
-      <Grid
-        container
-        direction="row"
-        justify="space-around"
-        alignItems="center"
-        spacing={3}
-      >
-        {data.users.map((user) => (
-          <Grid item key={user.id}>
-            <Link
-              component={RouterLink}
-              to={`/users/${user.id}`}
-              color="inherit"
-              underline="none"
-            >
-              <UserAvatar user={user} />
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+      {data.users.map((user) => (
+        <Link key={user.id} to={`/users/${user.id}`} color="inherit">
+          <UserAvatar user={user} />
+        </Link>
+      ))}
     </div>
   );
 };
