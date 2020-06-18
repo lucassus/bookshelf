@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserAvatar } from "../../components/UserAvatar";
 import { useGetUsersQuery } from "./queries.generated";
-import styles from "./UsersPage.module.css";
+import styles from "./UsersPage.module.scss";
 
 export const UsersPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetUsersQuery();

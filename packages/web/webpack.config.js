@@ -42,7 +42,7 @@ module.exports = {
         use: ["file-loader"]
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: [
           {
             loader: "ts-loader",

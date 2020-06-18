@@ -5,7 +5,7 @@ import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetBookQuery } from "./queries.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
-  const params = useParams<{ id: string }>();
+  const params = useParams();
 
   const { loading, data, error } = useGetBookQuery({
     variables: { id: params.id }

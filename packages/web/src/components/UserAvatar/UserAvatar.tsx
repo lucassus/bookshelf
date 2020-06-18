@@ -1,7 +1,7 @@
 import React from "react";
 
-import { User } from "../types.generated";
-import styles from "./UserAvatar.module.css";
+import { User } from "../../types.generated";
+import styles from "./UserAvatar.module.scss";
 
 type Props = {
   user: User;

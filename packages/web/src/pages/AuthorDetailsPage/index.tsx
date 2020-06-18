@@ -6,7 +6,7 @@ import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetAuthorQuery } from "./queries.generated";
 
 export const AuthorDetailsPage: React.FunctionComponent = () => {
-  const params = useParams<{ id: string }>();
+  const params = useParams();
 
   const { loading, data, error } = useGetAuthorQuery({
     variables: { id: params.id }
