@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
-import { useGetBooksQuery } from "./queries.generated";
 import { Pagination } from "../../components/Pagination";
+import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
 
@@ -35,7 +35,7 @@ export const BooksPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <h4>Books</h4>
+      <h2>Books</h2>
 
       {data.books.map((book) => (
         <BookCard key={book.id} book={book} />

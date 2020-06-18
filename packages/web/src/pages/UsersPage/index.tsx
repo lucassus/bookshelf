@@ -18,7 +18,7 @@ export const UsersPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <h4>Users</h4>
+      <h2>Users</h2>
 
       {data.users.map((user) => (
         <Link key={user.id} to={`/users/${user.id}`} color="inherit">

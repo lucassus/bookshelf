@@ -1,6 +1,5 @@
 import React, { MouseEvent } from "react";
-// @ts-ignore
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Book } from "../../types.generated";
 import { StarIconButton } from "../StarIconButton";
@@ -11,25 +10,23 @@ type Props = {
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  const navigate = useNavigate();
-
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 
   const handleToggleFavourite = (event: MouseEvent) => {
     event.stopPropagation();
 
-    updateFavourite({
+    return updateFavourite({
       variables: { id: book.id, favourite: !book.favourite }
     });
   };
 
-  const handleClick = () => navigate(`/books/${book.id}`);
-
   return (
-    <div onClick={handleClick}>
+    <div>
       <img src={book.cover.url} alt="Book cover" />
       <div>
-        <h5>{book.title}</h5>
+        <h3>
+          <Link to={`/books/${book.id}`}>{book.title}</Link>
+        </h3>
 
         {book.author && <h4>Written by {book.author.name}</h4>}
 

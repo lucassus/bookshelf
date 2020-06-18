@@ -17,7 +17,7 @@ export const AuthorsPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <h4>Authors</h4>
+      <h2>Authors</h2>
 
       {data.authors.map((author) => (
         <AuthorCard key={author.id} author={author} />
