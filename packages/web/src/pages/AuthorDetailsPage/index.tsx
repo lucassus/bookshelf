@@ -24,9 +24,8 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
     <div>
       <h4>Author {data.author.name}</h4>
 
-      {data.author.books!.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
+      {data.author.books &&
+        data.author.books.map((book) => <BookCard key={book.id} book={book} />)}
     </div>
   );
 };

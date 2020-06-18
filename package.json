@@ -13,6 +13,7 @@
   "scripts": {
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
+    "lint": "yarn server lint && yarn web lint",
     "test": "jest",
     "build": "yarn server build && yarn web build",
     "start": "yarn server start",
