@@ -14,11 +14,9 @@ export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => {
   const handleClick = () => navigate(`/authors/${author.id}`);
 
   return (
-    <Card>
-      <CardActionArea onClick={handleClick}>
-        <CardMedia image={author.photo!.url} title={author.name} />
-        <h2>{author.name}</h2>
-      </CardActionArea>
-    </Card>
+    <div onClick={handleClick}>
+      {author.photo && <img src={author.photo.url} alt={author.name} />}
+      <h2>{author.name}</h2>
+    </div>
   );
 };

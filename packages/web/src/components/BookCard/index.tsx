@@ -26,28 +26,20 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const handleClick = () => navigate(`/books/${book.id}`);
 
   return (
-    <Paper>
-      <Card>
-        <CardActionArea
-          onClick={handleClick}
-          component="div"
-          className={classes.cardActionArea}
-        >
-          <CardMedia image={book.cover.url} />
-          <CardContent>
-            <h5>{book.title}</h5>
+    <div onClick={handleClick}>
+      <img src={book.cover.url} alt="Book cover" />
+      <div>
+        <h5>{book.title}</h5>
 
-            {book.author && <h4>Written by {book.author.name}</h4>}
+        {book.author && <h4>Written by {book.author.name}</h4>}
 
-            <StarIconButton
-              labelOn="Remove from favourites"
-              labelOff="Add to favourites"
-              toggled={book.favourite}
-              onToggle={handleToggleFavourite}
-            />
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Paper>
+        <StarIconButton
+          labelOn="Remove from favourites"
+          labelOff="Add to favourites"
+          toggled={book.favourite}
+          onToggle={handleToggleFavourite}
+        />
+      </div>
+    </div>
   );
 };

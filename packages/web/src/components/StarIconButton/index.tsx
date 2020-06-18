@@ -7,13 +7,14 @@ type Props = {
   onToggle: MouseEventHandler;
 };
 
+// TODO: Add nice icons
 export const StarIconButton: React.FunctionComponent<Props> = ({
   labelOn,
   labelOff,
   toggled,
   onToggle
 }) => (
-  <IconButton onClick={onToggle} aria-label={toggled ? labelOn : labelOff}>
-    {toggled ? <StarIcon /> : <StarBorderIcon />}
-  </IconButton>
+  <button onClick={onToggle} aria-label={toggled ? labelOn : labelOff}>
+    {toggled ? "x" : "o"}
+  </button>
 );

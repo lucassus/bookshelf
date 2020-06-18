@@ -8,7 +8,7 @@ type Props = {
 
 export const UserAvatar: React.FunctionComponent<Props> = ({ user }) => (
   <div>
-    <Avatar alt={user.name} src={user.avatar.image.url} />
+    <img src={user.avatar.image.url} alt={user.name} />
     <h3>{user.name}</h3>
   </div>
 );
