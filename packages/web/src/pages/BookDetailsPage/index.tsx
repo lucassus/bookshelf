@@ -20,7 +20,7 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
+    <div>
       <Typography variant="h2">{data.book.title}</Typography>
 
       {data.book.author && (
@@ -28,6 +28,6 @@ export const BookDetailsPage: React.FunctionComponent = () => {
       )}
 
       <Typography>{data.book.description}</Typography>
-    </Container>
+    </div>
   );
 };

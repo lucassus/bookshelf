@@ -21,9 +21,9 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
+    <div>
       <UserAvatar user={data.user} />
       <Typography>{data.user.info}</Typography>
-    </Container>
+    </div>
   );
 };

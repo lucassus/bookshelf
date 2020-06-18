@@ -33,7 +33,7 @@ export const BooksPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
+    <div>
       <Typography variant="h4" component="h2">
         Books
       </Typography>
@@ -54,6 +54,6 @@ export const BooksPage: React.FunctionComponent = () => {
           size="large"
         />
       </Box>
-    </Container>
+    </div>
   );
 };

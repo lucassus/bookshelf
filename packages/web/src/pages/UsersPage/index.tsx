@@ -17,7 +17,7 @@ export const UsersPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
+    <div>
       <Typography variant="h4" component="h2">
         Users
       </Typography>
@@ -42,6 +42,6 @@ export const UsersPage: React.FunctionComponent = () => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </div>
   );
 };

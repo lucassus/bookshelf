@@ -21,7 +21,7 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
+    <div>
       <Typography variant="h4" component="h2">
         Author {data.author.name}
       </Typography>
@@ -33,6 +33,6 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </div>
   );
 };
