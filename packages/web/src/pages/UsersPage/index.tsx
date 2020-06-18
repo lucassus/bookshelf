@@ -16,15 +16,25 @@ export const UsersPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Could not load users..." />;
   }
 
+  // TODO: Remove inline styles
   return (
     <div>
       <h2>Users</h2>
 
-      {data.users.map((user) => (
-        <Link key={user.id} to={`/users/${user.id}`} color="inherit">
-          <UserAvatar user={user} />
-        </Link>
-      ))}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between"
+        }}
+      >
+        {data.users.map((user) => (
+          <Link key={user.id} to={`/users/${user.id}`} color="inherit">
+            <UserAvatar user={user} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
