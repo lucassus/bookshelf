@@ -11,9 +11,6 @@ module.exports = {
   setupFilesAfterEnv: ["./src/setupTests.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.(ts|tsx)$": [
-      "babel-jest",
-      { configFile: path.join(__dirname, "babel.config.js") }
-    ]
+    "^.+\\.(ts|tsx)$": "ts-jest"
   }
 };
