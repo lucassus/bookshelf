@@ -57,7 +57,7 @@
     "build": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
     "dev": "webpack-dev-server --mode development",
     "test": "jest",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "typecheck": "tsc --project tsconfig.json --skipLibCheck --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
     "storybook": "start-storybook --port 6006 --ci",
     "storybook:build": "build-storybook"
