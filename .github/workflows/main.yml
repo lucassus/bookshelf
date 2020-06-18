@@ -38,8 +38,8 @@ jobs:
 
     ## Server
 
-    - name: Build server --skipLibCheck
-      run: yarn server build
+    - name: Build server
+      run: yarn server build --skipLibCheck
 
     ## Web
 
