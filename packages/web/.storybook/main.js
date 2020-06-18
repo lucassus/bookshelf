@@ -12,7 +12,6 @@ module.exports = {
       test: /\.(css|scss)$/,
       use: [
         "style-loader",
-        "css-modules-typescript-loader",
         { loader: "css-loader", options: { modules: true } },
         "sass-loader"
       ],
@@ -23,7 +22,11 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       use: [
         {
-          loader: require.resolve("ts-loader")
+          loader: "ts-loader",
+          options: {
+            // TODO: A workaround for missing types for scss modules
+            happyPackMode: true
+          }
         }
       ]
     });
