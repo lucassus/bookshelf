@@ -30,10 +30,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
+        test: /\.(css|scss)$/i,
         use: [
           "style-loader",
-          { loader: "css-loader", options: { modules: true } }
+          { loader: "css-loader", options: { modules: true } },
+          "sass-loader"
         ]
       },
       {
