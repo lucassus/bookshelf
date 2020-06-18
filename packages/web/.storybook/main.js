@@ -20,15 +20,7 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: "ts-loader",
-          options: {
-            // TODO: A workaround for missing types for scss modules
-            happyPackMode: true
-          }
-        }
-      ]
+      use: ["ts-loader"]
     });
 
     config.resolve.extensions.push(".ts", ".tsx");
