@@ -23,7 +23,10 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
 
   return (
     <div className={styles.container}>
-      <img src={book.cover.url} alt="Book cover" />
+      <Link to={`/books/${book.id}`}>
+        <img src={book.cover.url} alt="Book cover" />
+      </Link>
+
       <div>
         <h3>
           <Link to={`/books/${book.id}`}>{book.title}</Link>
