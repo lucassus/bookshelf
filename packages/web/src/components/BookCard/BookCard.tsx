@@ -30,7 +30,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
         </h3>
 
         {book.author && (
-          <span className={styles.writtenBy}>
+          <span>
             Written by{" "}
             <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
           </span>
