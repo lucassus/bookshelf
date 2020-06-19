@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 
-import { ErrorAlert } from "./index";
+import { ErrorAlert } from "./ErrorAlert";
 
 export default {
   title: "ErrorAlert",

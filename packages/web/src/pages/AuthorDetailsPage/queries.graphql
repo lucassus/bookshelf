@@ -1,6 +1,11 @@
 query GetAuthor($id: ID!) {
   author(id: $id) {
     name
+    bio
+    photo {
+      url
+    }
+
     books {
       id
       title

@@ -3,7 +3,7 @@ import React from "react";
 import { MemoryRouter } from "react-router";
 
 import { Author } from "../../types.generated";
-import { AuthorCard } from "./index";
+import { AuthorCard } from "./AuthorCard";
 
 export default {
   title: "AuthorCard",

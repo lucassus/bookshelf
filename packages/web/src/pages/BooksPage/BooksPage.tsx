@@ -1,15 +1,9 @@
-import {
-  Box,
-  CircularProgress,
-  Container,
-  Grid,
-  Typography
-} from "@material-ui/core";
-import { Pagination } from "@material-ui/lab";
 import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { Pagination } from "../../components/Pagination";
+import styles from "./BooksPage.module.scss";
 import { useGetBooksQuery } from "./queries.generated";
 
 const PER_PAGE = 8;
@@ -20,7 +14,7 @@ export const BooksPage: React.FunctionComponent = () => {
   });
 
   const handlePageChange = useCallback(
-    (_, page: number) => {
+    (page: number) => {
       const offset = (page - 1) * PER_PAGE;
       return fetchMore({ variables: { offset } });
     },
@@ -32,14 +26,8 @@ export const BooksPage: React.FunctionComponent = () => {
     [data]
   );
 
-  // TODO: Create a generic loading spinner
   if (loading) {
-    return (
-      <div>
-        <CircularProgress />
-        <span>Loading books...</span>
-      </div>
-    );
+    return <span>Loading books...</span>;
   }
 
   if (error || !data) {
@@ -47,27 +35,16 @@ export const BooksPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
-      <Typography variant="h4" component="h2">
-        Books
-      </Typography>
+    <div>
+      <h2>Books</h2>
 
-      <Grid container spacing={3}>
+      <div className={styles.list}>
         {data.books.map((book) => (
-          <Grid item key={book.id} xs={12} sm={6} md={4}>
-            <BookCard book={book} />
-          </Grid>
+          <BookCard key={book.id} book={book} />
         ))}
-      </Grid>
+      </div>
 
-      <Box m={2} display="flex" justifyContent="center">
-        <Pagination
-          onChange={handlePageChange}
-          count={totalPages}
-          shape="rounded"
-          size="large"
-        />
-      </Box>
-    </Container>
+      <Pagination onChange={handlePageChange} count={totalPages} />
+    </div>
   );
 };

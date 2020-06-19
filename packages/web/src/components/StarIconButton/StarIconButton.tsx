@@ -1,9 +1,5 @@
-import { IconButton } from "@material-ui/core";
-import {
-  Star as StarIcon,
-  StarBorder as StarBorderIcon
-} from "@material-ui/icons";
 import React, { MouseEventHandler } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 type Props = {
   labelOn?: string;
@@ -18,7 +14,7 @@ export const StarIconButton: React.FunctionComponent<Props> = ({
   toggled,
   onToggle
 }) => (
-  <IconButton onClick={onToggle} aria-label={toggled ? labelOn : labelOff}>
-    {toggled ? <StarIcon /> : <StarBorderIcon />}
-  </IconButton>
+  <button onClick={onToggle} aria-label={toggled ? labelOn : labelOff}>
+    {toggled ? <FaStar /> : <FaRegStar />}
+  </button>
 );

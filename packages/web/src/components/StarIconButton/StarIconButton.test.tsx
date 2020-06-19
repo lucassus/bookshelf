@@ -1,7 +1,7 @@
 import { fireEvent } from "@testing-library/react";
 
 import { createComponentRenderer } from "../../testUtils/createComponentRenderer";
-import { StarIconButton } from "./index";
+import { StarIconButton } from "./StarIconButton";
 
 describe("<StarIconButton />", () => {
   const renderComponent = createComponentRenderer(StarIconButton, {

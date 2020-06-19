@@ -25,6 +25,9 @@ jobs:
     - name: Generate GrapQL components
       run: yarn web codegen
 
+    - name: Lint
+      run: yarn lint
+
     - name: Test
       run: yarn test --coverage
 
@@ -35,19 +38,13 @@ jobs:
 
     ## Server
 
-    - name: Lint
-      run: yarn server lint
-
-    - name: Build
-      run: yarn server build
+    - name: Build server
+      run: yarn server build --skipLibCheck
 
     ## Web
-
-    - name: Lint
-      run: yarn web lint
 
     - name: Build storybbok
       run: yarn web storybook:build
 
     - name: Build web app
-      run: yarn web build
+      run: yarn web build --skipLibCheck

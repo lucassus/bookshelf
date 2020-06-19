@@ -1,7 +1,7 @@
 import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 
-import { createUser } from "../testUtils/factories";
+import { createUser } from "../../testUtils/factories";
 import { UserAvatar } from "./UserAvatar";
 
 export default {

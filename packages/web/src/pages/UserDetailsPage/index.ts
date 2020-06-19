@@ -1,0 +1,1 @@
+export { UserDetailsPage } from "./UserDetailsPage";

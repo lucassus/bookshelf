@@ -1,12 +1,11 @@
-import { Container, Typography } from "@material-ui/core";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetBookQuery } from "./queries.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
-  const params = useParams<{ id: string }>();
+  const params = useParams();
 
   const { loading, data, error } = useGetBookQuery({
     variables: { id: params.id }
@@ -21,14 +20,19 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
-      <Typography variant="h2">{data.book.title}</Typography>
+    <div>
+      <h2>{data.book.title}</h2>
 
       {data.book.author && (
-        <Typography variant="h3">Written by {data.book.author.name}</Typography>
+        <h3>
+          Written by{" "}
+          <Link to={`/authors/${data.book.author.id}`}>
+            {data.book.author.name}
+          </Link>
+        </h3>
       )}
 
-      <Typography>{data.book.description}</Typography>
-    </Container>
+      <p>{data.book.description}</p>
+    </div>
   );
 };

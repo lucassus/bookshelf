@@ -1,0 +1,1 @@
+export { BookDetailsPage } from "./BookDetailsPage";

@@ -1,5 +1,5 @@
-import { createComponentRenderer } from "../testUtils/createComponentRenderer";
-import { createUser } from "../testUtils/factories";
+import { createComponentRenderer } from "../../testUtils/createComponentRenderer";
+import { createUser } from "../../testUtils/factories";
 import { UserAvatar } from "./UserAvatar";
 
 describe("<UserAvatar />", () => {

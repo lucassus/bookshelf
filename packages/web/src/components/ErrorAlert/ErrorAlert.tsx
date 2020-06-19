@@ -1,6 +1,6 @@
-import { Button } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import React from "react";
+
+import { Alert } from "../Alert";
 
 type Props = {
   message: string;
@@ -15,13 +15,7 @@ export const ErrorAlert: React.FunctionComponent<Props> = ({
 }) => (
   <Alert
     severity="error"
-    action={
-      onRetry && (
-        <Button color="inherit" size="small" onClick={onRetry}>
-          {retryButtonLabel}
-        </Button>
-      )
-    }
+    action={onRetry && <button onClick={onRetry}>{retryButtonLabel}</button>}
   >
     {message}
   </Alert>

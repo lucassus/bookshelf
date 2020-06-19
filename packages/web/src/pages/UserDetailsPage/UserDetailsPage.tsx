@@ -1,4 +1,3 @@
-import { Container, Typography } from "@material-ui/core";
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -7,7 +6,7 @@ import { UserAvatar } from "../../components/UserAvatar";
 import { useGetUserQuery } from "./queries.generated";
 
 export const UserDetailsPage: React.FunctionComponent = () => {
-  const params = useParams<{ id: string }>();
+  const params = useParams();
 
   const { loading, data, error } = useGetUserQuery({
     variables: { id: params.id }
@@ -22,9 +21,9 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <Container>
+    <div>
       <UserAvatar user={data.user} />
-      <Typography>{data.user.info}</Typography>
-    </Container>
+      <h3>{data.user.info}</h3>
+    </div>
   );
 };

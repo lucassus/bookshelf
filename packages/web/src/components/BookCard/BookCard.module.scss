@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5em;
+  width: 100%;
+
+  img {
+    height: 150px;
+    margin-right: 1em;
+    width: 100px;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    margin-top: 0px;
+    margin-bottom: 0.2em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+    width: 33%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 25%;
+  }
+}
+
+.buttons {
+  margin-top: 1em;
+}

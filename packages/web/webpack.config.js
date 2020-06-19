@@ -30,15 +30,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
+        test: /\.(css|scss)$/i,
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { modules: true } },
+          "sass-loader"
+        ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ["file-loader"]
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: [
           {
             loader: "ts-loader",
