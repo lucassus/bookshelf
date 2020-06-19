@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-direction: row;
-  margin: .5em;
-  max-width: 300px;
+  margin-bottom: 0.5em;
+  width: 100%;
 
   img {
     height: 150px;
@@ -13,12 +13,30 @@
   h3 {
     font-size: 1.5em;
     margin-top: 0px;
-    margin-bottom: .2em;
+    margin-bottom: 0.2em;
 
     a {
       color: inherit;
       text-decoration: none;
     }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+    width: 33%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 25%;
   }
 }
 

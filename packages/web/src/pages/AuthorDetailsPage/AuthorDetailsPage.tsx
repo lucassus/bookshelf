@@ -23,7 +23,7 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <h2>Author {data.author.name}</h2>
+      <h2>{data.author.name}</h2>
 
       <div className={styles.info}>
         {data.author.photo && (
