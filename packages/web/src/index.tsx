@@ -12,8 +12,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import { GRAPHQL_ENDPOINT } from "./config";
 
+const cache = new InMemoryCache({
+  addTypename: true,
+  resultCaching: false
+});
+
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache,
   link: new HttpLink({ uri: GRAPHQL_ENDPOINT }),
   queryDeduplication: false
 });
