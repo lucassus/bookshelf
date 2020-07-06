@@ -288,7 +288,7 @@ describe("fetching anything", () => {
           id
           name
           books {
-            title
+            ...bookFields
           }
         }
 
