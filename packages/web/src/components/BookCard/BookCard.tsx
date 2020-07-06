@@ -1,9 +1,9 @@
 import React, { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
-import { BookFieldsFragment } from "../../bookFields.generated";
 import { StarIconButton } from "../StarIconButton";
 import styles from "./BookCard.module.scss";
+import { BookFieldsFragment } from "./BookFieldsFragment.generated";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 type Props = {
