@@ -7,7 +7,7 @@ query GetAuthor($id: ID!) {
     }
 
     books {
-      ...bookFields
+      ...BookFields
     }
   }
 }

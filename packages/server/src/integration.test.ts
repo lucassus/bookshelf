@@ -288,11 +288,11 @@ describe("fetching anything", () => {
           id
           name
           books {
-            ...bookFields
+            ...BookFragment
           }
         }
 
-        ...bookFields
+        ...BookFragment
 
         ... on User {
           id
@@ -302,7 +302,7 @@ describe("fetching anything", () => {
       }
     }
 
-    fragment bookFields on Book {
+    fragment BookFragment on Book {
       id
       title
       description

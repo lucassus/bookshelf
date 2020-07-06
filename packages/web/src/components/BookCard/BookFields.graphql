@@ -1,4 +1,4 @@
-fragment bookFields on Book {
+fragment BookFields on Book {
   id
   title
   favourite
