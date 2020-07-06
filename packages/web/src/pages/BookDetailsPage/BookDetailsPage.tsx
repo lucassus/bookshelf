@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { details } from "./BookDetailsPage.scss";
 import { useGetBookQuery } from "./GetBook.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
@@ -23,16 +24,22 @@ export const BookDetailsPage: React.FunctionComponent = () => {
     <div>
       <h2>{data.book.title}</h2>
 
-      {data.book.author && (
-        <h3>
-          Written by{" "}
-          <Link to={`/authors/${data.book.author.id}`}>
-            {data.book.author.name}
-          </Link>
-        </h3>
-      )}
+      <div className={details}>
+        <img src={data.book.cover.url} alt="Book cover" />
 
-      <p>{data.book.description}</p>
+        <div>
+          {data.book.author && (
+            <h3>
+              Written by{" "}
+              <Link to={`/authors/${data.book.author.id}`}>
+                {data.book.author.name}
+              </Link>
+            </h3>
+          )}
+
+          <p>{data.book.description}</p>
+        </div>
+      </div>
     </div>
   );
 };
