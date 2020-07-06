@@ -7,12 +7,7 @@ query GetAuthor($id: ID!) {
     }
 
     books {
-      id
-      title
-      favourite
-      cover {
-        url
-      }
+      ...BookFields
     }
   }
 }

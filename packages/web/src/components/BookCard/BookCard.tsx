@@ -1,13 +1,13 @@
 import React, { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
-import { Book } from "../../types.generated";
 import { StarIconButton } from "../StarIconButton";
 import styles from "./BookCard.module.scss";
+import { BookFieldsFragment } from "./BookFields.generated";
 import { useUpdateBookFavouriteMutation } from "./queries.generated";
 
 type Props = {
-  book: Book;
+  book: BookFieldsFragment;
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
