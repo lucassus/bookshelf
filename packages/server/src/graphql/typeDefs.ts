@@ -1,6 +1,5 @@
 import { gql } from "apollo-server-express";
 
-// TODO: Figure out why I cannot use `bio: String!` etc.
 export const typeDefs = gql`
   schema {
     query: Query
