@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
-import { details } from "./BookDetailsPage.scss";
+import styles from "./BookDetailsPage.module.scss";
 import { useGetBookQuery } from "./GetBook.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
@@ -24,7 +24,7 @@ export const BookDetailsPage: React.FunctionComponent = () => {
     <div>
       <h2>{data.book.title}</h2>
 
-      <div className={details}>
+      <div className={styles.details}>
         <img src={data.book.cover.url} alt="Book cover" />
 
         <div>
