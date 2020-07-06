@@ -1,15 +1,19 @@
 query GetBooks($limit: Int, $offset: Int) {
   booksCount
   books(limit: $limit, offset: $offset) {
+    ...bookFields
+  }
+}
+
+fragment bookFields on Book {
+  id
+  title
+  favourite
+  cover {
+    url
+  }
+  author {
     id
-    title
-    favourite
-    cover {
-      url
-    }
-    author {
-      id
-      name
-    }
+    name
   }
 }

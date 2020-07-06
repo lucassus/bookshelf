@@ -13,6 +13,7 @@ export const BooksPage: React.FunctionComponent = () => {
     variables: { limit: PER_PAGE }
   });
 
+  // TODO: Pager is broken
   const handlePageChange = useCallback(
     (page: number) => {
       const offset = (page - 1) * PER_PAGE;
