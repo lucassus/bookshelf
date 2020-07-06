@@ -4,7 +4,7 @@ import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { Pagination } from "../../components/Pagination";
 import styles from "./BooksPage.module.scss";
-import { useGetBooksQuery } from "./queries.generated";
+import { useGetBooksQuery } from "./GetBooks.generated";
 
 const PER_PAGE = 8;
 
