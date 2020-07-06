@@ -5,7 +5,7 @@
   "dependencies": {
     "apollo-server-express": "2.13.0",
     "express": "4.17.1",
-    "graphql": "15.0.0",
+    "graphql": "15.2.0",
     "pg": "8.2.1",
     "reflect-metadata": "0.1.13",
     "typeorm": "0.2.25"
