@@ -1,0 +1,12 @@
+fragment bookFields on Book {
+  id
+  title
+  favourite
+  cover {
+    url
+  }
+  author {
+    id
+    name
+  }
+}

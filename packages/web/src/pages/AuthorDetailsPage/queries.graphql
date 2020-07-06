@@ -11,17 +11,3 @@ query GetAuthor($id: ID!) {
     }
   }
 }
-
-# TODO: Figure out how to reuse it
-fragment bookFields on Book {
-  id
-  title
-  favourite
-  cover {
-    url
-  }
-  author {
-    id
-    name
-  }
-}

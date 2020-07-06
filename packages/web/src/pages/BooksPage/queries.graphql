@@ -4,16 +4,3 @@ query GetBooks($limit: Int, $offset: Int) {
     ...bookFields
   }
 }
-
-fragment bookFields on Book {
-  id
-  title
-  favourite
-  cover {
-    url
-  }
-  author {
-    id
-    name
-  }
-}
