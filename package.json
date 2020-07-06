@@ -30,7 +30,7 @@
     "eslint-plugin-import": "2.21.2",
     "eslint-plugin-jest": "23.13.2",
     "eslint-plugin-prettier": "3.1.4",
-    "jest": "26.0.1",
+    "jest": "26.1.0",
     "prettier": "2.0.5",
     "ts-jest": "26.1.0",
     "ts-node": "8.10.2",
