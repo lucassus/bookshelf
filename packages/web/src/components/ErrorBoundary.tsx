@@ -6,7 +6,7 @@ type State = {
   error: Error | null;
 };
 
-export class ErrorBoundary extends React.Component<{}, State> {
+export class ErrorBoundary extends React.Component<any, State> {
   constructor(props: any) {
     super(props);
     this.state = { error: null };

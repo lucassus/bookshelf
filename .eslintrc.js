@@ -14,7 +14,6 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   rules: {
-    "@typescript-eslint/ban-ts-ignore": "warn",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "import/order": [
