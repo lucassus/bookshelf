@@ -1,7 +1,7 @@
 import { MockedResponse } from "@apollo/client/testing";
 
 import { createAuthor } from "../../testUtils/factories";
-import { GetAuthorsDocument } from "./queries.generated";
+import { GetAuthorsDocument } from "./GetAuthors.generated";
 
 export const GetAuthorsDocumentMock: MockedResponse = {
   request: {

@@ -7,7 +7,7 @@ import { AuthorsPage } from "./AuthorsPage";
 import {
   GetAuthorsDocumentMock,
   GetAuthorsDocumentErrorMock
-} from "./queries.mock";
+} from "./GetAuthors.mock";
 
 describe("<AuthorsPage />", () => {
   const renderComponent = ({ mocks }: { mocks: MockedResponse[] }) =>
