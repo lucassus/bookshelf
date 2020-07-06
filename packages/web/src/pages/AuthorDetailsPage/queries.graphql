@@ -7,12 +7,21 @@ query GetAuthor($id: ID!) {
     }
 
     books {
-      id
-      title
-      favourite
-      cover {
-        url
-      }
+      ...bookFields
     }
+  }
+}
+
+# TODO: Figure out how to reuse it
+fragment bookFields on Book {
+  id
+  title
+  favourite
+  cover {
+    url
+  }
+  author {
+    id
+    name
   }
 }
