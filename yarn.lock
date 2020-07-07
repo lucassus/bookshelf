@@ -2780,12 +2780,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*":
-  version "13.13.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.4.tgz#1581d6c16e3d4803eb079c87d4ac893ee7501c2c"
-  integrity sha512-x26ur3dSXgv5AwKS0lNfbjpCakGIduWU1DU91Zz58ONRWrIKGunmZBNv4P7N+e27sJkiGDsw/3fT4AtsqQBrBA==
-
-"@types/node@14.0.14":
+"@types/node@*", "@types/node@14.0.14":
   version "14.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.14.tgz#24a0b5959f16ac141aeb0c5b3cd7a15b7c64cbce"
   integrity sha512-syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ==
@@ -2962,22 +2957,10 @@
     "@types/source-list-map" "*"
     source-map "^0.6.1"
 
-"@types/webpack@4.41.19":
-  version "4.41.19"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.19.tgz#fbcacda7b6061f0e1ba0132a8617a0df89345d41"
-  integrity sha512-hBryCwAJhqf7MiYNnsr6UsPVQHF4+sUnXVG9MTVAJFtX8vJoxc2rPFcWEAUVuBOCxfTkEY5TPc7RYUer7EXTEQ==
-  dependencies:
-    "@types/anymatch" "*"
-    "@types/node" "*"
-    "@types/tapable" "*"
-    "@types/uglify-js" "*"
-    "@types/webpack-sources" "*"
-    source-map "^0.6.0"
-
-"@types/webpack@^4.4.31", "@types/webpack@^4.41.8":
-  version "4.41.12"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.12.tgz#0386ee2a2814368e2f2397abb036c0bf173ff6c3"
-  integrity sha512-BpCtM4NnBen6W+KEhrL9jKuZCXVtiH6+0b6cxdvNt2EwU949Al334PjQSl2BeAyvAX9mgoNNG21wvjP3xZJJ5w==
+"@types/webpack@4.41.20", "@types/webpack@^4.4.31", "@types/webpack@^4.41.8":
+  version "4.41.20"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.20.tgz#aceaa606240d6897d88d70bcb9ff0e61bd691f4c"
+  integrity sha512-MBHtjttd1NTrrr3m+De5VAlnNHgkdK79Kd0zAjVpFPPOSXri+3oA9q8VvC7SDPITzaWiSS1whBrGLtN2HodM5w==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
