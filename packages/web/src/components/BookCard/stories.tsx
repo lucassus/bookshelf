@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router";
 
 import { createAuthor, createBook } from "../../testUtils/factories";
 import { BookCard } from "./BookCard";
-import { UpdateBookFavouriteDocument } from "./queries.generated";
+import { UpdateBookFavouriteDocument } from "./UpdateBookFavourite.generated";
 
 export default {
   title: "BookCard",
