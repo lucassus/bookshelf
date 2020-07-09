@@ -5,6 +5,7 @@ import { Connection, getConnection } from "typeorm";
 import { Author } from "./database/entity/Author";
 import { Book } from "./database/entity/Book";
 import { BookCopy } from "./database/entity/BookCopy";
+import { User } from "./database/entity/User";
 import { secureId } from "./database/helpers";
 import { createServer } from "./server";
 
@@ -283,6 +284,7 @@ it("fetches users", async () => {
 
 it("fetches a user", async () => {
   const { query } = createTestClient(server);
+  const user = await connection.manager.findOneOrFail(User, { name: "Bob" });
 
   // When
   const res = await query({
@@ -298,10 +300,27 @@ it("fetches a user", async () => {
               url
             }
           }
+          ownedBookCopies {
+            book {
+              id
+              title
+            }
+          }
+          borrowedBookCopies {
+            borrower {
+              id
+              name
+              email
+            }
+            book {
+              id
+              title
+            }
+          }
         }
       }
     `,
-    variables: { id: secureId.toExternal(1, "User") }
+    variables: { id: secureId.toExternal(user.id, "User") }
   });
 
   // Then

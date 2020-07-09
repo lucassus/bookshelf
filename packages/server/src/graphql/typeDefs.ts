@@ -51,6 +51,8 @@ export const typeDefs = gql`
     info: String
     email: String!
     avatar: Avatar!
+    ownedBookCopies: [BookCopy!]!
+    borrowedBookCopies: [BookCopy!]!
   }
 
   type Image {

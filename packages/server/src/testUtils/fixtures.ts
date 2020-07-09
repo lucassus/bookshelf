@@ -328,22 +328,32 @@ async function loadUsers() {
 async function loadBookCopies() {
   const { manager } = getConnection();
 
-  const user = await manager.findOneOrFail(User, { name: "Bob" });
+  const userBob = await manager.findOneOrFail(User, { name: "Bob" });
+  const userAlice = await manager.findOneOrFail(User, { name: "Alice" });
 
   let book = await manager.findOneOrFail(Book, { title: "Blood of Elves" });
   const borrower = await manager.findOneOrFail(User, { name: "Alice" });
 
   await manager.insert(BookCopy, {
-    ownerId: user.id,
+    ownerId: userBob.id,
     bookId: book.id,
     borrowerId: borrower.id
   });
 
   book = await manager.findOneOrFail(Book, { title: "The lady of the lake" });
   await manager.insert(BookCopy, {
-    ownerId: user.id,
+    ownerId: userBob.id,
     bookId: book.id,
     borrowerId: undefined
+  });
+
+  book = await manager.findOneOrFail(Book, {
+    title: "The tower of the swallow"
+  });
+  await manager.insert(BookCopy, {
+    ownerId: userAlice.id,
+    bookId: book.id,
+    borrowerId: userBob.id
   });
 }
 

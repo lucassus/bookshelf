@@ -63,14 +63,41 @@ Object {
 exports[`fetches a user 1`] = `
 Object {
   "avatar": Object {
-    "color": "yellow",
+    "color": "green",
     "image": Object {
-      "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+      "url": "http://examples.devmastery.pl/assets/images/avatars/m10.png",
     },
   },
-  "email": "alice@example.com",
-  "info": "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer.",
-  "name": "Alice",
+  "borrowedBookCopies": Array [
+    Object {
+      "book": Object {
+        "id": "MTktQm9vaw==",
+        "title": "The tower of the swallow",
+      },
+      "borrower": Object {
+        "email": "bob@example.com",
+        "id": "Mi1Vc2Vy",
+        "name": "Bob",
+      },
+    },
+  ],
+  "email": "bob@example.com",
+  "info": "Twitter fan. Social media expert. Hardcore explorer. Communicator. Amateur coffee lover.",
+  "name": "Bob",
+  "ownedBookCopies": Array [
+    Object {
+      "book": Object {
+        "id": "MTYtQm9vaw==",
+        "title": "Blood of Elves",
+      },
+    },
+    Object {
+      "book": Object {
+        "id": "MjAtQm9vaw==",
+        "title": "The lady of the lake",
+      },
+    },
+  ],
 }
 `;
 
