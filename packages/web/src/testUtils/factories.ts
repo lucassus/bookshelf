@@ -10,6 +10,7 @@ export const createAuthor: Factory<Author> = (attributes = {}) => ({
     url:
       "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
   },
+  books: [],
   ...attributes
 });
 
