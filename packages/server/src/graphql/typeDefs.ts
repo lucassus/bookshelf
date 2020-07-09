@@ -32,8 +32,7 @@ export const typeDefs = gql`
     name: String!
     bio: String
     photo: Image
-    # TODO: Missing null?
-    books: [Book!]
+    books: [Book!]!
   }
 
   type Book {
