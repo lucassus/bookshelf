@@ -1,4 +1,4 @@
-fragment UserAvatarFields on User {
+fragment UserAvatar on User {
   name
   avatar {
     image {
