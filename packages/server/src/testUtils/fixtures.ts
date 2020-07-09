@@ -324,7 +324,7 @@ async function loadUsers() {
   await manager.save(users);
 }
 
-export const loadFixtures = async () => {
+export const loadFixtures = async (): Promise<void> => {
   await loadAuthors();
   await loadBooks();
   await loadUsers();

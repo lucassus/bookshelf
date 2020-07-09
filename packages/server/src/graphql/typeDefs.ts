@@ -60,4 +60,11 @@ export const typeDefs = gql`
     image: Image!
     color: String!
   }
+
+  type BookCopy {
+    id: ID!
+    owner: User!
+    boook: Book!
+    borrower: User
+  }
 `;
