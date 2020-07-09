@@ -7,7 +7,16 @@ query GetAuthor($id: ID!) {
     }
 
     books {
-      ...BookCard
+      id
+      title
+      favourite
+      cover {
+        url
+      }
+      author {
+        id
+        name
+      }
     }
   }
 }
