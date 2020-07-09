@@ -55,6 +55,8 @@ export const resolvers = {
     })
   },
 
+  // TODO: Add ownedBookCopies
+  // TODO: Add borrowedBookCopies
   User: {
     id: (user: User) => secureId.toExternal(user.id, "User")
   },
