@@ -1,7 +1,10 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "book_copies" })
 export class BookCopy {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column({ name: "owner_id" })
   ownerId: number;
 

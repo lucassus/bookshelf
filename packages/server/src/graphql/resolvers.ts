@@ -4,6 +4,7 @@ import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
+import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 import { secureId } from "../database/helpers";
 import { Context } from "../server";
@@ -15,7 +16,7 @@ interface Image {
 const findAnythingOrFail = (
   externalId: string,
   connection: Connection
-): Promise<Author | Book | User> => {
+): Promise<Author | Book | User | BookCopy> => {
   const [id, type] = secureId.toInternalAndType(externalId);
 
   if (type === "Author") {
@@ -28,6 +29,10 @@ const findAnythingOrFail = (
 
   if (type === "User") {
     return connection.manager.findOneOrFail(User, id);
+  }
+
+  if (type === "BookCopy") {
+    return connection.manager.findOneOrFail(BookCopy, id);
   }
 
   throw Error(`Unknown type: ${type}`);
@@ -64,8 +69,21 @@ export const resolvers = {
   },
 
   Anything: {
-    __resolveType: (anything: Author | Book | User) =>
+    __resolveType: (anything: Author | Book | User | BookCopy) =>
       Object.getPrototypeOf(anything).constructor.name
+  },
+
+  BookCopy: {
+    id: (user: User) => secureId.toExternal(user.id, "BookCopy"),
+
+    owner: (bookCopy: BookCopy, args: any, { connection }: Context) =>
+      connection.manager.findOneOrFail(User, { id: bookCopy.ownerId }),
+
+    book: (bookCopy: BookCopy, args: any, { connection }: Context) =>
+      connection.manager.findOneOrFail(Book, { id: bookCopy.bookId }),
+
+    borrower: (bookCopy: BookCopy, args: any, { connection }: Context) =>
+      connection.manager.findOne(User, { id: bookCopy.borrowerId })
   },
 
   // TODO: Figure out how to type the args

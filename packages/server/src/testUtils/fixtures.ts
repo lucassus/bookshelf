@@ -2,6 +2,7 @@ import { getConnection } from "typeorm";
 
 import { Author } from "../database/entity/Author";
 import { Book } from "../database/entity/Book";
+import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 
 function loadAuthors() {
@@ -324,8 +325,31 @@ async function loadUsers() {
   await manager.save(users);
 }
 
+async function loadBookCopies() {
+  const { manager } = getConnection();
+
+  const user = await manager.findOneOrFail(User, { name: "Bob" });
+
+  let book = await manager.findOneOrFail(Book, { title: "Blood of Elves" });
+  const borrower = await manager.findOneOrFail(User, { name: "Alice" });
+
+  await manager.insert(BookCopy, {
+    ownerId: user.id,
+    bookId: book.id,
+    borrowerId: borrower.id
+  });
+
+  book = await manager.findOneOrFail(Book, { title: "The lady of the lake" });
+  await manager.insert(BookCopy, {
+    ownerId: user.id,
+    bookId: book.id,
+    borrowerId: undefined
+  });
+}
+
 export const loadFixtures = async (): Promise<void> => {
   await loadAuthors();
   await loadBooks();
   await loadUsers();
+  await loadBookCopies();
 };
