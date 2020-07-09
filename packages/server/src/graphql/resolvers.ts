@@ -112,12 +112,6 @@ export const resolvers = {
   BookCopy: {
     id: (user: User) => secureId.toExternal(user.id, "BookCopy"),
 
-    owner: (bookCopy: BookCopy, args: any, { connection }: Context) =>
-      connection.manager.findOneOrFail(User, { id: bookCopy.ownerId }),
-
-    book: (bookCopy: BookCopy, args: any, { connection }: Context) =>
-      connection.manager.findOneOrFail(Book, { id: bookCopy.bookId }),
-
     borrower: (bookCopy: BookCopy, args: any, { connection }: Context) =>
       connection.manager.findOne(User, { id: bookCopy.borrowerId })
   },

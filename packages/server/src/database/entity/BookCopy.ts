@@ -6,13 +6,17 @@ import {
   PrimaryGeneratedColumn
 } from "typeorm";
 
-import { Author } from "./Author";
 import { Book } from "./Book";
+import { User } from "./User";
 
 @Entity({ name: "book_copies" })
 export class BookCopy {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @ManyToOne(() => User, (user) => user.ownedBookCopies)
+  @JoinColumn({ name: "owner_id" })
+  owner: Promise<User>;
 
   @Column({ name: "owner_id" })
   ownerId: number;
