@@ -7,14 +7,16 @@ type Props = {
   user: UserAvatarFieldsFragment;
 };
 
-export const UserAvatar: React.FunctionComponent<Props> = ({ user }) => (
+export const UserAvatar: React.FunctionComponent<Props> = ({
+  user: { name, avatar }
+}) => (
   <figure className={styles.container}>
     <img
-      src={user.avatar.image.url}
-      alt={user.name}
-      style={{ backgroundColor: user.avatar.color }}
+      src={avatar.image.url}
+      alt={name}
+      style={{ backgroundColor: avatar.color }}
     />
 
-    <figcaption>{user.name}</figcaption>
+    <figcaption>{name}</figcaption>
   </figure>
 );
