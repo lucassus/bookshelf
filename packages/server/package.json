@@ -18,10 +18,10 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "yarn clean && tsc --skipLibCheck",
+    "build": "yarn clean && tsc",
     "start": "node dist/src/index.js",
     "dev": "nodemon",
-    "typecheck": "tsc --project tsconfig.json --skipLibCheck --noEmit",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "typeorm": "ts-node ../../node_modules/typeorm/cli.js --config src/database/config.ts",
