@@ -58,7 +58,7 @@
     "dev-server": "webpack-dev-server --mode development",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'yarn dev-server'",
     "test": "jest",
-    "typecheck": "tsc --project tsconfig.json --skipLibCheck --noEmit",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
     "storybook": "start-storybook --port 6006 --ci",
     "storybook:build": "build-storybook"
