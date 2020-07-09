@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Author } from "../../types.generated";
 import styles from "./AuthorCard.module.scss";
+import { AuthorFieldsFragment } from "./AuthorFields.generated";
 
 type Props = {
-  author: Author;
+  author: AuthorFieldsFragment;
 };
 
 export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => (
