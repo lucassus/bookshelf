@@ -4,11 +4,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
 
 import { Author } from "./Author";
+import { BookCopy } from "./BookCopy";
 
 @Entity({ name: "books", orderBy: { title: "ASC" } })
 export class Book {
@@ -30,6 +32,9 @@ export class Book {
 
   @Column({ name: "author_id" })
   authorId: number;
+
+  @OneToMany(() => BookCopy, (bookCopy) => bookCopy.book)
+  copies: Promise<BookCopy[]>;
 
   @Column({ default: false })
   favourite: boolean;
