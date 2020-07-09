@@ -28,6 +28,10 @@ export class BookCopy {
   @Column({ name: "book_id" })
   bookId: number;
 
+  @ManyToOne(() => User, (user) => user.borrowedBookCopies)
+  @JoinColumn({ name: "borrower_id" })
+  borrower: Promise<User>;
+
   @Column({ name: "borrower_id", nullable: true })
   borrowerId: number;
 }

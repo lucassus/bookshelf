@@ -38,6 +38,9 @@ export class User {
   @OneToMany(() => BookCopy, (bookCopy) => bookCopy.owner)
   ownedBookCopies: Promise<BookCopy[]>;
 
+  @OneToMany(() => BookCopy, (bookCopy) => bookCopy.borrower)
+  borrowedBookCopies: Promise<BookCopy[]>;
+
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 

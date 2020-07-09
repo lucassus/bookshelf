@@ -110,10 +110,7 @@ export const resolvers = {
   },
 
   BookCopy: {
-    id: (user: User) => secureId.toExternal(user.id, "BookCopy"),
-
-    borrower: (bookCopy: BookCopy, args: any, { connection }: Context) =>
-      connection.manager.findOne(User, { id: bookCopy.borrowerId })
+    id: (user: User) => secureId.toExternal(user.id, "BookCopy")
   },
 
   Mutation: {
