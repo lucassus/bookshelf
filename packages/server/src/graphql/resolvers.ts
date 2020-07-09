@@ -43,7 +43,9 @@ export const resolvers = {
     id: (book: Book) => secureId.toExternal(book.id, "Book"),
     cover: (book: Book): Image => ({
       path: book.coverPath
-    })
+    }),
+    copies: (book: Book, args: any, { connection }: Context) =>
+      connection.manager.find(BookCopy, { bookId: book.id })
   },
 
   Author: {

@@ -31,6 +31,16 @@ it("fetches books", async () => {
           cover {
             url
           }
+          copies {
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
+          }
         }
       }
     `
@@ -56,6 +66,52 @@ it("fetches a book", async () => {
           id
           title
           description
+          copies {
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
+          }
+        }
+      }
+    `,
+    variables: { id: secureId.toExternal(book.id, "Book") }
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+});
+
+it("fetches a book 2", async () => {
+  // Given
+  const { query } = createTestClient(server);
+  const book = await connection.manager.findOneOrFail(Book, {
+    title: "The lady of the lake"
+  });
+
+  // When
+  const res = await query({
+    query: gql`
+      query GetBook($id: ID!) {
+        book(id: $id) {
+          id
+          title
+          description
+          copies {
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
+          }
         }
       }
     `,

@@ -43,6 +43,7 @@ export const typeDefs = gql`
     cover: Image!
     favourite: Boolean!
     author: Author
+    copies: [BookCopy!]!
   }
 
   type User {

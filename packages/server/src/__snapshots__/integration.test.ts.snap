@@ -3,6 +3,18 @@
 exports[`fetches a book 1`] = `
 Object {
   "book": Object {
+    "copies": Array [
+      Object {
+        "borrower": Object {
+          "id": "MS1Vc2Vy",
+          "name": "Alice",
+        },
+        "owner": Object {
+          "id": "Mi1Vc2Vy",
+          "name": "Bob",
+        },
+      },
+    ],
     "description": "For more than a hundred years, humans, dwarves, gnomes and elves lived together in relative peace. But times have changed, the uneasy peace is over and now the races are fighting once again - killing their own kind and each other.
 
       Into this tumultuous time is born a child of prophecy, Ciri, surviving heiress of a bloody revolution, whose strange abilities can change the world - for good, or for evil...
@@ -12,6 +24,29 @@ Object {
       But this time, Geralt may have met his match.",
     "id": "MTYtQm9vaw==",
     "title": "Blood of Elves",
+  },
+}
+`;
+
+exports[`fetches a book 2 1`] = `
+Object {
+  "book": Object {
+    "copies": Array [
+      Object {
+        "borrower": null,
+        "owner": Object {
+          "id": "Mi1Vc2Vy",
+          "name": "Bob",
+        },
+      },
+    ],
+    "description": "After walking through a portal in the Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
+
+      But this is Ciri, the child of prophecy, and she will not be defeated. She knows she must escape to finally rejoin the Witcher, Geralt, and his companions - and also to try to conquer her worst nightmare. Leo Bonhart, the man who chased, wounded and tortured Ciri, is still on her trail.
+      
+      And the world is still at war.",
+    "id": "MjAtQm9vaw==",
+    "title": "The lady of the lake",
   },
 }
 `;
@@ -166,6 +201,7 @@ exports[`fetches books 1`] = `
 Object {
   "books": Array [
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse3.jpg",
       },
@@ -173,6 +209,7 @@ Object {
       "title": "Abaddon's Gate",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse6.jpg",
       },
@@ -180,6 +217,7 @@ Object {
       "title": "Babylon's Ashes",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
       },
@@ -187,6 +225,18 @@ Object {
       "title": "Baptism of fire",
     },
     Object {
+      "copies": Array [
+        Object {
+          "borrower": Object {
+            "id": "MS1Vc2Vy",
+            "name": "Alice",
+          },
+          "owner": Object {
+            "id": "Mi1Vc2Vy",
+            "name": "Bob",
+          },
+        },
+      ],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg",
       },
@@ -194,6 +244,7 @@ Object {
       "title": "Blood of Elves",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
       },
@@ -201,6 +252,7 @@ Object {
       "title": "Caliban's War",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
       },
@@ -208,6 +260,7 @@ Object {
       "title": "Cibola Burn",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
       },
@@ -215,6 +268,7 @@ Object {
       "title": "Harry Potter and the Chamber of Secrets",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
       },
@@ -222,11 +276,108 @@ Object {
       "title": "Harry Potter and the Deathly Hallows",
     },
     Object {
+      "copies": Array [],
       "cover": Object {
         "url": "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
       },
       "id": "NC1Cb29r",
       "title": "Harry Potter and the Goblet of Fire",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry6.jpg",
+      },
+      "id": "Ni1Cb29r",
+      "title": "Harry Potter and the Half-Blood Prince",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry5.jpg",
+      },
+      "id": "NS1Cb29r",
+      "title": "Harry Potter and the Order of the Phoenix",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry3.jpg",
+      },
+      "id": "My1Cb29r",
+      "title": "Harry Potter and the Prisoner of Azkaban",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry1.jpg",
+      },
+      "id": "MS1Cb29r",
+      "title": "Harry Potter and the Sorcerer's Stone",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse1.jpg",
+      },
+      "id": "OC1Cb29r",
+      "title": "Leviathan Wakes",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse5.jpg",
+      },
+      "id": "MTItQm9vaw==",
+      "title": "Nemesis Games",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse7.jpg",
+      },
+      "id": "MTQtQm9vaw==",
+      "title": "Persepolis Rising",
+    },
+    Object {
+      "copies": Array [
+        Object {
+          "borrower": null,
+          "owner": Object {
+            "id": "Mi1Vc2Vy",
+            "name": "Bob",
+          },
+        },
+      ],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
+      },
+      "id": "MjAtQm9vaw==",
+      "title": "The lady of the lake",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher4.jpg",
+      },
+      "id": "MTktQm9vaw==",
+      "title": "The tower of the swallow",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse8.jpg",
+      },
+      "id": "MTUtQm9vaw==",
+      "title": "Tiamat's Wrath",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher2.jpg",
+      },
+      "id": "MTctQm9vaw==",
+      "title": "Time of contempt",
     },
   ],
   "booksCount": 20,
