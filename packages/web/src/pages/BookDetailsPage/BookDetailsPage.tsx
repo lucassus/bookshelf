@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
 import styles from "./BookDetailsPage.module.scss";
-import { useGetBookQuery } from "./GetBook.generated";
+import { useGetBookQuery } from "./GetBook.query.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
   const params = useParams();

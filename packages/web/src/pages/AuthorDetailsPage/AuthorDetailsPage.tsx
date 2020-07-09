@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import styles from "./AuthorDetailsPage.module.scss";
-import { useGetAuthorQuery } from "./GetAuthor.generated";
+import { useGetAuthorQuery } from "./GetAuthor.query.generated";
 
 export const AuthorDetailsPage: React.FunctionComponent = () => {
   const params = useParams();

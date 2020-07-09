@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserAvatar } from "../../components/UserAvatar";
-import { useGetUserQuery } from "./GetUser.generated";
+import { useGetUserQuery } from "./GetUser.query.generated";
 
 export const UserDetailsPage: React.FunctionComponent = () => {
   const params = useParams();

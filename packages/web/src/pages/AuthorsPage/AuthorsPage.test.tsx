@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router";
 import { createAuthor } from "../../testUtils/factories";
 import { Author } from "../../types.generated";
 import { AuthorsPage } from "./AuthorsPage";
-import { GetAuthorsDocument } from "./GetAuthors.generated";
+import { GetAuthorsDocument } from "./GetAuthors.query.generated";
 
 export const GetAuthorsDocumentMock: MockedResponse<{
   authors: Author[];

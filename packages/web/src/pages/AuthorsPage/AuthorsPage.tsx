@@ -3,7 +3,7 @@ import React from "react";
 import { AuthorCard } from "../../components/AuthorCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import styles from "./AuthorsPage.module.scss";
-import { useGetAuthorsQuery } from "./GetAuthors.generated";
+import { useGetAuthorsQuery } from "./GetAuthors.query.generated";
 
 export const AuthorsPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetAuthorsQuery();

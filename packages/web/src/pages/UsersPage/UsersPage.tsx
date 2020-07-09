@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserAvatar } from "../../components/UserAvatar";
-import { useGetUsersQuery } from "./GetUsers.generated";
+import { useGetUsersQuery } from "./GetUsers.query.generated";
 import styles from "./UsersPage.module.scss";
 
 export const UsersPage: React.FunctionComponent = () => {
