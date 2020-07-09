@@ -1,4 +1,4 @@
-import { Connection } from "typeorm";
+import { Connection, ObjectType } from "typeorm";
 
 import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
@@ -19,23 +19,18 @@ const findAnythingOrFail = (
 ): Promise<Author | Book | User | BookCopy> => {
   const [id, type] = secureId.toInternalAndType(externalId);
 
-  if (type === "Author") {
-    return connection.manager.findOneOrFail(Author, id);
+  const map: Record<string, ObjectType<Author | Book | User | BookCopy>> = {
+    Author,
+    Book,
+    User,
+    BookCopy
+  };
+
+  if (!map[type]) {
+    throw Error(`Unknown type: ${type}`);
   }
 
-  if (type === "Book") {
-    return connection.manager.findOneOrFail(Book, id);
-  }
-
-  if (type === "User") {
-    return connection.manager.findOneOrFail(User, id);
-  }
-
-  if (type === "BookCopy") {
-    return connection.manager.findOneOrFail(BookCopy, id);
-  }
-
-  throw Error(`Unknown type: ${type}`);
+  return connection.manager.findOneOrFail(map[type], id);
 };
 
 export const resolvers = {
