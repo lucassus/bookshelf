@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { StarIconButton } from "../StarIconButton";
 import styles from "./BookCard.module.scss";
 import { BookFieldsFragment } from "./BookFields.generated";
-import { useUpdateBookFavouriteMutation } from "./queries.generated";
+import { useUpdateBookFavouriteMutation } from "./UpdateBookFavourite.generated";
 
 type Props = {
   book: BookFieldsFragment;

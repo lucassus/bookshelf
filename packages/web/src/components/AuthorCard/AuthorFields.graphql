@@ -1,0 +1,7 @@
+fragment AuthorFields on Author {
+  id
+  name
+  photo {
+    url
+  }
+}

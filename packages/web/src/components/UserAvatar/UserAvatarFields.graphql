@@ -1,0 +1,9 @@
+fragment UserAvatarFields on User {
+  name
+  avatar {
+    image {
+      url
+    }
+    color
+  }
+}

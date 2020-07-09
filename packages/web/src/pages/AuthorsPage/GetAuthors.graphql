@@ -1,9 +1,5 @@
 query GetAuthors {
   authors {
-    id
-    name
-    photo {
-      url
-    }
+    ...AuthorFields
   }
 }

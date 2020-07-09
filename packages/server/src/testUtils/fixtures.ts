@@ -2,6 +2,7 @@ import { getConnection } from "typeorm";
 
 import { Author } from "../database/entity/Author";
 import { Book } from "../database/entity/Book";
+import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 
 function loadAuthors() {
@@ -324,8 +325,41 @@ async function loadUsers() {
   await manager.save(users);
 }
 
-export const loadFixtures = async () => {
+async function loadBookCopies() {
+  const { manager } = getConnection();
+
+  const userBob = await manager.findOneOrFail(User, { name: "Bob" });
+  const userAlice = await manager.findOneOrFail(User, { name: "Alice" });
+
+  let book = await manager.findOneOrFail(Book, { title: "Blood of Elves" });
+  const borrower = await manager.findOneOrFail(User, { name: "Alice" });
+
+  await manager.insert(BookCopy, {
+    ownerId: userBob.id,
+    bookId: book.id,
+    borrowerId: borrower.id
+  });
+
+  book = await manager.findOneOrFail(Book, { title: "The lady of the lake" });
+  await manager.insert(BookCopy, {
+    ownerId: userBob.id,
+    bookId: book.id,
+    borrowerId: undefined
+  });
+
+  book = await manager.findOneOrFail(Book, {
+    title: "The tower of the swallow"
+  });
+  await manager.insert(BookCopy, {
+    ownerId: userAlice.id,
+    bookId: book.id,
+    borrowerId: userBob.id
+  });
+}
+
+export const loadFixtures = async (): Promise<void> => {
   await loadAuthors();
   await loadBooks();
   await loadUsers();
+  await loadBookCopies();
 };

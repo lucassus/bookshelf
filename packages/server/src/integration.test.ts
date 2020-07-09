@@ -4,6 +4,8 @@ import { Connection, getConnection } from "typeorm";
 
 import { Author } from "./database/entity/Author";
 import { Book } from "./database/entity/Book";
+import { BookCopy } from "./database/entity/BookCopy";
+import { User } from "./database/entity/User";
 import { secureId } from "./database/helpers";
 import { createServer } from "./server";
 
@@ -30,6 +32,16 @@ it("fetches books", async () => {
           cover {
             url
           }
+          copies {
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
+          }
         }
       }
     `
@@ -43,6 +55,9 @@ it("fetches books", async () => {
 it("fetches a book", async () => {
   // Given
   const { query } = createTestClient(server);
+  const book = await connection.manager.findOneOrFail(Book, {
+    title: "Blood of Elves"
+  });
 
   // When
   const res = await query({
@@ -52,10 +67,56 @@ it("fetches a book", async () => {
           id
           title
           description
+          copies {
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
+          }
         }
       }
     `,
-    variables: { id: secureId.toExternal(2, "Book") }
+    variables: { id: secureId.toExternal(book.id, "Book") }
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+});
+
+it("fetches a book 2", async () => {
+  // Given
+  const { query } = createTestClient(server);
+  const book = await connection.manager.findOneOrFail(Book, {
+    title: "The lady of the lake"
+  });
+
+  // When
+  const res = await query({
+    query: gql`
+      query GetBook($id: ID!) {
+        book(id: $id) {
+          id
+          title
+          description
+          copies {
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
+          }
+        }
+      }
+    `,
+    variables: { id: secureId.toExternal(book.id, "Book") }
   });
 
   // Then
@@ -223,6 +284,7 @@ it("fetches users", async () => {
 
 it("fetches a user", async () => {
   const { query } = createTestClient(server);
+  const user = await connection.manager.findOneOrFail(User, { name: "Bob" });
 
   // When
   const res = await query({
@@ -238,10 +300,27 @@ it("fetches a user", async () => {
               url
             }
           }
+          ownedBookCopies {
+            book {
+              id
+              title
+            }
+          }
+          borrowedBookCopies {
+            borrower {
+              id
+              name
+              email
+            }
+            book {
+              id
+              title
+            }
+          }
         }
       }
     `,
-    variables: { id: secureId.toExternal(1, "User") }
+    variables: { id: secureId.toExternal(user.id, "User") }
   });
 
   // Then
@@ -294,10 +373,19 @@ describe("fetching anything", () => {
 
         ...BookFragment
 
-        ... on User {
+        ...UserFragment
+
+        ... on BookCopy {
           id
-          name
-          email
+          owner {
+            ...UserFragment
+          }
+          borrower {
+            ...UserFragment
+          }
+          book {
+            ...BookFragment
+          }
         }
       }
     }
@@ -307,6 +395,12 @@ describe("fetching anything", () => {
       title
       description
       favourite
+    }
+
+    fragment UserFragment on User {
+      id
+      name
+      email
     }
   `;
 
@@ -346,6 +440,23 @@ describe("fetching anything", () => {
     const res = await query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(1, "User") }
+    });
+
+    // Then
+    expect(res.data!.anything).toMatchSnapshot();
+  });
+
+  it("fetches BookCopy", async () => {
+    // Given
+    const { query } = createTestClient(server);
+    const bookCopy = await connection.manager.findOne(BookCopy, {
+      order: { id: "ASC" }
+    });
+
+    // When
+    const res = await query({
+      query: GetAnythingQuery,
+      variables: { id: secureId.toExternal(bookCopy!.id, "BookCopy") }
     });
 
     // Then

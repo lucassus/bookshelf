@@ -10,6 +10,7 @@ export const createAuthor: Factory<Author> = (attributes = {}) => ({
     url:
       "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
   },
+  books: [],
   ...attributes
 });
 
@@ -21,6 +22,7 @@ export const createBook: Factory<Book> = (attributes = {}) => ({
   cover: {
     url: "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
   },
+  copies: [],
   ...attributes
 });
 
@@ -35,5 +37,7 @@ export const createUser: Factory<User> = (attributes = {}) => ({
     },
     color: "yellow"
   },
+  ownedBookCopies: [],
+  borrowedBookCopies: [],
   ...attributes
 });

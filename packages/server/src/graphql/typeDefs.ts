@@ -25,14 +25,14 @@ export const typeDefs = gql`
     updateBookFavourite(id: ID!, favourite: Boolean): Book!
   }
 
-  union Anything = Author | Book | User
+  union Anything = Author | Book | User | BookCopy
 
   type Author {
     id: ID!
     name: String!
     bio: String
     photo: Image
-    books: [Book!]
+    books: [Book!]!
   }
 
   type Book {
@@ -42,6 +42,7 @@ export const typeDefs = gql`
     cover: Image!
     favourite: Boolean!
     author: Author
+    copies: [BookCopy!]!
   }
 
   type User {
@@ -50,6 +51,8 @@ export const typeDefs = gql`
     info: String
     email: String!
     avatar: Avatar!
+    ownedBookCopies: [BookCopy!]!
+    borrowedBookCopies: [BookCopy!]!
   }
 
   type Image {
@@ -59,5 +62,12 @@ export const typeDefs = gql`
   type Avatar {
     image: Image!
     color: String!
+  }
+
+  type BookCopy {
+    id: ID!
+    owner: User!
+    book: Book!
+    borrower: User
   }
 `;

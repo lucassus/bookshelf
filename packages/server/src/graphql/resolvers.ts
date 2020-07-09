@@ -1,9 +1,10 @@
-import { Connection } from "typeorm";
+import { Connection, ObjectType } from "typeorm";
 
 import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
+import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 import { secureId } from "../database/helpers";
 import { Context } from "../server";
@@ -15,66 +16,31 @@ interface Image {
 const findAnythingOrFail = (
   externalId: string,
   connection: Connection
-): Promise<Author | Book | User> => {
+): Promise<Author | Book | User | BookCopy> => {
   const [id, type] = secureId.toInternalAndType(externalId);
 
-  if (type === "Author") {
-    return connection.manager.findOneOrFail(Author, id);
+  const map: Record<string, ObjectType<Author | Book | User | BookCopy>> = {
+    Author,
+    Book,
+    User,
+    BookCopy
+  };
+
+  if (!map[type]) {
+    throw Error(`Unknown type: ${type}`);
   }
 
-  if (type === "Book") {
-    return connection.manager.findOneOrFail(Book, id);
-  }
-
-  if (type === "User") {
-    return connection.manager.findOneOrFail(User, id);
-  }
-
-  throw Error(`Unknown type: ${type}`);
+  return connection.manager.findOneOrFail(map[type], id);
 };
 
 export const resolvers = {
-  Book: {
-    id: (book: Book) => secureId.toExternal(book.id, "Book"),
-    cover: (book: Book): Image => ({
-      path: book.coverPath
-    })
-  },
-
-  Author: {
-    id: (author: Author) => secureId.toExternal(author.id, "Author"),
-    photo: (author: Author): Image => ({
-      path: author.photoPath
-    })
-  },
-
-  User: {
-    id: (user: User) => secureId.toExternal(user.id, "User")
-  },
-
-  Avatar: {
-    image: (avatar: Avatar): Image => ({
-      path: avatar.imagePath
-    })
-  },
-
-  Image: {
-    url: (image: Image, args: any, { assetsBaseUrl }: Context) =>
-      assetsBaseUrl + image.path
-  },
-
-  Anything: {
-    __resolveType: (anything: Author | Book | User) =>
-      Object.getPrototypeOf(anything).constructor.name
-  },
-
   // TODO: Figure out how to type the args
   Query: {
     booksCount: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.count(Book),
 
     // TODO: It produces quite a lot of n+1 queries
-    books: async (
+    books: (
       rootValue: any,
       args: { limit: number; offset: number },
       { connection }: Context
@@ -105,6 +71,44 @@ export const resolvers = {
 
     anything: (rootValue: any, args: { id: string }, { connection }: Context) =>
       findAnythingOrFail(args.id, connection)
+  },
+
+  Book: {
+    id: (book: Book) => secureId.toExternal(book.id, "Book"),
+    cover: (book: Book): Image => ({
+      path: book.coverPath
+    })
+  },
+
+  Author: {
+    id: (author: Author) => secureId.toExternal(author.id, "Author"),
+    photo: (author: Author): Image => ({
+      path: author.photoPath
+    })
+  },
+
+  User: {
+    id: (user: User) => secureId.toExternal(user.id, "User")
+  },
+
+  Avatar: {
+    image: (avatar: Avatar): Image => ({
+      path: avatar.imagePath
+    })
+  },
+
+  Image: {
+    url: (image: Image, args: any, { assetsBaseUrl }: Context) =>
+      assetsBaseUrl + image.path
+  },
+
+  Anything: {
+    __resolveType: (anything: Author | Book | User | BookCopy) =>
+      Object.getPrototypeOf(anything).constructor.name
+  },
+
+  BookCopy: {
+    id: (user: User) => secureId.toExternal(user.id, "BookCopy")
   },
 
   Mutation: {
