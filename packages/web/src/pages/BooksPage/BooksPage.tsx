@@ -19,7 +19,7 @@ export const BooksPage: React.FunctionComponent = () => {
 
       return fetchMore({
         variables: { offset },
-        updateQuery: (prev, { fetchMoreResult }) => fetchMoreResult
+        updateQuery: (prev, { fetchMoreResult }): any => fetchMoreResult
       });
     },
     [fetchMore]
