@@ -7,10 +7,13 @@ type Props = {
   user: UserAvatarFieldsFragment;
 };
 
-// TODO: Show avatar color
 export const UserAvatar: React.FunctionComponent<Props> = ({ user }) => (
   <figure className={styles.container}>
-    <img src={user.avatar.image.url} alt={user.name} />
+    <img
+      src={user.avatar.image.url}
+      alt={user.name}
+      style={{ backgroundColor: user.avatar.color }}
+    />
 
     <figcaption>{user.name}</figcaption>
   </figure>
