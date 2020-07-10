@@ -1,5 +1,5 @@
 import { ApolloProvider } from "@apollo/client";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { graphql } from "msw";
 import React from "react";
 import { MemoryRouter } from "react-router";
@@ -29,10 +29,24 @@ describe("<BookCard />", () => {
 
   it("handles add to favourites", async () => {
     // Given
+    let mutationCalled = false;
+
     server.use(
-      graphql.mutation("UpdateBookFavourite", (req, res, ctx) =>
-        res(ctx.data({}))
-      )
+      graphql.mutation("UpdateBookFavourite", (req, res, ctx) => {
+        mutationCalled = true;
+
+        const { id, favourite } = req.variables;
+
+        return res(
+          ctx.data({
+            updateBookFavourite: {
+              __typename: "Book",
+              id,
+              favourite
+            }
+          })
+        );
+      })
     );
 
     render(
@@ -47,7 +61,6 @@ describe("<BookCard />", () => {
     fireEvent.click(screen.getByLabelText("Add to favourites"));
 
     // Then
-    // TODO: Complete this test
-    // await waitFor(() => expect(mutationCalled).toBe(true));
+    await waitFor(() => expect(mutationCalled).toBe(true));
   });
 });
