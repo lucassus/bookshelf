@@ -8,13 +8,6 @@ import { client } from "../../client";
 import { server } from "../../mocks/server";
 import { AuthorsPage } from "./AuthorsPage";
 
-// TODO: Move it to the global setup
-// TODO: Figure out how to use it with storybook
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
-
-// TODO: Reset graphql cache between requests
 describe("<AuthorsPage />", () => {
   const renderComponent = () =>
     render(<AuthorsPage />, {
@@ -24,6 +17,8 @@ describe("<AuthorsPage />", () => {
         </ApolloProvider>
       )
     });
+
+  beforeEach(() => client.resetStore());
 
   it("renders list of authors", async () => {
     // When
