@@ -1,10 +1,10 @@
 import React from "react";
 
+import { UserAvatarFragment } from "./UserAvatar.fragment.generated";
 import styles from "./UserAvatar.module.scss";
-import { UserAvatarFieldsFragment } from "./UserAvatarFields.generated";
 
 type Props = {
-  user: UserAvatarFieldsFragment;
+  user: UserAvatarFragment;
 };
 
 export const UserAvatar: React.FunctionComponent<Props> = ({

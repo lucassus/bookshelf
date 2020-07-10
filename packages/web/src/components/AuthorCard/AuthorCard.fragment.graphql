@@ -1,4 +1,4 @@
-fragment AuthorFields on Author {
+fragment AuthorCard on Author {
   id
   name
   photo {

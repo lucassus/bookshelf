@@ -1,5 +1,5 @@
 query GetAuthors {
   authors {
-    ...AuthorFields
+    ...AuthorCard
   }
 }

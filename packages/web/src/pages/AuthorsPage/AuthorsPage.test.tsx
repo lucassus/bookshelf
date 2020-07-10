@@ -3,13 +3,13 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { AuthorFieldsFragment } from "../../components/AuthorCard/AuthorFields.generated";
 import { createAuthor } from "../../testUtils/factories";
+import { Author } from "../../types.generated";
 import { AuthorsPage } from "./AuthorsPage";
-import { GetAuthorsDocument } from "./GetAuthors.generated";
+import { GetAuthorsDocument } from "./GetAuthors.query.generated";
 
 export const GetAuthorsDocumentMock: MockedResponse<{
-  authors: AuthorFieldsFragment[];
+  authors: Author[];
 }> = {
   request: {
     query: GetAuthorsDocument
