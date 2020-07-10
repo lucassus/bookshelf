@@ -4,6 +4,7 @@ import { createAuthor } from "../testUtils/factories";
 
 export const handlers = [
   graphql.query("GetAuthors", (req, res, ctx) => {
+    console.log(req, res, ctx);
     return res(
       ctx.data({
         authors: [

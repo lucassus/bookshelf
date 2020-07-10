@@ -3,6 +3,7 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
+import { client } from "../../client";
 import { server } from "../../mocks/server";
 import { AuthorsPage } from "./AuthorsPage";
 
@@ -11,10 +12,6 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 
 afterAll(() => server.close());
-
-const client = new ApolloClient({
-  cache: new InMemoryCache()
-});
 
 describe("<AuthorsPage />", () => {
   const renderComponent = () =>
