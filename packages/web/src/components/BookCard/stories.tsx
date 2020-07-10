@@ -1,11 +1,10 @@
-import { ApolloProvider } from "@apollo/client";
 import { withKnobs, text } from "@storybook/addon-knobs";
 import { graphql } from "msw";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { client } from "../../client";
 import { worker } from "../../mocks/browser";
+import { useGetBookQuery } from "../../pages/BookDetailsPage/GetBook.query.generated";
 import { createAuthor, createBook } from "../../testUtils/factories";
 import { BookCard } from "./BookCard";
 
@@ -16,36 +15,47 @@ export default {
 };
 
 worker.use(
-  graphql.mutation("UpdateBookFavourite", (req, res, ctx) =>
-    res(
+  graphql.query("GetBook", (req, res, ctx) => {
+    const { id } = req.variables;
+
+    return res(
+      ctx.data([
+        {
+          book: {
+            __typename: "Book",
+            ...createBook({
+              id,
+              title: text("Title", "Blood of Elves"),
+              favourite: false,
+              author: createAuthor({
+                name: text("Author Name", "Andrzej Sapkowski")
+              })
+            })
+          }
+        }
+      ])
+    );
+  }),
+
+  graphql.mutation("UpdateBookFavourite", (req, res, ctx) => {
+    const { id, favourite } = req.variables;
+
+    return res(
       ctx.data({
         updateBookFavourite: {
           __typename: "Book",
-          id: 1,
-          favourite: true
+          id,
+          favourite
         }
       })
-    )
-  )
+    );
+  })
 );
 
 worker.start();
 
-export const Basic = () => {
-  const book = createBook({
-    id: "1",
-    title: text("Title", "Blood of Elves"),
-    favourite: false,
-    author: createAuthor({
-      name: text("Author Name", "Andrzej Sapkowski")
-    })
-  });
+export const Basic: React.FunctionComponent = () => {
+  const { data } = useGetBookQuery({ variables: { id: "1" } });
 
-  return (
-    <MemoryRouter>
-      <ApolloProvider client={client}>
-        <BookCard book={book} />
-      </ApolloProvider>
-    </MemoryRouter>
-  );
+  return <MemoryRouter>{data && <BookCard book={data.book} />}</MemoryRouter>;
 };
