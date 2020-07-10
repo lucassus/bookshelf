@@ -12,8 +12,8 @@ export const AuthorsPage: React.FunctionComponent = () => {
     return <span>Loading authors...</span>;
   }
 
-  if (error || !data) {
-    return <ErrorAlert message="Could not load authors..." />;
+  if (error) {
+    return <ErrorAlert message={error.message} />;
   }
 
   return (
@@ -21,9 +21,10 @@ export const AuthorsPage: React.FunctionComponent = () => {
       <h2>Authors</h2>
 
       <div className={styles.list}>
-        {data.authors.map((author) => (
-          <AuthorCard key={author.id} author={author} />
-        ))}
+        {data &&
+          data.authors.map((author) => (
+            <AuthorCard key={author.id} author={author} />
+          ))}
       </div>
     </div>
   );
