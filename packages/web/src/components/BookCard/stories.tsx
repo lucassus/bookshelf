@@ -1,11 +1,13 @@
-import { MockedProvider } from "@apollo/client/testing";
+import { ApolloProvider } from "@apollo/client";
 import { withKnobs, text } from "@storybook/addon-knobs";
+import { graphql } from "msw";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
+import { client } from "../../client";
+import { worker } from "../../mocks/browser";
 import { createAuthor, createBook } from "../../testUtils/factories";
 import { BookCard } from "./BookCard";
-import { UpdateBookFavouriteDocument } from "./UpdateBookFavourite.mutation.generated";
 
 export default {
   title: "BookCard",
@@ -13,23 +15,21 @@ export default {
   decorators: [withKnobs]
 };
 
-// TODO: It could handle only one response
-const mocks = [
-  {
-    request: {
-      query: UpdateBookFavouriteDocument,
-      variables: { id: 1, favourite: true }
-    },
-    result: {
-      data: {
+worker.use(
+  graphql.mutation("UpdateBookFavourite", (req, res, ctx) =>
+    res(
+      ctx.data({
         updateBookFavourite: {
+          __typename: "Book",
           id: 1,
           favourite: true
         }
-      }
-    }
-  }
-];
+      })
+    )
+  )
+);
+
+worker.start();
 
 export const Basic = () => {
   const book = createBook({
@@ -43,9 +43,9 @@ export const Basic = () => {
 
   return (
     <MemoryRouter>
-      <MockedProvider mocks={mocks}>
+      <ApolloProvider client={client}>
         <BookCard book={book} />
-      </MockedProvider>
+      </ApolloProvider>
     </MemoryRouter>
   );
 };
