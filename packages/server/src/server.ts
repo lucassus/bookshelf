@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import { Connection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "./config";
@@ -10,10 +10,14 @@ export interface Context {
   connection: Connection;
 }
 
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+
 export const createServer = (connection: Connection) =>
   new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
     context: {
       assetsBaseUrl: ASSETS_BASE_URL,
       connection
