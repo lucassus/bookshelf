@@ -2,12 +2,12 @@ import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
 import { Connection, getConnection } from "typeorm";
 
-import { Author } from "./database/entity/Author";
-import { Book } from "./database/entity/Book";
-import { BookCopy } from "./database/entity/BookCopy";
-import { User } from "./database/entity/User";
-import { secureId } from "./database/helpers";
-import { createServer } from "./server";
+import { Author } from "../src/database/entity/Author";
+import { Book } from "../src/database/entity/Book";
+import { BookCopy } from "../src/database/entity/BookCopy";
+import { User } from "../src/database/entity/User";
+import { secureId } from "../src/database/helpers";
+import { createServer } from "../src/server";
 
 let connection: Connection;
 let server: ApolloServer;
