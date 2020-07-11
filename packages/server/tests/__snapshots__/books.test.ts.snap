@@ -51,6 +51,15 @@ Object {
 }
 `;
 
+exports[`fetches a random book 1`] = `
+Object {
+  "cover": Object {
+    "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher4.jpg",
+  },
+  "title": "The tower of the swallow",
+}
+`;
+
 exports[`fetches books 1`] = `
 Object {
   "books": Array [
@@ -139,5 +148,281 @@ Object {
     },
   ],
   "booksCount": 20,
+}
+`;
+
+exports[`fetches books along with authors and books again 1`] = `
+Object {
+  "books": Array [
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Abaddon's Gate",
+          },
+          Object {
+            "title": "Babylon's Ashes",
+          },
+          Object {
+            "title": "Caliban's War",
+          },
+          Object {
+            "title": "Cibola Burn",
+          },
+          Object {
+            "title": "Leviathan Wakes",
+          },
+          Object {
+            "title": "Nemesis Games",
+          },
+          Object {
+            "title": "Persepolis Rising",
+          },
+          Object {
+            "title": "Tiamat's Wrath",
+          },
+        ],
+        "name": "James S. A. Corey",
+      },
+      "title": "Abaddon's Gate",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Abaddon's Gate",
+          },
+          Object {
+            "title": "Babylon's Ashes",
+          },
+          Object {
+            "title": "Caliban's War",
+          },
+          Object {
+            "title": "Cibola Burn",
+          },
+          Object {
+            "title": "Leviathan Wakes",
+          },
+          Object {
+            "title": "Nemesis Games",
+          },
+          Object {
+            "title": "Persepolis Rising",
+          },
+          Object {
+            "title": "Tiamat's Wrath",
+          },
+        ],
+        "name": "James S. A. Corey",
+      },
+      "title": "Babylon's Ashes",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Baptism of fire",
+          },
+          Object {
+            "title": "Blood of Elves",
+          },
+          Object {
+            "title": "The lady of the lake",
+          },
+          Object {
+            "title": "The tower of the swallow",
+          },
+          Object {
+            "title": "Time of contempt",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "Baptism of fire",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Baptism of fire",
+          },
+          Object {
+            "title": "Blood of Elves",
+          },
+          Object {
+            "title": "The lady of the lake",
+          },
+          Object {
+            "title": "The tower of the swallow",
+          },
+          Object {
+            "title": "Time of contempt",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "Blood of Elves",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Abaddon's Gate",
+          },
+          Object {
+            "title": "Babylon's Ashes",
+          },
+          Object {
+            "title": "Caliban's War",
+          },
+          Object {
+            "title": "Cibola Burn",
+          },
+          Object {
+            "title": "Leviathan Wakes",
+          },
+          Object {
+            "title": "Nemesis Games",
+          },
+          Object {
+            "title": "Persepolis Rising",
+          },
+          Object {
+            "title": "Tiamat's Wrath",
+          },
+        ],
+        "name": "James S. A. Corey",
+      },
+      "title": "Caliban's War",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Abaddon's Gate",
+          },
+          Object {
+            "title": "Babylon's Ashes",
+          },
+          Object {
+            "title": "Caliban's War",
+          },
+          Object {
+            "title": "Cibola Burn",
+          },
+          Object {
+            "title": "Leviathan Wakes",
+          },
+          Object {
+            "title": "Nemesis Games",
+          },
+          Object {
+            "title": "Persepolis Rising",
+          },
+          Object {
+            "title": "Tiamat's Wrath",
+          },
+        ],
+        "name": "James S. A. Corey",
+      },
+      "title": "Cibola Burn",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Chamber of Secrets",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Deathly Hallows",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Harry Potter and the Chamber of Secrets",
+          },
+          Object {
+            "title": "Harry Potter and the Deathly Hallows",
+          },
+          Object {
+            "title": "Harry Potter and the Goblet of Fire",
+          },
+          Object {
+            "title": "Harry Potter and the Half-Blood Prince",
+          },
+          Object {
+            "title": "Harry Potter and the Order of the Phoenix",
+          },
+          Object {
+            "title": "Harry Potter and the Prisoner of Azkaban",
+          },
+          Object {
+            "title": "Harry Potter and the Sorcerer's Stone",
+          },
+        ],
+        "name": "J. K. Rowling",
+      },
+      "title": "Harry Potter and the Goblet of Fire",
+    },
+  ],
+}
+`;
+
+exports[`updates book favourite 1`] = `
+Object {
+  "favourite": true,
+  "id": "MS1Cb29r",
+  "title": "Harry Potter and the Sorcerer's Stone",
 }
 `;
