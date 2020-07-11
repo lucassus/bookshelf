@@ -1,0 +1,6 @@
+type BookCopy {
+  id: ID!
+  owner: User!
+  book: Book!
+  borrower: User
+}

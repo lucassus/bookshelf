@@ -1,0 +1,14 @@
+type User {
+  id: ID!
+  name: String!
+  info: String
+  email: String!
+  avatar: Avatar!
+  ownedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]!
+}
+
+type Avatar {
+  image: Image!
+  color: String!
+}

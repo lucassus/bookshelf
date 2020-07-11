@@ -1,0 +1,13 @@
+type Book {
+  id: ID!
+  title: String!
+  description: String
+  cover: Image!
+  favourite: Boolean!
+  author: Author
+  copies: [BookCopy!]!
+}
+
+type Image {
+  url: String!
+}

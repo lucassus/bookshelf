@@ -1,0 +1,25 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  authors: [Author!]!
+  author(id: ID!): Author!
+
+  booksCount: Int!
+  books(offset: Int = 0, limit: Int = 9): [Book!]!
+  book(id: ID!): Book!
+  randomBook: Book!
+
+  users: [User!]!
+  user(id: ID!): User!
+
+  anything(id: ID!): Anything!
+}
+
+type Mutation {
+  updateBookFavourite(id: ID!, favourite: Boolean): Book!
+}
+
+union Anything = Author | Book | User | BookCopy
