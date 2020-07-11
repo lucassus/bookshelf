@@ -13,12 +13,9 @@ export interface Context {
   connection: Connection;
 }
 
-const schema = loadSchemaSync(
-  path.join(__dirname, "./graphql/schema.graphql"),
-  {
-    loaders: [new GraphQLFileLoader()]
-  }
-);
+const schema = loadSchemaSync(path.join(__dirname, "./graphql/*.graphql"), {
+  loaders: [new GraphQLFileLoader()]
+});
 
 const schemaWithResolvers = addResolversToSchema({
   schema,
