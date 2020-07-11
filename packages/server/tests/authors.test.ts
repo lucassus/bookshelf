@@ -1,15 +1,14 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { Connection, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 
 import { secureId } from "../src/database/helpers";
 import { createServer } from "../src/server";
 
-let connection: Connection;
 let server: ApolloServer;
 
 beforeEach(async () => {
-  connection = getConnection();
+  const connection = getConnection();
   server = createServer(connection);
 });
 
