@@ -1277,12 +1277,12 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@graphql-codegen/add@1.16.3":
-  version "1.16.3"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-1.16.3.tgz#4b94d66646d4e4e1b5cad17119430423b7d31a11"
-  integrity sha512-UDJWHrBDifZ93pV/SaWf5L2gGKHE7/tLWQNHaT9iYmh7Fcel2XNyIJbwSQIOJQqrChzyUAqYBqrFOumXA9ipmQ==
+"@graphql-codegen/add@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-1.17.0.tgz#7b91f18b9ec1a7afb15b2fc5e26fd2d420fd2655"
+  integrity sha512-vxZfgUKNBPwd/TrZqSvo7t5Lq9bXtCInaj+MOly4E/omHBNRJ6Yf/EvDqN/OYvYnk6JApp5M/OFGAg9v5bapig==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.16.3"
+    "@graphql-codegen/plugin-helpers" "1.17.0"
     tslib "~2.0.0"
 
 "@graphql-codegen/cli@1.16.3":
@@ -1352,14 +1352,14 @@
     "@graphql-codegen/plugin-helpers" "1.16.3"
     tslib "~2.0.0"
 
-"@graphql-codegen/near-operation-file-preset@1.16.3":
-  version "1.16.3"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.16.3.tgz#1fbca6c91725d2cc4260780b62a6e5119f8da13e"
-  integrity sha512-5Co5I8VEr6bD7e8M+/c+gPk8LFS7oebHhsUkDTmrYPoF2rGvEWev6rmeXTyLpVXcEV1jYUDuEXP4NOirmxS5Mg==
+"@graphql-codegen/near-operation-file-preset@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.17.0.tgz#8006b2ef6649d1b089b534091034c38728d67bd5"
+  integrity sha512-qXP+hLM9uDl8PCuP0/dy+Y5fTnODBzevITKVNyUsL6g1H6XSQONesR9yZhlA8fuusQp3BUcHkUnx0wGS+U1EVg==
   dependencies:
-    "@graphql-codegen/add" "1.16.3"
-    "@graphql-codegen/plugin-helpers" "1.16.3"
-    "@graphql-codegen/visitor-plugin-common" "1.16.3"
+    "@graphql-codegen/add" "1.17.0"
+    "@graphql-codegen/plugin-helpers" "1.17.0"
+    "@graphql-codegen/visitor-plugin-common" "1.17.0"
     parse-filepath "1.0.2"
     tslib "~2.0.0"
 
@@ -1367,6 +1367,22 @@
   version "1.16.3"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.16.3.tgz#84ce27449d454eeeb90f0040d6c8d2fd3fad967b"
   integrity sha512-uhDOdY4KVtTGjnv8Ivr9C4OOcSIiD1cYsqFDll0Vv6F21/KM7N+zIMbHutnJ6BKWOJKzsn0DBBX0TNBJ32HCRA==
+  dependencies:
+    "@graphql-tools/utils" "^6.0.0"
+    camel-case "4.1.1"
+    common-tags "1.8.0"
+    constant-case "3.0.3"
+    import-from "3.0.0"
+    lower-case "2.0.1"
+    param-case "3.0.3"
+    pascal-case "3.1.1"
+    tslib "~2.0.0"
+    upper-case "2.0.1"
+
+"@graphql-codegen/plugin-helpers@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.17.0.tgz#8c244fdcb2d14d5a50b5d962566845e262ac9c4b"
+  integrity sha512-vEZSXklrJYxPrXaFCdFP1bnv999kKdi+StnDjLGOpfXW1/JxsmN1q64DZJCZBXqV0I54dCrgcYWXPH0Ysdwb0w==
   dependencies:
     "@graphql-tools/utils" "^6.0.0"
     camel-case "4.1.1"
@@ -1423,6 +1439,21 @@
     auto-bind "~4.0.0"
     dependency-graph "0.9.0"
     graphql-tag "2.10.3"
+    parse-filepath "1.0.2"
+    pascal-case "3.1.1"
+    tslib "~2.0.0"
+
+"@graphql-codegen/visitor-plugin-common@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.17.0.tgz#a6237c47d45318c8a7a79ed43556b0e282e95f96"
+  integrity sha512-uX2Smv89aaD3P5BpVbuuwfPJMKRfgZam7kV9iDhHAb4XsrzEsG70a+cbPWPzd8Q11fvZAKn98L1XatkX8BRSxg==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.17.0"
+    "@graphql-tools/relay-operation-optimizer" "6.0.12"
+    array.prototype.flatmap "1.2.3"
+    auto-bind "~4.0.0"
+    dependency-graph "0.9.0"
+    graphql-tag "2.10.4"
     parse-filepath "1.0.2"
     pascal-case "3.1.1"
     tslib "~2.0.0"
@@ -7718,7 +7749,7 @@ graphql-tag@2.10.3, graphql-tag@^2.9.2:
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.3.tgz#ea1baba5eb8fc6339e4c4cf049dabe522b0edf03"
   integrity sha512-4FOv3ZKfA4WdOKJeHdz6B3F/vxBLSgmBcGeAFPf4n1F64ltJUvOOerNj0rsJxONQGdhUMynQIvd6LzB+1J5oKA==
 
-graphql-tag@^2.10.4:
+graphql-tag@2.10.4, graphql-tag@^2.10.4:
   version "2.10.4"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.4.tgz#2f301a98219be8b178a6453bb7e33b79b66d8f83"
   integrity sha512-O7vG5BT3w6Sotc26ybcvLKNTdfr4GfsIVMD+LdYqXCeJIYPRyp8BIsDOUtxw7S1PYvRw5vH3278J2EDezR6mfA==
