@@ -11,6 +11,8 @@ const batchLoadAuthors: DataLoader.BatchLoadFn<number, Author> = async (
     ids as number[]
   );
 
+  // TODO: Or use a map?
+
   return ids.map(
     (id) =>
       authors.find((author) => author.id === id) ||

@@ -7,7 +7,7 @@ import { Book } from "../database/entity/Book";
 import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 import { secureId } from "../database/helpers";
-import { Context } from "../server";
+import { ResolverMap } from "../types";
 
 interface Image {
   path: string;
@@ -33,41 +33,39 @@ const findAnythingOrFail = (
   return connection.manager.findOneOrFail(map[type], id);
 };
 
-export const resolvers = {
-  // TODO: Figure out how to type the args
+export const resolvers: ResolverMap = {
   Query: {
-    booksCount: (rootValue: any, args: any, { connection }: Context) =>
+    booksCount: (rootValue, args, { connection }) =>
       connection.manager.count(Book),
 
     books: (
-      rootValue: any,
+      rootValue,
       args: { limit: number; offset: number },
-      { connection }: Context
+      { connection }
     ) =>
       connection.manager.find(Book, {
         take: args.limit,
         skip: args.offset
       }),
 
-    book: (rootValue: any, args: { id: string }, { connection }: Context) =>
+    book: (rootValue, args: { id: string }, { connection }) =>
       connection.manager.findOneOrFail(Book, secureId.toInternal(args.id)),
 
-    randomBook: (rootValue: any, args: any, { connection }: Context) =>
+    randomBook: (rootValue, args, { connection }) =>
       connection.getCustomRepository(BookRepository).findRandom(),
 
-    authors: (rootValue: any, args: any, { connection }: Context) =>
+    authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
-    author: (rootValue: any, args: { id: string }, { connection }: Context) =>
+    author: (rootValue, args: { id: string }, { connection }) =>
       connection.manager.findOneOrFail(Author, secureId.toInternal(args.id)),
 
-    users: (rootValue: any, args: any, { connection }: Context) =>
-      connection.manager.find(User),
+    users: (rootValue, args, { connection }) => connection.manager.find(User),
 
-    user: (rootValue: any, args: { id: string }, { connection }: Context) =>
+    user: (rootValue, args: { id: string }, { connection }) =>
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id)),
 
-    anything: (rootValue: any, args: { id: string }, { connection }: Context) =>
+    anything: (rootValue, args: { id: string }, { connection }) =>
       findAnythingOrFail(args.id, connection)
   },
 
@@ -76,7 +74,7 @@ export const resolvers = {
     cover: (book: Book): Image => ({
       path: book.coverPath
     }),
-    author: (book: Book, args: any, { authorsLoader }: Context) =>
+    author: (book: Book, args, { authorsLoader }) =>
       authorsLoader.load(book.authorId)
   },
 
@@ -98,8 +96,7 @@ export const resolvers = {
   },
 
   Image: {
-    url: (image: Image, args: any, { assetsBaseUrl }: Context) =>
-      assetsBaseUrl + image.path
+    url: (image: Image, args, { assetsBaseUrl }) => assetsBaseUrl + image.path
   },
 
   Anything: {
@@ -113,9 +110,9 @@ export const resolvers = {
 
   Mutation: {
     updateBookFavourite: async (
-      rootValue: any,
+      rootValue,
       args: { id: string; favourite: boolean },
-      { connection }: Context
+      { connection }
     ) => {
       const book = await connection.manager.findOneOrFail(
         Book,

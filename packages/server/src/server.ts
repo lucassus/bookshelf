@@ -8,12 +8,7 @@ import { Connection } from "typeorm";
 import { ASSETS_BASE_URL } from "./config";
 import { buildAuthorsLoader } from "./database/authorsLoader";
 import { resolvers } from "./graphql/resolvers";
-
-export interface Context {
-  assetsBaseUrl: string;
-  connection: Connection;
-  authorsLoader: ReturnType<typeof buildAuthorsLoader>;
-}
+import { Context } from "./types";
 
 const schema = loadSchemaSync(path.join(__dirname, "./graphql/*.graphql"), {
   loaders: [new GraphQLFileLoader()]
