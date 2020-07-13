@@ -114,13 +114,15 @@ export const resolvers: ResolverMap = {
       args: { id: string; favourite: boolean },
       { connection }
     ) => {
-      const book = await connection.manager.findOneOrFail(
-        Book,
-        secureId.toInternal(args.id)
-      );
-      book.favourite = args.favourite;
+      const id = secureId.toInternal(args.id);
 
-      return connection.manager.save(book);
+      await connection.manager.update(
+        Book,
+        { id },
+        { favourite: args.favourite }
+      );
+
+      return connection.manager.findOneOrFail(Book, id);
     }
   }
 };
