@@ -1,9 +1,9 @@
 import { getConnection } from "typeorm";
 
-import { Author } from "../database/entity/Author";
-import { Book } from "../database/entity/Book";
-import { BookCopy } from "../database/entity/BookCopy";
-import { User } from "../database/entity/User";
+import { Author } from "./database/entity/Author";
+import { Book } from "./database/entity/Book";
+import { BookCopy } from "./database/entity/BookCopy";
+import { User } from "./database/entity/User";
 
 function loadAuthors() {
   const { manager } = getConnection();
