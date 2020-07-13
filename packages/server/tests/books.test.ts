@@ -1,18 +1,16 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { Connection, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 
 import { Author } from "../src/database/entity/Author";
 import { Book } from "../src/database/entity/Book";
 import { secureId } from "../src/database/helpers";
 import { createServer } from "../src/server";
 
-let connection: Connection;
 let server: ApolloServer;
 
 beforeEach(async () => {
-  connection = getConnection();
-  server = createServer(connection);
+  server = createServer(getConnection());
 });
 
 it("fetches books", async () => {
@@ -53,7 +51,7 @@ it("fetches books", async () => {
 it("fetches a book", async () => {
   // Given
   const { query } = createTestClient(server);
-  const book = await connection.manager.findOneOrFail(Book, {
+  const book = await getConnection().manager.findOneOrFail(Book, {
     title: "Blood of Elves"
   });
 
@@ -89,7 +87,7 @@ it("fetches a book", async () => {
 it("fetches a book 2", async () => {
   // Given
   const { query } = createTestClient(server);
-  const book = await connection.manager.findOneOrFail(Book, {
+  const book = await getConnection().manager.findOneOrFail(Book, {
     title: "The lady of the lake"
   });
 
@@ -174,6 +172,8 @@ it("fetches books along with authors and books again", async () => {
 
 it("fetches a random book", async () => {
   // Given
+  const connection = getConnection();
+
   await connection.createQueryBuilder().delete().from(Book).execute();
   const author = await connection.manager.findOneOrFail(Author, {
     name: "Andrzej Sapkowski"
@@ -207,7 +207,7 @@ it("fetches a random book", async () => {
 
 it("updates book favourite", async () => {
   // Given
-  const book = await connection.manager.findOneOrFail(Book, 1);
+  const book = await getConnection().manager.findOneOrFail(Book, 1);
   expect(book.favourite).toBe(false);
 
   const { mutate } = createTestClient(server);
@@ -230,6 +230,6 @@ it("updates book favourite", async () => {
   expect(res.data).not.toBeUndefined();
   expect(res.data!.updateBookFavourite).toMatchSnapshot();
 
-  const updatedBook = await connection.manager.findOneOrFail(Book, 1);
+  const updatedBook = await getConnection().manager.findOneOrFail(Book, 1);
   expect(updatedBook.favourite).toBe(true);
 });

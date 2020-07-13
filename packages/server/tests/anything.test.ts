@@ -1,17 +1,15 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { Connection, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 
 import { BookCopy } from "../src/database/entity/BookCopy";
 import { secureId } from "../src/database/helpers";
 import { createServer } from "../src/server";
 
-let connection: Connection;
 let server: ApolloServer;
 
 beforeEach(async () => {
-  connection = getConnection();
-  server = createServer(connection);
+  server = createServer(getConnection());
 });
 
 describe("fetching anything", () => {
@@ -106,7 +104,7 @@ describe("fetching anything", () => {
   it("fetches BookCopy", async () => {
     // Given
     const { query } = createTestClient(server);
-    const bookCopy = await connection.manager.findOne(BookCopy, {
+    const bookCopy = await getConnection().manager.findOne(BookCopy, {
       order: { id: "ASC" }
     });
 

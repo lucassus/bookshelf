@@ -8,8 +8,7 @@ import { createServer } from "../src/server";
 let server: ApolloServer;
 
 beforeEach(async () => {
-  const connection = getConnection();
-  server = createServer(connection);
+  server = createServer(getConnection());
 });
 
 it("fetches an author", async () => {

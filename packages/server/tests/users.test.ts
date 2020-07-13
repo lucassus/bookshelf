@@ -1,17 +1,15 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { Connection, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 
 import { User } from "../src/database/entity/User";
 import { secureId } from "../src/database/helpers";
 import { createServer } from "../src/server";
 
-let connection: Connection;
 let server: ApolloServer;
 
 beforeEach(async () => {
-  connection = getConnection();
-  server = createServer(connection);
+  server = createServer(getConnection());
 });
 
 it("fetches users", async () => {
@@ -43,7 +41,9 @@ it("fetches users", async () => {
 
 it("fetches a user", async () => {
   const { query } = createTestClient(server);
-  const user = await connection.manager.findOneOrFail(User, { name: "Bob" });
+  const user = await getConnection().manager.findOneOrFail(User, {
+    name: "Bob"
+  });
 
   // When
   const res = await query({

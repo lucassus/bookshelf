@@ -1,6 +1,6 @@
 import { Connection } from "typeorm";
 
-import { createConnection } from "../database/createConnection";
+import { createConnection } from "./database/createConnection";
 import { loadFixtures } from "./fixtures";
 
 let connection: Connection;
