@@ -419,6 +419,86 @@ Object {
 }
 `;
 
+exports[`fetches books with authors 1`] = `
+Object {
+  "books": Array [
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "James S. A. Corey",
+      },
+      "id": "MTAtQm9vaw==",
+      "title": "Abaddon's Gate",
+    },
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "James S. A. Corey",
+      },
+      "id": "MTMtQm9vaw==",
+      "title": "Babylon's Ashes",
+    },
+    Object {
+      "author": Object {
+        "id": "My1BdXRob3I=",
+        "name": "Andrzej Sapkowski",
+      },
+      "id": "MTgtQm9vaw==",
+      "title": "Baptism of fire",
+    },
+    Object {
+      "author": Object {
+        "id": "My1BdXRob3I=",
+        "name": "Andrzej Sapkowski",
+      },
+      "id": "MTYtQm9vaw==",
+      "title": "Blood of Elves",
+    },
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "James S. A. Corey",
+      },
+      "id": "OS1Cb29r",
+      "title": "Caliban's War",
+    },
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "James S. A. Corey",
+      },
+      "id": "MTEtQm9vaw==",
+      "title": "Cibola Burn",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "J. K. Rowling",
+      },
+      "id": "Mi1Cb29r",
+      "title": "Harry Potter and the Chamber of Secrets",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "J. K. Rowling",
+      },
+      "id": "Ny1Cb29r",
+      "title": "Harry Potter and the Deathly Hallows",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "J. K. Rowling",
+      },
+      "id": "NC1Cb29r",
+      "title": "Harry Potter and the Goblet of Fire",
+    },
+  ],
+  "booksCount": 20,
+}
+`;
+
 exports[`updates book favourite 1`] = `
 Object {
   "favourite": true,

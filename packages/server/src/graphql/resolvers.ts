@@ -39,7 +39,6 @@ export const resolvers = {
     booksCount: (rootValue: any, args: any, { connection }: Context) =>
       connection.manager.count(Book),
 
-    // TODO: It produces quite a lot of n+1 queries
     books: (
       rootValue: any,
       args: { limit: number; offset: number },
@@ -77,7 +76,9 @@ export const resolvers = {
     id: (book: Book) => secureId.toExternal(book.id, "Book"),
     cover: (book: Book): Image => ({
       path: book.coverPath
-    })
+    }),
+    // TODO: It produces quite a lot of n+1 queries
+    author: (book: Book) => book.author
   },
 
   Author: {
