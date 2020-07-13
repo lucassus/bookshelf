@@ -1,5 +1,4 @@
-import DataLoader from "dataloader";
-import { Connection, getConnection, ObjectType } from "typeorm";
+import { Connection, ObjectType } from "typeorm";
 
 import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
@@ -34,23 +33,6 @@ const findAnythingOrFail = (
   return connection.manager.findOneOrFail(map[type], id);
 };
 
-const authorLoader = new DataLoader<number, Author>(async (keys) => {
-  const authors = await getConnection().manager.findByIds(
-    Author,
-    keys as number[]
-  );
-
-  const byId: Record<number, Author> = authors.reduce(
-    (result, author) => ({
-      ...result,
-      [author.id]: author
-    }),
-    {}
-  );
-
-  return keys.map((authorId) => byId[authorId]);
-});
-
 export const resolvers = {
   // TODO: Figure out how to type the args
   Query: {
@@ -64,8 +46,7 @@ export const resolvers = {
     ) =>
       connection.manager.find(Book, {
         take: args.limit,
-        skip: args.offset,
-        relations: ["author"]
+        skip: args.offset
       }),
 
     book: (rootValue: any, args: { id: string }, { connection }: Context) =>
@@ -95,7 +76,8 @@ export const resolvers = {
     cover: (book: Book): Image => ({
       path: book.coverPath
     }),
-    author: (book: Book) => authorLoader.load(book.authorId)
+    author: (book: Book, args: any, { authorsLoader }: Context) =>
+      authorsLoader.load(book.authorId)
   },
 
   Author: {
