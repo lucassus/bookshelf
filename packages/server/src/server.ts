@@ -30,7 +30,6 @@ export const createServer = (connection: Connection) =>
     context: (): Context => ({
       assetsBaseUrl: ASSETS_BASE_URL,
       connection,
-      // TODO: Learn more about this pattern
       authorsLoader: buildAuthorsLoader()
     }),
     introspection: true,
