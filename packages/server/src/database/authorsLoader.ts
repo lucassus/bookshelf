@@ -3,6 +3,15 @@ import { getConnection } from "typeorm";
 
 import { Author } from "./entity/Author";
 
+const normalize = <U extends { id: number }>(rows: U[]): Record<number, U> =>
+  rows.reduce<Record<number, U>>(
+    (result, row) => ({
+      ...result,
+      [row.id]: row
+    }),
+    {}
+  );
+
 const batchLoadAuthors: DataLoader.BatchLoadFn<number, Author> = async (
   ids
 ) => {
@@ -11,13 +20,9 @@ const batchLoadAuthors: DataLoader.BatchLoadFn<number, Author> = async (
     ids as number[]
   );
 
-  // TODO: Or use a map?
+  const byId = normalize<Author>(authors);
 
-  return ids.map(
-    (id) =>
-      authors.find((author) => author.id === id) ||
-      new Error(`Row not found: ${id}`)
-  );
+  return ids.map((id) => byId[id]);
 };
 
 export const buildAuthorsLoader = () =>
