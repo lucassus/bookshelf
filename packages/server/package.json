@@ -7,6 +7,7 @@
     "@graphql-tools/load": "6.0.12",
     "@graphql-tools/schema": "6.0.12",
     "apollo-server-express": "2.15.1",
+    "dataloader": "2.0.0",
     "express": "4.17.1",
     "graphql": "15.3.0",
     "pg": "8.3.0",

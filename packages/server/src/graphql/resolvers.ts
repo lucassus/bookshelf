@@ -1,4 +1,5 @@
-import { Connection, ObjectType } from "typeorm";
+import DataLoader from "dataloader";
+import { Connection, getConnection, ObjectType } from "typeorm";
 
 import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
@@ -32,6 +33,23 @@ const findAnythingOrFail = (
 
   return connection.manager.findOneOrFail(map[type], id);
 };
+
+const authorLoader = new DataLoader<number, Author>(async (keys) => {
+  const authors = await getConnection().manager.findByIds(
+    Author,
+    keys as number[]
+  );
+
+  const byId: Record<number, Author> = authors.reduce(
+    (result, author) => ({
+      ...result,
+      [author.id]: author
+    }),
+    {}
+  );
+
+  return keys.map((authorId) => byId[authorId]);
+});
 
 export const resolvers = {
   // TODO: Figure out how to type the args
@@ -77,8 +95,7 @@ export const resolvers = {
     cover: (book: Book): Image => ({
       path: book.coverPath
     }),
-    // TODO: It produces quite a lot of n+1 queries
-    author: (book: Book) => book.author
+    author: (book: Book) => authorLoader.load(book.authorId)
   },
 
   Author: {
