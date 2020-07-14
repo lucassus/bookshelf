@@ -2,15 +2,7 @@ import DataLoader from "dataloader";
 import { getConnection } from "typeorm";
 
 import { Author } from "./entity/Author";
-
-const normalize = <U extends { id: number }>(rows: U[]) =>
-  rows.reduce<Record<number, U>>(
-    (result, row) => ({
-      ...result,
-      [row.id]: row
-    }),
-    {}
-  );
+import { normalize } from "./normalize";
 
 const batchLoadAuthors: DataLoader.BatchLoadFn<number, Author> = async (
   ids
