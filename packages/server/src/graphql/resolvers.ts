@@ -1,37 +1,16 @@
-import { Connection, ObjectType } from "typeorm";
-
 import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
+import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
 import { ResolverMap } from "../types";
 
 interface Image {
   path: string;
 }
-
-const findAnythingOrFail = (
-  externalId: string,
-  connection: Connection
-): Promise<Author | Book | User | BookCopy> => {
-  const [id, type] = secureId.toInternalAndType(externalId);
-
-  const map: Record<string, ObjectType<Author | Book | User | BookCopy>> = {
-    Author,
-    Book,
-    User,
-    BookCopy
-  };
-
-  if (!map[type]) {
-    throw Error(`Unknown type: ${type}`);
-  }
-
-  return connection.manager.findOneOrFail(map[type], id);
-};
 
 export const resolvers: ResolverMap = {
   Query: {
@@ -57,8 +36,8 @@ export const resolvers: ResolverMap = {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
-    author: (rootValue, args: { id: string }, { connection }) =>
-      connection.manager.findOneOrFail(Author, secureId.toInternal(args.id)),
+    author: (rootValue, args: { id: string }, { authorsLoader }) =>
+      authorsLoader.load(secureId.toInternal(args.id)),
 
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
