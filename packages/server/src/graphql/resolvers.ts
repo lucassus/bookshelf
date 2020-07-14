@@ -57,8 +57,9 @@ export const resolvers: ResolverMap = {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
-    author: (rootValue, args: { id: string }, { connection }) =>
-      connection.manager.findOneOrFail(Author, secureId.toInternal(args.id)),
+    author: (rootValue, args: { id: string }, { authorsLoader }) =>
+      // TODO: Find better typings
+      authorsLoader.load(Number(secureId.toInternal(args.id))),
 
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
