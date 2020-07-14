@@ -48,6 +48,32 @@ it("fetches books", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
+it("fetches books with authors", async () => {
+  // Given
+  const { query } = createTestClient(server);
+
+  // When
+  const res = await query({
+    query: gql`
+      query {
+        booksCount
+        books {
+          id
+          title
+          author {
+            id
+            name
+          }
+        }
+      }
+    `
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+});
+
 it("fetches a book", async () => {
   // Given
   const { query } = createTestClient(server);

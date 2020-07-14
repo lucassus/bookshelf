@@ -19,8 +19,7 @@ const cache = new InMemoryCache({
 
 const client = new ApolloClient({
   cache,
-  link: new HttpLink({ uri: GRAPHQL_ENDPOINT }),
-  queryDeduplication: false
+  link: new HttpLink({ uri: GRAPHQL_ENDPOINT })
 });
 
 ReactDOM.render(
