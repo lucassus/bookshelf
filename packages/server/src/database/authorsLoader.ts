@@ -3,7 +3,7 @@ import { getConnection } from "typeorm";
 
 import { Author } from "./entity/Author";
 
-const normalize = <U extends { id: number }>(rows: U[]): Record<number, U> =>
+const normalize = <U extends { id: number }>(rows: U[]) =>
   rows.reduce<Record<number, U>>(
     (result, row) => ({
       ...result,
