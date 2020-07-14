@@ -4,9 +4,10 @@ import { getConnection } from "typeorm";
 import { Author } from "./entity/Author";
 import { normalize } from "./normalize";
 
-const batchLoadAuthors: DataLoader.BatchLoadFn<number, Author> = async (
-  ids
-) => {
+const batchLoadAuthors: DataLoader.BatchLoadFn<
+  string | number,
+  Author
+> = async (ids) => {
   const authors = await getConnection().manager.findByIds(
     Author,
     ids as number[]
@@ -18,4 +19,4 @@ const batchLoadAuthors: DataLoader.BatchLoadFn<number, Author> = async (
 };
 
 export const buildAuthorsLoader = () =>
-  new DataLoader<number, Author>(batchLoadAuthors);
+  new DataLoader<string | number, Author>(batchLoadAuthors);
