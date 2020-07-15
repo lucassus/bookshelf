@@ -1,4 +1,3 @@
-import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
@@ -6,6 +5,8 @@ import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
+import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
+import { BookRepository } from "../database/repositories/BookRepository";
 import { ResolverMap } from "../types";
 
 interface Image {
@@ -88,6 +89,19 @@ export const resolvers: ResolverMap = {
   },
 
   Mutation: {
+    borrowBookCopy: async (rootValue, args: { id: string }, { connection }) => {
+      const id = secureId.toInternal(args.id);
+
+      // TODO: Refactor
+      const user = await connection.manager.findOneOrFail(User, {
+        name: "Bob"
+      });
+
+      return connection.manager
+        .getCustomRepository(BookCopyRepository)
+        .borrow(id, user.id);
+    },
+
     updateBookFavourite: async (
       rootValue,
       args: { id: string; favourite: boolean },

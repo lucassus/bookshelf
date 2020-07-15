@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`borrow book copy 1`] = `
+Object {
+  "book": Object {
+    "id": "MjAtQm9vaw==",
+    "title": "The lady of the lake",
+  },
+  "borrower": Object {
+    "id": "Mi1Vc2Vy",
+    "name": "Bob",
+  },
+  "id": "Mi1Cb29rQ29weQ==",
+}
+`;

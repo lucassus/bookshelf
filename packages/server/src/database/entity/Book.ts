@@ -36,6 +36,7 @@ export class Book {
   @OneToMany(() => BookCopy, (bookCopy) => bookCopy.book)
   copies: Promise<BookCopy[]>;
 
+  // TODO: Add a proper relation
   @Column({ default: false })
   favourite: boolean;
 

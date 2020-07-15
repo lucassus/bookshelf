@@ -19,6 +19,7 @@ type Query {
 }
 
 type Mutation {
+  borrowBookCopy(id: ID!): BookCopy!
   updateBookFavourite(id: ID!, favourite: Boolean): Book!
 }
 
