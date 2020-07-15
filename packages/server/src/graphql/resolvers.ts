@@ -109,13 +109,9 @@ export const resolvers: ResolverMap = {
     ) => {
       const id = secureId.toInternal(args.id);
 
-      await connection.manager.update(
-        Book,
-        { id },
-        { favourite: args.favourite }
-      );
-
-      return connection.manager.findOneOrFail(Book, id);
+      return connection.manager
+        .getCustomRepository(BookRepository)
+        .updateFavourite(id, args.favourite);
     }
   }
 };

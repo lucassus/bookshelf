@@ -11,4 +11,11 @@ export class BookRepository extends AbstractRepository<Book> {
       .limit(1)
       .getOne();
   }
+
+  async updateFavourite(id: string | number, favourite: boolean) {
+    const book = await this.manager.findOneOrFail(Book, id);
+
+    book.favourite = favourite;
+    return this.manager.save(book);
+  }
 }
