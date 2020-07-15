@@ -89,17 +89,16 @@ export const resolvers: ResolverMap = {
   },
 
   Mutation: {
-    borrowBookCopy: async (rootValue, args: { id: string }, { connection }) => {
+    borrowBookCopy: (
+      rootValue,
+      args: { id: string },
+      { connection, currentUserId }
+    ) => {
       const id = secureId.toInternal(args.id);
-
-      // TODO: Refactor
-      const user = await connection.manager.findOneOrFail(User, {
-        name: "Bob"
-      });
 
       return connection.manager
         .getCustomRepository(BookCopyRepository)
-        .borrow(id, user.id);
+        .borrow(id, currentUserId);
     },
 
     updateBookFavourite: async (

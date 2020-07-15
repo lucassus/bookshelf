@@ -25,7 +25,8 @@ export const createServer = (connection: Connection) =>
     context: (): Context => ({
       assetsBaseUrl: ASSETS_BASE_URL,
       connection,
-      authorsLoader: buildAuthorsLoader()
+      authorsLoader: buildAuthorsLoader(),
+      currentUserId: 1
     }),
     introspection: true,
     playground: true

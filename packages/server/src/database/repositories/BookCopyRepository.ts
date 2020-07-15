@@ -2,16 +2,21 @@ import { AbstractRepository, EntityRepository } from "typeorm";
 
 import { BookCopy } from "../entity/BookCopy";
 
+// TODO: Write unit test for this repository
 @EntityRepository(BookCopy)
 export class BookCopyRepository extends AbstractRepository<BookCopy> {
-  async borrow(id: string | number, userId: number) {
+  async borrow(id: string | number, borrowerId: number) {
     const bookCopy = await this.repository.findOneOrFail(id);
+
+    if (bookCopy.ownerId === borrowerId) {
+      throw new Error("Cannot borrow own book.");
+    }
 
     if (bookCopy.borrowerId) {
       throw new Error("Cannot borrow this book copy. It is already borrowed.");
     }
 
-    bookCopy.borrowerId = userId;
+    bookCopy.borrowerId = borrowerId;
     return this.repository.save(bookCopy);
   }
 }
