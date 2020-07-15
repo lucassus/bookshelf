@@ -12,7 +12,7 @@
     "typeface-roboto": "0.0.75"
   },
   "devDependencies": {
-    "@babel/core": "7.10.4",
+    "@babel/core": "7.10.5",
     "@graphql-codegen/cli": "1.17.0",
     "@graphql-codegen/introspection": "1.17.0",
     "@graphql-codegen/near-operation-file-preset": "1.17.0",
