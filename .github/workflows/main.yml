@@ -21,6 +21,9 @@ jobs:
     - name: Type Check
       run: yarn typecheck
 
+    - name: Build
+      run: yarn build
+
     - name: Lint
       run: yarn lint
 
@@ -31,9 +34,6 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-
-    - name: Build
-      run: yarn build
 
     - name: Build storybbok
       run: yarn workspace @bookshelf/web storybook:build
