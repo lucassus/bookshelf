@@ -9,11 +9,10 @@ import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-beforeAll(() => {
+beforeEach(async () => {
+  await loadFixtures();
   server = createServer(getConnection());
 });
-
-beforeEach(() => loadFixtures());
 
 describe("fetching anything", () => {
   const GetAnythingQuery = gql`

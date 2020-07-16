@@ -8,11 +8,10 @@ import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-beforeAll(() => {
+beforeEach(async () => {
+  await loadFixtures();
   server = createServer(getConnection());
 });
-
-beforeEach(() => loadFixtures());
 
 it("fetches an author", async () => {
   const { query } = createTestClient(server);
