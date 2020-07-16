@@ -1,0 +1,17 @@
+{
+  "name": "@bookshelf/secure-id",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "build": "yarn clean && yarn compile",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint . --ext .ts"
+  }
+}

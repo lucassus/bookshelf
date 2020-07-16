@@ -54,7 +54,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "codegen": "graphql-codegen --config codegen.yml",
-    "build": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
+    "compile": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
+    "build": "yarn codegen && yarn compile",
     "dev-server": "webpack-dev-server --mode development",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'yarn dev-server'",
     "test": "jest",
