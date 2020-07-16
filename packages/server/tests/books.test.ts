@@ -156,13 +156,21 @@ it("fetches a book with details", async () => {
   });
 
   const GetBookWithDetailsQuery = gql`
-    query GetBookWithDetails($id: ID!, $includeDetails: Boolean!) {
+    query GetBookWithDetails(
+      $id: ID!
+      $includeDetails: Boolean!
+      $hideCover: Boolean = true
+    ) {
       book(id: $id) {
         id
         title
         description @include(if: $includeDetails)
         author @include(if: $includeDetails) {
           name
+        }
+
+        cover @skip(if: $hideCover) {
+          url
         }
       }
     }
@@ -173,7 +181,8 @@ it("fetches a book with details", async () => {
     query: GetBookWithDetailsQuery,
     variables: {
       id: secureId.toExternal(book.id, "Book"),
-      includeDetails: true
+      includeDetails: true,
+      hideCover: false
     }
   });
 
