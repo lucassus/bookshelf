@@ -22,8 +22,8 @@ jobs:
     - name: Install packages
       run: yarn install
 
-    - name: Generate GrapQL components
-      run: yarn web codegen
+    - name: Generate GrapQL web components
+      run: yarn workspace @bookshelf/web codegen
 
     - name: Type Check
       run: yarn typecheck
@@ -39,15 +39,8 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-    ## Server
-
-    - name: Build server
-      run: yarn server build
-
-    ## Web
+    - name: Build
+      run: yarn build
 
     - name: Build storybbok
-      run: yarn web storybook:build
-
-    - name: Build web app
-      run: yarn web build
+      run: yarn workspace @bookshelf/web storybook:build
