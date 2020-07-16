@@ -1,31 +1,59 @@
-import { getConnection } from "typeorm";
+import { getCustomRepository, getManager } from "typeorm";
 
-import { Avatar } from "../entity/Avatar";
-import { createAuthor, createBook, createUser } from "../factories";
+import { BookCopy } from "../entity/BookCopy";
+import { User } from "../entity/User";
+import { createBookCopy, createUser } from "../factories";
+import { BookCopyRepository } from "./BookCopyRepository";
 
 describe("BookCopyRepository", () => {
-  test(".borrow", async () => {
-    const connection = getConnection();
+  describe(".borrow", () => {
+    let borrower: User;
+    let bookCopy: BookCopy;
 
-    const book = await createBook({
-      title: "Baptism of fire",
-      coverPath: "/images/book-covers/witcher3.jpg"
-    });
-    console.log({ book });
+    beforeEach(async () => {
+      borrower = await createUser({
+        name: "Bob",
+        email: "bob@email.com"
+      });
 
-    const avatar = await connection.manager.save(
-      connection.manager.create(Avatar, {
-        imagePath: "/images/avatars/w13.png",
-        color: "yellow"
-      })
-    );
-
-    const user = await createUser({
-      name: "Alice",
-      email: "alice@email.com",
-      avatarId: avatar.id
+      bookCopy = await createBookCopy();
     });
 
-    console.log({ user });
+    it("borrows a book", async () => {
+      // When
+      await getCustomRepository(BookCopyRepository).borrow(
+        bookCopy.id,
+        borrower.id
+      );
+
+      // Then
+      const updatedBookCopy = await getManager().findOneOrFail(
+        BookCopy,
+        bookCopy.id
+      );
+
+      await expect(updatedBookCopy.borrower).resolves.toEqual(borrower);
+    });
+
+    it("raises an error when borrowing own book", async () => {
+      await expect(
+        getCustomRepository(BookCopyRepository).borrow(
+          bookCopy.id,
+          bookCopy.ownerId
+        )
+      ).rejects.toThrow("Cannot borrow own book.");
+    });
+
+    it("raises an error when the book is already borrowed", async () => {
+      await getManager().update(BookCopy, bookCopy.id, {
+        borrowerId: borrower.id
+      });
+
+      await expect(
+        getCustomRepository(BookCopyRepository).borrow(bookCopy.id, borrower.id)
+      ).rejects.toThrow(
+        "Cannot borrow this book copy. It is already borrowed."
+      );
+    });
   });
 });

@@ -2,6 +2,6 @@ import { getConnection } from "typeorm";
 
 import { createTestConnection } from "./database/createConnection";
 
-beforeAll(() => createTestConnection());
+beforeEach(() => createTestConnection());
 
-afterAll(() => getConnection().close());
+afterEach(() => getConnection().close());

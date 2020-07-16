@@ -2,8 +2,6 @@ import { AbstractRepository, EntityRepository } from "typeorm";
 
 import { BookCopy } from "../entity/BookCopy";
 
-// TODO: Write a method for returning a book copy
-// TODO: Write unit test for this repository
 @EntityRepository(BookCopy)
 export class BookCopyRepository extends AbstractRepository<BookCopy> {
   async borrow(id: string | number, borrowerId: number) {

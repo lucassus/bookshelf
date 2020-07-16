@@ -284,16 +284,6 @@ async function loadUsers() {
 
   const users = manager.create(User, [
     {
-      name: "Alice",
-      email: "alice@example.com",
-      info: `Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer.`,
-
-      avatar: {
-        imagePath: "/images/avatars/w13.png",
-        color: "yellow"
-      }
-    },
-    {
       name: "Bob",
       email: "bob@example.com",
       info: `Twitter fan. Social media expert. Hardcore explorer. Communicator. Amateur coffee lover.`,
