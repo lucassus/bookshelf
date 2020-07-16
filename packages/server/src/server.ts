@@ -10,6 +10,7 @@ import { buildAuthorsLoader } from "./database/authorsLoader";
 import { resolvers } from "./graphql/resolvers";
 import { Context } from "./types";
 
+// TODO: Does not work on production
 const schema = loadSchemaSync(path.join(__dirname, "./graphql/*.graphql"), {
   loaders: [new GraphQLFileLoader()]
 });
