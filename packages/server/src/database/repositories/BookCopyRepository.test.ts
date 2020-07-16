@@ -1,30 +1,30 @@
 import { getCustomRepository, getManager } from "typeorm";
 
 import { BookCopy } from "../entity/BookCopy";
-import { User } from "../entity/User";
 import { createBookCopy, createUser } from "../factories";
 import { BookCopyRepository } from "./BookCopyRepository";
 
 describe("BookCopyRepository", () => {
+  let repository: BookCopyRepository;
+
+  beforeEach(() => {
+    repository = getCustomRepository(BookCopyRepository);
+  });
+
   describe(".borrow", () => {
-    let borrower: User;
-    let bookCopy: BookCopy;
-
-    beforeEach(async () => {
-      borrower = await createUser({
-        name: "Bob",
-        email: "bob@email.com"
-      });
-
-      bookCopy = await createBookCopy();
-    });
+    const loadFixtures = async () => {
+      return {
+        bookCopy: await createBookCopy(),
+        borrower: await createUser({ name: "Bob", email: "bob@email.com" })
+      };
+    };
 
     it("borrows a book", async () => {
+      // Given
+      const { bookCopy, borrower } = await loadFixtures();
+
       // When
-      await getCustomRepository(BookCopyRepository).borrow(
-        bookCopy.id,
-        borrower.id
-      );
+      await repository.borrow(bookCopy.id, borrower.id);
 
       // Then
       const updatedBookCopy = await getManager().findOneOrFail(
@@ -36,19 +36,21 @@ describe("BookCopyRepository", () => {
     });
 
     it("raises an error when borrowing own book", async () => {
+      // Given
+      const { bookCopy } = await loadFixtures();
+
+      // Then
       await expect(
-        getCustomRepository(BookCopyRepository).borrow(
-          bookCopy.id,
-          bookCopy.ownerId
-        )
+        repository.borrow(bookCopy.id, bookCopy.ownerId)
       ).rejects.toThrow("Cannot borrow own book.");
     });
 
     it("raises an error when the book is already borrowed", async () => {
-      await getManager().update(BookCopy, bookCopy.id, {
-        borrowerId: borrower.id
-      });
+      // Given
+      const { bookCopy, borrower } = await loadFixtures();
+      await repository.borrow(bookCopy.id, borrower.id);
 
+      // Then
       await expect(
         getCustomRepository(BookCopyRepository).borrow(bookCopy.id, borrower.id)
       ).rejects.toThrow(
