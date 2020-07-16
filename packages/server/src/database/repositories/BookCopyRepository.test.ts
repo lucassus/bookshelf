@@ -11,14 +11,14 @@ describe("BookCopyRepository", () => {
     repository = getCustomRepository(BookCopyRepository);
   });
 
-  describe(".borrow", () => {
-    const loadFixtures = async () => {
-      return {
-        bookCopy: await createBookCopy(),
-        borrower: await createUser({ name: "Bob", email: "bob@email.com" })
-      };
+  const loadFixtures = async () => {
+    return {
+      bookCopy: await createBookCopy(),
+      borrower: await createUser({ name: "Bob", email: "bob@email.com" })
     };
+  };
 
+  describe(".borrow", () => {
     it("borrows a book", async () => {
       // Given
       const { bookCopy, borrower } = await loadFixtures();
@@ -57,5 +57,21 @@ describe("BookCopyRepository", () => {
         "Cannot borrow this book copy. It is already borrowed."
       );
     });
+  });
+
+  test(".return", async () => {
+    // Given
+    const { bookCopy, borrower } = await loadFixtures();
+    await repository.borrow(bookCopy.id, borrower.id);
+
+    // When
+    await repository.return(bookCopy.id);
+
+    // Then
+    const updatedBookCopy = await getManager().findOneOrFail(
+      BookCopy,
+      bookCopy.id
+    );
+    expect(updatedBookCopy.borrowerId).toBeNull();
   });
 });

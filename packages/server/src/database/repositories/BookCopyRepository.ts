@@ -18,4 +18,11 @@ export class BookCopyRepository extends AbstractRepository<BookCopy> {
     bookCopy.borrowerId = borrowerId;
     return this.repository.save(bookCopy);
   }
+
+  async return(id: string | number) {
+    const bookCopy = await this.repository.findOneOrFail(id);
+
+    bookCopy.borrowerId = null;
+    return this.repository.save(bookCopy);
+  }
 }
