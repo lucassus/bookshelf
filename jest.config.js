@@ -1,3 +1,7 @@
 module.exports = {
-  projects: ["<rootDir>/packages/server", "<rootDir>/packages/web"]
+  projects: [
+    "<rootDir>/packages/secure-id",
+    "<rootDir>/packages/server",
+    "<rootDir>/packages/web"
+  ]
 };
