@@ -1565,6 +1565,14 @@
     "@graphql-tools/utils" "6.0.12"
     tslib "~2.0.0"
 
+"@graphql-tools/schema@6.0.13":
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/schema/-/schema-6.0.13.tgz#bc08d914cbd055ead08e9deecd9e122194dcb4df"
+  integrity sha512-Uy2J7L3rr8QeIr+SwWltcAlvAu3q0EKuq41qMhL23dgqpoTAg1BIWlvYSoOdoGaRZP95bvLCEiyf/X5Q1VMEFw==
+  dependencies:
+    "@graphql-tools/utils" "6.0.13"
+    tslib "~2.0.0"
+
 "@graphql-tools/url-loader@6.0.12", "@graphql-tools/url-loader@^6.0.0":
   version "6.0.12"
   resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-6.0.12.tgz#ea6e2e542ed0944efa8d3276c57e1979df095ecb"
