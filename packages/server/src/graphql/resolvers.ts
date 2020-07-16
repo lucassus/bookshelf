@@ -1,4 +1,3 @@
-import { BookRepository } from "../database/BookRepository";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
@@ -6,6 +5,8 @@ import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
+import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
+import { BookRepository } from "../database/repositories/BookRepository";
 import { ResolverMap } from "../types";
 
 interface Image {
@@ -88,6 +89,26 @@ export const resolvers: ResolverMap = {
   },
 
   Mutation: {
+    borrowBookCopy: (
+      rootValue,
+      args: { id: string },
+      { connection, currentUserId }
+    ) => {
+      const id = secureId.toInternal(args.id);
+
+      return connection.manager
+        .getCustomRepository(BookCopyRepository)
+        .borrow(id, currentUserId);
+    },
+
+    returnBookCopy: (rootValue, args: { id: string }, { connection }) => {
+      const id = secureId.toInternal(args.id);
+
+      return connection.manager
+        .getCustomRepository(BookCopyRepository)
+        .return(id);
+    },
+
     updateBookFavourite: async (
       rootValue,
       args: { id: string; favourite: boolean },
@@ -95,13 +116,9 @@ export const resolvers: ResolverMap = {
     ) => {
       const id = secureId.toInternal(args.id);
 
-      await connection.manager.update(
-        Book,
-        { id },
-        { favourite: args.favourite }
-      );
-
-      return connection.manager.findOneOrFail(Book, id);
+      return connection.manager
+        .getCustomRepository(BookRepository)
+        .updateFavourite(id, args.favourite);
     }
   }
 };

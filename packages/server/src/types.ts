@@ -6,6 +6,7 @@ export interface Context {
   assetsBaseUrl: string;
   connection: Connection;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
+  currentUserId: number;
 }
 
 export type Resolver = (

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`borrow book copy 1`] = `
+Object {
+  "book": Object {
+    "id": "MS1Cb29r",
+    "title": "Time of contempt",
+  },
+  "borrower": Object {
+    "id": "MS1Vc2Vy",
+    "name": "Alice",
+  },
+  "id": "MS1Cb29rQ29weQ==",
+}
+`;
+
+exports[`return book copy 1`] = `
+Object {
+  "book": Object {
+    "id": "MS1Cb29r",
+    "title": "Baptism of fire",
+  },
+  "borrower": null,
+  "id": "MS1Cb29rQ29weQ==",
+}
+`;

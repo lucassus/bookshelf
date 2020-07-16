@@ -4,12 +4,14 @@ import { getConnection } from "typeorm";
 
 import { User } from "../src/database/entity/User";
 import { secureId } from "../src/database/helpers";
+import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
 beforeEach(async () => {
-  server = createServer(getConnection());
+  await loadFixtures();
+  server = createServer();
 });
 
 it("fetches users", async () => {

@@ -1,14 +1,15 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection } from "typeorm";
 
 import { secureId } from "../src/database/helpers";
+import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
 beforeEach(async () => {
-  server = createServer(getConnection());
+  await loadFixtures();
+  server = createServer();
 });
 
 it("fetches an author", async () => {

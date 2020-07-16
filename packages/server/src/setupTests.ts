@@ -1,15 +1,7 @@
-import { Connection } from "typeorm";
+import { getConnection } from "typeorm";
 
-import { createConnection } from "./database/createConnection";
-import { loadFixtures } from "./fixtures";
+import { createTestConnection } from "./database/createConnection";
 
-let connection: Connection;
+beforeEach(() => createTestConnection());
 
-beforeEach(async () => {
-  connection = await createConnection();
-  await connection.dropDatabase();
-  await connection.synchronize();
-  await loadFixtures();
-});
-
-afterEach(() => connection?.close());
+afterEach(() => getConnection().close());

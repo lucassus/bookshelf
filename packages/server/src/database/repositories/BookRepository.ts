@@ -1,6 +1,6 @@
 import { AbstractRepository, EntityRepository } from "typeorm";
 
-import { Book } from "./entity/Book";
+import { Book } from "../entity/Book";
 
 @EntityRepository(Book)
 export class BookRepository extends AbstractRepository<Book> {
@@ -10,5 +10,12 @@ export class BookRepository extends AbstractRepository<Book> {
       .orderBy("RANDOM()")
       .limit(1)
       .getOne();
+  }
+
+  async updateFavourite(id: string | number, favourite: boolean) {
+    const book = await this.manager.findOneOrFail(Book, id);
+
+    book.favourite = favourite;
+    return this.manager.save(book);
   }
 }
