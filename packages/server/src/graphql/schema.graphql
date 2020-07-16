@@ -24,5 +24,3 @@ type Mutation {
   returnBookCopy(id: ID!): BookCopy!
   updateBookFavourite(id: ID!, favourite: Boolean): Book!
 }
-
-union Anything = Author | Book | User | BookCopy
