@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetching resource fetches Author 1`] = `
+Object {
+  "__typename": "Author",
+  "id": "MS1BdXRob3I=",
+  "name": "J. K. Rowling",
+}
+`;
+
+exports[`fetching resource fetches Book 1`] = `
+Object {
+  "__typename": "Book",
+  "id": "MS1Cb29r",
+  "title": "Harry Potter and the Sorcerer's Stone",
+}
+`;

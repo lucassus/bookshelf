@@ -16,6 +16,7 @@ type Query {
   user(id: ID!): User!
 
   anything(id: ID!): Anything!
+  resource(id: ID!): Resource!
 }
 
 type Mutation {
