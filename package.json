@@ -13,11 +13,13 @@
   "scripts": {
     "bootstrap": "yarn lerna bootstrap --hoist",
     "postinstall": "yarn bootstrap",
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "typecheck": "lerna run typecheck",
+    "lint": "lerna run lint",
+    "test": "jest",
     "server": "yarn workspace @bookshelf/server",
     "web": "yarn workspace @bookshelf/web",
-    "lint": "yarn server lint && yarn web lint",
-    "test": "jest",
-    "build": "yarn server build && yarn web build",
     "start": "yarn server start",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn server dev' 'yarn web dev'"
   },
