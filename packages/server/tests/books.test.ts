@@ -148,6 +148,53 @@ it("fetches a book 2", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
+it("fetches a book with details", async () => {
+  // Given
+  const { query } = createTestClient(server);
+  const book = await getConnection().manager.findOneOrFail(Book, {
+    title: "The lady of the lake"
+  });
+
+  const GetBookWithDetailsQuery = gql`
+    query GetBookWithDetails($id: ID!, $includeDetails: Boolean!) {
+      book(id: $id) {
+        id
+        title
+        description @include(if: $includeDetails)
+        author @include(if: $includeDetails) {
+          name
+        }
+      }
+    }
+  `;
+
+  // When
+  let res = await query({
+    query: GetBookWithDetailsQuery,
+    variables: {
+      id: secureId.toExternal(book.id, "Book"),
+      includeDetails: true
+    }
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+
+  // When
+  res = await query({
+    query: GetBookWithDetailsQuery,
+    variables: {
+      id: secureId.toExternal(book.id, "Book"),
+      includeDetails: false
+    }
+  });
+
+  // Then
+  expect(res.data).not.toBeUndefined();
+  expect(res.data).toMatchSnapshot();
+});
+
 it("responds with error when book cannot be found", async () => {
   // Given
   const { query } = createTestClient(server);
