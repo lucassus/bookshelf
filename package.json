@@ -18,8 +18,8 @@
     "typecheck": "lerna run typecheck",
     "lint": "lerna run lint",
     "test": "jest",
-    "start": "yarn server start",
-    "dev": "concurrently --raw --kill-others-on-fail 'yarn server dev' 'yarn web dev'"
+    "start": "yarn workspace @bookshelf/server start",
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
   },
   "devDependencies": {
     "@types/jest": "26.0.4",
