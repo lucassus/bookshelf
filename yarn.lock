@@ -1475,13 +1475,13 @@
     "@graphql-tools/utils" "6.0.12"
     cross-fetch "3.0.5"
 
-"@graphql-tools/graphql-file-loader@6.0.12", "@graphql-tools/graphql-file-loader@^6.0.0":
-  version "6.0.12"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/graphql-file-loader/-/graphql-file-loader-6.0.12.tgz#7c9d25d7208d520a973960940d36ec33dc1749b1"
-  integrity sha512-DUoby0HXQ5fGR9U3tMN3V/6l1XdRzg2XF0kuZy/9TUEH9VBFKYT7PLEVb6ZKDh9xWe0OgHUjgpfJhjtcJwn+fw==
+"@graphql-tools/graphql-file-loader@6.0.13", "@graphql-tools/graphql-file-loader@^6.0.0":
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/graphql-file-loader/-/graphql-file-loader-6.0.13.tgz#a99e8f48f9dcff1af80b1122f77e03e1baa5dfac"
+  integrity sha512-JDfvdHgNiA+psbtm4H0qX5yo2GMsKmD9y5Dl3x7LKBHUo4Ao+6XL740uhvUZ7BiHttXHeBs5xuOb5ILhTGA/JQ==
   dependencies:
-    "@graphql-tools/import" "6.0.12"
-    "@graphql-tools/utils" "6.0.12"
+    "@graphql-tools/import" "6.0.13"
+    "@graphql-tools/utils" "6.0.13"
     fs-extra "9.0.1"
     tslib "~2.0.0"
 
@@ -1497,10 +1497,10 @@
   optionalDependencies:
     vue-template-compiler "^2.6.11"
 
-"@graphql-tools/import@6.0.12":
-  version "6.0.12"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/import/-/import-6.0.12.tgz#fc8cac37f9cb731c6c15e4e5d191e5dafa0b9472"
-  integrity sha512-tSY8EVTl4UDo4cwbKfMfyGqd0aPd4GH81YcYIgoy4hXMJPZyImGWjjChM0A579IsI7NFzm8eXzDU2dIFb8QSWA==
+"@graphql-tools/import@6.0.13":
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/import/-/import-6.0.13.tgz#64b9aa2784f4195e517a2e6cd2205b142652ae30"
+  integrity sha512-fNh0zlqwhaVkc75vYefAvLODIfVJvWEWlBRUZRSzLfOOJem1cAxjv2PpYmhH5QEW3QXWlq73+Y58GNNvAzLOlQ==
   dependencies:
     fs-extra "9.0.1"
     resolve-from "5.0.0"
@@ -1580,10 +1580,18 @@
     valid-url "1.0.9"
     websocket "1.0.31"
 
-"@graphql-tools/utils@6.0.12", "@graphql-tools/utils@^6.0.0":
+"@graphql-tools/utils@6.0.12":
   version "6.0.12"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-6.0.12.tgz#3c58729f1bdb7881e675544016b56e0508c2541b"
   integrity sha512-MuFSkxXCe2QoD5QJPJ/1WIm0YnBzzXpkq9d/XznVAWptHFRwtwIbZ1xcREjYquFvoZ7ddsjZfyvUN/5ulmHhhg==
+  dependencies:
+    "@ardatan/aggregate-error" "0.0.1"
+    camel-case "4.1.1"
+
+"@graphql-tools/utils@6.0.13", "@graphql-tools/utils@^6.0.0":
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-6.0.13.tgz#5ea073e8aafa766e88a018432d0f0737e92f41ff"
+  integrity sha512-9jTI1HAM9HoXU2tV5CV8w7XXvJe7r37rythgo2FTe1Mws0+O6pQNjVVg7GDDr6FJ/eyMccyMx2SIf+5t7/XPrQ==
   dependencies:
     "@ardatan/aggregate-error" "0.0.1"
     camel-case "4.1.1"
