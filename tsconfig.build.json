@@ -5,6 +5,7 @@
     "module": "commonjs",
     "target": "es5",
     "sourceMap": true,
+    "declaration": true,
 
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
