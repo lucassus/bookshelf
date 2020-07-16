@@ -25,6 +25,9 @@ jobs:
     - name: Generate GrapQL components
       run: yarn web codegen
 
+    - name: Type Check
+      run: yarn typecheck
+
     - name: Lint
       run: yarn lint
 
