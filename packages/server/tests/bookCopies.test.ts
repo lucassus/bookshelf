@@ -3,11 +3,7 @@ import { createTestClient } from "apollo-server-testing";
 import { getCustomRepository } from "typeorm";
 
 import { User } from "../src/database/entity/User";
-import {
-  createBook,
-  createBookCopy,
-  createUser
-} from "../src/database/factories";
+import { createBookCopy, createUser } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
 import { BookCopyRepository } from "../src/database/repositories/BookCopyRepository";
 import { createServer } from "../src/server";
@@ -26,9 +22,15 @@ test("borrow book copy", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const book = await createBook();
-  const owner = await createUser({ name: "Bob", email: "bob@email.com" });
-  const bookCopy = await createBookCopy({ bookId: book.id, ownerId: owner.id });
+  const bookCopy = await createBookCopy({
+    bookAttributes: {
+      title: "Time of contempt"
+    },
+    ownerAttributes: {
+      name: "Bob",
+      email: "bob@email.com"
+    }
+  });
 
   // When
   const res = await query({
@@ -59,9 +61,9 @@ test("return book copy", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const book = await createBook();
-  const owner = await createUser({ name: "Bob", email: "bob@email.com" });
-  const bookCopy = await createBookCopy({ bookId: book.id, ownerId: owner.id });
+  const bookCopy = await createBookCopy({
+    ownerAttributes: { name: "Bob", email: "bob@email.com" }
+  });
   await getCustomRepository(BookCopyRepository).borrow(
     bookCopy.id,
     currentUser.id

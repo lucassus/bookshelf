@@ -50,45 +50,45 @@ export const createAuthor = (attributes: Partial<Author> = {}) => {
   );
 };
 
-export const createBook = async (attributes: Partial<Book> = {}) => {
+export const createBook = async (
+  attributes: Partial<Book> & { authorAttributes?: Partial<Author> } = {}
+) => {
   const manager = getManager();
 
-  let { authorId } = attributes;
-  if (authorId === undefined) {
-    const author = await createAuthor();
-    authorId = author.id;
+  const { authorAttributes, ...bookAttributes } = attributes;
+
+  if (bookAttributes.authorId === undefined) {
+    const author = await createAuthor(authorAttributes);
+    bookAttributes.authorId = author.id;
   }
 
   return manager.save(
     manager.create(Book, {
       title: "Baptism of fire",
       coverPath: "/images/book-covers/witcher3.jpg",
-      ...attributes,
-      authorId
+      ...bookAttributes
     })
   );
 };
 
-export const createBookCopy = async (attributes: Partial<BookCopy> = {}) => {
+export const createBookCopy = async (
+  attributes: Partial<BookCopy> & { bookAttributes?: Partial<Book> } & {
+    ownerAttributes?: Partial<User>;
+  } = {}
+) => {
   const manager = getManager();
 
-  let { ownerId } = attributes;
-  if (ownerId === undefined) {
-    const user = await createUser();
-    ownerId = user.id;
+  const { bookAttributes, ownerAttributes, ...bookCopyAttributes } = attributes;
+
+  if (bookCopyAttributes.bookId === undefined) {
+    const book = await createBook(bookAttributes);
+    bookCopyAttributes.bookId = book.id;
   }
 
-  let { bookId } = attributes;
-  if (bookId === undefined) {
-    const book = await createBook();
-    bookId = book.id;
+  if (bookCopyAttributes.ownerId === undefined) {
+    const user = await createUser(ownerAttributes);
+    bookCopyAttributes.ownerId = user.id;
   }
 
-  return manager.save(
-    manager.create(BookCopy, {
-      ...attributes,
-      bookId,
-      ownerId
-    })
-  );
+  return manager.save(manager.create(BookCopy, bookCopyAttributes));
 };

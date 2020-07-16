@@ -4,7 +4,7 @@ exports[`borrow book copy 1`] = `
 Object {
   "book": Object {
     "id": "MS1Cb29r",
-    "title": "Baptism of fire",
+    "title": "Time of contempt",
   },
   "borrower": Object {
     "id": "MS1Vc2Vy",
