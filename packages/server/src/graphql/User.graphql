@@ -1,4 +1,4 @@
-type User {
+type User implements Resource {
   id: ID!
   name: String!
   info: String

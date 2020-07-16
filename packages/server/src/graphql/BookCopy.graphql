@@ -1,4 +1,4 @@
-type BookCopy {
+type BookCopy implements Resource {
   id: ID!
   owner: User!
   book: Book!

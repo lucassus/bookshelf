@@ -46,6 +46,9 @@ export const resolvers: ResolverMap = {
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id)),
 
     anything: (rootValue, args: { id: string }, { connection }) =>
+      findAnythingOrFail(args.id, connection),
+
+    resource: (rootValue, args: { id: string }, { connection }) =>
       findAnythingOrFail(args.id, connection)
   },
 
@@ -86,6 +89,10 @@ export const resolvers: ResolverMap = {
 
   BookCopy: {
     id: (user: User) => secureId.toExternal(user.id, "BookCopy")
+  },
+
+  Resource: {
+    __resolveType: (resource) => resource.constructor.name
   },
 
   Mutation: {

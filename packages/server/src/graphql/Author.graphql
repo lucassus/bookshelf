@@ -1,4 +1,4 @@
-type Author {
+type Author implements Resource {
   id: ID!
   name: String!
   bio: String

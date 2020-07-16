@@ -51,6 +51,35 @@ Object {
 }
 `;
 
+exports[`fetches a book with details 1`] = `
+Object {
+  "book": Object {
+    "author": Object {
+      "name": "Andrzej Sapkowski",
+    },
+    "cover": Object {
+      "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
+    },
+    "description": "After walking through a portal in the Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
+
+      But this is Ciri, the child of prophecy, and she will not be defeated. She knows she must escape to finally rejoin the Witcher, Geralt, and his companions - and also to try to conquer her worst nightmare. Leo Bonhart, the man who chased, wounded and tortured Ciri, is still on her trail.
+      
+      And the world is still at war.",
+    "id": "MjAtQm9vaw==",
+    "title": "The lady of the lake",
+  },
+}
+`;
+
+exports[`fetches a book with details 2`] = `
+Object {
+  "book": Object {
+    "id": "MjAtQm9vaw==",
+    "title": "The lady of the lake",
+  },
+}
+`;
+
 exports[`fetches a random book 1`] = `
 Object {
   "cover": Object {

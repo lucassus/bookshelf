@@ -1,4 +1,4 @@
-type Book {
+type Book implements Resource {
   id: ID!
   title: String!
   description: String

@@ -15,7 +15,9 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
+  @deprecated(reason: "No longer supported. Use 'resources' instead")
   anything(id: ID!): Anything!
+  resource(id: ID!): Resource!
 }
 
 type Mutation {
@@ -23,5 +25,3 @@ type Mutation {
   returnBookCopy(id: ID!): BookCopy!
   updateBookFavourite(id: ID!, favourite: Boolean): Book!
 }
-
-union Anything = Author | Book | User | BookCopy
