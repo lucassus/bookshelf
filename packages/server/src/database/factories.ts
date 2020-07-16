@@ -18,22 +18,23 @@ export const createAvatar = (attributes: Partial<Avatar> = {}) => {
   );
 };
 
-export const createUser = async (attributes: Partial<User> = {}) => {
+export const createUser = async (
+  attributes: Partial<User> = { name: "Alice" }
+) => {
   const manager = getManager();
 
-  let { avatarId } = attributes;
-  if (avatarId === undefined) {
-    const avatar = await createAvatar();
-    avatarId = avatar.id;
+  const { ...userAttributes } = attributes;
+
+  if (userAttributes.name && userAttributes.email === undefined) {
+    userAttributes.email = `${userAttributes.name.toLocaleLowerCase()}@email.com`;
   }
 
-  const user = manager.create(User, {
-    name: "Alice",
-    // TODO: Violates unique constraint, create a sequence for emails
-    email: "alice@email.com",
-    ...attributes,
-    avatarId
-  });
+  if (userAttributes.avatarId === undefined) {
+    const avatar = await createAvatar();
+    userAttributes.avatarId = avatar.id;
+  }
+
+  const user = manager.create(User, userAttributes);
 
   return manager.save(user);
 };

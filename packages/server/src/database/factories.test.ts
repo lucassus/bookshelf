@@ -1,4 +1,18 @@
-import { createBook } from "./factories";
+import { createBook, createUser } from "./factories";
+
+test(".createUser", async () => {
+  let user = await createUser();
+  expect(user.name).toBe("Alice");
+  expect(user.email).toBe("alice@email.com");
+
+  user = await createUser({ name: "Bob" });
+  expect(user.name).toBe("Bob");
+  expect(user.email).toBe("bob@email.com");
+
+  user = await createUser({ name: "Bob", email: "john@email.com" });
+  expect(user.name).toBe("Bob");
+  expect(user.email).toBe("john@email.com");
+});
 
 describe(".createBook", () => {
   it("creates a book along with an author", async () => {
