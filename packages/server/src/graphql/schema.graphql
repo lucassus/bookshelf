@@ -15,6 +15,7 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
+  @deprecated(reason: "No longer supported. Use 'resources' instead")
   anything(id: ID!): Anything!
   resource(id: ID!): Resource!
 }
