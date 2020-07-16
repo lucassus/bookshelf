@@ -1,0 +1,3 @@
+describe("BookCopyRepository", () => {
+  test(".borrow", () => {});
+});

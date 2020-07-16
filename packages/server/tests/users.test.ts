@@ -4,13 +4,16 @@ import { getConnection } from "typeorm";
 
 import { User } from "../src/database/entity/User";
 import { secureId } from "../src/database/helpers";
+import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-beforeEach(async () => {
+beforeAll(() => {
   server = createServer(getConnection());
 });
+
+beforeEach(() => loadFixtures());
 
 it("fetches users", async () => {
   const { query } = createTestClient(server);

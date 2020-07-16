@@ -3,13 +3,16 @@ import { createTestClient } from "apollo-server-testing";
 import { getConnection } from "typeorm";
 
 import { secureId } from "../src/database/helpers";
+import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-beforeEach(async () => {
+beforeAll(() => {
   server = createServer(getConnection());
 });
+
+beforeEach(() => loadFixtures());
 
 it("fetches an author", async () => {
   const { query } = createTestClient(server);

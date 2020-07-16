@@ -4,13 +4,16 @@ import { getConnection } from "typeorm";
 
 import { BookCopy } from "../src/database/entity/BookCopy";
 import { secureId } from "../src/database/helpers";
+import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-beforeEach(async () => {
+beforeAll(() => {
   server = createServer(getConnection());
 });
+
+beforeEach(() => loadFixtures());
 
 describe("fetching anything", () => {
   const GetAnythingQuery = gql`

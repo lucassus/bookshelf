@@ -4,13 +4,16 @@ import { getConnection } from "typeorm";
 
 import { Book } from "../src/database/entity/Book";
 import { secureId } from "../src/database/helpers";
+import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-beforeEach(async () => {
+beforeAll(() => {
   server = createServer(getConnection());
 });
+
+beforeEach(() => loadFixtures());
 
 test("borrow book copy", async () => {
   // Given

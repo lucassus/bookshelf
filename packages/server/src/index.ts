@@ -2,12 +2,19 @@ import express from "express";
 import path from "path";
 import "reflect-metadata";
 
-import { PORT } from "./config";
-import { createConnection } from "./database/createConnection";
+import { Environment, ENVIRONMENT, PORT } from "./config";
+import {
+  createDevelopmentConnection,
+  createProductionConnection
+} from "./database/createConnection";
 import { createServer } from "./server";
 
 const startServer = async () => {
-  const connection = await createConnection();
+  const connection =
+    (await ENVIRONMENT) === Environment.production
+      ? await createProductionConnection()
+      : await createDevelopmentConnection();
+
   const server = createServer(connection);
 
   const app = express();
