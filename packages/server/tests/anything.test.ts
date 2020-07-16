@@ -11,7 +11,7 @@ let server: ApolloServer;
 
 beforeEach(async () => {
   await loadFixtures();
-  server = createServer(getConnection());
+  server = createServer();
 });
 
 describe("fetching anything", () => {

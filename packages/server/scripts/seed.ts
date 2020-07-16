@@ -7,9 +7,9 @@ import {
 import { loadFixtures } from "../src/fixtures";
 
 const seed = async () => {
-  ENVIRONMENT === Environment.production
-    ? await createProductionConnection()
-    : await createDevelopmentConnection();
+  await (ENVIRONMENT === Environment.production
+    ? createProductionConnection()
+    : createDevelopmentConnection());
 
   await loadFixtures();
 };

@@ -12,7 +12,7 @@ let server: ApolloServer;
 
 beforeEach(async () => {
   await loadFixtures();
-  server = createServer(getConnection());
+  server = createServer();
 });
 
 it("fetches books", async () => {
