@@ -12,18 +12,17 @@ jobs:
       with:
         node-version: '13.7'
 
-    - uses: actions/cache@v1
-      with:
-        path: ~/.cache/yarn
-        key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-
     - name: Install packages
       run: yarn install
 
-    - name: Generate GrapQL components
-      run: yarn web codegen
+    - name: Generate GrapQL web components
+      run: yarn workspace @bookshelf/web codegen
+
+    - name: Type Check
+      run: yarn typecheck
+
+    - name: Build
+      run: yarn build
 
     - name: Lint
       run: yarn lint
@@ -36,15 +35,5 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-    ## Server
-
-    - name: Build server
-      run: yarn server build
-
-    ## Web
-
     - name: Build storybbok
-      run: yarn web storybook:build
-
-    - name: Build web app
-      run: yarn web build
+      run: yarn workspace @bookshelf/web storybook:build

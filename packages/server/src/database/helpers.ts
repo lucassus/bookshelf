@@ -1,4 +1,4 @@
-import { SecureId } from "./SecureId";
+import { SecureId } from "@bookshelf/secure-id";
 
 type EntityTypes = "Author" | "Book" | "User" | "BookCopy";
 

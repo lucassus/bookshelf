@@ -2,7 +2,6 @@ interface SecureIdOptions {
   separator: string;
 }
 
-// TODO: Extract it to the separate library - @bookshelf/secure-id
 export class SecureId<Type = string> {
   static encode = (value: string) => Buffer.from(value).toString("base64");
 

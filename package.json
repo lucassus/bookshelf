@@ -11,13 +11,15 @@
     "packages/*"
   ],
   "scripts": {
-    "server": "yarn workspace @bookshelf/server",
-    "web": "yarn workspace @bookshelf/web",
-    "lint": "yarn server lint && yarn web lint",
+    "bootstrap": "yarn lerna bootstrap",
+    "postinstall": "yarn bootstrap",
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "typecheck": "lerna run typecheck",
+    "lint": "lerna run lint",
     "test": "jest",
-    "build": "yarn server build && yarn web build",
-    "start": "yarn server start",
-    "dev": "concurrently --raw --kill-others-on-fail 'yarn server dev' 'yarn web dev'"
+    "start": "yarn workspace @bookshelf/server start",
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
   },
   "devDependencies": {
     "@types/jest": "26.0.4",
@@ -31,6 +33,7 @@
     "eslint-plugin-jest": "23.18.0",
     "eslint-plugin-prettier": "3.1.4",
     "jest": "26.1.0",
+    "lerna": "3.22.1",
     "prettier": "2.0.5",
     "ts-jest": "26.1.2",
     "ts-node": "8.10.2",
