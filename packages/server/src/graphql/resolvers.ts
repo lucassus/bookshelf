@@ -101,6 +101,14 @@ export const resolvers: ResolverMap = {
         .borrow(id, currentUserId);
     },
 
+    returnBookCopy: (rootValue, args: { id: string }, { connection }) => {
+      const id = secureId.toInternal(args.id);
+
+      return connection.manager
+        .getCustomRepository(BookCopyRepository)
+        .return(id);
+    },
+
     updateBookFavourite: async (
       rootValue,
       args: { id: string; favourite: boolean },

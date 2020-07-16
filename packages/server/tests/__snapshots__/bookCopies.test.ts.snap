@@ -3,13 +3,24 @@
 exports[`borrow book copy 1`] = `
 Object {
   "book": Object {
-    "id": "MjAtQm9vaw==",
-    "title": "The lady of the lake",
+    "id": "MS1Cb29r",
+    "title": "Baptism of fire",
   },
   "borrower": Object {
     "id": "MS1Vc2Vy",
     "name": "Alice",
   },
-  "id": "Mi1Cb29rQ29weQ==",
+  "id": "MS1Cb29rQ29weQ==",
+}
+`;
+
+exports[`return book copy 1`] = `
+Object {
+  "book": Object {
+    "id": "MS1Cb29r",
+    "title": "Baptism of fire",
+  },
+  "borrower": null,
+  "id": "MS1Cb29rQ29weQ==",
 }
 `;
