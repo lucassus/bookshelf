@@ -1,19 +1,21 @@
 .container {
-  position: relative;
+  .bookCoverWithAvatars {
+    position: relative;
 
-  img {
-    height: 200px;
-  }
+    img {
+      height: 200px;
+    }
 
-  .ownerAvatar {
-    position: absolute;
-    bottom: 0px;
-    left: -5px;
-  }
+    .ownerAvatar {
+      position: absolute;
+      bottom: 0px;
+      left: -5px;
+    }
 
-  .borrowerAvatar {
-    position: absolute;
-    bottom: 0px;
-    right: -5px;
+    .borrowerAvatar {
+      position: absolute;
+      bottom: 0px;
+      right: -5px;
+    }
   }
 }

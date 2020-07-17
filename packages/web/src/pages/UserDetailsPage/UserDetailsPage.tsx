@@ -5,7 +5,7 @@ import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { useGetUserQuery } from "./GetUser.query.generated";
-import styles from './UserDetailsPage.module.scss'
+import styles from "./UserDetailsPage.module.scss";
 
 export const UserDetailsPage: React.FunctionComponent = () => {
   const params = useParams();
