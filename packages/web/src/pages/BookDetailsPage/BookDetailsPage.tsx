@@ -46,15 +46,17 @@ export const BookDetailsPage: React.FunctionComponent = () => {
         </div>
       </div>
 
-      <div className={styles.bookCopiesContainer}>
-        <h3>Copies</h3>
+      {data.book.copies.length > 0 && (
+        <div className={styles.bookCopiesContainer}>
+          <h3>Copies</h3>
 
-        <div className={styles.bookCopies}>
-          {data.book.copies.map((bookCopy) => (
-            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-          ))}
+          <div className={styles.bookCopies}>
+            {data.book.copies.map((bookCopy) => (
+              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
