@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  const [updateFavourite] = useUpdateBookFavouriteMutation({
+  const [updateFavourite, { loading }] = useUpdateBookFavouriteMutation({
     variables: { id: book.id, favourite: !book.favourite }
   });
 
@@ -43,6 +43,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
             labelOn="Remove from favourites"
             labelOff="Add to favourites"
             toggled={book.favourite}
+            disabled={loading}
             onToggle={handleToggleFavourite}
           />
         </div>

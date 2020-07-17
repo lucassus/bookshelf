@@ -8,11 +8,15 @@ type Props = {
 };
 
 export const ReturnButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
-  const [returnBookCopy] = useReturnBookCopyMutation({
+  const [returnBookCopy, { loading }] = useReturnBookCopyMutation({
     variables: { id: bookCopy.id }
   });
 
   const handleClick = () => returnBookCopy();
 
-  return <button onClick={handleClick}>return</button>;
+  return (
+    <button disabled={loading} onClick={handleClick}>
+      return
+    </button>
+  );
 };
