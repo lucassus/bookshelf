@@ -1,19 +1,15 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getCustomRepository } from "typeorm";
 
-import { User } from "../src/database/entity/User";
 import { createBookCopy, createUser } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { BookCopyRepository } from "../src/database/repositories/BookCopyRepository";
 import { createServer } from "../src/server";
 
-let currentUser: User;
 let server: ApolloServer;
 
 beforeEach(async () => {
   // TODO: Implement a better way for authenticating a user
-  currentUser = await createUser();
+  await createUser();
 
   server = createServer();
 });
@@ -42,6 +38,10 @@ test("borrow book copy", async () => {
             id
             title
           }
+          owner {
+            id
+            name
+          }
           borrower {
             id
             name
@@ -62,12 +62,9 @@ test("return book copy", async () => {
   const { query } = createTestClient(server);
 
   const bookCopy = await createBookCopy({
-    ownerAttributes: { name: "Bob", email: "bob@email.com" }
+    ownerAttributes: { name: "Bob", email: "bob@email.com" },
+    borrowerAttributes: { name: "Jogn", email: "john@email.com" }
   });
-  await getCustomRepository(BookCopyRepository).borrow(
-    bookCopy.id,
-    currentUser.id
-  );
 
   // When
   const res = await query({
@@ -78,6 +75,11 @@ test("return book copy", async () => {
           book {
             id
             title
+          }
+          owner {
+            id
+            name
+            email
           }
           borrower {
             id

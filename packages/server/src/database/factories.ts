@@ -73,13 +73,20 @@ export const createBook = async (
 };
 
 export const createBookCopy = async (
-  attributes: Partial<BookCopy> & { bookAttributes?: Partial<Book> } & {
+  attributes: Partial<BookCopy> & {
+    bookAttributes?: Partial<Book>;
+  } & {
     ownerAttributes?: Partial<User>;
-  } = {}
+  } & { borrowerAttributes?: Partial<User> } = {}
 ) => {
   const manager = getManager();
 
-  const { bookAttributes, ownerAttributes, ...bookCopyAttributes } = attributes;
+  const {
+    bookAttributes,
+    ownerAttributes,
+    borrowerAttributes,
+    ...bookCopyAttributes
+  } = attributes;
 
   if (bookCopyAttributes.bookId === undefined) {
     const book = await createBook(bookAttributes);
@@ -87,8 +94,13 @@ export const createBookCopy = async (
   }
 
   if (bookCopyAttributes.ownerId === undefined) {
-    const user = await createUser(ownerAttributes);
-    bookCopyAttributes.ownerId = user.id;
+    const owner = await createUser(ownerAttributes);
+    bookCopyAttributes.ownerId = owner.id;
+  }
+
+  if (borrowerAttributes) {
+    const borrower = await createUser(borrowerAttributes);
+    bookCopyAttributes.borrowerId = borrower.id;
   }
 
   return manager.save(manager.create(BookCopy, bookCopyAttributes));
