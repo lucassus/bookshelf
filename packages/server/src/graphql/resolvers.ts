@@ -53,6 +53,8 @@ export const resolvers: ResolverMap = {
   },
 
   Book: {
+    // TODO: Dry up id, like here https://codesandbox.io/s/library-backend-interface-finished-l8k3u?from-embed=&file=/resolvers.js:0-37
+    // TODO: Use something like `book.constructor.name`
     id: (book: Book) => secureId.toExternal(book.id, "Book"),
     cover: (book: Book): Image => ({
       path: book.coverPath
