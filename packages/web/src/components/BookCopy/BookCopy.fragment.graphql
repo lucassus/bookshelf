@@ -12,12 +12,15 @@ fragment BookCopy on BookCopy {
     id
     name
     avatar {
-      ...UserAvatar
+      ...Avatar
     }
   }
 
   borrower {
     id
     name
+    avatar {
+      ...Avatar
+    }
   }
 }

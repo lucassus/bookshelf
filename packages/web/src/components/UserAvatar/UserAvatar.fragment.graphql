@@ -1,9 +1,0 @@
-fragment UserAvatar on User {
-  name
-  avatar {
-    image {
-      url
-    }
-    color
-  }
-}

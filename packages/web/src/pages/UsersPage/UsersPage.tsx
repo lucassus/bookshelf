@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
-import { UserAvatar } from "../../components/UserAvatar";
+import { UserCard } from "../../components/UserCard";
 import { useGetUsersQuery } from "./GetUsers.query.generated";
 import styles from "./UsersPage.module.scss";
 
@@ -24,7 +24,7 @@ export const UsersPage: React.FunctionComponent = () => {
       <div className={styles.list}>
         {data.users.map((user) => (
           <Link key={user.id} to={`/users/${user.id}`} color="inherit">
-            <UserAvatar user={user} />
+            <UserCard user={user} />
           </Link>
         ))}
       </div>

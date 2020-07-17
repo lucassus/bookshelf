@@ -2,15 +2,15 @@ import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 
 import { createUser } from "../../testUtils/factories";
-import { UserAvatar } from "./UserAvatar";
+import { UserCard } from "./UserCard";
 
 export default {
   title: "UserAvatar",
-  component: UserAvatar,
+  component: UserCard,
   decorators: [withKnobs]
 };
 
 export const Basic = () => {
   const user = createUser({ name: text("User Name", "Bob") });
-  return <UserAvatar user={user} />;
+  return <UserCard user={user} />;
 };

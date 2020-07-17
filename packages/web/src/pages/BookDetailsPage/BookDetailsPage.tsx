@@ -26,7 +26,11 @@ export const BookDetailsPage: React.FunctionComponent = () => {
       <h2>{data.book.title}</h2>
 
       <div className={styles.details}>
-        <img src={data.book.cover.url} alt="Book cover" />
+        <img
+          className={styles.bookCover}
+          src={data.book.cover.url}
+          alt="Book cover"
+        />
 
         <div>
           {data.book.author && (

@@ -17,6 +17,10 @@
   }
 }
 
+.buttons {
+  margin-top: 1em;
+}
+
 @media only screen and (min-width: 768px) {
   .container {
     width: 50%;
@@ -33,8 +37,4 @@
   .container {
     width: 25%;
   }
-}
-
-.buttons {
-  margin-top: 1em;
 }

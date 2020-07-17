@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { ErrorAlert } from "../../components/ErrorAlert";
-import { UserAvatar } from "../../components/UserAvatar";
+import { UserCard } from "../../components/UserCard";
 import { useGetUserQuery } from "./GetUser.query.generated";
 
 export const UserDetailsPage: React.FunctionComponent = () => {
@@ -22,7 +22,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <UserAvatar user={data.user} />
+      <UserCard user={data.user} />
       <h3>{data.user.info}</h3>
     </div>
   );

@@ -1,0 +1,6 @@
+fragment Avatar on Avatar {
+  image {
+    url
+  }
+  color
+}

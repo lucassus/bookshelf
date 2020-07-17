@@ -4,6 +4,8 @@ query GetUser($id: ID!) {
     name
     email
     info
-    ...UserAvatar
+    avatar {
+      ...Avatar
+    }
   }
 }

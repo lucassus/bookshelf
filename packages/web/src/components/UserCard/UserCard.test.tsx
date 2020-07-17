@@ -1,13 +1,13 @@
 import { createComponentRenderer } from "../../testUtils/createComponentRenderer";
 import { createUser } from "../../testUtils/factories";
-import { UserAvatar } from "./UserAvatar";
+import { UserCard } from "./UserCard";
 
-describe("<UserAvatar />", () => {
+describe("<UserCard />", () => {
   const user = createUser({
     name: "Bob"
   });
 
-  const renderComponent = createComponentRenderer(UserAvatar, {
+  const renderComponent = createComponentRenderer(UserCard, {
     user
   });
 
