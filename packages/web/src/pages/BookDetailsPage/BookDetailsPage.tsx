@@ -22,10 +22,10 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>{data.book.title}</h2>
 
-      <div className={styles.details}>
+      <div>
         <img
           className={styles.bookCover}
           src={data.book.cover.url}
@@ -43,13 +43,15 @@ export const BookDetailsPage: React.FunctionComponent = () => {
           )}
 
           <p>{data.book.description}</p>
-
-          <h2>Copies</h2>
-
-          {data.book.copies.map((bookCopy) => (
-            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-          ))}
         </div>
+      </div>
+
+      <div className={styles.copies}>
+        <h3>Copies</h3>
+
+        {data.book.copies.map((bookCopy) => (
+          <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+        ))}
       </div>
     </div>
   );

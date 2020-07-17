@@ -1,8 +1,11 @@
-.details {
-  display: flex;
-  flex-direction: row;
-
+.container {
   img.bookCover {
+    float: left;
+    height: 400px;
     padding: 1rem;
+  }
+
+  .copies {
+    clear: both;
   }
 }
