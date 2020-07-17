@@ -1,0 +1,8 @@
+mutation BorrowBookCopy($id: ID!) {
+  borrowBookCopy(id: $id) {
+    id
+    borrower {
+      id
+    }
+  }
+}

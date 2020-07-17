@@ -1,0 +1,8 @@
+mutation ReturnBookCopy($id: ID!) {
+  returnBookCopy(id: $id) {
+    id
+    borrower {
+      id
+    }
+  }
+}
