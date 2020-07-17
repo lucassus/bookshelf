@@ -10,6 +10,7 @@ import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
+// TODO: Inline fixtures
 beforeEach(async () => {
   await loadFixtures();
   server = createServer();

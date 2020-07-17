@@ -1,21 +1,22 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection } from "typeorm";
 
-import { User } from "../src/database/entity/User";
+import { createBookCopy, createUser } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
 beforeEach(async () => {
-  await loadFixtures();
   server = createServer();
 });
 
 it("fetches users", async () => {
   const { query } = createTestClient(server);
+
+  await createUser();
+  await createUser();
+  await createUser();
 
   // When
   const res = await query({
@@ -43,14 +44,16 @@ it("fetches users", async () => {
 
 it("fetches a user", async () => {
   const { query } = createTestClient(server);
-  const user = await getConnection().manager.findOneOrFail(User, {
-    name: "Bob"
-  });
+
+  const user = await createUser();
+  await createBookCopy({ ownerId: user.id });
+  await createBookCopy({ ownerId: user.id });
+  await createBookCopy({ borrowerId: user.id });
 
   // When
   const res = await query({
     query: gql`
-      query GetUser($id: ID!) {
+      query($id: ID!) {
         user(id: $id) {
           name
           email
@@ -65,6 +68,11 @@ it("fetches a user", async () => {
             book {
               id
               title
+            }
+            owner {
+              id
+              name
+              email
             }
           }
           borrowedBookCopies {

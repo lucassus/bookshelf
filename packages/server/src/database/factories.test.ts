@@ -2,12 +2,12 @@ import { createBook, createUser } from "./factories";
 
 test(".createUser", async () => {
   let user = await createUser();
-  expect(user.name).toBe("Alice");
-  expect(user.email).toBe("alice@email.com");
+  expect(user.name).toBe("Rosalind Effertz");
+  expect(user.email).toBe("Braulio_Rempel33@hotmail.com");
 
   user = await createUser({ name: "Bob" });
   expect(user.name).toBe("Bob");
-  expect(user.email).toBe("bob@email.com");
+  expect(user.email).toBe("Bailey.Koepp@gmail.com");
 
   user = await createUser({ name: "Bob", email: "john@email.com" });
   expect(user.name).toBe("Bob");

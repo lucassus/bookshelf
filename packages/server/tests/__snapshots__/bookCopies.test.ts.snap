@@ -8,7 +8,7 @@ Object {
   },
   "borrower": Object {
     "id": "MS1Vc2Vy",
-    "name": "Alice",
+    "name": "Rosalind Effertz",
   },
   "id": "MS1Cb29rQ29weQ==",
   "owner": Object {
@@ -22,7 +22,7 @@ exports[`return book copy 1`] = `
 Object {
   "book": Object {
     "id": "MS1Cb29r",
-    "title": "Aspernatur Laudantium",
+    "title": "Qui",
   },
   "borrower": null,
   "id": "MS1Cb29rQ29weQ==",

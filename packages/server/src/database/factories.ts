@@ -22,15 +22,21 @@ export const createAvatar = (attributes: Partial<Avatar> = {}) => {
 
 type CreateUserAttributes = Partial<User>;
 
-export const createUser = async (
-  attributes: CreateUserAttributes = { name: "Alice" }
-) => {
+export const createUser = async (attributes: CreateUserAttributes = {}) => {
   const manager = getManager();
 
   const { ...userAttributes } = attributes;
 
-  if (userAttributes.name && userAttributes.email === undefined) {
-    userAttributes.email = `${userAttributes.name.toLocaleLowerCase()}@email.com`;
+  if (userAttributes.name === undefined) {
+    userAttributes.name = faker.name.findName();
+  }
+
+  if (userAttributes.email === undefined) {
+    userAttributes.email = faker.internet.email();
+  }
+
+  if (userAttributes.info === undefined) {
+    userAttributes.info = faker.lorem.sentence();
   }
 
   if (userAttributes.avatarId === undefined) {
