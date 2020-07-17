@@ -5,6 +5,7 @@ import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { useGetUserQuery } from "./GetUser.query.generated";
+import styles from './UserDetailsPage.module.scss'
 
 export const UserDetailsPage: React.FunctionComponent = () => {
   const params = useParams();
@@ -27,21 +28,27 @@ export const UserDetailsPage: React.FunctionComponent = () => {
       <span>{data.user.info}</span>
 
       {data.user.ownedBookCopies.length > 0 && (
-        <div>
+        <>
           <h3>Owned book copies</h3>
-          {data.user.ownedBookCopies.map((bookCopy) => (
-            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-          ))}
-        </div>
+
+          <div className={styles.bookCopies}>
+            {data.user.ownedBookCopies.map((bookCopy) => (
+              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+            ))}
+          </div>
+        </>
       )}
 
       {data.user.borrowedBookCopies.length > 0 && (
-        <div>
+        <>
           <h3>Borrowed book copies</h3>
-          {data.user.borrowedBookCopies.map((bookCopy) => (
-            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-          ))}
-        </div>
+
+          <div className={styles.bookCopies}>
+            {data.user.borrowedBookCopies.map((bookCopy) => (
+              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
