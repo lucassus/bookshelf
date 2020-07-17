@@ -1,5 +1,7 @@
+import faker from "faker";
 import { getManager } from "typeorm";
 
+import { titleizeSentence } from "../strings";
 import { Author } from "./entity/Author";
 import { Avatar } from "./entity/Avatar";
 import { Book } from "./entity/Book";
@@ -12,7 +14,7 @@ export const createAvatar = (attributes: Partial<Avatar> = {}) => {
   return manager.save(
     manager.create(Avatar, {
       imagePath: "/images/avatars/w13.png",
-      color: "yellow",
+      color: faker.commerce.color(),
       ...attributes
     })
   );
@@ -44,7 +46,8 @@ export const createAuthor = (attributes: Partial<Author> = {}) => {
 
   return manager.save(
     manager.create(Author, {
-      name: "Andrzej Sapkowski",
+      name: faker.name.findName(),
+      bio: faker.lorem.sentence(),
       photoPath: "/images/book-authors/andrzej-sapkowski.jpg",
       ...attributes
     })
@@ -67,7 +70,10 @@ export const createBook = async (attributes: CreateBookAttributes = {}) => {
 
   return manager.save(
     manager.create(Book, {
-      title: "Baptism of fire",
+      title: titleizeSentence(
+        faker.lorem.words(faker.random.number({ min: 1, max: 4 }))
+      ),
+      description: faker.lorem.sentence(),
       coverPath: "/images/book-covers/witcher3.jpg",
       ...bookAttributes
     })
