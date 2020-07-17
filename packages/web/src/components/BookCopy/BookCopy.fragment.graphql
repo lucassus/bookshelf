@@ -2,6 +2,7 @@ fragment BookCopy on BookCopy {
   id
 
   book {
+    title
     id
     cover {
       url
