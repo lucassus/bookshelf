@@ -11,10 +11,14 @@ export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => (
   <div>
     <img src={bookCopy.book.cover.url} alt={bookCopy.book.title} />
 
-    <Avatar name={bookCopy.owner.name} avatar={bookCopy.owner.avatar} />
+    <Avatar name={bookCopy.owner.name} small avatar={bookCopy.owner.avatar} />
 
     {bookCopy.borrower && (
-      <Avatar name={bookCopy.borrower.name} avatar={bookCopy.borrower.avatar} />
+      <Avatar
+        name={bookCopy.borrower.name}
+        small
+        avatar={bookCopy.borrower.avatar}
+      />
     )}
   </div>
 );
