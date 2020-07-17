@@ -11,7 +11,9 @@ type Props = {
 
 export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => (
   <div className={styles.container}>
-    <img src={bookCopy.book.cover.url} alt={bookCopy.book.title} />
+    <Link to={`/books/${bookCopy.book.id}`}>
+      <img src={bookCopy.book.cover.url} alt={bookCopy.book.title} />
+    </Link>
 
     <div className={styles.ownerAvatar}>
       <Link to={`/users/${bookCopy.owner.id}`}>
