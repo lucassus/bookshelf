@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { useGetUserQuery } from "./GetUser.query.generated";
@@ -23,7 +24,25 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   return (
     <div>
       <UserCard user={data.user} />
-      <h3>{data.user.info}</h3>
+      <span>{data.user.info}</span>
+
+      {data.user.ownedBookCopies.length > 0 && (
+        <div>
+          <h3>Owned book copies</h3>
+          {data.user.ownedBookCopies.map((bookCopy) => (
+            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+          ))}
+        </div>
+      )}
+
+      {data.user.borrowedBookCopies.length > 0 && (
+        <div>
+          <h3>Borrowed book copies</h3>
+          {data.user.borrowedBookCopies.map((bookCopy) => (
+            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
