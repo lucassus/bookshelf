@@ -18,8 +18,10 @@ export const createAvatar = (attributes: Partial<Avatar> = {}) => {
   );
 };
 
+type CreateUserAttributes = Partial<User>;
+
 export const createUser = async (
-  attributes: Partial<User> = { name: "Alice" }
+  attributes: CreateUserAttributes = { name: "Alice" }
 ) => {
   const manager = getManager();
 
@@ -34,9 +36,7 @@ export const createUser = async (
     userAttributes.avatarId = avatar.id;
   }
 
-  const user = manager.create(User, userAttributes);
-
-  return manager.save(user);
+  return manager.save(manager.create(User, userAttributes));
 };
 
 export const createAuthor = (attributes: Partial<Author> = {}) => {
@@ -51,9 +51,11 @@ export const createAuthor = (attributes: Partial<Author> = {}) => {
   );
 };
 
-export const createBook = async (
-  attributes: Partial<Book> & { authorAttributes?: Partial<Author> } = {}
-) => {
+type CreateBookAttributes = Partial<Book> & {
+  authorAttributes?: Partial<Author>;
+};
+
+export const createBook = async (attributes: CreateBookAttributes = {}) => {
   const manager = getManager();
 
   const { authorAttributes, ...bookAttributes } = attributes;
@@ -74,10 +76,10 @@ export const createBook = async (
 
 export const createBookCopy = async (
   attributes: Partial<BookCopy> & {
-    bookAttributes?: Partial<Book>;
+    bookAttributes?: CreateBookAttributes;
   } & {
-    ownerAttributes?: Partial<User>;
-  } & { borrowerAttributes?: Partial<User> } = {}
+    ownerAttributes?: CreateUserAttributes;
+  } & { borrowerAttributes?: CreateUserAttributes } = {}
 ) => {
   const manager = getManager();
 

@@ -11,6 +11,10 @@ Object {
     "name": "Alice",
   },
   "id": "MS1Cb29rQ29weQ==",
+  "owner": Object {
+    "id": "Mi1Vc2Vy",
+    "name": "Bob",
+  },
 }
 `;
 
@@ -22,5 +26,10 @@ Object {
   },
   "borrower": null,
   "id": "MS1Cb29rQ29weQ==",
+  "owner": Object {
+    "email": "bob@email.com",
+    "id": "Mi1Vc2Vy",
+    "name": "Bob",
+  },
 }
 `;
