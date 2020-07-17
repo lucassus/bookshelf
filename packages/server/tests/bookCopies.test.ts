@@ -53,7 +53,7 @@ test("borrow book copy", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data!.borrowBookCopy).toMatchSnapshot();
 });
 
@@ -90,6 +90,6 @@ test("return book copy", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data!.returnBookCopy).toMatchSnapshot();
 });

@@ -26,10 +26,10 @@ it("fetches users", async () => {
           email
           info
           avatar {
-            color
             image {
               url
             }
+            color
           }
         }
       }
@@ -37,7 +37,7 @@ it("fetches users", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data!.users).toMatchSnapshot();
 });
 
@@ -85,6 +85,6 @@ it("fetches a user", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data!.user).toMatchSnapshot();
 });

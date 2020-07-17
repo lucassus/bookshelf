@@ -33,7 +33,7 @@ it("fetches an author", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -56,6 +56,6 @@ it("fetches authors along with books", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });

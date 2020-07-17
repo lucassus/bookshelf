@@ -90,7 +90,10 @@ export const resolvers: ResolverMap = {
   },
 
   BookCopy: {
-    id: (user: User) => secureId.toExternal(user.id, "BookCopy")
+    id: (user: BookCopy) => secureId.toExternal(user.id, "BookCopy"),
+    owner: (bookCopy: BookCopy, args, { connection }) =>
+      // TODO: Eager relations only work with find* methods, see: https://typeorm.io/#/eager-and-lazy-relations
+      connection.manager.findOneOrFail(User, { id: bookCopy.ownerId })
   },
 
   Resource: {

@@ -1,9 +1,11 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection } from "typeorm";
+import { getConnection, getManager } from "typeorm";
 
 import { Author } from "../src/database/entity/Author";
 import { Book } from "../src/database/entity/Book";
+import { BookCopy } from "../src/database/entity/BookCopy";
+import { User } from "../src/database/entity/User";
 import { secureId } from "../src/database/helpers";
 import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
@@ -34,12 +36,6 @@ it("fetches books", async () => {
             owner {
               id
               name
-              avatar {
-                image {
-                  url
-                }
-                color
-              }
             }
             borrower {
               id
@@ -52,7 +48,7 @@ it("fetches books", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -78,7 +74,7 @@ it("fetches books with authors", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -98,9 +94,16 @@ it("fetches a book", async () => {
           title
           description
           copies {
+            id
             owner {
               id
               name
+              avatar {
+                image {
+                  url
+                }
+                color
+              }
             }
             borrower {
               id
@@ -114,7 +117,7 @@ it("fetches a book", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -150,7 +153,7 @@ it("fetches a book 2", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -193,7 +196,7 @@ it("fetches a book with details", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 
   // When
@@ -206,7 +209,7 @@ it("fetches a book with details", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -256,7 +259,7 @@ it("fetches books along with authors and books again", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -291,7 +294,7 @@ it("fetches a random book", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data!.randomBook).toMatchSnapshot();
 });
 
@@ -317,7 +320,7 @@ it("updates book favourite", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data!.updateBookFavourite).toMatchSnapshot();
 
   const updatedBook = await getConnection().manager.findOneOrFail(Book, 1);
