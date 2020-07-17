@@ -6,6 +6,12 @@ Object {
     "copies": Array [
       Object {
         "borrower": Object {
+          "avatar": Object {
+            "color": "yellow",
+            "image": Object {
+              "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+            },
+          },
           "id": "MS1Vc2Vy",
           "name": "Alice",
         },
@@ -19,6 +25,20 @@ Object {
           },
           "id": "Mi1Vc2Vy",
           "name": "Bob",
+        },
+      },
+      Object {
+        "borrower": null,
+        "id": "Mi1Cb29rQ29weQ==",
+        "owner": Object {
+          "avatar": Object {
+            "color": "yellow",
+            "image": Object {
+              "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+            },
+          },
+          "id": "MS1Vc2Vy",
+          "name": "Alice",
         },
       },
     ],
@@ -133,6 +153,13 @@ Object {
           "owner": Object {
             "id": "Mi1Vc2Vy",
             "name": "Bob",
+          },
+        },
+        Object {
+          "borrower": null,
+          "owner": Object {
+            "id": "MS1Vc2Vy",
+            "name": "Alice",
           },
         },
       ],

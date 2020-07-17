@@ -1,11 +1,9 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection, getManager } from "typeorm";
+import { getConnection } from "typeorm";
 
 import { Author } from "../src/database/entity/Author";
 import { Book } from "../src/database/entity/Book";
-import { BookCopy } from "../src/database/entity/BookCopy";
-import { User } from "../src/database/entity/User";
 import { secureId } from "../src/database/helpers";
 import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
@@ -108,6 +106,12 @@ it("fetches a book", async () => {
             borrower {
               id
               name
+              avatar {
+                image {
+                  url
+                }
+                color
+              }
             }
           }
         }

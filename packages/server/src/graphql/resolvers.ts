@@ -94,8 +94,10 @@ export const resolvers: ResolverMap = {
   BookCopy: {
     id,
     owner: (bookCopy: BookCopy, args, { connection }) =>
-      // TODO: Eager relations only work with find* methods, see: https://typeorm.io/#/eager-and-lazy-relations
-      connection.manager.findOneOrFail(User, { id: bookCopy.ownerId })
+      connection.manager.findOneOrFail(User, bookCopy.ownerId),
+    borrower: (bookCopy: BookCopy, args, { connection }) =>
+      bookCopy.borrowerId &&
+      connection.manager.findOneOrFail(User, bookCopy.borrowerId)
   },
 
   Resource: {

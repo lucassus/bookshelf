@@ -340,6 +340,11 @@ async function loadBookCopies() {
     borrowerId: borrower.id
   });
 
+  await manager.insert(BookCopy, {
+    ownerId: userAlice.id,
+    bookId: book.id
+  });
+
   book = await manager.findOneOrFail(Book, { title: "The lady of the lake" });
   await manager.insert(BookCopy, {
     ownerId: userBob.id,
