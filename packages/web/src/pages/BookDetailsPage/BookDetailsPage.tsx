@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
+import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import styles from "./BookDetailsPage.module.scss";
 import { useGetBookQuery } from "./GetBook.query.generated";
@@ -38,6 +39,12 @@ export const BookDetailsPage: React.FunctionComponent = () => {
           )}
 
           <p>{data.book.description}</p>
+
+          <h2>Copies</h2>
+
+          {data.book.copies.map((bookCopy) => (
+            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+          ))}
         </div>
       </div>
     </div>

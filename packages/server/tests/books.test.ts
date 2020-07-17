@@ -34,6 +34,12 @@ it("fetches books", async () => {
             owner {
               id
               name
+              avatar {
+                image {
+                  url
+                }
+                color
+              }
             }
             borrower {
               id

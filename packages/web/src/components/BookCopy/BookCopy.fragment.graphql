@@ -1,0 +1,20 @@
+fragment BookCopy on BookCopy {
+  id
+
+  book {
+    title
+    cover {
+      url
+    }
+  }
+
+  owner {
+    id
+    name
+  }
+
+  borrower {
+    id
+    name
+  }
+}

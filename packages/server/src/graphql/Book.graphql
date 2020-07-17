@@ -7,7 +7,3 @@ type Book implements Resource {
   author: Author
   copies: [BookCopy!]!
 }
-
-type Image {
-  url: String!
-}
