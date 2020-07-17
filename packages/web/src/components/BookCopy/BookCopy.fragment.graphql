@@ -11,6 +11,9 @@ fragment BookCopy on BookCopy {
   owner {
     id
     name
+    avatar {
+      ...UserAvatar
+    }
   }
 
   borrower {

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { UserAvatar } from "../UserAvatar";
 import { BookCopyFragment } from "./BookCopy.fragment.generated";
 
 type Props = {
@@ -9,6 +10,6 @@ type Props = {
 export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => (
   <div>
     <img src={bookCopy.book.cover.url} alt={bookCopy.book.title} />
-    {bookCopy.owner.name}
+    <UserAvatar user={bookCopy.owner} />
   </div>
 );
