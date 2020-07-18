@@ -13,25 +13,16 @@ export const BooksPage: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  // TODO: Figure out how to make it nicer and more dry
   const page = params.page ? parseInt(params.page, 10) : 1;
-  const offset = (page - 1) * PER_PAGE;
-
-  const { loading, data, error, fetchMore, refetch } = useGetBooksQuery({
-    variables: { limit: PER_PAGE, offset }
+  const { loading, data, error, refetch } = useGetBooksQuery({
+    variables: { limit: PER_PAGE, offset: (page - 1) * PER_PAGE }
   });
 
   const handlePageChange = useCallback(
     (nextPage: number) => {
       navigate(nextPage === 1 ? "/" : `/page/${nextPage}`, { replace: true });
-      const nextOffset = (nextPage - 1) * PER_PAGE;
-
-      return fetchMore({
-        variables: { offset: nextOffset },
-        updateQuery: (prev, { fetchMoreResult }): any => fetchMoreResult
-      });
     },
-    [fetchMore]
+    [navigate]
   );
 
   const totalPages = useMemo(
