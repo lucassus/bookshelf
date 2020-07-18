@@ -1,5 +1,5 @@
 import faker from "faker";
-import { getManager } from "typeorm";
+import { getManager, ObjectType, DeepPartial } from "typeorm";
 
 import { titleizeSentence } from "../strings";
 import { Author } from "./entity/Author";
@@ -8,23 +8,27 @@ import { Book } from "./entity/Book";
 import { BookCopy } from "./entity/BookCopy";
 import { User } from "./entity/User";
 
-export const createAvatar = (attributes: Partial<Avatar> = {}) => {
+function createEntity<Entity>(
+  entityClass: ObjectType<Entity>,
+  attributes: DeepPartial<Entity>
+) {
   const manager = getManager();
+  const entity = manager.create(entityClass, attributes);
 
-  return manager.save(
-    manager.create(Avatar, {
-      imagePath: "/images/avatars/w13.png",
-      color: faker.commerce.color(),
-      ...attributes
-    })
-  );
-};
+  return manager.save(entity);
+}
+
+export function createAvatar(attributes: Partial<Avatar> = {}) {
+  return createEntity(Avatar, {
+    imagePath: "/images/avatars/w13.png",
+    color: faker.commerce.color(),
+    ...attributes
+  });
+}
 
 type CreateUserAttributes = Partial<User>;
 
-export const createUser = async (attributes: CreateUserAttributes = {}) => {
-  const manager = getManager();
-
+export async function createUser(attributes: CreateUserAttributes = {}) {
   const { ...userAttributes } = attributes;
 
   if (userAttributes.name === undefined) {
@@ -44,29 +48,23 @@ export const createUser = async (attributes: CreateUserAttributes = {}) => {
     userAttributes.avatarId = avatar.id;
   }
 
-  return manager.save(manager.create(User, userAttributes));
-};
+  return createEntity(User, userAttributes);
+}
 
-export const createAuthor = (attributes: Partial<Author> = {}) => {
-  const manager = getManager();
-
-  return manager.save(
-    manager.create(Author, {
-      name: faker.name.findName(),
-      bio: faker.lorem.sentence(),
-      photoPath: "/images/book-authors/andrzej-sapkowski.jpg",
-      ...attributes
-    })
-  );
-};
+export function createAuthor(attributes: Partial<Author> = {}) {
+  return createEntity(Author, {
+    name: faker.name.findName(),
+    bio: faker.lorem.sentence(),
+    photoPath: "/images/book-authors/andrzej-sapkowski.jpg",
+    ...attributes
+  });
+}
 
 type CreateBookAttributes = Partial<Book> & {
   authorAttributes?: Partial<Author>;
 };
 
-export const createBook = async (attributes: CreateBookAttributes = {}) => {
-  const manager = getManager();
-
+export async function createBook(attributes: CreateBookAttributes = {}) {
   const { authorAttributes, ...bookAttributes } = attributes;
 
   if (bookAttributes.authorId === undefined) {
@@ -74,27 +72,23 @@ export const createBook = async (attributes: CreateBookAttributes = {}) => {
     bookAttributes.authorId = author.id;
   }
 
-  return manager.save(
-    manager.create(Book, {
-      title: titleizeSentence(
-        faker.lorem.words(faker.random.number({ min: 1, max: 4 }))
-      ),
-      description: faker.lorem.sentence(),
-      coverPath: "/images/book-covers/witcher3.jpg",
-      ...bookAttributes
-    })
-  );
-};
+  return createEntity(Book, {
+    title: titleizeSentence(
+      faker.lorem.words(faker.random.number({ min: 1, max: 4 }))
+    ),
+    description: faker.lorem.sentence(),
+    coverPath: "/images/book-covers/witcher3.jpg",
+    ...bookAttributes
+  });
+}
 
-export const createBookCopy = async (
+export async function createBookCopy(
   attributes: Partial<BookCopy> & {
     bookAttributes?: CreateBookAttributes;
   } & {
     ownerAttributes?: CreateUserAttributes;
   } & { borrowerAttributes?: CreateUserAttributes } = {}
-) => {
-  const manager = getManager();
-
+) {
   const {
     bookAttributes,
     ownerAttributes,
@@ -117,5 +111,5 @@ export const createBookCopy = async (
     bookCopyAttributes.borrowerId = borrower.id;
   }
 
-  return manager.save(manager.create(BookCopy, bookCopyAttributes));
-};
+  return createEntity(BookCopy, bookCopyAttributes);
+}
