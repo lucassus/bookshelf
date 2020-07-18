@@ -1,32 +1,86 @@
-import { getManager } from "typeorm";
+import faker from "faker";
+import { getManager, ObjectType, DeepPartial } from "typeorm";
 
+import { titleizeSentence } from "../strings";
 import { Author } from "./entity/Author";
 import { Avatar } from "./entity/Avatar";
 import { Book } from "./entity/Book";
 import { BookCopy } from "./entity/BookCopy";
 import { User } from "./entity/User";
 
-export const createAvatar = (attributes: Partial<Avatar> = {}) => {
+const AVATAR_IMAGES = [
+  "/images/avatars/w13.png",
+  "/images/avatars/m10.png",
+  "/images/avatars/w2.png",
+  "/images/avatars/m25.png"
+];
+
+const AUTHOR_PHOTOS = [
+  "/images/book-authors/j-k-rowling.jpg",
+  "/images/book-authors/james-s-a-corey.jpg",
+  "/images/book-authors/andrzej-sapkowski.jpg"
+];
+
+const BOOK_COVERS = [
+  "/images/book-covers/harry1.jpg",
+  "/images/book-covers/harry2.jpg",
+  "/images/book-covers/harry3.jpg",
+  "/images/book-covers/harry4.jpg",
+  "/images/book-covers/harry5.jpg",
+  "/images/book-covers/harry6.jpg",
+  "/images/book-covers/harry7.jpg",
+  "/images/book-covers/expanse1.jpg",
+  "/images/book-covers/expanse2.jpg",
+  "/images/book-covers/expanse3.jpg",
+  "/images/book-covers/expanse4.jpg",
+  "/images/book-covers/expanse5.jpg",
+  "/images/book-covers/expanse6.jpg",
+  "/images/book-covers/expanse7.jpg",
+  "/images/book-covers/expanse8.jpg",
+  "/images/book-covers/witcher1.jpg",
+  "/images/book-covers/witcher2.jpg",
+  "/images/book-covers/witcher3.jpg",
+  "/images/book-covers/witcher4.jpg",
+  "/images/book-covers/witcher5.jpg"
+];
+
+function createEntity<Entity>(
+  entityClass: ObjectType<Entity>,
+  attributes: DeepPartial<Entity>
+) {
   const manager = getManager();
 
-  return manager.save(
-    manager.create(Avatar, {
-      imagePath: "/images/avatars/w13.png",
-      color: "yellow",
-      ...attributes
-    })
-  );
+  const entity = manager.create(entityClass, attributes);
+  return manager.save(entity);
+}
+
+type CreateAvatarAttributes = Partial<Avatar>;
+
+export function createAvatar(attributes: CreateAvatarAttributes = {}) {
+  return createEntity(Avatar, {
+    imagePath: faker.random.arrayElement(AVATAR_IMAGES),
+    color: faker.commerce.color(),
+    ...attributes
+  });
+}
+
+type CreateUserAttributes = Partial<User> & {
+  avatarAttributes?: CreateAvatarAttributes;
 };
 
-export const createUser = async (
-  attributes: Partial<User> = { name: "Alice" }
-) => {
-  const manager = getManager();
+export async function createUser(attributes: CreateUserAttributes = {}) {
+  const { avatarAttributes, ...userAttributes } = attributes;
 
-  const { ...userAttributes } = attributes;
+  if (userAttributes.name === undefined) {
+    userAttributes.name = faker.name.findName();
+  }
 
-  if (userAttributes.name && userAttributes.email === undefined) {
-    userAttributes.email = `${userAttributes.name.toLocaleLowerCase()}@email.com`;
+  if (userAttributes.email === undefined) {
+    userAttributes.email = faker.internet.email();
+  }
+
+  if (userAttributes.info === undefined) {
+    userAttributes.info = faker.lorem.sentence();
   }
 
   if (userAttributes.avatarId === undefined) {
@@ -34,28 +88,28 @@ export const createUser = async (
     userAttributes.avatarId = avatar.id;
   }
 
-  const user = manager.create(User, userAttributes);
+  if (avatarAttributes) {
+    const avatar = await createAvatar(avatarAttributes);
+    userAttributes.avatarId = avatar.id;
+  }
 
-  return manager.save(user);
+  return createEntity(User, userAttributes);
+}
+
+export function createAuthor(attributes: Partial<Author> = {}) {
+  return createEntity(Author, {
+    name: faker.name.findName(),
+    bio: faker.lorem.sentence(),
+    photoPath: faker.random.arrayElement(AUTHOR_PHOTOS),
+    ...attributes
+  });
+}
+
+type CreateBookAttributes = Partial<Book> & {
+  authorAttributes?: Partial<Author>;
 };
 
-export const createAuthor = (attributes: Partial<Author> = {}) => {
-  const manager = getManager();
-
-  return manager.save(
-    manager.create(Author, {
-      name: "Andrzej Sapkowski",
-      photoPath: "/images/book-authors/andrzej-sapkowski.jpg",
-      ...attributes
-    })
-  );
-};
-
-export const createBook = async (
-  attributes: Partial<Book> & { authorAttributes?: Partial<Author> } = {}
-) => {
-  const manager = getManager();
-
+export async function createBook(attributes: CreateBookAttributes = {}) {
   const { authorAttributes, ...bookAttributes } = attributes;
 
   if (bookAttributes.authorId === undefined) {
@@ -63,23 +117,30 @@ export const createBook = async (
     bookAttributes.authorId = author.id;
   }
 
-  return manager.save(
-    manager.create(Book, {
-      title: "Baptism of fire",
-      coverPath: "/images/book-covers/witcher3.jpg",
-      ...bookAttributes
-    })
-  );
-};
+  return createEntity(Book, {
+    title: titleizeSentence(
+      faker.lorem.words(faker.random.number({ min: 1, max: 4 }))
+    ),
+    description: faker.lorem.sentence(),
+    coverPath: faker.random.arrayElement(BOOK_COVERS),
+    favourite: faker.random.boolean(),
+    ...bookAttributes
+  });
+}
 
-export const createBookCopy = async (
-  attributes: Partial<BookCopy> & { bookAttributes?: Partial<Book> } & {
-    ownerAttributes?: Partial<User>;
-  } = {}
-) => {
-  const manager = getManager();
-
-  const { bookAttributes, ownerAttributes, ...bookCopyAttributes } = attributes;
+export async function createBookCopy(
+  attributes: Partial<BookCopy> & {
+    bookAttributes?: CreateBookAttributes;
+  } & {
+    ownerAttributes?: CreateUserAttributes;
+  } & { borrowerAttributes?: CreateUserAttributes } = {}
+) {
+  const {
+    bookAttributes,
+    ownerAttributes,
+    borrowerAttributes,
+    ...bookCopyAttributes
+  } = attributes;
 
   if (bookCopyAttributes.bookId === undefined) {
     const book = await createBook(bookAttributes);
@@ -87,9 +148,14 @@ export const createBookCopy = async (
   }
 
   if (bookCopyAttributes.ownerId === undefined) {
-    const user = await createUser(ownerAttributes);
-    bookCopyAttributes.ownerId = user.id;
+    const owner = await createUser(ownerAttributes);
+    bookCopyAttributes.ownerId = owner.id;
   }
 
-  return manager.save(manager.create(BookCopy, bookCopyAttributes));
-};
+  if (borrowerAttributes) {
+    const borrower = await createUser(borrowerAttributes);
+    bookCopyAttributes.borrowerId = borrower.id;
+  }
+
+  return createEntity(BookCopy, bookCopyAttributes);
+}

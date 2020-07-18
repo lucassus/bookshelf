@@ -13,6 +13,10 @@ interface Image {
   path: string;
 }
 
+const id = (rootValue: { id: number }): string =>
+  secureId.toExternal(rootValue.id, rootValue.constructor.name);
+
+// TODO: Find a way for more modular code organization
 export const resolvers: ResolverMap = {
   Query: {
     booksCount: (rootValue, args, { connection }) =>
@@ -53,7 +57,7 @@ export const resolvers: ResolverMap = {
   },
 
   Book: {
-    id: (book: Book) => secureId.toExternal(book.id, "Book"),
+    id,
     cover: (book: Book): Image => ({
       path: book.coverPath
     }),
@@ -62,14 +66,14 @@ export const resolvers: ResolverMap = {
   },
 
   Author: {
-    id: (author: Author) => secureId.toExternal(author.id, "Author"),
+    id,
     photo: (author: Author): Image => ({
       path: author.photoPath
     })
   },
 
   User: {
-    id: (user: User) => secureId.toExternal(user.id, "User")
+    id
   },
 
   Avatar: {
@@ -88,7 +92,12 @@ export const resolvers: ResolverMap = {
   },
 
   BookCopy: {
-    id: (user: User) => secureId.toExternal(user.id, "BookCopy")
+    id,
+    owner: (bookCopy: BookCopy, args, { connection }) =>
+      connection.manager.findOneOrFail(User, bookCopy.ownerId),
+    borrower: (bookCopy: BookCopy, args, { connection }) =>
+      bookCopy.borrowerId &&
+      connection.manager.findOneOrFail(User, bookCopy.borrowerId)
   },
 
   Resource: {
@@ -100,32 +109,23 @@ export const resolvers: ResolverMap = {
       rootValue,
       args: { id: string },
       { connection, currentUserId }
-    ) => {
-      const id = secureId.toInternal(args.id);
-
-      return connection.manager
+    ) =>
+      connection.manager
         .getCustomRepository(BookCopyRepository)
-        .borrow(id, currentUserId);
-    },
+        .borrow(secureId.toInternal(args.id), currentUserId),
 
-    returnBookCopy: (rootValue, args: { id: string }, { connection }) => {
-      const id = secureId.toInternal(args.id);
-
-      return connection.manager
+    returnBookCopy: (rootValue, args: { id: string }, { connection }) =>
+      connection.manager
         .getCustomRepository(BookCopyRepository)
-        .return(id);
-    },
+        .return(secureId.toInternal(args.id)),
 
     updateBookFavourite: async (
       rootValue,
       args: { id: string; favourite: boolean },
       { connection }
-    ) => {
-      const id = secureId.toInternal(args.id);
-
-      return connection.manager
+    ) =>
+      connection.manager
         .getCustomRepository(BookRepository)
-        .updateFavourite(id, args.favourite);
-    }
+        .updateFavourite(secureId.toInternal(args.id), args.favourite)
   }
 };

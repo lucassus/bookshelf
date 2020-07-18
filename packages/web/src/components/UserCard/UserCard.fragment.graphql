@@ -1,0 +1,6 @@
+fragment UserCard on User {
+  name
+  avatar {
+    ...Avatar
+  }
+}

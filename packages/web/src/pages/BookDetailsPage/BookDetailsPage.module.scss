@@ -1,8 +1,20 @@
-.details {
-  display: flex;
-  flex-direction: row;
-
-  img {
+.container {
+  img.bookCover {
+    float: left;
+    height: 400px;
     padding: 1rem;
+  }
+
+  .bookCopiesContainer {
+    clear: both;
+
+    .bookCopies {
+      display: flex;
+      flex-direction: row;
+
+      & > div {
+        margin: 1rem;
+      }
+    }
   }
 }

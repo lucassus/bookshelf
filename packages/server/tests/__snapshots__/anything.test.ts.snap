@@ -3,33 +3,19 @@
 exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {
-    "description": "Although she writes under the pen name J.K. Rowling, pronounced like rolling, her name when her first Harry Potter book was published was simply Joanne Rowling. Anticipating that the target audience of young boys might not want to read a book written by a woman, her publishers demanded that she use two initials, rather than her full name. As she had no middle name, she chose K as the second initial of her pen name, from her paternal grandmother Kathleen Ada Bulgen Rowling. She calls herself Jo and has said, \\"No one ever called me 'Joanne' when I was young, unless they were angry.\\" Following her marriage, she has sometimes used the name Joanne Murray when conducting personal business. During the Leveson Inquiry she gave evidence under the name of Joanne Kathleen Rowling. In a 2012 interview, Rowling noted that she no longer cared that people pronounced her name incorrectly.
-
-      Rowling was born to Peter James Rowling, a Rolls-Royce aircraft engineer, and Anne Rowling (née Volant), on 31 July 1965 in Yate, Gloucestershire, England, 10 miles (16 km) northeast of Bristol. Her mother Anne was half-French and half-Scottish. Her parents first met on a train departing from King's Cross Station bound for Arbroath in 1964. They married on 14 March 1965. Her mother's maternal grandfather, Dugald Campbell, was born in Lamlash on the Isle of Arran. Her mother's paternal grandfather, Louis Volant, was awarded the Croix de Guerre for exceptional bravery in defending the village of Courcelles-le-Comte during the First World War.
-      
-      Rowling's sister Dianne was born at their home when Rowling was 23 months old. The family moved to the nearby village Winterbourne when Rowling was four. She attended St Michael's Primary School, a school founded by abolitionist William Wilberforce and education reformer Hannah More. Her headmaster at St Michael's, Alfred Dunn, has been suggested as the inspiration for the Harry Potter headmaster Albus Dumbledore.
-      
-      As a child, Rowling often wrote fantasy stories, which she would usually then read to her sister. She recalls that: \\"I can still remember me telling her a story in which she fell down a rabbit hole and was fed strawberries by the rabbit family inside it. Certainly the first story I ever wrote down (when I was five or six) was about a rabbit called Rabbit. He got the measles and was visited by his friends, including a giant bee called Miss Bee.\\" At the age of nine, Rowling moved to Church Cottage in the Gloucestershire village of Tutshill, close to Chepstow, Wales. When she was a young teenager, her great aunt, who Rowling said \\"taught classics and approved of a thirst for knowledge, even of a questionable kind,\\" gave her a very old copy of Jessica Mitford's autobiography, Hons and Rebels. Mitford became Rowling's heroine, and Rowling subsequently read all of her books.
-      
-      Rowling has said of her teenage years, in an interview with The New Yorker, \\"I wasn’t particularly happy. I think it’s a dreadful time of life.\\" She had a difficult homelife; her mother was ill and she had a difficult relationship with her father (she is no longer on speaking terms with him). She attended secondary school at Wyedean School and College, where her mother had worked as a technician in the science department. Rowling said of her adolescence, \\"Hermione [a bookish, know-it-all Harry Potter character] is loosely based on me. She's a caricature of me when I was eleven, which I'm not particularly proud of.\\" Steve Eddy, who taught Rowling English when she first arrived, remembers her as \\"not exceptional\\" but \\"one of a group of girls who were bright, and quite good at English.\\" Sean Harris, her best friend in the Upper Sixth owned a turquoise Ford Anglia, which she says inspired the one in her books.",
-    "headline": "J. K. Rowling",
-    "id": "MS1BdXRob3I=",
+    "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+    "headline": "Clemens Hyatt",
+    "id": "Mi1BdXRob3I=",
   },
   "something": Object {
-    "description": "Harry Potter's life is miserable. His parents are dead and he's stuck with his heartless relatives, who force him to live in a tiny closet under the stairs. But his fortune changes when he receives a letter that tells him the truth about himself: he's a wizard. A mysterious visitor rescues him from his relatives and takes him to his new home, Hogwarts School of Witchcraft and Wizardry.
-
-      After a lifetime of bottling up his magical powers, Harry finally feels like a normal kid. But even within the Wizarding community, he is special. He is the boy who lived: the only person to have ever survived a killing curse inflicted by the evil Lord Voldemort, who launched a brutal takeover of the Wizarding world, only to vanish after failing to kill Harry.
-      
-      Though Harry's first year at Hogwarts is the best of his life, not everything is perfect. There is a dangerous secret object hidden within the castle walls, and Harry believes it's his responsibility to prevent it from falling into evil hands. But doing so will bring him into contact with forces more terrifying than he ever could have imagined.
-      
-      Full of sympathetic characters, wildly imaginative situations, and countless exciting details, the first installment in the series assembles an unforgettable magical world and sets the stage for many high-stakes adventures to come.",
+    "description": "Laudantium molestias ut.",
     "externalId": "MS1Cb29r",
-    "headline": "Harry Potter and the Sorcerer's Stone",
+    "headline": "Veniam",
     "id": "MS1Cb29r",
   },
   "user": Object {
-    "description": "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer.",
-    "headline": "Alice",
+    "description": "Molestiae voluptates exercitationem reiciendis.",
+    "headline": "Mr. Dell Wilderman",
     "id": "MS1Vc2Vy",
   },
 }
@@ -40,92 +26,36 @@ Object {
   "__typename": "Author",
   "books": Array [
     Object {
-      "description": "The Dursleys were so mean and hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike
-
-      And strike it does. For in Harry's second year at Hogwarts, fresh torments and horrors arise, including an outrageously stuck-up new professor, Gilderoy Lockhart, a spirit named Moaning Myrtle who haunts the girls' bathroom, and the unwanted attentions of Ron Weasley's younger sister, Ginny.
-      
-      But each of these seem minor annoyances when the real trouble begins, and someone -- or something -- starts turning Hogwarts students to stone. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past is finally told? Or could it be the one everyone at Hogwarts most suspects . . . Harry Potter himself?",
+      "description": "Pariatur laboriosam aliquid velit molestiae voluptates exercitationem reiciendis.",
+      "favourite": true,
+      "id": "My1Cb29r",
+      "title": "Dolore Tenetur Voluptatem Nostrum",
+    },
+    Object {
+      "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
       "favourite": false,
       "id": "Mi1Cb29r",
-      "title": "Harry Potter and the Chamber of Secrets",
+      "title": "Qui Adipisci Qui",
     },
     Object {
-      "description": "Harry Potter is leaving Privet Drive for the last time. But as he climbs into the sidecar of Hagrid’s motorbike and they take to the skies, he knows Lord Voldemort and the Death Eaters will not be far behind.
-
-      The protective charm that has kept him safe until now is broken. But the Dark Lord is breathing fear into everything he loves. And he knows he can’t keep hiding.
-      
-      To stop Voldemort, Harry knows he must find the remaining Horcruxes and destroy them.
-      
-      He will have to face his enemy in one final battle.",
-      "favourite": false,
-      "id": "Ny1Cb29r",
-      "title": "Harry Potter and the Deathly Hallows",
-    },
-    Object {
-      "description": "Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup. He wants to find out about the mysterious event that's supposed to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn't happened for a hundred years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he's not normal - even by wizarding standards. And in his case, different can be deadly.",
-      "favourite": false,
-      "id": "NC1Cb29r",
-      "title": "Harry Potter and the Goblet of Fire",
-    },
-    Object {
-      "description": "When Harry Potter and the Half-Blood Prince opens, the war against Voldemort has begun. The Wizarding world has split down the middle, and as the casualties mount, the effects even spill over onto the Muggles. Dumbledore is away from Hogwarts for long periods, and the Order of the Phoenix has suffered grievous losses. And yet, as in all wars, life goes on.
-
-      Harry, Ron, and Hermione, having passed their O.W.L. level exams, start on their specialist N.E.W.T. courses. Sixth-year students learn to Apparate, losing a few eyebrows in the process. Teenagers flirt and fight and fall in love. Harry becomes captain of the Gryffindor Quidditch team, while Draco Malfoy pursues his own dark ends. And classes are as fascinating and confounding as ever, as Harry receives some extraordinary help in Potions from the mysterious Half-Blood Prince.
-      
-      Most importantly, Dumbledore and Harry work together to uncover the full and complex story of a boy once named Tom Riddle—the boy who became Lord Voldemort. Like Harry, he was the son of one Muggle-born and one Wizarding parent, raised unloved, and a speaker of Parseltongue. But the similarities end there, as the teenaged Riddle became deeply interested in the Dark objects known as Horcruxes: objects in which a wizard can hide part of his soul, if he dares splinter that soul through murder.
-      
-      Harry must use all the tools at his disposal to draw a final secret out of one of Riddle’s teachers, the sly Potions professor Horace Slughorn. Finally Harry and Dumbledore hold the key to the Dark Lord’s weaknesses... until a shocking reversal exposes Dumbledore’s own vulnerabilities, and casts Harry’s—and Hogwarts’s—future in shadow.",
-      "favourite": false,
-      "id": "Ni1Cb29r",
-      "title": "Harry Potter and the Half-Blood Prince",
-    },
-    Object {
-      "description": "There is a door at the end of a silent corridor. And it’s haunting Harry Pottter’s dreams. Why else would he be waking in the middle of the night, screaming in terror?
-
-      Harry has a lot on his mind for this, his fifth year at Hogwarts: a Defense Against the Dark Arts teacher with a personality like poisoned honey; a big surprise on the Gryffindor Quidditch team; and the looming terror of the Ordinary Wizarding Level exams. But all these things pale next to the growing threat of He-Who-Must-Not-Be-Named---a threat that neither the magical government nor the authorities at Hogwarts can stop.
-      
-      As the grasp of darkness tightens, Harry must discover the true depth and strength of his friends, the importance of boundless loyalty, and the shocking price of unbearable sacrifice.
-      
-      His fate depends on them all.",
-      "favourite": false,
-      "id": "NS1Cb29r",
-      "title": "Harry Potter and the Order of the Phoenix",
-    },
-    Object {
-      "description": "Harry Potter's third year at Hogwarts is full of new dangers. A convicted murderer, Sirius Black, has broken out of Azkaban prison, and it seems he's after Harry. Now Hogwarts is being patrolled by the dementors, the Azkaban guards who are hunting Sirius. But Harry can't imagine that Sirius or, for that matter, the evil Lord Voldemort could be more frightening than the dementors themselves, who have the terrible power to fill anyone they come across with aching loneliness and despair. Meanwhile, life continues as usual at Hogwarts. A top-of-the-line broom takes Harry's success at Quidditch, the sport of the Wizarding world, to new heights. A cute fourth-year student catches his eye. And he becomes close with the new Defense of the Dark Arts teacher, who was a childhood friend of his father. Yet despite the relative safety of life at Hogwarts and the best efforts of the dementors, the threat of Sirius Black grows ever closer. But if Harry has learned anything from his education in wizardry, it is that things are often not what they seem. Tragic revelations, heartwarming surprises, and high-stakes magical adventures await the boy wizard in this funny and poignant third installment of the beloved series.",
-      "favourite": false,
-      "id": "My1Cb29r",
-      "title": "Harry Potter and the Prisoner of Azkaban",
-    },
-    Object {
-      "description": "Harry Potter's life is miserable. His parents are dead and he's stuck with his heartless relatives, who force him to live in a tiny closet under the stairs. But his fortune changes when he receives a letter that tells him the truth about himself: he's a wizard. A mysterious visitor rescues him from his relatives and takes him to his new home, Hogwarts School of Witchcraft and Wizardry.
-
-      After a lifetime of bottling up his magical powers, Harry finally feels like a normal kid. But even within the Wizarding community, he is special. He is the boy who lived: the only person to have ever survived a killing curse inflicted by the evil Lord Voldemort, who launched a brutal takeover of the Wizarding world, only to vanish after failing to kill Harry.
-      
-      Though Harry's first year at Hogwarts is the best of his life, not everything is perfect. There is a dangerous secret object hidden within the castle walls, and Harry believes it's his responsibility to prevent it from falling into evil hands. But doing so will bring him into contact with forces more terrifying than he ever could have imagined.
-      
-      Full of sympathetic characters, wildly imaginative situations, and countless exciting details, the first installment in the series assembles an unforgettable magical world and sets the stage for many high-stakes adventures to come.",
-      "favourite": false,
+      "description": "Laudantium molestias ut.",
+      "favourite": true,
       "id": "MS1Cb29r",
-      "title": "Harry Potter and the Sorcerer's Stone",
+      "title": "Veniam",
     },
   ],
   "id": "MS1BdXRob3I=",
-  "name": "J. K. Rowling",
+  "name": "Rosalind Effertz",
 }
 `;
 
 exports[`fetching anything fetches Book 1`] = `
 Object {
   "__typename": "Book",
-  "description": "The Dursleys were so mean and hideous that summer that all Harry Potter wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he's packing his bags, Harry receives a warning from a strange, impish creature named Dobby who says that if Harry Potter returns to Hogwarts, disaster will strike
-
-      And strike it does. For in Harry's second year at Hogwarts, fresh torments and horrors arise, including an outrageously stuck-up new professor, Gilderoy Lockhart, a spirit named Moaning Myrtle who haunts the girls' bathroom, and the unwanted attentions of Ron Weasley's younger sister, Ginny.
-      
-      But each of these seem minor annoyances when the real trouble begins, and someone -- or something -- starts turning Hogwarts students to stone. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past is finally told? Or could it be the one everyone at Hogwarts most suspects . . . Harry Potter himself?",
-  "favourite": false,
-  "id": "Mi1Cb29r",
-  "title": "Harry Potter and the Chamber of Secrets",
+  "description": "Laudantium molestias ut.",
+  "favourite": true,
+  "id": "MS1Cb29r",
+  "title": "Veniam",
 }
 `;
 
@@ -133,27 +63,21 @@ exports[`fetching anything fetches BookCopy 1`] = `
 Object {
   "__typename": "BookCopy",
   "book": Object {
-    "description": "For more than a hundred years, humans, dwarves, gnomes and elves lived together in relative peace. But times have changed, the uneasy peace is over and now the races are fighting once again - killing their own kind and each other.
-
-      Into this tumultuous time is born a child of prophecy, Ciri, surviving heiress of a bloody revolution, whose strange abilities can change the world - for good, or for evil...
-      
-      As the threat of war hangs over the land, Geralt the Witcher must protect Ciri from those who are hunting the child for her destructive power.
-      
-      But this time, Geralt may have met his match.",
-    "favourite": false,
-    "id": "MTYtQm9vaw==",
-    "title": "Blood of Elves",
+    "description": "Vero aut assumenda.",
+    "favourite": true,
+    "id": "MS1Cb29r",
+    "title": "Minus",
   },
   "borrower": Object {
-    "email": "alice@example.com",
+    "email": "Braulio_Rempel33@hotmail.com",
     "id": "MS1Vc2Vy",
-    "name": "Alice",
+    "name": "Rosalind Effertz",
   },
   "id": "MS1Cb29rQ29weQ==",
   "owner": Object {
-    "email": "bob@example.com",
+    "email": "Clint.Walker97@yahoo.com",
     "id": "Mi1Vc2Vy",
-    "name": "Bob",
+    "name": "Mrs. Monica Stamm",
   },
 }
 `;
@@ -161,8 +85,8 @@ Object {
 exports[`fetching anything fetches User 1`] = `
 Object {
   "__typename": "User",
-  "email": "alice@example.com",
+  "email": "Braulio_Rempel33@hotmail.com",
   "id": "MS1Vc2Vy",
-  "name": "Alice",
+  "name": "Rosalind Effertz",
 }
 `;

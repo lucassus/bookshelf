@@ -1,19 +1,24 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
 
+import { createAuthor, createBook } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
 beforeEach(async () => {
-  await loadFixtures();
   server = createServer();
 });
 
 it("fetches an author", async () => {
   const { query } = createTestClient(server);
+
+  await createAuthor({
+    name: "J. R. R. Tolkien",
+    bio:
+      "John Ronald Reuel Tolkien was an English writer, poet, philologist, and academic. He was the author of the high fantasy works The Hobbit and The Lord of the Rings."
+  });
 
   // When
   const res = await query({
@@ -23,8 +28,8 @@ it("fetches an author", async () => {
           id
           name
           bio
-          books {
-            title
+          photo {
+            url
           }
         }
       }
@@ -33,7 +38,7 @@ it("fetches an author", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });
 
@@ -41,14 +46,26 @@ it("fetches authors along with books", async () => {
   // Given
   const { query } = createTestClient(server);
 
+  const firstAuthor = await createAuthor();
+  await createBook({ authorId: firstAuthor.id });
+  await createBook({ authorId: firstAuthor.id });
+  await createBook({ authorId: firstAuthor.id });
+
+  const secondAuthor = await createAuthor();
+  await createBook({ authorId: secondAuthor.id });
+  await createBook({ authorId: secondAuthor.id });
+
   // When
   const res = await query({
     query: gql`
       query {
         authors {
+          id
           name
           books {
+            id
             title
+            description
           }
         }
       }
@@ -56,6 +73,6 @@ it("fetches authors along with books", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeUndefined();
+  expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });

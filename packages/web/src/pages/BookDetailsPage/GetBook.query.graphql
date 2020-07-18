@@ -11,5 +11,8 @@ query GetBook($id: ID!) {
     cover {
       url
     }
+    copies {
+      ...BookCopy
+    }
   }
 }

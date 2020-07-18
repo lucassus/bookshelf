@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
+import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import styles from "./BookDetailsPage.module.scss";
 import { useGetBookQuery } from "./GetBook.query.generated";
@@ -21,11 +22,15 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>{data.book.title}</h2>
 
-      <div className={styles.details}>
-        <img src={data.book.cover.url} alt="Book cover" />
+      <div>
+        <img
+          className={styles.bookCover}
+          src={data.book.cover.url}
+          alt="Book cover"
+        />
 
         <div>
           {data.book.author && (
@@ -40,6 +45,18 @@ export const BookDetailsPage: React.FunctionComponent = () => {
           <p>{data.book.description}</p>
         </div>
       </div>
+
+      {data.book.copies.length > 0 && (
+        <div className={styles.bookCopiesContainer}>
+          <h3>Copies</h3>
+
+          <div className={styles.bookCopies}>
+            {data.book.copies.map((bookCopy) => (
+              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

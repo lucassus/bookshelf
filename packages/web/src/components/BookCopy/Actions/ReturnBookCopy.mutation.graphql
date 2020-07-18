@@ -1,0 +1,5 @@
+mutation ReturnBookCopy($id: ID!) {
+  returnBookCopy(id: $id) {
+    ...BookCopy
+  }
+}

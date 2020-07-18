@@ -4,6 +4,14 @@ query GetUser($id: ID!) {
     name
     email
     info
-    ...UserAvatar
+    avatar {
+      ...Avatar
+    }
+    ownedBookCopies {
+      ...BookCopy
+    }
+    borrowedBookCopies {
+      ...BookCopy
+    }
   }
 }

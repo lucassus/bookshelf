@@ -3,38 +3,48 @@
 exports[`fetches a user 1`] = `
 Object {
   "avatar": Object {
-    "color": "green",
+    "color": "black",
     "image": Object {
-      "url": "http://examples.devmastery.pl/assets/images/avatars/m10.png",
+      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
     },
   },
   "borrowedBookCopies": Array [
     Object {
       "book": Object {
-        "id": "MTktQm9vaw==",
-        "title": "The tower of the swallow",
+        "id": "My1Cb29r",
+        "title": "Alias",
       },
       "borrower": Object {
-        "email": "bob@example.com",
-        "id": "Mi1Vc2Vy",
-        "name": "Bob",
+        "email": "Braulio_Rempel33@hotmail.com",
+        "id": "MS1Vc2Vy",
+        "name": "Rosalind Effertz",
       },
     },
   ],
-  "email": "bob@example.com",
-  "info": "Twitter fan. Social media expert. Hardcore explorer. Communicator. Amateur coffee lover.",
-  "name": "Bob",
+  "email": "Braulio_Rempel33@hotmail.com",
+  "info": "Et velit quaerat.",
+  "name": "Rosalind Effertz",
   "ownedBookCopies": Array [
     Object {
       "book": Object {
-        "id": "MTYtQm9vaw==",
-        "title": "Blood of Elves",
+        "id": "MS1Cb29r",
+        "title": "Minus",
+      },
+      "owner": Object {
+        "email": "Braulio_Rempel33@hotmail.com",
+        "id": "MS1Vc2Vy",
+        "name": "Rosalind Effertz",
       },
     },
     Object {
       "book": Object {
-        "id": "MjAtQm9vaw==",
-        "title": "The lady of the lake",
+        "id": "Mi1Cb29r",
+        "title": "Earum Quaerat Architecto",
+      },
+      "owner": Object {
+        "email": "Braulio_Rempel33@hotmail.com",
+        "id": "MS1Vc2Vy",
+        "name": "Rosalind Effertz",
       },
     },
   ],
@@ -45,47 +55,36 @@ exports[`fetches users 1`] = `
 Array [
   Object {
     "avatar": Object {
+      "color": "black",
+      "image": Object {
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
+      },
+    },
+    "email": "Braulio_Rempel33@hotmail.com",
+    "info": "Et velit quaerat.",
+    "name": "Rosalind Effertz",
+  },
+  Object {
+    "avatar": Object {
       "color": "yellow",
       "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
       },
     },
-    "email": "alice@example.com",
-    "info": "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer.",
-    "name": "Alice",
+    "email": "Natalie39@hotmail.com",
+    "info": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+    "name": "Mrs. Joesph Feeney",
   },
   Object {
     "avatar": Object {
-      "color": "green",
+      "color": "sky blue",
       "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/m10.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
       },
     },
-    "email": "bob@example.com",
-    "info": "Twitter fan. Social media expert. Hardcore explorer. Communicator. Amateur coffee lover.",
-    "name": "Bob",
-  },
-  Object {
-    "avatar": Object {
-      "color": "red",
-      "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/w2.png",
-      },
-    },
-    "email": "celine@example.com",
-    "info": "Wannabe pop culture specialist. Tv scholar. Lifelong social media practitioner. Music geek. Falls down a lot.",
-    "name": "Celine",
-  },
-  Object {
-    "avatar": Object {
-      "color": "blue",
-      "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/m25.png",
-      },
-    },
-    "email": "dan@example.com",
-    "info": "Professional problem solver. Devoted explorer. Gamer. Unapologetic bacon guru.",
-    "name": "Dan",
+    "email": "Monica.Stamm@gmail.com",
+    "info": "Molestiae voluptates exercitationem reiciendis.",
+    "name": "Velda Bailey",
   },
 ]
 `;

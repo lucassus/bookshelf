@@ -6,12 +6,39 @@ Object {
     "copies": Array [
       Object {
         "borrower": Object {
+          "avatar": Object {
+            "color": "yellow",
+            "image": Object {
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/w13.png",
+            },
+          },
           "id": "MS1Vc2Vy",
           "name": "Alice",
         },
+        "id": "MS1Cb29rQ29weQ==",
         "owner": Object {
+          "avatar": Object {
+            "color": "green",
+            "image": Object {
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m10.png",
+            },
+          },
           "id": "Mi1Vc2Vy",
           "name": "Bob",
+        },
+      },
+      Object {
+        "borrower": null,
+        "id": "Mi1Cb29rQ29weQ==",
+        "owner": Object {
+          "avatar": Object {
+            "color": "yellow",
+            "image": Object {
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/w13.png",
+            },
+          },
+          "id": "MS1Vc2Vy",
+          "name": "Alice",
         },
       },
     ],
@@ -58,7 +85,7 @@ Object {
       "name": "Andrzej Sapkowski",
     },
     "cover": Object {
-      "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher5.jpg",
+      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/witcher5.jpg",
     },
     "description": "After walking through a portal in the Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
 
@@ -83,7 +110,7 @@ Object {
 exports[`fetches a random book 1`] = `
 Object {
   "cover": Object {
-    "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher4.jpg",
+    "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/witcher4.jpg",
   },
   "title": "The tower of the swallow",
 }
@@ -95,7 +122,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse3.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse3.jpg",
       },
       "id": "MTAtQm9vaw==",
       "title": "Abaddon's Gate",
@@ -103,7 +130,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse6.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse6.jpg",
       },
       "id": "MTMtQm9vaw==",
       "title": "Babylon's Ashes",
@@ -111,7 +138,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher3.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/witcher3.jpg",
       },
       "id": "MTgtQm9vaw==",
       "title": "Baptism of fire",
@@ -128,9 +155,16 @@ Object {
             "name": "Bob",
           },
         },
+        Object {
+          "borrower": null,
+          "owner": Object {
+            "id": "MS1Vc2Vy",
+            "name": "Alice",
+          },
+        },
       ],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/witcher1.jpg",
       },
       "id": "MTYtQm9vaw==",
       "title": "Blood of Elves",
@@ -138,7 +172,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse2.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse2.jpg",
       },
       "id": "OS1Cb29r",
       "title": "Caliban's War",
@@ -146,7 +180,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/expanse4.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse4.jpg",
       },
       "id": "MTEtQm9vaw==",
       "title": "Cibola Burn",
@@ -154,7 +188,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry2.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/harry2.jpg",
       },
       "id": "Mi1Cb29r",
       "title": "Harry Potter and the Chamber of Secrets",
@@ -162,7 +196,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry7.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/harry7.jpg",
       },
       "id": "Ny1Cb29r",
       "title": "Harry Potter and the Deathly Hallows",
@@ -170,7 +204,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "http://examples.devmastery.pl/assets/images/book-covers/harry4.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/harry4.jpg",
       },
       "id": "NC1Cb29r",
       "title": "Harry Potter and the Goblet of Fire",

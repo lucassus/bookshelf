@@ -1,14 +1,13 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
 
+import { createAuthor, createBook } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
 beforeEach(async () => {
-  await loadFixtures();
   server = createServer();
 });
 
@@ -21,10 +20,12 @@ describe("fetching resource", () => {
 
         ... on Book {
           title
+          description
         }
 
         ... on Author {
           name
+          bio
         }
       }
     }
@@ -33,11 +34,12 @@ describe("fetching resource", () => {
   it("fetches Book", async () => {
     // Given
     const { query } = createTestClient(server);
+    const book = await createBook();
 
     // When
     const res = await query({
       query: GetResourceQuery,
-      variables: { id: secureId.toExternal(1, "Book") }
+      variables: { id: secureId.toExternal(book.id, "Book") }
     });
 
     // Then
@@ -47,11 +49,12 @@ describe("fetching resource", () => {
   it("fetches Author", async () => {
     // Given
     const { query } = createTestClient(server);
+    const author = await createAuthor();
 
     // When
     const res = await query({
       query: GetResourceQuery,
-      variables: { id: secureId.toExternal(1, "Author") }
+      variables: { id: secureId.toExternal(author.id, "Author") }
     });
 
     // Then

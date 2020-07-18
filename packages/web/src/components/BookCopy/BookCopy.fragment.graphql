@@ -1,0 +1,27 @@
+fragment BookCopy on BookCopy {
+  id
+
+  book {
+    title
+    id
+    cover {
+      url
+    }
+  }
+
+  owner {
+    id
+    name
+    avatar {
+      ...Avatar
+    }
+  }
+
+  borrower {
+    id
+    name
+    avatar {
+      ...Avatar
+    }
+  }
+}
