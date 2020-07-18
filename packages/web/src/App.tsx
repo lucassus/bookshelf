@@ -20,6 +20,7 @@ export const App: React.FunctionComponent = () => (
     <main>
       <Routes>
         <Route path="/" element={<BooksPage />} />
+        <Route path="/page/:page*" element={<BooksPage />} />
         <Route path="/books/:id" element={<BookDetailsPage />} />
         <Route path="/authors" element={<AuthorsPage />} />
         <Route path="/authors/:id" element={<AuthorDetailsPage />} />
