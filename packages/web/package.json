@@ -55,7 +55,7 @@
     "clean:dist": "rimraf dist",
     "clean:codegen": "rimraf graphql.schema.json src/**/*.generated.{ts,tsx}",
     "clean": "yarn clean:codegen && yarn clean:dist",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "yarn graphql-codegen --config codegen.yml",
     "compile": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
     "build": "yarn codegen && yarn compile",
     "dev-server": "webpack-dev-server --mode development",
