@@ -5,10 +5,7 @@ type Props = {
   onChange: (page: number) => any;
 };
 
-export const Pagination: React.FunctionComponent<Props> = ({
-  count,
-  onChange
-}) => {
+export const Pager: React.FunctionComponent<Props> = ({ count, onChange }) => {
   const pages = useMemo(
     () => new Array(count).fill(null).map((_, index) => index + 1),
     [count]

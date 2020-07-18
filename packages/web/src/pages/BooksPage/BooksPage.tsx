@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
-import { Pagination } from "../../components/Pagination";
+import { Pager } from "../../components/Pager";
 import styles from "./BooksPage.module.scss";
 import { useGetBooksQuery } from "./GetBooks.query.generated";
 
@@ -48,7 +48,7 @@ export const BooksPage: React.FunctionComponent = () => {
         ))}
       </div>
 
-      <Pagination onChange={handlePageChange} count={totalPages} />
+      <Pager onChange={handlePageChange} count={totalPages} />
     </div>
   );
 };
