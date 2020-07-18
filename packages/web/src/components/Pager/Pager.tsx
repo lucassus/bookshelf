@@ -9,6 +9,16 @@ type Props = {
   path: (page: number) => string;
 };
 
+const PageLink: React.FunctionComponent<{ to: string; isCurrent: boolean }> = ({
+  to,
+  isCurrent,
+  children
+}) => (
+  <Link to={to} className={isCurrent ? styles.current : undefined}>
+    {children}
+  </Link>
+);
+
 // TODO: Add some some nice styles
 export const Pager: React.FunctionComponent<Props> = ({
   currentPage,
@@ -23,41 +33,34 @@ export const Pager: React.FunctionComponent<Props> = ({
   const firstPage = 1;
   const lastPage = totalPages;
 
-  // TODO: Find a nicer solution
-  const linkClassName = (page: number) =>
-    page === currentPage ? styles.current : undefined;
-
   return (
     <div className={styles.container}>
-      <>
-        <Link className={linkClassName(firstPage)} to={path(firstPage)}>
-          first
-        </Link>
-        <Link
-          className={linkClassName(firstPage)}
-          to={path(currentPage > 1 ? currentPage - 1 : firstPage)}
-        >
-          prev
-        </Link>
-      </>
+      <PageLink to={path(firstPage)} isCurrent={currentPage === firstPage}>
+        first
+      </PageLink>
+      <PageLink
+        to={path(currentPage > 1 ? currentPage - 1 : firstPage)}
+        isCurrent={currentPage === firstPage}
+      >
+        prev
+      </PageLink>
 
       {pages.map((page) => (
-        <Link key={page} to={path(page)} className={linkClassName(page)}>
+        <PageLink key={page} to={path(page)} isCurrent={currentPage === page}>
           {page}
-        </Link>
+        </PageLink>
       ))}
 
-      <>
-        <Link
-          className={linkClassName(lastPage)}
-          to={path(currentPage < totalPages ? currentPage + 1 : lastPage)}
-        >
-          next
-        </Link>
-        <Link className={linkClassName(lastPage)} to={path(lastPage)}>
-          last
-        </Link>
-      </>
+      <PageLink
+        to={path(currentPage < totalPages ? currentPage + 1 : lastPage)}
+        isCurrent={currentPage === lastPage}
+      >
+        next
+      </PageLink>
+
+      <PageLink to={path(lastPage)} isCurrent={currentPage === lastPage}>
+        last
+      </PageLink>
     </div>
   );
 };
