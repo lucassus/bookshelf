@@ -49,8 +49,8 @@ function createEntity<Entity>(
   attributes: DeepPartial<Entity>
 ) {
   const manager = getManager();
-  const entity = manager.create(entityClass, attributes);
 
+  const entity = manager.create(entityClass, attributes);
   return manager.save(entity);
 }
 
