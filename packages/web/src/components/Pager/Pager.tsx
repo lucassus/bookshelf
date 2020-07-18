@@ -9,17 +9,6 @@ type Props = {
   path: (page: number) => string;
 };
 
-const PageLink: React.FunctionComponent<{ to: string; isCurrent: boolean }> = ({
-  to,
-  isCurrent,
-  children
-}) => (
-  <Link to={to} className={isCurrent ? styles.current : undefined}>
-    {children}
-  </Link>
-);
-
-// TODO: Add some some nice styles
 export const Pager: React.FunctionComponent<Props> = ({
   currentPage,
   totalPages,
@@ -34,33 +23,37 @@ export const Pager: React.FunctionComponent<Props> = ({
   const lastPage = totalPages;
 
   return (
-    <div className={styles.container}>
-      <PageLink to={path(firstPage)} isCurrent={currentPage === firstPage}>
-        first
-      </PageLink>
-      <PageLink
-        to={path(currentPage > 1 ? currentPage - 1 : firstPage)}
-        isCurrent={currentPage === firstPage}
-      >
-        prev
-      </PageLink>
+    <ul className={styles.container}>
+      <li>
+        <Link to={path(firstPage)}>first</Link>
+      </li>
+
+      <li>
+        <Link to={path(currentPage > 1 ? currentPage - 1 : firstPage)}>
+          prev
+        </Link>
+      </li>
 
       {pages.map((page) => (
-        <PageLink key={page} to={path(page)} isCurrent={currentPage === page}>
-          {page}
-        </PageLink>
+        <li key={page}>
+          <Link
+            to={path(page)}
+            className={page === currentPage ? styles.current : undefined}
+          >
+            {page}
+          </Link>
+        </li>
       ))}
 
-      <PageLink
-        to={path(currentPage < totalPages ? currentPage + 1 : lastPage)}
-        isCurrent={currentPage === lastPage}
-      >
-        next
-      </PageLink>
+      <li>
+        <Link to={path(currentPage < totalPages ? currentPage + 1 : lastPage)}>
+          next
+        </Link>
+      </li>
 
-      <PageLink to={path(lastPage)} isCurrent={currentPage === lastPage}>
-        last
-      </PageLink>
-    </div>
+      <li>
+        <Link to={path(lastPage)}>last</Link>
+      </li>
+    </ul>
   );
 };
