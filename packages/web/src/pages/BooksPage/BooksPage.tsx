@@ -36,8 +36,8 @@ export const BooksPage: React.FunctionComponent = () => {
 
       <Pager
         currentPage={currentPage}
-        path={(nextPage) => (nextPage === 1 ? "/" : `/page/${nextPage}`)}
         totalPages={totalPages}
+        buildPathFor={(page) => (page === 1 ? "/" : `/page/${page}`)}
       />
 
       <div className={styles.list}>
