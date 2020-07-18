@@ -1,28 +1,63 @@
 import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
+
+import styles from "./Pager.module.scss";
 
 type Props = {
-  count: number;
-  onChange: (page: number) => any;
+  currentPage: number;
+  totalPages: number;
+  path: (page: number) => string;
 };
 
-// TODO: Use regular links (not buttons)
-export const Pager: React.FunctionComponent<Props> = ({ count, onChange }) => {
+// TODO: Add some some nice styles
+export const Pager: React.FunctionComponent<Props> = ({
+  currentPage,
+  totalPages,
+  path
+}) => {
   const pages = useMemo(
-    () => new Array(count).fill(null).map((_, index) => index + 1),
-    [count]
+    () => new Array(totalPages).fill(null).map((_, index) => index + 1),
+    [totalPages]
   );
 
+  const firstPage = 1;
+  const lastPage = totalPages;
+
+  // TODO: Find a nicer solution
+  const linkClassName = (page: number) =>
+    page === currentPage ? styles.current : undefined;
+
   return (
-    <div>
-      <button onClick={() => onChange(1)}>first</button>
+    <div className={styles.container}>
+      <>
+        <Link className={linkClassName(firstPage)} to={path(firstPage)}>
+          first
+        </Link>
+        <Link
+          className={linkClassName(firstPage)}
+          to={path(currentPage > 1 ? currentPage - 1 : firstPage)}
+        >
+          prev
+        </Link>
+      </>
 
       {pages.map((page) => (
-        <button key={page} onClick={() => onChange(page)}>
+        <Link key={page} to={path(page)} className={linkClassName(page)}>
           {page}
-        </button>
+        </Link>
       ))}
 
-      <button onClick={() => onChange(count)}>last</button>
+      <>
+        <Link
+          className={linkClassName(lastPage)}
+          to={path(currentPage < totalPages ? currentPage + 1 : lastPage)}
+        >
+          next
+        </Link>
+        <Link className={linkClassName(lastPage)} to={path(lastPage)}>
+          last
+        </Link>
+      </>
     </div>
   );
 };

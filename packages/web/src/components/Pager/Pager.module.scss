@@ -1,0 +1,14 @@
+.container {
+  margin: 1rem;
+
+  a {
+    padding: 0.2rem;
+
+    &.current {
+      color: black;
+      cursor: default;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
