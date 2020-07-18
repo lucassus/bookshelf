@@ -7,7 +7,7 @@ Object {
     "id": "MS1BdXRob3I=",
     "name": "J. R. R. Tolkien",
     "photo": Object {
-      "url": "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg",
+      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-authors/j-k-rowling.jpg",
     },
   },
 }

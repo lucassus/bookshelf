@@ -5,7 +5,7 @@ Object {
   "avatar": Object {
     "color": "black",
     "image": Object {
-      "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
     },
   },
   "borrowedBookCopies": Array [
@@ -57,7 +57,7 @@ Array [
     "avatar": Object {
       "color": "black",
       "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/w13.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
       },
     },
     "email": "Braulio_Rempel33@hotmail.com",
@@ -68,7 +68,7 @@ Array [
     "avatar": Object {
       "color": "yellow",
       "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/m25.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
       },
     },
     "email": "Natalie39@hotmail.com",
@@ -79,7 +79,7 @@ Array [
     "avatar": Object {
       "color": "sky blue",
       "image": Object {
-        "url": "http://examples.devmastery.pl/assets/images/avatars/w2.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
       },
     },
     "email": "Monica.Stamm@gmail.com",
