@@ -1,0 +1,23 @@
+ul.container {
+  display: inline-block;
+  list-style-type: none;
+  margin-bottom: 2rem;
+  padding: 0px;
+
+  li {
+    float: left;
+
+    a {
+      border-radius: 5px;
+      padding: 8px 16px;
+
+      &.current {
+        color: white;
+        cursor: default;
+        background-color: #007bff;
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+  }
+}

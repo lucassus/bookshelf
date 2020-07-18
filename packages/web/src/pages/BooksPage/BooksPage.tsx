@@ -1,29 +1,21 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
+import { useParams } from "react-router";
 
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
-import { Pagination } from "../../components/Pagination";
+import { Pager } from "../../components/Pager";
 import styles from "./BooksPage.module.scss";
 import { useGetBooksQuery } from "./GetBooks.query.generated";
 
 const PER_PAGE = 8;
 
 export const BooksPage: React.FunctionComponent = () => {
-  const { loading, data, error, fetchMore, refetch } = useGetBooksQuery({
-    variables: { limit: PER_PAGE }
+  const params = useParams();
+
+  const currentPage = params.page ? parseInt(params.page, 10) : 1;
+  const { loading, data, error, refetch } = useGetBooksQuery({
+    variables: { limit: PER_PAGE, offset: (currentPage - 1) * PER_PAGE }
   });
-
-  const handlePageChange = useCallback(
-    (page: number) => {
-      const offset = (page - 1) * PER_PAGE;
-
-      return fetchMore({
-        variables: { offset },
-        updateQuery: (prev, { fetchMoreResult }): any => fetchMoreResult
-      });
-    },
-    [fetchMore]
-  );
 
   const totalPages = useMemo(
     () => (data ? Math.ceil(data.booksCount / PER_PAGE) : 1),
@@ -42,13 +34,17 @@ export const BooksPage: React.FunctionComponent = () => {
     <div>
       <h2>Books</h2>
 
+      <Pager
+        currentPage={currentPage}
+        totalPages={totalPages}
+        buildPathFor={(page) => (page === 1 ? "/" : `/page/${page}`)}
+      />
+
       <div className={styles.list}>
         {data.books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </div>
-
-      <Pagination onChange={handlePageChange} count={totalPages} />
     </div>
   );
 };
