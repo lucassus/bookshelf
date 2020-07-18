@@ -3,8 +3,8 @@
 exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {
-    "description": "Cumque ipsam exercitationem sequi est minus.",
-    "headline": "Reese Dickinson",
+    "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+    "headline": "Clemens Hyatt",
     "id": "Mi1BdXRob3I=",
   },
   "something": Object {
@@ -14,8 +14,8 @@ Object {
     "id": "MS1Cb29r",
   },
   "user": Object {
-    "description": "Pariatur laboriosam aliquid velit molestiae voluptates exercitationem reiciendis.",
-    "headline": "Ruthie Brown",
+    "description": "Molestiae voluptates exercitationem reiciendis.",
+    "headline": "Mr. Dell Wilderman",
     "id": "MS1Vc2Vy",
   },
 }
@@ -26,20 +26,20 @@ Object {
   "__typename": "Author",
   "books": Array [
     Object {
-      "description": "Tenetur voluptatem nostrum qui.",
-      "favourite": false,
+      "description": "Pariatur laboriosam aliquid velit molestiae voluptates exercitationem reiciendis.",
+      "favourite": true,
       "id": "My1Cb29r",
-      "title": "Assumenda",
+      "title": "Dolore Tenetur Voluptatem Nostrum",
     },
     Object {
       "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
       "favourite": false,
       "id": "Mi1Cb29r",
-      "title": "Maxime Qui Adipisci Qui",
+      "title": "Qui Adipisci Qui",
     },
     Object {
       "description": "Laudantium molestias ut.",
-      "favourite": false,
+      "favourite": true,
       "id": "MS1Cb29r",
       "title": "Veniam",
     },
@@ -53,7 +53,7 @@ exports[`fetching anything fetches Book 1`] = `
 Object {
   "__typename": "Book",
   "description": "Laudantium molestias ut.",
-  "favourite": false,
+  "favourite": true,
   "id": "MS1Cb29r",
   "title": "Veniam",
 }
@@ -64,7 +64,7 @@ Object {
   "__typename": "BookCopy",
   "book": Object {
     "description": "Vero aut assumenda.",
-    "favourite": false,
+    "favourite": true,
     "id": "MS1Cb29r",
     "title": "Minus",
   },
@@ -75,9 +75,9 @@ Object {
   },
   "id": "MS1Cb29rQ29weQ==",
   "owner": Object {
-    "email": "Eusebio92@hotmail.com",
+    "email": "Clint.Walker97@yahoo.com",
     "id": "Mi1Vc2Vy",
-    "name": "Eileen Reinger",
+    "name": "Mrs. Monica Stamm",
   },
 }
 `;

@@ -117,6 +117,7 @@ export async function createBook(attributes: CreateBookAttributes = {}) {
       "/images/book-covers/witcher4.jpg",
       "/images/book-covers/witcher5.jpg"
     ]),
+    favourite: faker.random.boolean(),
     ...bookAttributes
   });
 }
