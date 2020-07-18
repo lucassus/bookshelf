@@ -8,6 +8,42 @@ import { Book } from "./entity/Book";
 import { BookCopy } from "./entity/BookCopy";
 import { User } from "./entity/User";
 
+const AVATAR_IMAGES = [
+  "/images/avatars/w13.png",
+  "/images/avatars/m10.png",
+  "/images/avatars/w2.png",
+  "/images/avatars/m25.png"
+];
+
+const AUTHOR_PHOTOS = [
+  "/images/book-authors/j-k-rowling.jpg",
+  "/images/book-authors/james-s-a-corey.jpg",
+  "/images/book-authors/andrzej-sapkowski.jpg"
+];
+
+const BOOK_COVERS = [
+  "/images/book-covers/harry1.jpg",
+  "/images/book-covers/harry2.jpg",
+  "/images/book-covers/harry3.jpg",
+  "/images/book-covers/harry4.jpg",
+  "/images/book-covers/harry5.jpg",
+  "/images/book-covers/harry6.jpg",
+  "/images/book-covers/harry7.jpg",
+  "/images/book-covers/expanse1.jpg",
+  "/images/book-covers/expanse2.jpg",
+  "/images/book-covers/expanse3.jpg",
+  "/images/book-covers/expanse4.jpg",
+  "/images/book-covers/expanse5.jpg",
+  "/images/book-covers/expanse6.jpg",
+  "/images/book-covers/expanse7.jpg",
+  "/images/book-covers/expanse8.jpg",
+  "/images/book-covers/witcher1.jpg",
+  "/images/book-covers/witcher2.jpg",
+  "/images/book-covers/witcher3.jpg",
+  "/images/book-covers/witcher4.jpg",
+  "/images/book-covers/witcher5.jpg"
+];
+
 function createEntity<Entity>(
   entityClass: ObjectType<Entity>,
   attributes: DeepPartial<Entity>
@@ -22,12 +58,7 @@ type CreateAvatarAttributes = Partial<Avatar>;
 
 export function createAvatar(attributes: CreateAvatarAttributes = {}) {
   return createEntity(Avatar, {
-    imagePath: faker.random.arrayElement([
-      "/images/avatars/w13.png",
-      "/images/avatars/m10.png",
-      "/images/avatars/w2.png",
-      "/images/avatars/m25.png"
-    ]),
+    imagePath: faker.random.arrayElement(AVATAR_IMAGES),
     color: faker.commerce.color(),
     ...attributes
   });
@@ -69,11 +100,7 @@ export function createAuthor(attributes: Partial<Author> = {}) {
   return createEntity(Author, {
     name: faker.name.findName(),
     bio: faker.lorem.sentence(),
-    photoPath: faker.random.arrayElement([
-      "/images/book-authors/j-k-rowling.jpg",
-      "/images/book-authors/james-s-a-corey.jpg",
-      "/images/book-authors/andrzej-sapkowski.jpg"
-    ]),
+    photoPath: faker.random.arrayElement(AUTHOR_PHOTOS),
     ...attributes
   });
 }
@@ -95,28 +122,7 @@ export async function createBook(attributes: CreateBookAttributes = {}) {
       faker.lorem.words(faker.random.number({ min: 1, max: 4 }))
     ),
     description: faker.lorem.sentence(),
-    coverPath: faker.random.arrayElement([
-      "/images/book-covers/harry1.jpg",
-      "/images/book-covers/harry2.jpg",
-      "/images/book-covers/harry3.jpg",
-      "/images/book-covers/harry4.jpg",
-      "/images/book-covers/harry5.jpg",
-      "/images/book-covers/harry6.jpg",
-      "/images/book-covers/harry7.jpg",
-      "/images/book-covers/expanse1.jpg",
-      "/images/book-covers/expanse2.jpg",
-      "/images/book-covers/expanse3.jpg",
-      "/images/book-covers/expanse4.jpg",
-      "/images/book-covers/expanse5.jpg",
-      "/images/book-covers/expanse6.jpg",
-      "/images/book-covers/expanse7.jpg",
-      "/images/book-covers/expanse8.jpg",
-      "/images/book-covers/witcher1.jpg",
-      "/images/book-covers/witcher2.jpg",
-      "/images/book-covers/witcher3.jpg",
-      "/images/book-covers/witcher4.jpg",
-      "/images/book-covers/witcher5.jpg"
-    ]),
+    coverPath: faker.random.arrayElement(BOOK_COVERS),
     favourite: faker.random.boolean(),
     ...bookAttributes
   });
