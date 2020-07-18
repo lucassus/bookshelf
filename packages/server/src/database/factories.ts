@@ -18,7 +18,9 @@ function createEntity<Entity>(
   return manager.save(entity);
 }
 
-export function createAvatar(attributes: Partial<Avatar> = {}) {
+type CreateAvatarAttributes = Partial<Avatar>;
+
+export function createAvatar(attributes: CreateAvatarAttributes = {}) {
   return createEntity(Avatar, {
     imagePath: faker.random.arrayElement([
       "/images/avatars/w13.png",
@@ -31,10 +33,12 @@ export function createAvatar(attributes: Partial<Avatar> = {}) {
   });
 }
 
-type CreateUserAttributes = Partial<User>;
+type CreateUserAttributes = Partial<User> & {
+  avatarAttributes?: CreateAvatarAttributes;
+};
 
 export async function createUser(attributes: CreateUserAttributes = {}) {
-  const { ...userAttributes } = attributes;
+  const { avatarAttributes, ...userAttributes } = attributes;
 
   if (userAttributes.name === undefined) {
     userAttributes.name = faker.name.findName();
@@ -50,6 +54,11 @@ export async function createUser(attributes: CreateUserAttributes = {}) {
 
   if (userAttributes.avatarId === undefined) {
     const avatar = await createAvatar();
+    userAttributes.avatarId = avatar.id;
+  }
+
+  if (avatarAttributes) {
+    const avatar = await createAvatar(avatarAttributes);
     userAttributes.avatarId = avatar.id;
   }
 

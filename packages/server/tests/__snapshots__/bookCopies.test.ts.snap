@@ -22,7 +22,7 @@ exports[`return book copy 1`] = `
 Object {
   "book": Object {
     "id": "MS1Cb29r",
-    "title": "Qui",
+    "title": "Minus",
   },
   "borrower": null,
   "id": "MS1Cb29rQ29weQ==",

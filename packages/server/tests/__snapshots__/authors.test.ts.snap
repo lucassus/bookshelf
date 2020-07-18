@@ -7,7 +7,7 @@ Object {
     "id": "MS1BdXRob3I=",
     "name": "J. R. R. Tolkien",
     "photo": Object {
-      "url": "http://examples.devmastery.pl/assets/images/book-authors/andrzej-sapkowski.jpg",
+      "url": "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg",
     },
   },
 }
@@ -19,19 +19,19 @@ Object {
     Object {
       "books": Array [
         Object {
+          "description": "Tenetur voluptatem nostrum qui.",
+          "id": "My1Cb29r",
+          "title": "Assumenda",
+        },
+        Object {
+          "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+          "id": "Mi1Cb29r",
+          "title": "Maxime Qui Adipisci Qui",
+        },
+        Object {
           "description": "Laudantium molestias ut.",
           "id": "MS1Cb29r",
-          "title": "Ab Veniam",
-        },
-        Object {
-          "description": "Aut assumenda dolore tenetur voluptatem nostrum qui pariatur laboriosam.",
-          "id": "My1Cb29r",
-          "title": "Consequatur Minus Fugit",
-        },
-        Object {
-          "description": "Qui adipisci qui cumque ipsam exercitationem sequi est.",
-          "id": "Mi1Cb29r",
-          "title": "Voluptas",
+          "title": "Veniam",
         },
       ],
       "id": "MS1BdXRob3I=",
@@ -40,18 +40,18 @@ Object {
     Object {
       "books": Array [
         Object {
-          "description": "Facere esse libero maxime officiis quis occaecati.",
-          "id": "NS1Cb29r",
-          "title": "Illum Ut",
+          "description": "Unde facere esse libero maxime.",
+          "id": "NC1Cb29r",
+          "title": "Ipsam Fuga Reprehenderit Illum",
         },
         Object {
-          "description": "Voluptas totam necessitatibus ipsam fuga.",
-          "id": "NC1Cb29r",
-          "title": "Qui",
+          "description": "Omnis sit eius nostrum beatae alias corrupti quidem sequi.",
+          "id": "NS1Cb29r",
+          "title": "Occaecati Architecto",
         },
       ],
       "id": "Mi1BdXRob3I=",
-      "name": "Thomas Upton",
+      "name": "Clint Walker",
     },
   ],
 }
