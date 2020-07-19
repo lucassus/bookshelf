@@ -7,7 +7,8 @@ export const createAuthor: Factory<Author> = (attributes = {}) => ({
   name: "J. K. Rowling",
   bio: "As a child, Rowling often wrote fantasy stories",
   photo: {
-    url:
+    url: "/book-authors/j-k-rowling.jpg",
+    path:
       "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
   },
   books: [],
@@ -20,6 +21,7 @@ export const createBook: Factory<Book> = (attributes = {}) => ({
   description: "Lorem impsum",
   favourite: false,
   cover: {
+    path: "/book-covers/witcher1.jpg",
     url: "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
   },
   copies: [],
@@ -33,6 +35,7 @@ export const createUser: Factory<User> = (attributes = {}) => ({
   email: "bob@email.com",
   avatar: {
     image: {
+      path: "/avatars/m25.png",
       url: "http://examples.devmastery.pl/assets/images/avatars/m25.png"
     },
     color: "yellow"

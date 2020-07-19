@@ -16,6 +16,7 @@ export const Basic = () => {
     id: "1",
     name: text("Author Name", "J. K. Rowling"),
     photo: {
+      path: "/book-authors/j-k-rowling.jpg",
       url:
         "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
     },

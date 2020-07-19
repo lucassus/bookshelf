@@ -10,7 +10,7 @@ type Query {
   booksCount: Int!
   books(offset: Int = 0, limit: Int = 9): [Book!]!
   book(id: ID!): Book!
-  randomBook: Book!
+  randomBook: Book
 
   users: [User!]!
   user(id: ID!): User!
@@ -21,7 +21,7 @@ type Query {
 }
 
 type Mutation {
-  borrowBookCopy(id: ID!): BookCopy!
+  borrowBookCopy(id: ID!): BookCopy
   returnBookCopy(id: ID!): BookCopy!
-  updateBookFavourite(id: ID!, favourite: Boolean): Book!
+  updateBookFavourite(id: ID!, favourite: Boolean!): Book!
 }

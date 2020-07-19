@@ -1,15 +1,20 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
+import { getManager } from "typeorm";
 
+import { BookCopy } from "../src/database/entity/BookCopy";
+import { User } from "../src/database/entity/User";
 import { createBookCopy, createUser } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
+let currentUser: User;
+
 beforeEach(async () => {
   // TODO: Implement a better way for authenticating a user
-  await createUser();
+  currentUser = await createUser({ name: "Bob" });
 
   server = createServer();
 });
@@ -18,13 +23,13 @@ test("borrow book copy", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const bookCopy = await createBookCopy({
+  let bookCopy = await createBookCopy({
     bookAttributes: {
       title: "Time of contempt"
     },
     ownerAttributes: {
-      name: "Bob",
-      email: "bob@email.com"
+      name: "Alice",
+      email: "alice@email.com"
     }
   });
 
@@ -53,6 +58,9 @@ test("borrow book copy", async () => {
   });
 
   // Then
+  bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
+  expect(bookCopy.borrowerId).toBe(currentUser.id);
+
   expect(res.data).not.toBeNull();
   expect(res.data!.borrowBookCopy).toMatchSnapshot();
 });
@@ -61,9 +69,9 @@ test("return book copy", async () => {
   // Given
   const { query } = createTestClient(server);
 
-  const bookCopy = await createBookCopy({
-    ownerAttributes: { name: "Bob", email: "bob@email.com" },
-    borrowerAttributes: { name: "Jogn", email: "john@email.com" }
+  let bookCopy = await createBookCopy({
+    ownerAttributes: { name: "Alice", email: "alice@email.com" },
+    borrowerId: currentUser.id
   });
 
   // When
@@ -92,6 +100,9 @@ test("return book copy", async () => {
   });
 
   // Then
+  bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
+  expect(bookCopy.borrowerId).toBe(null);
+
   expect(res.data).not.toBeNull();
   expect(res.data!.returnBookCopy).toMatchSnapshot();
 });

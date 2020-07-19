@@ -1,0 +1,17 @@
+schema:
+  ./src/graphql/*.graphql:
+    noRequire: true
+
+generates:
+  ./src/resolvers-types.generated.ts:
+    config:
+      useIndexSignature: true
+      mappers:
+        Author: ./database/entity/Author#Author as AuthorEntity
+        Avatar: ./database/entity/Avatar#Avatar as AvatarEntity
+        Book: ./database/entity/Book#Book as BookEntity
+        BookCopy: ./database/entity/BookCopy#BookCopy as BookCopyEntity
+        User: ./database/entity/User#User as UserEntity
+    plugins:
+      - typescript
+      - typescript-resolvers

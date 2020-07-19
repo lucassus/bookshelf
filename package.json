@@ -15,6 +15,7 @@
     "postinstall": "yarn bootstrap",
     "clean": "lerna run clean",
     "build": "lerna run build",
+    "codegen": "lerna run codegen",
     "typecheck": "lerna run typecheck",
     "lint": "lerna run lint",
     "test": "jest",
@@ -22,11 +23,11 @@
     "dev": "concurrently --raw --kill-others-on-fail 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
   },
   "devDependencies": {
-    "@types/jest": "26.0.4",
+    "@types/jest": "26.0.5",
     "@types/node": "14.0.23",
     "@typescript-eslint/eslint-plugin": "3.6.1",
     "concurrently": "5.2.0",
-    "eslint": "7.4.0",
+    "eslint": "7.5.0",
     "eslint-config-airbnb-typescript": "8.0.2",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.22.0",

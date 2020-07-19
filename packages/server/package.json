@@ -18,17 +18,23 @@
     "typeorm": "0.2.25"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.17.0",
+    "@graphql-codegen/typescript": "1.17.0",
+    "@graphql-codegen/typescript-resolvers": "1.17.0",
     "@types/express": "4.17.7",
     "apollo-server-testing": "2.16.0",
     "nodemon": "2.0.4",
     "sqlite3": "5.0.0"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "tsc -p tsconfig.build.json && cp src/graphql/*.graphql dist/src/graphql",
+    "clean:dist": "rimraf dist",
+    "clean:codegen": "rimraf src/**/*.generated.ts",
+    "clean": "yarn clean:codegen && yarn clean:dist",
+    "codegen": "yarn graphql-codegen --config codegen.yml",
+    "compile": "yarn codegen && tsc -p tsconfig.build.json && cp src/graphql/*.graphql dist/src/graphql",
     "build": "yarn clean && yarn compile",
     "start": "node dist/src/index.js",
-    "dev": "nodemon",
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'nodemon'",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
     "test": "jest",

@@ -1,24 +1,35 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection } from "typeorm";
+import { getManager } from "typeorm";
 
-import { Author } from "../src/database/entity/Author";
 import { Book } from "../src/database/entity/Book";
+import {
+  createAuthor,
+  createBook,
+  createBookCopy,
+  createUser
+} from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { loadFixtures } from "../src/fixtures";
 import { createServer } from "../src/server";
 
 let server: ApolloServer;
 
-// TODO: Inline fixtures
 beforeEach(async () => {
-  await loadFixtures();
   server = createServer();
 });
 
 it("fetches books", async () => {
   // Given
   const { query } = createTestClient(server);
+
+  const book = await createBook({ title: "Hobbit" });
+  await createBookCopy({ bookId: book.id, ownerAttributes: { name: "John" } });
+  const borrower = await createUser({ name: "Paul" });
+  await createBookCopy({ bookId: book.id, borrowerId: borrower.id });
+
+  const author = await createAuthor({ name: "George Lucas" });
+  await createBook({ authorId: author.id, title: "Star Wars IV" });
+  await createBook({ authorId: author.id, title: "Star Wars V" });
 
   // When
   const res = await query({
@@ -55,6 +66,12 @@ it("fetches books with authors", async () => {
   // Given
   const { query } = createTestClient(server);
 
+  const author = await createAuthor({ name: "Tolkien" });
+  await createBook({ title: "Hobbit", authorId: author.id });
+  await createBook({ title: "Lord of the Rings", authorId: author.id });
+  await createBook();
+  await createBook();
+
   // When
   const res = await query({
     query: gql`
@@ -80,9 +97,21 @@ it("fetches books with authors", async () => {
 it("fetches a book", async () => {
   // Given
   const { query } = createTestClient(server);
-  const book = await getConnection().manager.findOneOrFail(Book, {
-    title: "Blood of Elves"
+
+  const author = await createAuthor({ name: "Andrzej Sapkpwski" });
+  const book = await createBook({
+    title: "Blood of Elves",
+    authorId: author.id
   });
+
+  const owner = await createUser({ name: "John" });
+  const borrower = await createUser({ name: "Paul" });
+  await createBookCopy({
+    bookId: book.id,
+    ownerId: owner.id,
+    borrowerId: borrower.id
+  });
+  await createBookCopy({ bookId: book.id });
 
   // When
   const res = await query({
@@ -126,47 +155,15 @@ it("fetches a book", async () => {
   expect(res.data).toMatchSnapshot();
 });
 
-it("fetches a book 2", async () => {
-  // Given
-  const { query } = createTestClient(server);
-  const book = await getConnection().manager.findOneOrFail(Book, {
-    title: "The lady of the lake"
-  });
-
-  // When
-  const res = await query({
-    query: gql`
-      query GetBook($id: ID!) {
-        book(id: $id) {
-          id
-          title
-          description
-          copies {
-            owner {
-              id
-              name
-            }
-            borrower {
-              id
-              name
-            }
-          }
-        }
-      }
-    `,
-    variables: { id: secureId.toExternal(book.id, "Book") }
-  });
-
-  // Then
-  expect(res.data).not.toBeNull();
-  expect(res.data).toMatchSnapshot();
-});
-
 it("fetches a book with details", async () => {
   // Given
   const { query } = createTestClient(server);
-  const book = await getConnection().manager.findOneOrFail(Book, {
-    title: "The lady of the lake"
+
+  const book = await createBook({
+    title: "The lady of the lake",
+    authorAttributes: {
+      name: "Andrzej Sapkowski"
+    }
   });
 
   const GetBookWithDetailsQuery = gql`
@@ -246,6 +243,10 @@ it("fetches books along with authors and books again", async () => {
   // Given
   const { query } = createTestClient(server);
 
+  const author = await createAuthor({ name: "Andrzej Sapkowski" });
+  await createBook({ authorId: author.id });
+  await createBook({ authorId: author.id });
+
   // When
   const res = await query({
     query: gql`
@@ -270,19 +271,14 @@ it("fetches books along with authors and books again", async () => {
 
 it("fetches a random book", async () => {
   // Given
-  const connection = getConnection();
+  const { query } = createTestClient(server);
 
-  await connection.createQueryBuilder().delete().from(Book).execute();
-  const author = await connection.manager.findOneOrFail(Author, {
-    name: "Andrzej Sapkowski"
-  });
-  await connection.manager.save(Book, {
+  const author = await createAuthor({ name: "Andrzej Sapkowski" });
+  await createBook({
     authorId: author.id,
     title: "The tower of the swallow",
     coverPath: "/images/book-covers/witcher4.jpg"
   });
-
-  const { query } = createTestClient(server);
 
   // When
   const res = await query({
@@ -305,15 +301,17 @@ it("fetches a random book", async () => {
 
 it("updates book favourite", async () => {
   // Given
-  const book = await getConnection().manager.findOneOrFail(Book, 1);
-  expect(book.favourite).toBe(false);
-
   const { mutate } = createTestClient(server);
+
+  const book = await createBook({
+    title: "Harry Potter and the Sorcerer's Stone",
+    favourite: false
+  });
 
   // When
   const res = await mutate({
     mutation: gql`
-      mutation UpdateBookFavourite($id: ID!, $favourite: Boolean) {
+      mutation UpdateBookFavourite($id: ID!, $favourite: Boolean!) {
         updateBookFavourite(id: $id, favourite: $favourite) {
           id
           title
@@ -328,6 +326,6 @@ it("updates book favourite", async () => {
   expect(res.data).not.toBeNull();
   expect(res.data!.updateBookFavourite).toMatchSnapshot();
 
-  const updatedBook = await getConnection().manager.findOneOrFail(Book, 1);
+  const updatedBook = await getManager().findOneOrFail(Book, 1);
   expect(updatedBook.favourite).toBe(true);
 });
