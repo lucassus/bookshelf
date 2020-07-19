@@ -15,6 +15,7 @@
     "postinstall": "yarn bootstrap",
     "clean": "lerna run clean",
     "build": "lerna run build",
+    "codegen": "lerna run codegen",
     "typecheck": "lerna run typecheck",
     "lint": "lerna run lint",
     "test": "jest",

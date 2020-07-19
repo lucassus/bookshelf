@@ -16,7 +16,7 @@ jobs:
       run: yarn install
 
     - name: Generate GrapQL web components
-      run: yarn workspace @bookshelf/web codegen
+      run: yarn codegen
 
     - name: Type Check
       run: yarn typecheck
