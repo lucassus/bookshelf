@@ -6,19 +6,22 @@ import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
 import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
 import { BookRepository } from "../database/repositories/BookRepository";
-import { Image, Resolvers } from "../resolvers-types.generated";
+import {
+  Resolver,
+  Resolvers,
+  ResolversTypes
+} from "../resolvers-types.generated";
 import { Context } from "../types";
 
-const id = (rootValue: { id: number }): string =>
-  secureId.toExternal(rootValue.id, rootValue.constructor.name);
+const id: Resolver<ResolversTypes["ID"], { id: number }> = (resource) =>
+  secureId.toExternal(resource.id, resource.constructor.name);
 
-// TODO: Better typings
-const image = (
-  rootValue: Avatar | Author | Book,
-  args: any,
-  { assetsBaseUrl }: Context
-): Image => {
-  let path;
+const image: Resolver<
+  ResolversTypes["Image"],
+  Avatar | Author | Book,
+  Context
+> = (rootValue, args, { assetsBaseUrl }) => {
+  let path = "/default.jpg";
 
   if (rootValue instanceof Avatar) {
     path = rootValue.imagePath;
@@ -33,7 +36,6 @@ const image = (
   }
 
   return {
-    // @ts-ignore
     path,
     url: assetsBaseUrl + path
   };
