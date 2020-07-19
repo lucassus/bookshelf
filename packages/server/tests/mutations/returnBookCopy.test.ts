@@ -1,5 +1,8 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
+import {
+  createTestClient,
+  ApolloServerTestClient
+} from "apollo-server-testing";
 import { getManager } from "typeorm";
 
 import { BookCopy } from "../../src/database/entity/BookCopy";
@@ -12,19 +15,16 @@ import {
 import { secureId } from "../../src/database/helpers";
 import { createServer } from "../../src/server";
 
-let server: ApolloServer;
-
 let currentUser: User;
+let testClient: ApolloServerTestClient;
 
 beforeEach(async () => {
   currentUser = await createUser({ name: "Bob" });
-  server = createServer();
+  testClient = createTestClient(createServer());
 });
 
 test("returnBookCopy mutation", async () => {
   // Given
-  const { mutate } = createTestClient(server);
-
   const book = await createBook();
   const owner = await createUser({ name: "Alice", email: "alice@email.com" });
   let bookCopy = await createBookCopy({
@@ -36,7 +36,7 @@ test("returnBookCopy mutation", async () => {
   // When
   const id = secureId.toExternal(bookCopy.id, "BookCopy");
 
-  const res = await mutate({
+  const res = await testClient.mutate({
     mutation: gql`
       mutation($id: ID!) {
         returnBookCopy(id: $id) {

@@ -1,5 +1,8 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
+import {
+  createTestClient,
+  ApolloServerTestClient
+} from "apollo-server-testing";
 import { getManager } from "typeorm";
 
 import { Book } from "../../src/database/entity/Book";
@@ -7,16 +10,14 @@ import { createBook } from "../../src/database/factories";
 import { secureId } from "../../src/database/helpers";
 import { createServer } from "../../src/server";
 
-let server: ApolloServer;
+let testClient: ApolloServerTestClient;
 
 beforeEach(async () => {
-  server = createServer();
+  testClient = createTestClient(createServer());
 });
 
 it("updateBookFavourite mutation", async () => {
   // Given
-  const { mutate } = createTestClient(server);
-
   const book = await createBook({
     title: "Harry Potter and the Sorcerer's Stone",
     favourite: false
@@ -25,7 +26,7 @@ it("updateBookFavourite mutation", async () => {
   // When
   const id = secureId.toExternal(book.id, "Book");
 
-  const res = await mutate({
+  const res = await testClient.mutate({
     mutation: gql`
       mutation($id: ID!, $favourite: Boolean!) {
         updateBookFavourite(id: $id, favourite: $favourite) {
