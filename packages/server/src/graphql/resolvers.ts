@@ -1,15 +1,43 @@
 import { Author } from "../database/entity/Author";
+import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { User } from "../database/entity/User";
 import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
 import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
 import { BookRepository } from "../database/repositories/BookRepository";
-import { Resolvers } from "../resolvers-types.generated";
+import { Image, Resolvers } from "../resolvers-types.generated";
 import { Context } from "../types";
 
 const id = (rootValue: { id: number }): string =>
   secureId.toExternal(rootValue.id, rootValue.constructor.name);
+
+// TODO: Better typings
+const image = (
+  rootValue: Avatar | Author | Book,
+  args: any,
+  { assetsBaseUrl }: Context
+): Image => {
+  let path;
+
+  if (rootValue instanceof Avatar) {
+    path = rootValue.imagePath;
+  }
+
+  if (rootValue instanceof Author) {
+    path = rootValue.photoPath;
+  }
+
+  if (rootValue instanceof Book) {
+    path = rootValue.coverPath;
+  }
+
+  return {
+    // @ts-ignore
+    path,
+    url: assetsBaseUrl + path
+  };
+};
 
 // TODO: Find a way for more modular code organization
 export const resolvers: Resolvers<Context> = {
@@ -49,30 +77,18 @@ export const resolvers: Resolvers<Context> = {
 
   Book: {
     id,
-    // TODO: Figure out how to make it dry
-    cover: (book, args, { assetsBaseUrl }) => ({
-      path: book.coverPath,
-      url: assetsBaseUrl + book.coverPath
-    }),
+    cover: image,
     author: (book, args, { authorsLoader }) => authorsLoader.load(book.authorId)
   },
 
   Author: {
     id,
-    photo: (author, args, { assetsBaseUrl }) => ({
-      path: author.photoPath,
-      url: assetsBaseUrl + author.photoPath
-    })
+    photo: image
   },
+
+  Avatar: { image },
 
   User: { id },
-
-  Avatar: {
-    image: (avatar, args, { assetsBaseUrl }) => ({
-      path: avatar.imagePath,
-      url: assetsBaseUrl + avatar.imagePath
-    })
-  },
 
   Anything: {
     __resolveType: (anything) =>
