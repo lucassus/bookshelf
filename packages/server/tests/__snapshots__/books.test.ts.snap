@@ -28,7 +28,16 @@ Object {
         },
       },
       Object {
-        "borrower": null,
+        "borrower": Object {
+          "avatar": Object {
+            "color": "yellow",
+            "image": Object {
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
+            },
+          },
+          "id": "MS1Vc2Vy",
+          "name": "John",
+        },
         "id": "Mi1Cb29rQ29weQ==",
         "owner": Object {
           "avatar": Object {
@@ -89,7 +98,10 @@ Object {
     Object {
       "copies": Array [
         Object {
-          "borrower": null,
+          "borrower": Object {
+            "id": "MS1Vc2Vy",
+            "name": "John",
+          },
           "owner": Object {
             "id": "MS1Vc2Vy",
             "name": "John",

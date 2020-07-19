@@ -92,17 +92,14 @@ export const resolvers: Resolvers<Context> = {
 
   BookCopy: {
     id,
+
+    // TODO: A workaround for user.avatar eager loading, see https://github.com/typeorm/typeorm/issues/2315
     owner: (bookCopy, args, { connection }) =>
       connection.manager.findOneOrFail(User, bookCopy.ownerId),
-    borrower: (bookCopy, args, { connection }) => {
-      // TODO: Why just `return bookCopy.borrower` does not work here?
-
-      if (!bookCopy.borrowerId) {
-        return null;
-      }
-
-      return connection.manager.findOneOrFail(User, bookCopy.borrowerId);
-    }
+    borrower: (bookCopy, args, { connection }) =>
+      bookCopy.borrowerId
+        ? connection.manager.findOneOrFail(User, bookCopy.borrowerId)
+        : null
   },
 
   Mutation: {
