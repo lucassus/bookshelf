@@ -25,7 +25,7 @@ it("fetches an author", async () => {
   // When
   const res = await query({
     query: gql`
-      query GetAuthor($id: ID!) {
+      query($id: ID!) {
         author(id: $id) {
           id
           name

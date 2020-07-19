@@ -117,7 +117,7 @@ it("fetches a book", async () => {
   // When
   const res = await query({
     query: gql`
-      query GetBook($id: ID!) {
+      query($id: ID!) {
         book(id: $id) {
           id
           title
@@ -170,11 +170,7 @@ it("fetches a book with details", async () => {
   });
 
   const GetBookWithDetailsQuery = gql`
-    query GetBookWithDetails(
-      $id: ID!
-      $includeDetails: Boolean!
-      $hideCover: Boolean = true
-    ) {
+    query($id: ID!, $includeDetails: Boolean!, $hideCover: Boolean = true) {
       book(id: $id) {
         id
         title

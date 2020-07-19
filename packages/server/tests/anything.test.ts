@@ -18,7 +18,7 @@ beforeEach(async () => {
 
 describe("fetching anything", () => {
   const GetAnythingQuery = gql`
-    query GetAnything($id: ID!) {
+    query($id: ID!) {
       anything(id: $id) {
         __typename
 
