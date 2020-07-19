@@ -22,7 +22,7 @@ export class BookCopyRepository extends AbstractRepository<BookCopy> {
   async return(id: string | number) {
     const bookCopy = await this.repository.findOneOrFail(id);
 
-    bookCopy.borrowerId = null;
+    bookCopy.borrowerId = undefined;
     return this.repository.save(bookCopy);
   }
 }

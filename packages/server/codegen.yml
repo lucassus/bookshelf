@@ -5,6 +5,7 @@ schema:
 generates:
   ./src/resolvers-types.generated.ts:
     config:
+      useIndexSignature: true
       mappers:
         Author: ./database/entity/Author#Author
         Avatar: ./database/entity/Avatar#Avatar
