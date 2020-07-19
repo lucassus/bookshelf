@@ -1,8 +1,8 @@
-type Book implements Resource & Timestampable {
+type Book implements Resource & WithImage & Timestampable {
   id: ID!
   title: String!
   description: String
-  cover: Image!
+  image: Image!
   favourite: Boolean!
   author: Author
   copies: [BookCopy!]!

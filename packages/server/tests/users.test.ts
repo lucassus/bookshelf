@@ -28,6 +28,7 @@ it("fetches users", async () => {
           info
           avatar {
             image {
+              path
               url
             }
             color

@@ -39,7 +39,8 @@ it("fetches books", async () => {
         books {
           id
           title
-          cover {
+          cover: image {
+            path
             url
           }
           copies {
@@ -184,7 +185,7 @@ it("fetches a book with details", async () => {
           name
         }
 
-        cover @skip(if: $hideCover) {
+        cover: image @skip(if: $hideCover) {
           url
         }
       }
@@ -290,7 +291,7 @@ it("fetches a random book", async () => {
       query {
         randomBook {
           title
-          cover {
+          cover: image {
             url
           }
         }

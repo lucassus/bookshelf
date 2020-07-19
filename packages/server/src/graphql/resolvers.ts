@@ -9,6 +9,7 @@ export const resolvers: Resolvers<Context> = merge(
   require("./Author").resolvers,
   require("./Book").resolvers,
   require("./BookCopy").resolvers,
+  require("./Image").resolvers,
   require("./Resource").resolvers,
   require("./Timestampable").resolvers,
   require("./User").resolvers

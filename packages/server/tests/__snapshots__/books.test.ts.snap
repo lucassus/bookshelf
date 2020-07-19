@@ -109,6 +109,7 @@ Object {
         },
       ],
       "cover": Object {
+        "path": "/images/book-covers/harry5.jpg",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/harry5.jpg",
       },
       "id": "MS1Cb29r",
@@ -117,6 +118,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
+        "path": "/images/book-covers/expanse1.jpg",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/expanse1.jpg",
       },
       "id": "Mi1Cb29r",
@@ -125,6 +127,7 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
+        "path": "/images/book-covers/witcher5.jpg",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/witcher5.jpg",
       },
       "id": "My1Cb29r",

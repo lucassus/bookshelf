@@ -30,7 +30,7 @@ it("fetches an author", async () => {
           id
           name
           bio
-          photo {
+          photo: image {
             url
           }
           createdAt

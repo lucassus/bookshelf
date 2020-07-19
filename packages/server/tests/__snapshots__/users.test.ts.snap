@@ -57,6 +57,7 @@ Array [
     "avatar": Object {
       "color": "black",
       "image": Object {
+        "path": "/images/avatars/w13.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
       },
     },
@@ -68,6 +69,7 @@ Array [
     "avatar": Object {
       "color": "yellow",
       "image": Object {
+        "path": "/images/avatars/m25.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
       },
     },
@@ -79,6 +81,7 @@ Array [
     "avatar": Object {
       "color": "sky blue",
       "image": Object {
+        "path": "/images/avatars/w2.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
       },
     },

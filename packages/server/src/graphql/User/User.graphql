@@ -8,7 +8,7 @@ type User implements Resource {
   borrowedBookCopies: [BookCopy!]!
 }
 
-type Avatar {
+type Avatar implements WithImage {
   image: Image!
   color: String!
 }

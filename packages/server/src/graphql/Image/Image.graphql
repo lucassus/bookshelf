@@ -2,3 +2,8 @@ type Image {
   path: String!
   url: String!
 }
+
+interface WithImage {
+  image: Image!
+}
+
