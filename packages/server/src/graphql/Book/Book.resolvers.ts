@@ -2,7 +2,7 @@ import { Book } from "../../database/entity/Book";
 import { secureId } from "../../database/helpers";
 import { BookRepository } from "../../database/repositories/BookRepository";
 import { Context } from "../../types";
-import { id, image } from "../common";
+import { image } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
@@ -31,7 +31,6 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Book: {
-    id,
     cover: image,
     author: (book, args, { authorsLoader }) => authorsLoader.load(book.authorId)
   }

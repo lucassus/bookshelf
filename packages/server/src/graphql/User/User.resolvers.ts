@@ -1,7 +1,7 @@
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { Context } from "../../types";
-import { id, image } from "../common";
+import { image } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
@@ -12,7 +12,5 @@ export const resolvers: Resolvers<Context> = {
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id))
   },
 
-  Avatar: { image },
-
-  User: { id }
+  Avatar: { image }
 };

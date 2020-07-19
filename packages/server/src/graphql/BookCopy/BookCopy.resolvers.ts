@@ -2,13 +2,10 @@ import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { Context } from "../../types";
-import { id } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
   BookCopy: {
-    id,
-
     // TODO: A workaround for user.avatar eager loading, see https://github.com/typeorm/typeorm/issues/2315
     owner: (bookCopy, args, { connection }) =>
       connection.manager.findOneOrFail(User, bookCopy.ownerId),

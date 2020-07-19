@@ -1,7 +1,7 @@
 import { Author } from "../../database/entity/Author";
 import { secureId } from "../../database/helpers";
 import { Context } from "../../types";
-import { id, image } from "../common";
+import { image } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
@@ -14,7 +14,6 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Author: {
-    id,
     photo: image
   }
 };
