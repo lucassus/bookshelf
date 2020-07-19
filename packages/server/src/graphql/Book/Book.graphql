@@ -1,4 +1,4 @@
-type Book implements Resource {
+type Book implements Resource & Timestampable {
   id: ID!
   title: String!
   description: String

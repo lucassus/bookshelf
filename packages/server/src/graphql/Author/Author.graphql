@@ -1,4 +1,4 @@
-type Author implements Resource {
+type Author implements Resource & Timestampable {
   id: ID!
   name: String!
   bio: String
