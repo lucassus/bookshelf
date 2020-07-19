@@ -24,8 +24,7 @@ export const createServer = () =>
   new ApolloServer({
     schema: schemaWithResolvers,
     context: async (): Promise<Context> => {
-      // TODO: Implement a proper authentication
-      const currentUser = await getConnection().manager.findOneOrFail(User, {
+      const currentUser = await getConnection().manager.findOne(User, {
         name: "Bob"
       });
 
@@ -33,7 +32,7 @@ export const createServer = () =>
         assetsBaseUrl: ASSETS_BASE_URL,
         connection: getConnection(),
         authorsLoader: buildAuthorsLoader(),
-        currentUserId: currentUser.id
+        currentUser
       };
     },
     introspection: true,

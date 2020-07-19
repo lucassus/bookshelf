@@ -97,10 +97,12 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    borrowBookCopy: (rootValue, args, { connection, currentUserId }) =>
-      connection.manager
-        .getCustomRepository(BookCopyRepository)
-        .borrow(secureId.toInternal(args.id), currentUserId),
+    borrowBookCopy: (rootValue, args, { connection, currentUser }) =>
+      currentUser
+        ? connection.manager
+            .getCustomRepository(BookCopyRepository)
+            .borrow(secureId.toInternal(args.id), currentUser.id)
+        : null,
 
     returnBookCopy: (rootValue, args, { connection }) =>
       connection.manager
