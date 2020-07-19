@@ -18,7 +18,7 @@ export const resolvers: Resolvers<Context> = {
     photo: image,
 
     // TODO: Figure out how to dry it
-    createdAt: (book) => book.createdAt.toISOString(),
-    updatedAt: (book) => book.updatedAt.toISOString()
+    createdAt: (author) => author.createdAt.toISOString(),
+    updatedAt: (author) => author.updatedAt.toISOString()
   }
 };
