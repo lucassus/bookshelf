@@ -4,12 +4,14 @@ import { Book } from "../entity/Book";
 
 @EntityRepository(Book)
 export class BookRepository extends AbstractRepository<Book> {
-  findRandom() {
-    return this.repository
+  async findRandom() {
+    const book = await this.repository
       .createQueryBuilder()
       .orderBy("RANDOM()")
       .limit(1)
       .getOne();
+
+    return book || null;
   }
 
   async updateFavourite(id: string | number, favourite: boolean) {

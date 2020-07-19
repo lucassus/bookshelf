@@ -4,6 +4,13 @@ schema:
 
 generates:
   ./src/resolvers-types.generated.ts:
+    config:
+      mappers:
+        Author: ./database/entity/Author#Author
+        Avatar: ./database/entity/Avatar#Avatar
+        Book: ./database/entity/Book#Book
+        BookCopy: ./database/entity/BookCopy#BookCopy
+        User: ./database/entity/User#User
     plugins:
       - typescript
       - typescript-resolvers

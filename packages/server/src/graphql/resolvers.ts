@@ -1,17 +1,12 @@
 import { Author } from "../database/entity/Author";
-import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
-import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
 import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
 import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
 import { BookRepository } from "../database/repositories/BookRepository";
-import { Context, Resolvers } from "../types";
-
-interface Image {
-  path: string;
-}
+import { Resolvers } from "../resolvers-types.generated";
+import { Context } from "../types";
 
 const id = (rootValue: { id: number }): string =>
   secureId.toExternal(rootValue.id, rootValue.constructor.name);
@@ -22,17 +17,13 @@ export const resolvers: Resolvers<Context> = {
     booksCount: (rootValue, args, { connection }) =>
       connection.manager.count(Book),
 
-    books: (
-      rootValue,
-      args: { limit: number; offset: number },
-      { connection }
-    ) =>
+    books: (rootValue, args, { connection }) =>
       connection.manager.find(Book, {
         take: args.limit,
         skip: args.offset
       }),
 
-    book: (rootValue, args: { id: string }, { connection }) =>
+    book: (rootValue, args, { connection }) =>
       connection.manager.findOneOrFail(Book, secureId.toInternal(args.id)),
 
     randomBook: (rootValue, args, { connection }) =>
@@ -41,34 +32,36 @@ export const resolvers: Resolvers<Context> = {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
-    author: (rootValue, args: { id: string }, { authorsLoader }) =>
+    author: (rootValue, args, { authorsLoader }) =>
       authorsLoader.load(secureId.toInternal(args.id)),
 
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
-    user: (rootValue, args: { id: string }, { connection }) =>
+    user: (rootValue, args, { connection }) =>
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id)),
 
-    anything: (rootValue, args: { id: string }, { connection }) =>
+    anything: (rootValue, args, { connection }) =>
       findAnythingOrFail(args.id, connection),
 
-    resource: (rootValue, args: { id: string }, { connection }) =>
+    resource: (rootValue, args, { connection }) =>
       findAnythingOrFail(args.id, connection)
   },
 
   Book: {
     id,
-    cover: (book: Book): Image => ({
-      path: book.coverPath
+    cover: (book) => ({
+      path: book.coverPath,
+      // TODO: How to fix it?
+      url: ""
     }),
-    author: (book: Book, args, { authorsLoader }) =>
-      authorsLoader.load(book.authorId)
+    author: (book, args, { authorsLoader }) => authorsLoader.load(book.authorId)
   },
 
   Author: {
     id,
-    photo: (author: Author): Image => ({
-      path: author.photoPath
+    photo: (author) => ({
+      path: author.photoPath,
+      url: ""
     })
   },
 
@@ -77,53 +70,53 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Avatar: {
-    image: (avatar: Avatar): Image => ({
-      path: avatar.imagePath
+    image: (avatar) => ({
+      path: avatar.imagePath,
+      url: ""
     })
   },
 
   Image: {
-    url: (image: Image, args, { assetsBaseUrl }) => assetsBaseUrl + image.path
+    url: (image, args, { assetsBaseUrl }) => assetsBaseUrl + image.path
   },
 
   Anything: {
-    __resolveType: (anything: Author | Book | User | BookCopy) =>
+    __resolveType: (anything) =>
       Object.getPrototypeOf(anything).constructor.name
+  },
+
+  Resource: {
+    __resolveType: (resource) =>
+      Object.getPrototypeOf(resource).constructor.name
   },
 
   BookCopy: {
     id,
-    owner: (bookCopy: BookCopy, args, { connection }) =>
+    owner: (bookCopy, args, { connection }) =>
       connection.manager.findOneOrFail(User, bookCopy.ownerId),
-    borrower: (bookCopy: BookCopy, args, { connection }) =>
-      bookCopy.borrowerId &&
-      connection.manager.findOneOrFail(User, bookCopy.borrowerId)
-  },
+    borrower: (bookCopy, args, { connection }) => {
+      // TODO: Why just `return bookCopy.borrower` does not work here?
 
-  Resource: {
-    __resolveType: (resource) => resource.constructor.name
+      if (!bookCopy.borrowerId) {
+        return null;
+      }
+
+      return connection.manager.findOneOrFail(User, bookCopy.borrowerId);
+    }
   },
 
   Mutation: {
-    borrowBookCopy: (
-      rootValue,
-      args: { id: string },
-      { connection, currentUserId }
-    ) =>
+    borrowBookCopy: (rootValue, args, { connection, currentUserId }) =>
       connection.manager
         .getCustomRepository(BookCopyRepository)
         .borrow(secureId.toInternal(args.id), currentUserId),
 
-    returnBookCopy: (rootValue, args: { id: string }, { connection }) =>
+    returnBookCopy: (rootValue, args, { connection }) =>
       connection.manager
         .getCustomRepository(BookCopyRepository)
         .return(secureId.toInternal(args.id)),
 
-    updateBookFavourite: async (
-      rootValue,
-      args: { id: string; favourite: boolean },
-      { connection }
-    ) =>
+    updateBookFavourite: async (rootValue, args, { connection }) =>
       connection.manager
         .getCustomRepository(BookRepository)
         .updateFavourite(secureId.toInternal(args.id), args.favourite)

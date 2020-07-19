@@ -313,7 +313,7 @@ it("updates book favourite", async () => {
   // When
   const res = await mutate({
     mutation: gql`
-      mutation UpdateBookFavourite($id: ID!, $favourite: Boolean) {
+      mutation UpdateBookFavourite($id: ID!, $favourite: Boolean!) {
         updateBookFavourite(id: $id, favourite: $favourite) {
           id
           title

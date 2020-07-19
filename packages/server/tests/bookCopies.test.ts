@@ -63,7 +63,7 @@ test("return book copy", async () => {
 
   const bookCopy = await createBookCopy({
     ownerAttributes: { name: "Bob", email: "bob@email.com" },
-    borrowerAttributes: { name: "Jogn", email: "john@email.com" }
+    borrowerAttributes: { name: "John", email: "john@email.com" }
   });
 
   // When

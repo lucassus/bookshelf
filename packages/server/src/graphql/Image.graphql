@@ -1,3 +1,4 @@
 type Image {
+  path: String!
   url: String!
 }
