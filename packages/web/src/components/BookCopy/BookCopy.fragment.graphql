@@ -4,7 +4,7 @@ fragment BookCopy on BookCopy {
   book {
     title
     id
-    cover: image {
+    cover {
       url
     }
   }

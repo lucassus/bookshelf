@@ -2,7 +2,7 @@ query GetAuthor($id: ID!) {
   author(id: $id) {
     name
     bio
-    photo: image {
+    photo {
       url
     }
 

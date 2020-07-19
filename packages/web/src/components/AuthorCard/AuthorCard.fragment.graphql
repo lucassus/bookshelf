@@ -1,7 +1,7 @@
 fragment AuthorCard on Author {
   id
   name
-  photo: image {
+  photo {
     url
   }
 }
