@@ -9,7 +9,7 @@ import {
   createUser
 } from "../../src/database/factories";
 import { secureId } from "../../src/database/helpers";
-import { getTestClient } from "../helpers";
+import { getTestClient } from "../../src/testHelpers";
 
 let currentUser: User;
 
@@ -17,6 +17,7 @@ beforeEach(async () => {
   currentUser = await createUser({ name: "Bob" });
 });
 
+// TODO: Colocate it with resolvers
 test("returnBookCopy mutation", async () => {
   // Given
   const book = await createBook();

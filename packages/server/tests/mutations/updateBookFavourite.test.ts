@@ -4,7 +4,7 @@ import { getManager } from "typeorm";
 import { Book } from "../../src/database/entity/Book";
 import { createBook } from "../../src/database/factories";
 import { secureId } from "../../src/database/helpers";
-import { getTestClient } from "../helpers";
+import { getTestClient } from "../../src/testHelpers";
 
 it("updateBookFavourite mutation", async () => {
   // Given

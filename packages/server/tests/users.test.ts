@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { createBookCopy, createUser } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { getTestClient } from "./helpers";
+import { getTestClient } from "../src/testHelpers";
 
 it("fetches users", async () => {
   // Given

@@ -9,7 +9,7 @@ import {
   createUser
 } from "../../src/database/factories";
 import { secureId } from "../../src/database/helpers";
-import { getTestClient } from "../helpers";
+import { getTestClient } from "../../src/testHelpers";
 
 let currentUser: User;
 
