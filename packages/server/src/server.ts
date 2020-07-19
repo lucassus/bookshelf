@@ -17,7 +17,8 @@ const schema = loadSchemaSync(path.join(__dirname, "./graphql/**/*.graphql"), {
 
 const schemaWithResolvers = addResolversToSchema({
   schema,
-  resolvers
+  resolvers,
+  inheritResolversFromInterfaces: true
 });
 
 export const createServer = () =>
