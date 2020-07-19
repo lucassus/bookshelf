@@ -8,7 +8,7 @@ query GetBook($id: ID!) {
       id
       name
     }
-    cover {
+    cover: image {
       url
     }
     copies {

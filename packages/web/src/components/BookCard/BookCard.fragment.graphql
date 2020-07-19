@@ -2,7 +2,7 @@ fragment BookCard on Book {
   id
   title
   favourite
-  cover {
+  cover: image {
     url
   }
   author {
