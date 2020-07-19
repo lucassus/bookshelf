@@ -1,15 +1,15 @@
 import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
-import { BookCopy } from "../../src/database/entity/BookCopy";
-import { User } from "../../src/database/entity/User";
+import { BookCopy } from "../../../database/entity/BookCopy";
+import { User } from "../../../database/entity/User";
 import {
   createBook,
   createBookCopy,
   createUser
-} from "../../src/database/factories";
-import { secureId } from "../../src/database/helpers";
-import { getTestClient } from "../../src/testHelpers";
+} from "../../../database/factories";
+import { secureId } from "../../../database/helpers";
+import { getTestClient } from "../../../testHelpers";
 
 let currentUser: User;
 
@@ -17,13 +17,14 @@ beforeEach(async () => {
   currentUser = await createUser({ name: "Bob" });
 });
 
-test("borrowBookCopy mutation", async () => {
+test("returnBookCopy mutation", async () => {
   // Given
-  const book = await createBook({ title: "Time of contempt" });
+  const book = await createBook();
   const owner = await createUser({ name: "Alice", email: "alice@email.com" });
   let bookCopy = await createBookCopy({
     bookId: book.id,
-    ownerId: owner.id
+    ownerId: owner.id,
+    borrowerId: currentUser.id
   });
 
   // When
@@ -32,7 +33,7 @@ test("borrowBookCopy mutation", async () => {
   const res = await getTestClient().mutate({
     mutation: gql`
       mutation($id: ID!) {
-        borrowBookCopy(id: $id) {
+        returnBookCopy(id: $id) {
           id
           book {
             id
@@ -46,7 +47,6 @@ test("borrowBookCopy mutation", async () => {
           borrower {
             id
             name
-            email
           }
         }
       }
@@ -56,11 +56,11 @@ test("borrowBookCopy mutation", async () => {
 
   // Then
   bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
-  expect(bookCopy.borrowerId).toBe(currentUser.id);
+  expect(bookCopy.borrowerId).toBe(null);
 
   expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
-    borrowBookCopy: {
+    returnBookCopy: {
       id,
       book: {
         id: expect.any(String),
@@ -70,11 +70,6 @@ test("borrowBookCopy mutation", async () => {
         id: expect.any(String),
         name: owner.name,
         email: owner.email
-      },
-      borrower: {
-        id: expect.any(String),
-        name: currentUser.name,
-        email: currentUser.email
       }
     }
   });

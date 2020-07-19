@@ -58,8 +58,6 @@ describe("fetching anything", () => {
 
   it("fetches Author", async () => {
     // Given
-    const { query } = getTestClient();
-
     const author = await createAuthor();
     await createBook({ authorId: author.id });
     await createBook({ authorId: author.id });
