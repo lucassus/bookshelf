@@ -6,5 +6,9 @@ module.exports = {
       env: { jest: true },
       extends: ["plugin:jest/recommended"]
     }
-  ]
+  ],
+  rules: {
+    "@typescript-eslint/no-var-requires": "off",
+    "global-require": "off"
+  }
 };

@@ -5,7 +5,7 @@ import { Context } from "../../types";
 import { id, image } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
 
-export const bookResolvers: Resolvers<Context> = {
+export const resolvers: Resolvers<Context> = {
   Query: {
     booksCount: (rootValue, args, { connection }) =>
       connection.manager.count(Book),
