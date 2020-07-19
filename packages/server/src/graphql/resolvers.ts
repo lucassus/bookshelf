@@ -49,35 +49,29 @@ export const resolvers: Resolvers<Context> = {
 
   Book: {
     id,
-    cover: (book) => ({
+    // TODO: Figure out how to make it dry
+    cover: (book, args, { assetsBaseUrl }) => ({
       path: book.coverPath,
-      // TODO: How to fix it?
-      url: ""
+      url: assetsBaseUrl + book.coverPath
     }),
     author: (book, args, { authorsLoader }) => authorsLoader.load(book.authorId)
   },
 
   Author: {
     id,
-    photo: (author) => ({
+    photo: (author, args, { assetsBaseUrl }) => ({
       path: author.photoPath,
-      url: ""
+      url: assetsBaseUrl + author.photoPath
     })
   },
 
-  User: {
-    id
-  },
+  User: { id },
 
   Avatar: {
-    image: (avatar) => ({
+    image: (avatar, args, { assetsBaseUrl }) => ({
       path: avatar.imagePath,
-      url: ""
+      url: assetsBaseUrl + avatar.imagePath
     })
-  },
-
-  Image: {
-    url: (image, args, { assetsBaseUrl }) => assetsBaseUrl + image.path
   },
 
   Anything: {
