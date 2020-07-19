@@ -7,6 +7,7 @@ import { getConnection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "./config";
 import { buildAuthorsLoader } from "./database/authorsLoader";
+import { User } from "./database/entity/User";
 import { resolvers } from "./graphql/resolvers";
 import { Context } from "./types";
 
@@ -22,13 +23,19 @@ const schemaWithResolvers = addResolversToSchema({
 export const createServer = () =>
   new ApolloServer({
     schema: schemaWithResolvers,
-    context: (): Context => ({
-      assetsBaseUrl: ASSETS_BASE_URL,
-      connection: getConnection(),
-      authorsLoader: buildAuthorsLoader(),
+    context: async (): Promise<Context> => {
       // TODO: Implement a proper authentication
-      currentUserId: 1
-    }),
+      const currentUser = await getConnection().manager.findOneOrFail(User, {
+        name: "Bob"
+      });
+
+      return {
+        assetsBaseUrl: ASSETS_BASE_URL,
+        connection: getConnection(),
+        authorsLoader: buildAuthorsLoader(),
+        currentUserId: currentUser.id
+      };
+    },
     introspection: true,
     playground: true
   });

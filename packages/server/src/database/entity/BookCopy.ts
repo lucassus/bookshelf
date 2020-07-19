@@ -33,5 +33,5 @@ export class BookCopy {
   borrower: Promise<User>;
 
   @Column({ name: "borrower_id", nullable: true })
-  borrowerId?: number;
+  borrowerId: null | number;
 }
