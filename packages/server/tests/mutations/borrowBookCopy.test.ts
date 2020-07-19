@@ -21,16 +21,15 @@ beforeEach(async () => {
   server = createServer();
 });
 
-test("returnBookCopy mutation", async () => {
+test("borrowBookCopy mutation", async () => {
   // Given
   const { mutate } = createTestClient(server);
 
-  const book = await createBook();
+  const book = await createBook({ title: "Time of contempt" });
   const owner = await createUser({ name: "Alice", email: "alice@email.com" });
   let bookCopy = await createBookCopy({
     bookId: book.id,
-    ownerId: owner.id,
-    borrowerId: currentUser.id
+    ownerId: owner.id
   });
 
   // When
@@ -39,7 +38,7 @@ test("returnBookCopy mutation", async () => {
   const res = await mutate({
     mutation: gql`
       mutation($id: ID!) {
-        returnBookCopy(id: $id) {
+        borrowBookCopy(id: $id) {
           id
           book {
             id
@@ -53,6 +52,7 @@ test("returnBookCopy mutation", async () => {
           borrower {
             id
             name
+            email
           }
         }
       }
@@ -62,11 +62,11 @@ test("returnBookCopy mutation", async () => {
 
   // Then
   bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
-  expect(bookCopy.borrowerId).toBe(null);
+  expect(bookCopy.borrowerId).toBe(currentUser.id);
 
   expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
-    returnBookCopy: {
+    borrowBookCopy: {
       id,
       book: {
         id: expect.any(String),
@@ -76,6 +76,11 @@ test("returnBookCopy mutation", async () => {
         id: expect.any(String),
         name: owner.name,
         email: owner.email
+      },
+      borrower: {
+        id: expect.any(String),
+        name: currentUser.name,
+        email: currentUser.email
       }
     }
   });

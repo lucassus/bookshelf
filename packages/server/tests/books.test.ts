@@ -1,8 +1,6 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getManager } from "typeorm";
 
-import { Book } from "../src/database/entity/Book";
 import {
   createAuthor,
   createBook,
@@ -227,7 +225,7 @@ it("responds with error when book cannot be found", async () => {
   // When
   const res = await query({
     query: gql`
-      query GetBook($id: ID!) {
+      query($id: ID!) {
         book(id: $id) {
           id
           title
@@ -302,35 +300,4 @@ it("fetches a random book", async () => {
   // Then
   expect(res.data).not.toBeNull();
   expect(res.data!.randomBook).toMatchSnapshot();
-});
-
-it("updates book favourite", async () => {
-  // Given
-  const { mutate } = createTestClient(server);
-
-  const book = await createBook({
-    title: "Harry Potter and the Sorcerer's Stone",
-    favourite: false
-  });
-
-  // When
-  const res = await mutate({
-    mutation: gql`
-      mutation UpdateBookFavourite($id: ID!, $favourite: Boolean!) {
-        updateBookFavourite(id: $id, favourite: $favourite) {
-          id
-          title
-          favourite
-        }
-      }
-    `,
-    variables: { id: secureId.toExternal(book.id, "Book"), favourite: true }
-  });
-
-  // Then
-  expect(res.data).not.toBeNull();
-  expect(res.data!.updateBookFavourite).toMatchSnapshot();
-
-  const updatedBook = await getManager().findOneOrFail(Book, 1);
-  expect(updatedBook.favourite).toBe(true);
 });

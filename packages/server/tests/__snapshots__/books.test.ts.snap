@@ -212,11 +212,3 @@ Object {
   "booksCount": 4,
 }
 `;
-
-exports[`updates book favourite 1`] = `
-Object {
-  "favourite": true,
-  "id": "MS1Cb29r",
-  "title": "Harry Potter and the Sorcerer's Stone",
-}
-`;

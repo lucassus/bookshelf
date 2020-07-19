@@ -45,7 +45,7 @@ test("book query", async () => {
   const id = secureId.toExternal(book.id, "Book");
   const res = await query({
     query: gql`
-      query GetBook($id: ID!) {
+      query($id: ID!) {
         book(id: $id) {
           id
           title
@@ -112,8 +112,8 @@ test("book query", async () => {
           id: expect.any(String)
         })
       ],
-      createdAt: "2020-07-19T14:30:00.000Z",
-      updatedAt: "2020-07-19T14:45:00.000Z"
+      createdAt: book.createdAt.toISOString(),
+      updatedAt: book.updatedAt.toISOString()
     }
   });
 });
