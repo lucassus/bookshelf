@@ -20,6 +20,8 @@ export const Basic = () => {
       url:
         "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
     },
+    createdAt: "2020-07-19T14:00:00.00Z",
+    updatedAt: "2020-07-19T14:00:00.00Z",
     books: []
   };
 
