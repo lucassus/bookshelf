@@ -10,9 +10,8 @@ https://graphql-bookshelf.herokuapp.com/
 ## Installation and running
 
 1. `yarn install`
-2. `yarn build`
-3. `yarn dev`
-4. `yarn workspace @bookshelf/web storybook`
+2. `yarn dev`
+3. `yarn workspace @bookshelf/web storybook`
 
 Navigate to http://localhost:3000/ to see the app.
 
