@@ -7,24 +7,24 @@ Object {
       Object {
         "borrower": Object {
           "avatar": Object {
-            "color": "yellow",
+            "color": "pink",
             "image": Object {
-              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/w13.png",
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m10.png",
             },
           },
-          "id": "MS1Vc2Vy",
-          "name": "Alice",
+          "id": "Mi1Vc2Vy",
+          "name": "Paul",
         },
         "id": "MS1Cb29rQ29weQ==",
         "owner": Object {
           "avatar": Object {
-            "color": "green",
+            "color": "yellow",
             "image": Object {
-              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m10.png",
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
             },
           },
-          "id": "Mi1Vc2Vy",
-          "name": "Bob",
+          "id": "MS1Vc2Vy",
+          "name": "John",
         },
       },
       Object {
@@ -32,48 +32,19 @@ Object {
         "id": "Mi1Cb29rQ29weQ==",
         "owner": Object {
           "avatar": Object {
-            "color": "yellow",
+            "color": "black",
             "image": Object {
-              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/w13.png",
+              "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
             },
           },
-          "id": "MS1Vc2Vy",
-          "name": "Alice",
+          "id": "My1Vc2Vy",
+          "name": "Sylvester Greenholt DVM",
         },
       },
     ],
-    "description": "For more than a hundred years, humans, dwarves, gnomes and elves lived together in relative peace. But times have changed, the uneasy peace is over and now the races are fighting once again - killing their own kind and each other.
-
-      Into this tumultuous time is born a child of prophecy, Ciri, surviving heiress of a bloody revolution, whose strange abilities can change the world - for good, or for evil...
-      
-      As the threat of war hangs over the land, Geralt the Witcher must protect Ciri from those who are hunting the child for her destructive power.
-      
-      But this time, Geralt may have met his match.",
-    "id": "MTYtQm9vaw==",
+    "description": "Laudantium molestias ut.",
+    "id": "MS1Cb29r",
     "title": "Blood of Elves",
-  },
-}
-`;
-
-exports[`fetches a book 2 1`] = `
-Object {
-  "book": Object {
-    "copies": Array [
-      Object {
-        "borrower": null,
-        "owner": Object {
-          "id": "Mi1Vc2Vy",
-          "name": "Bob",
-        },
-      },
-    ],
-    "description": "After walking through a portal in the Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
-
-      But this is Ciri, the child of prophecy, and she will not be defeated. She knows she must escape to finally rejoin the Witcher, Geralt, and his companions - and also to try to conquer her worst nightmare. Leo Bonhart, the man who chased, wounded and tortured Ciri, is still on her trail.
-      
-      And the world is still at war.",
-    "id": "MjAtQm9vaw==",
-    "title": "The lady of the lake",
   },
 }
 `;
@@ -85,14 +56,10 @@ Object {
       "name": "Andrzej Sapkowski",
     },
     "cover": Object {
-      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/witcher5.jpg",
+      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/harry5.jpg",
     },
-    "description": "After walking through a portal in the Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
-
-      But this is Ciri, the child of prophecy, and she will not be defeated. She knows she must escape to finally rejoin the Witcher, Geralt, and his companions - and also to try to conquer her worst nightmare. Leo Bonhart, the man who chased, wounded and tortured Ciri, is still on her trail.
-      
-      And the world is still at war.",
-    "id": "MjAtQm9vaw==",
+    "description": "Laudantium molestias ut.",
+    "id": "MS1Cb29r",
     "title": "The lady of the lake",
   },
 }
@@ -101,7 +68,7 @@ Object {
 exports[`fetches a book with details 2`] = `
 Object {
   "book": Object {
-    "id": "MjAtQm9vaw==",
+    "id": "MS1Cb29r",
     "title": "The lady of the lake",
   },
 }
@@ -120,97 +87,49 @@ exports[`fetches books 1`] = `
 Object {
   "books": Array [
     Object {
-      "copies": Array [],
-      "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse3.jpg",
-      },
-      "id": "MTAtQm9vaw==",
-      "title": "Abaddon's Gate",
-    },
-    Object {
-      "copies": Array [],
-      "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse6.jpg",
-      },
-      "id": "MTMtQm9vaw==",
-      "title": "Babylon's Ashes",
-    },
-    Object {
-      "copies": Array [],
-      "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/witcher3.jpg",
-      },
-      "id": "MTgtQm9vaw==",
-      "title": "Baptism of fire",
-    },
-    Object {
       "copies": Array [
-        Object {
-          "borrower": Object {
-            "id": "MS1Vc2Vy",
-            "name": "Alice",
-          },
-          "owner": Object {
-            "id": "Mi1Vc2Vy",
-            "name": "Bob",
-          },
-        },
         Object {
           "borrower": null,
           "owner": Object {
             "id": "MS1Vc2Vy",
-            "name": "Alice",
+            "name": "John",
+          },
+        },
+        Object {
+          "borrower": Object {
+            "id": "Mi1Vc2Vy",
+            "name": "Paul",
+          },
+          "owner": Object {
+            "id": "My1Vc2Vy",
+            "name": "Sylvester Greenholt DVM",
           },
         },
       ],
       "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/witcher1.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/harry5.jpg",
       },
-      "id": "MTYtQm9vaw==",
-      "title": "Blood of Elves",
+      "id": "MS1Cb29r",
+      "title": "Hobbit",
     },
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse2.jpg",
-      },
-      "id": "OS1Cb29r",
-      "title": "Caliban's War",
-    },
-    Object {
-      "copies": Array [],
-      "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/expanse4.jpg",
-      },
-      "id": "MTEtQm9vaw==",
-      "title": "Cibola Burn",
-    },
-    Object {
-      "copies": Array [],
-      "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/harry2.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/expanse1.jpg",
       },
       "id": "Mi1Cb29r",
-      "title": "Harry Potter and the Chamber of Secrets",
+      "title": "Star Wars IV",
     },
     Object {
       "copies": Array [],
       "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/harry7.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/witcher5.jpg",
       },
-      "id": "Ny1Cb29r",
-      "title": "Harry Potter and the Deathly Hallows",
-    },
-    Object {
-      "copies": Array [],
-      "cover": Object {
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/covers/harry4.jpg",
-      },
-      "id": "NC1Cb29r",
-      "title": "Harry Potter and the Goblet of Fire",
+      "id": "My1Cb29r",
+      "title": "Star Wars V",
     },
   ],
-  "booksCount": 20,
+  "booksCount": 3,
 }
 `;
 
@@ -221,262 +140,29 @@ Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Abaddon's Gate",
+            "title": "Qui Adipisci Qui",
           },
           Object {
-            "title": "Babylon's Ashes",
-          },
-          Object {
-            "title": "Caliban's War",
-          },
-          Object {
-            "title": "Cibola Burn",
-          },
-          Object {
-            "title": "Leviathan Wakes",
-          },
-          Object {
-            "title": "Nemesis Games",
-          },
-          Object {
-            "title": "Persepolis Rising",
-          },
-          Object {
-            "title": "Tiamat's Wrath",
-          },
-        ],
-        "name": "James S. A. Corey",
-      },
-      "title": "Abaddon's Gate",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Abaddon's Gate",
-          },
-          Object {
-            "title": "Babylon's Ashes",
-          },
-          Object {
-            "title": "Caliban's War",
-          },
-          Object {
-            "title": "Cibola Burn",
-          },
-          Object {
-            "title": "Leviathan Wakes",
-          },
-          Object {
-            "title": "Nemesis Games",
-          },
-          Object {
-            "title": "Persepolis Rising",
-          },
-          Object {
-            "title": "Tiamat's Wrath",
-          },
-        ],
-        "name": "James S. A. Corey",
-      },
-      "title": "Babylon's Ashes",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Baptism of fire",
-          },
-          Object {
-            "title": "Blood of Elves",
-          },
-          Object {
-            "title": "The lady of the lake",
-          },
-          Object {
-            "title": "The tower of the swallow",
-          },
-          Object {
-            "title": "Time of contempt",
+            "title": "Veniam",
           },
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Baptism of fire",
+      "title": "Qui Adipisci Qui",
     },
     Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Baptism of fire",
+            "title": "Qui Adipisci Qui",
           },
           Object {
-            "title": "Blood of Elves",
-          },
-          Object {
-            "title": "The lady of the lake",
-          },
-          Object {
-            "title": "The tower of the swallow",
-          },
-          Object {
-            "title": "Time of contempt",
+            "title": "Veniam",
           },
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Blood of Elves",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Abaddon's Gate",
-          },
-          Object {
-            "title": "Babylon's Ashes",
-          },
-          Object {
-            "title": "Caliban's War",
-          },
-          Object {
-            "title": "Cibola Burn",
-          },
-          Object {
-            "title": "Leviathan Wakes",
-          },
-          Object {
-            "title": "Nemesis Games",
-          },
-          Object {
-            "title": "Persepolis Rising",
-          },
-          Object {
-            "title": "Tiamat's Wrath",
-          },
-        ],
-        "name": "James S. A. Corey",
-      },
-      "title": "Caliban's War",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Abaddon's Gate",
-          },
-          Object {
-            "title": "Babylon's Ashes",
-          },
-          Object {
-            "title": "Caliban's War",
-          },
-          Object {
-            "title": "Cibola Burn",
-          },
-          Object {
-            "title": "Leviathan Wakes",
-          },
-          Object {
-            "title": "Nemesis Games",
-          },
-          Object {
-            "title": "Persepolis Rising",
-          },
-          Object {
-            "title": "Tiamat's Wrath",
-          },
-        ],
-        "name": "James S. A. Corey",
-      },
-      "title": "Cibola Burn",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Chamber of Secrets",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Deathly Hallows",
-    },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
-            "title": "Harry Potter and the Chamber of Secrets",
-          },
-          Object {
-            "title": "Harry Potter and the Deathly Hallows",
-          },
-          Object {
-            "title": "Harry Potter and the Goblet of Fire",
-          },
-          Object {
-            "title": "Harry Potter and the Half-Blood Prince",
-          },
-          Object {
-            "title": "Harry Potter and the Order of the Phoenix",
-          },
-          Object {
-            "title": "Harry Potter and the Prisoner of Azkaban",
-          },
-          Object {
-            "title": "Harry Potter and the Sorcerer's Stone",
-          },
-        ],
-        "name": "J. K. Rowling",
-      },
-      "title": "Harry Potter and the Goblet of Fire",
+      "title": "Veniam",
     },
   ],
 }
@@ -487,78 +173,38 @@ Object {
   "books": Array [
     Object {
       "author": Object {
-        "id": "Mi1BdXRob3I=",
-        "name": "James S. A. Corey",
-      },
-      "id": "MTAtQm9vaw==",
-      "title": "Abaddon's Gate",
-    },
-    Object {
-      "author": Object {
-        "id": "Mi1BdXRob3I=",
-        "name": "James S. A. Corey",
-      },
-      "id": "MTMtQm9vaw==",
-      "title": "Babylon's Ashes",
-    },
-    Object {
-      "author": Object {
         "id": "My1BdXRob3I=",
-        "name": "Andrzej Sapkowski",
-      },
-      "id": "MTgtQm9vaw==",
-      "title": "Baptism of fire",
-    },
-    Object {
-      "author": Object {
-        "id": "My1BdXRob3I=",
-        "name": "Andrzej Sapkowski",
-      },
-      "id": "MTYtQm9vaw==",
-      "title": "Blood of Elves",
-    },
-    Object {
-      "author": Object {
-        "id": "Mi1BdXRob3I=",
-        "name": "James S. A. Corey",
-      },
-      "id": "OS1Cb29r",
-      "title": "Caliban's War",
-    },
-    Object {
-      "author": Object {
-        "id": "Mi1BdXRob3I=",
-        "name": "James S. A. Corey",
-      },
-      "id": "MTEtQm9vaw==",
-      "title": "Cibola Burn",
-    },
-    Object {
-      "author": Object {
-        "id": "MS1BdXRob3I=",
-        "name": "J. K. Rowling",
-      },
-      "id": "Mi1Cb29r",
-      "title": "Harry Potter and the Chamber of Secrets",
-    },
-    Object {
-      "author": Object {
-        "id": "MS1BdXRob3I=",
-        "name": "J. K. Rowling",
-      },
-      "id": "Ny1Cb29r",
-      "title": "Harry Potter and the Deathly Hallows",
-    },
-    Object {
-      "author": Object {
-        "id": "MS1BdXRob3I=",
-        "name": "J. K. Rowling",
+        "name": "Hayden Orn",
       },
       "id": "NC1Cb29r",
-      "title": "Harry Potter and the Goblet of Fire",
+      "title": "Alias",
+    },
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "Velda Bailey",
+      },
+      "id": "My1Cb29r",
+      "title": "Exercitationem Reiciendis Cupiditate Provident",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "Tolkien",
+      },
+      "id": "MS1Cb29r",
+      "title": "Hobbit",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "Tolkien",
+      },
+      "id": "Mi1Cb29r",
+      "title": "Lord of the Rings",
     },
   ],
-  "booksCount": 20,
+  "booksCount": 4,
 }
 `;
 
