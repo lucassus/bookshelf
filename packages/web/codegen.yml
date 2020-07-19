@@ -1,7 +1,7 @@
 overwrite: true
 
 schema:
-  ../server/src/graphql/*.graphql:
+  ../server/src/graphql/**/*.graphql:
     noRequire: true
 
 documents: src/**/*.graphql
