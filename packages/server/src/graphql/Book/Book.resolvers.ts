@@ -33,6 +33,10 @@ export const resolvers: Resolvers<Context> = {
   Book: {
     id,
     cover: image,
-    author: (book, args, { authorsLoader }) => authorsLoader.load(book.authorId)
+    author: (book, args, { authorsLoader }) =>
+      authorsLoader.load(book.authorId),
+
+    createdAt: (book) => book.createdAt.toISOString(),
+    updatedAt: (book) => book.updatedAt.toISOString()
   }
 };

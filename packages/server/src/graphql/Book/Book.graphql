@@ -6,4 +6,6 @@ type Book implements Resource {
   favourite: Boolean!
   author: Author
   copies: [BookCopy!]!
+  createdAt: String!
+  updatedAt: String!
 }

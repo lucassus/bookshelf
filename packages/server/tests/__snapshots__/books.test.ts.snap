@@ -42,9 +42,11 @@ Object {
         },
       },
     ],
+    "createdAt": "2020-07-19T14:30:00.000Z",
     "description": "Laudantium molestias ut.",
     "id": "MS1Cb29r",
     "title": "Blood of Elves",
+    "updatedAt": "2020-07-19T14:45:00.000Z",
   },
 }
 `;

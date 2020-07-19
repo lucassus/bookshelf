@@ -101,7 +101,9 @@ it("fetches a book", async () => {
   const author = await createAuthor({ name: "Andrzej Sapkpwski" });
   const book = await createBook({
     title: "Blood of Elves",
-    authorId: author.id
+    authorId: author.id,
+    createdAt: new Date(Date.UTC(2020, 6, 19, 14, 30)),
+    updatedAt: new Date(Date.UTC(2020, 6, 19, 14, 45))
   });
 
   const owner = await createUser({ name: "John" });
@@ -121,6 +123,8 @@ it("fetches a book", async () => {
           id
           title
           description
+          createdAt
+          updatedAt
           copies {
             id
             owner {
