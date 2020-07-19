@@ -7,11 +7,11 @@ generates:
     config:
       useIndexSignature: true
       mappers:
-        Author: ./database/entity/Author#Author
-        Avatar: ./database/entity/Avatar#Avatar
-        Book: ./database/entity/Book#Book
-        BookCopy: ./database/entity/BookCopy#BookCopy
-        User: ./database/entity/User#User
+        Author: ./database/entity/Author#Author as AuthorEntity
+        Avatar: ./database/entity/Avatar#Avatar as AvatarEntity
+        Book: ./database/entity/Book#Book as BookEntity
+        BookCopy: ./database/entity/BookCopy#BookCopy as BookCopyEntity
+        User: ./database/entity/User#User as UserEntity
     plugins:
       - typescript
       - typescript-resolvers
