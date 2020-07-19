@@ -17,7 +17,9 @@ it("fetches an author", async () => {
   await createAuthor({
     name: "J. R. R. Tolkien",
     bio:
-      "John Ronald Reuel Tolkien was an English writer, poet, philologist, and academic. He was the author of the high fantasy works The Hobbit and The Lord of the Rings."
+      "John Ronald Reuel Tolkien was an English writer, poet, philologist, and academic. He was the author of the high fantasy works The Hobbit and The Lord of the Rings.",
+    createdAt: new Date(Date.UTC(2019, 11, 31, 14, 30)),
+    updatedAt: new Date(Date.UTC(2020, 6, 19, 13, 20))
   });
 
   // When
@@ -31,6 +33,8 @@ it("fetches an author", async () => {
           photo {
             url
           }
+          createdAt
+          updatedAt
         }
       }
     `,

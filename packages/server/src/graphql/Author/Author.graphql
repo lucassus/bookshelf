@@ -4,4 +4,6 @@ type Author implements Resource {
   bio: String
   photo: Image
   books: [Book!]!
+  createdAt: String!
+  updatedAt: String!
 }
