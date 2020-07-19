@@ -9,15 +9,15 @@ export interface Context {
   currentUserId: number;
 }
 
-export type Resolver = (
+export type Resolver<Context> = (
   parent: any,
   args: any,
   context: Context,
   info: any
 ) => any;
 
-export interface ResolverMap {
+export interface Resolvers<Context> {
   [key: string]: {
-    [key: string]: Resolver;
+    [key: string]: Resolver<Context>;
   };
 }

@@ -7,7 +7,7 @@ import { findAnythingOrFail } from "../database/findAnythingOrFail";
 import { secureId } from "../database/helpers";
 import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
 import { BookRepository } from "../database/repositories/BookRepository";
-import { ResolverMap } from "../types";
+import { Context, Resolvers } from "../types";
 
 interface Image {
   path: string;
@@ -17,7 +17,7 @@ const id = (rootValue: { id: number }): string =>
   secureId.toExternal(rootValue.id, rootValue.constructor.name);
 
 // TODO: Find a way for more modular code organization
-export const resolvers: ResolverMap = {
+export const resolvers: Resolvers<Context> = {
   Query: {
     booksCount: (rootValue, args, { connection }) =>
       connection.manager.count(Book),
