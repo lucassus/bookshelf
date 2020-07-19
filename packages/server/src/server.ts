@@ -24,7 +24,9 @@ export const createServer = () =>
   new ApolloServer({
     schema: schemaWithResolvers,
     context: async (): Promise<Context> => {
-      const currentUser = await getConnection().manager.findOne(User, {
+      const connection = getConnection();
+
+      const currentUser = await connection.manager.findOne(User, {
         name: "Bob"
       });
 

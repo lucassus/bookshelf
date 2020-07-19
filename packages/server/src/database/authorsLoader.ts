@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import { getConnection } from "typeorm";
+import { getManager } from "typeorm";
 
 import { Author } from "./entity/Author";
 import { normalize } from "./normalize";
@@ -8,10 +8,7 @@ const batchLoadAuthors: DataLoader.BatchLoadFn<
   string | number,
   Author
 > = async (ids) => {
-  const authors = await getConnection().manager.findByIds(
-    Author,
-    ids as number[]
-  );
+  const authors = await getManager().findByIds(Author, ids as number[]);
 
   const byId = normalize<Author>(authors);
 

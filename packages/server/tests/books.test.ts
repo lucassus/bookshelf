@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import { createTestClient } from "apollo-server-testing";
-import { getConnection } from "typeorm";
+import { getManager } from "typeorm";
 
 import { Book } from "../src/database/entity/Book";
 import {
@@ -326,6 +326,6 @@ it("updates book favourite", async () => {
   expect(res.data).not.toBeNull();
   expect(res.data!.updateBookFavourite).toMatchSnapshot();
 
-  const updatedBook = await getConnection().manager.findOneOrFail(Book, 1);
+  const updatedBook = await getManager().findOneOrFail(Book, 1);
   expect(updatedBook.favourite).toBe(true);
 });
