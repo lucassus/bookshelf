@@ -1,19 +1,10 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
 
 import { createAuthor, createBook } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { createServer } from "../src/server";
-
-let server: ApolloServer;
-
-beforeEach(async () => {
-  server = createServer();
-});
+import { getTestClient } from "./helpers";
 
 it("fetches an author", async () => {
-  const { query } = createTestClient(server);
-
   await createAuthor({
     name: "J. R. R. Tolkien",
     bio:
@@ -23,7 +14,7 @@ it("fetches an author", async () => {
   });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query($id: ID!) {
         author(id: $id) {
@@ -48,8 +39,6 @@ it("fetches an author", async () => {
 
 it("fetches authors along with books", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const firstAuthor = await createAuthor();
   await createBook({ authorId: firstAuthor.id });
   await createBook({ authorId: firstAuthor.id });
@@ -60,7 +49,7 @@ it("fetches authors along with books", async () => {
   await createBook({ authorId: secondAuthor.id });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query {
         authors {

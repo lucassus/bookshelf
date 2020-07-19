@@ -1,8 +1,4 @@
 import { gql } from "apollo-server-express";
-import {
-  createTestClient,
-  ApolloServerTestClient
-} from "apollo-server-testing";
 import { getManager } from "typeorm";
 
 import { BookCopy } from "../../src/database/entity/BookCopy";
@@ -13,14 +9,12 @@ import {
   createUser
 } from "../../src/database/factories";
 import { secureId } from "../../src/database/helpers";
-import { createServer } from "../../src/server";
+import { getTestClient } from "../helpers";
 
 let currentUser: User;
-let testClient: ApolloServerTestClient;
 
 beforeEach(async () => {
   currentUser = await createUser({ name: "Bob" });
-  testClient = createTestClient(createServer());
 });
 
 test("borrowBookCopy mutation", async () => {
@@ -35,7 +29,7 @@ test("borrowBookCopy mutation", async () => {
   // When
   const id = secureId.toExternal(bookCopy.id, "BookCopy");
 
-  const res = await testClient.mutate({
+  const res = await getTestClient().mutate({
     mutation: gql`
       mutation($id: ID!) {
         borrowBookCopy(id: $id) {

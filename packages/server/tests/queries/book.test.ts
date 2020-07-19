@@ -1,8 +1,4 @@
 import { gql } from "apollo-server-express";
-import {
-  ApolloServerTestClient,
-  createTestClient
-} from "apollo-server-testing";
 
 import {
   createAuthor,
@@ -11,13 +7,7 @@ import {
   createUser
 } from "../../src/database/factories";
 import { secureId } from "../../src/database/helpers";
-import { createServer } from "../../src/server";
-
-let testClient: ApolloServerTestClient;
-
-beforeEach(async () => {
-  testClient = createTestClient(createServer());
-});
+import { getTestClient } from "../helpers";
 
 test("book query", async () => {
   // Given
@@ -45,7 +35,7 @@ test("book query", async () => {
   // When
   const id = secureId.toExternal(book.id, "Book");
 
-  const res = await testClient.query({
+  const res = await getTestClient().query({
     query: gql`
       query($id: ID!) {
         book(id: $id) {

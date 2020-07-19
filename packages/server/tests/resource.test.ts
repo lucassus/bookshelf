@@ -1,15 +1,8 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
 
 import { createAuthor, createBook } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { createServer } from "../src/server";
-
-let server: ApolloServer;
-
-beforeEach(async () => {
-  server = createServer();
-});
+import { getTestClient } from "./helpers";
 
 describe("fetching resource", () => {
   const GetResourceQuery = gql`
@@ -33,11 +26,10 @@ describe("fetching resource", () => {
 
   it("fetches Book", async () => {
     // Given
-    const { query } = createTestClient(server);
     const book = await createBook();
 
     // When
-    const res = await query({
+    const res = await getTestClient().query({
       query: GetResourceQuery,
       variables: { id: secureId.toExternal(book.id, "Book") }
     });
@@ -48,11 +40,10 @@ describe("fetching resource", () => {
 
   it("fetches Author", async () => {
     // Given
-    const { query } = createTestClient(server);
     const author = await createAuthor();
 
     // When
-    const res = await query({
+    const res = await getTestClient().query({
       query: GetResourceQuery,
       variables: { id: secureId.toExternal(author.id, "Author") }
     });

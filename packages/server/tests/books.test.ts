@@ -1,5 +1,4 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
 
 import {
   createAuthor,
@@ -8,18 +7,10 @@ import {
   createUser
 } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { createServer } from "../src/server";
-
-let server: ApolloServer;
-
-beforeEach(async () => {
-  server = createServer();
-});
+import { getTestClient } from "./helpers";
 
 it("fetches books", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const book = await createBook({ title: "Hobbit" });
   await createBookCopy({ bookId: book.id, ownerAttributes: { name: "John" } });
   const borrower = await createUser({ name: "Paul" });
@@ -30,7 +21,7 @@ it("fetches books", async () => {
   await createBook({ authorId: author.id, title: "Star Wars V" });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query {
         booksCount
@@ -63,8 +54,6 @@ it("fetches books", async () => {
 
 it("fetches books with authors", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const author = await createAuthor({ name: "Tolkien" });
   await createBook({ title: "Hobbit", authorId: author.id });
   await createBook({ title: "Lord of the Rings", authorId: author.id });
@@ -72,7 +61,7 @@ it("fetches books with authors", async () => {
   await createBook();
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query {
         booksCount
@@ -95,8 +84,6 @@ it("fetches books with authors", async () => {
 
 it("fetches a book", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const author = await createAuthor({ name: "Andrzej Sapkpwski" });
   const book = await createBook({
     title: "Blood of Elves",
@@ -115,7 +102,7 @@ it("fetches a book", async () => {
   await createBookCopy({ bookId: book.id });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query($id: ID!) {
         book(id: $id) {
@@ -160,8 +147,6 @@ it("fetches a book", async () => {
 
 it("fetches a book with details", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const book = await createBook({
     title: "The lady of the lake",
     authorAttributes: {
@@ -187,7 +172,7 @@ it("fetches a book with details", async () => {
   `;
 
   // When
-  let res = await query({
+  let res = await getTestClient().query({
     query: GetBookWithDetailsQuery,
     variables: {
       id: secureId.toExternal(book.id, "Book"),
@@ -201,7 +186,7 @@ it("fetches a book with details", async () => {
   expect(res.data).toMatchSnapshot();
 
   // When
-  res = await query({
+  res = await getTestClient().query({
     query: GetBookWithDetailsQuery,
     variables: {
       id: secureId.toExternal(book.id, "Book"),
@@ -216,10 +201,8 @@ it("fetches a book with details", async () => {
 
 it("responds with error when book cannot be found", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query($id: ID!) {
         book(id: $id) {
@@ -240,14 +223,12 @@ it("responds with error when book cannot be found", async () => {
 
 it("fetches books along with authors and books again", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const author = await createAuthor({ name: "Andrzej Sapkowski" });
   await createBook({ authorId: author.id });
   await createBook({ authorId: author.id });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query {
         books {
@@ -270,8 +251,6 @@ it("fetches books along with authors and books again", async () => {
 
 it("fetches a random book", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const author = await createAuthor({ name: "Andrzej Sapkowski" });
   await createBook({
     authorId: author.id,
@@ -280,7 +259,7 @@ it("fetches a random book", async () => {
   });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query {
         randomBook {

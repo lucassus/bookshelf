@@ -1,5 +1,4 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
 
 import {
   createAuthor,
@@ -8,13 +7,7 @@ import {
   createUser
 } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { createServer } from "../src/server";
-
-let server: ApolloServer;
-
-beforeEach(async () => {
-  server = createServer();
-});
+import { getTestClient } from "./helpers";
 
 describe("fetching anything", () => {
   const GetAnythingQuery = gql`
@@ -65,7 +58,7 @@ describe("fetching anything", () => {
 
   it("fetches Author", async () => {
     // Given
-    const { query } = createTestClient(server);
+    const { query } = getTestClient();
 
     const author = await createAuthor();
     await createBook({ authorId: author.id });
@@ -73,7 +66,7 @@ describe("fetching anything", () => {
     await createBook({ authorId: author.id });
 
     // When
-    const res = await query({
+    const res = await getTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(author.id, "Author") }
     });
@@ -84,11 +77,10 @@ describe("fetching anything", () => {
 
   it("fetches Book", async () => {
     // Given
-    const { query } = createTestClient(server);
     const book = await createBook();
 
     // When
-    const res = await query({
+    const res = await getTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(book.id, "Book") }
     });
@@ -99,11 +91,10 @@ describe("fetching anything", () => {
 
   it("fetches User", async () => {
     // Given
-    const { query } = createTestClient(server);
     const user = await createUser();
 
     // When
-    const res = await query({
+    const res = await getTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(user.id, "User") }
     });
@@ -114,13 +105,11 @@ describe("fetching anything", () => {
 
   it("fetches BookCopy", async () => {
     // Given
-    const { query } = createTestClient(server);
-
     const user = await createUser();
     const bookCopy = await createBookCopy({ borrowerId: user.id });
 
     // When
-    const res = await query({
+    const res = await getTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(bookCopy.id, "BookCopy") }
     });
@@ -132,14 +121,12 @@ describe("fetching anything", () => {
 
 it("fetches with aliases", async () => {
   // Given
-  const { query } = createTestClient(server);
-
   const book = await createBook();
   const author = await createAuthor();
   const user = await createUser();
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query($bookId: ID!, $authorId: ID!, $userId: ID!) {
         something: book(id: $bookId) {

@@ -1,25 +1,17 @@
-import { ApolloServer, gql } from "apollo-server-express";
-import { createTestClient } from "apollo-server-testing";
+import { gql } from "apollo-server-express";
 
 import { createBookCopy, createUser } from "../src/database/factories";
 import { secureId } from "../src/database/helpers";
-import { createServer } from "../src/server";
-
-let server: ApolloServer;
-
-beforeEach(async () => {
-  server = createServer();
-});
+import { getTestClient } from "./helpers";
 
 it("fetches users", async () => {
-  const { query } = createTestClient(server);
-
+  // Given
   await createUser();
   await createUser();
   await createUser();
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query {
         users {
@@ -45,15 +37,14 @@ it("fetches users", async () => {
 });
 
 it("fetches a user", async () => {
-  const { query } = createTestClient(server);
-
+  // Given
   const user = await createUser();
   await createBookCopy({ ownerId: user.id });
   await createBookCopy({ ownerId: user.id });
   await createBookCopy({ borrowerId: user.id });
 
   // When
-  const res = await query({
+  const res = await getTestClient().query({
     query: gql`
       query($id: ID!) {
         user(id: $id) {
