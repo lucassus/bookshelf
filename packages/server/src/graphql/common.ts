@@ -2,8 +2,8 @@ import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { secureId } from "../database/helpers";
-import { Resolver, ResolversTypes } from "../resolvers-types.generated";
 import { Context } from "../types";
+import { Resolver, ResolversTypes } from "./resolvers-types.generated";
 
 export const id: Resolver<ResolversTypes["ID"], { id: number }> = (resource) =>
   secureId.toExternal(resource.id, resource.constructor.name);

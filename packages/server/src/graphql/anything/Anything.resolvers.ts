@@ -1,6 +1,6 @@
-import { findAnythingOrFail } from "../database/findAnythingOrFail";
+import { findAnythingOrFail } from "../../database/findAnythingOrFail";
+import { Context } from "../../types";
 import { Resolvers } from "../resolvers-types.generated";
-import { Context } from "../types";
 
 export const resolvers: Resolvers<Context> = {
   Query: {

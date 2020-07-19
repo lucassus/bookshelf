@@ -1,14 +1,14 @@
 import merge from "lodash.merge";
 
-import { Resolvers } from "../resolvers-types.generated";
 import { Context } from "../types";
+import { Resolvers } from "./resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = merge(
   {},
-  require("./Anything.resolvers").resolvers,
-  require("./Author.resolvers").resolvers,
-  require("./Book.resolvers").resolvers,
-  require("./BookCopy.resolvers").resolvers,
-  require("./Resource.resolvers").resolvers,
-  require("./User.resolvers").resolvers
+  require("./anything/Anything.resolvers").resolvers,
+  require("./authors/Author.resolvers").resolvers,
+  require("./books/Book.resolvers").bookResolvers,
+  require("./bookCopies/BookCopy.resolvers").resolvers,
+  require("./resources/Resource.resolvers").resolvers,
+  require("./users/User.resolvers").resolvers
 );

@@ -1,8 +1,8 @@
-import { User } from "../database/entity/User";
-import { secureId } from "../database/helpers";
+import { User } from "../../database/entity/User";
+import { secureId } from "../../database/helpers";
+import { Context } from "../../types";
+import { id, image } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
-import { Context } from "../types";
-import { id, image } from "./common";
 
 export const resolvers: Resolvers<Context> = {
   Query: {

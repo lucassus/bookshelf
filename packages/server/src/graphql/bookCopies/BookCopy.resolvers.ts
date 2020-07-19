@@ -1,9 +1,9 @@
-import { User } from "../database/entity/User";
-import { secureId } from "../database/helpers";
-import { BookCopyRepository } from "../database/repositories/BookCopyRepository";
+import { User } from "../../database/entity/User";
+import { secureId } from "../../database/helpers";
+import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
+import { Context } from "../../types";
+import { id } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
-import { Context } from "../types";
-import { id } from "./common";
 
 export const resolvers: Resolvers<Context> = {
   BookCopy: {

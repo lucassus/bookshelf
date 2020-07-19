@@ -11,7 +11,7 @@ import { User } from "./database/entity/User";
 import { resolvers } from "./graphql/resolvers";
 import { Context } from "./types";
 
-const schema = loadSchemaSync(path.join(__dirname, "./graphql/*.graphql"), {
+const schema = loadSchemaSync(path.join(__dirname, "./graphql/**/*.graphql"), {
   loaders: [new GraphQLFileLoader()]
 });
 

@@ -1,11 +1,11 @@
-import { Book } from "../database/entity/Book";
-import { secureId } from "../database/helpers";
-import { BookRepository } from "../database/repositories/BookRepository";
+import { Book } from "../../database/entity/Book";
+import { secureId } from "../../database/helpers";
+import { BookRepository } from "../../database/repositories/BookRepository";
+import { Context } from "../../types";
+import { id, image } from "../common";
 import { Resolvers } from "../resolvers-types.generated";
-import { Context } from "../types";
-import { id, image } from "./common";
 
-export const resolvers: Resolvers<Context> = {
+export const bookResolvers: Resolvers<Context> = {
   Query: {
     booksCount: (rootValue, args, { connection }) =>
       connection.manager.count(Book),
