@@ -39,7 +39,8 @@ it("fetches users", async () => {
   });
 
   // Then
-  expect(res.data).not.toBeNull();
+  expect(res.errors).toBe(undefined);
+  expect(res.data).not.toBe(null);
   expect(res.data!.users).toMatchSnapshot();
 });
 

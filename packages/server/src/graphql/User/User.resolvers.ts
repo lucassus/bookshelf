@@ -9,5 +9,12 @@ export const resolvers: Resolvers<Context> = {
 
     user: (rootValue, args, { connection }) =>
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id))
+  },
+
+  Avatar: {
+    image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
   }
 };

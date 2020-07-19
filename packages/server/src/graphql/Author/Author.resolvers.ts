@@ -10,5 +10,12 @@ export const resolvers: Resolvers<Context> = {
 
     author: (rootValue, args, { authorsLoader }) =>
       authorsLoader.load(secureId.toInternal(args.id))
+  },
+
+  Author: {
+    photo: ({ photoPath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
   }
 };

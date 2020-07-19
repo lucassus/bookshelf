@@ -30,6 +30,12 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Book: {
-    author: (book, args, { authorsLoader }) => authorsLoader.load(book.authorId)
+    author: (book, args, { authorsLoader }) =>
+      authorsLoader.load(book.authorId),
+
+    cover: ({ coverPath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
   }
 };
