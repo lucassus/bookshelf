@@ -21,16 +21,16 @@ export const resolvers: Resolvers<Context> = {
       try {
         await queryRunner.startTransaction();
 
-        const avatar = await connection.manager.save(
-          connection.manager.create(Avatar, avatarAttributes)
-        );
+        const avatar = connection.manager.create(Avatar, avatarAttributes);
+        await connection.manager.save(avatar);
 
-        return connection.manager.save(
-          connection.manager.create(User, {
-            avatar,
-            ...userAttributes
-          })
-        );
+        const user = connection.manager.create(User, {
+          avatar,
+          ...userAttributes
+        });
+        await connection.manager.save(user);
+
+        return user;
       } catch {
         await queryRunner.rollbackTransaction();
         return null;
