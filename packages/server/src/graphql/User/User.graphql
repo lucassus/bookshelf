@@ -15,13 +15,16 @@ type Avatar {
   color: String!
 }
 
-# TODO: How to nest avatar params?
+input AvatarInput {
+  imagePath: String!
+  color: String!
+}
+
 input CreateUserInput {
   name: String!
   info: String!
   email: String!
-  avatarColor: String!
-  avatarImagePath: String!
+  avatar: AvatarInput!
 }
 
 input UpdateUserInput {

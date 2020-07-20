@@ -13,16 +13,13 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    // TODO: Use input types
-    // TODO: Refactor
     createUser: async (rootValue, args, { connection }) => {
-      const { avatarImagePath, avatarColor, ...userAttributes } = args.input;
+      const { avatar: avatarAttributes, ...userAttributes } = args.input;
+
+      // TODO: Do it in the transaction
 
       const avatar = await connection.manager.save(
-        connection.manager.create(Avatar, {
-          imagePath: avatarImagePath,
-          color: avatarColor
-        })
+        connection.manager.create(Avatar, avatarAttributes)
       );
 
       return connection.manager.save(
