@@ -29,6 +29,8 @@ test("createUser mutation", async () => {
             }
             color
           }
+          createdAt
+          updatedAt
         }
       }
     `,
@@ -51,7 +53,9 @@ test("createUser mutation", async () => {
       avatar: {
         image: { path: "/test/image.jpg" },
         color: "red"
-      }
+      },
+      createdAt: expect.any(String),
+      updatedAt: expect.any(String)
     }
   });
 });
