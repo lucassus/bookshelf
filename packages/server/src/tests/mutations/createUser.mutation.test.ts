@@ -6,19 +6,15 @@ test("createUser mutation", async () => {
   // When
   const res = await getTestClient().mutate({
     mutation: gql`
-      mutation(
-        $name: String!
-        $info: String!
-        $email: String!
-        $avatarColor: String!
-        $avatarImagePath: String!
-      ) {
+      mutation {
         createUser(
-          name: $name
-          info: $info
-          email: $email
-          avatarColor: $avatarColor
-          avatarImagePath: $avatarImagePath
+          input: {
+            name: "Bob"
+            info: "Fantasy lover"
+            email: "bob@email.com"
+            avatarImagePath: "/test/image.jpg"
+            avatarColor: "red"
+          }
         ) {
           id
           name
@@ -33,14 +29,16 @@ test("createUser mutation", async () => {
           updatedAt
         }
       }
-    `,
-    variables: {
-      name: "Bob",
-      info: "Fantasy lover",
-      email: "bob@email.com",
-      avatarImagePath: "/test/image.jpg",
-      avatarColor: "red"
-    }
+    `
+    // variables: {
+    //   input: {
+    //     name: "Bob",
+    //     info: "Fantasy lover",
+    //     email: "bob@email.com",
+    //     avatarImagePath: "/test/image.jpg",
+    //     avatarColor: "red"
+    //   }
+    // }
   });
 
   // Then

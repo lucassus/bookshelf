@@ -14,3 +14,19 @@ type Avatar {
   image: Image!
   color: String!
 }
+
+# TODO: How to nest avatar params?
+input CreateUserInput {
+  name: String!
+  info: String!
+  email: String!
+  avatarColor: String!
+  avatarImagePath: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String!
+  email: String!
+  info: String!
+}

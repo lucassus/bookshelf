@@ -16,7 +16,7 @@ export const resolvers: Resolvers<Context> = {
     // TODO: Use input types
     // TODO: Refactor
     createUser: async (rootValue, args, { connection }) => {
-      const { avatarImagePath, avatarColor, ...userAttributes } = args;
+      const { avatarImagePath, avatarColor, ...userAttributes } = args.input;
 
       const avatar = await connection.manager.save(
         connection.manager.create(Avatar, {
@@ -34,7 +34,7 @@ export const resolvers: Resolvers<Context> = {
     },
 
     updateUser: async (rootValue, args, { connection }) => {
-      const { id: externalId, ...userAttributes } = args;
+      const { id: externalId, ...userAttributes } = args.input;
       const id = secureId.toInternal(externalId);
 
       await connection.manager.update(User, { id }, userAttributes);
