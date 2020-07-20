@@ -13,6 +13,8 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    // TODO: Use input types
+    // TODO: Refactor
     createUser: async (rootValue, args, { connection }) => {
       const { avatarImagePath, avatarColor, ...userAttributes } = args;
 
@@ -30,13 +32,18 @@ export const resolvers: Resolvers<Context> = {
         })
       );
     },
+
     updateUser: async (rootValue, args, { connection }) => {
       const { id: externalId, ...userAttributes } = args;
       const id = secureId.toInternal(externalId);
 
       await connection.manager.update(User, { id }, userAttributes);
-      return connection.manager.findOneOrFail(User, id);
+
+      const updatedUser = await connection.manager.findOneOrFail(User, id);
+      return updatedUser;
     },
+
+    // TODO: Refactor
     deleteUser: async (rootValue, args, { connection }) => {
       await connection.manager.delete(User, {
         id: secureId.toInternal(args.id)
