@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`anything query fetches Author 1`] = `
+Object {
+  "__typename": "Author",
+  "books": Array [
+    Object {
+      "description": "Pariatur laboriosam aliquid velit molestiae voluptates exercitationem reiciendis.",
+      "favourite": true,
+      "id": "My1Cb29r",
+      "title": "Dolore Tenetur Voluptatem Nostrum",
+    },
+    Object {
+      "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+      "favourite": false,
+      "id": "Mi1Cb29r",
+      "title": "Qui Adipisci Qui",
+    },
+    Object {
+      "description": "Laudantium molestias ut.",
+      "favourite": true,
+      "id": "MS1Cb29r",
+      "title": "Veniam",
+    },
+  ],
+  "id": "MS1BdXRob3I=",
+  "name": "Rosalind Effertz",
+}
+`;
+
+exports[`anything query fetches Book 1`] = `
+Object {
+  "__typename": "Book",
+  "description": "Laudantium molestias ut.",
+  "favourite": true,
+  "id": "MS1Cb29r",
+  "title": "Veniam",
+}
+`;
+
+exports[`anything query fetches BookCopy 1`] = `
+Object {
+  "__typename": "BookCopy",
+  "book": Object {
+    "description": "Vero aut assumenda.",
+    "favourite": true,
+    "id": "MS1Cb29r",
+    "title": "Minus",
+  },
+  "borrower": Object {
+    "email": "Braulio_Rempel33@hotmail.com",
+    "id": "MS1Vc2Vy",
+    "name": "Rosalind Effertz",
+  },
+  "id": "MS1Cb29rQ29weQ==",
+  "owner": Object {
+    "email": "Clint.Walker97@yahoo.com",
+    "id": "Mi1Vc2Vy",
+    "name": "Mrs. Monica Stamm",
+  },
+}
+`;
+
+exports[`anything query fetches User 1`] = `
+Object {
+  "__typename": "User",
+  "email": "Braulio_Rempel33@hotmail.com",
+  "id": "MS1Vc2Vy",
+  "name": "Rosalind Effertz",
+}
+`;
+
+exports[`fetches with aliases 1`] = `
+Object {
+  "author": Object {
+    "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+    "headline": "Clemens Hyatt",
+    "id": "Mi1BdXRob3I=",
+  },
+  "something": Object {
+    "description": "Laudantium molestias ut.",
+    "externalId": "MS1Cb29r",
+    "headline": "Veniam",
+    "id": "MS1Cb29r",
+  },
+  "user": Object {
+    "description": "Molestiae voluptates exercitationem reiciendis.",
+    "headline": "Mr. Dell Wilderman",
+    "id": "MS1Vc2Vy",
+  },
+}
+`;

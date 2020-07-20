@@ -10,11 +10,11 @@ import {
 import { createServer } from "./server";
 
 const startServer = async () => {
-  await (ENVIRONMENT === Environment.production
+  const connection = await (ENVIRONMENT === Environment.production
     ? createProductionConnection()
     : createDevelopmentConnection());
 
-  const server = createServer();
+  const server = createServer(connection);
 
   const app = express();
   server.applyMiddleware({ app });

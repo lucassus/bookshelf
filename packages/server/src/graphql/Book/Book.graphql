@@ -1,0 +1,11 @@
+type Book implements Resource & Timestampable {
+  id: ID!
+  title: String!
+  description: String
+  cover: Image!
+  favourite: Boolean!
+  author: Author
+  copies: [BookCopy!]!
+  createdAt: String!
+  updatedAt: String!
+}

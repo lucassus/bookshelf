@@ -1,0 +1,9 @@
+type Author implements Resource & Timestampable {
+  id: ID!
+  name: String!
+  bio: String
+  photo: Image!
+  books: [Book!]!
+  createdAt: String!
+  updatedAt: String!
+}

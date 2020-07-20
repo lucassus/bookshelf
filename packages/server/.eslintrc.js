@@ -6,5 +6,13 @@ module.exports = {
       env: { jest: true },
       extends: ["plugin:jest/recommended"]
     }
-  ]
+  ],
+  rules: {
+    "@typescript-eslint/no-var-requires": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { devDependencies: ["**/*.test.js", "src/tests/**/*.ts"] }
+    ]
+  }
 };

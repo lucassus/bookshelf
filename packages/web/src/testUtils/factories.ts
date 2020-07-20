@@ -7,11 +7,13 @@ export const createAuthor: Factory<Author> = (attributes = {}) => ({
   name: "J. K. Rowling",
   bio: "As a child, Rowling often wrote fantasy stories",
   photo: {
-    url: "/book-authors/j-k-rowling.jpg",
-    path:
+    path: "/book-authors/j-k-rowling.jpg",
+    url:
       "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
   },
   books: [],
+  createdAt: "2020-07-19T14:00:00.00Z",
+  updatedAt: "2020-07-19T14:00:00.00Z",
   ...attributes
 });
 
@@ -25,6 +27,8 @@ export const createBook: Factory<Book> = (attributes = {}) => ({
     url: "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
   },
   copies: [],
+  createdAt: "2020-07-19T14:00:00.00Z",
+  updatedAt: "2020-07-19T14:00:00.00Z",
   ...attributes
 });
 

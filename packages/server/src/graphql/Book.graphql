@@ -1,9 +1,0 @@
-type Book implements Resource {
-  id: ID!
-  title: String!
-  description: String
-  cover: Image!
-  favourite: Boolean!
-  author: Author
-  copies: [BookCopy!]!
-}

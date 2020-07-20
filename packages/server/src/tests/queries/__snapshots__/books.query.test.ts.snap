@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`books query fetches books 1`] = `
+Object {
+  "books": Array [
+    Object {
+      "copies": Array [
+        Object {
+          "borrower": null,
+          "owner": Object {
+            "id": "MS1Vc2Vy",
+            "name": "John",
+          },
+        },
+        Object {
+          "borrower": Object {
+            "id": "Mi1Vc2Vy",
+            "name": "Paul",
+          },
+          "owner": Object {
+            "id": "My1Vc2Vy",
+            "name": "Sylvester Greenholt DVM",
+          },
+        },
+      ],
+      "cover": Object {
+        "path": "/images/book-covers/harry5.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/harry5.jpg",
+      },
+      "id": "MS1Cb29r",
+      "title": "Hobbit",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "path": "/images/book-covers/expanse1.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/expanse1.jpg",
+      },
+      "id": "Mi1Cb29r",
+      "title": "Star Wars IV",
+    },
+    Object {
+      "copies": Array [],
+      "cover": Object {
+        "path": "/images/book-covers/witcher5.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/witcher5.jpg",
+      },
+      "id": "My1Cb29r",
+      "title": "Star Wars V",
+    },
+  ],
+  "booksCount": 3,
+}
+`;
+
+exports[`books query fetches books along with authors and books again 1`] = `
+Object {
+  "books": Array [
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Qui Adipisci Qui",
+          },
+          Object {
+            "title": "Veniam",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "Qui Adipisci Qui",
+    },
+    Object {
+      "author": Object {
+        "books": Array [
+          Object {
+            "title": "Qui Adipisci Qui",
+          },
+          Object {
+            "title": "Veniam",
+          },
+        ],
+        "name": "Andrzej Sapkowski",
+      },
+      "title": "Veniam",
+    },
+  ],
+}
+`;
+
+exports[`books query fetches books with authors 1`] = `
+Object {
+  "books": Array [
+    Object {
+      "author": Object {
+        "id": "My1BdXRob3I=",
+        "name": "Hayden Orn",
+      },
+      "id": "NC1Cb29r",
+      "title": "Alias",
+    },
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "Velda Bailey",
+      },
+      "id": "My1Cb29r",
+      "title": "Exercitationem Reiciendis Cupiditate Provident",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "Tolkien",
+      },
+      "id": "MS1Cb29r",
+      "title": "Hobbit",
+    },
+    Object {
+      "author": Object {
+        "id": "MS1BdXRob3I=",
+        "name": "Tolkien",
+      },
+      "id": "Mi1Cb29r",
+      "title": "Lord of the Rings",
+    },
+  ],
+  "booksCount": 4,
+}
+`;

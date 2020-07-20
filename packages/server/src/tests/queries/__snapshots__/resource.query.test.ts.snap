@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`resource query fetches Author 1`] = `
+Object {
+  "__typename": "Author",
+  "bio": "Magni qui placeat hic suscipit perferendis et velit.",
+  "id": "MS1BdXRob3I=",
+  "name": "Rosalind Effertz",
+}
+`;
+
+exports[`resource query fetches Book 1`] = `
+Object {
+  "__typename": "Book",
+  "description": "Laudantium molestias ut.",
+  "id": "MS1Cb29r",
+  "title": "Veniam",
+}
+`;
