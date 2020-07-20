@@ -1,3 +1,4 @@
+import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { Context } from "../../types";
@@ -12,6 +13,23 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    createUser: async (rootValue, args, { connection }) => {
+      const { avatarImagePath, avatarColor, ...userAttributes } = args;
+
+      const avatar = await connection.manager.save(
+        connection.manager.create(Avatar, {
+          imagePath: avatarImagePath,
+          color: avatarColor
+        })
+      );
+
+      return connection.manager.save(
+        connection.manager.create(User, {
+          avatar,
+          ...userAttributes
+        })
+      );
+    },
     deleteUser: async (rootValue, args, { connection }) => {
       await connection.manager.delete(User, {
         id: secureId.toInternal(args.id)
