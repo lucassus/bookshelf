@@ -16,18 +16,27 @@ export const resolvers: Resolvers<Context> = {
     createUser: async (rootValue, args, { connection }) => {
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 
-      // TODO: Do it in the transaction
+      const queryRunner = connection.createQueryRunner();
 
-      const avatar = await connection.manager.save(
-        connection.manager.create(Avatar, avatarAttributes)
-      );
+      try {
+        await queryRunner.startTransaction();
 
-      return connection.manager.save(
-        connection.manager.create(User, {
-          avatar,
-          ...userAttributes
-        })
-      );
+        const avatar = await connection.manager.save(
+          connection.manager.create(Avatar, avatarAttributes)
+        );
+
+        return connection.manager.save(
+          connection.manager.create(User, {
+            avatar,
+            ...userAttributes
+          })
+        );
+      } catch {
+        await queryRunner.rollbackTransaction();
+        return null;
+      } finally {
+        await queryRunner.release();
+      }
     },
 
     updateUser: async (rootValue, args, { connection }) => {
