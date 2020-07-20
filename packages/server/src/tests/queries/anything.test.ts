@@ -1,15 +1,15 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../src/database/helpers";
+import { secureId } from "../../database/helpers";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../src/tests/factories";
-import { getTestClient } from "../src/tests/hepers";
+} from "../factories";
+import { getTestClient } from "../hepers";
 
-describe("fetching anything", () => {
+describe("anything query", () => {
   const GetAnythingQuery = gql`
     query($id: ID!) {
       anything(id: $id) {

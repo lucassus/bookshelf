@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`users query 1`] = `
+Array [
+  Object {
+    "avatar": Object {
+      "color": "black",
+      "image": Object {
+        "path": "/images/avatars/w13.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
+      },
+    },
+    "email": "Braulio_Rempel33@hotmail.com",
+    "info": "Et velit quaerat.",
+    "name": "Rosalind Effertz",
+  },
+  Object {
+    "avatar": Object {
+      "color": "yellow",
+      "image": Object {
+        "path": "/images/avatars/m25.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
+      },
+    },
+    "email": "Natalie39@hotmail.com",
+    "info": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
+    "name": "Mrs. Joesph Feeney",
+  },
+  Object {
+    "avatar": Object {
+      "color": "sky blue",
+      "image": Object {
+        "path": "/images/avatars/w2.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
+      },
+    },
+    "email": "Monica.Stamm@gmail.com",
+    "info": "Molestiae voluptates exercitationem reiciendis.",
+    "name": "Velda Bailey",
+  },
+]
+`;

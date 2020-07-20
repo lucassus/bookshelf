@@ -1,42 +1,10 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../src/database/helpers";
-import { createBookCopy, createUser } from "../src/tests/factories";
-import { getTestClient } from "../src/tests/hepers";
+import { secureId } from "../../database/helpers";
+import { createBookCopy, createUser } from "../factories";
+import { getTestClient } from "../hepers";
 
-it("fetches users", async () => {
-  // Given
-  await createUser();
-  await createUser();
-  await createUser();
-
-  // When
-  const res = await getTestClient().query({
-    query: gql`
-      query {
-        users {
-          name
-          email
-          info
-          avatar {
-            image {
-              path
-              url
-            }
-            color
-          }
-        }
-      }
-    `
-  });
-
-  // Then
-  expect(res.errors).toBe(undefined);
-  expect(res.data).not.toBe(null);
-  expect(res.data!.users).toMatchSnapshot();
-});
-
-it("fetches a user", async () => {
+test("user query", async () => {
   // Given
   const user = await createUser();
   await createBookCopy({ ownerId: user.id });

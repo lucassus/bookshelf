@@ -1,15 +1,11 @@
 import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
-import { BookCopy } from "../../../database/entity/BookCopy";
-import { User } from "../../../database/entity/User";
-import { secureId } from "../../../database/helpers";
-import {
-  createBook,
-  createBookCopy,
-  createUser
-} from "../../../tests/factories";
-import { getTestClient } from "../../../tests/hepers";
+import { BookCopy } from "../../database/entity/BookCopy";
+import { User } from "../../database/entity/User";
+import { secureId } from "../../database/helpers";
+import { createBook, createBookCopy, createUser } from "../factories";
+import { getTestClient } from "../hepers";
 
 let currentUser: User;
 

@@ -1,10 +1,10 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../src/database/helpers";
-import { createAuthor, createBook } from "../src/tests/factories";
-import { getTestClient } from "../src/tests/hepers";
+import { secureId } from "../../database/helpers";
+import { createAuthor, createBook } from "../factories";
+import { getTestClient } from "../hepers";
 
-describe("fetching resource", () => {
+describe("resource query", () => {
   const GetResourceQuery = gql`
     query($id: ID!) {
       resource(id: $id) {

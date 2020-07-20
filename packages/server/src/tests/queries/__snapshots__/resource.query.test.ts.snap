@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fetching resource fetches Author 1`] = `
+exports[`resource query fetches Author 1`] = `
 Object {
   "__typename": "Author",
   "bio": "Magni qui placeat hic suscipit perferendis et velit.",
@@ -9,7 +9,7 @@ Object {
 }
 `;
 
-exports[`fetching resource fetches Book 1`] = `
+exports[`resource query fetches Book 1`] = `
 Object {
   "__typename": "Book",
   "description": "Laudantium molestias ut.",

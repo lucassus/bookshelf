@@ -1,15 +1,14 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../../database/helpers";
+import { secureId } from "../../database/helpers";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../../../tests/factories";
-import { getTestClient } from "../../../tests/hepers";
+} from "../factories";
+import { getTestClient } from "../hepers";
 
-// TODO: Keep it here, or in a separate test directory?
 describe("book query", () => {
   it("fetches a book", async () => {
     // Given
@@ -144,5 +143,26 @@ describe("book query", () => {
         updatedAt: book.updatedAt.toISOString()
       }
     });
+  });
+
+  it("responds with error when book cannot be found", async () => {
+    // When
+    const res = await getTestClient().query({
+      query: gql`
+        query($id: ID!) {
+          book(id: $id) {
+            id
+            title
+          }
+        }
+      `,
+      variables: { id: secureId.toExternal(200, "Book") }
+    });
+
+    // Then
+    expect(res.data).toBe(null);
+    expect(res.errors![0].message).toEqual(
+      'Could not find any entity of type "Book" matching: "200"'
+    );
   });
 });

@@ -1,7 +1,7 @@
 import { getCustomRepository, getManager } from "typeorm";
 
+import { createBookCopy, createUser } from "../../tests/factories";
 import { BookCopy } from "../entity/BookCopy";
-import { createBookCopy, createUser } from "../factories";
 import { BookCopyRepository } from "./BookCopyRepository";
 
 describe("BookCopyRepository", () => {
