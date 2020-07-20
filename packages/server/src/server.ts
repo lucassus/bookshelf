@@ -3,7 +3,7 @@ import { loadSchemaSync } from "@graphql-tools/load";
 import { addResolversToSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-express";
 import path from "path";
-import { getConnection, Connection } from "typeorm";
+import { Connection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "./config";
 import { buildAuthorsLoader } from "./database/authorsLoader";
