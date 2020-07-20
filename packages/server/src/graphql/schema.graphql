@@ -22,6 +22,7 @@ type Query {
 
 type Mutation {
   createUser(name: String!, info: String!, email: String!, avatarColor: String!, avatarImagePath: String!): User!
+  updateUser(id: ID!, name: String!, info: String!, email: String!): User!
   deleteUser(id: ID!): ID
 
   borrowBookCopy(id: ID!): BookCopy
