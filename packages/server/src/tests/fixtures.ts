@@ -1,14 +1,14 @@
 import { getConnection } from "typeorm";
 
-import { Author } from "./database/entity/Author";
-import { Book } from "./database/entity/Book";
-import { User } from "./database/entity/User";
+import { Author } from "../database/entity/Author";
+import { Book } from "../database/entity/Book";
+import { User } from "../database/entity/User";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "./database/factories";
+} from "./factories";
 
 async function loadAuthors() {
   await createAuthor({

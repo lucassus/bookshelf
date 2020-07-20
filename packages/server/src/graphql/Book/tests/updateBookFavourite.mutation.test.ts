@@ -2,9 +2,9 @@ import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
 import { Book } from "../../../database/entity/Book";
-import { createBook } from "../../../database/factories";
 import { secureId } from "../../../database/helpers";
-import { getTestClient } from "../../../testHelpers";
+import { createBook } from "../../../tests/factories";
+import { getTestClient } from "../../../tests/hepers";
 
 it("updateBookFavourite mutation", async () => {
   // Given

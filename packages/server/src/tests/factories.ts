@@ -1,12 +1,12 @@
 import faker from "faker";
 import { getManager, ObjectType, DeepPartial } from "typeorm";
 
+import { Author } from "../database/entity/Author";
+import { Avatar } from "../database/entity/Avatar";
+import { Book } from "../database/entity/Book";
+import { BookCopy } from "../database/entity/BookCopy";
+import { User } from "../database/entity/User";
 import { titleizeSentence } from "../strings";
-import { Author } from "./entity/Author";
-import { Avatar } from "./entity/Avatar";
-import { Book } from "./entity/Book";
-import { BookCopy } from "./entity/BookCopy";
-import { User } from "./entity/User";
 
 const AVATAR_IMAGES = [
   "/images/avatars/w13.png",

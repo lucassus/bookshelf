@@ -3,13 +3,13 @@ import { getManager } from "typeorm";
 
 import { BookCopy } from "../../../database/entity/BookCopy";
 import { User } from "../../../database/entity/User";
+import { secureId } from "../../../database/helpers";
 import {
   createBook,
   createBookCopy,
   createUser
-} from "../../../database/factories";
-import { secureId } from "../../../database/helpers";
-import { getTestClient } from "../../../testHelpers";
+} from "../../../tests/factories";
+import { getTestClient } from "../../../tests/hepers";
 
 let currentUser: User;
 

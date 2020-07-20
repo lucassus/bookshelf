@@ -1,13 +1,13 @@
 import { gql } from "apollo-server-express";
 
+import { secureId } from "../src/database/helpers";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../src/database/factories";
-import { secureId } from "../src/database/helpers";
-import { getTestClient } from "../src/testHelpers";
+} from "../src/tests/factories";
+import { getTestClient } from "../src/tests/hepers";
 
 it("fetches books", async () => {
   // Given

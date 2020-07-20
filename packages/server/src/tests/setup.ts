@@ -1,7 +1,7 @@
 import faker from "faker";
 import { getConnection } from "typeorm";
 
-import { createTestConnection } from "./database/createConnection";
+import { createTestConnection } from "../database/createConnection";
 
 beforeEach(() => {
   faker.seed(666);

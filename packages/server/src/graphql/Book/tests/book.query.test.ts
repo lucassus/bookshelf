@@ -1,14 +1,15 @@
 import { gql } from "apollo-server-express";
 
+import { secureId } from "../../../database/helpers";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../../../database/factories";
-import { secureId } from "../../../database/helpers";
-import { getTestClient } from "../../../testHelpers";
+} from "../../../tests/factories";
+import { getTestClient } from "../../../tests/hepers";
 
+// TODO: Keep it here, or in a separate test directory?
 describe("book query", () => {
   it("fetches a book", async () => {
     // Given
