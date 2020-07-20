@@ -11,6 +11,16 @@ export const resolvers: Resolvers<Context> = {
       connection.manager.findOneOrFail(User, secureId.toInternal(args.id))
   },
 
+  Mutation: {
+    deleteUser: async (rootValue, args, { connection }) => {
+      await connection.manager.delete(User, {
+        id: secureId.toInternal(args.id)
+      });
+
+      return args.id;
+    }
+  },
+
   Avatar: {
     image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
       path,
