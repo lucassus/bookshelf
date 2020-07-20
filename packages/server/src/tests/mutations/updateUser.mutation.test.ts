@@ -1,19 +1,21 @@
 import { gql } from "apollo-server-express";
+import { getManager } from "typeorm";
 
+import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { createUser } from "../factories";
 import { getTestClient } from "../hepers";
 
 test("updateUser mutation", async () => {
   // Given
-  const user = await createUser();
+  const user = await createUser({ name: "Alice", email: "alice@email.com" });
   const id = secureId.toExternal(user.id, "User");
 
   // When
   const res = await getTestClient().mutate({
     mutation: gql`
-      mutation($id: ID!, $name: String!, $info: String!, $email: String!) {
-        updateUser(id: $id, name: $name, info: $info, email: $email) {
+      mutation($input: UpdateUserInput!) {
+        updateUser(input: $input) {
           id
           name
           info
@@ -23,10 +25,12 @@ test("updateUser mutation", async () => {
       }
     `,
     variables: {
-      id,
-      name: "Bob",
-      info: "Fantasy lover",
-      email: "bob@email.com"
+      input: {
+        id,
+        name: "Bob",
+        info: "Fantasy lover",
+        email: "bob@email.com"
+      }
     }
   });
 
@@ -41,4 +45,8 @@ test("updateUser mutation", async () => {
       updatedAt: expect.any(String)
     }
   });
+
+  const updatedUser = await getManager().findOneOrFail(User, user.id);
+  expect(updatedUser.name).toBe("Bob");
+  expect(updatedUser.email).toBe("bob@email.com");
 });

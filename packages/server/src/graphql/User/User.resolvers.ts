@@ -31,9 +31,9 @@ export const resolvers: Resolvers<Context> = {
         await connection.manager.save(user);
 
         return user;
-      } catch {
+      } catch (error) {
         await queryRunner.rollbackTransaction();
-        return null;
+        throw error;
       } finally {
         await queryRunner.release();
       }
@@ -43,17 +43,17 @@ export const resolvers: Resolvers<Context> = {
       const { id: externalId, ...userAttributes } = args.input;
       const id = secureId.toInternal(externalId);
 
-      await connection.manager.update(User, { id }, userAttributes);
+      const user = await connection.manager.findOneOrFail(User, id);
+      await connection.manager.save(
+        connection.manager.merge(User, user, userAttributes)
+      );
 
-      const updatedUser = await connection.manager.findOneOrFail(User, id);
-      return updatedUser;
+      return user;
     },
 
-    // TODO: Refactor
     deleteUser: async (rootValue, args, { connection }) => {
-      await connection.manager.delete(User, {
-        id: secureId.toInternal(args.id)
-      });
+      const id = secureId.toInternal(args.id);
+      await connection.manager.delete(User, { id });
 
       return args.id;
     }
