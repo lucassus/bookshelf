@@ -9,6 +9,10 @@ module.exports = {
   ],
   rules: {
     "@typescript-eslint/no-var-requires": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { devDependencies: ["**/*.test.js", "src/tests/**/*.ts"] }
+    ]
   }
 };
