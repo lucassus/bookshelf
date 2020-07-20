@@ -6,6 +6,7 @@
     "@bookshelf/secure-id": "1.0.0",
     "@graphql-tools/graphql-file-loader": "6.0.14",
     "@graphql-tools/load": "6.0.14",
+    "@graphql-tools/merge": "6.0.14",
     "@graphql-tools/schema": "6.0.14",
     "@types/faker": "4.1.12",
     "apollo-server-express": "2.16.0",
@@ -13,7 +14,6 @@
     "express": "4.17.1",
     "faker": "4.1.0",
     "graphql": "15.3.0",
-    "lodash.merge": "4.6.2",
     "pg": "8.3.0",
     "reflect-metadata": "0.1.13",
     "typeorm": "0.2.25"

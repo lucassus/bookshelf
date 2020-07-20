@@ -1,10 +1,9 @@
-import merge from "lodash.merge";
+import { mergeResolvers } from "@graphql-tools/merge";
 
 import { Context } from "../types";
 import { Resolvers } from "./resolvers-types.generated";
 
-export const resolvers: Resolvers<Context> = merge(
-  {},
+export const resolvers = mergeResolvers<Context, Resolvers<Context>>([
   require("./Anything").resolvers,
   require("./Author").resolvers,
   require("./Book").resolvers,
@@ -12,4 +11,4 @@ export const resolvers: Resolvers<Context> = merge(
   require("./Resource").resolvers,
   require("./Timestampable").resolvers,
   require("./User").resolvers
-);
+]);
