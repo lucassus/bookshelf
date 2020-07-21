@@ -77,6 +77,10 @@ describe("book query", () => {
             id
             title
             description
+            author {
+              id
+              name
+            }
             createdAt
             updatedAt
             copies {
@@ -117,6 +121,10 @@ describe("book query", () => {
         id,
         title: book.title,
         description: book.description,
+        author: {
+          id: expect.any(String),
+          name: author.name
+        },
         copies: [
           {
             id: expect.any(String),

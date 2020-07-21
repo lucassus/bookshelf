@@ -1,4 +1,4 @@
-type User implements Resource {
+type User implements Resource & Timestampable {
   id: ID!
   name: String!
   info: String
@@ -6,9 +6,30 @@ type User implements Resource {
   avatar: Avatar!
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
+  createdAt: String!
+  updatedAt: String!
 }
 
 type Avatar {
   image: Image!
   color: String!
+}
+
+input AvatarInput {
+  imagePath: String!
+  color: String!
+}
+
+input CreateUserInput {
+  name: String!
+  info: String!
+  email: String!
+  avatar: AvatarInput!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String!
+  email: String!
+  info: String!
 }
