@@ -1,4 +1,4 @@
-mutation ReturnBookCopy($id: ID!) {
+mutation ReturnBookCopy($id: ExternalID!) {
   returnBookCopy(id: $id) {
     ...BookCopy
   }

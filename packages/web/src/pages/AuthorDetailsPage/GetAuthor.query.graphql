@@ -1,4 +1,4 @@
-query GetAuthor($id: ID!) {
+query GetAuthor($id: ExternalID!) {
   author(id: $id) {
     name
     bio

@@ -1,4 +1,4 @@
-query GetUser($id: ID!) {
+query GetUser($id: ExternalID!) {
   user(id: $id) {
     id
     name

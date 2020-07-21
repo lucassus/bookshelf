@@ -1,4 +1,4 @@
-mutation UpdateBookFavourite($id: ID!, $favourite: Boolean!) {
+mutation UpdateBookFavourite($id: ExternalID!, $favourite: Boolean!) {
   updateBookFavourite(id: $id, favourite: $favourite) {
     id
     favourite
