@@ -45,11 +45,9 @@ export const resolvers: Resolvers<Context> = {
       const id = secureId.toInternal(externalId);
 
       const user = await connection.manager.findOneOrFail(User, id);
-      await connection.manager.save(
+      return connection.manager.save(
         connection.manager.merge(User, user, userAttributes)
       );
-
-      return user;
     },
 
     deleteUser: async (rootValue, args, { connection }) => {
