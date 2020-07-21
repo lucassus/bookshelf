@@ -23,7 +23,7 @@ type Query {
 type Mutation {
   createUser(input: CreateUserInput!): User!
   updateUser(input: UpdateUserInput!): User!
-  deleteUser(id: ID!): ID
+  deleteUser(id: ID!): ID!
 
   borrowBookCopy(id: ID!): BookCopy
   returnBookCopy(id: ID!): BookCopy!
