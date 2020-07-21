@@ -12,6 +12,8 @@ generates:
         Book: ../database/entity/Book#Book as BookEntity
         BookCopy: ../database/entity/BookCopy#BookCopy as BookCopyEntity
         User: ../database/entity/User#User as UserEntity
+      scalars:
+        ExternalID: string
     plugins:
       - typescript
       - typescript-resolvers

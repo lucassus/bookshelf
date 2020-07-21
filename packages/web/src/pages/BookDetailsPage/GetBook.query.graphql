@@ -1,4 +1,4 @@
-query GetBook($id: ID!) {
+query GetBook($id: ExternalID!) {
   book(id: $id) {
     id
     title

@@ -1,5 +1,4 @@
 import { User } from "../../database/entity/User";
-import { secureId } from "../../database/helpers";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { Context } from "../../types";
 import { Resolvers } from "../resolvers-types.generated";
@@ -18,16 +17,14 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    borrowBookCopy: (rootValue, args, { connection, currentUser }) =>
+    borrowBookCopy: (rootValue, { id }, { connection, currentUser }) =>
       currentUser
         ? connection.manager
             .getCustomRepository(BookCopyRepository)
-            .borrow(secureId.toInternal(args.id), currentUser.id)
+            .borrow(id, currentUser.id)
         : null,
 
-    returnBookCopy: (rootValue, args, { connection }) =>
-      connection.manager
-        .getCustomRepository(BookCopyRepository)
-        .return(secureId.toInternal(args.id))
+    returnBookCopy: (rootValue, { id }, { connection }) =>
+      connection.manager.getCustomRepository(BookCopyRepository).return(id)
   }
 };

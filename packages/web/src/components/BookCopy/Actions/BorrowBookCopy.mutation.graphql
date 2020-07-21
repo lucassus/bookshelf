@@ -1,4 +1,4 @@
-mutation BorrowBookCopy($id: ID!) {
+mutation BorrowBookCopy($id: ExternalID!) {
   borrowBookCopy(id: $id) {
     ...BookCopy
   }

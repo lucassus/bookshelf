@@ -1,5 +1,5 @@
 type Book implements Resource & Timestampable {
-  id: ID!
+  id: ExternalID!
   title: String!
   description: String
   cover: Image!

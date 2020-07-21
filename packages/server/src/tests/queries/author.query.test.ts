@@ -16,7 +16,7 @@ test("author query", async () => {
   // When
   const res = await getTestClient().query({
     query: gql`
-      query($id: ID!) {
+      query($id: ExternalID!) {
         author(id: $id) {
           id
           name
@@ -33,6 +33,7 @@ test("author query", async () => {
   });
 
   // Then
+  expect(res.errors).toBe(undefined);
   expect(res.data).not.toBeNull();
   expect(res.data).toMatchSnapshot();
 });

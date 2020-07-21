@@ -4,8 +4,8 @@ import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
   Query: {
-    anything: (rootValue, args, { connection }) =>
-      findAnythingOrFail(args.id, connection)
+    anything: (rootValue, { id }, { connection }) =>
+      findAnythingOrFail(id, connection)
   },
 
   Anything: {

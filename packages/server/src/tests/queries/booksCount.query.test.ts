@@ -18,6 +18,7 @@ test("booksCount query", async () => {
   });
 
   // Then
+  expect(res.errors).toBe(undefined);
   expect(res.data).toEqual({
     booksCount: 2
   });

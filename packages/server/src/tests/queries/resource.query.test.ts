@@ -35,6 +35,7 @@ describe("resource query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data!.resource).toMatchSnapshot();
   });
 
@@ -49,6 +50,7 @@ describe("resource query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data!.resource).toMatchSnapshot();
   });
 });
