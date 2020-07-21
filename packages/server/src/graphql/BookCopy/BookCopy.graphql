@@ -1,5 +1,5 @@
 type BookCopy implements Resource {
-  id: ID!
+  id: ExternalID!
   book: Book!
   owner: User!
   borrower: User
