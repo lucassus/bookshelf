@@ -18,7 +18,7 @@ it("updateBookFavourite mutation", async () => {
 
   const res = await getTestClient().mutate({
     mutation: gql`
-      mutation($id: ID!, $favourite: Boolean!) {
+      mutation($id: ExternalID!, $favourite: Boolean!) {
         updateBookFavourite(id: $id, favourite: $favourite) {
           id
           title
@@ -33,6 +33,7 @@ it("updateBookFavourite mutation", async () => {
   const updatedBook = await getManager().findOneOrFail(Book, 1);
   expect(updatedBook.favourite).toBe(true);
 
+  expect(res.errors).toBe(undefined);
   expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
     updateBookFavourite: {

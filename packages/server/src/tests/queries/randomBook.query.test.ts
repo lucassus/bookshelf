@@ -29,6 +29,7 @@ test("randomBook query", async () => {
   });
 
   // Then
+  expect(res.errors).toBe(undefined);
   expect(res.data).not.toBeNull();
   expect(res.data).toMatchObject({
     randomBook: {

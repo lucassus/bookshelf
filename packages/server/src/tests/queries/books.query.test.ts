@@ -51,6 +51,7 @@ describe("books query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data).not.toBeNull();
     expect(res.data).toMatchSnapshot();
   });

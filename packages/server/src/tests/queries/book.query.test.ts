@@ -18,7 +18,7 @@ describe("book query", () => {
     const id = secureId.toExternal(book.id, "Book");
     const res = await getTestClient().query({
       query: gql`
-        query($id: ID!) {
+        query($id: ExternalID!) {
           book(id: $id) {
             id
             title
@@ -32,6 +32,7 @@ describe("book query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data).not.toBe(null);
     expect(res.data).toEqual({
       book: {
@@ -72,7 +73,7 @@ describe("book query", () => {
 
     const res = await getTestClient().query({
       query: gql`
-        query($id: ID!) {
+        query($id: ExternalID!) {
           book(id: $id) {
             id
             title
@@ -115,6 +116,7 @@ describe("book query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data).not.toBeNull();
     expect(res.data).toMatchObject({
       book: {
@@ -157,7 +159,7 @@ describe("book query", () => {
     // When
     const res = await getTestClient().query({
       query: gql`
-        query($id: ID!) {
+        query($id: ExternalID!) {
           book(id: $id) {
             id
             title

@@ -70,6 +70,7 @@ describe("anything query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data!.anything).toMatchSnapshot();
   });
 
@@ -84,6 +85,7 @@ describe("anything query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data!.anything).toMatchSnapshot();
   });
 
@@ -98,6 +100,7 @@ describe("anything query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data!.anything).toMatchSnapshot();
   });
 
@@ -113,6 +116,7 @@ describe("anything query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data!.anything).toMatchSnapshot();
   });
 });
@@ -126,7 +130,11 @@ it("fetches with aliases", async () => {
   // When
   const res = await getTestClient().query({
     query: gql`
-      query($bookId: ID!, $authorId: ID!, $userId: ID!) {
+      query(
+        $bookId: ExternalID!
+        $authorId: ExternalID!
+        $userId: ExternalID!
+      ) {
         something: book(id: $bookId) {
           id
           externalId: id
@@ -155,5 +163,6 @@ it("fetches with aliases", async () => {
   });
 
   // Then
+  expect(res.errors).toBe(undefined);
   expect(res.data).toMatchSnapshot();
 });

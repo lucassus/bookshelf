@@ -3,17 +3,19 @@ schema {
   mutation: Mutation
 }
 
+scalar ExternalID
+
 type Query {
   authors: [Author!]!
-  author(id: ID!): Author!
+  author(id: ExternalID!): Author!
 
   booksCount: Int!
   books(offset: Int = 0, limit: Int = 9): [Book!]!
-  book(id: ID!): Book!
+  book(id: ExternalID!): Book!
   randomBook: Book
 
   users: [User!]!
-  user(id: ID!): User!
+  user(id: ExternalID!): User!
 
   @deprecated(reason: "No longer supported. Use 'resources' instead")
   anything(id: ID!): Anything!
@@ -23,9 +25,9 @@ type Query {
 type Mutation {
   createUser(input: CreateUserInput!): User!
   updateUser(input: UpdateUserInput!): User!
-  deleteUser(id: ID!): ID!
+  deleteUser(id: ExternalID!): ID!
 
-  borrowBookCopy(id: ID!): BookCopy
-  returnBookCopy(id: ID!): BookCopy!
-  updateBookFavourite(id: ID!, favourite: Boolean!): Book!
+  borrowBookCopy(id: ExternalID!): BookCopy
+  returnBookCopy(id: ExternalID!): BookCopy!
+  updateBookFavourite(id: ExternalID!, favourite: Boolean!): Book!
 }

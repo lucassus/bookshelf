@@ -28,7 +28,7 @@ input CreateUserInput {
 }
 
 input UpdateUserInput {
-  id: ID!
+  id: ExternalID!
   name: String!
   email: String!
   info: String!

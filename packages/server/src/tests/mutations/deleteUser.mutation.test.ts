@@ -14,7 +14,7 @@ test("deleteUser mutation", async () => {
   // When
   const res = await getTestClient().mutate({
     mutation: gql`
-      mutation($id: ID!) {
+      mutation($id: ExternalID!) {
         deleteUser(id: $id)
       }
     `,
@@ -22,6 +22,7 @@ test("deleteUser mutation", async () => {
   });
 
   // Then
+  expect(res.errors).toBe(undefined);
   expect(res.data).not.toBe(null);
   expect(res.data).toEqual({ deleteUser: id });
 

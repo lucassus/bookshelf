@@ -28,7 +28,7 @@ test("returnBookCopy mutation", async () => {
 
   const res = await getTestClient().mutate({
     mutation: gql`
-      mutation($id: ID!) {
+      mutation($id: ExternalID!) {
         returnBookCopy(id: $id) {
           id
           book {
@@ -54,6 +54,7 @@ test("returnBookCopy mutation", async () => {
   bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
   expect(bookCopy.borrowerId).toBe(null);
 
+  expect(res.errors).toBe(undefined);
   expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
     returnBookCopy: {

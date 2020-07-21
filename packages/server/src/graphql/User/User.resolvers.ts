@@ -9,7 +9,7 @@ export const resolvers: Resolvers<Context> = {
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
     user: (rootValue, args, { connection }) =>
-      connection.manager.findOneOrFail(User, secureId.toInternal(args.id))
+      connection.manager.findOneOrFail(User, args.id)
   },
 
   Mutation: {
@@ -41,8 +41,7 @@ export const resolvers: Resolvers<Context> = {
     },
 
     updateUser: async (rootValue, args, { connection }) => {
-      const { id: externalId, ...userAttributes } = args.input;
-      const id = secureId.toInternal(externalId);
+      const { id, ...userAttributes } = args.input;
 
       const user = await connection.manager.findOneOrFail(User, id);
       return connection.manager.save(
@@ -50,11 +49,10 @@ export const resolvers: Resolvers<Context> = {
       );
     },
 
-    deleteUser: async (rootValue, args, { connection }) => {
-      const id = secureId.toInternal(args.id);
+    deleteUser: async (rootValue, { id }, { connection }) => {
       await connection.manager.delete(User, { id });
 
-      return args.id;
+      return secureId.toExternal(id, "User");
     }
   },
 

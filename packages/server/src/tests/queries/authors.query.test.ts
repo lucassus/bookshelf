@@ -17,7 +17,7 @@ describe("authors query", () => {
     // When
     const res = await getTestClient().query({
       query: gql`
-        query($id: ID!) {
+        query($id: ExternalID!) {
           author(id: $id) {
             id
             name
@@ -34,6 +34,7 @@ describe("authors query", () => {
     });
 
     // Then
+    expect(res.errors).toBe(undefined);
     expect(res.data).not.toBeNull();
     expect(res.data).toMatchSnapshot();
   });
