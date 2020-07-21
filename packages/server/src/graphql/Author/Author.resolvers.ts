@@ -7,9 +7,7 @@ export const resolvers: Resolvers<Context> = {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
-    author: (rootValue, args, { authorsLoader }) => {
-      return authorsLoader.load(args.id);
-    }
+    author: (rootValue, { id }, { authorsLoader }) => authorsLoader.load(id)
   },
 
   Author: {

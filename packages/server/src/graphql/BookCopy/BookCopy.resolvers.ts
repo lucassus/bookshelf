@@ -17,14 +17,14 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    borrowBookCopy: (rootValue, args, { connection, currentUser }) =>
+    borrowBookCopy: (rootValue, { id }, { connection, currentUser }) =>
       currentUser
         ? connection.manager
             .getCustomRepository(BookCopyRepository)
-            .borrow(args.id, currentUser.id)
+            .borrow(id, currentUser.id)
         : null,
 
-    returnBookCopy: (rootValue, args, { connection }) =>
-      connection.manager.getCustomRepository(BookCopyRepository).return(args.id)
+    returnBookCopy: (rootValue, { id }, { connection }) =>
+      connection.manager.getCustomRepository(BookCopyRepository).return(id)
   }
 };

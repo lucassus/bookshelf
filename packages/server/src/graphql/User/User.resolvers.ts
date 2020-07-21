@@ -8,8 +8,8 @@ export const resolvers: Resolvers<Context> = {
   Query: {
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
-    user: (rootValue, args, { connection }) =>
-      connection.manager.findOneOrFail(User, args.id)
+    user: (rootValue, { id }, { connection }) =>
+      connection.manager.findOneOrFail(User, id)
   },
 
   Mutation: {
