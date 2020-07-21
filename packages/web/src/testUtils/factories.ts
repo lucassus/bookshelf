@@ -46,5 +46,7 @@ export const createUser: Factory<User> = (attributes = {}) => ({
   },
   ownedBookCopies: [],
   borrowedBookCopies: [],
+  createdAt: "2020-07-19T14:00:00.00Z",
+  updatedAt: "2020-07-19T14:00:00.00Z",
   ...attributes
 });
