@@ -17,18 +17,19 @@ export const resolvers: Resolvers<Context> = {
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 
       const queryRunner = connection.createQueryRunner();
+      await queryRunner.connect();
 
       try {
         await queryRunner.startTransaction();
 
-        const avatar = connection.manager.create(Avatar, avatarAttributes);
-        await connection.manager.save(avatar);
+        const avatar = queryRunner.manager.create(Avatar, avatarAttributes);
+        await queryRunner.manager.save(avatar);
 
-        const user = connection.manager.create(User, {
+        const user = queryRunner.manager.create(User, {
           avatar,
           ...userAttributes
         });
-        await connection.manager.save(user);
+        await queryRunner.manager.save(user);
 
         return user;
       } catch (error) {
