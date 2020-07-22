@@ -1,6 +1,7 @@
 import faker from "faker";
 import { getManager, ObjectType, DeepPartial } from "typeorm";
 
+import { hashPassword } from "../auth";
 import { Author } from "../database/entity/Author";
 import { Avatar } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
@@ -95,7 +96,7 @@ export async function createUser(attributes: CreateUserAttributes = {}) {
 
   return createEntity(User, {
     ...userAttributes,
-    password: "password",
+    password: hashPassword("password"),
     isAdmin: false
   });
 }

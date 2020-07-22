@@ -1,3 +1,4 @@
+import { hashPassword } from "../../auth";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
@@ -25,9 +26,11 @@ export const resolvers: Resolvers<Context> = {
         const avatar = queryRunner.manager.create(Avatar, avatarAttributes);
         await queryRunner.manager.save(avatar);
 
+        // TODO: Add validations for userAttributes, like email, password min length etc
         const user = queryRunner.manager.create(User, {
-          avatar,
-          ...userAttributes
+          ...userAttributes,
+          password: hashPassword(userAttributes.password),
+          avatar
         });
         await queryRunner.manager.save(user);
 

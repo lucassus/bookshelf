@@ -27,6 +27,7 @@ test("createUser mutation", async () => {
         name: "Bob",
         info: "Fantasy lover",
         email: "bob@email.com",
+        password: "password",
         avatar: {
           imagePath: "/test/image.jpg",
           color: "red"
