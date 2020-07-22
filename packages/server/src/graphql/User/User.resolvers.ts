@@ -29,7 +29,7 @@ export const resolvers: Resolvers<Context> = {
         // TODO: Add validations for userAttributes, like email, password min length etc
         const user = queryRunner.manager.create(User, {
           ...userAttributes,
-          password: hashPassword(userAttributes.password),
+          passwordHash: hashPassword(userAttributes.password),
           avatar
         });
         await queryRunner.manager.save(user);
