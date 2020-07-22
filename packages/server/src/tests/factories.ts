@@ -93,7 +93,11 @@ export async function createUser(attributes: CreateUserAttributes = {}) {
     userAttributes.avatarId = avatar.id;
   }
 
-  return createEntity(User, userAttributes);
+  return createEntity(User, {
+    ...userAttributes,
+    password: "password",
+    isAdmin: false
+  });
 }
 
 export function createAuthor(attributes: Partial<Author> = {}) {
