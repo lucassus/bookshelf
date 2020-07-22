@@ -66,6 +66,7 @@ export function createAvatar(attributes: CreateAvatarAttributes = {}) {
 }
 
 type CreateUserAttributes = Partial<User> & {
+  password?: string;
   avatarAttributes?: CreateAvatarAttributes;
 };
 
@@ -96,7 +97,7 @@ export async function createUser(attributes: CreateUserAttributes = {}) {
 
   return createEntity(User, {
     ...userAttributes,
-    passwordHash: hashPassword("password"),
+    passwordHash: hashPassword(userAttributes.password || "password"),
     isAdmin: false
   });
 }

@@ -1,4 +1,4 @@
-import { hashPassword } from "../../auth";
+import { hashPassword, isPasswordValid } from "../../auth";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
@@ -14,6 +14,15 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    login: async (
+      rootValue,
+      { input: { email, password } },
+      { connection }
+    ) => {
+      const user = await connection.manager.findOneOrFail(User, { email });
+      return isPasswordValid(password, user.passwordHash);
+    },
+
     createUser: async (rootValue, args, { connection }) => {
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 

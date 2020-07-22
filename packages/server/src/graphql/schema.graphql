@@ -20,7 +20,13 @@ type Query {
   resource(id: ID!): Resource!
 }
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
+  login(input: LoginInput!): Boolean!
   createUser(input: CreateUserInput!): User!
   updateUser(input: UpdateUserInput!): User!
   deleteUser(id: ExternalID!): ID!
