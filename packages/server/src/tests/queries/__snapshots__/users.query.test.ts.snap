@@ -4,7 +4,7 @@ exports[`users query 1`] = `
 Array [
   Object {
     "avatar": Object {
-      "color": "black",
+      "color": "green",
       "image": Object {
         "path": "/images/avatars/w13.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
@@ -16,7 +16,7 @@ Array [
   },
   Object {
     "avatar": Object {
-      "color": "yellow",
+      "color": "red",
       "image": Object {
         "path": "/images/avatars/m25.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
@@ -28,7 +28,7 @@ Array [
   },
   Object {
     "avatar": Object {
-      "color": "sky blue",
+      "color": "yellow",
       "image": Object {
         "path": "/images/avatars/w2.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",

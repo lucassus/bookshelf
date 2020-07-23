@@ -2,19 +2,14 @@ import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
 import { BookCopy } from "../../database/entity/BookCopy";
-import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { createBook, createBookCopy, createUser } from "../factories";
 import { getTestClient } from "../hepers";
 
-let currentUser: User;
-
-beforeEach(async () => {
-  currentUser = await createUser({ name: "Bob" });
-});
-
 test("borrowBookCopy mutation", async () => {
   // Given
+  const currentUser = await createUser({ name: "Bob" });
+
   const book = await createBook({ title: "Time of contempt" });
   const owner = await createUser({ name: "Alice", email: "alice@email.com" });
   let bookCopy = await createBookCopy({
@@ -23,9 +18,7 @@ test("borrowBookCopy mutation", async () => {
   });
 
   // When
-  const id = secureId.toExternal(bookCopy.id, "BookCopy");
-
-  const res = await getTestClient().mutate({
+  const res = await getTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($id: ExternalID!) {
         borrowBookCopy(id: $id) {
@@ -47,7 +40,7 @@ test("borrowBookCopy mutation", async () => {
         }
       }
     `,
-    variables: { id }
+    variables: { id: secureId.toExternal(bookCopy.id, "BookCopy") }
   });
 
   // Then
@@ -58,7 +51,7 @@ test("borrowBookCopy mutation", async () => {
   expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
     borrowBookCopy: {
-      id,
+      id: secureId.toExternal(bookCopy.id, "BookCopy"),
       book: {
         id: expect.any(String),
         title: book.title

@@ -7,6 +7,14 @@ import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
   Query: {
+    me: (rootValue, arg, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error("Not authenticated!");
+      }
+
+      return currentUser;
+    },
+
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
     user: (rootValue, { id }, { connection }) =>

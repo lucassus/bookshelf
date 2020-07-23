@@ -17,12 +17,12 @@ export const createServer = (connection: Connection) =>
       const currentUser =
         userId !== null
           ? await connection.manager.findOneOrFail(User, { id: userId })
-          : null;
+          : undefined;
 
       return {
         assetsBaseUrl: ASSETS_BASE_URL,
-        connection,
         authorsLoader: buildAuthorsLoader(),
+        connection,
         currentUser
       };
     },

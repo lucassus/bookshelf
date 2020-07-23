@@ -9,8 +9,6 @@ import { getTestClient } from "../hepers";
 test("deleteUser mutation", async () => {
   // Given
   const user = await createUser();
-  const id = secureId.toExternal(user.id, "User");
-
   // When
   const res = await getTestClient().mutate({
     mutation: gql`
@@ -18,13 +16,15 @@ test("deleteUser mutation", async () => {
         deleteUser(id: $id)
       }
     `,
-    variables: { id }
+    variables: { id: secureId.toExternal(user.id, "User") }
   });
 
   // Then
   expect(res.errors).toBe(undefined);
   expect(res.data).not.toBe(null);
-  expect(res.data).toEqual({ deleteUser: id });
+  expect(res.data).toEqual({
+    deleteUser: secureId.toExternal(user.id, "User")
+  });
 
   await expect(
     getConnection().manager.findOne(User, { id: user.id })

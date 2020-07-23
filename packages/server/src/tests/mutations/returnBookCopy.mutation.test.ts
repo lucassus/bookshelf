@@ -2,19 +2,14 @@ import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
 import { BookCopy } from "../../database/entity/BookCopy";
-import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { createBook, createBookCopy, createUser } from "../factories";
 import { getTestClient } from "../hepers";
 
-let currentUser: User;
-
-beforeEach(async () => {
-  currentUser = await createUser({ name: "Bob" });
-});
-
 test("returnBookCopy mutation", async () => {
   // Given
+  const currentUser = await createUser({ name: "Bob" });
+
   const book = await createBook();
   const owner = await createUser({ name: "Alice", email: "alice@email.com" });
   let bookCopy = await createBookCopy({

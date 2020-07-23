@@ -3,7 +3,7 @@
 exports[`user query 1`] = `
 Object {
   "avatar": Object {
-    "color": "black",
+    "color": "green",
     "image": Object {
       "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
     },

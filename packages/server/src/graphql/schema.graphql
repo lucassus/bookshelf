@@ -12,6 +12,7 @@ type Query {
   book(id: ExternalID!): Book!
   randomBook: Book
 
+  me: User!
   users: [User!]!
   user(id: ExternalID!): User!
 

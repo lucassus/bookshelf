@@ -17,6 +17,7 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    // TODO: Raise error when user is not authenticated
     borrowBookCopy: (rootValue, { id }, { connection, currentUser }) =>
       currentUser
         ? connection.manager
