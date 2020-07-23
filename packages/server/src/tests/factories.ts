@@ -71,7 +71,7 @@ type CreateUserAttributes = Partial<User> & {
 };
 
 export async function createUser(attributes: CreateUserAttributes = {}) {
-  const { avatarAttributes, ...userAttributes } = attributes;
+  const { avatarAttributes, password, ...userAttributes } = attributes;
 
   if (userAttributes.name === undefined) {
     userAttributes.name = faker.name.findName();
@@ -97,7 +97,7 @@ export async function createUser(attributes: CreateUserAttributes = {}) {
 
   return createEntity(User, {
     ...userAttributes,
-    passwordHash: hashPassword(userAttributes.password || "password"),
+    passwordHash: hashPassword(password || "password"),
     isAdmin: false
   });
 }
