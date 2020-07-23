@@ -13,6 +13,7 @@ type CurrentUser implements Resource & Timestampable {
   id: ExternalID!
   name: String!
   email: String!
+  isAdmin: Boolean!
   info: String
   avatar: Avatar!
   createdAt: String!

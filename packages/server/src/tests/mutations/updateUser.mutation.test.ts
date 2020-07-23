@@ -8,11 +8,12 @@ import { getTestClient } from "../hepers";
 
 test("updateUser mutation", async () => {
   // Given
+  const currentUser = await createUser({ isAdmin: true });
   const user = await createUser({ name: "Alice", email: "alice@email.com" });
   const id = secureId.toExternal(user.id, "User");
 
   // When
-  const res = await getTestClient().mutate({
+  const res = await getTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($input: UpdateUserInput!) {
         updateUser(input: $input) {

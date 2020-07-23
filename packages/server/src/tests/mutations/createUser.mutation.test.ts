@@ -1,10 +1,14 @@
 import { gql } from "apollo-server-express";
 
+import { createUser } from "../factories";
 import { getTestClient } from "../hepers";
 
 test("createUser mutation", async () => {
+  // Given
+  const currentUser = await createUser({ isAdmin: true });
+
   // When
-  const res = await getTestClient().mutate({
+  const res = await getTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($input: CreateUserInput!) {
         createUser(input: $input) {

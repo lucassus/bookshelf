@@ -47,7 +47,8 @@ export const resolvers: Resolvers<Context> = {
       };
     },
 
-    createUser: async (rootValue, args, { connection }) => {
+    createUser: async (rootValue, args, { connection, currentUser }) => {
+      checkAdminAuthentication(currentUser);
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 
       const queryRunner = connection.createQueryRunner();
@@ -76,7 +77,8 @@ export const resolvers: Resolvers<Context> = {
       }
     },
 
-    updateUser: async (rootValue, args, { connection }) => {
+    updateUser: async (rootValue, args, { connection, currentUser }) => {
+      checkAdminAuthentication(currentUser);
       const { id, ...userAttributes } = args.input;
 
       const user = await connection.manager.findOneOrFail(User, id);

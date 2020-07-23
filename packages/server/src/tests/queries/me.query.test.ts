@@ -6,7 +6,7 @@ import { getTestClient } from "../hepers";
 describe("me query", () => {
   it("returns the current user when authenticated", async () => {
     // Given
-    const currentUser = await createUser();
+    const currentUser = await createUser({ isAdmin: true });
 
     // When
     const res = await getTestClient({ currentUser }).query({
@@ -14,8 +14,9 @@ describe("me query", () => {
         query {
           me {
             id
-            email
             name
+            email
+            isAdmin
           }
         }
       `
@@ -26,8 +27,9 @@ describe("me query", () => {
     expect(res.data).toMatchObject({
       me: {
         id: expect.any(String),
+        name: currentUser.name,
         email: currentUser.email,
-        name: currentUser.name
+        isAdmin: true
       }
     });
   });
