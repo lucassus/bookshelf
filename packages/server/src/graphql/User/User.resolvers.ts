@@ -20,14 +20,15 @@ export const resolvers: Resolvers<Context> = {
       { connection }
     ) => {
       // TODO: Add validations
-      const user = await connection.manager.findOneOrFail(User, { email });
+      const user = await connection.manager.findOne(User, { email });
 
-      if (isPasswordValid(password, user.passwordHash)) {
-        const token = generateAuthToken(user);
+      // TODO: Add a test for invalid email
+      if (user && isPasswordValid(password, user.passwordHash)) {
+        const authToken = generateAuthToken(user);
 
         return {
           success: true,
-          token
+          authToken
         };
       }
 

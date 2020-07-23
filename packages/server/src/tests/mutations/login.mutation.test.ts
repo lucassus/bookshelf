@@ -18,7 +18,7 @@ describe("login mutation", () => {
     mutation($input: LoginInput!) {
       login(input: $input) {
         success
-        token
+        authToken
         message
       }
     }
@@ -41,7 +41,7 @@ describe("login mutation", () => {
     expect(res.data).toMatchObject({
       login: {
         success: true,
-        token: expect.any(String)
+        authToken: expect.any(String)
       }
     });
   });
@@ -63,7 +63,7 @@ describe("login mutation", () => {
     expect(res.data).toMatchObject({
       login: {
         success: false,
-        token: null,
+        authToken: null,
         message: "Invalid email or password!"
       }
     });

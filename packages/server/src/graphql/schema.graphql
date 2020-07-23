@@ -28,7 +28,7 @@ input LoginInput {
 type LoginResult {
   success: Boolean!
   message: String
-  token: String
+  authToken: String
 }
 
 type Mutation {
