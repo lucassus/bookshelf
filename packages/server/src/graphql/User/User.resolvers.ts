@@ -1,4 +1,5 @@
 import {
+  checkAdminAuthentication,
   checkAuthentication,
   generateAuthToken,
   hashPassword,
@@ -84,7 +85,8 @@ export const resolvers: Resolvers<Context> = {
       );
     },
 
-    deleteUser: async (rootValue, { id }, { connection }) => {
+    deleteUser: async (rootValue, { id }, { connection, currentUser }) => {
+      checkAdminAuthentication(currentUser);
       await connection.manager.delete(User, { id });
 
       return secureId.toExternal(id, "User");

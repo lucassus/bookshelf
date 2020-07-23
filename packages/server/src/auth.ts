@@ -60,3 +60,13 @@ export function checkAuthentication(currentUser: User | undefined): User {
 
   return currentUser;
 }
+
+export function checkAdminAuthentication(currentUser: User | undefined): User {
+  const user = checkAuthentication(currentUser);
+
+  if (!user.isAdmin) {
+    throw new Error("Unauthorized access! Please log in as admin.");
+  }
+
+  return user;
+}

@@ -96,9 +96,9 @@ export async function createUser(attributes: CreateUserAttributes = {}) {
   }
 
   return createEntity(User, {
-    ...userAttributes,
     passwordHash: hashPassword(password || "password"),
-    isAdmin: false
+    isAdmin: false,
+    ...userAttributes
   });
 }
 

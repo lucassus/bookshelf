@@ -6,27 +6,63 @@ import { secureId } from "../../database/helpers";
 import { createUser } from "../factories";
 import { getTestClient } from "../hepers";
 
-test("deleteUser mutation", async () => {
-  // Given
-  const user = await createUser();
-  // When
-  const res = await getTestClient().mutate({
-    mutation: gql`
-      mutation($id: ExternalID!) {
-        deleteUser(id: $id)
-      }
-    `,
-    variables: { id: secureId.toExternal(user.id, "User") }
+describe("deleteUser mutation", () => {
+  let user: User;
+
+  beforeEach(async () => {
+    user = await createUser();
   });
 
-  // Then
-  expect(res.errors).toBe(undefined);
-  expect(res.data).not.toBe(null);
-  expect(res.data).toEqual({
-    deleteUser: secureId.toExternal(user.id, "User")
+  const DeleteUserMutation = gql`
+    mutation($id: ExternalID!) {
+      deleteUser(id: $id)
+    }
+  `;
+
+  it("deletes a user when authenticated as admin", async () => {
+    // Given
+    const currentUser = await createUser({ isAdmin: true });
+
+    // When
+    const res = await getTestClient({ currentUser }).mutate({
+      mutation: DeleteUserMutation,
+      variables: { id: secureId.toExternal(user.id, "User") }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).not.toBe(null);
+    expect(res.data).toEqual({
+      deleteUser: secureId.toExternal(user.id, "User")
+    });
+
+    await expect(
+      getConnection().manager.findOne(User, { id: user.id })
+    ).resolves.toBe(undefined);
   });
 
-  await expect(
-    getConnection().manager.findOne(User, { id: user.id })
-  ).resolves.toBe(undefined);
+  it("returns an error when authenticates as a regular user", async () => {
+    // Given
+    const currentUser = await createUser({ isAdmin: false });
+
+    // When
+    const res = await getTestClient({ currentUser }).mutate({
+      mutation: DeleteUserMutation,
+      variables: { id: secureId.toExternal(user.id, "User") }
+    });
+
+    // Then
+    expect(res.errors).not.toBe(undefined);
+  });
+
+  it("returns an error when not authenticates", async () => {
+    // When
+    const res = await getTestClient().mutate({
+      mutation: DeleteUserMutation,
+      variables: { id: secureId.toExternal(user.id, "User") }
+    });
+
+    // Then
+    expect(res.errors).not.toBe(undefined);
+  });
 });
