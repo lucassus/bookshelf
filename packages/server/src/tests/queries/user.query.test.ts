@@ -17,7 +17,6 @@ test("user query", async () => {
       query($id: ExternalID!) {
         user(id: $id) {
           name
-          email
           info
           avatar {
             color
@@ -33,14 +32,12 @@ test("user query", async () => {
             owner {
               id
               name
-              email
             }
           }
           borrowedBookCopies {
             borrower {
               id
               name
-              email
             }
             book {
               id

@@ -15,13 +15,11 @@ Object {
         "title": "Alias",
       },
       "borrower": Object {
-        "email": "Braulio_Rempel33@hotmail.com",
         "id": "MS1Vc2Vy",
         "name": "Rosalind Effertz",
       },
     },
   ],
-  "email": "Braulio_Rempel33@hotmail.com",
   "info": "Et velit quaerat.",
   "name": "Rosalind Effertz",
   "ownedBookCopies": Array [
@@ -31,7 +29,6 @@ Object {
         "title": "Minus",
       },
       "owner": Object {
-        "email": "Braulio_Rempel33@hotmail.com",
         "id": "MS1Vc2Vy",
         "name": "Rosalind Effertz",
       },
@@ -42,7 +39,6 @@ Object {
         "title": "Earum Quaerat Architecto",
       },
       "owner": Object {
-        "email": "Braulio_Rempel33@hotmail.com",
         "id": "MS1Vc2Vy",
         "name": "Rosalind Effertz",
       },

@@ -48,13 +48,11 @@ Object {
     "title": "Minus",
   },
   "borrower": Object {
-    "email": "Braulio_Rempel33@hotmail.com",
     "id": "MS1Vc2Vy",
     "name": "Rosalind Effertz",
   },
   "id": "MS1Cb29rQ29weQ==",
   "owner": Object {
-    "email": "Clint.Walker97@yahoo.com",
     "id": "Mi1Vc2Vy",
     "name": "Mrs. Monica Stamm",
   },
@@ -64,7 +62,6 @@ Object {
 exports[`anything query fetches User 1`] = `
 Object {
   "__typename": "User",
-  "email": "Braulio_Rempel33@hotmail.com",
   "id": "MS1Vc2Vy",
   "name": "Rosalind Effertz",
 }

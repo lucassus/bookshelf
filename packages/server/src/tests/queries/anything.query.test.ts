@@ -52,7 +52,6 @@ describe("anything query", () => {
     fragment UserFragment on User {
       id
       name
-      email
     }
   `;
 

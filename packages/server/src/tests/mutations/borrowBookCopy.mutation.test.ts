@@ -11,7 +11,7 @@ test("borrowBookCopy mutation", async () => {
   const currentUser = await createUser({ name: "Bob" });
 
   const book = await createBook({ title: "Time of contempt" });
-  const owner = await createUser({ name: "Alice", email: "alice@email.com" });
+  const owner = await createUser({ name: "Alice" });
   let bookCopy = await createBookCopy({
     bookId: book.id,
     ownerId: owner.id
@@ -30,12 +30,10 @@ test("borrowBookCopy mutation", async () => {
           owner {
             id
             name
-            email
           }
           borrower {
             id
             name
-            email
           }
         }
       }
@@ -58,13 +56,11 @@ test("borrowBookCopy mutation", async () => {
       },
       owner: {
         id: expect.any(String),
-        name: owner.name,
-        email: owner.email
+        name: owner.name
       },
       borrower: {
         id: expect.any(String),
-        name: currentUser.name,
-        email: currentUser.email
+        name: currentUser.name
       }
     }
   });

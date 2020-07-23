@@ -15,7 +15,6 @@ test("users query", async () => {
       query {
         users {
           name
-          email
           info
           avatar {
             image {
