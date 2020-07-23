@@ -16,7 +16,11 @@ describe("login mutation", () => {
 
   const LoginMutation = gql`
     mutation($input: LoginInput!) {
-      login(input: $input)
+      login(input: $input) {
+        success
+        token
+        message
+      }
     }
   `;
 
@@ -34,7 +38,12 @@ describe("login mutation", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchObject({ login: true });
+    expect(res.data).toMatchObject({
+      login: {
+        success: true,
+        token: expect.any(String)
+      }
+    });
   });
 
   test("login with invalid credentials", async () => {
@@ -51,6 +60,12 @@ describe("login mutation", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchObject({ login: false });
+    expect(res.data).toMatchObject({
+      login: {
+        success: false,
+        token: null,
+        message: "Invalid email or password!"
+      }
+    });
   });
 });

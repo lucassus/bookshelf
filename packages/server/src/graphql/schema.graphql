@@ -25,8 +25,14 @@ input LoginInput {
   password: String!
 }
 
+type LoginResult {
+  success: Boolean!
+  message: String
+  token: String
+}
+
 type Mutation {
-  login(input: LoginInput!): Boolean!
+  login(input: LoginInput!): LoginResult!
   createUser(input: CreateUserInput!): User!
   updateUser(input: UpdateUserInput!): User!
   deleteUser(id: ExternalID!): ID!

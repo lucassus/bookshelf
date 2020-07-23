@@ -1,4 +1,4 @@
-import { hashPassword, isPasswordValid } from "../../auth";
+import { generateAuthToken, hashPassword, isPasswordValid } from "../../auth";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
@@ -19,8 +19,23 @@ export const resolvers: Resolvers<Context> = {
       { input: { email, password } },
       { connection }
     ) => {
+      // TODO: Add validations
       const user = await connection.manager.findOneOrFail(User, { email });
-      return isPasswordValid(password, user.passwordHash);
+
+      if (isPasswordValid(password, user.passwordHash)) {
+        const token = generateAuthToken(user);
+
+        return {
+          success: true,
+          token
+        };
+      }
+
+      return {
+        success: false,
+        token: null,
+        message: "Invalid email or password!"
+      };
     },
 
     createUser: async (rootValue, args, { connection }) => {
