@@ -7,5 +7,5 @@ export interface Context {
   assetsBaseUrl: string;
   connection: Connection;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
-  currentUser?: User;
+  currentUser: null | User;
 }
