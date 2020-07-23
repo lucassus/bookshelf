@@ -65,7 +65,7 @@ describe("BookCopyRepository", () => {
     await repository.borrow(bookCopy.id, borrower.id);
 
     // When
-    await repository.return(bookCopy.id);
+    await repository.return(bookCopy.id, borrower.id);
 
     // Then
     const updatedBookCopy = await getManager().findOneOrFail(

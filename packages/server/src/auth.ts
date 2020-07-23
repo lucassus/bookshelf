@@ -52,3 +52,11 @@ export function authenticateRequest(req: Request): null | number {
 
   return payload.sub;
 }
+
+export function checkAuthentication(currentUser: User | undefined): User {
+  if (!currentUser) {
+    throw new Error("Unauthorized access! Please log in.");
+  }
+
+  return currentUser;
+}

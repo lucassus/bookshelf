@@ -19,8 +19,13 @@ export class BookCopyRepository extends AbstractRepository<BookCopy> {
     return this.repository.save(bookCopy);
   }
 
-  async return(id: string | number) {
-    const bookCopy = await this.repository.findOneOrFail(id);
+  async return(id: string | number, borrowerId: number) {
+    const bookCopy = await this.repository.findOneOrFail({
+      where: {
+        id,
+        borrowerId
+      }
+    });
 
     bookCopy.borrowerId = null;
     return this.repository.save(bookCopy);

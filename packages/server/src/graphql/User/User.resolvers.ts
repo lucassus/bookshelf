@@ -1,4 +1,9 @@
-import { generateAuthToken, hashPassword, isPasswordValid } from "../../auth";
+import {
+  checkAuthentication,
+  generateAuthToken,
+  hashPassword,
+  isPasswordValid
+} from "../../auth";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
@@ -7,7 +12,7 @@ import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
   Query: {
-    me: (rootValue, arg, { currentUser }) => currentUser || null,
+    me: (rootValue, arg, { currentUser }) => checkAuthentication(currentUser),
 
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 

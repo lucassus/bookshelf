@@ -1,3 +1,4 @@
+import { checkAuthentication } from "../../auth";
 import { User } from "../../database/entity/User";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { Context } from "../../types";
@@ -17,15 +18,20 @@ export const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    // TODO: Raise error when user is not authenticated
-    borrowBookCopy: (rootValue, { id }, { connection, currentUser }) =>
-      currentUser
-        ? connection.manager
-            .getCustomRepository(BookCopyRepository)
-            .borrow(id, currentUser.id)
-        : null,
+    borrowBookCopy: (rootValue, { id }, { connection, currentUser }) => {
+      const user = checkAuthentication(currentUser);
 
-    returnBookCopy: (rootValue, { id }, { connection }) =>
-      connection.manager.getCustomRepository(BookCopyRepository).return(id)
+      return connection.manager
+        .getCustomRepository(BookCopyRepository)
+        .borrow(id, user.id);
+    },
+
+    returnBookCopy: (rootValue, { id }, { connection, currentUser }) => {
+      const user = checkAuthentication(currentUser);
+
+      return connection.manager
+        .getCustomRepository(BookCopyRepository)
+        .return(id, user.id);
+    }
   }
 };

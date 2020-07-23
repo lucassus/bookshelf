@@ -21,7 +21,7 @@ test("returnBookCopy mutation", async () => {
   // When
   const id = secureId.toExternal(bookCopy.id, "BookCopy");
 
-  const res = await getTestClient().mutate({
+  const res = await getTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($id: ExternalID!) {
         returnBookCopy(id: $id) {
