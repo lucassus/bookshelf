@@ -1,11 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "./config";
 import { User } from "./database/entity/User";
-
-// TODO: Move it to configuration module
-const AUTH_TOKEN_SECRET_KEY = "asdf";
-const AUTH_TOKEN_EXPIRES_IN = "15m";
 
 export function hashPassword(password: string): string {
   const salt = bcrypt.genSaltSync(8);
