@@ -3,7 +3,7 @@ import { getManager, ObjectType, DeepPartial } from "typeorm";
 
 import { hashPassword } from "../auth";
 import { Author } from "../database/entity/Author";
-import { Avatar } from "../database/entity/Avatar";
+import { Avatar, AVATAR_COLORS } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
@@ -60,7 +60,7 @@ type CreateAvatarAttributes = Partial<Avatar>;
 export function createAvatar(attributes: CreateAvatarAttributes = {}) {
   return createEntity(Avatar, {
     imagePath: faker.random.arrayElement(AVATAR_IMAGES),
-    color: faker.commerce.color(),
+    color: faker.random.arrayElement(AVATAR_COLORS),
     ...attributes
   });
 }
