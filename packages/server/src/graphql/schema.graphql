@@ -3,8 +3,6 @@ schema {
   mutation: Mutation
 }
 
-scalar ExternalID
-
 type Query {
   authors: [Author!]!
   author(id: ExternalID!): Author!

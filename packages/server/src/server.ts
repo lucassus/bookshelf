@@ -1,19 +1,11 @@
-import { addResolversToSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-express";
 import { Connection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "./config";
 import { buildAuthorsLoader } from "./database/authorsLoader";
 import { User } from "./database/entity/User";
-import { resolvers } from "./graphql/resolvers";
-import { schema } from "./graphql/schema";
+import { schemaWithResolvers } from "./graphql/schema";
 import { Context } from "./types";
-
-const schemaWithResolvers = addResolversToSchema({
-  schema,
-  resolvers,
-  inheritResolversFromInterfaces: true
-});
 
 export const createServer = (connection: Connection) =>
   new ApolloServer({

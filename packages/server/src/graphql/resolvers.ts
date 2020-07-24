@@ -8,6 +8,7 @@ export const resolvers = mergeResolvers<Context, Resolvers<Context>>([
   require("./Author").resolvers,
   require("./Book").resolvers,
   require("./BookCopy").resolvers,
+  require("./ExternalID").resolvers,
   require("./Resource").resolvers,
   require("./Timestampable").resolvers,
   require("./User").resolvers
