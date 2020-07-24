@@ -11,5 +11,9 @@ module.exports = {
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
     "^.+\\.ts$": "ts-jest"
-  }
+  },
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ]
 };
