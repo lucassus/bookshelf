@@ -7,9 +7,12 @@ import styles from "./AppTopBar.module.scss";
 
 const CurrentUserMenu = () => {
   const auth = useAuth();
-  const { data } = useGetCurrentUserQuery();
+  const { data, client } = useGetCurrentUserQuery();
 
-  const handleLogout = () => auth.unauthorize();
+  const handleLogout = async () => {
+    await client.clearStore();
+    auth.unauthorize();
+  };
 
   return (
     <li>
