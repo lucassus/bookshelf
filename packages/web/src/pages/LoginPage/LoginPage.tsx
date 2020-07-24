@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { useAuth } from "../../components/AuthContext";
 import { useLoginMutationMutation } from "./Login.mutation.generated";
 
 type Inputs = {
@@ -11,6 +12,7 @@ type Inputs = {
 export const LoginPage: React.FunctionComponent = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [login, { loading }] = useLoginMutationMutation();
+  const auth = useAuth();
 
   const onSubmit = async (data: Inputs) => {
     const result = await login({ variables: { input: data } });
@@ -19,7 +21,7 @@ export const LoginPage: React.FunctionComponent = () => {
       const { success, authToken, message } = result.data.login;
 
       if (success && authToken) {
-        window.localStorage.setItem("authToken", authToken);
+        auth.authorize(authToken);
       } else {
         window.alert(message);
       }
@@ -31,16 +33,20 @@ export const LoginPage: React.FunctionComponent = () => {
       <h2>Login</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email-field">Email</label>
-        <input type="text" id="email-field" name="email" ref={register} />
+        <div>
+          <label htmlFor="email-field">Email</label>
+          <input type="text" id="email-field" name="email" ref={register} />
+        </div>
 
-        <label htmlFor="password-field">Password</label>
-        <input
-          type="password"
-          id="password-field"
-          name="password"
-          ref={register}
-        />
+        <div>
+          <label htmlFor="password-field">Password</label>
+          <input
+            type="password"
+            id="password-field"
+            name="password"
+            ref={register}
+          />
+        </div>
 
         <button type="submit" disabled={loading}>
           Login

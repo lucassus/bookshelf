@@ -1,0 +1,7 @@
+fragment CurrentUser on CurrentUser {
+  id
+  name
+  email
+  info
+  isAdmin
+}

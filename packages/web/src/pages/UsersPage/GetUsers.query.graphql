@@ -2,7 +2,6 @@ query GetUsers {
   users {
     id
     name
-    email
     avatar {
       image {
         url

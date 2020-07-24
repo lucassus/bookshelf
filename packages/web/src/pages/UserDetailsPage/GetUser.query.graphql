@@ -2,7 +2,6 @@ query GetUser($id: ExternalID!) {
   user(id: $id) {
     id
     name
-    email
     info
     avatar {
       ...Avatar

@@ -11,6 +11,7 @@ import "typeface-roboto";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { App } from "./App";
+import { AuthContextProvider } from "./components/AuthContext";
 import { GRAPHQL_ENDPOINT } from "./config";
 
 const cache = new InMemoryCache({
@@ -40,7 +41,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Router>
-        <App />
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
       </Router>
     </ApolloProvider>
   </React.StrictMode>,

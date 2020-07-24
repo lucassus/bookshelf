@@ -1,28 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../AuthContext";
+import { useGetCurrentUserQuery } from "../GetCurrentUser.query.generated";
 import styles from "./AppTopBar.module.scss";
 
-export const AppTopBar = () => (
-  <header className={styles.container}>
-    <nav>
-      <h1>
-        <Link to="/">Personal Library</Link>
-      </h1>
+const CurrentUserMenu = () => {
+  const auth = useAuth();
+  const { data } = useGetCurrentUserQuery();
 
-      <ul>
-        <li>
-          <Link to="/">Books</Link>
-        </li>
+  const handleLogout = () => auth.unauthorize();
 
-        <li>
-          <Link to="/authors">Authors</Link>
-        </li>
+  return (
+    <li>
+      You are logged in as {data?.me.name}
+      <button onClick={handleLogout}>Logout</button>
+    </li>
+  );
+};
 
-        <li>
-          <Link to="/users">Users</Link>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+export const AppTopBar = () => {
+  const auth = useAuth();
+
+  return (
+    <header className={styles.container}>
+      <nav>
+        <h1>
+          <Link to="/">Personal Library</Link>
+        </h1>
+
+        <ul>
+          <li>
+            <Link to="/">Books</Link>
+          </li>
+
+          <li>
+            <Link to="/authors">Authors</Link>
+          </li>
+
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+
+          {auth.isAuthenticated ? (
+            <CurrentUserMenu />
+          ) : (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+};
