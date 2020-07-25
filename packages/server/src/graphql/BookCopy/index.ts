@@ -1,1 +1,1 @@
-export { resolvers } from "./BookCopy.resolvers";
+export { resolvers } from "./resolvers";

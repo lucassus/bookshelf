@@ -5,8 +5,8 @@ import {
   createBook,
   createBookCopy,
   createUser
-} from "../factories";
-import { createTestClient } from "../hepers";
+} from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 describe("books query", () => {
   it("fetches books", async () => {

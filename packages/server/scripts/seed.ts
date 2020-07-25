@@ -4,7 +4,7 @@ import {
   createDevelopmentConnection,
   createProductionConnection
 } from "../src/database/createConnection";
-import { loadFixtures } from "../src/tests/fixtures";
+import { loadFixtures } from "../src/testUtils/fixtures";
 
 const seed = async () => {
   await (ENVIRONMENT === Environment.production

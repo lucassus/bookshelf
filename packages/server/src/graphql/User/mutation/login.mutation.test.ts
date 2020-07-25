@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
-import { User } from "../../database/entity/User";
-import { createUser } from "../factories";
-import { createTestClient } from "../hepers";
+import { User } from "../../../database/entity/User";
+import { createUser } from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 describe("login mutation", () => {
   let user: User;

@@ -1,13 +1,13 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../database/helpers";
+import { secureId } from "../../../database/helpers";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../factories";
-import { createTestClient } from "../hepers";
+} from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 describe("anything query", () => {
   const GetAnythingQuery = gql`

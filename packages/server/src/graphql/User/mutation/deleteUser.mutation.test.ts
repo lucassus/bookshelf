@@ -1,10 +1,10 @@
 import { gql } from "apollo-server-express";
 import { getConnection } from "typeorm";
 
-import { User } from "../../database/entity/User";
-import { secureId } from "../../database/helpers";
-import { createUser } from "../factories";
-import { createTestClient } from "../hepers";
+import { User } from "../../../database/entity/User";
+import { secureId } from "../../../database/helpers";
+import { createUser } from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 describe("deleteUser mutation", () => {
   let user: User;

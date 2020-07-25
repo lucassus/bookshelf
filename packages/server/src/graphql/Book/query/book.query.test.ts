@@ -1,13 +1,13 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../database/helpers";
+import { secureId } from "../../../database/helpers";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../factories";
-import { createTestClient } from "../hepers";
+} from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 describe("book query", () => {
   it("fetches a book", async () => {
@@ -45,7 +45,7 @@ describe("book query", () => {
     });
   });
 
-  it("fetches a book along with other resources", async () => {
+  it("fetches a book along with the other resources", async () => {
     // Given
     const author = await createAuthor({ name: "Andrzej Sapkpwski" });
     const book = await createBook({

@@ -1,1 +1,1 @@
-export { resolvers } from "./Timestampable.resolvers";
+export { resolvers } from "./resolvers";

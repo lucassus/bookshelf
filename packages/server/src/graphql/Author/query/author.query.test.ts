@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../database/helpers";
-import { createAuthor } from "../factories";
-import { createTestClient } from "../hepers";
+import { secureId } from "../../../database/helpers";
+import { createAuthor } from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 test("author query", async () => {
   await createAuthor({

@@ -1,1 +1,1 @@
-export { resolvers } from "./ExternalID.resolvers";
+export { resolvers } from "./resolvers";

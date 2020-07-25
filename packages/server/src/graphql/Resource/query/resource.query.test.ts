@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../database/helpers";
-import { createAuthor, createBook } from "../factories";
-import { createTestClient } from "../hepers";
+import { secureId } from "../../../database/helpers";
+import { createAuthor, createBook } from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 describe("resource query", () => {
   const GetResourceQuery = gql`

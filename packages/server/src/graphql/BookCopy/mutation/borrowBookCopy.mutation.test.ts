@@ -1,10 +1,14 @@
 import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
-import { BookCopy } from "../../database/entity/BookCopy";
-import { secureId } from "../../database/helpers";
-import { createBook, createBookCopy, createUser } from "../factories";
-import { createTestClient } from "../hepers";
+import { BookCopy } from "../../../database/entity/BookCopy";
+import { secureId } from "../../../database/helpers";
+import {
+  createBook,
+  createBookCopy,
+  createUser
+} from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 test("borrowBookCopy mutation", async () => {
   // Given

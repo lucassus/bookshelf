@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
-import { createAuthor, createBook } from "../factories";
-import { createTestClient } from "../hepers";
+import { createAuthor, createBook } from "../../../testUtils/factories";
+import { createTestClient } from "../../../testUtils/hepers";
 
 test("randomBook query", async () => {
   // Given

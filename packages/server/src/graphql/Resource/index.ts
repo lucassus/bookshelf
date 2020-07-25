@@ -1,1 +1,1 @@
-export { resolvers } from "./Resource.resolvers";
+export { resolvers } from "./resolvers";
