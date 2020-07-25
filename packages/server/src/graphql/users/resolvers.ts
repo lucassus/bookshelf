@@ -1,9 +1,6 @@
 import {
   checkAdminAuthentication,
-  checkAuthentication,
-  generateAuthToken,
-  hashPassword,
-  isPasswordValid
+  hashPassword
 } from "../../common/authentication";
 import { secureId } from "../../common/secureId";
 import { Context } from "../../common/types";
