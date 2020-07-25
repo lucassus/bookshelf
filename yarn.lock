@@ -1548,6 +1548,15 @@
     fs-extra "9.0.1"
     tslib "~2.0.0"
 
+"@graphql-tools/load-files@6.0.15":
+  version "6.0.15"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/load-files/-/load-files-6.0.15.tgz#2e8ae233817bd6aee4145e1a6fce76d95f80ca78"
+  integrity sha512-Sm09x/IxCWQmqrn5LouZ2oNqI7rwCh9HtAmpjBLc3ET6ykDSLoDD7O+fYoM62mnv9SpTyJgB4NPYcxWj6l2JlA==
+  dependencies:
+    fs-extra "9.0.1"
+    globby "11.0.1"
+    unixify "1.0.0"
+
 "@graphql-tools/load@6.0.15":
   version "6.0.15"
   resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-6.0.15.tgz#f2012b8938b3a535dbafefbb719997684028f30f"
