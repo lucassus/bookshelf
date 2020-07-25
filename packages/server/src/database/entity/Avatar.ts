@@ -6,6 +6,16 @@ import {
   UpdateDateColumn
 } from "typeorm";
 
+export const AVATAR_COLORS = [
+  "red",
+  "green",
+  "blue",
+  "yellow",
+  "magenta",
+  "pink",
+  "black"
+];
+
 @Entity({ name: "avatars" })
 export class Avatar {
   @PrimaryGeneratedColumn()

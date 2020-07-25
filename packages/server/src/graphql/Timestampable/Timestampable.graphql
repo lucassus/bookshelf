@@ -1,4 +1,0 @@
-interface Timestampable {
-  createdAt: String!
-  updatedAt: String!
-}

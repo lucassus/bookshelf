@@ -1,6 +1,6 @@
 import { getCustomRepository, getManager } from "typeorm";
 
-import { createBookCopy, createUser } from "../../tests/factories";
+import { createBookCopy, createUser } from "../../testUtils/factories";
 import { BookCopy } from "../entity/BookCopy";
 import { BookCopyRepository } from "./BookCopyRepository";
 
@@ -65,7 +65,7 @@ describe("BookCopyRepository", () => {
     await repository.borrow(bookCopy.id, borrower.id);
 
     // When
-    await repository.return(bookCopy.id);
+    await repository.return(bookCopy.id, borrower.id);
 
     // Then
     const updatedBookCopy = await getManager().findOneOrFail(

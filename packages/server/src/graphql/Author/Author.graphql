@@ -1,9 +1,0 @@
-type Author implements Resource & Timestampable {
-  id: ExternalID!
-  name: String!
-  bio: String
-  photo: Image!
-  books: [Book!]!
-  createdAt: String!
-  updatedAt: String!
-}

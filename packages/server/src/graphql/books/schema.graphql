@@ -1,0 +1,32 @@
+type Book implements Resource & Timestampable {
+  id: ExternalID!
+  title: String!
+  description: String
+  cover: Image!
+  favourite: Boolean!
+  author: Author
+  copies: [BookCopy!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type BookCopy implements Resource {
+  id: ExternalID!
+  book: Book!
+  owner: User!
+  borrower: User
+}
+
+extend type Query {
+  booksCount: Int!
+  books(offset: Int = 0, limit: Int = 9): [Book!]!
+  book(id: ExternalID!): Book!
+  randomBook: Book
+}
+
+extend type Mutation {
+  updateBookFavourite(id: ExternalID!, favourite: Boolean!): Book!
+
+  borrowBookCopy(id: ExternalID!): BookCopy
+  returnBookCopy(id: ExternalID!): BookCopy!
+}

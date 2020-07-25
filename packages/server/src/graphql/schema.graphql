@@ -3,29 +3,6 @@ schema {
   mutation: Mutation
 }
 
-type Query {
-  authors: [Author!]!
-  author(id: ExternalID!): Author!
+type Query
 
-  booksCount: Int!
-  books(offset: Int = 0, limit: Int = 9): [Book!]!
-  book(id: ExternalID!): Book!
-  randomBook: Book
-
-  users: [User!]!
-  user(id: ExternalID!): User!
-
-  @deprecated(reason: "No longer supported. Use 'resources' instead")
-  anything(id: ID!): Anything!
-  resource(id: ID!): Resource!
-}
-
-type Mutation {
-  createUser(input: CreateUserInput!): User!
-  updateUser(input: UpdateUserInput!): User!
-  deleteUser(id: ExternalID!): ID!
-
-  borrowBookCopy(id: ExternalID!): BookCopy
-  returnBookCopy(id: ExternalID!): BookCopy!
-  updateBookFavourite(id: ExternalID!, favourite: Boolean!): Book!
-}
+type Mutation

@@ -1,0 +1,18 @@
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginResult {
+  success: Boolean!
+  message: String
+  authToken: String
+}
+
+extend type Query {
+  me: CurrentUser!
+}
+
+extend type Mutation {
+  login(input: LoginInput!): LoginResult!
+}

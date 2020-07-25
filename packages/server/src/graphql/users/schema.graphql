@@ -1,0 +1,57 @@
+type User implements Resource & Timestampable {
+  id: ExternalID!
+  name: String!
+  info: String
+  avatar: Avatar!
+  ownedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type CurrentUser implements Resource & Timestampable {
+  id: ExternalID!
+  name: String!
+  email: String!
+  isAdmin: Boolean!
+  info: String
+  avatar: Avatar!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Avatar {
+  image: Image!
+  color: String!
+}
+
+input AvatarInput {
+  imagePath: String!
+  color: String!
+}
+
+input CreateUserInput {
+  name: String!
+  info: String!
+  email: String!
+  password: String!
+  avatar: AvatarInput!
+}
+
+input UpdateUserInput {
+  id: ExternalID!
+  name: String!
+  email: String!
+  info: String!
+}
+
+extend type Query {
+  users: [User!]!
+  user(id: ExternalID!): User!
+}
+
+extend type Mutation {
+  createUser(input: CreateUserInput!): User!
+  updateUser(input: UpdateUserInput!): User!
+  deleteUser(id: ExternalID!): ID!
+}

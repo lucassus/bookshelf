@@ -9,6 +9,7 @@ import { AuthorDetailsPage } from "./pages/AuthorDetailsPage";
 import { AuthorsPage } from "./pages/AuthorsPage";
 import { BookDetailsPage } from "./pages/BookDetailsPage";
 import { BooksPage } from "./pages/BooksPage";
+import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";
 import { UsersPage } from "./pages/UsersPage";
@@ -26,6 +27,7 @@ export const App: React.FunctionComponent = () => (
         <Route path="/authors/:id" element={<AuthorDetailsPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/users/:id" element={<UserDetailsPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </main>
