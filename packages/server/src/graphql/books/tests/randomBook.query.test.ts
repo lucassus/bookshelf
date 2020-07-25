@@ -7,7 +7,7 @@ test("randomBook query", async () => {
   // Given
   const author = await createAuthor({ name: "Andrzej Sapkowski" });
   const book = await createBook({
-    authorId: author.id,
+    author,
     title: "The tower of the swallow",
     coverPath: "/images/book-covers/witcher4.jpg"
   });

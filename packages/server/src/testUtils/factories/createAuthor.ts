@@ -9,7 +9,9 @@ const AUTHOR_PHOTOS = [
   "/images/book-authors/andrzej-sapkowski.jpg"
 ];
 
-export function createAuthor(attributes: Partial<Author> = {}) {
+export type CreateAuthorAttributes = Partial<Author>;
+
+export function createAuthor(attributes: CreateAuthorAttributes = {}) {
   return createEntity(Author, {
     name: faker.name.findName(),
     bio: faker.lorem.sentence(),

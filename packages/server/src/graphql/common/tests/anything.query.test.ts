@@ -58,9 +58,9 @@ describe("anything query", () => {
   it("fetches Author", async () => {
     // Given
     const author = await createAuthor();
-    await createBook({ authorId: author.id });
-    await createBook({ authorId: author.id });
-    await createBook({ authorId: author.id });
+    await createBook({ author });
+    await createBook({ author });
+    await createBook({ author });
 
     // When
     const res = await createTestClient().query({

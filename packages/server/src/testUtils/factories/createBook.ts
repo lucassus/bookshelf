@@ -3,7 +3,7 @@ import faker from "faker";
 import { titleizeSentence } from "../../common/strings";
 import { Author } from "../../database/entity/Author";
 import { Book } from "../../database/entity/Book";
-import { createAuthor } from "./createAuthor";
+import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";
 
 const BOOK_COVERS = [
@@ -29,16 +29,18 @@ const BOOK_COVERS = [
   "/images/book-covers/witcher5.jpg"
 ];
 
-export type CreateBookAttributes = Partial<Book> & {
-  authorAttributes?: Partial<Author>;
+export type CreateBookAttributes = Omit<Partial<Book>, "author"> & {
+  author?: Author;
+  authorAttributes?: CreateAuthorAttributes;
 };
 
 export async function createBook(attributes: CreateBookAttributes = {}) {
-  const { authorAttributes, ...bookAttributes } = attributes;
+  const { author, authorAttributes, ...bookAttributes } = attributes;
 
   if (bookAttributes.authorId === undefined) {
-    const author = await createAuthor(authorAttributes);
-    bookAttributes.authorId = author.id;
+    bookAttributes.authorId = author
+      ? author.id
+      : (await createAuthor(authorAttributes)).id;
   }
 
   return createEntity(Book, {

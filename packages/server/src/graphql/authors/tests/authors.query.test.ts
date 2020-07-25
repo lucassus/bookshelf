@@ -42,13 +42,13 @@ describe("authors query", () => {
   it("fetches authors along with books", async () => {
     // Given
     const firstAuthor = await createAuthor();
-    await createBook({ authorId: firstAuthor.id });
-    await createBook({ authorId: firstAuthor.id });
-    await createBook({ authorId: firstAuthor.id });
+    await createBook({ author: firstAuthor });
+    await createBook({ author: firstAuthor });
+    await createBook({ author: firstAuthor });
 
     const secondAuthor = await createAuthor();
-    await createBook({ authorId: secondAuthor.id });
-    await createBook({ authorId: secondAuthor.id });
+    await createBook({ author: secondAuthor });
+    await createBook({ author: secondAuthor });
 
     // When
     const res = await createTestClient().query({

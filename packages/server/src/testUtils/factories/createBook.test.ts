@@ -9,7 +9,16 @@ describe(".createBook", () => {
     await expect(book.author).resolves.not.toBeUndefined();
   });
 
-  it("create a book with the given author", async () => {
+  it("creates a book with the given author", async () => {
+    const author = await createAuthor({ name: "Andrzej Sapkowski" });
+    const book = await createBook({ author });
+
+    await expect(book.author).resolves.toMatchObject({
+      name: "Andrzej Sapkowski"
+    });
+  });
+
+  it("creates a book with the given authorId", async () => {
     const author = await createAuthor({ name: "Andrzej Sapkowski" });
     const book = await createBook({ authorId: author.id });
 
