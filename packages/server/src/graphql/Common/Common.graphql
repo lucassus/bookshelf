@@ -1,0 +1,15 @@
+scalar ExternalID
+
+interface Resource {
+  id: ExternalID!
+}
+
+interface Timestampable {
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Image {
+  path: String!
+  url: String!
+}

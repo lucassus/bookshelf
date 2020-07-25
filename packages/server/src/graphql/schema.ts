@@ -12,13 +12,11 @@ export const rootSchema = addResolversToSchema({
     loaders: [new GraphQLFileLoader()]
   }),
   resolvers: mergeResolvers<Context, Resolvers<Context>>([
+    require("./Common").resolvers,
     require("./Anything").resolvers,
     require("./Author").resolvers,
     require("./Book").resolvers,
     require("./BookCopy").resolvers,
-    require("./ExternalID").resolvers,
-    require("./Resource").resolvers,
-    require("./Timestampable").resolvers,
     require("./User").resolvers
   ]),
   inheritResolversFromInterfaces: true

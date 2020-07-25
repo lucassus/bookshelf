@@ -1,3 +1,0 @@
-interface Resource {
-  id: ExternalID!
-}

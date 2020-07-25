@@ -21,11 +21,6 @@ type Query {
   resource(id: ID!): Resource!
 }
 
-type Image {
-  path: String!
-  url: String!
-}
-
 input LoginInput {
   email: String!
   password: String!

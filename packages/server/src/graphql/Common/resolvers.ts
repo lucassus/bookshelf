@@ -1,3 +1,5 @@
+import { GraphQLScalarType } from "graphql";
+
 import { findAnythingOrFail } from "../../database/findAnythingOrFail";
 import { secureId } from "../../database/helpers";
 import { Context } from "../../types";
@@ -7,6 +9,19 @@ export const resolvers: Resolvers<Context> = {
   Query: {
     resource: (rootValue, { id }, { connection }) =>
       findAnythingOrFail(id, connection)
+  },
+
+  ExternalID: new GraphQLScalarType({
+    name: "ExternalID",
+    parseValue: (value) => secureId.toInternal(value)
+  }),
+
+  Timestampable: {
+    __resolveType: (timestampable) =>
+      Object.getPrototypeOf(timestampable).constructor.name,
+
+    createdAt: (timestampable) => timestampable.createdAt.toISOString(),
+    updatedAt: (timestampable) => timestampable.updatedAt.toISOString()
   },
 
   Resource: {
