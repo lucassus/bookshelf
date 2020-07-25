@@ -58,9 +58,9 @@ describe("anything query", () => {
   it("fetches Author", async () => {
     // Given
     const author = await createAuthor();
-    await createBook({ authorId: author.id });
-    await createBook({ authorId: author.id });
-    await createBook({ authorId: author.id });
+    await createBook({ author });
+    await createBook({ author });
+    await createBook({ author });
 
     // When
     const res = await createTestClient().query({
@@ -105,8 +105,8 @@ describe("anything query", () => {
 
   it("fetches BookCopy", async () => {
     // Given
-    const user = await createUser();
-    const bookCopy = await createBookCopy({ borrowerId: user.id });
+    const borrower = await createUser();
+    const bookCopy = await createBookCopy({ borrower });
 
     // When
     const res = await createTestClient().query({

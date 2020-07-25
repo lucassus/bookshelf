@@ -3,9 +3,9 @@
 exports[`user query 1`] = `
 Object {
   "avatar": Object {
-    "color": "green",
+    "color": "red",
     "image": Object {
-      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
+      "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
     },
   },
   "borrowedBookCopies": Array [
@@ -16,12 +16,12 @@ Object {
       },
       "borrower": Object {
         "id": "MS1Vc2Vy",
-        "name": "Rosalind Effertz",
+        "name": "Mariana Christiansen",
       },
     },
   ],
-  "info": "Et velit quaerat.",
-  "name": "Rosalind Effertz",
+  "info": "Velit quaerat ab veniam.",
+  "name": "Mariana Christiansen",
   "ownedBookCopies": Array [
     Object {
       "book": Object {
@@ -30,7 +30,7 @@ Object {
       },
       "owner": Object {
         "id": "MS1Vc2Vy",
-        "name": "Rosalind Effertz",
+        "name": "Mariana Christiansen",
       },
     },
     Object {
@@ -40,7 +40,7 @@ Object {
       },
       "owner": Object {
         "id": "MS1Vc2Vy",
-        "name": "Rosalind Effertz",
+        "name": "Mariana Christiansen",
       },
     },
   ],

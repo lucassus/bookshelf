@@ -1,9 +1,6 @@
 import {
   checkAdminAuthentication,
-  checkAuthentication,
-  generateAuthToken,
-  hashPassword,
-  isPasswordValid
+  hashPassword
 } from "../../common/authentication";
 import { secureId } from "../../common/secureId";
 import { Context } from "../../common/types";
@@ -13,8 +10,6 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    me: (rootValue, arg, { currentUser }) => checkAuthentication(currentUser),
-
     users: (rootValue, args, { connection }) => connection.manager.find(User),
 
     user: (rootValue, { id }, { connection }) =>
@@ -22,31 +17,6 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    login: async (
-      rootValue,
-      { input: { email, password } },
-      { connection }
-    ) => {
-      // TODO: Add validations
-      const user = await connection.manager.findOne(User, { email });
-
-      // TODO: Add a test for invalid email
-      if (user && isPasswordValid(password, user.passwordHash)) {
-        const authToken = generateAuthToken(user);
-
-        return {
-          success: true,
-          authToken
-        };
-      }
-
-      return {
-        success: false,
-        token: null,
-        message: "Invalid email or password!"
-      };
-    },
-
     createUser: async (rootValue, args, { connection, currentUser }) => {
       checkAdminAuthentication(currentUser);
       const { avatar: avatarAttributes, ...userAttributes } = args.input;

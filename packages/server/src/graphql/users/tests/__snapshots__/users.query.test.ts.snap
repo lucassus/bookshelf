@@ -4,36 +4,36 @@ exports[`users query 1`] = `
 Array [
   Object {
     "avatar": Object {
-      "color": "green",
-      "image": Object {
-        "path": "/images/avatars/w13.png",
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
-      },
-    },
-    "info": "Et velit quaerat.",
-    "name": "Rosalind Effertz",
-  },
-  Object {
-    "avatar": Object {
       "color": "red",
-      "image": Object {
-        "path": "/images/avatars/m25.png",
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/m25.png",
-      },
-    },
-    "info": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
-    "name": "Mrs. Joesph Feeney",
-  },
-  Object {
-    "avatar": Object {
-      "color": "yellow",
       "image": Object {
         "path": "/images/avatars/w2.png",
         "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
       },
     },
-    "info": "Molestiae voluptates exercitationem reiciendis.",
-    "name": "Velda Bailey",
+    "info": "Velit quaerat ab veniam.",
+    "name": "Mariana Christiansen",
+  },
+  Object {
+    "avatar": Object {
+      "color": "yellow",
+      "image": Object {
+        "path": "/images/avatars/w13.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w13.png",
+      },
+    },
+    "info": "Exercitationem sequi est minus consequatur.",
+    "name": "Cole Runolfsson",
+  },
+  Object {
+    "avatar": Object {
+      "color": "red",
+      "image": Object {
+        "path": "/images/avatars/w2.png",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/avatars/w2.png",
+      },
+    },
+    "info": "Velit molestiae voluptates exercitationem reiciendis.",
+    "name": "Oceane Franecki",
   },
 ]
 `;

@@ -1,6 +1,7 @@
 import { getCustomRepository, getManager } from "typeorm";
 
-import { createBookCopy, createUser } from "../../testUtils/factories";
+import { createBookCopy } from "../../testUtils/factories/createBookCopy";
+import { createUser } from "../../testUtils/factories/createUser";
 import { BookCopy } from "../entity/BookCopy";
 import { BookCopyRepository } from "./BookCopyRepository";
 

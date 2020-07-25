@@ -12,16 +12,14 @@ describe("books query", () => {
   it("fetches books", async () => {
     // Given
     const book = await createBook({ title: "Hobbit" });
-    await createBookCopy({
-      bookId: book.id,
-      ownerAttributes: { name: "John" }
-    });
+    await createBookCopy({ book, ownerAttributes: { name: "John" } });
+
     const borrower = await createUser({ name: "Paul" });
-    await createBookCopy({ bookId: book.id, borrowerId: borrower.id });
+    await createBookCopy({ book, borrower });
 
     const author = await createAuthor({ name: "George Lucas" });
-    await createBook({ authorId: author.id, title: "Star Wars IV" });
-    await createBook({ authorId: author.id, title: "Star Wars V" });
+    await createBook({ author, title: "Star Wars IV" });
+    await createBook({ author, title: "Star Wars V" });
 
     // When
     const res = await createTestClient().query({
@@ -59,8 +57,8 @@ describe("books query", () => {
   it("fetches books with authors", async () => {
     // Given
     const author = await createAuthor({ name: "Tolkien" });
-    await createBook({ title: "Hobbit", authorId: author.id });
-    await createBook({ title: "Lord of the Rings", authorId: author.id });
+    await createBook({ title: "Hobbit", author });
+    await createBook({ title: "Lord of the Rings", author });
     await createBook();
     await createBook();
 
@@ -89,8 +87,8 @@ describe("books query", () => {
   it("fetches books along with authors and books again", async () => {
     // Given
     const author = await createAuthor({ name: "Andrzej Sapkowski" });
-    await createBook({ authorId: author.id });
-    await createBook({ authorId: author.id });
+    await createBook({ author });
+    await createBook({ author });
 
     // When
     const res = await createTestClient().query({
