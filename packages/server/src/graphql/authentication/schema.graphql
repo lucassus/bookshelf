@@ -1,0 +1,10 @@
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginResult {
+  success: Boolean!
+  message: String
+  authToken: String
+}

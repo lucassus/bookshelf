@@ -21,17 +21,6 @@ type Query {
   resource(id: ID!): Resource!
 }
 
-input LoginInput {
-  email: String!
-  password: String!
-}
-
-type LoginResult {
-  success: Boolean!
-  message: String
-  authToken: String
-}
-
 type Mutation {
   login(input: LoginInput!): LoginResult!
   createUser(input: CreateUserInput!): User!

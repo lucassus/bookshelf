@@ -9,3 +9,10 @@ type Book implements Resource & Timestampable {
   createdAt: String!
   updatedAt: String!
 }
+
+type BookCopy implements Resource {
+  id: ExternalID!
+  book: Book!
+  owner: User!
+  borrower: User
+}

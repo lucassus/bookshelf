@@ -8,16 +8,16 @@ import { Context } from "../types";
 import { Resolvers } from "./resolvers-types.generated";
 
 export const rootSchema = addResolversToSchema({
-  schema: loadSchemaSync(path.join(__dirname, "./**/*.graphql"), {
+  schema: loadSchemaSync(path.join(__dirname, "./**/schema.graphql"), {
     loaders: [new GraphQLFileLoader()]
   }),
   resolvers: mergeResolvers<Context, Resolvers<Context>>([
-    require("./Common").resolvers,
-    require("./Anything").resolvers,
-    require("./Author").resolvers,
-    require("./Book").resolvers,
-    require("./BookCopy").resolvers,
-    require("./User").resolvers
+    require("./common").resolvers,
+    require("./users").resolvers,
+    require("./authentication").resolvers,
+    require("./authors").resolvers,
+    require("./books").resolvers,
+    require("./anything").resolvers
   ]),
   inheritResolversFromInterfaces: true
 });
