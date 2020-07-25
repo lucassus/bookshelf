@@ -4,7 +4,7 @@ import { getManager } from "typeorm";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { createUser } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 test("updateUser mutation", async () => {
   // Given
@@ -13,7 +13,7 @@ test("updateUser mutation", async () => {
   const id = secureId.toExternal(user.id, "User");
 
   // When
-  const res = await getTestClient({ currentUser }).mutate({
+  const res = await createTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($input: UpdateUserInput!) {
         updateUser(input: $input) {

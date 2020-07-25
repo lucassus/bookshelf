@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 import { createAuthor, createBook } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 test("randomBook query", async () => {
   // Given
@@ -13,7 +13,7 @@ test("randomBook query", async () => {
   });
 
   // When
-  const res = await getTestClient().query({
+  const res = await createTestClient().query({
     query: gql`
       query {
         randomBook {

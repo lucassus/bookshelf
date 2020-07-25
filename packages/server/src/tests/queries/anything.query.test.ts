@@ -7,7 +7,7 @@ import {
   createBookCopy,
   createUser
 } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("anything query", () => {
   const GetAnythingQuery = gql`
@@ -63,7 +63,7 @@ describe("anything query", () => {
     await createBook({ authorId: author.id });
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(author.id, "Author") }
     });
@@ -78,7 +78,7 @@ describe("anything query", () => {
     const book = await createBook();
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(book.id, "Book") }
     });
@@ -93,7 +93,7 @@ describe("anything query", () => {
     const user = await createUser();
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(user.id, "User") }
     });
@@ -109,7 +109,7 @@ describe("anything query", () => {
     const bookCopy = await createBookCopy({ borrowerId: user.id });
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: GetAnythingQuery,
       variables: { id: secureId.toExternal(bookCopy.id, "BookCopy") }
     });
@@ -127,7 +127,7 @@ it("fetches with aliases", async () => {
   const user = await createUser();
 
   // When
-  const res = await getTestClient().query({
+  const res = await createTestClient().query({
     query: gql`
       query(
         $bookId: ExternalID!

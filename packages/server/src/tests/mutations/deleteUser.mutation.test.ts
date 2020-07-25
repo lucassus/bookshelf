@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { User } from "../../database/entity/User";
 import { secureId } from "../../database/helpers";
 import { createUser } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("deleteUser mutation", () => {
   let user: User;
@@ -24,7 +24,7 @@ describe("deleteUser mutation", () => {
     const currentUser = await createUser({ isAdmin: true });
 
     // When
-    const res = await getTestClient({ currentUser }).mutate({
+    const res = await createTestClient({ currentUser }).mutate({
       mutation: DeleteUserMutation,
       variables: { id: secureId.toExternal(user.id, "User") }
     });
@@ -46,7 +46,7 @@ describe("deleteUser mutation", () => {
     const currentUser = await createUser({ isAdmin: false });
 
     // When
-    const res = await getTestClient({ currentUser }).mutate({
+    const res = await createTestClient({ currentUser }).mutate({
       mutation: DeleteUserMutation,
       variables: { id: secureId.toExternal(user.id, "User") }
     });
@@ -57,7 +57,7 @@ describe("deleteUser mutation", () => {
 
   it("returns an error when not authenticates", async () => {
     // When
-    const res = await getTestClient().mutate({
+    const res = await createTestClient().mutate({
       mutation: DeleteUserMutation,
       variables: { id: secureId.toExternal(user.id, "User") }
     });

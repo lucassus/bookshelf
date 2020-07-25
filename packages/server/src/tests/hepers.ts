@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
 import {
   ApolloServerTestClient,
-  createTestClient
+  createTestClient as createApolloTestClient
 } from "apollo-server-testing";
 import { getConnection } from "typeorm";
 
@@ -10,18 +10,18 @@ import { buildAuthorsLoader } from "../database/authorsLoader";
 import { rootSchema } from "../graphql/schema";
 import { Context } from "../types";
 
-export const getTestClient = (
+export const createTestClient = (
   context: Partial<Context> = {}
 ): ApolloServerTestClient => {
   const server = new ApolloServer({
     schema: rootSchema,
     context: {
-      ...context,
       assetsBaseUrl: ASSETS_BASE_URL,
       authorsLoader: buildAuthorsLoader(),
-      connection: getConnection()
+      connection: getConnection(),
+      ...context
     }
   });
 
-  return createTestClient(server);
+  return createApolloTestClient(server);
 };

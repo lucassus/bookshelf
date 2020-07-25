@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 import { createUser } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("me query", () => {
   it("returns the current user when authenticated", async () => {
@@ -9,7 +9,7 @@ describe("me query", () => {
     const currentUser = await createUser({ isAdmin: true });
 
     // When
-    const res = await getTestClient({ currentUser }).query({
+    const res = await createTestClient({ currentUser }).query({
       query: gql`
         query {
           me {
@@ -36,7 +36,7 @@ describe("me query", () => {
 
   it("returns error if not authenticated", async () => {
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query {
           me {

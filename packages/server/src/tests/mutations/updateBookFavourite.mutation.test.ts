@@ -4,7 +4,7 @@ import { getManager } from "typeorm";
 import { Book } from "../../database/entity/Book";
 import { secureId } from "../../database/helpers";
 import { createBook } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 it("updateBookFavourite mutation", async () => {
   // Given
@@ -16,7 +16,7 @@ it("updateBookFavourite mutation", async () => {
   // When
   const id = secureId.toExternal(book.id, "Book");
 
-  const res = await getTestClient().mutate({
+  const res = await createTestClient().mutate({
     mutation: gql`
       mutation($id: ExternalID!, $favourite: Boolean!) {
         updateBookFavourite(id: $id, favourite: $favourite) {

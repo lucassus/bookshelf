@@ -4,7 +4,7 @@ import { getManager } from "typeorm";
 import { BookCopy } from "../../database/entity/BookCopy";
 import { secureId } from "../../database/helpers";
 import { createBook, createBookCopy, createUser } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 test("returnBookCopy mutation", async () => {
   // Given
@@ -21,7 +21,7 @@ test("returnBookCopy mutation", async () => {
   // When
   const id = secureId.toExternal(bookCopy.id, "BookCopy");
 
-  const res = await getTestClient({ currentUser }).mutate({
+  const res = await createTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($id: ExternalID!) {
         returnBookCopy(id: $id) {

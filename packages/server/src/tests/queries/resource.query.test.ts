@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { secureId } from "../../database/helpers";
 import { createAuthor, createBook } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("resource query", () => {
   const GetResourceQuery = gql`
@@ -29,7 +29,7 @@ describe("resource query", () => {
     const book = await createBook();
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: GetResourceQuery,
       variables: { id: secureId.toExternal(book.id, "Book") }
     });
@@ -44,7 +44,7 @@ describe("resource query", () => {
     const author = await createAuthor();
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: GetResourceQuery,
       variables: { id: secureId.toExternal(author.id, "Author") }
     });

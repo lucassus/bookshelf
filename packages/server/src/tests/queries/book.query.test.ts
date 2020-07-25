@@ -7,7 +7,7 @@ import {
   createBookCopy,
   createUser
 } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("book query", () => {
   it("fetches a book", async () => {
@@ -16,7 +16,7 @@ describe("book query", () => {
 
     // When
     const id = secureId.toExternal(book.id, "Book");
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {
@@ -71,7 +71,7 @@ describe("book query", () => {
     // When
     const id = secureId.toExternal(book.id, "Book");
 
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {
@@ -157,7 +157,7 @@ describe("book query", () => {
 
   it("responds with error when book cannot be found", async () => {
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {

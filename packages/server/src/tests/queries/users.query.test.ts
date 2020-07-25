@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 import { createUser } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 test("users query", async () => {
   // Given
@@ -10,7 +10,7 @@ test("users query", async () => {
   await createUser();
 
   // When
-  const res = await getTestClient().query({
+  const res = await createTestClient().query({
     query: gql`
       query {
         users {

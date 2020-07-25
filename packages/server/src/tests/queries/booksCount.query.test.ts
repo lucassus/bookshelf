@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 import { createBook } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 test("booksCount query", async () => {
   // Given
@@ -9,7 +9,7 @@ test("booksCount query", async () => {
   await createBook();
 
   // When
-  const res = await getTestClient().query({
+  const res = await createTestClient().query({
     query: gql`
       query {
         booksCount

@@ -6,7 +6,7 @@ import {
   createBookCopy,
   createUser
 } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("books query", () => {
   it("fetches books", async () => {
@@ -24,7 +24,7 @@ describe("books query", () => {
     await createBook({ authorId: author.id, title: "Star Wars V" });
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query {
           booksCount
@@ -65,7 +65,7 @@ describe("books query", () => {
     await createBook();
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query {
           booksCount
@@ -93,7 +93,7 @@ describe("books query", () => {
     await createBook({ authorId: author.id });
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query {
           books {

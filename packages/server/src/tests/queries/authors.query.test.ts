@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { secureId } from "../../database/helpers";
 import { createAuthor, createBook } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("authors query", () => {
   it("fetches an author", async () => {
@@ -15,7 +15,7 @@ describe("authors query", () => {
     });
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
           author(id: $id) {
@@ -51,7 +51,7 @@ describe("authors query", () => {
     await createBook({ authorId: secondAuthor.id });
 
     // When
-    const res = await getTestClient().query({
+    const res = await createTestClient().query({
       query: gql`
         query {
           authors {

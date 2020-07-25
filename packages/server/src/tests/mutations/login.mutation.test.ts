@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { User } from "../../database/entity/User";
 import { createUser } from "../factories";
-import { getTestClient } from "../hepers";
+import { createTestClient } from "../hepers";
 
 describe("login mutation", () => {
   let user: User;
@@ -24,7 +24,7 @@ describe("login mutation", () => {
 
   test("login with valid credentials", async () => {
     // When
-    const res = await getTestClient().mutate({
+    const res = await createTestClient().mutate({
       mutation: LoginMutation,
       variables: {
         input: {
@@ -46,7 +46,7 @@ describe("login mutation", () => {
 
   test("login with invalid email", async () => {
     // When
-    const res = await getTestClient().mutate({
+    const res = await createTestClient().mutate({
       mutation: LoginMutation,
       variables: {
         input: {
@@ -69,7 +69,7 @@ describe("login mutation", () => {
 
   test("login with invalid password", async () => {
     // When
-    const res = await getTestClient().mutate({
+    const res = await createTestClient().mutate({
       mutation: LoginMutation,
       variables: {
         input: {
