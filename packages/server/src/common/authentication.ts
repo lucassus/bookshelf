@@ -2,8 +2,8 @@ import bcrypt from "bcrypt";
 import { Request } from "express";
 import jwt from "jsonwebtoken";
 
-import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "./config";
-import { User } from "./database/entity/User";
+import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "../config";
+import { User } from "../database/entity/User";
 
 type AuthTokenPayload = {
   sub: number;

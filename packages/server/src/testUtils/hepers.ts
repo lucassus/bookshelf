@@ -5,10 +5,10 @@ import {
 } from "apollo-server-testing";
 import { getConnection } from "typeorm";
 
+import { Context } from "../common/types";
 import { ASSETS_BASE_URL } from "../config";
 import { buildAuthorsLoader } from "../database/authorsLoader";
 import { rootSchema } from "../graphql/schema";
-import { Context } from "../types";
 
 export const createTestClient = (
   context: Partial<Context> = {}

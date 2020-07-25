@@ -1,12 +1,12 @@
 import { ApolloServer } from "apollo-server-express";
 import { Connection } from "typeorm";
 
-import { authenticateRequest } from "./auth";
+import { authenticateRequest } from "./common/authentication";
+import { Context } from "./common/types";
 import { ASSETS_BASE_URL } from "./config";
 import { buildAuthorsLoader } from "./database/authorsLoader";
 import { User } from "./database/entity/User";
 import { rootSchema } from "./graphql/schema";
-import { Context } from "./types";
 
 export const createServer = (connection: Connection) =>
   new ApolloServer({

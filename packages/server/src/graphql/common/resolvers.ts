@@ -1,8 +1,8 @@
 import { GraphQLScalarType } from "graphql";
 
+import { Context } from "../../common/types";
 import { findAnythingOrFail } from "../../database/findAnythingOrFail";
 import { secureId } from "../../database/helpers";
-import { Context } from "../../types";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {

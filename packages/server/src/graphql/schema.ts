@@ -4,7 +4,7 @@ import { mergeResolvers } from "@graphql-tools/merge";
 import { addResolversToSchema } from "@graphql-tools/schema";
 import path from "path";
 
-import { Context } from "../types";
+import { Context } from "../common/types";
 import { Resolvers } from "./resolvers-types.generated";
 
 export const rootSchema = addResolversToSchema({

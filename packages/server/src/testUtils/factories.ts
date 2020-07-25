@@ -1,13 +1,13 @@
 import faker from "faker";
 import { getManager, ObjectType, DeepPartial } from "typeorm";
 
-import { hashPassword } from "../auth";
+import { hashPassword } from "../common/authentication";
+import { titleizeSentence } from "../common/strings";
 import { Author } from "../database/entity/Author";
 import { Avatar, AVATAR_COLORS } from "../database/entity/Avatar";
 import { Book } from "../database/entity/Book";
 import { BookCopy } from "../database/entity/BookCopy";
 import { User } from "../database/entity/User";
-import { titleizeSentence } from "../strings";
 
 const AVATAR_IMAGES = [
   "/images/avatars/w13.png",
