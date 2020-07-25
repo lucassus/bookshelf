@@ -13,3 +13,7 @@ type Image {
   path: String!
   url: String!
 }
+
+extend type Query {
+  resource(id: ID!): Resource!
+}

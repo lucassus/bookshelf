@@ -7,3 +7,8 @@ type Author implements Resource & Timestampable {
   createdAt: String!
   updatedAt: String!
 }
+
+extend type Query {
+  authors: [Author!]!
+  author(id: ExternalID!): Author!
+}
