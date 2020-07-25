@@ -16,11 +16,7 @@ test("returnBookCopy mutation", async () => {
 
   const book = await createBook();
   const owner = await createUser({ name: "Alice" });
-  let bookCopy = await createBookCopy({
-    bookId: book.id,
-    ownerId: owner.id,
-    borrowerId: currentUser.id
-  });
+  let bookCopy = await createBookCopy({ book, owner, borrower: currentUser });
 
   // When
   const id = secureId.toExternal(bookCopy.id, "BookCopy");

@@ -12,12 +12,10 @@ describe("books query", () => {
   it("fetches books", async () => {
     // Given
     const book = await createBook({ title: "Hobbit" });
-    await createBookCopy({
-      bookId: book.id,
-      ownerAttributes: { name: "John" }
-    });
+    await createBookCopy({ book, ownerAttributes: { name: "John" } });
+
     const borrower = await createUser({ name: "Paul" });
-    await createBookCopy({ bookId: book.id, borrowerId: borrower.id });
+    await createBookCopy({ book, borrower });
 
     const author = await createAuthor({ name: "George Lucas" });
     await createBook({ author, title: "Star Wars IV" });

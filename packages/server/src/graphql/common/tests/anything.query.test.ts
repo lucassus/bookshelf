@@ -105,8 +105,8 @@ describe("anything query", () => {
 
   it("fetches BookCopy", async () => {
     // Given
-    const user = await createUser();
-    const bookCopy = await createBookCopy({ borrowerId: user.id });
+    const borrower = await createUser();
+    const bookCopy = await createBookCopy({ borrower });
 
     // When
     const res = await createTestClient().query({

@@ -16,10 +16,7 @@ test("borrowBookCopy mutation", async () => {
 
   const book = await createBook({ title: "Time of contempt" });
   const owner = await createUser({ name: "Alice" });
-  let bookCopy = await createBookCopy({
-    bookId: book.id,
-    ownerId: owner.id
-  });
+  let bookCopy = await createBookCopy({ book, owner });
 
   // When
   const res = await createTestClient({ currentUser }).mutate({

@@ -1,35 +1,50 @@
+import { Book } from "../../database/entity/Book";
 import { BookCopy } from "../../database/entity/BookCopy";
+import { User } from "../../database/entity/User";
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
 import { createUser, CreateUserAttributes } from "./createUser";
 
+type CreateBookCopyAttributes = Omit<
+  Partial<BookCopy>,
+  "book" | "owner" | "borrower"
+> & {
+  book?: Book;
+  bookAttributes?: CreateBookAttributes;
+} & {
+  owner?: User;
+  ownerAttributes?: CreateUserAttributes;
+} & { borrower?: User; borrowerAttributes?: CreateUserAttributes };
+
 export async function createBookCopy(
-  attributes: Partial<BookCopy> & {
-    bookAttributes?: CreateBookAttributes;
-  } & {
-    ownerAttributes?: CreateUserAttributes;
-  } & { borrowerAttributes?: CreateUserAttributes } = {}
+  attributes: CreateBookCopyAttributes = {}
 ) {
   const {
+    book,
     bookAttributes,
+    owner,
     ownerAttributes,
+    borrower,
     borrowerAttributes,
     ...bookCopyAttributes
   } = attributes;
 
   if (bookCopyAttributes.bookId === undefined) {
-    const book = await createBook(bookAttributes);
-    bookCopyAttributes.bookId = book.id;
+    bookCopyAttributes.bookId = book
+      ? book.id
+      : (await createBook(bookAttributes)).id;
   }
 
   if (bookCopyAttributes.ownerId === undefined) {
-    const owner = await createUser(ownerAttributes);
-    bookCopyAttributes.ownerId = owner.id;
+    bookCopyAttributes.ownerId = owner
+      ? owner.id
+      : (await createUser(ownerAttributes)).id;
   }
 
-  if (borrowerAttributes) {
-    const borrower = await createUser(borrowerAttributes);
-    bookCopyAttributes.borrowerId = borrower.id;
+  if (borrower || borrowerAttributes) {
+    bookCopyAttributes.borrowerId = borrower
+      ? borrower.id
+      : (await createUser(borrowerAttributes)).id;
   }
 
   return createEntity(BookCopy, bookCopyAttributes);

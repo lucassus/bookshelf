@@ -328,32 +328,16 @@ async function loadBookCopies() {
   let book = await manager.findOneOrFail(Book, { title: "Blood of Elves" });
   const borrower = await manager.findOneOrFail(User, { name: "Alice" });
 
-  await createBookCopy({
-    ownerId: userBob.id,
-    bookId: book.id,
-    borrowerId: borrower.id
-  });
-
-  await createBookCopy({
-    ownerId: userAlice.id,
-    bookId: book.id
-  });
+  await createBookCopy({ owner: userBob, book, borrower });
+  await createBookCopy({ owner: userAlice, book });
 
   book = await manager.findOneOrFail(Book, { title: "The lady of the lake" });
-  await createBookCopy({
-    ownerId: userBob.id,
-    bookId: book.id,
-    borrowerId: undefined
-  });
+  await createBookCopy({ owner: userBob, book });
 
   book = await manager.findOneOrFail(Book, {
     title: "The tower of the swallow"
   });
-  await createBookCopy({
-    ownerId: userAlice.id,
-    bookId: book.id,
-    borrowerId: userBob.id
-  });
+  await createBookCopy({ owner: userAlice, book, borrower: userBob });
 }
 
 export const loadFixtures = async (): Promise<void> => {

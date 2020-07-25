@@ -49,7 +49,7 @@ describe("book query", () => {
     // Given
     const author = await createAuthor({ name: "Andrzej Sapkpwski" });
     const book = await createBook({
-      authorId: author.id,
+      author,
       title: "Blood of Elves",
       description: "Blood of Elves is the first novel in the Witcher Saga.",
       createdAt: new Date(Date.UTC(2020, 6, 19, 14, 30)),
@@ -61,12 +61,8 @@ describe("book query", () => {
       avatarAttributes: { color: "yellow" }
     });
     const borrower = await createUser({ name: "Paul" });
-    await createBookCopy({
-      bookId: book.id,
-      ownerId: owner.id,
-      borrowerId: borrower.id
-    });
-    await createBookCopy({ bookId: book.id });
+    await createBookCopy({ book, owner, borrower });
+    await createBookCopy({ book });
 
     // When
     const id = secureId.toExternal(book.id, "Book");

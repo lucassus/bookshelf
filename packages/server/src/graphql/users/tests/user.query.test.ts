@@ -7,9 +7,9 @@ import { createTestClient } from "../../../testUtils/hepers";
 test("user query", async () => {
   // Given
   const user = await createUser();
-  await createBookCopy({ ownerId: user.id });
-  await createBookCopy({ ownerId: user.id });
-  await createBookCopy({ borrowerId: user.id });
+  await createBookCopy({ owner: user });
+  await createBookCopy({ owner: user });
+  await createBookCopy({ borrower: user });
 
   // When
   const res = await createTestClient().query({
