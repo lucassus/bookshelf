@@ -6,7 +6,7 @@ import { BookCopyRepository } from "../../database/repositories/BookCopyReposito
 import { BookRepository } from "../../database/repositories/BookRepository";
 import { Resolvers } from "../resolvers-types.generated";
 
-export const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers<Context> = {
   Query: {
     booksCount: (rootValue, args, { connection }) =>
       connection.manager.count(Book),
@@ -66,3 +66,5 @@ export const resolvers: Resolvers<Context> = {
         : null
   }
 };
+
+export default resolvers;

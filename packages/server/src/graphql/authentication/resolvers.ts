@@ -7,7 +7,7 @@ import { Context } from "../../common/types";
 import { User } from "../../database/entity/User";
 import { Resolvers } from "../resolvers-types.generated";
 
-export const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers<Context> = {
   Query: {
     me: (rootValue, arg, { currentUser }) => checkAuthentication(currentUser)
   },
@@ -38,3 +38,5 @@ export const resolvers: Resolvers<Context> = {
     }
   }
 };
+
+export default resolvers;

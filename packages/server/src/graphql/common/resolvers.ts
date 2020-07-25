@@ -5,7 +5,7 @@ import { Context } from "../../common/types";
 import { findAnythingOrFail } from "../../database/findAnythingOrFail";
 import { Resolvers } from "../resolvers-types.generated";
 
-export const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers<Context> = {
   Query: {
     resource: (rootValue, { id }, { connection }) =>
       findAnythingOrFail(id, connection),
@@ -40,3 +40,5 @@ export const resolvers: Resolvers<Context> = {
       Object.getPrototypeOf(anything).constructor.name
   }
 };
+
+export default resolvers;

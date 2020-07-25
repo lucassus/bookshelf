@@ -2,7 +2,7 @@ import { Context } from "../../common/types";
 import { Author } from "../../database/entity/Author";
 import { Resolvers } from "../resolvers-types.generated";
 
-export const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers<Context> = {
   Query: {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
@@ -17,3 +17,5 @@ export const resolvers: Resolvers<Context> = {
     })
   }
 };
+
+export default resolvers;
