@@ -1,12 +1,24 @@
+import { createAuthor } from "./createAuthor";
 import { createBook } from "./createBook";
 
 describe(".createBook", () => {
   it("creates a book along with an author", async () => {
-    const book = await createBook();
+    const book = await createBook({ title: "Dune" });
+
+    expect(book.title).toBe("Dune");
     await expect(book.author).resolves.not.toBeUndefined();
   });
 
-  test("creates a book along with given author attributes", async () => {
+  it("create a book with the given author", async () => {
+    const author = await createAuthor({ name: "Andrzej Sapkowski" });
+    const book = await createBook({ authorId: author.id });
+
+    await expect(book.author).resolves.toMatchObject({
+      name: "Andrzej Sapkowski"
+    });
+  });
+
+  it("creates a book along with given author attributes", async () => {
     const book = await createBook({
       title: "Harry Potter and the Deathly Hallows",
       authorAttributes: {
