@@ -8,6 +8,9 @@ import { Resolvers } from "../resolvers-types.generated";
 export const resolvers: Resolvers<Context> = {
   Query: {
     resource: (rootValue, { id }, { connection }) =>
+      findAnythingOrFail(id, connection),
+
+    anything: (rootValue, { id }, { connection }) =>
       findAnythingOrFail(id, connection)
   },
 
@@ -30,5 +33,10 @@ export const resolvers: Resolvers<Context> = {
 
     id: (resource) =>
       secureId.toExternal(resource.id, resource.constructor.name)
+  },
+
+  Anything: {
+    __resolveType: (anything) =>
+      Object.getPrototypeOf(anything).constructor.name
   }
 };

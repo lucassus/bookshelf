@@ -16,8 +16,7 @@ export const rootSchema = addResolversToSchema({
     require("./users").resolvers,
     require("./authentication").resolvers,
     require("./authors").resolvers,
-    require("./books").resolvers,
-    require("./anything").resolvers
+    require("./books").resolvers
   ]),
   inheritResolversFromInterfaces: true
 });

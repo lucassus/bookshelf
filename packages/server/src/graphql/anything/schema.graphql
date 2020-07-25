@@ -1,5 +1,0 @@
-union Anything = Author | Book | User | BookCopy
-
-extend type Query {
-  anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resources' instead")
-}

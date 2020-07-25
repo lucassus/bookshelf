@@ -4,6 +4,8 @@ interface Resource {
   id: ExternalID!
 }
 
+union Anything = Author | Book | User | BookCopy
+
 interface Timestampable {
   createdAt: String!
   updatedAt: String!
@@ -16,4 +18,5 @@ type Image {
 
 extend type Query {
   resource(id: ID!): Resource!
+  anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resources' instead")
 }
