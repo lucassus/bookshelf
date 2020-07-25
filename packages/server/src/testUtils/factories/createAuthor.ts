@@ -11,7 +11,9 @@ const AUTHOR_PHOTOS = [
 
 export type CreateAuthorAttributes = Partial<Author>;
 
-export function createAuthor(attributes: CreateAuthorAttributes = {}) {
+export function createAuthor(
+  attributes: CreateAuthorAttributes = {}
+): Promise<Author> {
   return createEntity(Author, {
     name: faker.name.findName(),
     bio: faker.lorem.sentence(),

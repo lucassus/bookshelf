@@ -34,7 +34,9 @@ export type CreateBookAttributes = Omit<Partial<Book>, "author"> & {
   authorAttributes?: CreateAuthorAttributes;
 };
 
-export async function createBook(attributes: CreateBookAttributes = {}) {
+export async function createBook(
+  attributes: CreateBookAttributes = {}
+): Promise<Book> {
   const { author, authorAttributes, ...bookAttributes } = attributes;
 
   if (bookAttributes.authorId === undefined) {

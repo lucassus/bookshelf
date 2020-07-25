@@ -49,12 +49,12 @@ Object {
   },
   "borrower": Object {
     "id": "MS1Vc2Vy",
-    "name": "Rosalind Effertz",
+    "name": "Mariana Christiansen",
   },
   "id": "MS1Cb29rQ29weQ==",
   "owner": Object {
     "id": "Mi1Vc2Vy",
-    "name": "Mrs. Monica Stamm",
+    "name": "Eusebio Heidenreich",
   },
 }
 `;
@@ -63,7 +63,7 @@ exports[`anything query fetches User 1`] = `
 Object {
   "__typename": "User",
   "id": "MS1Vc2Vy",
-  "name": "Rosalind Effertz",
+  "name": "Mariana Christiansen",
 }
 `;
 
@@ -81,8 +81,8 @@ Object {
     "id": "MS1Cb29r",
   },
   "user": Object {
-    "description": "Molestiae voluptates exercitationem reiciendis.",
-    "headline": "Mr. Dell Wilderman",
+    "description": "Voluptates exercitationem reiciendis cupiditate provident earum quaerat architecto qui ad.",
+    "headline": "Alba Green",
     "id": "MS1Vc2Vy",
   },
 }

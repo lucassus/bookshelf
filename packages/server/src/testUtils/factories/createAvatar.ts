@@ -1,6 +1,6 @@
 import faker from "faker";
 
-import { Avatar, AVATAR_COLORS } from "../../database/entity/Avatar";
+import { Avatar } from "../../database/entity/Avatar";
 import { createEntity } from "./createEntity";
 
 const AVATAR_IMAGES = [
@@ -10,9 +10,21 @@ const AVATAR_IMAGES = [
   "/images/avatars/m25.png"
 ];
 
+const AVATAR_COLORS = [
+  "red",
+  "green",
+  "blue",
+  "yellow",
+  "magenta",
+  "pink",
+  "black"
+];
+
 export type CreateAvatarAttributes = Partial<Avatar>;
 
-export function createAvatar(attributes: CreateAvatarAttributes = {}) {
+export function createAvatar(
+  attributes: CreateAvatarAttributes = {}
+): Promise<Avatar> {
   return createEntity(Avatar, {
     imagePath: faker.random.arrayElement(AVATAR_IMAGES),
     color: faker.random.arrayElement(AVATAR_COLORS),

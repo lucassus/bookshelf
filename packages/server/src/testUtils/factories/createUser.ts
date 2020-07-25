@@ -10,33 +10,19 @@ export type CreateUserAttributes = Partial<User> & {
   avatarAttributes?: CreateAvatarAttributes;
 };
 
-export async function createUser(attributes: CreateUserAttributes = {}) {
+export async function createUser(
+  attributes: CreateUserAttributes = {}
+): Promise<User> {
   const { avatarAttributes, password, ...userAttributes } = attributes;
 
-  if (userAttributes.name === undefined) {
-    userAttributes.name = faker.name.findName();
-  }
-
-  if (userAttributes.email === undefined) {
-    userAttributes.email = faker.internet.email();
-  }
-
-  if (userAttributes.info === undefined) {
-    userAttributes.info = faker.lorem.sentence();
-  }
-
-  if (userAttributes.avatarId === undefined) {
-    const avatar = await createAvatar();
-    userAttributes.avatarId = avatar.id;
-  }
-
-  if (avatarAttributes) {
-    const avatar = await createAvatar(avatarAttributes);
-    userAttributes.avatarId = avatar.id;
-  }
+  const avatar = await createAvatar(avatarAttributes);
 
   return createEntity(User, {
+    name: faker.name.findName(),
+    email: faker.internet.email(),
+    info: faker.lorem.sentence(),
     passwordHash: hashPassword(password || "password"),
+    avatarId: avatar.id,
     isAdmin: false,
     ...userAttributes
   });

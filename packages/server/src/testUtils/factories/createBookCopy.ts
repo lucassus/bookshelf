@@ -18,7 +18,7 @@ type CreateBookCopyAttributes = Omit<
 
 export async function createBookCopy(
   attributes: CreateBookCopyAttributes = {}
-) {
+): Promise<BookCopy> {
   const {
     book,
     bookAttributes,

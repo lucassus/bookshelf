@@ -19,7 +19,7 @@ Object {
           },
           "owner": Object {
             "id": "My1Vc2Vy",
-            "name": "Sylvester Greenholt DVM",
+            "name": "Gino Schuppe",
           },
         },
       ],
@@ -42,8 +42,8 @@ Object {
     Object {
       "copies": Array [],
       "cover": Object {
-        "path": "/images/book-covers/witcher5.jpg",
-        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/witcher5.jpg",
+        "path": "/images/book-covers/expanse7.jpg",
+        "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-covers/expanse7.jpg",
       },
       "id": "My1Cb29r",
       "title": "Star Wars V",
