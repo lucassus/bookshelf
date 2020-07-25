@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../../database/helpers";
+import { secureId } from "../../../common/secureId";
 import { createBookCopy, createUser } from "../../../testUtils/factories";
 import { createTestClient } from "../../../testUtils/hepers";
 

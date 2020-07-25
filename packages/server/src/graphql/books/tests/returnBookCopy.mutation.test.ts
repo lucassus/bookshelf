@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
+import { secureId } from "../../../common/secureId";
 import { BookCopy } from "../../../database/entity/BookCopy";
-import { secureId } from "../../../database/helpers";
 import {
   createBook,
   createBookCopy,

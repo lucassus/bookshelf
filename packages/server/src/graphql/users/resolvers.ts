@@ -5,10 +5,10 @@ import {
   hashPassword,
   isPasswordValid
 } from "../../common/authentication";
+import { secureId } from "../../common/secureId";
 import { Context } from "../../common/types";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
-import { secureId } from "../../database/helpers";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers<Context> = {
