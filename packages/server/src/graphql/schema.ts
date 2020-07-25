@@ -1,16 +1,25 @@
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
-import { GraphQLScalarType } from "graphql";
+import { mergeResolvers } from "@graphql-tools/merge";
+import { addResolversToSchema } from "@graphql-tools/schema";
 import path from "path";
 
-import { secureId } from "../database/helpers";
+import { Context } from "../types";
+import { Resolvers } from "./resolvers-types.generated";
 
-export const schema = loadSchemaSync(path.join(__dirname, "./**/*.graphql"), {
-  loaders: [new GraphQLFileLoader()],
-  resolvers: {
-    ExternalID: new GraphQLScalarType({
-      name: "ExternalID",
-      parseValue: (value) => secureId.toInternal(value)
-    })
-  }
+export const rootSchema = addResolversToSchema({
+  schema: loadSchemaSync(path.join(__dirname, "./**/*.graphql"), {
+    loaders: [new GraphQLFileLoader()]
+  }),
+  resolvers: mergeResolvers<Context, Resolvers<Context>>([
+    require("./Anything").resolvers,
+    require("./Author").resolvers,
+    require("./Book").resolvers,
+    require("./BookCopy").resolvers,
+    require("./ExternalID").resolvers,
+    require("./Resource").resolvers,
+    require("./Timestampable").resolvers,
+    require("./User").resolvers
+  ]),
+  inheritResolversFromInterfaces: true
 });
