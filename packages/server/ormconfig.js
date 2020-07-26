@@ -2,17 +2,20 @@ const path = require("path");
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 
-// TODO: Setup typeorm cli
-const defaults = {
+const DEFAULTS = {
   type: "postgres",
   entities: [path.join(__dirname, "src/database/entity/**/*.ts")],
   synchronize: false,
-  logging: false
+  logging: false,
+  cli: {
+    entitiesDir: "src/database/entity",
+    migrationsDir: "src/database/migrations"
+  }
 };
 
 if (NODE_ENV === "test") {
   module.exports = {
-    ...defaults,
+    ...DEFAULTS,
     type: "sqlite",
     database: ":memory:",
     synchronize: true
@@ -21,7 +24,7 @@ if (NODE_ENV === "test") {
 
 if (NODE_ENV === "development") {
   module.exports = {
-    ...defaults,
+    ...DEFAULTS,
     url: "postgres://localhost:5432/bookshelf_development",
     logging: true
   };
@@ -30,7 +33,7 @@ if (NODE_ENV === "development") {
 if (NODE_ENV === "production") {
   module.exports = [
     {
-      ...defaults,
+      ...DEFAULTS,
       url: process.env.DATABASE_URL,
       entities: [path.join(__dirname, "dist/src/database/entity/**/*.js")],
 
