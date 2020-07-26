@@ -341,10 +341,6 @@ async function loadBookCopies() {
 }
 
 export const loadFixtures = async (): Promise<void> => {
-  const connection = getConnection();
-  await connection.dropDatabase();
-  await connection.synchronize(true);
-
   await loadAuthors();
   await loadBooks();
   await loadUsers();

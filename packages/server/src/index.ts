@@ -1,19 +1,13 @@
 import express from "express";
 import path from "path";
 import "reflect-metadata";
+import { createConnection } from "typeorm";
 
-import { Environment, ENVIRONMENT, PORT } from "./config";
-import {
-  createDevelopmentConnection,
-  createProductionConnection
-} from "./database/createConnection";
+import { PORT } from "./config";
 import { createServer } from "./server";
 
 const startServer = async () => {
-  const connection = await (ENVIRONMENT === Environment.production
-    ? createProductionConnection()
-    : createDevelopmentConnection());
-
+  const connection = await createConnection();
   const server = createServer(connection);
 
   const app = express();
