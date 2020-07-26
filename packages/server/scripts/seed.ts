@@ -1,15 +1,12 @@
 import "reflect-metadata";
-import { Environment, ENVIRONMENT } from "../src/config";
-import {
-  createDevelopmentConnection,
-  createProductionConnection
-} from "../src/database/createConnection";
+import { createConnection } from "typeorm";
+
 import { loadFixtures } from "../src/testUtils/fixtures";
 
 const seed = async () => {
-  await (ENVIRONMENT === Environment.production
-    ? createProductionConnection()
-    : createDevelopmentConnection());
+  const connection = await createConnection();
+  await connection.dropDatabase();
+  await connection.synchronize(true);
 
   await loadFixtures();
 };

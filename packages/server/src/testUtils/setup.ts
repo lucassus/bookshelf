@@ -1,13 +1,11 @@
 import faker from "faker";
-import { getConnection } from "typeorm";
-
-import { createTestConnection } from "../database/createConnection";
+import { createConnection, getConnection } from "typeorm";
 
 beforeEach(() => {
   faker.seed(666);
   faker.locale = "en";
 });
 
-beforeEach(() => createTestConnection());
+beforeEach(() => createConnection());
 
 afterEach(() => getConnection().close());
