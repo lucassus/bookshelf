@@ -29,20 +29,18 @@ if (NODE_ENV === "development") {
 }
 
 if (NODE_ENV === "production") {
-  module.exports = [
-    {
-      ...DEFAULTS,
-      url: process.env.DATABASE_URL,
-      entities: ["dist/src/database/entity/**/*.js"],
+  module.exports = {
+    ...DEFAULTS,
+    url: process.env.DATABASE_URL,
+    entities: ["dist/src/database/entity/**/*.js"],
 
-      // TODO: A workaround for heroku and ssl issues,
-      //  see https://github.com/typeorm/typeorm/issues/278#issuecomment-614345011
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false
-        }
+    // TODO: A workaround for heroku and ssl issues,
+    //  see https://github.com/typeorm/typeorm/issues/278#issuecomment-614345011
+    ssl: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false
       }
     }
-  ];
+  };
 }
