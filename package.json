@@ -7,20 +7,12 @@
   "engines": {
     "node": "13.7"
   },
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "bootstrap": "yarn lerna bootstrap",
-    "postinstall": "yarn bootstrap",
-    "clean": "lerna run clean",
-    "build": "lerna run build",
-    "codegen": "lerna run codegen",
-    "typecheck": "lerna run typecheck",
-    "lint": "lerna run lint",
-    "test": "jest",
-    "start": "yarn workspace @bookshelf/server start",
-    "dev": "concurrently --raw --kill-others-on-fail 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": [
+      "**/typeorm/**",
+      "**/typeorm"
+    ]
   },
   "devDependencies": {
     "@types/jest": "26.0.7",
@@ -42,5 +34,18 @@
     "ts-node": "8.10.2",
     "typescript": "3.9.7"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "bootstrap": "yarn lerna bootstrap",
+    "postinstall": "yarn bootstrap",
+    "clean": "lerna run clean",
+    "build": "lerna run build",
+    "codegen": "lerna run codegen",
+    "typecheck": "lerna run typecheck",
+    "nuke": "rm -rf node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done",
+    "lint": "lerna run lint",
+    "test": "jest",
+    "start": "yarn workspace @bookshelf/server start",
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
+  }
 }
