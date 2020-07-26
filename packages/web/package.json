@@ -53,7 +53,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean:dist": "rimraf dist",
+    "clean:dist": "rimraf dist && rimraf coverage",
     "clean:codegen": "rimraf graphql.schema.json src/**/*.generated.{ts,tsx}",
     "clean": "yarn clean:codegen && yarn clean:dist",
     "codegen": "yarn graphql-codegen --config codegen.yml",
