@@ -1,10 +1,8 @@
-const path = require("path");
-
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 const DEFAULTS = {
   type: "postgres",
-  entities: [path.join(__dirname, "src/database/entity/**/*.ts")],
+  entities: ["src/database/entity/**/*.ts"],
   synchronize: false,
   logging: false,
   cli: {
@@ -35,7 +33,7 @@ if (NODE_ENV === "production") {
     {
       ...DEFAULTS,
       url: process.env.DATABASE_URL,
-      entities: [path.join(__dirname, "dist/src/database/entity/**/*.js")],
+      entities: ["dist/src/database/entity/**/*.js"],
 
       // TODO: A workaround for heroku and ssl issues,
       //  see https://github.com/typeorm/typeorm/issues/278#issuecomment-614345011
