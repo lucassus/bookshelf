@@ -9,5 +9,8 @@
   "include": [
     "scripts/**/*",
     "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.test.ts"
   ]
 }
