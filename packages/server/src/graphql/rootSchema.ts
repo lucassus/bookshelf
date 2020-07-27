@@ -3,9 +3,12 @@ import { loadSchemaSync } from "@graphql-tools/load";
 import { loadFilesSync } from "@graphql-tools/load-files";
 import { mergeResolvers } from "@graphql-tools/merge";
 import { addResolversToSchema } from "@graphql-tools/schema";
+import { SchemaDirectiveVisitor } from "apollo-server-express";
 import path from "path";
 
-export const rootSchema = addResolversToSchema({
+import { RequireAuthenticationDirective } from "./authentication/RequireAuthenticationDirective";
+
+const rootSchema = addResolversToSchema({
   schema: loadSchemaSync(path.join(__dirname, "./**/schema.graphql"), {
     loaders: [new GraphQLFileLoader()]
   }),
@@ -14,3 +17,9 @@ export const rootSchema = addResolversToSchema({
   ),
   inheritResolversFromInterfaces: true
 });
+
+SchemaDirectiveVisitor.visitSchemaDirectives(rootSchema, {
+  requireAuthentication: RequireAuthenticationDirective
+});
+
+export { rootSchema };

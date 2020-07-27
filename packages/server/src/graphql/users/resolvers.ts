@@ -1,7 +1,4 @@
-import {
-  checkAdminAuthentication,
-  hashPassword
-} from "../../common/authentication";
+import { hashPassword } from "../../common/authentication";
 import { secureId } from "../../common/secureId";
 import { Context } from "../../common/types";
 import { Avatar } from "../../database/entity/Avatar";
@@ -17,8 +14,7 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    createUser: async (rootValue, args, { connection, currentUser }) => {
-      checkAdminAuthentication(currentUser);
+    createUser: async (rootValue, args, { connection }) => {
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 
       const queryRunner = connection.createQueryRunner();
@@ -47,8 +43,7 @@ const resolvers: Resolvers<Context> = {
       }
     },
 
-    updateUser: async (rootValue, args, { connection, currentUser }) => {
-      checkAdminAuthentication(currentUser);
+    updateUser: async (rootValue, args, { connection }) => {
       const { id, ...userAttributes } = args.input;
 
       const user = await connection.manager.findOneOrFail(User, id);
@@ -57,8 +52,7 @@ const resolvers: Resolvers<Context> = {
       );
     },
 
-    deleteUser: async (rootValue, { id }, { connection, currentUser }) => {
-      checkAdminAuthentication(currentUser);
+    deleteUser: async (rootValue, { id }, { connection }) => {
       await connection.manager.delete(User, { id });
 
       return secureId.toExternal(id, "User");

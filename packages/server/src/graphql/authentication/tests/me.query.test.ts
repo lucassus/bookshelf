@@ -34,7 +34,7 @@ describe("me query", () => {
     });
   });
 
-  it("returns error if not authenticated", async () => {
+  it("returns an error if not authenticated", async () => {
     // When
     const res = await createTestClient().query({
       query: gql`
@@ -48,5 +48,9 @@ describe("me query", () => {
 
     // Then
     expect(res.errors).not.toBe(undefined);
+
+    const error = res.errors![0];
+    expect(error.message).toBe("Unauthorized access! Please log in.");
+    expect(error.extensions!.code).toBe("UNAUTHENTICATED");
   });
 });
