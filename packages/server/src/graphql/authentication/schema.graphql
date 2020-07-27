@@ -1,4 +1,4 @@
-directive @auth(role: Role = ADMIN) on FIELD_DEFINITION
+directive @auth(role: Role = USER) on FIELD_DEFINITION
 
 enum Role {
   ADMIN
@@ -17,7 +17,7 @@ type LoginResult {
 }
 
 extend type Query {
-  me: CurrentUser! @auth(role: USER)
+  me: CurrentUser! @auth
 }
 
 extend type Mutation {

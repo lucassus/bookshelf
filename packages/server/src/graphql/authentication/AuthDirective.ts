@@ -10,8 +10,8 @@ import { Context } from "../../common/types";
 export class AuthDirective extends SchemaDirectiveVisitor {
   // eslint-disable-next-line class-methods-use-this
   visitFieldDefinition(field: GraphQLField<any, any>) {
-    const { resolve = defaultFieldResolver } = field;
     const { role } = this.args;
+    const originalResolve = field.resolve || defaultFieldResolver;
 
     // eslint-disable-next-line no-param-reassign
     field.resolve = function (rootValue, args, context: Context, info) {
@@ -27,7 +27,7 @@ export class AuthDirective extends SchemaDirectiveVisitor {
         );
       }
 
-      return resolve.call(this, rootValue, args, context, info);
+      return originalResolve.call(this, rootValue, args, context, info);
     };
   }
 }

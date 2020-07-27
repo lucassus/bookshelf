@@ -27,6 +27,6 @@ extend type Query {
 extend type Mutation {
   updateBookFavourite(id: ExternalID!, favourite: Boolean!): Book!
 
-  borrowBookCopy(id: ExternalID!): BookCopy @auth(role: USER)
-  returnBookCopy(id: ExternalID!): BookCopy! @auth(role: USER)
+  borrowBookCopy(id: ExternalID!): BookCopy @auth
+  returnBookCopy(id: ExternalID!): BookCopy! @auth
 }
