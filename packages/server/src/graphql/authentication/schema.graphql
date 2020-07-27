@@ -1,3 +1,10 @@
+directive @auth(role: Role = ADMIN) on FIELD_DEFINITION
+
+enum Role {
+  ADMIN
+  USER
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -10,7 +17,7 @@ type LoginResult {
 }
 
 extend type Query {
-  me: CurrentUser!
+  me: CurrentUser! @auth(role: USER)
 }
 
 extend type Mutation {

@@ -18,7 +18,7 @@ export function isPasswordValid(password: string, hash: string): boolean {
   return bcrypt.compareSync(password, hash);
 }
 
-export function generateAuthToken(user: User) {
+export function generateAuthToken(user: User): string {
   const payload: AuthTokenPayload = {
     sub: user.id
   };

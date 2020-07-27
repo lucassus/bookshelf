@@ -1,5 +1,4 @@
 import {
-  checkAuthentication,
   generateAuthToken,
   isPasswordValid
 } from "../../common/authentication";
@@ -9,7 +8,7 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    me: (rootValue, arg, { currentUser }) => checkAuthentication(currentUser)
+    me: (rootValue, arg, { currentUser }) => currentUser!
   },
 
   Mutation: {

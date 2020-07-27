@@ -1,4 +1,3 @@
-import { checkAuthentication } from "../../common/authentication";
 import { Context } from "../../common/types";
 import { Book } from "../../database/entity/Book";
 import { User } from "../../database/entity/User";
@@ -28,19 +27,15 @@ const resolvers: Resolvers<Context> = {
         .updateFavourite(id, favourite),
 
     borrowBookCopy: (rootValue, { id }, { connection, currentUser }) => {
-      const user = checkAuthentication(currentUser);
-
       return connection.manager
         .getCustomRepository(BookCopyRepository)
-        .borrow(id, user.id);
+        .borrow(id, currentUser!.id);
     },
 
     returnBookCopy: (rootValue, { id }, { connection, currentUser }) => {
-      const user = checkAuthentication(currentUser);
-
       return connection.manager
         .getCustomRepository(BookCopyRepository)
-        .return(id, user.id);
+        .return(id, currentUser!.id);
     }
   },
 
