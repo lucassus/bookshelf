@@ -1,4 +1,4 @@
-directive @auth(role: Role = USER) on FIELD_DEFINITION
+directive @requireAuthentication(role: Role = USER) on FIELD_DEFINITION
 
 enum Role {
   ADMIN
@@ -20,7 +20,7 @@ extend type Query {
   """
   Returns the currently logged in user.
   """
-  me: CurrentUser! @auth
+  me: CurrentUser! @requireAuthentication
 }
 
 extend type Mutation {

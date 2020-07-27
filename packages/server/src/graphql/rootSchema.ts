@@ -6,7 +6,7 @@ import { addResolversToSchema } from "@graphql-tools/schema";
 import { SchemaDirectiveVisitor } from "apollo-server-express";
 import path from "path";
 
-import { AuthDirective } from "./authentication/AuthDirective";
+import { RequireAuthenticationDirective } from "./authentication/RequireAuthenticationDirective";
 
 const rootSchema = addResolversToSchema({
   schema: loadSchemaSync(path.join(__dirname, "./**/schema.graphql"), {
@@ -19,7 +19,7 @@ const rootSchema = addResolversToSchema({
 });
 
 SchemaDirectiveVisitor.visitSchemaDirectives(rootSchema, {
-  auth: AuthDirective
+  requireAuthentication: RequireAuthenticationDirective
 });
 
 export { rootSchema };

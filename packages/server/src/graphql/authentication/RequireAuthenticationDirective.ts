@@ -7,7 +7,7 @@ import { defaultFieldResolver, GraphQLField } from "graphql";
 
 import { Context } from "../../common/types";
 
-export class AuthDirective extends SchemaDirectiveVisitor {
+export class RequireAuthenticationDirective extends SchemaDirectiveVisitor {
   // eslint-disable-next-line class-methods-use-this
   visitFieldDefinition(field: GraphQLField<any, any>) {
     const { role } = this.args;
