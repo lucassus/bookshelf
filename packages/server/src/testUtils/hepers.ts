@@ -7,7 +7,7 @@ import { getConnection } from "typeorm";
 
 import { Context } from "../common/types";
 import { ASSETS_BASE_URL } from "../config";
-import { buildAuthorsLoader } from "../database/authorsLoader";
+import { buildAuthorsLoader } from "../graphql/authors/authorsLoader";
 import { rootSchema } from "../graphql/rootSchema";
 
 export const createTestClient = (
