@@ -17,9 +17,15 @@ type LoginResult {
 }
 
 extend type Query {
+  """
+  Returns the currently logged in user.
+  """
   me: CurrentUser! @auth
 }
 
 extend type Mutation {
+  """
+  Authenticates a user with the given credentials.
+  """
   login(input: LoginInput!): LoginResult!
 }
