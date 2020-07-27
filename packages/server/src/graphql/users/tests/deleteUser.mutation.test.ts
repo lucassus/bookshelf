@@ -41,7 +41,7 @@ describe("deleteUser mutation", () => {
     ).resolves.toBe(undefined);
   });
 
-  it("returns an error when authenticates as a regular user", async () => {
+  it("returns an error when authenticated as a regular user", async () => {
     // Given
     const currentUser = await createUser({ isAdmin: false });
 
@@ -53,9 +53,13 @@ describe("deleteUser mutation", () => {
 
     // Then
     expect(res.errors).not.toBe(undefined);
+
+    const error = res.errors![0];
+    expect(error.message).toBe("Unauthorized access! Please log in as admin.");
+    expect(error.extensions!.code).toBe("FORBIDDEN");
   });
 
-  it("returns an error when not authenticates", async () => {
+  it("returns an error when not authenticated", async () => {
     // When
     const res = await createTestClient().mutate({
       mutation: DeleteUserMutation,
@@ -64,5 +68,9 @@ describe("deleteUser mutation", () => {
 
     // Then
     expect(res.errors).not.toBe(undefined);
+
+    const error = res.errors![0];
+    expect(error.message).toBe("Unauthorized access! Please log in.");
+    expect(error.extensions!.code).toBe("UNAUTHENTICATED");
   });
 });

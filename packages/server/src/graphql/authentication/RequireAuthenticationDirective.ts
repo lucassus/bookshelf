@@ -1,7 +1,7 @@
 import {
   AuthenticationError,
-  ForbiddenError,
-  SchemaDirectiveVisitor
+  SchemaDirectiveVisitor,
+  ForbiddenError
 } from "apollo-server-express";
 import { defaultFieldResolver, GraphQLField } from "graphql";
 
@@ -17,11 +17,13 @@ export class RequireAuthenticationDirective extends SchemaDirectiveVisitor {
     field.resolve = function (rootValue, args, context: Context, info) {
       const { currentUser } = context;
 
-      if (role === "USER" && !currentUser) {
+      const isAuthenticated = !!currentUser;
+      if (role === "USER" && !isAuthenticated) {
         throw new AuthenticationError("Unauthorized access! Please log in.");
       }
 
-      if (role === "ADMIN" && !(currentUser && currentUser.isAdmin)) {
+      const isAdmin = currentUser && currentUser.isAdmin;
+      if (role === "ADMIN" && !isAdmin) {
         throw new ForbiddenError(
           "Unauthorized access! Please log in as admin."
         );
