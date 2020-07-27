@@ -45,13 +45,30 @@ input UpdateUserInput {
   info: String!
 }
 
+type CreateUserPayload implements MutationResponse {
+  success: Boolean!
+  message: String!
+  user: User
+}
+
+type UpdateUserPayload implements MutationResponse {
+  success: Boolean!
+  message: String!
+  user: User
+}
+
+type DeleteUserPayload implements MutationResponse {
+  success: Boolean!
+  message: String!
+}
+
 extend type Query {
   users: [User!]!
   user(id: ExternalID!): User!
 }
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): User! @requireAuthentication(role: ADMIN)
-  updateUser(input: UpdateUserInput!): User! @requireAuthentication(role: ADMIN)
-  deleteUser(id: ExternalID!): ID! @requireAuthentication(role: ADMIN)
+  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthentication(role: ADMIN)
+  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthentication(role: ADMIN)
+  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthentication(role: ADMIN)
 }

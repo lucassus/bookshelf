@@ -16,6 +16,14 @@ type Image {
   url: String!
 }
 
+interface MutationResponse {
+  "A boolean that indicates whether the mutation was successful."
+  success: Boolean!
+
+  "Human-readable string that describes the result of the mutation"
+  message: String!
+}
+
 extend type Query {
   resource(id: ID!): Resource!
   anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resources' instead")

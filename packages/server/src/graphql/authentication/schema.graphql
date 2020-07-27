@@ -10,9 +10,9 @@ input LoginInput {
   password: String!
 }
 
-type LoginResult {
+type LoginPayload implements MutationResponse {
   success: Boolean!
-  message: String
+  message: String!
   authToken: String
 }
 
@@ -27,5 +27,5 @@ extend type Mutation {
   """
   Authenticates a user with the given credentials.
   """
-  login(input: LoginInput!): LoginResult!
+  login(input: LoginInput!): LoginPayload!
 }
