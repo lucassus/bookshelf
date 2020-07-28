@@ -21,7 +21,7 @@
     "typeorm": "0.2.25"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "1.17.4",
+    "@graphql-codegen/cli": "1.17.6",
     "@graphql-codegen/typescript": "1.17.4",
     "@graphql-codegen/typescript-resolvers": "1.17.4",
     "@types/bcrypt": "3.0.0",
