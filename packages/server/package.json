@@ -29,7 +29,7 @@
     "@types/faker": "4.1.12",
     "@types/jsonwebtoken": "8.5.0",
     "@types/lodash.merge": "4.6.6",
-    "apollo-server-testing": "2.16.0",
+    "apollo-server-testing": "2.16.1",
     "nodemon": "2.0.4",
     "sqlite3": "5.0.0"
   },
