@@ -27,11 +27,13 @@ extend type Query {
 type BorrowBookCopyPayload implements MutationResponse {
   success: Boolean!
   message: String!
+  bookCopy: BookCopy
 }
 
 type ReturnBookCopyPayload implements MutationResponse {
   success: Boolean!
   message: String!
+  bookCopy: BookCopy
 }
 
 extend type Mutation {

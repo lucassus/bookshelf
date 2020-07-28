@@ -12,17 +12,21 @@ test("createUser mutation", async () => {
     mutation: gql`
       mutation($input: CreateUserInput!) {
         createUser(input: $input) {
-          id
-          name
-          info
-          avatar {
-            image {
-              path
+          success
+          message
+          user {
+            id
+            name
+            info
+            avatar {
+              image {
+                path
+              }
+              color
             }
-            color
+            createdAt
+            updatedAt
           }
-          createdAt
-          updatedAt
         }
       }
     `,
@@ -44,15 +48,19 @@ test("createUser mutation", async () => {
   expect(res.errors).toBe(undefined);
   expect(res.data).toMatchObject({
     createUser: {
-      id: expect.any(String),
-      name: "Bob",
-      info: "Fantasy lover",
-      avatar: {
-        image: { path: "/test/image.jpg" },
-        color: "red"
-      },
-      createdAt: expect.any(String),
-      updatedAt: expect.any(String)
+      success: true,
+      message: "User was successfully created.",
+      user: {
+        id: expect.any(String),
+        name: "Bob",
+        info: "Fantasy lover",
+        avatar: {
+          image: { path: "/test/image.jpg" },
+          color: "red"
+        },
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String)
+      }
     }
   });
 });
