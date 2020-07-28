@@ -9,7 +9,7 @@
     "@graphql-tools/load-files": "6.0.15",
     "@graphql-tools/merge": "6.0.15",
     "@graphql-tools/schema": "6.0.15",
-    "apollo-server-express": "2.16.0",
+    "apollo-server-express": "2.16.1",
     "bcrypt": "5.0.0",
     "dataloader": "2.0.0",
     "express": "4.17.1",
@@ -29,7 +29,7 @@
     "@types/faker": "4.1.12",
     "@types/jsonwebtoken": "8.5.0",
     "@types/lodash.merge": "4.6.6",
-    "apollo-server-testing": "2.16.0",
+    "apollo-server-testing": "2.16.1",
     "nodemon": "2.0.4",
     "sqlite3": "5.0.0"
   },

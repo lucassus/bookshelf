@@ -1,5 +1,4 @@
 import { hashPassword } from "../../common/authentication";
-import { secureId } from "../../common/secureId";
 import { Context } from "../../common/types";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
