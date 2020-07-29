@@ -19,8 +19,8 @@ describe("login mutation", () => {
     mutation($input: LoginInput!) {
       login(input: $input) {
         success
-        authToken
         message
+        authToken
       }
     }
   `;
@@ -64,8 +64,8 @@ describe("login mutation", () => {
     expect(res.data).toMatchObject({
       login: {
         success: false,
-        authToken: null,
-        message: "Invalid email or password!"
+        message: "Invalid email or password!",
+        authToken: null
       }
     });
   });
@@ -87,8 +87,8 @@ describe("login mutation", () => {
     expect(res.data).toMatchObject({
       login: {
         success: false,
-        authToken: null,
-        message: "Invalid email or password!"
+        message: "Invalid email or password!",
+        authToken: null
       }
     });
   });

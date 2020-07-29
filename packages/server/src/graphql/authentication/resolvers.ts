@@ -19,20 +19,12 @@ const resolvers: Resolvers<Context> = {
         .getCustomRepository(UserRepository)
         .findByEmailAndPassword(email, password);
 
-      if (user) {
-        const authToken = generateAuthToken(user);
-
-        return {
-          success: true,
-          message: "Login success!",
-          authToken
-        };
-      }
+      const authToken = user ? generateAuthToken(user) : null;
 
       return {
-        success: false,
-        message: "Invalid email or password!",
-        token: null
+        success: !!authToken,
+        message: authToken ? "Login success!" : "Invalid email or password!",
+        authToken
       };
     }
   }
