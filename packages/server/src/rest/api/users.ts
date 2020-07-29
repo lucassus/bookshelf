@@ -1,0 +1,16 @@
+import express from "express";
+import { getConnection } from "typeorm";
+
+import { User } from "../../database/entity/User";
+
+const router = express.Router();
+
+// TODO: This route should be protected
+router.get("/", async (req, res) => {
+  const connection = getConnection();
+  const users = await connection.getRepository(User).find();
+
+  return res.json(users);
+});
+
+export { router as users };
