@@ -1,14 +1,21 @@
+import { generateAuthToken } from "../../common/authentication";
 import { createUser } from "../../testUtils/factories";
 import { createRestTestClient } from "../../testUtils/hepers";
 
 test("GET /api/books", async () => {
   // Given
-  await createUser({ name: "Alice", email: "alice@email.com" });
+  const currentUser = await createUser({
+    name: "Alice",
+    email: "alice@email.com"
+  });
   await createUser({ name: "John", email: "john@email.com" });
   await createUser({ name: "Anna", email: "anna@email.com" });
 
   // When
-  const response = await createRestTestClient().get("/api/users");
+  const authToken = generateAuthToken(currentUser);
+  const response = await createRestTestClient()
+    .get("/api/users")
+    .set("Authorization", `Bearer ${authToken}`);
 
   // Then
   expect(response.status).toBe(200);
