@@ -35,7 +35,6 @@ export class User {
   @Column({ name: "avatar_id" })
   avatarId: number;
 
-  // TODO: This will break the authentication
   @Column({ name: "password_hash", select: false })
   passwordHash?: string;
 
