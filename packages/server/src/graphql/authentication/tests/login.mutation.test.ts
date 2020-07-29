@@ -6,10 +6,13 @@ import { createTestClient } from "../../../testUtils/hepers";
 
 describe("login mutation", () => {
   let user: User;
-  const password = "secret password";
+  const validPassword = "secret password";
 
   beforeEach(async () => {
-    user = await createUser({ email: "user@exmaple.com", password });
+    user = await createUser({
+      email: "user@exmaple.com",
+      password: validPassword
+    });
   });
 
   const LoginMutation = gql`
@@ -29,7 +32,7 @@ describe("login mutation", () => {
       variables: {
         input: {
           email: user.email,
-          password
+          password: validPassword
         }
       }
     });
@@ -51,7 +54,7 @@ describe("login mutation", () => {
       variables: {
         input: {
           email: "invalid@email.com",
-          password
+          password: validPassword
         }
       }
     });
