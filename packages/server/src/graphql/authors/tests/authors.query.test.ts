@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
 import { secureId } from "../../../common/secureId";
+import { createTestClient } from "../../../testUtils/createTestClient";
 import { createAuthor, createBook } from "../../../testUtils/factories";
-import { createTestClient } from "../../../testUtils/hepers";
 
 describe("authors query", () => {
   it("fetches an author", async () => {

@@ -3,12 +3,12 @@ import { getManager } from "typeorm";
 
 import { secureId } from "../../../common/secureId";
 import { BookCopy } from "../../../database/entity/BookCopy";
+import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createBook,
   createBookCopy,
   createUser
 } from "../../../testUtils/factories";
-import { createTestClient } from "../../../testUtils/hepers";
 
 test("borrowBookCopy mutation", async () => {
   // Given

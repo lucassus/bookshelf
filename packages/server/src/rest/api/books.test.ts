@@ -1,5 +1,5 @@
+import { createRestTestClient } from "../../testUtils/createRestTestClient";
 import { createBook } from "../../testUtils/factories";
-import { createRestTestClient } from "../../testUtils/hepers";
 
 test("GET /api/books", async () => {
   // Given

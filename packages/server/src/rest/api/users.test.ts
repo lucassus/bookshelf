@@ -1,5 +1,5 @@
+import { createRestTestClient } from "../../testUtils/createRestTestClient";
 import { createUser } from "../../testUtils/factories";
-import { createRestTestClient } from "../../testUtils/hepers";
 
 describe("GET /api/books", () => {
   it("responds with users when authenticated", async () => {
