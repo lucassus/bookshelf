@@ -9,10 +9,10 @@ import { createServer } from "./server";
 
 const startServer = async () => {
   const connection = await createConnection();
-  const server = createServer(connection);
+  const apolloServer = createServer(connection);
 
   const app = express();
-  server.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app });
 
   const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
@@ -23,7 +23,7 @@ const startServer = async () => {
 
   app.listen({ port: PORT });
 
-  return server;
+  return apolloServer;
 };
 
 startServer()
