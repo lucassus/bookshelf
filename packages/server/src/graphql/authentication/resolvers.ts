@@ -1,9 +1,5 @@
-import {
-  generateAuthToken,
-  isPasswordValid
-} from "../../common/authentication";
+import { generateAuthToken } from "../../common/authentication";
 import { Context } from "../../common/types";
-import { User } from "../../database/entity/User";
 import { UserRepository } from "../../database/repositories/UserRepository";
 import { Resolvers } from "../resolvers-types.generated";
 
