@@ -4,6 +4,7 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 
 import { PORT } from "./config";
+import { routes } from "./rest";
 import { createServer } from "./server";
 
 const startServer = async () => {
@@ -15,6 +16,7 @@ const startServer = async () => {
 
   const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
+  app.use("/", routes);
   app.get("/*", (req, res) => {
     res.sendFile(path.join(distDir, "index.html"));
   });
