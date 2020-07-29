@@ -5,7 +5,7 @@ import { User } from "../entity/User";
 
 @EntityRepository(User)
 export class UserRepository extends AbstractRepository<User> {
-  async authenticate(
+  async findByEmailAndPassword(
     email: string,
     password: string
   ): Promise<undefined | User> {
