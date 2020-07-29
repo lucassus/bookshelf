@@ -7,19 +7,18 @@ export const authenticationMiddleware = async (
   req: any,
   res: any,
   next: any
-) => {
+): Promise<void> => {
   try {
     const userId = authenticateRequest(req);
 
-    const connection = getConnection();
     const currentUser = userId
-      ? await connection.manager.findOneOrFail(User, { id: userId })
+      ? await getConnection().manager.findOneOrFail(User, { id: userId })
       : undefined;
 
     req.user = currentUser;
 
     next();
   } catch {
-    return res.sendStatus(401);
+    res.sendStatus(401);
   }
 };
