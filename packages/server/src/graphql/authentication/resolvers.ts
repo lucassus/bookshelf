@@ -18,7 +18,12 @@ const resolvers: Resolvers<Context> = {
       { connection }
     ) => {
       // TODO: Add some validations
-      const user = await connection.manager.findOne(User, { email });
+      const user = await connection
+        .getRepository(User)
+        .createQueryBuilder("user")
+        .where("user.email = :email", { email })
+        .addSelect("user.passwordHash")
+        .getOne();
 
       if (user && isPasswordValid(password, user.passwordHash)) {
         const authToken = generateAuthToken(user);
