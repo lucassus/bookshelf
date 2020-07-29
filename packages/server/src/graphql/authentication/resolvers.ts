@@ -25,7 +25,7 @@ const resolvers: Resolvers<Context> = {
         .addSelect("user.passwordHash")
         .getOne();
 
-      if (user && isPasswordValid(password, user.passwordHash)) {
+      if (user && isPasswordValid(password, user.passwordHash!)) {
         const authToken = generateAuthToken(user);
 
         return {
