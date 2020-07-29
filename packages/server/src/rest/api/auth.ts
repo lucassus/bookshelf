@@ -1,15 +1,19 @@
 import express from "express";
 
+import { User } from "../../database/entity/User";
+import { serializeUser } from "../serializers";
+
 const router = express.Router();
 
 router.get("/me", async (req, res) => {
-  const { user } = req as any;
+  const { user } = req as { user?: User };
 
   if (!user) {
     return res.sendStatus(401);
   }
 
-  return res.json(user);
+  const userJson = await serializeUser(user);
+  return res.json(userJson);
 });
 
 export { router as auth };
