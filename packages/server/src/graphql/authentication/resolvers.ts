@@ -4,6 +4,7 @@ import {
 } from "../../common/authentication";
 import { Context } from "../../common/types";
 import { User } from "../../database/entity/User";
+import { UserRepository } from "../../database/repositories/UserRepository";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
@@ -19,13 +20,10 @@ const resolvers: Resolvers<Context> = {
     ) => {
       // TODO: Add some validations
       const user = await connection
-        .getRepository(User)
-        .createQueryBuilder("user")
-        .where("user.email = :email", { email })
-        .addSelect("user.passwordHash")
-        .getOne();
+        .getCustomRepository(UserRepository)
+        .authenticate(email, password);
 
-      if (user && isPasswordValid(password, user.passwordHash!)) {
+      if (user) {
         const authToken = generateAuthToken(user);
 
         return {
