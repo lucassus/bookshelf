@@ -23,18 +23,22 @@ test("borrowBookCopy mutation", async () => {
     mutation: gql`
       mutation($id: ExternalID!) {
         borrowBookCopy(id: $id) {
-          id
-          book {
+          success
+          message
+          bookCopy {
             id
-            title
-          }
-          owner {
-            id
-            name
-          }
-          borrower {
-            id
-            name
+            book {
+              id
+              title
+            }
+            owner {
+              id
+              name
+            }
+            borrower {
+              id
+              name
+            }
           }
         }
       }
@@ -50,18 +54,22 @@ test("borrowBookCopy mutation", async () => {
   expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
     borrowBookCopy: {
-      id: secureId.toExternal(bookCopy.id, "BookCopy"),
-      book: {
-        id: expect.any(String),
-        title: book.title
-      },
-      owner: {
-        id: expect.any(String),
-        name: owner.name
-      },
-      borrower: {
-        id: expect.any(String),
-        name: currentUser.name
+      success: true,
+      message: "Book was successfully borrowed.",
+      bookCopy: {
+        id: secureId.toExternal(bookCopy.id, "BookCopy"),
+        book: {
+          id: expect.any(String),
+          title: book.title
+        },
+        owner: {
+          id: expect.any(String),
+          name: owner.name
+        },
+        borrower: {
+          id: expect.any(String),
+          name: currentUser.name
+        }
       }
     }
   });

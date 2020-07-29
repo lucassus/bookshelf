@@ -26,16 +26,28 @@ const resolvers: Resolvers<Context> = {
         .getCustomRepository(BookRepository)
         .updateFavourite(id, favourite),
 
-    borrowBookCopy: (rootValue, { id }, { connection, currentUser }) => {
-      return connection.manager
+    borrowBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
+      const bookCopy = await connection.manager
         .getCustomRepository(BookCopyRepository)
         .borrow(id, currentUser!.id);
+
+      return {
+        success: true,
+        message: "Book was successfully borrowed.",
+        bookCopy
+      };
     },
 
-    returnBookCopy: (rootValue, { id }, { connection, currentUser }) => {
-      return connection.manager
+    returnBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
+      const bookCopy = await connection.manager
         .getCustomRepository(BookCopyRepository)
         .return(id, currentUser!.id);
+
+      return {
+        success: true,
+        message: "Book was successfully returned.",
+        bookCopy
+      };
     }
   },
 

@@ -17,11 +17,15 @@ test("updateUser mutation", async () => {
     mutation: gql`
       mutation($input: UpdateUserInput!) {
         updateUser(input: $input) {
-          id
-          name
-          info
-          createdAt
-          updatedAt
+          success
+          message
+          user {
+            id
+            name
+            info
+            createdAt
+            updatedAt
+          }
         }
       }
     `,
@@ -39,11 +43,15 @@ test("updateUser mutation", async () => {
   expect(res.errors).toBe(undefined);
   expect(res.data).toMatchObject({
     updateUser: {
-      id: expect.any(String),
-      name: "Bob",
-      info: "Fantasy lover",
-      createdAt: expect.any(String),
-      updatedAt: expect.any(String)
+      success: true,
+      message: "User was successfully updated.",
+      user: {
+        id,
+        name: "Bob",
+        info: "Fantasy lover",
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String)
+      }
     }
   });
 

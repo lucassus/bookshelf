@@ -25,14 +25,15 @@ const resolvers: Resolvers<Context> = {
 
         return {
           success: true,
+          message: "Login success!",
           authToken
         };
       }
 
       return {
         success: false,
-        token: null,
-        message: "Invalid email or password!"
+        message: "Invalid email or password!",
+        token: null
       };
     }
   }

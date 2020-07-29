@@ -1,5 +1,4 @@
 import { hashPassword } from "../../common/authentication";
-import { secureId } from "../../common/secureId";
 import { Context } from "../../common/types";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
@@ -34,7 +33,11 @@ const resolvers: Resolvers<Context> = {
         });
         await queryRunner.manager.save(user);
 
-        return user;
+        return {
+          success: true,
+          message: "User was successfully created.",
+          user
+        };
       } catch (error) {
         await queryRunner.rollbackTransaction();
         throw error;
@@ -47,15 +50,24 @@ const resolvers: Resolvers<Context> = {
       const { id, ...userAttributes } = args.input;
 
       const user = await connection.manager.findOneOrFail(User, id);
-      return connection.manager.save(
+      await connection.manager.save(
         connection.manager.merge(User, user, userAttributes)
       );
+
+      return {
+        success: true,
+        message: "User was successfully updated.",
+        user
+      };
     },
 
     deleteUser: async (rootValue, { id }, { connection }) => {
       await connection.manager.delete(User, { id });
 
-      return secureId.toExternal(id, "User");
+      return {
+        success: true,
+        message: "User was successfully deleted."
+      };
     }
   },
 

@@ -6,7 +6,14 @@ import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "../config";
 import { User } from "../database/entity/User";
 
 type AuthTokenPayload = {
+  // Identifies the subject of the JWT.
   sub: number;
+
+  // Identifies the time at which the JWT was issued.
+  iat: number;
+
+  // Identifies the expiration time on and after which the JWT must not be accepted for processing.
+  exp: number;
 };
 
 export function hashPassword(password: string): string {
@@ -14,36 +21,28 @@ export function hashPassword(password: string): string {
   return bcrypt.hashSync(password, salt);
 }
 
-export function isPasswordValid(password: string, hash: string): boolean {
-  return bcrypt.compareSync(password, hash);
-}
+export const isPasswordValid = (password: string, hash: string): boolean =>
+  bcrypt.compareSync(password, hash);
 
-export function generateAuthToken(user: User): string {
-  const payload: AuthTokenPayload = {
-    sub: user.id
-  };
-
-  return jwt.sign(payload, AUTH_TOKEN_SECRET_KEY, {
+export const generateAuthToken = (user: User): string =>
+  jwt.sign({ sub: user.id }, AUTH_TOKEN_SECRET_KEY, {
     expiresIn: AUTH_TOKEN_EXPIRES_IN
   });
-}
+
+const AUTHORIZATION_HEADER_PREFIX = "Bearer";
 
 export function authenticateRequest(req: Request): null | number {
-  const { authorization } = req.headers;
+  const { authorization: authorizationHeader } = req.headers;
 
-  if (!authorization) {
+  if (!authorizationHeader) {
     return null;
   }
 
-  const prefix = "Bearer ";
-  if (!authorization.startsWith(prefix)) {
+  const [prefix, authToken] = authorizationHeader.split(" ");
+
+  if (prefix !== AUTHORIZATION_HEADER_PREFIX) {
     return null;
   }
-
-  const authToken = authorization.substring(
-    prefix.length,
-    authorization.length
-  );
 
   const payload = jwt.verify(
     authToken,
@@ -51,22 +50,4 @@ export function authenticateRequest(req: Request): null | number {
   ) as AuthTokenPayload;
 
   return payload.sub;
-}
-
-export function checkAuthentication(currentUser: User | undefined): User {
-  if (!currentUser) {
-    throw new Error("Unauthorized access! Please log in.");
-  }
-
-  return currentUser;
-}
-
-export function checkAdminAuthentication(currentUser: User | undefined): User {
-  const user = checkAuthentication(currentUser);
-
-  if (!user.isAdmin) {
-    throw new Error("Unauthorized access! Please log in as admin.");
-  }
-
-  return user;
 }

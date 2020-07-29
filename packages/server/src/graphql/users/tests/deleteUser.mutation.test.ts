@@ -15,7 +15,10 @@ describe("deleteUser mutation", () => {
 
   const DeleteUserMutation = gql`
     mutation($id: ExternalID!) {
-      deleteUser(id: $id)
+      deleteUser(id: $id) {
+        success
+        message
+      }
     }
   `;
 
@@ -33,7 +36,10 @@ describe("deleteUser mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).not.toBe(null);
     expect(res.data).toEqual({
-      deleteUser: secureId.toExternal(user.id, "User")
+      deleteUser: {
+        success: true,
+        message: "User was successfully deleted."
+      }
     });
 
     await expect(

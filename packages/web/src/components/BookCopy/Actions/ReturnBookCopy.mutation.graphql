@@ -1,5 +1,9 @@
 mutation ReturnBookCopy($id: ExternalID!) {
   returnBookCopy(id: $id) {
-    ...BookCopy
+    success
+    message
+    bookCopy {
+      ...BookCopy
+    }
   }
 }
