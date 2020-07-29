@@ -14,8 +14,10 @@ export class UserRepository extends AbstractRepository<User> {
       .addSelect("user.passwordHash")
       .getOne();
 
-    return user && isPasswordValid(password, user.passwordHash!)
-      ? user
-      : undefined;
+    if (user && isPasswordValid(password, user.passwordHash!)) {
+      return user;
+    }
+
+    return undefined;
   }
 }
