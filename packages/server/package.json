@@ -26,9 +26,11 @@
     "@types/faker": "4.1.12",
     "@types/jsonwebtoken": "8.5.0",
     "@types/lodash.merge": "4.6.6",
+    "@types/supertest": "2.0.10",
     "apollo-server-testing": "2.16.1",
     "nodemon": "2.0.4",
-    "sqlite3": "5.0.0"
+    "sqlite3": "5.0.0",
+    "supertest": "4.0.2"
   },
   "scripts": {
     "clean:dist": "rimraf dist",
