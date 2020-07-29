@@ -1,4 +1,3 @@
-import { generateAuthToken } from "../../common/authentication";
 import { createUser } from "../../testUtils/factories";
 import { createRestTestClient } from "../../testUtils/hepers";
 
@@ -13,10 +12,9 @@ describe("GET /api/books", () => {
     await createUser({ name: "Anna", email: "anna@email.com" });
 
     // When
-    const authToken = generateAuthToken(currentUser);
-    const response = await createRestTestClient()
-      .get("/api/users")
-      .set("Authorization", `Bearer ${authToken}`);
+    const response = await createRestTestClient({ currentUser }).get(
+      "/api/users"
+    );
 
     // Then
     expect(response.status).toBe(200);
@@ -40,10 +38,7 @@ describe("GET /api/books", () => {
   });
 
   it("responds with error when not authenticated", async () => {
-    // When
     const response = await createRestTestClient().get("/api/users");
-
-    // Then
     expect(response.status).toBe(401);
   });
 });

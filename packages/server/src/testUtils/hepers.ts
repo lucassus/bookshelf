@@ -9,6 +9,7 @@ import { getConnection } from "typeorm";
 
 import { Context } from "../common/types";
 import { ASSETS_BASE_URL } from "../config";
+import { User } from "../database/entity/User";
 import { buildAuthorsLoader } from "../graphql/authors/authorsLoader";
 import { rootSchema } from "../graphql/rootSchema";
 import { routes } from "../rest";
@@ -29,8 +30,18 @@ export function createTestClient(
   return createApolloTestClient(server);
 }
 
-export function createRestTestClient() {
+export function createRestTestClient({
+  currentUser
+}: { currentUser?: User } = {}) {
   const app = express();
+
+  if (currentUser) {
+    app.use((req, res, next) => {
+      (req as any).user = currentUser;
+      next();
+    });
+  }
+
   app.use("/", routes);
 
   return request(app);

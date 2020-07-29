@@ -5,6 +5,7 @@ import { createConnection } from "typeorm";
 
 import { PORT } from "./config";
 import { routes } from "./rest";
+import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 import { createServer } from "./server";
 
 const startServer = async () => {
@@ -16,6 +17,8 @@ const startServer = async () => {
 
   const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
+
+  app.use(authenticationMiddleware);
   app.use("/", routes);
   app.get("/*", (req, res) => {
     res.sendFile(path.join(distDir, "index.html"));
@@ -29,7 +32,7 @@ const startServer = async () => {
 startServer()
   .then((server) => {
     console.log(
-      `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+      `🚀 GraphQL server ready at http://localhost:${PORT}${server.graphqlPath}`
     );
   })
   .catch((error) => {
