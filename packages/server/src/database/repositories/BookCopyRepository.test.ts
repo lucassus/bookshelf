@@ -32,7 +32,10 @@ describe("BookCopyRepository", () => {
         bookCopy.id
       );
 
-      await expect(updatedBookCopy.borrower).resolves.toEqual(borrower);
+      await expect(updatedBookCopy.borrower).resolves.toMatchObject({
+        id: borrower.id,
+        name: borrower.name
+      });
     });
 
     it("raises an error when borrowing own book", async () => {
