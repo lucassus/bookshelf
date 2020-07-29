@@ -1,7 +1,6 @@
 import { getCustomRepository, getManager } from "typeorm";
 
-import { createBookCopy } from "../../testUtils/factories/createBookCopy";
-import { createUser } from "../../testUtils/factories/createUser";
+import { createBookCopy, createUser } from "../../testUtils/factories";
 import { BookCopy } from "../entity/BookCopy";
 import { BookCopyRepository } from "./BookCopyRepository";
 
@@ -33,7 +32,10 @@ describe("BookCopyRepository", () => {
         bookCopy.id
       );
 
-      await expect(updatedBookCopy.borrower).resolves.toEqual(borrower);
+      await expect(updatedBookCopy.borrower).resolves.toMatchObject({
+        id: borrower.id,
+        name: borrower.name
+      });
     });
 
     it("raises an error when borrowing own book", async () => {

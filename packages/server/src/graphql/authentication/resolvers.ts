@@ -1,9 +1,6 @@
-import {
-  generateAuthToken,
-  isPasswordValid
-} from "../../common/authentication";
+import { generateAuthToken } from "../../common/authentication";
 import { Context } from "../../common/types";
-import { User } from "../../database/entity/User";
+import { UserRepository } from "../../database/repositories/UserRepository";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
@@ -18,22 +15,16 @@ const resolvers: Resolvers<Context> = {
       { connection }
     ) => {
       // TODO: Add some validations
-      const user = await connection.manager.findOne(User, { email });
+      const user = await connection
+        .getCustomRepository(UserRepository)
+        .findByEmailAndPassword(email, password);
 
-      if (user && isPasswordValid(password, user.passwordHash)) {
-        const authToken = generateAuthToken(user);
-
-        return {
-          success: true,
-          message: "Login success!",
-          authToken
-        };
-      }
+      const authToken = user ? generateAuthToken(user) : null;
 
       return {
-        success: false,
-        message: "Invalid email or password!",
-        token: null
+        success: !!authToken,
+        message: authToken ? "Login success!" : "Invalid email or password!",
+        authToken
       };
     }
   }

@@ -35,8 +35,8 @@ export class User {
   @Column({ name: "avatar_id" })
   avatarId: number;
 
-  @Column({ name: "password_hash" })
-  passwordHash: string;
+  @Column({ name: "password_hash", select: false })
+  passwordHash?: string;
 
   @Column({ name: "is_admin", nullable: false, default: false })
   isAdmin: boolean;
