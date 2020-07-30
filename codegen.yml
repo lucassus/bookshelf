@@ -1,13 +1,13 @@
 overwrite: true
 
 schema:
-  ../server/src/graphql/**/*.graphql:
+  packages/server/src/graphql/**/*.graphql:
     noRequire: true
 
-documents: src/**/*.graphql
+documents: packages/web/src/**/*.graphql
 
 generates:
-  src/types.generated.ts:
+  packages/web/src/types.generated.ts:
     plugins:
       - typescript
 
@@ -25,7 +25,3 @@ generates:
       withHooks: true
       withComponent: false
       withHOC: false
-
-  ./graphql.schema.json:
-    plugins:
-      - introspection

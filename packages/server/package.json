@@ -34,7 +34,6 @@
     "clean:dist": "rimraf dist",
     "clean:codegen": "rimraf --glob src/**/*.generated.ts",
     "clean": "yarn clean:codegen && yarn clean:dist && yarn rimraf coverage",
-    "codegen": "yarn graphql-codegen --config codegen.yml",
     "copy-graphql": "find ./src/graphql -type f -name '*.graphql' -exec cp {} ./dist/{} \\;",
     "compile": "yarn codegen && tsc -p tsconfig.build.json && yarn copy-graphql",
     "build": "yarn clean && yarn compile",

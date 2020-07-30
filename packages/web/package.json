@@ -48,9 +48,7 @@
   },
   "scripts": {
     "clean:dist": "rimraf dist && rimraf coverage",
-    "clean:codegen": "rimraf graphql.schema.json src/**/*.generated.{ts,tsx}",
     "clean": "yarn clean:codegen && yarn clean:dist",
-    "codegen": "yarn graphql-codegen --config codegen.yml",
     "compile": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
     "build": "yarn codegen && yarn compile",
     "dev-server": "webpack-dev-server --mode development",
