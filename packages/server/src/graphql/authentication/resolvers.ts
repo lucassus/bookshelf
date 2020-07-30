@@ -5,7 +5,7 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    me: (rootValue, arg, { currentUser }) => currentUser!
+    currentUser: (rootValue, arg, { currentUser }) => currentUser!
   },
 
   Mutation: {

@@ -6,7 +6,7 @@ import { createUser } from "../../../testUtils/factories";
 describe("me query", () => {
   const GetCurrentUser = gql`
     query {
-      me {
+      currentUser {
         id
         name
         email
