@@ -48,6 +48,7 @@
     "lint": "lerna run lint",
     "test": "jest",
     "start": "yarn workspace @bookshelf/server start",
+    "predev": "yarn workspace @bookshelf/secure-id build",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
   }
 }
