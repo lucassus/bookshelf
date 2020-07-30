@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { Request } from "express";
+import express from "express";
 import jwt from "jsonwebtoken";
 
 import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "../config";
@@ -31,7 +31,7 @@ export const generateAuthToken = (user: User): string =>
 
 const AUTHORIZATION_HEADER_PREFIX = "Bearer";
 
-export function authenticateRequest(req: Request): null | number {
+export function authenticateRequest(req: express.Request): null | number {
   const { authorization: authorizationHeader } = req.headers;
 
   if (!authorizationHeader) {
