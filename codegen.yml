@@ -1,5 +1,9 @@
 overwrite: true
 
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+
 schema:
   packages/server/src/graphql/**/*.graphql:
     noRequire: true
