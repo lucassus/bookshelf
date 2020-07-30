@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
 import { secureId } from "../../../common/secureId";
+import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBookCopy, createUser } from "../../../testUtils/factories";
-import { createTestClient } from "../../../testUtils/hepers";
 
 test("user query", async () => {
   // Given

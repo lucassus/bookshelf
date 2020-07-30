@@ -10,9 +10,9 @@ import { ASSETS_BASE_URL } from "../config";
 import { buildAuthorsLoader } from "../graphql/authors/authorsLoader";
 import { rootSchema } from "../graphql/rootSchema";
 
-export const createTestClient = (
+export function createTestClient(
   context: Partial<Context> = {}
-): ApolloServerTestClient => {
+): ApolloServerTestClient {
   const server = new ApolloServer({
     schema: rootSchema,
     context: {
@@ -24,4 +24,4 @@ export const createTestClient = (
   });
 
   return createApolloTestClient(server);
-};
+}

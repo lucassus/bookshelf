@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
+import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
-import { createTestClient } from "../../../testUtils/hepers";
 
 test("createUser mutation", async () => {
   // Given

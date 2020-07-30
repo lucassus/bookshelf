@@ -3,8 +3,8 @@ import { getManager } from "typeorm";
 
 import { secureId } from "../../../common/secureId";
 import { User } from "../../../database/entity/User";
+import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
-import { createTestClient } from "../../../testUtils/hepers";
 
 test("updateUser mutation", async () => {
   // Given
