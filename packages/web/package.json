@@ -47,7 +47,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean:": "rimraf dist && rimraf coverage",
+    "clean": "rimraf dist && rimraf coverage",
     "compile": "yarn webpack --config webpack.config.js --mode production",
     "build": "yarn clean && yarn compile",
     "dev-server": "webpack-dev-server --mode development",

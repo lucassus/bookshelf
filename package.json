@@ -46,11 +46,11 @@
   "scripts": {
     "bootstrap": "yarn lerna bootstrap",
     "postinstall": "yarn bootstrap",
-    "clean": "lerna run clean",
     "clean:codegen": "rimraf graphql.schema.json packages/**/*.generated.{ts,tsx}",
+    "clean": "yarn clean:codegen && lerna run clean",
     "nuke": "rm -rf node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done",
-    "build": "lerna run build",
     "codegen": "yarn graphql-codegen --config codegen.yml",
+    "build": "yarn codegen && lerna run build",
     "typecheck": "lerna run typecheck",
     "lint": "lerna run lint",
     "test": "jest",
