@@ -14,12 +14,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.10.5",
-    "@graphql-codegen/cli": "1.17.6",
-    "@graphql-codegen/introspection": "1.17.6",
-    "@graphql-codegen/near-operation-file-preset": "1.17.6",
-    "@graphql-codegen/typescript": "1.17.6",
-    "@graphql-codegen/typescript-operations": "1.17.6",
-    "@graphql-codegen/typescript-react-apollo": "1.17.6",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-info": "5.3.19",
     "@storybook/addon-knobs": "5.3.19",
