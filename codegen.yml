@@ -4,9 +4,7 @@ hooks:
   afterAllFileWrite:
     - prettier --write
 
-schema:
-  packages/server/src/graphql/**/*.graphql:
-    noRequire: true
+schema: packages/server/src/graphql/**/*.graphql
 
 documents: packages/web/src/**/*.graphql
 
@@ -31,7 +29,7 @@ generates:
     plugins:
       - typescript
 
-  packages/web/src/:
+  packages/web/src:
     plugins:
       - typescript-operations
       - typescript-react-apollo
