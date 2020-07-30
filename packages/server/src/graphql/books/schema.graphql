@@ -24,6 +24,12 @@ extend type Query {
   randomBook: Book
 }
 
+type UpdateBookFavouritePayload implements MutationResponse {
+  success: Boolean!
+  message: String!
+  book: Book!
+}
+
 type BorrowBookCopyPayload implements MutationResponse {
   success: Boolean!
   message: String!
@@ -37,8 +43,8 @@ type ReturnBookCopyPayload implements MutationResponse {
 }
 
 extend type Mutation {
-  updateBookFavourite(id: ExternalID!, favourite: Boolean!): Book!
+  updateBookFavourite(id: ExternalID!, favourite: Boolean!): UpdateBookFavouritePayload!
 
-  borrowBookCopy(id: ExternalID!): BorrowBookCopyPayload @requireAuthentication
+  borrowBookCopy(id: ExternalID!): BorrowBookCopyPayload! @requireAuthentication
   returnBookCopy(id: ExternalID!): ReturnBookCopyPayload! @requireAuthentication
 }
