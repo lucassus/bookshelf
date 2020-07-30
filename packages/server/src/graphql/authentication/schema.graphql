@@ -20,7 +20,7 @@ extend type Query {
   """
   Returns the currently logged in user.
   """
-  me: CurrentUser! @requireAuthentication
+  currentUser: CurrentUser! @requireAuthentication
 }
 
 extend type Mutation {
