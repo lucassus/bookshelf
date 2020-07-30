@@ -47,10 +47,9 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean:dist": "rimraf dist && rimraf coverage",
-    "clean": "yarn clean:codegen && yarn clean:dist",
-    "compile": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
-    "build": "yarn codegen && yarn compile",
+    "clean:": "rimraf dist && rimraf coverage",
+    "compile": "yarn webpack --config webpack.config.js --mode production",
+    "build": "yarn clean && yarn compile",
     "dev-server": "webpack-dev-server --mode development",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'yarn dev-server'",
     "test": "jest",
