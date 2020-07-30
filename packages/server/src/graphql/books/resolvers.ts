@@ -21,10 +21,23 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    updateBookFavourite: async (rootValue, { id, favourite }, { connection }) =>
-      connection.manager
+    updateBookFavourite: async (
+      rootValue,
+      { id, favourite },
+      { connection }
+    ) => {
+      const book = await connection.manager
         .getCustomRepository(BookRepository)
-        .updateFavourite(id, favourite),
+        .updateFavourite(id, favourite);
+
+      return {
+        success: true,
+        message: book.favourite
+          ? "Book was added to favourites."
+          : "Book was removed from favourites.",
+        book
+      };
+    },
 
     borrowBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
       const bookCopy = await connection.manager
