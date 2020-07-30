@@ -1348,14 +1348,6 @@
     "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
 
-"@graphql-codegen/introspection@1.17.6":
-  version "1.17.6"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/introspection/-/introspection-1.17.6.tgz#1c012df7dd206b096f656fd5d39414f4596dbb49"
-  integrity sha512-XtkvjITzcOapL2fEFY7z6jajIlGkkf78ligCCw8C9by0kKFzzUW276GTFt7e6mrpQvZTz7YR51sHoiAa8sDgZQ==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "1.17.6"
-    tslib "~2.0.0"
-
 "@graphql-codegen/near-operation-file-preset@1.17.6":
   version "1.17.6"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.17.6.tgz#6dab8c5ffa943ba2e8207ad917f1fd2c738e34eb"

@@ -1,3 +1,2 @@
 *.generated.ts
 *.generated.tsx
-graphql.schema.json

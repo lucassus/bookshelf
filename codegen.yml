@@ -1,0 +1,43 @@
+overwrite: true
+
+schema:
+  packages/server/src/graphql/**/*.graphql:
+    noRequire: true
+
+documents: packages/web/src/**/*.graphql
+
+generates:
+  packages/server/src/graphql/resolvers-types.generated.ts:
+    config:
+      useIndexSignature: true
+      mappers:
+        Author: ../database/entity/Author#Author as AuthorEntity
+        Avatar: ../database/entity/Avatar#Avatar as AvatarEntity
+        Book: ../database/entity/Book#Book as BookEntity
+        BookCopy: ../database/entity/BookCopy#BookCopy as BookCopyEntity
+        User: ../database/entity/User#User as UserEntity
+        CurrentUser: ../database/entity/User#User as UserEntity
+      scalars:
+        ExternalID: string
+    plugins:
+      - typescript
+      - typescript-resolvers
+
+  packages/web/src/types.generated.ts:
+    plugins:
+      - typescript
+
+  packages/web/src/:
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: types.generated.ts
+    config:
+      gqlImport: @apollo/client#gql
+      reactApolloVersion: 3
+      withHooks: true
+      withComponent: false
+      withHOC: false

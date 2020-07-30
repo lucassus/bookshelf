@@ -14,12 +14,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.10.5",
-    "@graphql-codegen/cli": "1.17.6",
-    "@graphql-codegen/introspection": "1.17.6",
-    "@graphql-codegen/near-operation-file-preset": "1.17.6",
-    "@graphql-codegen/typescript": "1.17.6",
-    "@graphql-codegen/typescript-operations": "1.17.6",
-    "@graphql-codegen/typescript-react-apollo": "1.17.6",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-info": "5.3.19",
     "@storybook/addon-knobs": "5.3.19",
@@ -53,12 +47,9 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean:dist": "rimraf dist && rimraf coverage",
-    "clean:codegen": "rimraf graphql.schema.json src/**/*.generated.{ts,tsx}",
-    "clean": "yarn clean:codegen && yarn clean:dist",
-    "codegen": "yarn graphql-codegen --config codegen.yml",
-    "compile": "yarn codegen && yarn webpack --config webpack.config.js --mode production",
-    "build": "yarn codegen && yarn compile",
+    "clean": "rimraf dist && rimraf coverage",
+    "compile": "yarn webpack --config webpack.config.js --mode production",
+    "build": "yarn clean && yarn compile",
     "dev-server": "webpack-dev-server --mode development",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'yarn dev-server'",
     "test": "jest",
