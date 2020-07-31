@@ -8,7 +8,7 @@ import { defaultFieldResolver, GraphQLField } from "graphql";
 import { Context } from "../../common/types";
 import { Role } from "../resolvers-types.generated";
 
-export class RequireAuthenticationDirective extends SchemaDirectiveVisitor {
+export class RequireAuthorizationDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field: GraphQLField<any, Context>) {
     const role = this.args.role as Role;
     const originalResolve = field.resolve || defaultFieldResolver;
