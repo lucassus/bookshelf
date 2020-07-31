@@ -7,21 +7,12 @@ describe("login mutation", () => {
   const validEmail = "valid@email.com";
   const validPassword = "valid password";
 
-  test.each([
-    [{ email: validEmail, password: validPassword }, true, "Login success!"],
-    [
-      { email: "invalid@email.com", password: validPassword },
-      false,
-      "Invalid email or password!"
-    ],
-    [
-      { email: validEmail, password: "invalid password" },
-      false,
-      "Invalid email or password!"
-    ]
-  ])(
-    "for %o responds with success: %s and message: %s",
-    async (input, success, message) => {
+  [
+    [validEmail, validPassword, true, "Login success!"],
+    ["invalid@email.com", validPassword, false, "Invalid email or password!"],
+    [validEmail, "invalid password", false, "Invalid email or password!"]
+  ].forEach(([email, password, success, message]) => {
+    test(`for ${email} and ${password} responds with ${message}`, async () => {
       // Given
       await createUser({ email: validEmail, password: validPassword });
 
@@ -37,7 +28,7 @@ describe("login mutation", () => {
           }
         `,
         variables: {
-          input
+          input: { email, password }
         }
       });
 
@@ -50,6 +41,6 @@ describe("login mutation", () => {
           authToken: success ? expect.any(String) : null
         }
       });
-    }
-  );
+    });
+  });
 });
