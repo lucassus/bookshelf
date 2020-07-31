@@ -2,6 +2,7 @@ type User implements Resource & Timestampable {
   id: ExternalID!
   name: String!
   info: String
+  email: String! @requireAuthorization(role: Admin)
   avatar: Avatar!
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
