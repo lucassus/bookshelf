@@ -19,7 +19,7 @@ const rootSchema = addResolversToSchema({
 });
 
 SchemaDirectiveVisitor.visitSchemaDirectives(rootSchema, {
-  requireAuthorization: RequireAuthorizationDirective
+  requireAuthorization: RequireAuthorizationDirective as typeof SchemaDirectiveVisitor
 });
 
 export { rootSchema };

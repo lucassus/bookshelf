@@ -1,48 +1,39 @@
 /* eslint-disable no-param-reassign */
 import { SchemaDirectiveVisitor } from "@graphql-tools/utils";
 import { AuthenticationError, ForbiddenError } from "apollo-server-express";
-import {
-  defaultFieldResolver,
-  GraphQLField,
-  GraphQLInterfaceType,
-  GraphQLObjectType
-} from "graphql";
+import { defaultFieldResolver, GraphQLObjectType } from "graphql";
 
 import { Context } from "../../common/types";
 import { Role } from "../resolvers-types.generated";
 
-// TODO: It's a generic that can take the Context
-export class RequireAuthorizationDirective extends SchemaDirectiveVisitor {
-  visitObject(type: GraphQLObjectType<any, Context>) {
+export class RequireAuthorizationDirective extends SchemaDirectiveVisitor<
+  { role: Role },
+  Context
+> {
+  visitObject(type) {
     this.ensureFieldWrapped(type);
-    (type as any).$requireAuthorization = this.args.role;
+    (type as any).$requireAuthorizationRole = this.args.role;
   }
 
-  visitFieldDefinition(
-    field: GraphQLField<any, Context>,
-    details: {
-      objectType: GraphQLObjectType | GraphQLInterfaceType;
-    }
-  ) {
+  visitFieldDefinition(field, details) {
     this.ensureFieldWrapped(details.objectType);
-    (field as any).$requireAuthorization = this.args.role;
+    (field as any).$requireAuthorizationRole = this.args.role;
   }
 
-  private ensureFieldWrapped(
-    objectType: GraphQLObjectType | GraphQLInterfaceType
-  ) {
+  // eslint-disable-next-line class-methods-use-this
+  private ensureFieldWrapped(objectType: GraphQLObjectType<any, Context>) {
     if ((objectType as any).$requireAuthorizationFieldsWrapped) return;
     (objectType as any).$requireAuthorizationFieldsWrapped = true;
 
     const fields = objectType.getFields();
 
-    Object.entries(fields).forEach(([, field]) => {
+    Object.values(fields).forEach((field) => {
       const originalResolve = field.resolve || defaultFieldResolver;
 
       field.resolve = function (rootValue, args, context, info) {
         const role: Role =
-          (field as any).$requireAuthorization ||
-          (objectType as any).$requireAuthorization;
+          (field as any).$requireAuthorizationRole ||
+          (objectType as any).$requireAuthorizationRole;
 
         if (!role) {
           return originalResolve.call(this, rootValue, args, context, info);
