@@ -55,13 +55,13 @@ describe("users query", () => {
     });
   });
 
-  test.each<[undefined | Role, boolean, undefined | string]>([
-    [undefined, false, "Unauthorized access! Please log in."],
-    [Role.User, false, "Unauthorized access! Please log in as admin."],
-    [Role.Admin, true, undefined]
+  test.each<[undefined | Role, undefined | string]>([
+    [undefined, "Unauthorized access! Please log in."],
+    [Role.User, "Unauthorized access! Please log in as admin."],
+    [Role.Admin, undefined]
   ])(
-    "fetching email fields for %s role",
-    async (role, success, expectedErrorMessage) => {
+    "fetching users emails for `%s` role raises `%s` error",
+    async (role, expectedErrorMessage) => {
       // Given
       const currentUser = role
         ? await createUser({ isAdmin: role === Role.Admin })
@@ -80,19 +80,17 @@ describe("users query", () => {
         `
       });
 
-      if (success && currentUser) {
+      if (expectedErrorMessage) {
+        expect(res.errors).not.toBe(undefined);
+        expect(res.errors![0].message).toBe(expectedErrorMessage);
+      } else {
         expect(res.errors).toBe(undefined);
-
-        expect(res.data).not.toBe(null);
         expect(res.data).toMatchObject({
           users: [
-            { id: expect.any(String), email: currentUser.email },
+            { id: expect.any(String), email: currentUser!.email },
             { id: expect.any(String), email: otherUser.email }
           ]
         });
-      } else {
-        expect(res.errors).not.toBe(undefined);
-        expect(res.errors![0].message).toBe(expectedErrorMessage);
       }
     }
   );
