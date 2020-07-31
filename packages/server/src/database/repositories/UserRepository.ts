@@ -9,8 +9,9 @@ export class UserRepository extends AbstractRepository<User> {
     email: string,
     password: string
   ): Promise<undefined | User> {
+    // We have to use a queryBuilder Because passwordHash is excluded from the default select
     const user = await this.createQueryBuilder("user")
-      .where("user.email = :email", { email })
+      .where({ email })
       .addSelect("user.passwordHash")
       .getOne();
 
