@@ -68,7 +68,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthorization(role: ADMIN)
-  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthorization(role: ADMIN)
-  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthorization(role: ADMIN)
+  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthorization(role: Admin)
+  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthorization(role: Admin)
+  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthorization(role: Admin)
 }
