@@ -14,10 +14,8 @@ const resolvers: Resolvers<Context> = {
       { input: { email, password } },
       { connection }
     ) => {
-      // TODO: Add some validations
-      const user = await connection
-        .getCustomRepository(UserRepository)
-        .findByEmailAndPassword(email, password);
+      const userRepository = connection.getCustomRepository(UserRepository);
+      const user = await userRepository.findByEmailAndPassword(email, password);
 
       const authToken = user ? generateAuthToken(user) : null;
 
