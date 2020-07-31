@@ -1,5 +1,6 @@
 ignore:
-  - packages/web/src/generated
+  - packages/server/src/**/*.generated.ts
+  - packages/web/src/**/*.generated.ts
   - packages/web/src/**/*.generated.tsx
 coverage:
   status:
