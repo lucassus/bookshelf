@@ -27,7 +27,7 @@ describe("me query", () => {
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
-      me: {
+      currentUser: {
         id: expect.any(String),
         name: currentUser.name,
         email: currentUser.email,
