@@ -9,8 +9,8 @@ import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 import { createServer } from "./server";
 
 const startServer = async () => {
-  const connection = await createConnection();
-  const apolloServer = createServer(connection);
+  await createConnection();
+  const apolloServer = createServer();
 
   const app = express();
   apolloServer.applyMiddleware({ app });

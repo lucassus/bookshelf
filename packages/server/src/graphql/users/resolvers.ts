@@ -1,7 +1,7 @@
 import { hashPassword } from "../../common/authentication";
-import { Context } from "../../common/types";
 import { Avatar } from "../../database/entity/Avatar";
 import { User } from "../../database/entity/User";
+import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {

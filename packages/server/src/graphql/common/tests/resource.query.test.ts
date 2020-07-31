@@ -36,7 +36,7 @@ describe("resource query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data!.resource).toMatchSnapshot();
+    expect(res.data).toMatchSnapshot();
   });
 
   it("fetches Author", async () => {
@@ -51,6 +51,6 @@ describe("resource query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data!.resource).toMatchSnapshot();
+    expect(res.data).toMatchSnapshot();
   });
 });

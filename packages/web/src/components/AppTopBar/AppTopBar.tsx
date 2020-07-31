@@ -16,7 +16,7 @@ const CurrentUserMenu = () => {
 
   return (
     <li>
-      You are logged in as {data?.me.name}
+      You are logged in as {data?.currentUser.name}
       <button onClick={handleLogout}>Logout</button>
     </li>
   );

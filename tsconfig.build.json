@@ -2,8 +2,9 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es5",
+    "target": "ES2017",
     "sourceMap": true,
     "declaration": true,
 

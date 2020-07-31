@@ -45,6 +45,6 @@ type ReturnBookCopyPayload implements MutationResponse {
 extend type Mutation {
   updateBookFavourite(id: ExternalID!, favourite: Boolean!): UpdateBookFavouritePayload!
 
-  borrowBookCopy(id: ExternalID!): BorrowBookCopyPayload! @requireAuthentication
-  returnBookCopy(id: ExternalID!): ReturnBookCopyPayload! @requireAuthentication
+  borrowBookCopy(id: ExternalID!): BorrowBookCopyPayload! @requireAuthorization
+  returnBookCopy(id: ExternalID!): ReturnBookCopyPayload! @requireAuthorization
 }

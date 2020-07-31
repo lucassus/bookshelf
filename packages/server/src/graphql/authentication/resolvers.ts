@@ -1,11 +1,11 @@
 import { generateAuthToken } from "../../common/authentication";
-import { Context } from "../../common/types";
 import { UserRepository } from "../../database/repositories/UserRepository";
+import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    me: (rootValue, arg, { currentUser }) => currentUser!
+    currentUser: (rootValue, arg, { currentUser }) => currentUser!
   },
 
   Mutation: {
@@ -14,10 +14,8 @@ const resolvers: Resolvers<Context> = {
       { input: { email, password } },
       { connection }
     ) => {
-      // TODO: Add some validations
-      const user = await connection
-        .getCustomRepository(UserRepository)
-        .findByEmailAndPassword(email, password);
+      const userRepository = connection.getCustomRepository(UserRepository);
+      const user = await userRepository.findByEmailAndPassword(email, password);
 
       const authToken = user ? generateAuthToken(user) : null;
 

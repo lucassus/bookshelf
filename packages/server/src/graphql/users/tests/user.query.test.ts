@@ -53,5 +53,5 @@ test("user query", async () => {
   // Then
   expect(res.errors).toBe(undefined);
   expect(res.data).not.toBeNull();
-  expect(res.data!.user).toMatchSnapshot();
+  expect(res.data).toMatchSnapshot();
 });

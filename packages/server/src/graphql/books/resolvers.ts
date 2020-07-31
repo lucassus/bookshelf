@@ -1,8 +1,8 @@
-import { Context } from "../../common/types";
 import { Book } from "../../database/entity/Book";
 import { User } from "../../database/entity/User";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { BookRepository } from "../../database/repositories/BookRepository";
+import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {

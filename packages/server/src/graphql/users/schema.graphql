@@ -2,6 +2,7 @@ type User implements Resource & Timestampable {
   id: ExternalID!
   name: String!
   info: String
+  email: String! @requireAuthorization(role: Admin)
   avatar: Avatar!
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
@@ -68,7 +69,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthentication(role: ADMIN)
-  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthentication(role: ADMIN)
-  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthentication(role: ADMIN)
+  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthorization(role: Admin)
+  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthorization(role: Admin)
+  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthorization(role: Admin)
 }

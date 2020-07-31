@@ -4,28 +4,30 @@ import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
 
 describe("me query", () => {
+  const GetCurrentUser = gql`
+    query {
+      currentUser {
+        id
+        name
+        email
+        isAdmin
+      }
+    }
+  `;
+
   it("returns the current user when authenticated", async () => {
     // Given
     const currentUser = await createUser({ isAdmin: true });
 
     // When
     const res = await createTestClient({ currentUser }).query({
-      query: gql`
-        query {
-          me {
-            id
-            name
-            email
-            isAdmin
-          }
-        }
-      `
+      query: GetCurrentUser
     });
 
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
-      me: {
+      currentUser: {
         id: expect.any(String),
         name: currentUser.name,
         email: currentUser.email,
@@ -37,13 +39,7 @@ describe("me query", () => {
   it("returns an error if not authenticated", async () => {
     // When
     const res = await createTestClient().query({
-      query: gql`
-        query {
-          me {
-            id
-          }
-        }
-      `
+      query: GetCurrentUser
     });
 
     // Then

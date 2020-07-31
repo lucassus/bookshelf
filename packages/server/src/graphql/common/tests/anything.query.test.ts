@@ -70,7 +70,7 @@ describe("anything query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data!.anything).toMatchSnapshot();
+    expect(res.data).toMatchSnapshot();
   });
 
   it("fetches Book", async () => {
@@ -85,7 +85,7 @@ describe("anything query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data!.anything).toMatchSnapshot();
+    expect(res.data).toMatchSnapshot();
   });
 
   it("fetches User", async () => {
@@ -100,7 +100,7 @@ describe("anything query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data!.anything).toMatchSnapshot();
+    expect(res.data).toMatchSnapshot();
   });
 
   it("fetches BookCopy", async () => {
@@ -116,7 +116,7 @@ describe("anything query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data!.anything).toMatchSnapshot();
+    expect(res.data).toMatchSnapshot();
   });
 });
 
