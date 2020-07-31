@@ -55,43 +55,45 @@ describe("users query", () => {
     });
   });
 
-  test.each<[undefined | Role, undefined | string]>([
-    [undefined, "Unauthorized access! Please log in."],
-    [Role.User, "Unauthorized access! Please log in as admin."],
-    [Role.Admin, undefined]
-  ])(
-    "fetching users emails for `%s` role raises `%s` error",
-    async (role, expectedErrorMessage) => {
-      // Given
-      const currentUser = role
-        ? await createUser({ isAdmin: role === Role.Admin })
-        : undefined;
-      const otherUser = await createUser();
+  describe("fetching protected users emails", () => {
+    test.each<[undefined | Role, undefined | string]>([
+      [undefined, "Unauthorized access! Please log in."],
+      [Role.User, "Unauthorized access! Please log in as admin."],
+      [Role.Admin, undefined]
+    ])(
+      "for `%s` role raises `%s` error",
+      async (role, expectedErrorMessage) => {
+        // Given
+        const currentUser = role
+          ? await createUser({ isAdmin: role === Role.Admin })
+          : undefined;
+        const otherUser = await createUser();
 
-      // When
-      const res = await createTestClient({ currentUser }).query({
-        query: gql`
-          query {
-            users {
-              id
-              email
+        // When
+        const res = await createTestClient({ currentUser }).query({
+          query: gql`
+            query {
+              users {
+                id
+                email
+              }
             }
-          }
-        `
-      });
-
-      if (expectedErrorMessage) {
-        expect(res.errors).not.toBe(undefined);
-        expect(res.errors![0].message).toBe(expectedErrorMessage);
-      } else {
-        expect(res.errors).toBe(undefined);
-        expect(res.data).toMatchObject({
-          users: [
-            { id: expect.any(String), email: currentUser!.email },
-            { id: expect.any(String), email: otherUser.email }
-          ]
+          `
         });
+
+        if (expectedErrorMessage) {
+          expect(res.errors).not.toBe(undefined);
+          expect(res.errors![0].message).toBe(expectedErrorMessage);
+        } else {
+          expect(res.errors).toBe(undefined);
+          expect(res.data).toMatchObject({
+            users: [
+              { id: expect.any(String), email: currentUser!.email },
+              { id: expect.any(String), email: otherUser.email }
+            ]
+          });
+        }
       }
-    }
-  );
+    );
+  });
 });
