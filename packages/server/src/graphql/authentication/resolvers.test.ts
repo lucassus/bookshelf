@@ -11,7 +11,7 @@ const login = resolvers.Mutation!.login! as (
   context: any
 ) => ResolversTypes["LoginPayload"];
 
-describe("login mutation", () => {
+describe("login authentication resolver", () => {
   test("on login success", async () => {
     // Given
     const user = { id: 123 };
