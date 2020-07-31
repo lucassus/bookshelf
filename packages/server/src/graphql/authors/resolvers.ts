@@ -1,5 +1,5 @@
-import { Context } from "../../common/types";
 import { Author } from "../../database/entity/Author";
+import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {

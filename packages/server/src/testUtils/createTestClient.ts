@@ -3,24 +3,16 @@ import {
   ApolloServerTestClient,
   createTestClient as createApolloTestClient
 } from "apollo-server-testing";
-import { getConnection } from "typeorm";
 
-import { Context } from "../common/types";
-import { ASSETS_BASE_URL } from "../config";
-import { buildAuthorsLoader } from "../graphql/authors/authorsLoader";
+import { buildContext, Context } from "../graphql/context";
 import { rootSchema } from "../graphql/rootSchema";
 
 export function createTestClient(
-  context: Partial<Context> = {}
+  contextExtra: Partial<Context> = {}
 ): ApolloServerTestClient {
   const server = new ApolloServer({
     schema: rootSchema,
-    context: {
-      assetsBaseUrl: ASSETS_BASE_URL,
-      authorsLoader: buildAuthorsLoader(),
-      connection: getConnection(),
-      ...context
-    }
+    context: buildContext(contextExtra)
   });
 
   return createApolloTestClient(server);

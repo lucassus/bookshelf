@@ -1,6 +1,6 @@
 import { generateAuthToken } from "../../common/authentication";
-import { Context } from "../../common/types";
 import { UserRepository } from "../../database/repositories/UserRepository";
+import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
