@@ -2,6 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
+import { Role } from "../../resolvers-types.generated";
 
 describe("users query", () => {
   it("fetches users", async () => {
@@ -54,61 +55,44 @@ describe("users query", () => {
     });
   });
 
-  // TODO: Idea: refactor with jest.each
-  describe("fetching email fields", () => {
-    const GetUsersWithEmails = gql`
-      query {
-        users {
-          id
-          name
-          email
+  // TODO: Provide a better description
+  // TODO: Consider refactor with a table
+  test.each<[undefined | Role, boolean, undefined | string]>([
+    [undefined, false, "Unauthorized access! Please log in."],
+    [Role.User, false, "Unauthorized access! Please log in as admin."],
+    [Role.Admin, true, undefined]
+  ])("fetching email fields 2", async (role, success, expectedErrorMessage) => {
+    // Given
+    const currentUser = role
+      ? await createUser({ isAdmin: role === Role.Admin })
+      : undefined;
+    const otherUser = await createUser();
+
+    // When
+    const res = await createTestClient({ currentUser }).query({
+      query: gql`
+        query {
+          users {
+            id
+            email
+          }
         }
-      }
-    `;
+      `
+    });
 
-    it("return users with emails when authenticated as admin", async () => {
-      // Given
-      const currentUser = await createUser({ isAdmin: true });
-      const user = await createUser();
-
-      // When
-      const res = await createTestClient({ currentUser }).query({
-        query: GetUsersWithEmails
-      });
-
-      // Then
+    if (success && currentUser) {
       expect(res.errors).toBe(undefined);
+
       expect(res.data).not.toBe(null);
       expect(res.data).toMatchObject({
         users: [
-          {
-            id: expect.any(String),
-            name: currentUser.name,
-            email: currentUser.email
-          },
-          {
-            id: expect.any(String),
-            name: user.name,
-            email: user.email
-          }
+          { id: expect.any(String), email: currentUser.email },
+          { id: expect.any(String), email: otherUser.email }
         ]
       });
-    });
-
-    it("returns an error when not authenticated as admin", async () => {
-      // Given
-      const currentUser = await createUser({ isAdmin: false });
-
-      // When
-      const res = await createTestClient({ currentUser }).query({
-        query: GetUsersWithEmails
-      });
-
-      // Then
+    } else {
       expect(res.errors).not.toBe(undefined);
-      expect(res.errors![0].message).toBe(
-        "Unauthorized access! Please log in as admin."
-      );
-    });
+      expect(res.errors![0].message).toBe(expectedErrorMessage);
+    }
   });
 });
