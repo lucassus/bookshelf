@@ -106,7 +106,9 @@ describe("users query", () => {
 
       // Then
       expect(res.errors).not.toBe(undefined);
-      console.log(res.errors);
+      expect(res.errors![0].message).toBe(
+        "Unauthorized access! Please log in as admin."
+      );
     });
   });
 });

@@ -1,4 +1,4 @@
-directive @requireAuthorization(role: Role = User) on FIELD_DEFINITION
+directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
 
 enum Role {
   Admin
