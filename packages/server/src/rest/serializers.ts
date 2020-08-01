@@ -1,5 +1,4 @@
-import { Book } from "../database/entity/Book";
-import { User } from "../database/entity/User";
+import { Book, User } from "../database/entity";
 
 // TODO: Naive serialization, find a better solution
 // TODO: See https://www.npmjs.com/package/class-transformer

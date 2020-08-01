@@ -1,6 +1,4 @@
-import { Book } from "../../database/entity/Book";
-import { BookCopy } from "../../database/entity/BookCopy";
-import { User } from "../../database/entity/User";
+import { Book, BookCopy, User } from "../../database/entity";
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
 import { createUser, CreateUserAttributes } from "./createUser";

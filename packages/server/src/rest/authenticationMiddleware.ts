@@ -2,7 +2,7 @@ import express from "express";
 import { getConnection } from "typeorm";
 
 import { authenticateRequest } from "../common/authentication";
-import { User } from "../database/entity/User";
+import { User } from "../database/entity";
 
 export const authenticationMiddleware = async (
   req: express.Request,

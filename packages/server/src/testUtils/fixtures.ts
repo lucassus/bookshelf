@@ -1,8 +1,6 @@
 import { getConnection } from "typeorm";
 
-import { Author } from "../database/entity/Author";
-import { Book } from "../database/entity/Book";
-import { User } from "../database/entity/User";
+import { Author, Book, User } from "../database/entity";
 import {
   createAuthor,
   createBook,

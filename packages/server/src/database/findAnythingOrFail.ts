@@ -1,10 +1,7 @@
 import { Connection, ObjectType } from "typeorm";
 
 import { secureId } from "../common/secureId";
-import { Author } from "./entity/Author";
-import { Book } from "./entity/Book";
-import { BookCopy } from "./entity/BookCopy";
-import { User } from "./entity/User";
+import { Author, Book, BookCopy, User } from "./entity";
 
 export const findAnythingOrFail = (
   externalId: string,

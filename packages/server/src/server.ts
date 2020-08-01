@@ -2,7 +2,7 @@ import { ApolloServer } from "apollo-server-express";
 import { getConnection } from "typeorm";
 
 import { authenticateRequest } from "./common/authentication";
-import { User } from "./database/entity/User";
+import { User } from "./database/entity";
 import { buildContext, Context } from "./graphql/context";
 import { rootSchema } from "./graphql/rootSchema";
 
