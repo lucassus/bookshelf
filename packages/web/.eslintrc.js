@@ -1,6 +1,5 @@
 module.exports = {
-  extends: "../../.eslintrc.js",
-  extends: ["airbnb/hooks", "prettier/react"],
+  extends: ["../../.eslintrc.js", "airbnb/hooks", "prettier/react"],
   overrides: [
     {
       files: ["src/*.test.{ts,tsx}"],

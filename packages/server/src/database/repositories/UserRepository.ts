@@ -1,7 +1,7 @@
 import { AbstractRepository, EntityRepository } from "typeorm";
 
 import { isPasswordValid } from "../../common/authentication";
-import { User } from "../entity/User";
+import { User } from "../entity";
 
 @EntityRepository(User)
 export class UserRepository extends AbstractRepository<User> {

@@ -1,5 +1,4 @@
-import { Book } from "../../database/entity/Book";
-import { User } from "../../database/entity/User";
+import { Book, User } from "../../database/entity";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { BookRepository } from "../../database/repositories/BookRepository";
 import { Context } from "../context";

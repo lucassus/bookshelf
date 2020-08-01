@@ -1,6 +1,6 @@
 import faker from "faker";
 
-import { Avatar } from "../../database/entity/Avatar";
+import { Avatar } from "../../database/entity";
 import { createEntity } from "./createEntity";
 
 const AVATAR_IMAGES = [

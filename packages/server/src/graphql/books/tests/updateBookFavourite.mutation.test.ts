@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
 import { secureId } from "../../../common/secureId";
-import { Book } from "../../../database/entity/Book";
+import { Book } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBook } from "../../../testUtils/factories";
 

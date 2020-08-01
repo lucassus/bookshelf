@@ -1,8 +1,7 @@
 import faker from "faker";
 
 import { titleizeSentence } from "../../common/strings";
-import { Author } from "../../database/entity/Author";
-import { Book } from "../../database/entity/Book";
+import { Author, Book } from "../../database/entity";
 import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";
 

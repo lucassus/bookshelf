@@ -1,6 +1,5 @@
 import { hashPassword } from "../../common/authentication";
-import { Avatar } from "../../database/entity/Avatar";
-import { User } from "../../database/entity/User";
+import { Avatar, User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 

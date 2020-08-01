@@ -3,7 +3,7 @@ import express from "express";
 import jwt from "jsonwebtoken";
 
 import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "../config";
-import { User } from "../database/entity/User";
+import { User } from "../database/entity";
 
 type AuthTokenPayload = {
   // Identifies the subject of the JWT.

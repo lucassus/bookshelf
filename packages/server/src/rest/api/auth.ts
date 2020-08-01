@@ -1,6 +1,6 @@
 import express from "express";
 
-import { User } from "../../database/entity/User";
+import { User } from "../../database/entity";
 import { serializeUser } from "../serializers";
 
 const router = express.Router();

@@ -1,6 +1,6 @@
 import { AbstractRepository, EntityRepository } from "typeorm";
 
-import { Book } from "../entity/Book";
+import { Book } from "../entity";
 
 @EntityRepository(Book)
 export class BookRepository extends AbstractRepository<Book> {

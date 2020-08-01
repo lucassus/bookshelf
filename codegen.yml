@@ -13,12 +13,12 @@ generates:
     config:
       useIndexSignature: true
       mappers:
-        Author: ../database/entity/Author#Author as AuthorEntity
-        Avatar: ../database/entity/Avatar#Avatar as AvatarEntity
-        Book: ../database/entity/Book#Book as BookEntity
-        BookCopy: ../database/entity/BookCopy#BookCopy as BookCopyEntity
-        User: ../database/entity/User#User as UserEntity
-        CurrentUser: ../database/entity/User#User as UserEntity
+        Author: ../database/entity#Author as AuthorEntity
+        Avatar: ../database/entity#Avatar as AvatarEntity
+        Book: ../database/entity#Book as BookEntity
+        BookCopy: ../database/entity#BookCopy as BookCopyEntity
+        User: ../database/entity#User as UserEntity
+        CurrentUser: ../database/entity#User as UserEntity
       scalars:
         ExternalID: string
     plugins:

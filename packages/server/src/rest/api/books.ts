@@ -1,7 +1,7 @@
 import express from "express";
 import { getConnection } from "typeorm";
 
-import { Book } from "../../database/entity/Book";
+import { Book } from "../../database/entity";
 import { serializeBooks } from "../serializers";
 
 const router = express.Router();

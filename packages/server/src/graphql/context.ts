@@ -1,7 +1,7 @@
 import { Connection, getConnection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "../config";
-import { User } from "../database/entity/User";
+import { User } from "../database/entity";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
 
 export interface Context {

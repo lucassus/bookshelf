@@ -16,3 +16,7 @@ https://graphql-bookshelf.herokuapp.com/
 Navigate to http://localhost:3000/ to see the app.
 
 Navigate to http://localhost:4000/ to see GraphQL Playground.
+
+## Database
+
+![Database Diagram](docs/database.png)
