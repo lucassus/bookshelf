@@ -1,0 +1,79 @@
+@startuml
+!define table(name) class name << (T,#FFAAAA) >>
+!define primary_key(x) <b><i>x</i></b>
+!define foreign_key(x) <i>x</i>
+!define unique(x) <color:green>x</color>
+!define not_null(x) <b>x</b>
+
+skinparam classFontSize 16
+skinparam classFontStyle bold
+hide class circle
+hide methods
+hide stereotypes
+
+table(Avatar) {
+  primary_key(id)
+  --
+  imagePath
+  color
+}
+
+table(User) {
+  primary_key(id)
+  foreign_key(avatarId)
+  --
+  not_null(name)
+  info
+  unique(not_null(email))
+  not_null(passwordHash)
+  isAdmin: boolean
+}
+
+table(Author) {
+  primary_key(id)
+  --
+  not_null(name)
+  bio
+  photoPath
+}
+
+table(Book) {
+  primary_key(id)
+  not_null(foreign_key(authorId))
+  --
+  not_null(title)
+  description
+  coverPath
+}
+
+table(BookCopy) {
+  primary_key(id)
+  foreign_key(bookId)
+  foreign_key(ownerId)
+  foreign_key(borrowerId)
+}
+
+table(FavouriteBook) {
+  primary_key(id)
+  foreign_key(userId)
+  foreign_key(bookId)
+}
+
+' Relations
+
+User --> Avatar : avatar
+Avatar --> User : user
+
+Book --> BookCopy : copies
+User --> BookCopy: ownedBooks
+BookCopy --> User : owner
+User --> BookCopy: borrowedBooks
+BookCopy --> User : borrower
+
+FavouriteBook --> User : user
+User --> FavouriteBook : favouriteBooks
+FavouriteBook --> Book : book
+
+Book -> Author : author
+Author --> Book : books
+@enduml
