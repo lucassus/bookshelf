@@ -1281,12 +1281,12 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@graphql-codegen/add@1.17.6":
-  version "1.17.6"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-1.17.6.tgz#bb8a2a51bb846b10092b253186b4da6af0fff2c6"
-  integrity sha512-6OJKO220jBQci1oo0ryhy3njz8Ps5wnfWZu4BN/uTrkH2LSEtEu1oeifQn+RM7/DaX2tysNQO84jTby8FGrc8A==
+"@graphql-codegen/add@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-2.0.0.tgz#e0d97855f4dadb9fa3a79904bf206ed84c3bf48b"
+  integrity sha512-MUzoVZALQ8LFUZ60cE0lvXRFJfiFsbeUr9KLj6gx4SuFbkm6//wIDbQ1gT5B6WbMaJSOzq1CbOqQ3lt8SSsyUQ==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.17.6"
+    "@graphql-codegen/plugin-helpers" "^1.17.7"
     tslib "~2.0.0"
 
 "@graphql-codegen/cli@1.17.6":
@@ -1348,15 +1348,15 @@
     "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
 
-"@graphql-codegen/near-operation-file-preset@1.17.6":
-  version "1.17.6"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.17.6.tgz#6dab8c5ffa943ba2e8207ad917f1fd2c738e34eb"
-  integrity sha512-OQDffT+7T2/L7bqKyLgEx5VVAHN3f0pGL5M3y0yLQCbsF1VO6Y6cPup1zjcnvjUzO4HsE9ACTiHY0/hBcFq2tQ==
+"@graphql-codegen/near-operation-file-preset@1.17.8":
+  version "1.17.8"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-1.17.8.tgz#8ea08ef370cf97011d3ae13f70e5f910f3e1e093"
+  integrity sha512-RCYfEhoxHJugyizxXY4cChsiPptOsIwR3cfPo57Whhxn66bUWm5oKcgQv5w1AER3JyUe7LtvnpkH6CjP3VvLKA==
   dependencies:
-    "@graphql-codegen/add" "1.17.6"
-    "@graphql-codegen/plugin-helpers" "1.17.6"
-    "@graphql-codegen/visitor-plugin-common" "1.17.6"
-    parse-filepath "1.0.2"
+    "@graphql-codegen/add" "^2.0.0"
+    "@graphql-codegen/plugin-helpers" "^1.17.7"
+    "@graphql-codegen/visitor-plugin-common" "^1.17.12"
+    parse-filepath "^1.0.2"
     tslib "~2.0.0"
 
 "@graphql-codegen/plugin-helpers@1.17.6":
@@ -1453,10 +1453,10 @@
     pascal-case "3.1.1"
     tslib "~2.0.0"
 
-"@graphql-codegen/visitor-plugin-common@^1.17.8":
-  version "1.17.8"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.17.8.tgz#bf07b3157db4fc63fcb09a9febdc539073e73629"
-  integrity sha512-GrgtfXTSNRLobAg0LG3wxdt4yLoV4EhhkgPV5KpaxpPyEo2Pj/L4/QNikGKdIx1UkPEoIiuh5u/93att1XN7tQ==
+"@graphql-codegen/visitor-plugin-common@^1.17.12", "@graphql-codegen/visitor-plugin-common@^1.17.8":
+  version "1.17.12"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.17.12.tgz#d4bc677ea9b01c91a86519ebdeda293c97216838"
+  integrity sha512-ti06eEaNL1lz0ZAG4CxLeQYiTbzTjxVt4n3I7uyoX67rqfvRcXcEY9fXssaN6FJviSn+5zvLiNMIZsUwJk8k6g==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^1.17.7"
     "@graphql-tools/relay-operation-optimizer" "6.0.15"
