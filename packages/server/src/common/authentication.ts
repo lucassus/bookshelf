@@ -2,7 +2,11 @@ import bcrypt from "bcrypt";
 import express from "express";
 import jwt from "jsonwebtoken";
 
-import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "../config";
+import {
+  AUTH_COOKIE_NAME,
+  AUTH_TOKEN_EXPIRES_IN,
+  AUTH_TOKEN_SECRET_KEY
+} from "../config";
 import { User } from "../database/entity";
 
 type AuthTokenPayload = {
@@ -30,8 +34,7 @@ export const generateAuthToken = (user: User): string =>
   });
 
 export function authenticateRequest(req: express.Request): null | number {
-  // TODO: Rename jid to something better
-  const { jid: authToken } = req.cookies;
+  const { [AUTH_COOKIE_NAME]: authToken } = req.cookies;
 
   if (!authToken) {
     return null;

@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
 import httpMocks from "node-mocks-http";
 
+import { AUTH_COOKIE_NAME } from "../../../config";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
 
@@ -44,9 +45,9 @@ describe("login mutation", () => {
       });
 
       if (success) {
-        expect(expressRes.cookies.jid).not.toBe(undefined);
+        expect(expressRes.cookies[AUTH_COOKIE_NAME]).not.toBe(undefined);
       } else {
-        expect(expressRes.cookies.jid).toBe(undefined);
+        expect(expressRes.cookies[AUTH_COOKIE_NAME]).toBe(undefined);
       }
     });
   });

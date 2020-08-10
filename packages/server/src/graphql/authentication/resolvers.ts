@@ -1,4 +1,5 @@
 import { generateAuthToken } from "../../common/authentication";
+import { AUTH_COOKIE_NAME } from "../../config";
 import { UserRepository } from "../../database/repositories/UserRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
@@ -27,7 +28,7 @@ const resolvers: Resolvers<Context> = {
       const authToken = generateAuthToken(user);
 
       // TODO: Set cookie maxAge
-      res.cookie("jid", authToken, { httpOnly: true });
+      res.cookie(AUTH_COOKIE_NAME, authToken, { httpOnly: true });
 
       return {
         success: true,
@@ -36,7 +37,7 @@ const resolvers: Resolvers<Context> = {
     },
 
     logout: (rootValue, args, { res }) => {
-      res.clearCookie("jid");
+      res.clearCookie(AUTH_COOKIE_NAME);
 
       return {
         success: true,
