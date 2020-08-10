@@ -7,9 +7,9 @@ import { Role } from "../../resolvers-types.generated";
 describe("users query", () => {
   it("fetches users", async () => {
     // Given
-    const user1 = await createUser({ name: "Alice" });
-    const user2 = await createUser({ name: "Bob" });
-    const user3 = await createUser({ name: "Luke" });
+    const userLuke = await createUser({ name: "Luke" });
+    const userBob = await createUser({ name: "Bob" });
+    const userAlice = await createUser({ name: "Alice" });
 
     // When
     const res = await createTestClient().query({
@@ -38,18 +38,18 @@ describe("users query", () => {
       users: [
         {
           id: expect.any(String),
-          name: user1.name,
-          info: user1.info
+          name: userAlice.name,
+          info: userAlice.info
         },
         {
           id: expect.any(String),
-          name: user2.name,
-          info: user2.info
+          name: userBob.name,
+          info: userBob.info
         },
         {
           id: expect.any(String),
-          name: user3.name,
-          info: user3.info
+          name: userLuke.name,
+          info: userLuke.info
         }
       ]
     });

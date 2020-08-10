@@ -5,7 +5,8 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    users: (rootValue, args, { connection }) => connection.manager.find(User),
+    users: (rootValue, args, { connection }) =>
+      connection.getRepository(User).find({ order: { name: "ASC" } }),
 
     user: (rootValue, { id }, { connection }) =>
       connection.manager.findOneOrFail(User, id)
