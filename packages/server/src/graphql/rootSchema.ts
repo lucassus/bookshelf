@@ -13,7 +13,7 @@ const rootSchema = addResolversToSchema({
     loaders: [new GraphQLFileLoader()]
   }),
   resolvers: mergeResolvers(
-    loadFilesSync(path.join(__dirname, "./**/resolvers.ts"))
+    loadFilesSync(path.join(__dirname, "./**/resolvers.{js,ts}"))
   ),
   inheritResolversFromInterfaces: true
 });
