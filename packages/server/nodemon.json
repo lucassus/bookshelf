@@ -1,8 +1,0 @@
-{
-  "verbose": true,
-  "ext": "ts",
-  "env": {
-    "NODE_ENV": "development"
-  },
-  "exec": "ts-node --transpile-only src/index.ts"
-}

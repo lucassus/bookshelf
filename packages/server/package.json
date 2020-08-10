@@ -29,9 +29,9 @@
     "@types/lodash.merge": "4.6.6",
     "@types/supertest": "2.0.10",
     "apollo-server-testing": "2.16.1",
-    "nodemon": "2.0.4",
     "sqlite3": "5.0.0",
-    "supertest": "4.0.2"
+    "supertest": "4.0.2",
+    "ts-node-dev": "1.0.0-pre.56"
   },
   "scripts": {
     "clean:dist": "rimraf dist",
@@ -40,7 +40,7 @@
     "compile": "tsc -p tsconfig.build.json && yarn copy-graphql",
     "build": "yarn clean && yarn compile",
     "start": "node dist/src/index.js",
-    "dev": "yarn nodemon",
+    "dev": "ts-node-dev --transpile-only src/index.ts",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
     "test": "jest",
