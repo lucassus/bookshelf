@@ -23,7 +23,7 @@ const resolvers: Resolvers<Context> = {
       // TODO: Better typings
       // TODO: Create logout mutation
       // TODO: The app is running on the different port
-      res!.cookie("jid", authToken, { httpOnly: true, path: "/" });
+      res!.cookie("jid", authToken, { httpOnly: true });
 
       return {
         success: !!authToken,

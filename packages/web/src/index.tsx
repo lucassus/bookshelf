@@ -6,8 +6,8 @@ import {
 } from "@apollo/client";
 import React from "react";
 import ReactDOM from "react-dom";
-import "typeface-roboto";
 import { BrowserRouter as Router } from "react-router-dom";
+import "typeface-roboto";
 
 import { App } from "./App";
 import { AuthContextProvider } from "./components/AuthContext";
@@ -18,14 +18,9 @@ const cache = new InMemoryCache({
   resultCaching: false
 });
 
-const httpLink = new HttpLink({
-  uri: GRAPHQL_ENDPOINT,
-  credentials: "include"
-});
-
 const client = new ApolloClient({
   cache,
-  link: httpLink
+  link: new HttpLink({ uri: GRAPHQL_ENDPOINT })
 });
 
 ReactDOM.render(

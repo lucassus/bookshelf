@@ -19,7 +19,8 @@ export const authenticationMiddleware = async (
     (req as any).user = currentUser;
 
     next();
-  } catch {
+  } catch (error) {
+    console.error(error);
     res.sendStatus(401);
   }
 };

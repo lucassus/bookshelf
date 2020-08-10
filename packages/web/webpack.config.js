@@ -58,6 +58,10 @@ module.exports = {
     new HtmlWebpackPlugin({ template: "src/index.html" })
   ],
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      "/api": "http://localhost:4000/api",
+      "/graphql": "http://localhost:4000/graphql"
+    }
   }
 };

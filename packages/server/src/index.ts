@@ -1,5 +1,4 @@
 import cookieParser from "cookie-parser";
-import cors from "cors";
 import express from "express";
 import path from "path";
 import "reflect-metadata";
@@ -10,32 +9,26 @@ import { routes } from "./rest";
 import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 import { createServer } from "./server";
 
+// TODO: Grab more ideas from https://github.com/benawad/jwt-auth-example
 const startServer = async () => {
   await createConnection();
-  const apolloServer = createServer();
 
   const app = express();
-  apolloServer.applyMiddleware({ app });
+  app.use(cookieParser());
+  app.use(authenticationMiddleware);
+
+  app.use("/", routes);
 
   const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
-
-  // TODO: A workaround, use it only in development mode
-  // TODO: See https://github.com/benawad/jwt-auth-example
-  app.use(
-    cors({
-      origin: "http://localhost:8080",
-      credentials: true
-    })
-  );
-  app.use(cookieParser());
-  app.use(authenticationMiddleware);
-  app.use("/", routes);
   app.get("/*", (req, res) => {
     res.sendFile(path.join(distDir, "index.html"));
   });
 
   app.listen({ port: PORT });
+
+  const apolloServer = createServer();
+  apolloServer.applyMiddleware({ app });
 
   return apolloServer;
 };

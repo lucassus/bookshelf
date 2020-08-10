@@ -38,9 +38,8 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
     navigate("/");
   };
 
-  const unauthorize = () => {
-    setAuthenticated(false);
-  };
+  // TODO: Run it when authToken is expired
+  const unauthorize = () => setAuthenticated(false);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, authorize, unauthorize }}>
