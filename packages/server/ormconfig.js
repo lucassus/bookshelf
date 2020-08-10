@@ -34,6 +34,7 @@ if (NODE_ENV === "production") {
   module.exports = {
     ...DEFAULTS,
     url: process.env.DATABASE_URL,
+    logging: true,
     entities: [path.join(__dirname, "dist/src/database/entity/**/*.js")],
 
     // TODO: A workaround for heroku and ssl issues,
