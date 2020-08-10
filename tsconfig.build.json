@@ -8,7 +8,6 @@
     "sourceMap": true,
     "declaration": true,
 
-    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
