@@ -21,13 +21,23 @@ const resolvers: Resolvers<Context> = {
       const authToken = user ? generateAuthToken(user) : null;
 
       // TODO: Better typings
-      // TODO: Create logout mutation
-      // TODO: The app is running on the different port
+      // TODO: Set maxAge
       res!.cookie("jid", authToken, { httpOnly: true });
 
       return {
         success: !!authToken,
         message: authToken ? "Login success!" : "Invalid email or password!"
+      };
+    },
+
+    // TODO: Test this mutation
+    logout: (rootValue, args, { res }) => {
+      // TODO: Refactor...
+      res!.cookie("jid", "", { httpOnly: true });
+
+      return {
+        success: true,
+        message: "Logout success!"
       };
     }
   }

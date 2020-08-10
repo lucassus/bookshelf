@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import { useGetCurrentUserQuery } from "../GetCurrentUser.query.generated";
 import styles from "./AppTopBar.module.scss";
+import { useLogoutMutation } from "./Logout.mutation.generated";
 
 const CurrentUserMenu = () => {
   const auth = useAuth();
   const { data, client } = useGetCurrentUserQuery();
+  const [logout] = useLogoutMutation();
 
   const handleLogout = async () => {
+    await logout();
     await client.clearStore();
     auth.unauthorize();
   };

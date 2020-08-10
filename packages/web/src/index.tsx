@@ -4,6 +4,7 @@ import {
   HttpLink,
   InMemoryCache
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -18,9 +19,18 @@ const cache = new InMemoryCache({
   resultCaching: false
 });
 
+const errorsLink = onError(({ networkError }) => {
+  console.log({ networkError });
+  // if (networkError.statusCode === 401) {
+  //   // TODO: Somehow handle logout
+  // }
+});
+
+const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
+
 const client = new ApolloClient({
   cache,
-  link: new HttpLink({ uri: GRAPHQL_ENDPOINT })
+  link: errorsLink.concat(httpLink)
 });
 
 ReactDOM.render(
