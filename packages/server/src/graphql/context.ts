@@ -15,10 +15,7 @@ export interface Context {
 }
 
 export const buildContext = (
-  contextExtra: {
-    req: express.Request;
-    res: express.Response;
-  } & Partial<Context>
+  contextExtra: Pick<Context, "req" | "res"> & Partial<Context>
 ): Context => ({
   assetsBaseUrl: ASSETS_BASE_URL,
   authorsLoader: buildAuthorsLoader(),

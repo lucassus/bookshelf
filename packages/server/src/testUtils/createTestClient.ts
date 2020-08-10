@@ -3,7 +3,7 @@ import {
   ApolloServerTestClient,
   createTestClient as createApolloTestClient
 } from "apollo-server-testing";
-import express from "express";
+import httpMocks from "node-mocks-http";
 
 import { buildContext, Context } from "../graphql/context";
 import { rootSchema } from "../graphql/rootSchema";
@@ -13,19 +13,12 @@ export function createTestClient(
 ): ApolloServerTestClient {
   const server = new ApolloServer({
     schema: rootSchema,
-    context() {
-      // TODO: Ugly stub for express response
-      const fakeRes = {
-        cookie: () => {},
-        clearCookie: () => {}
-      } as unknown;
-
-      return buildContext({
-        req: {} as express.Request,
-        res: fakeRes as express.Response,
+    context: () =>
+      buildContext({
+        req: httpMocks.createRequest(),
+        res: httpMocks.createResponse(),
         ...contextExtra
-      });
-    }
+      })
   });
 
   return createApolloTestClient(server);
