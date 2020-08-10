@@ -32,8 +32,7 @@ const resolvers: Resolvers<Context> = {
 
     // TODO: Test this mutation
     logout: (rootValue, args, { res }) => {
-      // TODO: Refactor...
-      res!.cookie("jid", "", { httpOnly: true });
+      res!.clearCookie("jid");
 
       return {
         success: true,
