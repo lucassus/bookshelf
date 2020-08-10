@@ -10,7 +10,9 @@ const resolvers: Resolvers<Context> = {
       connection.manager.count(Book),
 
     books: (rootValue, { limit: take, offset: skip }, { connection }) =>
-      connection.manager.find(Book, { take, skip }),
+      connection
+        .getRepository(Book)
+        .find({ order: { title: "ASC" }, take, skip }),
 
     book: (rootValue, { id }, { connection }) =>
       connection.manager.findOneOrFail(Book, id),

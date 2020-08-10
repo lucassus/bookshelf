@@ -11,15 +11,20 @@ import {
 describe("books query", () => {
   it("fetches books", async () => {
     // Given
-    const book = await createBook({ title: "Hobbit" });
+    const author = await createAuthor({ name: "George Lucas" });
+    await createBook({ author, title: "Star Wars V" });
+    await createBook({ author, title: "Star Wars IV" });
+
+    const book = await createBook({
+      title: "Dune",
+      authorAttributes: { name: "Frank Herbert" }
+    });
     await createBookCopy({ book, ownerAttributes: { name: "John" } });
 
     const borrower = await createUser({ name: "Paul" });
     await createBookCopy({ book, borrower });
 
-    const author = await createAuthor({ name: "George Lucas" });
-    await createBook({ author, title: "Star Wars IV" });
-    await createBook({ author, title: "Star Wars V" });
+    await createBook({ title: "Blood of Elves" });
 
     // When
     const res = await createTestClient().query({
@@ -29,10 +34,6 @@ describe("books query", () => {
           books {
             id
             title
-            cover {
-              path
-              url
-            }
             copies {
               owner {
                 id
@@ -51,7 +52,25 @@ describe("books query", () => {
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).not.toBeNull();
-    expect(res.data).toMatchSnapshot();
+    expect(res.data).toMatchObject({
+      booksCount: 4,
+      books: [
+        { id: expect.any(String), title: "Blood of Elves", copies: [] },
+        {
+          id: expect.any(String),
+          title: "Dune",
+          copies: [
+            { owner: { id: expect.any(String), name: "John" }, borrower: null },
+            {
+              owner: expect.any(Object),
+              borrower: { id: expect.any(String), name: "Paul" }
+            }
+          ]
+        },
+        { id: expect.any(String), title: "Star Wars IV", copies: [] },
+        { id: expect.any(String), title: "Star Wars V", copies: [] }
+      ]
+    });
   });
 
   it("fetches books with authors", async () => {
