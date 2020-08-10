@@ -40,7 +40,7 @@
     "compile": "tsc -p tsconfig.build.json && yarn copy-graphql",
     "build": "yarn clean && yarn compile",
     "start": "node dist/src/index.js",
-    "dev": "ts-node-dev --transpile-only src/index.ts",
+    "dev": "ts-node-dev --no-notify --transpile-only src/index.ts",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",
     "test": "jest",
