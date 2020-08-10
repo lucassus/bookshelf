@@ -8,7 +8,6 @@ const resolvers: Resolvers<Context> = {
     currentUser: (rootValue, arg, { currentUser }) => currentUser!
   },
 
-  // TODO: Move this logic to rest api?
   Mutation: {
     login: async (
       rootValue,
@@ -29,7 +28,6 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    // TODO: Test this mutation
     logout: (rootValue, args, { res }) => {
       res.clearCookie("jid");
 
