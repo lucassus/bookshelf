@@ -17,14 +17,21 @@ const resolvers: Resolvers<Context> = {
       const userRepository = connection.getCustomRepository(UserRepository);
       const user = await userRepository.findByEmailAndPassword(email, password);
 
-      const authToken = user ? generateAuthToken(user) : null;
+      if (!user) {
+        return {
+          success: false,
+          message: "Invalid email or password!"
+        };
+      }
+
+      const authToken = generateAuthToken(user);
 
       // TODO: Set cookie maxAge
       res.cookie("jid", authToken, { httpOnly: true });
 
       return {
-        success: !!authToken,
-        message: authToken ? "Login success!" : "Invalid email or password!"
+        success: true,
+        message: "Login success!"
       };
     },
 

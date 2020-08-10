@@ -1,4 +1,5 @@
 import { gql } from "apollo-server-express";
+import httpMocks from "node-mocks-http";
 
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
@@ -15,9 +16,10 @@ describe("login mutation", () => {
     test(`for ${email} and ${password} responds with ${message}`, async () => {
       // Given
       await createUser({ email: validEmail, password: validPassword });
+      const expressRes = httpMocks.createResponse();
 
       // When
-      const res = await createTestClient().mutate({
+      const res = await createTestClient({ res: expressRes }).mutate({
         mutation: gql`
           mutation($input: LoginInput!) {
             login(input: $input) {
@@ -40,6 +42,12 @@ describe("login mutation", () => {
           message
         }
       });
+
+      if (success) {
+        expect(expressRes.cookies.jid).not.toBe(undefined);
+      } else {
+        expect(expressRes.cookies.jid).toBe(undefined);
+      }
     });
   });
 });
