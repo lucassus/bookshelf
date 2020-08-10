@@ -39,7 +39,7 @@
     "file-loader": "6.0.0",
     "html-webpack-plugin": "4.3.0",
     "sass": "1.26.10",
-    "sass-loader": "9.0.2",
+    "sass-loader": "9.0.3",
     "style-loader": "1.2.1",
     "ts-loader": "8.0.2",
     "webpack": "4.44.1",
