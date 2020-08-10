@@ -30,8 +30,8 @@ export const generateAuthToken = (user: User): string =>
   });
 
 export function authenticateRequest(req: express.Request): null | number {
-  // TODO: Rename the token
-  const authToken = req.cookies?.jid;
+  // TODO: Rename jid to something better
+  const { jid: authToken } = req.cookies;
 
   if (!authToken) {
     return null;

@@ -37,8 +37,7 @@ describe("login mutation", () => {
       expect(res.data).toMatchObject({
         login: {
           success,
-          message,
-          authToken: success ? expect.any(String) : null
+          message
         }
       });
     });

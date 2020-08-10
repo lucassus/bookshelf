@@ -1,6 +1,5 @@
 import { generateAuthToken } from "../../common/authentication";
 import { UserRepository } from "../../database/repositories/UserRepository";
-import { auth } from "../../rest/api/auth";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
@@ -9,6 +8,7 @@ const resolvers: Resolvers<Context> = {
     currentUser: (rootValue, arg, { currentUser }) => currentUser!
   },
 
+  // TODO: Move this logic to rest api?
   Mutation: {
     login: async (
       rootValue,
@@ -20,9 +20,8 @@ const resolvers: Resolvers<Context> = {
 
       const authToken = user ? generateAuthToken(user) : null;
 
-      // TODO: Better typings
-      // TODO: Set maxAge
-      res!.cookie("jid", authToken, { httpOnly: true });
+      // TODO: Set cookie maxAge
+      res.cookie("jid", authToken, { httpOnly: true });
 
       return {
         success: !!authToken,
@@ -32,7 +31,7 @@ const resolvers: Resolvers<Context> = {
 
     // TODO: Test this mutation
     logout: (rootValue, args, { res }) => {
-      res!.clearCookie("jid");
+      res.clearCookie("jid");
 
       return {
         success: true,
