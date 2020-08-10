@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 interface AuthContextValue {
   isAuthenticated: boolean;
-  authorize: (authToken: string) => void;
+  authorize: () => void;
   unauthorize: () => void;
 }
 
@@ -17,23 +17,28 @@ const AuthContext = React.createContext<AuthContextValue>(DEFAULT_VALUE);
 
 export const useAuth = () => useContext(AuthContext);
 
-const AUTH_TOKEN_KEY = "authToken";
+const IS_AUTHENTICATED_KEY = "isAuthenticated";
 
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
 
   const [isAuthenticated, setAuthenticated] = useState(
-    () => !!window.localStorage.getItem(AUTH_TOKEN_KEY)
+    () => window.localStorage.getItem(IS_AUTHENTICATED_KEY) === "true"
   );
 
-  const authorize = async (authToken: string) => {
-    window.localStorage.setItem(AUTH_TOKEN_KEY, authToken);
+  useEffect(() => {
+    window.localStorage.setItem(
+      IS_AUTHENTICATED_KEY,
+      isAuthenticated ? "true" : "false"
+    );
+  }, [isAuthenticated]);
+
+  const authorize = async () => {
     setAuthenticated(true);
     navigate("/");
   };
 
   const unauthorize = () => {
-    window.localStorage.removeItem(AUTH_TOKEN_KEY);
     setAuthenticated(false);
   };
 

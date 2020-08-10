@@ -18,10 +18,10 @@ export const LoginPage: React.FunctionComponent = () => {
     const result = await login({ variables: { input: data } });
 
     if (result.data) {
-      const { success, authToken, message } = result.data.login;
+      const { success, message } = result.data.login;
 
-      if (success && authToken) {
-        auth.authorize(authToken);
+      if (success) {
+        auth.authorize();
       } else {
         window.alert(message);
       }

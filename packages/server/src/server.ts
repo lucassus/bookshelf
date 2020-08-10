@@ -9,7 +9,7 @@ import { rootSchema } from "./graphql/rootSchema";
 export const createServer = () =>
   new ApolloServer({
     schema: rootSchema,
-    context: async ({ req }): Promise<Context> => {
+    context: async ({ req, res }): Promise<Context> => {
       const userId = authenticateRequest(req);
 
       const currentUser =
@@ -17,7 +17,7 @@ export const createServer = () =>
           ? await getConnection().manager.findOneOrFail(User, { id: userId })
           : undefined;
 
-      return buildContext({ currentUser });
+      return buildContext({ req, res, currentUser });
     },
     introspection: true,
     playground: true

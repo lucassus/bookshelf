@@ -1,3 +1,5 @@
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import express from "express";
 import path from "path";
 import "reflect-metadata";
@@ -18,6 +20,15 @@ const startServer = async () => {
   const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
 
+  // TODO: A workaround, use it only in development mode
+  // TODO: See https://github.com/benawad/jwt-auth-example
+  app.use(
+    cors({
+      origin: "http://localhost:8080",
+      credentials: true
+    })
+  );
+  app.use(cookieParser());
   app.use(authenticationMiddleware);
   app.use("/", routes);
   app.get("/*", (req, res) => {

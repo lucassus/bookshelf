@@ -29,18 +29,10 @@ export const generateAuthToken = (user: User): string =>
     expiresIn: AUTH_TOKEN_EXPIRES_IN
   });
 
-const AUTHORIZATION_HEADER_PREFIX = "Bearer";
-
 export function authenticateRequest(req: express.Request): null | number {
-  const { authorization: authorizationHeader } = req.headers;
+  const authToken = req.cookies?.jid;
 
-  if (!authorizationHeader) {
-    return null;
-  }
-
-  const [prefix, authToken] = authorizationHeader.split(" ");
-
-  if (prefix !== AUTHORIZATION_HEADER_PREFIX) {
+  if (!authToken) {
     return null;
   }
 
