@@ -14,6 +14,11 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
+  globals: {
+    "ts-jest": {
+      isolatedModules: true
+    }
+  },
   watchPlugins: [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"

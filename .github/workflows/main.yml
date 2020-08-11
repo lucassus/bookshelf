@@ -15,20 +15,17 @@ jobs:
     - name: Install packages
       run: yarn install
 
-    - name: Generate GrapQL web components
-      run: yarn codegen
-
     - name: Type Check
       run: yarn typecheck
-
-    - name: Build
-      run: yarn build
 
     - name: Lint
       run: yarn lint
 
+    - name: Build
+      run: yarn build
+
     - name: Test
-      run: yarn test --coverage
+      run: yarn test --coverage --runInBand
 
     - name: Upload test coverage to Codecov
       uses: codecov/codecov-action@v1
