@@ -16,7 +16,10 @@ describe("login mutation", () => {
   ].forEach(([email, password, success, message]) => {
     test(`for ${email} and ${password} responds with ${message}`, async () => {
       // Given
-      await createUser({ email: validEmail, password: validPassword });
+      const user = await createUser({
+        email: validEmail,
+        password: validPassword
+      });
       const expressRes = httpMocks.createResponse();
 
       // When
@@ -26,7 +29,9 @@ describe("login mutation", () => {
             login(input: $input) {
               success
               message
-              authToken
+              currentUser {
+                email
+              }
             }
           }
         `,
@@ -40,7 +45,8 @@ describe("login mutation", () => {
       expect(res.data).toMatchObject({
         login: {
           success,
-          message
+          message,
+          currentUser: success ? { email: user.email } : null
         }
       });
 
