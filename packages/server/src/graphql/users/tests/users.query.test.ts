@@ -65,9 +65,9 @@ describe("users query", () => {
       async (role, expectedErrorMessage) => {
         // Given
         const currentUser = role
-          ? await createUser({ isAdmin: role === Role.Admin })
+          ? await createUser({ name: "Anna", isAdmin: role === Role.Admin })
           : undefined;
-        const otherUser = await createUser();
+        const otherUser = await createUser({ name: "Bob" });
 
         // When
         const res = await createTestClient({ currentUser }).query({
