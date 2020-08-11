@@ -1,5 +1,9 @@
 import { generateAuthToken } from "../../common/authentication";
-import { AUTH_COOKIE_NAME, Environment } from "../../config";
+import {
+  AUTH_COOKIE_NAME,
+  AUTH_TOKEN_EXPIRES_IN,
+  Environment
+} from "../../config";
 import { UserRepository } from "../../database/repositories/UserRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
@@ -27,11 +31,10 @@ const resolvers: Resolvers<Context> = {
 
       const authToken = generateAuthToken(user);
 
-      // TODO: Set cookie maxAge
-      // TODO: Cookie maxAge vs expiry
       res.cookie(AUTH_COOKIE_NAME, authToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === Environment.production
+        secure: process.env.NODE_ENV === Environment.production,
+        maxAge: AUTH_TOKEN_EXPIRES_IN * 1000
       });
 
       return {
