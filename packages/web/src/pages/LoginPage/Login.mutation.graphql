@@ -2,5 +2,8 @@ mutation Login($input: LoginInput!) {
   login(input: $input) {
     success
     message
+    currentUser {
+      ... CurrentUser
+    }
   }
 }

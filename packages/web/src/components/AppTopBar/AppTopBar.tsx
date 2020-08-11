@@ -2,31 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../AuthContext";
-import { useGetCurrentUserQuery } from "../GetCurrentUser.query.generated";
+import { CurrentUserFragment } from "../CurrentUser.fragment.generated";
 import styles from "./AppTopBar.module.scss";
 import { useLogoutMutation } from "./Logout.mutation.generated";
 
-const CurrentUserMenu = () => {
-  const auth = useAuth();
-  const { data, client } = useGetCurrentUserQuery();
+const CurrentUserMenu: React.FunctionComponent<{
+  currentUser: CurrentUserFragment;
+}> = ({ currentUser }) => {
+  const { unauthorize } = useAuth();
   const [logout] = useLogoutMutation();
 
   const handleLogout = async () => {
     await logout();
-    await client.clearStore();
-    auth.unauthorize();
+    unauthorize();
   };
 
   return (
     <li>
-      You are logged in as {data?.currentUser.name}
+      You are logged in as {currentUser.name}
       <button onClick={handleLogout}>Logout</button>
     </li>
   );
 };
 
 export const AppTopBar = () => {
-  const auth = useAuth();
+  const { currentUser } = useAuth();
 
   return (
     <header className={styles.container}>
@@ -48,8 +48,8 @@ export const AppTopBar = () => {
             <Link to="/users">Users</Link>
           </li>
 
-          {auth.isAuthenticated ? (
-            <CurrentUserMenu />
+          {currentUser ? (
+            <CurrentUserMenu currentUser={currentUser} />
           ) : (
             <li>
               <Link to="/login">Login</Link>

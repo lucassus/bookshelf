@@ -12,16 +12,16 @@ type Inputs = {
 export const LoginPage: React.FunctionComponent = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [login, { loading }] = useLoginMutation();
-  const auth = useAuth();
+  const { authorize } = useAuth();
 
-  const onSubmit = async (data: Inputs) => {
-    const result = await login({ variables: { input: data } });
+  const onSubmit = async (input: Inputs) => {
+    const result = await login({ variables: { input } });
 
     if (result.data) {
-      const { success, message } = result.data.login;
+      const { success, message, currentUser } = result.data.login;
 
-      if (success) {
-        auth.authorize();
+      if (success && currentUser) {
+        authorize(currentUser);
       } else {
         window.alert(message);
       }

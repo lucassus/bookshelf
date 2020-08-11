@@ -1,14 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
+import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
+import { useGetCurrentUserQuery } from "./GetCurrentUser.query.generated";
+
 interface AuthContextValue {
-  isAuthenticated: boolean;
-  authorize: () => void;
+  currentUser?: CurrentUserFragment;
+  authorize: (user: CurrentUserFragment) => void;
   unauthorize: () => void;
 }
 
 const DEFAULT_VALUE: AuthContextValue = {
-  isAuthenticated: false,
+  currentUser: undefined,
   authorize: () => {},
   unauthorize: () => {}
 };
@@ -17,32 +20,47 @@ const AuthContext = React.createContext<AuthContextValue>(DEFAULT_VALUE);
 
 export const useAuth = () => useContext(AuthContext);
 
-const IS_AUTHENTICATED_KEY = "isAuthenticated";
-
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
+  const { loading, data } = useGetCurrentUserQuery();
 
-  const [isAuthenticated, setAuthenticated] = useState(
-    () => window.localStorage.getItem(IS_AUTHENTICATED_KEY) === "true"
+  const [currentUser, setCurrentUser] = useState<
+    undefined | CurrentUserFragment
+  >(undefined);
+
+  const authorize = useCallback(
+    (user: CurrentUserFragment) => {
+      setCurrentUser(user);
+      navigate("/");
+    },
+    [navigate]
   );
 
-  useEffect(() => {
-    window.localStorage.setItem(
-      IS_AUTHENTICATED_KEY,
-      isAuthenticated ? "true" : "false"
-    );
-  }, [isAuthenticated]);
-
-  const authorize = async () => {
-    setAuthenticated(true);
+  const unauthorize = useCallback(async () => {
+    setCurrentUser(undefined);
     navigate("/");
-  };
+  }, [navigate]);
 
-  // TODO: Run it when authToken is expired
-  const unauthorize = () => setAuthenticated(false);
+  useEffect(() => {
+    if (data) {
+      setCurrentUser(data.currentUser);
+    } else {
+      setCurrentUser(undefined);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <div>Loading the app...</div>;
+  }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, authorize, unauthorize }}>
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        authorize,
+        unauthorize
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

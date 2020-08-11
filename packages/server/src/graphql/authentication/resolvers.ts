@@ -39,7 +39,8 @@ const resolvers: Resolvers<Context> = {
 
       return {
         success: true,
-        message: "Login success!"
+        message: "Login success!",
+        currentUser: user
       };
     },
 
