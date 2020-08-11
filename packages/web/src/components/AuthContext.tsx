@@ -1,6 +1,7 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
+import { useLogoutMutation } from "./AppTopBar/Logout.mutation.generated";
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
 import { useGetCurrentUserQuery } from "./GetCurrentUser.query.generated";
 
@@ -20,6 +21,7 @@ const AuthContext = React.createContext<AuthContextValue>(DEFAULT_VALUE);
 
 export const useAuth = () => useContext(AuthContext);
 
+// TODO: Reorganize the code
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
 
@@ -27,15 +29,12 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
     undefined | CurrentUserFragment
   >(undefined);
 
-  const { loading } = useGetCurrentUserQuery({
-    onCompleted: (data) => {
-      if (data) {
-        setCurrentUser(data.currentUser);
-      } else {
-        setCurrentUser(undefined);
-      }
-    }
+  useGetCurrentUserQuery({
+    onCompleted: (data) => setCurrentUser(data.currentUser),
+    onError: () => setCurrentUser(undefined)
   });
+
+  const [logout] = useLogoutMutation();
 
   const authorize = useCallback(
     (user: CurrentUserFragment) => {
@@ -46,23 +45,19 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   );
 
   const unauthorize = useCallback(async () => {
+    await logout();
     setCurrentUser(undefined);
     navigate("/");
-  }, [navigate]);
+  }, [logout, navigate]);
 
-  if (loading) {
-    return <div>Loading the app...</div>;
-  }
-
-  return (
-    <AuthContext.Provider
-      value={{
-        currentUser,
-        authorize,
-        unauthorize
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      currentUser,
+      authorize,
+      unauthorize
+    }),
+    [currentUser, authorize, unauthorize]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

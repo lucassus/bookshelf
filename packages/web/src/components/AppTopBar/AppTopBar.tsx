@@ -4,23 +4,16 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import { CurrentUserFragment } from "../CurrentUser.fragment.generated";
 import styles from "./AppTopBar.module.scss";
-import { useLogoutMutation } from "./Logout.mutation.generated";
 
 const CurrentUserMenu: React.FunctionComponent<{
   currentUser: CurrentUserFragment;
 }> = ({ currentUser }) => {
   const { unauthorize } = useAuth();
-  const [logout] = useLogoutMutation();
-
-  const handleLogout = async () => {
-    await logout();
-    unauthorize();
-  };
 
   return (
     <li>
       You are logged in as {currentUser.name}
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={() => unauthorize()}>Logout</button>
     </li>
   );
 };
