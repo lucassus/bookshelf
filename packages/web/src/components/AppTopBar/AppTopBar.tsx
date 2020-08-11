@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../AuthContext";
-import { CurrentUserFragment } from "../CurrentUser.fragment.generated";
+import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import styles from "./AppTopBar.module.scss";
 
 const CurrentUserMenu: React.FunctionComponent<{

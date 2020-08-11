@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { useLogoutMutation } from "./AppTopBar/Logout.mutation.generated";
+import { useLogoutMutation } from "../AppTopBar/Logout.mutation.generated";
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
 import { useGetCurrentUserQuery } from "./GetCurrentUser.query.generated";
 
@@ -21,7 +21,6 @@ const AuthContext = React.createContext<AuthContextValue>(DEFAULT_VALUE);
 
 export const useAuth = () => useContext(AuthContext);
 
-// TODO: Reorganize the code
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
 
