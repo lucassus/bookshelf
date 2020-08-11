@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import express from "express";
 import path from "path";
 import "reflect-metadata";
@@ -10,21 +11,23 @@ import { createServer } from "./server";
 
 const startServer = async () => {
   await createConnection();
-  const apolloServer = createServer();
 
   const app = express();
-  apolloServer.applyMiddleware({ app });
+  app.use(cookieParser());
+  app.use(authenticationMiddleware);
+
+  app.use("/", routes);
 
   const distDir = path.join(__dirname, "../../../web/dist");
   app.use(express.static(distDir));
-
-  app.use(authenticationMiddleware);
-  app.use("/", routes);
   app.get("/*", (req, res) => {
     res.sendFile(path.join(distDir, "index.html"));
   });
 
   app.listen({ port: PORT });
+
+  const apolloServer = createServer();
+  apolloServer.applyMiddleware({ app });
 
   return apolloServer;
 };

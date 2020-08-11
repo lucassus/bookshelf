@@ -2,7 +2,12 @@ import bcrypt from "bcrypt";
 import express from "express";
 import jwt from "jsonwebtoken";
 
-import { AUTH_TOKEN_EXPIRES_IN, AUTH_TOKEN_SECRET_KEY } from "../config";
+import {
+  AUTH_COOKIE_NAME,
+  AUTH_TOKEN_EXPIRES_IN_SECONDS,
+  AUTH_TOKEN_SECRET_KEY,
+  Environment
+} from "../config";
 import { User } from "../database/entity";
 
 type AuthTokenPayload = {
@@ -26,21 +31,13 @@ export const isPasswordValid = (password: string, hash: string): boolean =>
 
 export const generateAuthToken = (user: User): string =>
   jwt.sign({ sub: user.id }, AUTH_TOKEN_SECRET_KEY, {
-    expiresIn: AUTH_TOKEN_EXPIRES_IN
+    expiresIn: AUTH_TOKEN_EXPIRES_IN_SECONDS
   });
 
-const AUTHORIZATION_HEADER_PREFIX = "Bearer";
-
 export function authenticateRequest(req: express.Request): null | number {
-  const { authorization: authorizationHeader } = req.headers;
+  const { [AUTH_COOKIE_NAME]: authToken } = req.cookies;
 
-  if (!authorizationHeader) {
-    return null;
-  }
-
-  const [prefix, authToken] = authorizationHeader.split(" ");
-
-  if (prefix !== AUTHORIZATION_HEADER_PREFIX) {
+  if (!authToken) {
     return null;
   }
 
@@ -51,3 +48,13 @@ export function authenticateRequest(req: express.Request): null | number {
 
   return payload.sub;
 }
+
+export const sendAuthCookie = (res: express.Response, authToken: string) =>
+  res.cookie(AUTH_COOKIE_NAME, authToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === Environment.production,
+    maxAge: AUTH_TOKEN_EXPIRES_IN_SECONDS * 1000
+  });
+
+export const clearAuthCookie = (res: express.Response) =>
+  res.clearCookie(AUTH_COOKIE_NAME);

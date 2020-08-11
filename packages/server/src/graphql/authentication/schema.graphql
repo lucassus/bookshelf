@@ -13,7 +13,12 @@ input LoginInput {
 type LoginPayload implements MutationResponse {
   success: Boolean!
   message: String!
-  authToken: String
+  currentUser: CurrentUser
+}
+
+type LogoutPayload implements MutationResponse {
+  success: Boolean!
+  message: String!
 }
 
 extend type Query {
@@ -28,4 +33,6 @@ extend type Mutation {
   Authenticates a user with the given credentials.
   """
   login(input: LoginInput!): LoginPayload!
+
+  logout: LogoutPayload!
 }

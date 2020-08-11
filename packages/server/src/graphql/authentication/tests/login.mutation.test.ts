@@ -1,5 +1,7 @@
 import { gql } from "apollo-server-express";
+import httpMocks from "node-mocks-http";
 
+import { AUTH_COOKIE_NAME } from "../../../config";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
 
@@ -14,16 +16,22 @@ describe("login mutation", () => {
   ].forEach(([email, password, success, message]) => {
     test(`for ${email} and ${password} responds with ${message}`, async () => {
       // Given
-      await createUser({ email: validEmail, password: validPassword });
+      const user = await createUser({
+        email: validEmail,
+        password: validPassword
+      });
+      const expressRes = httpMocks.createResponse();
 
       // When
-      const res = await createTestClient().mutate({
+      const res = await createTestClient({ res: expressRes }).mutate({
         mutation: gql`
           mutation($input: LoginInput!) {
             login(input: $input) {
               success
               message
-              authToken
+              currentUser {
+                email
+              }
             }
           }
         `,
@@ -38,9 +46,15 @@ describe("login mutation", () => {
         login: {
           success,
           message,
-          authToken: success ? expect.any(String) : null
+          currentUser: success ? { email: user.email } : null
         }
       });
+
+      if (success) {
+        expect(expressRes.cookies[AUTH_COOKIE_NAME]).not.toBe(undefined);
+      } else {
+        expect(expressRes.cookies[AUTH_COOKIE_NAME]).toBe(undefined);
+      }
     });
   });
 });

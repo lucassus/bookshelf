@@ -3,6 +3,7 @@ import {
   ApolloServerTestClient,
   createTestClient as createApolloTestClient
 } from "apollo-server-testing";
+import httpMocks from "node-mocks-http";
 
 import { buildContext, Context } from "../graphql/context";
 import { rootSchema } from "../graphql/rootSchema";
@@ -12,7 +13,12 @@ export function createTestClient(
 ): ApolloServerTestClient {
   const server = new ApolloServer({
     schema: rootSchema,
-    context: buildContext(contextExtra)
+    context: () =>
+      buildContext({
+        req: httpMocks.createRequest(),
+        res: httpMocks.createResponse(),
+        ...contextExtra
+      })
   });
 
   return createApolloTestClient(server);

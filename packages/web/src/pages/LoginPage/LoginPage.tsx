@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { useAuth } from "../../components/AuthContext";
-import { useLoginMutationMutation } from "./Login.mutation.generated";
+import { useLoginMutation } from "./Login.mutation.generated";
 
 type Inputs = {
   email: string;
@@ -11,17 +11,17 @@ type Inputs = {
 
 export const LoginPage: React.FunctionComponent = () => {
   const { register, handleSubmit } = useForm<Inputs>();
-  const [login, { loading }] = useLoginMutationMutation();
-  const auth = useAuth();
+  const [login, { loading }] = useLoginMutation();
+  const { authorize } = useAuth();
 
-  const onSubmit = async (data: Inputs) => {
-    const result = await login({ variables: { input: data } });
+  const onSubmit = async (input: Inputs) => {
+    const result = await login({ variables: { input } });
 
     if (result.data) {
-      const { success, authToken, message } = result.data.login;
+      const { success, message, currentUser } = result.data.login;
 
-      if (success && authToken) {
-        auth.authorize(authToken);
+      if (success && currentUser) {
+        authorize(currentUser);
       } else {
         window.alert(message);
       }

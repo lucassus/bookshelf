@@ -4,11 +4,11 @@ import {
   HttpLink,
   InMemoryCache
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+import { onError } from "@apollo/client/link/error";
 import React from "react";
 import ReactDOM from "react-dom";
-import "typeface-roboto";
 import { BrowserRouter as Router } from "react-router-dom";
+import "typeface-roboto";
 
 import { App } from "./App";
 import { AuthContextProvider } from "./components/AuthContext";
@@ -19,33 +19,35 @@ const cache = new InMemoryCache({
   resultCaching: false
 });
 
-const authLink = setContext((_, { headers }) => {
-  const authToken = window.localStorage.getItem("authToken");
-
-  return {
-    headers: {
-      ...headers,
-      authorization: authToken ? `Bearer ${authToken}` : ""
-    }
-  };
-});
-
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
+
+const errorsLink = onError(({ operation, graphQLErrors }) => {
+  const containsUnauthenticatedError = (graphQLErrors || []).some(
+    (error) => error.extensions?.code === "UNAUTHENTICATED"
+  );
+
+  if (
+    operation.operationName !== "GetCurrentUser" &&
+    containsUnauthenticatedError
+  ) {
+    window.location.reload();
+  }
+});
 
 const client = new ApolloClient({
   cache,
-  link: authLink.concat(httpLink)
+  link: errorsLink.concat(httpLink)
 });
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Router>
+    <Router>
+      <ApolloProvider client={client}>
         <AuthContextProvider>
           <App />
         </AuthContextProvider>
-      </Router>
-    </ApolloProvider>
+      </ApolloProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
