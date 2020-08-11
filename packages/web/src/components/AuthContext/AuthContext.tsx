@@ -33,7 +33,7 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
     onError: () => setCurrentUser(undefined)
   });
 
-  const [logout] = useLogoutMutation();
+  const [logout, { client }] = useLogoutMutation();
 
   const authorize = useCallback(
     (user: CurrentUserFragment) => {
@@ -45,9 +45,11 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
 
   const unauthorize = useCallback(async () => {
     await logout();
+    await client.resetStore();
+
     setCurrentUser(undefined);
     navigate("/");
-  }, [logout, navigate]);
+  }, [logout, client, navigate]);
 
   const value = useMemo(
     () => ({

@@ -9,7 +9,6 @@ import { routes } from "./rest";
 import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 import { createServer } from "./server";
 
-// TODO: Grab more ideas from https://github.com/benawad/jwt-auth-example
 const startServer = async () => {
   await createConnection();
 
