@@ -1,9 +1,8 @@
-import { generateAuthToken } from "../../common/authentication";
 import {
-  AUTH_COOKIE_NAME,
-  AUTH_TOKEN_EXPIRES_IN,
-  Environment
-} from "../../config";
+  clearAuthCookie,
+  generateAuthToken,
+  sendAuthCookie
+} from "../../common/authentication";
 import { UserRepository } from "../../database/repositories/UserRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
@@ -30,12 +29,7 @@ const resolvers: Resolvers<Context> = {
       }
 
       const authToken = generateAuthToken(user);
-
-      res.cookie(AUTH_COOKIE_NAME, authToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === Environment.production,
-        maxAge: AUTH_TOKEN_EXPIRES_IN * 1000
-      });
+      sendAuthCookie(res, authToken);
 
       return {
         success: true,
@@ -45,7 +39,7 @@ const resolvers: Resolvers<Context> = {
     },
 
     logout: (rootValue, args, { res }) => {
-      res.clearCookie(AUTH_COOKIE_NAME);
+      clearAuthCookie(res);
 
       return {
         success: true,

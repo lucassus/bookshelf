@@ -17,5 +17,4 @@ export const AUTH_COOKIE_NAME = "bookshelf:authToken";
 export const AUTH_TOKEN_SECRET_KEY =
   process.env.AUTH_TOKEN_SECRET_KEY || "dummy auth token secret key";
 
-// 15 minutes
-export const AUTH_TOKEN_EXPIRES_IN = 15 * 60;
+export const AUTH_TOKEN_EXPIRES_IN_SECONDS = 15 * 60;
