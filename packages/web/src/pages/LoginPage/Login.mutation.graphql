@@ -1,7 +1,6 @@
-mutation LoginMutation($input: LoginInput!) {
+mutation Login($input: LoginInput!) {
   login(input: $input) {
     success
-    authToken
     message
   }
 }
