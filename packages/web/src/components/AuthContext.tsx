@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
@@ -22,11 +22,20 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
-  const { loading, data } = useGetCurrentUserQuery();
 
   const [currentUser, setCurrentUser] = useState<
     undefined | CurrentUserFragment
   >(undefined);
+
+  const { loading } = useGetCurrentUserQuery({
+    onCompleted: (data) => {
+      if (data) {
+        setCurrentUser(data.currentUser);
+      } else {
+        setCurrentUser(undefined);
+      }
+    }
+  });
 
   const authorize = useCallback(
     (user: CurrentUserFragment) => {
@@ -40,14 +49,6 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
     setCurrentUser(undefined);
     navigate("/");
   }, [navigate]);
-
-  useEffect(() => {
-    if (data) {
-      setCurrentUser(data.currentUser);
-    } else {
-      setCurrentUser(undefined);
-    }
-  }, [data]);
 
   if (loading) {
     return <div>Loading the app...</div>;
