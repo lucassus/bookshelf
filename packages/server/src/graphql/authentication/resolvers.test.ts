@@ -1,3 +1,5 @@
+import httpMocks from "node-mocks-http";
+
 import { UserRepository } from "../../database/repositories/UserRepository";
 import {
   MutationLoginArgs,
@@ -26,7 +28,7 @@ describe("login authentication resolver", () => {
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "password" } },
-      { connection }
+      { connection, res: httpMocks.createResponse() }
     );
 
     // Then
@@ -39,7 +41,7 @@ describe("login authentication resolver", () => {
     expect(result).toMatchObject({
       success: true,
       message: "Login success!",
-      authToken: expect.any(String)
+      currentUser: expect.any(Object)
     });
   });
 
@@ -62,8 +64,7 @@ describe("login authentication resolver", () => {
     // Then
     expect(result).toMatchObject({
       success: false,
-      message: "Invalid email or password!",
-      authToken: null
+      message: "Invalid email or password!"
     });
   });
 });
