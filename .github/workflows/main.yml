@@ -15,6 +15,9 @@ jobs:
     - name: Install packages
       run: yarn install
 
+    - name: Generate GrapQL web components
+      run: yarn codegen
+
     - name: Type Check
       run: yarn typecheck
 
