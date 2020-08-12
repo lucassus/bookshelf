@@ -1,7 +1,7 @@
 import { createRestTestClient } from "../../testUtils/createRestTestClient";
 import { createUser } from "../../testUtils/factories";
 
-describe("GET /api/books", () => {
+describe("GET /api/users", () => {
   it("responds with users when authenticated", async () => {
     // Given
     const currentUser = await createUser({
