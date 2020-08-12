@@ -8,13 +8,12 @@ import {
 test("createUser factory", async () => {
   await createUser();
   await createUser({ name: "Alice" });
-  await createUser({ name: "Bob", email: "bob@email.com" });
 
   const avatar = await createAvatar({ color: "yellow" });
-  const user = await createUser({ avatar });
+  const user = await createUser({ name: "Bob", avatar });
 
-  expect(user.name).toBe("Ms. Dovie Hane");
-  expect(user.email).toBe("Emery_Muller@hotmail.com");
+  expect(user.name).toBe("Bob");
+  expect(user.email).toBe("Alycia.Greenfelder23@gmail.com");
   expect(user.avatar.color).toBe("yellow");
 });
 
@@ -32,6 +31,8 @@ test("createBook factory", async () => {
 });
 
 test("createBookCopy factory", async () => {
+  await createBookCopy();
+
   const borrower = await createUser();
   const bookCopy = await createBookCopy({
     borrower,
@@ -43,8 +44,8 @@ test("createBookCopy factory", async () => {
   });
 
   const owner = await bookCopy.owner;
-  expect(owner.name).toBe("Eusebio Heidenreich");
-  expect(owner.email).toBe("Thomas97@gmail.com");
+  expect(owner.name).toBe("Cordell Lockman");
+  expect(owner.email).toBe("Christine_Bartell77@yahoo.com");
 
   const book = await bookCopy.book;
   expect(book.title).toBe("Ubik");

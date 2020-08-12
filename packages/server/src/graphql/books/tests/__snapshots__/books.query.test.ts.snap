@@ -7,29 +7,29 @@ Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Qui Adipisci Qui",
+            "title": "Et",
           },
           Object {
-            "title": "Veniam",
+            "title": "Suscipit Animi Qui Impedit",
           },
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Qui Adipisci Qui",
+      "title": "Et",
     },
     Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Qui Adipisci Qui",
+            "title": "Et",
           },
           Object {
-            "title": "Veniam",
+            "title": "Suscipit Animi Qui Impedit",
           },
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Veniam",
+      "title": "Suscipit Animi Qui Impedit",
     },
   ],
 }
@@ -38,22 +38,6 @@ Object {
 exports[`books query fetches books with authors 1`] = `
 Object {
   "books": Array [
-    Object {
-      "author": Object {
-        "id": "My1BdXRob3I=",
-        "name": "Hayden Orn",
-      },
-      "id": "NC1Cb29r",
-      "title": "Alias",
-    },
-    Object {
-      "author": Object {
-        "id": "Mi1BdXRob3I=",
-        "name": "Velda Bailey",
-      },
-      "id": "My1Cb29r",
-      "title": "Exercitationem Reiciendis Cupiditate Provident",
-    },
     Object {
       "author": Object {
         "id": "MS1BdXRob3I=",
@@ -69,6 +53,22 @@ Object {
       },
       "id": "Mi1Cb29r",
       "title": "Lord of the Rings",
+    },
+    Object {
+      "author": Object {
+        "id": "My1BdXRob3I=",
+        "name": "Raheem Hoppe",
+      },
+      "id": "NC1Cb29r",
+      "title": "Quia Est Dolores",
+    },
+    Object {
+      "author": Object {
+        "id": "Mi1BdXRob3I=",
+        "name": "Brody Beahan",
+      },
+      "id": "My1Cb29r",
+      "title": "Velit Eum Sint",
     },
   ],
   "booksCount": 4,
