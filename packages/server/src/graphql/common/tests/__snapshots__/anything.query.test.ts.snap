@@ -6,26 +6,26 @@ Object {
     "__typename": "Author",
     "books": Array [
       Object {
-        "description": "Pariatur laboriosam aliquid velit molestiae voluptates exercitationem reiciendis.",
+        "description": "Laborum cupiditate consequatur et voluptatem.",
+        "favourite": true,
+        "id": "Mi1Cb29r",
+        "title": "Et",
+      },
+      Object {
+        "description": "Aut consequatur incidunt blanditiis sunt.",
         "favourite": true,
         "id": "My1Cb29r",
-        "title": "Dolore Tenetur Voluptatem Nostrum",
+        "title": "In Eos Quae",
       },
       Object {
-        "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
-        "favourite": false,
-        "id": "Mi1Cb29r",
-        "title": "Qui Adipisci Qui",
-      },
-      Object {
-        "description": "Laudantium molestias ut.",
+        "description": "Voluptatem inventore ut quisquam fugiat itaque non alias.",
         "favourite": true,
         "id": "MS1Cb29r",
-        "title": "Veniam",
+        "title": "Suscipit Animi Qui Impedit",
       },
     ],
     "id": "MS1BdXRob3I=",
-    "name": "Rosalind Effertz",
+    "name": "Valentine Deckow",
   },
 }
 `;
@@ -34,10 +34,10 @@ exports[`anything query fetches Book 1`] = `
 Object {
   "anything": Object {
     "__typename": "Book",
-    "description": "Laudantium molestias ut.",
+    "description": "Voluptatem inventore ut quisquam fugiat itaque non alias.",
     "favourite": true,
     "id": "MS1Cb29r",
-    "title": "Veniam",
+    "title": "Suscipit Animi Qui Impedit",
   },
 }
 `;
@@ -47,19 +47,19 @@ Object {
   "anything": Object {
     "__typename": "BookCopy",
     "book": Object {
-      "description": "Vero aut assumenda.",
-      "favourite": true,
+      "description": "Consequatur et voluptatem nostrum cupiditate laborum in.",
+      "favourite": false,
       "id": "MS1Cb29r",
-      "title": "Minus",
+      "title": "Sit Et Corporis Laborum",
     },
     "borrower": Object {
       "id": "MS1Vc2Vy",
-      "name": "Mariana Christiansen",
+      "name": "Moses Satterfield",
     },
     "id": "MS1Cb29rQ29weQ==",
     "owner": Object {
       "id": "Mi1Vc2Vy",
-      "name": "Eusebio Heidenreich",
+      "name": "Jackson Borer",
     },
   },
 }
@@ -70,7 +70,7 @@ Object {
   "anything": Object {
     "__typename": "User",
     "id": "MS1Vc2Vy",
-    "name": "Mariana Christiansen",
+    "name": "Moses Satterfield",
   },
 }
 `;
@@ -78,19 +78,19 @@ Object {
 exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {
-    "description": "Ipsam exercitationem sequi est minus consequatur minus fugit.",
-    "headline": "Clemens Hyatt",
+    "description": "Et voluptatem nostrum.",
+    "headline": "Elliott Monahan IV",
     "id": "Mi1BdXRob3I=",
   },
   "something": Object {
-    "description": "Laudantium molestias ut.",
+    "description": "Voluptatem inventore ut quisquam fugiat itaque non alias.",
     "externalId": "MS1Cb29r",
-    "headline": "Veniam",
+    "headline": "Suscipit Animi Qui Impedit",
     "id": "MS1Cb29r",
   },
   "user": Object {
-    "description": "Voluptates exercitationem reiciendis cupiditate provident earum quaerat architecto qui ad.",
-    "headline": "Alba Green",
+    "description": "Sint voluptatibus deserunt totam quae eos.",
+    "headline": "Elaina Wiza III",
     "id": "MS1Vc2Vy",
   },
 }

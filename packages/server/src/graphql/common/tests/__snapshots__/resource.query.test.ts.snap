@@ -4,9 +4,9 @@ exports[`resource query fetches Author 1`] = `
 Object {
   "resource": Object {
     "__typename": "Author",
-    "bio": "Magni qui placeat hic suscipit perferendis et velit.",
+    "bio": "Dolor animi mollitia sequi ducimus sequi aspernatur inventore.",
     "id": "MS1BdXRob3I=",
-    "name": "Rosalind Effertz",
+    "name": "Valentine Deckow",
   },
 }
 `;
@@ -15,9 +15,9 @@ exports[`resource query fetches Book 1`] = `
 Object {
   "resource": Object {
     "__typename": "Book",
-    "description": "Laudantium molestias ut.",
+    "description": "Voluptatem inventore ut quisquam fugiat itaque non alias.",
     "id": "MS1Cb29r",
-    "title": "Veniam",
+    "title": "Suscipit Animi Qui Impedit",
   },
 }
 `;
