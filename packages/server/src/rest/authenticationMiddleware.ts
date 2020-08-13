@@ -9,9 +9,7 @@ export const authenticationMiddleware = async (
 ): Promise<void> => {
   try {
     const currentUser = await authenticateRequest(req);
-
-    // TODO: Provide better typings
-    (req as any).user = currentUser;
+    req.user = currentUser;
 
     next();
   } catch (error) {

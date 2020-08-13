@@ -7,7 +7,7 @@ import { serializeUsers } from "../serializers";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  if (!(req as any).user) {
+  if (!req.user) {
     return res.sendStatus(401);
   }
 
