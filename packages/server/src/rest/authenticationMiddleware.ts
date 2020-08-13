@@ -1,8 +1,6 @@
 import express from "express";
-import { getConnection } from "typeorm";
 
 import { authenticateRequest } from "../common/authentication";
-import { User } from "../database/entity";
 
 export const authenticationMiddleware = async (
   req: express.Request,
@@ -10,14 +8,7 @@ export const authenticationMiddleware = async (
   next: express.NextFunction
 ): Promise<void> => {
   try {
-    const userId = authenticateRequest(req);
-
-    const currentUser = userId
-      ? await getConnection().manager.findOneOrFail(User, { id: userId })
-      : undefined;
-
-    (req as any).user = currentUser;
-
+    req.currentUser = await authenticateRequest(req);
     next();
   } catch (error) {
     res.status(401).json({ error: error.message });

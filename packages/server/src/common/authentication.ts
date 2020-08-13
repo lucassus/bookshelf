@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt";
 import express from "express";
 import jwt from "jsonwebtoken";
+import { getRepository } from "typeorm";
 
 import {
   AUTH_COOKIE_NAME,
@@ -10,43 +10,40 @@ import {
 } from "../config";
 import { User } from "../database/entity";
 
-type AuthTokenPayload = {
-  // Identifies the subject of the JWT.
-  sub: number;
-
-  // Identifies the time at which the JWT was issued.
-  iat: number;
-
-  // Identifies the expiration time on and after which the JWT must not be accepted for processing.
-  exp: number;
-};
-
-export function hashPassword(password: string): string {
-  const salt = bcrypt.genSaltSync(8);
-  return bcrypt.hashSync(password, salt);
-}
-
-export const isPasswordValid = (password: string, hash: string): boolean =>
-  bcrypt.compareSync(password, hash);
+const getAuthTokenSecretFor = (user: User) =>
+  [user.email, user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");
 
 export const generateAuthToken = (user: User): string =>
-  jwt.sign({ sub: user.id }, AUTH_TOKEN_SECRET_KEY, {
+  jwt.sign({ sub: user.id }, getAuthTokenSecretFor(user), {
     expiresIn: AUTH_TOKEN_EXPIRES_IN_SECONDS
   });
 
-export function authenticateRequest(req: express.Request): null | number {
+export async function authenticateRequest(
+  req: express.Request
+): Promise<undefined | User> {
   const { [AUTH_COOKIE_NAME]: authToken } = req.cookies;
-
   if (!authToken) {
-    return null;
+    return undefined;
   }
 
-  const payload = jwt.verify(
-    authToken,
-    AUTH_TOKEN_SECRET_KEY
-  ) as AuthTokenPayload;
+  const payload = jwt.decode(authToken);
+  if (!(payload && payload.sub)) {
+    throw new Error("Invalid token payload");
+  }
 
-  return payload.sub;
+  const user = await getRepository(User).findOneOrFail({
+    id: payload.sub
+  });
+
+  return new Promise((resolve, reject) => {
+    jwt.verify(authToken, getAuthTokenSecretFor(user), (error) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(user);
+      }
+    });
+  });
 }
 
 export const sendAuthCookie = (res: express.Response, authToken: string) =>
