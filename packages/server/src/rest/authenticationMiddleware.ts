@@ -8,9 +8,7 @@ export const authenticationMiddleware = async (
   next: express.NextFunction
 ): Promise<void> => {
   try {
-    const currentUser = await authenticateRequest(req);
-    req.user = currentUser;
-
+    req.currentUser = await authenticateRequest(req);
     next();
   } catch (error) {
     res.status(401).json({ error: error.message });

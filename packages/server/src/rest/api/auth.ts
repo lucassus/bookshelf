@@ -5,13 +5,13 @@ import { serializeUser } from "../serializers";
 const router = express.Router();
 
 router.get("/me", async (req, res) => {
-  const { user } = req;
+  const { currentUser } = req;
 
-  if (!user) {
+  if (!currentUser) {
     return res.sendStatus(401);
   }
 
-  const userJson = await serializeUser(user);
+  const userJson = await serializeUser(currentUser);
   return res.json(userJson);
 });
 
