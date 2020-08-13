@@ -11,7 +11,7 @@ export function createRestTestClient({
 
   if (currentUser) {
     app.use((req, res, next) => {
-      req.user = currentUser;
+      req.currentUser = currentUser;
       next();
     });
   }
