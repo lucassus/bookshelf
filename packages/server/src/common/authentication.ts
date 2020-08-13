@@ -28,7 +28,7 @@ export async function authenticateRequest(
 
   const payload = jwt.decode(authToken);
   if (!(payload && payload.sub)) {
-    throw new Error("Invalid token");
+    throw new Error("Invalid token payload");
   }
 
   const user = await getRepository(User).findOneOrFail({

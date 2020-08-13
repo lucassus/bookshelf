@@ -29,7 +29,7 @@ describe(".authenticateRequest", () => {
       const req = createRequestWithAuthCookie("invalid access token");
 
       await expect(() => authenticateRequest(req)).rejects.toThrowError(
-        "Invalid token"
+        "Invalid token payload"
       );
     });
 
