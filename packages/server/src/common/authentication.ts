@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import express from "express";
 import jwt from "jsonwebtoken";
 import { getRepository } from "typeorm";
@@ -10,14 +9,6 @@ import {
   Environment
 } from "../config";
 import { User } from "../database/entity";
-
-export function hashPassword(password: string): string {
-  const salt = bcrypt.genSaltSync(8);
-  return bcrypt.hashSync(password, salt);
-}
-
-export const isPasswordValid = (password: string, hash: string): boolean =>
-  bcrypt.compareSync(password, hash);
 
 const getAuthTokenSecretFor = (user: User) =>
   [user.email, user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");

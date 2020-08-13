@@ -5,11 +5,8 @@ import { getRepository } from "typeorm";
 import { AUTH_COOKIE_NAME } from "../config";
 import { User } from "../database/entity";
 import { createUser } from "../testUtils/factories";
-import {
-  authenticateRequest,
-  generateAuthToken,
-  hashPassword
-} from "./authentication";
+import { authenticateRequest, generateAuthToken } from "./authentication";
+import { hashPassword } from "./passwords";
 
 describe(".authenticateRequest", () => {
   describe("when the auth cookie is set", () => {

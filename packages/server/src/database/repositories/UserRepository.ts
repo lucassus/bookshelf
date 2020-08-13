@@ -1,6 +1,6 @@
 import { AbstractRepository, EntityRepository } from "typeorm";
 
-import { isPasswordValid } from "../../common/authentication";
+import { isPasswordValid } from "../../common/passwords";
 import { User } from "../entity";
 
 @EntityRepository(User)
