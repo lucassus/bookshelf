@@ -12,57 +12,51 @@ hide methods
 hide stereotypes
 
 package users {
-    table(Avatar) {
-      primary_key(id)
-      --
-      imagePath
-      color
-    }
+  table(Avatar) {
+    primary_key(id)
+    --
+    imagePath
+    color
+  }
 
-
-    table(User) {
-      primary_key(id)
-      foreign_key(avatarId)
-      --
-      not_null(name)
-      info
-      unique(not_null(email))
-      not_null(passwordHash)
-      isAdmin: boolean
-    }
+  table(User) {
+    primary_key(id)
+    foreign_key(avatarId)
+    --
+    not_null(name)
+    info
+    unique(not_null(email))
+    not_null(passwordHash)
+    isAdmin
+  }
 }
 
 package library {
-    table(Author) {
-      primary_key(id)
-      --
-      not_null(name)
-      bio
-      photoPath
-    }
+  table(Author) {
+    primary_key(id)
+    --
+    not_null(name)
+    bio
+    photoPath
+  }
 
-    table(Book) {
-      primary_key(id)
-      not_null(foreign_key(authorId))
-      --
-      not_null(title)
-      description
-      coverPath
-    }
+  table(Book) {
+    primary_key(id)
+    not_null(foreign_key(authorId))
+    --
+    not_null(title)
+    description
+    coverPath
+  }
+
+  table(BookCopy) {
+    primary_key(id)
+    foreign_key(bookId)
+    foreign_key(ownerId)
+    foreign_key(borrowerId)
+  }
 }
 
-table(BookCopy) {
-  primary_key(id)
-  foreign_key(bookId)
-  foreign_key(ownerId)
-  foreign_key(borrowerId)
-}
-
-table(FavouriteBook) {
-  primary_key(id)
-  foreign_key(userId)
-  foreign_key(bookId)
-}
 
 ' Relations
 
@@ -74,10 +68,6 @@ User --> BookCopy: ownedBooksCopies
 BookCopy --> User : owner
 User --> BookCopy: borrowedBooksCopies
 BookCopy --> User : borrower
-
-FavouriteBook --> User : user
-User --> FavouriteBook : favouriteBooks
-FavouriteBook --> Book : book
 
 Book -> Author : author
 Author --> Book : books
