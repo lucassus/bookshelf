@@ -11,11 +11,12 @@ import { createServer } from "./server";
 
 const startServer = async () => {
   await createConnection();
+  const apolloServer = createServer();
 
   const app = express();
   app.use(cookieParser());
   app.use(authenticationMiddleware);
-
+  apolloServer.applyMiddleware({ app });
   app.use("/", routes);
 
   const distDir = path.join(__dirname, "../../../web/dist");
@@ -25,9 +26,6 @@ const startServer = async () => {
   });
 
   app.listen({ port: PORT });
-
-  const apolloServer = createServer();
-  apolloServer.applyMiddleware({ app });
 
   return apolloServer;
 };
