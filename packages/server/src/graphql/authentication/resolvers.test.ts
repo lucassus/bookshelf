@@ -1,5 +1,6 @@
 import httpMocks from "node-mocks-http";
 
+import { AUTH_COOKIE_NAME } from "../../config";
 import { UserRepository } from "../../database/repositories/UserRepository";
 import {
   MutationLoginArgs,
@@ -24,11 +25,13 @@ describe("login authentication resolver", () => {
       getCustomRepository: jest.fn().mockReturnValue(userRepository)
     };
 
+    const res = httpMocks.createResponse();
+
     // When
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "password" } },
-      { connection, res: httpMocks.createResponse() }
+      { connection, res }
     );
 
     // Then
@@ -38,6 +41,12 @@ describe("login authentication resolver", () => {
       "password"
     );
 
+    expect(res.cookies).toMatchObject({
+      [AUTH_COOKIE_NAME]: {
+        value: expect.any(String)
+      }
+    });
+
     expect(result).toMatchObject({
       success: true,
       message: "Login success!",
@@ -45,7 +54,7 @@ describe("login authentication resolver", () => {
     });
   });
 
-  test("on error error", async () => {
+  test("on login error", async () => {
     // Given
     const user = undefined;
     const connection = {

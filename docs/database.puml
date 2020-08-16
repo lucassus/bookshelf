@@ -2,7 +2,6 @@
 !define table(name) class name << (T,#FFAAAA) >>
 !define primary_key(x) <b><i>x</i></b>
 !define foreign_key(x) <i>x</i>
-!define unique(x) <color:green>x</color>
 !define not_null(x) <b>x</b>
 
 skinparam classFontSize 16
@@ -11,63 +10,59 @@ hide class circle
 hide methods
 hide stereotypes
 
-package users {
+package Users {
   table(Avatar) {
-    primary_key(id)
-    --
-    imagePath
-    color
+    not_null(imagePath)
+    not_null(color)
   }
 
   table(User) {
-    primary_key(id)
-    foreign_key(avatarId)
-    --
     not_null(name)
     info
-    unique(not_null(email))
+    not_null(email) [unique]
     not_null(passwordHash)
     isAdmin
+    --
+    not_null(foreign_key(avatar))
   }
 }
 
-package library {
+package Library {
   table(Author) {
-    primary_key(id)
-    --
     not_null(name)
-    bio
+    not_null(bio)
     photoPath
   }
 
   table(Book) {
-    primary_key(id)
-    not_null(foreign_key(authorId))
-    --
     not_null(title)
-    description
+    not_null(description)
     coverPath
+    --
+    not_null(foreign_key(author))
   }
 
   table(BookCopy) {
-    primary_key(id)
-    foreign_key(bookId)
-    foreign_key(ownerId)
-    foreign_key(borrowerId)
+    borrowedAt
+    --
+    not_null(foreign_key(book))
+    not_null(foreign_key(owner))
+    foreign_key(borrower)
   }
 }
 
 
 ' Relations
 
-User --> Avatar : avatar
-Avatar --> User : user
+User -right-> Avatar : avatar
+Avatar -left-> User : user
 
-Book --> BookCopy : copies
+Book -right-> BookCopy : copies
 User --> BookCopy: ownedBooksCopies
 BookCopy --> User : owner
 User --> BookCopy: borrowedBooksCopies
 BookCopy --> User : borrower
+BookCopy --> Book : book
 
 Book -> Author : author
 Author --> Book : books
