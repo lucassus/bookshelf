@@ -11,14 +11,15 @@ documents: packages/web/src/**/*.graphql
 generates:
   packages/server/src/graphql/resolvers-types.generated.ts:
     config:
-      useIndexSignature: true
+      mapperTypeSuffix: Entity
       mappers:
-        Author: ../database/entity#Author as AuthorEntity
-        Avatar: ../database/entity#Avatar as AvatarEntity
-        Book: ../database/entity#Book as BookEntity
-        BookCopy: ../database/entity#BookCopy as BookCopyEntity
-        User: ../database/entity#User as UserEntity
-        CurrentUser: ../database/entity#User as UserEntity
+        Author: ../database/entity#Author
+        Avatar: ../database/entity#Avatar
+        Book: ../database/entity#Book
+        BookCopy: ../database/entity#BookCopy
+        User: ../database/entity#User
+        CurrentUser: ../database/entity#User
+      showUnusedMappers: true
       scalars:
         ExternalID: string
     plugins:
