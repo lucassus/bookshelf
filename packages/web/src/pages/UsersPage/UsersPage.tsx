@@ -17,12 +17,14 @@ export const UsersPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Could not load users..." />;
   }
 
+  const { users } = data;
+
   return (
     <div>
       <h2>Users</h2>
 
       <div className={styles.list}>
-        {data.users.map((user) => (
+        {users.map((user) => (
           <Link key={user.id} to={`/users/${user.id}`} color="inherit">
             <UserCard user={user} />
           </Link>

@@ -31,12 +31,10 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
           <Link to={`/books/${book.id}`}>{book.title}</Link>
         </h3>
 
-        {book.author && (
-          <span>
-            Written by{" "}
-            <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
-          </span>
-        )}
+        <span>
+          Written by{" "}
+          <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
+        </span>
 
         <div className={styles.buttons}>
           <StarIconButton

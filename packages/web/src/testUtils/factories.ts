@@ -26,6 +26,7 @@ export const createBook: Factory<Book> = (attributes = {}) => ({
     path: "/book-covers/witcher1.jpg",
     url: "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
   },
+  author: createAuthor(),
   copies: [],
   createdAt: "2020-07-19T14:00:00.00Z",
   updatedAt: "2020-07-19T14:00:00.00Z",

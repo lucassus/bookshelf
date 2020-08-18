@@ -30,6 +30,8 @@ export const BooksPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Could not load books..." onRetry={refetch} />;
   }
 
+  const { books } = data;
+
   return (
     <div>
       <h2>Books</h2>
@@ -41,7 +43,7 @@ export const BooksPage: React.FunctionComponent = () => {
       />
 
       <div className={styles.list}>
-        {data.books.map((book) => (
+        {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </div>

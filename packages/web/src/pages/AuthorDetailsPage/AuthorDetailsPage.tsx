@@ -21,21 +21,21 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Count not load author!" />;
   }
 
+  const { author } = data;
+
   return (
     <div>
-      <h2>{data.author.name}</h2>
+      <h2>{author.name}</h2>
 
       <div className={styles.info}>
-        {data.author.photo && (
-          <img src={data.author.photo.url} alt={data.author.name} />
-        )}
+        {author.photo && <img src={author.photo.url} alt={author.name} />}
 
-        <article>{data.author.bio}</article>
+        <article>{author.bio}</article>
       </div>
 
-      {data.author.books && (
+      {author.books && (
         <div className={styles.booksList}>
-          {data.author.books.map((book) => (
+          {author.books.map((book) => (
             <BookCard key={book.id} book={book} />
           ))}
         </div>

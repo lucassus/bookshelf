@@ -4,7 +4,7 @@ type Book implements Resource & Timestampable {
   description: String
   cover: Image!
   favourite: Boolean!
-  author: Author
+  author: Author!
   copies: [BookCopy!]!
   createdAt: String!
   updatedAt: String!

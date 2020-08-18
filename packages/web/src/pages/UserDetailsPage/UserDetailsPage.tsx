@@ -22,29 +22,31 @@ export const UserDetailsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Count not load user!" />;
   }
 
+  const { user } = data;
+
   return (
     <div>
-      <UserCard user={data.user} />
-      <span>{data.user.info}</span>
+      <UserCard user={user} />
+      <span>{user.info}</span>
 
-      {data.user.ownedBookCopies.length > 0 && (
+      {user.ownedBookCopies.length > 0 && (
         <>
           <h3>Owned book copies</h3>
 
           <div className={styles.bookCopies}>
-            {data.user.ownedBookCopies.map((bookCopy) => (
+            {user.ownedBookCopies.map((bookCopy) => (
               <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
             ))}
           </div>
         </>
       )}
 
-      {data.user.borrowedBookCopies.length > 0 && (
+      {user.borrowedBookCopies.length > 0 && (
         <>
           <h3>Borrowed book copies</h3>
 
           <div className={styles.bookCopies}>
-            {data.user.borrowedBookCopies.map((bookCopy) => (
+            {user.borrowedBookCopies.map((bookCopy) => (
               <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
             ))}
           </div>
