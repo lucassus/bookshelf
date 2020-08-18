@@ -33,14 +33,12 @@ export const BookDetailsPage: React.FunctionComponent = () => {
         />
 
         <div>
-          {data.book.author && (
-            <h3>
-              Written by{" "}
-              <Link to={`/authors/${data.book.author.id}`}>
-                {data.book.author.name}
-              </Link>
-            </h3>
-          )}
+          <h3>
+            Written by{" "}
+            <Link to={`/authors/${data.book.author.id}`}>
+              {data.book.author.name}
+            </Link>
+          </h3>
 
           <p>{data.book.description}</p>
         </div>
