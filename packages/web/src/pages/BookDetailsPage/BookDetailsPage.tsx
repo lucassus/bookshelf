@@ -21,35 +21,35 @@ export const BookDetailsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Count not load book!" />;
   }
 
+  const { book } = data;
+
   return (
     <div className={styles.container}>
-      <h2>{data.book.title}</h2>
+      <h2>{book.title}</h2>
 
       <div>
         <img
           className={styles.bookCover}
-          src={data.book.cover.url}
+          src={book.cover.url}
           alt="Book cover"
         />
 
         <div>
           <h3>
             Written by{" "}
-            <Link to={`/authors/${data.book.author.id}`}>
-              {data.book.author.name}
-            </Link>
+            <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
           </h3>
 
-          <p>{data.book.description}</p>
+          <p>{book.description}</p>
         </div>
       </div>
 
-      {data.book.copies.length > 0 && (
+      {book.copies.length > 0 && (
         <div className={styles.bookCopiesContainer}>
           <h3>Copies</h3>
 
           <div className={styles.bookCopies}>
-            {data.book.copies.map((bookCopy) => (
+            {book.copies.map((bookCopy) => (
               <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
             ))}
           </div>

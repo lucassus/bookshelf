@@ -16,12 +16,14 @@ export const AuthorsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Could not load authors..." />;
   }
 
+  const { authors } = data;
+
   return (
     <div>
       <h2>Authors</h2>
 
       <div className={styles.list}>
-        {data.authors.map((author) => (
+        {authors.map((author) => (
           <AuthorCard key={author.id} author={author} />
         ))}
       </div>
