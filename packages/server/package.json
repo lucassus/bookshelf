@@ -34,7 +34,7 @@
     "node-mocks-http": "1.8.1",
     "sqlite3": "5.0.0",
     "supertest": "4.0.2",
-    "ts-node-dev": "1.0.0-pre.57"
+    "ts-node-dev": "1.0.0-pre.58"
   },
   "scripts": {
     "clean:dist": "rimraf dist",
