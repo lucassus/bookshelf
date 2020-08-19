@@ -34,6 +34,18 @@ test("author query", async () => {
 
   // Then
   expect(res.errors).toBe(undefined);
-  expect(res.data).not.toBeNull();
-  expect(res.data).toMatchSnapshot();
+  expect(res.data).toMatchInlineSnapshot(`
+    Object {
+      "author": Object {
+        "bio": "John Ronald Reuel Tolkien was an English writer, poet, philologist, and academic. He was the author of the high fantasy works The Hobbit and The Lord of the Rings.",
+        "createdAt": "2019-12-31T14:30:00.000Z",
+        "id": "MS1BdXRob3I=",
+        "name": "J. R. R. Tolkien",
+        "photo": Object {
+          "url": "https://res.cloudinary.com/lucassus/image/upload/bookshelf/images/book-authors/james-s-a-corey.jpg",
+        },
+        "updatedAt": "2020-07-19T13:20:00.000Z",
+      },
+    }
+  `);
 });
