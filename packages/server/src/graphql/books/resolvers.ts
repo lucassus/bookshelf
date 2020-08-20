@@ -6,26 +6,22 @@ import { BooksService } from "./services/BooksService";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    booksCount: (rootValue, args, { container }) =>
-      container.get(BooksService).count(),
+    booksCount: (rootValue, args, { injector }) =>
+      injector.get(BooksService).count(),
 
-    books: (rootValue, { limit: take, offset: skip }, { container }) =>
-      container.get(BooksService).paginate(take, skip),
+    books: (rootValue, { limit: take, offset: skip }, { injector }) =>
+      injector.get(BooksService).paginate(take, skip),
 
-    book: (rootValue, { id }, { container }) =>
-      container.get(BooksService).findByIdOrFail(id),
+    book: (rootValue, { id }, { injector }) =>
+      injector.get(BooksService).findByIdOrFail(id),
 
-    randomBook: (rootValue, args, { container }) =>
-      container.get(BooksService).findRandom()
+    randomBook: (rootValue, args, { injector }) =>
+      injector.get(BooksService).findRandom()
   },
 
   Mutation: {
-    updateBookFavourite: async (
-      rootValue,
-      { id, favourite },
-      { container }
-    ) => {
-      const book = await container
+    updateBookFavourite: async (rootValue, { id, favourite }, { injector }) => {
+      const book = await injector
         .get(BooksService)
         .updateFavourite(id, favourite);
 
@@ -38,8 +34,8 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
-      const bookCopy = await container
+    borrowBookCopy: async (rootValue, { id }, { injector, currentUser }) => {
+      const bookCopy = await injector
         .get(BookCopiesService)
         .borrow(id, currentUser!.id);
 
@@ -50,8 +46,8 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
-      const bookCopy = await container
+    returnBookCopy: async (rootValue, { id }, { injector, currentUser }) => {
+      const bookCopy = await injector
         .get(BookCopiesService)
         .return(id, currentUser!.id);
 
@@ -74,12 +70,12 @@ const resolvers: Resolvers<Context> = {
   },
 
   BookCopy: {
-    owner: (bookCopy, args, { container }) =>
-      container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
+    owner: (bookCopy, args, { injector }) =>
+      injector.get(UsersService).findByIdOrFail(bookCopy.ownerId),
 
-    borrower: (bookCopy, args, { container }) =>
+    borrower: (bookCopy, args, { injector }) =>
       bookCopy.borrowerId
-        ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
+        ? injector.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
         : null
   }
 };

@@ -34,7 +34,7 @@ describe("login authentication resolver", () => {
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "password" } },
-      { res, container: Container }
+      { res, injector: Container }
     );
 
     // Then
@@ -68,7 +68,7 @@ describe("login authentication resolver", () => {
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "invalid password" } },
-      { container: Container }
+      { injector: Container }
     );
 
     // Then
