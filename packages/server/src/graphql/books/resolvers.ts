@@ -1,6 +1,5 @@
 import { User } from "../../database/entity";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
-import { BookRepository } from "../../database/repositories/BookRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { BooksService } from "./BooksService";
@@ -24,10 +23,10 @@ const resolvers: Resolvers<Context> = {
     updateBookFavourite: async (
       rootValue,
       { id, favourite },
-      { connection }
+      { container }
     ) => {
-      const book = await connection.manager
-        .getCustomRepository(BookRepository)
+      const book = await container
+        .get(BooksService)
         .updateFavourite(id, favourite);
 
       return {

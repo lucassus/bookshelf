@@ -6,7 +6,7 @@ import { Book } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBook } from "../../../testUtils/factories";
 
-it("updateBookFavourite mutation", async () => {
+test("updateBookFavourite mutation", async () => {
   // Given
   const book = await createBook({
     title: "Harry Potter and the Sorcerer's Stone",
@@ -38,7 +38,6 @@ it("updateBookFavourite mutation", async () => {
   expect(updatedBook.favourite).toBe(true);
 
   expect(res.errors).toBe(undefined);
-  expect(res.data).not.toBe(null);
   expect(res.data).toMatchObject({
     updateBookFavourite: {
       success: true,

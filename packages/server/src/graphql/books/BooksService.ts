@@ -30,4 +30,14 @@ export class BooksService {
 
     return book || null;
   }
+
+  async updateFavourite(
+    id: string | number,
+    favourite: boolean
+  ): Promise<Book> {
+    const book = await this.findOneByIdOrFail(id);
+
+    book.favourite = favourite;
+    return this.repository.save(book);
+  }
 }
