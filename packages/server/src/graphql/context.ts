@@ -1,6 +1,6 @@
 import express from "express";
 import { Container } from "typedi";
-import { Connection, getConnection } from "typeorm";
+import { Connection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "../config";
 import { User } from "../database/entity";
@@ -22,7 +22,7 @@ export const buildContext = (
   assetsBaseUrl: ASSETS_BASE_URL,
   authorsLoader: buildAuthorsLoader(),
   injector: Container,
-  connection: getConnection(),
+  connection: Container.get(Connection),
   currentUser: undefined,
   ...contextExtra
 });

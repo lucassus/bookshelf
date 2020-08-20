@@ -7,9 +7,7 @@ import { serializeBooks } from "../serializers";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const connection = getConnection();
-
-  const books = await connection
+  const books = await getConnection()
     .getRepository(Book)
     .createQueryBuilder("books")
     .leftJoinAndSelect("books.author", "author")
