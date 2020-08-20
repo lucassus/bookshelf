@@ -9,7 +9,7 @@ import { buildAuthorsLoader } from "./authors/authorsLoader";
 export interface Context {
   req: express.Request;
   res: express.Response;
-  container: Container;
+  container: typeof Container;
   connection: Connection;
   assetsBaseUrl: string;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;

@@ -5,20 +5,19 @@ import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { BooksService } from "./BooksService";
 
-// TODO: Figure out how to inject the service
 const resolvers: Resolvers<Context> = {
   Query: {
-    booksCount: (rootValue, args, { connection }) =>
-      new BooksService(connection).count(),
+    booksCount: (rootValue, args, { container }) =>
+      container.get(BooksService).count(),
 
-    books: (rootValue, { limit: take, offset: skip }, { connection }) =>
-      new BooksService(connection).paginate(take, skip),
+    books: (rootValue, { limit: take, offset: skip }, { container }) =>
+      container.get(BooksService).paginate(take, skip),
 
-    book: (rootValue, { id }, { connection }) =>
-      new BooksService(connection).findByIdOrFail(id),
+    book: (rootValue, { id }, { container }) =>
+      container.get(BooksService).findOneByIdOrFail(id),
 
-    randomBook: (rootValue, args, { connection }) =>
-      new BooksService(connection).findRandom()
+    randomBook: (rootValue, args, { container }) =>
+      container.get(BooksService).findRandom()
   },
 
   Mutation: {
