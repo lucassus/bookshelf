@@ -7,7 +7,10 @@ import {
   MutationLoginArgs,
   ResolversTypes
 } from "../resolvers-types.generated";
-import { AuthenticationService } from "./AuthenticationService";
+import {
+  AuthenticationService,
+  AuthenticationServiceError
+} from "./AuthenticationService";
 import resolvers from "./resolvers";
 
 const login = resolvers.Mutation!.login! as (
@@ -56,7 +59,7 @@ describe("login authentication resolver", () => {
     // Given
     const fakeAuthenticationService: Partial<AuthenticationService> = {
       findUserByEmailAndPasswordOrFail: jest.fn().mockImplementation(() => {
-        throw new Error("Invalid password!");
+        throw new AuthenticationServiceError("Invalid password!");
       })
     };
     Container.set(AuthenticationService, fakeAuthenticationService);
