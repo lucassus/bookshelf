@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { useAuth } from "../../components/AuthContext";
 import { useLoginMutation } from "./Login.mutation.generated";
+import styles from "./LoginPage.module.scss";
 
 type Inputs = {
   email: string;
@@ -32,7 +33,7 @@ export const LoginPage: React.FunctionComponent = () => {
     <div>
       <h2>Login</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div>
           <label htmlFor="email-field">Email</label>
           <input type="text" id="email-field" name="email" ref={register} />
