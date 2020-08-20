@@ -1,0 +1,11 @@
+.form {
+  label {
+    display: block;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 10px;
+    margin: 10px 0;
+  }
+}
