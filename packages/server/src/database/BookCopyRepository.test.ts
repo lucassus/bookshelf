@@ -1,8 +1,8 @@
 import { getCustomRepository, getManager } from "typeorm";
 
-import { createBookCopy, createUser } from "../../testUtils/factories";
-import { BookCopy } from "../entity";
+import { createBookCopy, createUser } from "../testUtils/factories";
 import { BookCopyRepository } from "./BookCopyRepository";
+import { BookCopy } from "./entity";
 
 describe("BookCopyRepository", () => {
   let repository: BookCopyRepository;

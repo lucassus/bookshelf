@@ -1,6 +1,6 @@
 import { AbstractRepository, EntityRepository } from "typeorm";
 
-import { BookCopy } from "../entity";
+import { BookCopy } from "./entity";
 
 @EntityRepository(BookCopy)
 export class BookCopyRepository extends AbstractRepository<BookCopy> {
@@ -8,7 +8,6 @@ export class BookCopyRepository extends AbstractRepository<BookCopy> {
     const bookCopy = await this.repository.findOneOrFail(id);
 
     // TODO: Implement better errors handling
-    // TODO: Display a toast on the client side
     if (bookCopy.ownerId === borrowerId) {
       throw new Error("Cannot borrow own book.");
     }
