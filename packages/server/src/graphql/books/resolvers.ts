@@ -13,7 +13,7 @@ const resolvers: Resolvers<Context> = {
       container.get(BooksService).paginate(take, skip),
 
     book: (rootValue, { id }, { container }) =>
-      container.get(BooksService).findOneByIdOrFail(id),
+      container.get(BooksService).findByIdOrFail(id),
 
     randomBook: (rootValue, args, { container }) =>
       container.get(BooksService).findRandom()

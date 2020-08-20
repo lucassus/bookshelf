@@ -17,7 +17,7 @@ export class UsersService {
     return this.repository.find({ order: { name: "ASC" } });
   }
 
-  findOneByIdOrFail(id: string | number) {
+  findByIdOrFail(id: string | number) {
     return this.repository.findOneOrFail(id);
   }
 
@@ -54,7 +54,7 @@ export class UsersService {
     id: string | number,
     userAttributes: Partial<User>
   ): Promise<User> {
-    const user = await this.findOneByIdOrFail(id);
+    const user = await this.findByIdOrFail(id);
     return this.repository.save(this.repository.merge(user, userAttributes));
   }
 

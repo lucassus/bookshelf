@@ -8,7 +8,7 @@ const resolvers: Resolvers<Context> = {
       container.get(UsersService).findAll(),
 
     user: (rootValue, { id }, { container }) =>
-      container.get(UsersService).findOneByIdOrFail(id)
+      container.get(UsersService).findByIdOrFail(id)
   },
 
   Mutation: {

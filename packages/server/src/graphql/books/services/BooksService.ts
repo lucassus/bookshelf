@@ -17,7 +17,7 @@ export class BooksService {
     return this.repository.find({ order: { title: "ASC" }, take, skip });
   }
 
-  findOneByIdOrFail(id: string | number) {
+  findByIdOrFail(id: string | number) {
     return this.repository.findOneOrFail(id);
   }
 
@@ -35,7 +35,7 @@ export class BooksService {
     id: string | number,
     favourite: boolean
   ): Promise<Book> {
-    const book = await this.findOneByIdOrFail(id);
+    const book = await this.findByIdOrFail(id);
 
     book.favourite = favourite;
     return this.repository.save(book);
