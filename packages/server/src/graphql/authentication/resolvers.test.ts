@@ -2,6 +2,7 @@ import httpMocks from "node-mocks-http";
 import { Container } from "typedi";
 
 import { AUTH_COOKIE_NAME } from "../../config";
+import { User } from "../../database/entity";
 import {
   MutationLoginArgs,
   ResolversTypes
@@ -18,9 +19,9 @@ const login = resolvers.Mutation!.login! as (
 describe("login authentication resolver", () => {
   test("on login success", async () => {
     // Given
-    const user = { id: 123 };
+    const fakeUser: Partial<User> = { id: 123 };
     const fakeAuthenticationService: Partial<AuthenticationService> = {
-      findUserByEmailAndPassword: jest.fn().mockResolvedValue(user)
+      findUserByEmailAndPasswordOrFail: jest.fn().mockResolvedValue(fakeUser)
     };
     Container.set(AuthenticationService, fakeAuthenticationService);
 
@@ -35,7 +36,7 @@ describe("login authentication resolver", () => {
 
     // Then
     expect(
-      fakeAuthenticationService.findUserByEmailAndPassword
+      fakeAuthenticationService.findUserByEmailAndPasswordOrFail
     ).toHaveBeenCalledWith("example@email.com", "password");
 
     expect(res.cookies).toMatchObject({
@@ -54,7 +55,7 @@ describe("login authentication resolver", () => {
   test("on login error", async () => {
     // Given
     const fakeAuthenticationService: Partial<AuthenticationService> = {
-      findUserByEmailAndPassword: jest.fn().mockImplementation(() => {
+      findUserByEmailAndPasswordOrFail: jest.fn().mockImplementation(() => {
         throw new Error("Invalid password!");
       })
     };

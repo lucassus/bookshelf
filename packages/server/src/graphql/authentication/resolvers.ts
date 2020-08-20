@@ -2,7 +2,10 @@ import { clearAuthCookie, sendAuthCookie } from "../../common/authCookies";
 import { generateAuthToken } from "../../common/authTokens";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
-import { AuthenticationService } from "./AuthenticationService";
+import {
+  AuthenticationService,
+  AuthenticationServiceError
+} from "./AuthenticationService";
 
 const resolvers: Resolvers<Context> = {
   Query: {
@@ -18,7 +21,10 @@ const resolvers: Resolvers<Context> = {
       const service = container.get(AuthenticationService);
 
       try {
-        const user = await service.findUserByEmailAndPassword(email, password);
+        const user = await service.findUserByEmailAndPasswordOrFail(
+          email,
+          password
+        );
 
         const authToken = generateAuthToken(user);
         sendAuthCookie(res, authToken);
@@ -28,11 +34,15 @@ const resolvers: Resolvers<Context> = {
           message: "Login success!",
           currentUser: user
         };
-      } catch {
-        return {
-          success: false,
-          message: "Invalid email or password!"
-        };
+      } catch (error) {
+        if (error instanceof AuthenticationServiceError) {
+          return {
+            success: false,
+            message: "Invalid email or password!"
+          };
+        }
+
+        throw error;
       }
     },
 
