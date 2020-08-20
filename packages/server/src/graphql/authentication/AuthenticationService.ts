@@ -5,7 +5,7 @@ import { InjectRepository } from "typeorm-typedi-extensions";
 import { isPasswordValid } from "../../common/passwords";
 import { User } from "../../database/entity";
 
-export class AuthenticationServiceError extends Error {}
+export class InvalidEmailOrPasswordError extends Error {}
 
 @Service()
 export class AuthenticationService {
@@ -19,11 +19,11 @@ export class AuthenticationService {
     const user = await this.usersRepository.findOne({ email });
 
     if (!user) {
-      throw new AuthenticationServiceError("Invalid email!");
+      throw new InvalidEmailOrPasswordError("Invalid email!");
     }
 
     if (!isPasswordValid(password, user.passwordHash)) {
-      throw new AuthenticationServiceError("Invalid password!");
+      throw new InvalidEmailOrPasswordError("Invalid password!");
     }
 
     return user;

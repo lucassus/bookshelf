@@ -9,7 +9,7 @@ import {
 } from "../resolvers-types.generated";
 import {
   AuthenticationService,
-  AuthenticationServiceError
+  InvalidEmailOrPasswordError
 } from "./AuthenticationService";
 import resolvers from "./resolvers";
 
@@ -61,7 +61,7 @@ describe("login authentication resolver", () => {
     jest
       .spyOn(authenticationService, "findUserByEmailAndPasswordOrFail")
       .mockImplementation(() => {
-        throw new AuthenticationServiceError("Invalid password!");
+        throw new InvalidEmailOrPasswordError("Invalid password!");
       });
 
     // When

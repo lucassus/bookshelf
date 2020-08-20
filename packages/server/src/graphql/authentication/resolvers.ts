@@ -4,7 +4,7 @@ import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import {
   AuthenticationService,
-  AuthenticationServiceError
+  InvalidEmailOrPasswordError
 } from "./AuthenticationService";
 
 const resolvers: Resolvers<Context> = {
@@ -35,7 +35,7 @@ const resolvers: Resolvers<Context> = {
           currentUser: user
         };
       } catch (error) {
-        if (error instanceof AuthenticationServiceError) {
+        if (error instanceof InvalidEmailOrPasswordError) {
           return {
             success: false,
             message: "Invalid email or password!"
