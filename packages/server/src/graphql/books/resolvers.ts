@@ -1,6 +1,6 @@
-import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
@@ -74,14 +74,12 @@ const resolvers: Resolvers<Context> = {
   },
 
   BookCopy: {
-    // TODO: A workaround for user.avatar eager loading, see https://github.com/typeorm/typeorm/issues/2315
-    owner: (bookCopy, args, { connection }) =>
-      connection.manager.findOneOrFail(User, bookCopy.ownerId),
+    owner: (bookCopy, args, { container }) =>
+      container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
 
-    // TODO: A workaround for user.avatar eager loading, see https://github.com/typeorm/typeorm/issues/2315
-    borrower: (bookCopy, args, { connection }) =>
+    borrower: (bookCopy, args, { container }) =>
       bookCopy.borrowerId
-        ? connection.manager.findOneOrFail(User, bookCopy.borrowerId)
+        ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
         : null
   }
 };
