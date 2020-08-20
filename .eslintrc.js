@@ -25,6 +25,7 @@ module.exports = {
       }
     ],
     "import/no-cycle": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "max-classes-per-file": "off"
   }
 };
