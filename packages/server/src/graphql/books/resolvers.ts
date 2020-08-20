@@ -1,24 +1,24 @@
-import { Book, User } from "../../database/entity";
+import { User } from "../../database/entity";
 import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { BookRepository } from "../../database/repositories/BookRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { BooksService } from "./BooksService";
 
+// TODO: Figure out how to inject the service
 const resolvers: Resolvers<Context> = {
   Query: {
     booksCount: (rootValue, args, { connection }) =>
-      connection.manager.count(Book),
+      new BooksService(connection).count(),
 
     books: (rootValue, { limit: take, offset: skip }, { connection }) =>
-      connection
-        .getRepository(Book)
-        .find({ order: { title: "ASC" }, take, skip }),
+      new BooksService(connection).paginate(take, skip),
 
     book: (rootValue, { id }, { connection }) =>
-      connection.manager.findOneOrFail(Book, id),
+      new BooksService(connection).findByIdOrFail(id),
 
     randomBook: (rootValue, args, { connection }) =>
-      connection.getCustomRepository(BookRepository).findRandom()
+      new BooksService(connection).findRandom()
   },
 
   Mutation: {
