@@ -3,12 +3,15 @@ import express from "express";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import path from "path";
 import "reflect-metadata";
-import { createConnection } from "typeorm";
+import { Container } from "typedi";
+import { createConnection, useContainer } from "typeorm";
 
 import { PORT } from "./config";
 import { routes } from "./rest";
 import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 import { createServer } from "./server";
+
+useContainer(Container);
 
 const startServer = async () => {
   await createConnection();

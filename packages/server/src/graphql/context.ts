@@ -1,4 +1,5 @@
 import express from "express";
+import { Container } from "typedi";
 import { Connection, getConnection } from "typeorm";
 
 import { ASSETS_BASE_URL } from "../config";
@@ -8,8 +9,9 @@ import { buildAuthorsLoader } from "./authors/authorsLoader";
 export interface Context {
   req: express.Request;
   res: express.Response;
-  assetsBaseUrl: string;
+  container: Container;
   connection: Connection;
+  assetsBaseUrl: string;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
   currentUser?: User;
 }
@@ -19,6 +21,7 @@ export const buildContext = (
 ): Context => ({
   assetsBaseUrl: ASSETS_BASE_URL,
   authorsLoader: buildAuthorsLoader(),
+  container: Container,
   connection: getConnection(),
   currentUser: undefined,
   ...contextExtra

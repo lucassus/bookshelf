@@ -21,7 +21,9 @@
     "jsonwebtoken": "8.5.1",
     "pg": "8.3.2",
     "reflect-metadata": "0.1.13",
-    "typeorm": "0.2.25"
+    "typedi": "0.8.0",
+    "typeorm": "0.2.25",
+    "typeorm-typedi-extensions": "0.2.3"
   },
   "devDependencies": {
     "@types/bcrypt": "3.0.0",
