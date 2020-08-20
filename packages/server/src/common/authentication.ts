@@ -46,12 +46,15 @@ export async function authenticateRequest(
   });
 }
 
-export const sendAuthCookie = (res: express.Response, authToken: string) =>
-  res.cookie(AUTH_COOKIE_NAME, authToken, {
+export const sendAuthCookie = (res: express.Response, user: User) => {
+  const authToken = generateAuthToken(user);
+
+  return res.cookie(AUTH_COOKIE_NAME, authToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === Environment.production,
     maxAge: AUTH_TOKEN_EXPIRES_IN_SECONDS * 1000
   });
+};
 
 export const clearAuthCookie = (res: express.Response) =>
   res.clearCookie(AUTH_COOKIE_NAME);

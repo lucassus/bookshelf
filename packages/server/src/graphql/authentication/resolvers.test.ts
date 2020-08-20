@@ -1,11 +1,12 @@
 import httpMocks from "node-mocks-http";
+import { Container } from "typedi";
 
 import { AUTH_COOKIE_NAME } from "../../config";
-import { UserRepository } from "../../database/repositories/UserRepository";
 import {
   MutationLoginArgs,
   ResolversTypes
 } from "../resolvers-types.generated";
+import { AuthenticationService } from "./AuthenticationService";
 import resolvers from "./resolvers";
 
 const login = resolvers.Mutation!.login! as (
@@ -18,12 +19,10 @@ describe("login authentication resolver", () => {
   test("on login success", async () => {
     // Given
     const user = { id: 123 };
-    const userRepository = {
-      findByEmailAndPassword: jest.fn().mockResolvedValue(user)
+    const fakeAuthenticationService: Partial<AuthenticationService> = {
+      findUserByEmailAndPassword: jest.fn().mockResolvedValue(user)
     };
-    const connection = {
-      getCustomRepository: jest.fn().mockReturnValue(userRepository)
-    };
+    Container.set(AuthenticationService, fakeAuthenticationService);
 
     const res = httpMocks.createResponse();
 
@@ -31,15 +30,13 @@ describe("login authentication resolver", () => {
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "password" } },
-      { connection, res }
+      { res, container: Container }
     );
 
     // Then
-    expect(connection.getCustomRepository).toHaveBeenCalledWith(UserRepository);
-    expect(userRepository.findByEmailAndPassword).toHaveBeenCalledWith(
-      "example@email.com",
-      "password"
-    );
+    expect(
+      fakeAuthenticationService.findUserByEmailAndPassword
+    ).toHaveBeenCalledWith("example@email.com", "password");
 
     expect(res.cookies).toMatchObject({
       [AUTH_COOKIE_NAME]: {
@@ -56,18 +53,18 @@ describe("login authentication resolver", () => {
 
   test("on login error", async () => {
     // Given
-    const user = undefined;
-    const connection = {
-      getCustomRepository: jest.fn().mockReturnValue({
-        findByEmailAndPassword: jest.fn().mockResolvedValue(user)
+    const fakeAuthenticationService: Partial<AuthenticationService> = {
+      findUserByEmailAndPassword: jest.fn().mockImplementation(() => {
+        throw new Error("Invalid password!");
       })
     };
+    Container.set(AuthenticationService, fakeAuthenticationService);
 
     // When
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "invalid password" } },
-      { connection }
+      { container: Container }
     );
 
     // Then
