@@ -22,11 +22,11 @@ const login = resolvers.Mutation!.login! as (
 describe("login authentication resolver", () => {
   test("on login success", async () => {
     // Given
-    const fakeUser: Partial<User> = { id: 123 };
-    const fakeAuthenticationService: Partial<AuthenticationService> = {
-      findUserByEmailAndPasswordOrFail: jest.fn().mockResolvedValue(fakeUser)
-    };
-    Container.set(AuthenticationService, fakeAuthenticationService);
+    const fakeUser = new User();
+    const authenticationService = Container.get(AuthenticationService);
+    jest
+      .spyOn(authenticationService, "findUserByEmailAndPasswordOrFail")
+      .mockResolvedValue(fakeUser);
 
     const res = httpMocks.createResponse();
 
@@ -39,7 +39,7 @@ describe("login authentication resolver", () => {
 
     // Then
     expect(
-      fakeAuthenticationService.findUserByEmailAndPasswordOrFail
+      authenticationService.findUserByEmailAndPasswordOrFail
     ).toHaveBeenCalledWith("example@email.com", "password");
 
     expect(res.cookies).toMatchObject({
@@ -57,12 +57,12 @@ describe("login authentication resolver", () => {
 
   test("on login error", async () => {
     // Given
-    const fakeAuthenticationService: Partial<AuthenticationService> = {
-      findUserByEmailAndPasswordOrFail: jest.fn().mockImplementation(() => {
+    const authenticationService = Container.get(AuthenticationService);
+    jest
+      .spyOn(authenticationService, "findUserByEmailAndPasswordOrFail")
+      .mockImplementation(() => {
         throw new AuthenticationServiceError("Invalid password!");
-      })
-    };
-    Container.set(AuthenticationService, fakeAuthenticationService);
+      });
 
     // When
     const result = await login(
