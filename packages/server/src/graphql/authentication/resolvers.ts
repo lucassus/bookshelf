@@ -1,4 +1,5 @@
-import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
+import { clearAuthCookie, sendAuthCookie } from "../../common/authCookies";
+import { generateAuthToken } from "../../common/authTokens";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { AuthenticationService } from "./AuthenticationService";
@@ -18,7 +19,9 @@ const resolvers: Resolvers<Context> = {
 
       try {
         const user = await service.findUserByEmailAndPassword(email, password);
-        sendAuthCookie(res, user);
+
+        const authToken = generateAuthToken(user);
+        sendAuthCookie(res, authToken);
 
         return {
           success: true,
