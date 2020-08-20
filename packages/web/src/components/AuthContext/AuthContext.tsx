@@ -45,11 +45,9 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
 
   const unauthorize = useCallback(async () => {
     await logout();
-    await client.resetStore();
-
+    await client.clearStore();
     setCurrentUser(undefined);
-    navigate("/");
-  }, [logout, client, navigate]);
+  }, [logout, client]);
 
   const value = useMemo(
     () => ({
