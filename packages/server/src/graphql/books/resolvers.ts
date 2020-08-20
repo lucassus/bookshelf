@@ -1,8 +1,8 @@
 import { User } from "../../database/entity";
-import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
-import { BooksService } from "./BooksService";
+import { BookCopiesService } from "./services/BookCopiesService";
+import { BooksService } from "./services/BooksService";
 
 const resolvers: Resolvers<Context> = {
   Query: {
@@ -38,9 +38,9 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    borrowBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
-      const bookCopy = await connection.manager
-        .getCustomRepository(BookCopyRepository)
+    borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+      const bookCopy = await container
+        .get(BookCopiesService)
         .borrow(id, currentUser!.id);
 
       return {
@@ -50,9 +50,9 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    returnBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
-      const bookCopy = await connection.manager
-        .getCustomRepository(BookCopyRepository)
+    returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+      const bookCopy = await container
+        .get(BookCopiesService)
         .return(id, currentUser!.id);
 
       return {

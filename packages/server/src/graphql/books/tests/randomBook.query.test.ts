@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 import { Container } from "typedi";
 
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { BooksService } from "../BooksService";
+import { BooksService } from "../services/BooksService";
 
 test("randomBook query", async () => {
   // Given

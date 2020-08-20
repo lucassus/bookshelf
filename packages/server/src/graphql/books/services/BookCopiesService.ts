@@ -1,13 +1,17 @@
-import { AbstractRepository, EntityRepository } from "typeorm";
+import { Service } from "typedi";
+import { Repository } from "typeorm";
+import { InjectRepository } from "typeorm-typedi-extensions";
 
-import { BookCopy } from "./entity";
+import { BookCopy } from "../../../database/entity";
 
-@EntityRepository(BookCopy)
-export class BookCopyRepository extends AbstractRepository<BookCopy> {
-  async borrow(id: string | number, borrowerId: number) {
+@Service()
+export class BookCopiesService {
+  @InjectRepository(BookCopy)
+  private repository: Repository<BookCopy>;
+
+  async borrow(id: string | number, borrowerId: number): Promise<BookCopy> {
     const bookCopy = await this.repository.findOneOrFail(id);
 
-    // TODO: Implement better errors handling
     if (bookCopy.ownerId === borrowerId) {
       throw new Error("Cannot borrow own book.");
     }
@@ -20,7 +24,7 @@ export class BookCopyRepository extends AbstractRepository<BookCopy> {
     return this.repository.save(bookCopy);
   }
 
-  async return(id: string | number, borrowerId: number) {
+  async return(id: string | number, borrowerId: number): Promise<BookCopy> {
     const bookCopy = await this.repository.findOneOrFail({
       where: {
         id,

@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
-import { Book } from "../../database/entity";
+import { Book } from "../../../database/entity";
 
 @Service()
 export class BooksService {
