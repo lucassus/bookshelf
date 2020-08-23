@@ -61,7 +61,8 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       "/api": "http://localhost:4000/api",
-      "/graphql": "http://localhost:4000/graphql"
+      "/graphql": "http://localhost:4000/graphql",
+      "/voyager": "http://localhost:4000/voyager"
     }
   }
 };
