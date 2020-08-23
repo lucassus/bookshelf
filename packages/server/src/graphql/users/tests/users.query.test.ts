@@ -55,7 +55,7 @@ describe("users query", () => {
     });
   });
 
-  describe("fetching protected users emails", () => {
+  describe("fetching protected fields", () => {
     test.each<[undefined | Role, undefined | string]>([
       [undefined, "Unauthorized access! Please log in."],
       [Role.User, "Unauthorized access! Please log in as admin."],
@@ -67,7 +67,7 @@ describe("users query", () => {
         const currentUser = role
           ? await createUser({ name: "Anna", isAdmin: role === Role.Admin })
           : undefined;
-        const otherUser = await createUser({ name: "Bob" });
+        const otherUser = await createUser({ name: "Bob", isAdmin: false });
 
         // When
         const res = await createTestClient({ currentUser }).query({
@@ -76,6 +76,7 @@ describe("users query", () => {
               users {
                 id
                 email
+                isAdmin
               }
             }
           `
@@ -88,8 +89,12 @@ describe("users query", () => {
           expect(res.errors).toBe(undefined);
           expect(res.data).toMatchObject({
             users: [
-              { id: expect.any(String), email: currentUser!.email },
-              { id: expect.any(String), email: otherUser.email }
+              {
+                id: expect.any(String),
+                email: currentUser!.email,
+                isAdmin: true
+              },
+              { id: expect.any(String), email: otherUser.email, isAdmin: false }
             ]
           });
         }

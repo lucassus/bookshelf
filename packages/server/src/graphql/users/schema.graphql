@@ -3,6 +3,7 @@ type User implements Resource & Timestampable {
   name: String!
   info: String
   email: String! @requireAuthorization(role: Admin)
+  isAdmin: Boolean! @requireAuthorization(role: Admin)
   avatar: Avatar!
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
