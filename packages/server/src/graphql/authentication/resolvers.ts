@@ -16,9 +16,9 @@ const resolvers: Resolvers<Context> = {
     login: async (
       rootValue,
       { input: { email, password } },
-      { res, injector }
+      { res, container }
     ) => {
-      const service = injector.get(AuthenticationService);
+      const service = container.get(AuthenticationService);
 
       try {
         const user = await service.findUserByEmailAndPasswordOrFail(

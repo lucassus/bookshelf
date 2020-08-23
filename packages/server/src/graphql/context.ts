@@ -9,7 +9,7 @@ import { buildAuthorsLoader } from "./authors/authorsLoader";
 export interface Context {
   req: express.Request;
   res: express.Response;
-  injector: typeof Container;
+  container: typeof Container;
   connection: Connection;
   assetsBaseUrl: string;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
@@ -21,7 +21,7 @@ export const buildContext = (
 ): Context => ({
   assetsBaseUrl: ASSETS_BASE_URL,
   authorsLoader: buildAuthorsLoader(),
-  injector: Container,
+  container: Container,
   connection: Container.get(Connection),
   currentUser: undefined,
   ...contextExtra
