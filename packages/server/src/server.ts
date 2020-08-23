@@ -14,5 +14,8 @@ export const createServer = () =>
     },
     debug: process.env.ENV === Environment.development,
     introspection: true,
-    playground: true
+    playground: true,
+    engine: {
+      debugPrintReports: true
+    }
   });

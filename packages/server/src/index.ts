@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser";
 import express from "express";
+import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import path from "path";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
@@ -17,6 +18,7 @@ const startServer = async () => {
   app.use(cookieParser());
   app.use(authenticationMiddleware);
   apolloServer.applyMiddleware({ app });
+  app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
   app.use("/", routes);
 
   const distDir = path.join(__dirname, "../../../web/dist");

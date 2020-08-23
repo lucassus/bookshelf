@@ -17,6 +17,7 @@
     "express": "4.17.1",
     "faker": "4.1.0",
     "graphql": "15.3.0",
+    "graphql-voyager": "1.0.0-rc.31",
     "jsonwebtoken": "8.5.1",
     "pg": "8.3.2",
     "reflect-metadata": "0.1.13",
@@ -31,10 +32,10 @@
     "@types/lodash.merge": "4.6.6",
     "@types/supertest": "2.0.10",
     "apollo-server-testing": "2.16.1",
-    "node-mocks-http": "1.8.1",
+    "node-mocks-http": "1.9.0",
     "sqlite3": "5.0.0",
     "supertest": "4.0.2",
-    "ts-node-dev": "1.0.0-pre.59"
+    "ts-node-dev": "1.0.0-pre.60"
   },
   "scripts": {
     "clean:dist": "rimraf dist",
