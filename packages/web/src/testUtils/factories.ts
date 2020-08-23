@@ -38,6 +38,7 @@ export const createUser: Factory<User> = (attributes = {}) => ({
   name: "Bob",
   info: "Professional problem solver.",
   email: "bob@email.com",
+  isAdmin: false,
   avatar: {
     image: {
       path: "/avatars/m25.png",
