@@ -1,14 +1,15 @@
-import { getCustomRepository, getManager } from "typeorm";
+import { Container } from "typedi";
+import { getManager } from "typeorm";
 
-import { createBookCopy, createUser } from "../../testUtils/factories";
-import { BookCopy } from "../entity";
-import { BookCopyRepository } from "./BookCopyRepository";
+import { BookCopy } from "../../../database/entity";
+import { createBookCopy, createUser } from "../../../testUtils/factories";
+import { BookCopiesService } from "./BookCopiesService";
 
-describe("BookCopyRepository", () => {
-  let repository: BookCopyRepository;
+describe("BookCopiesService", () => {
+  let service: BookCopiesService;
 
   beforeEach(() => {
-    repository = getCustomRepository(BookCopyRepository);
+    service = Container.get(BookCopiesService);
   });
 
   const loadFixtures = async () => {
@@ -24,7 +25,7 @@ describe("BookCopyRepository", () => {
       const { bookCopy, borrower } = await loadFixtures();
 
       // When
-      await repository.borrow(bookCopy.id, borrower.id);
+      await service.borrow(bookCopy.id, borrower.id);
 
       // Then
       const updatedBookCopy = await getManager().findOneOrFail(
@@ -44,19 +45,17 @@ describe("BookCopyRepository", () => {
 
       // Then
       await expect(
-        repository.borrow(bookCopy.id, bookCopy.ownerId)
+        service.borrow(bookCopy.id, bookCopy.ownerId)
       ).rejects.toThrow("Cannot borrow own book.");
     });
 
     it("raises an error when the book is already borrowed", async () => {
       // Given
       const { bookCopy, borrower } = await loadFixtures();
-      await repository.borrow(bookCopy.id, borrower.id);
+      await service.borrow(bookCopy.id, borrower.id);
 
       // Then
-      await expect(
-        getCustomRepository(BookCopyRepository).borrow(bookCopy.id, borrower.id)
-      ).rejects.toThrow(
+      await expect(service.borrow(bookCopy.id, borrower.id)).rejects.toThrow(
         "Cannot borrow this book copy. It is already borrowed."
       );
     });
@@ -65,10 +64,10 @@ describe("BookCopyRepository", () => {
   test(".return", async () => {
     // Given
     const { bookCopy, borrower } = await loadFixtures();
-    await repository.borrow(bookCopy.id, borrower.id);
+    await service.borrow(bookCopy.id, borrower.id);
 
     // When
-    await repository.return(bookCopy.id, borrower.id);
+    await service.return(bookCopy.id, borrower.id);
 
     // Then
     const updatedBookCopy = await getManager().findOneOrFail(

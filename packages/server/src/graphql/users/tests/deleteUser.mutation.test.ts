@@ -1,5 +1,6 @@
 import { gql } from "apollo-server-express";
-import { getConnection } from "typeorm";
+import { Container } from "typedi";
+import { Connection } from "typeorm";
 
 import { secureId } from "../../../common/secureId";
 import { User } from "../../../database/entity";
@@ -43,7 +44,7 @@ describe("deleteUser mutation", () => {
     });
 
     await expect(
-      getConnection().manager.findOne(User, { id: user.id })
+      Container.get(Connection).manager.findOne(User, { id: user.id })
     ).resolves.toBe(undefined);
   });
 

@@ -1,5 +1,6 @@
 import express from "express";
-import { getConnection } from "typeorm";
+import { Container } from "typedi";
+import { Connection } from "typeorm";
 
 import { Book } from "../../database/entity";
 import { serializeBooks } from "../serializers";
@@ -7,9 +8,7 @@ import { serializeBooks } from "../serializers";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const connection = getConnection();
-
-  const books = await connection
+  const books = await Container.get(Connection)
     .getRepository(Book)
     .createQueryBuilder("books")
     .leftJoinAndSelect("books.author", "author")

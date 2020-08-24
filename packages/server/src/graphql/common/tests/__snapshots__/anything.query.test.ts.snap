@@ -25,7 +25,7 @@ Object {
       },
     ],
     "id": "MS1BdXRob3I=",
-    "name": "Valentine Deckow",
+    "name": "Lorene Deckow",
   },
 }
 `;
@@ -54,12 +54,12 @@ Object {
     },
     "borrower": Object {
       "id": "MS1Vc2Vy",
-      "name": "Moses Satterfield",
+      "name": "Randolph Satterfield",
     },
     "id": "MS1Cb29rQ29weQ==",
     "owner": Object {
       "id": "Mi1Vc2Vy",
-      "name": "Jackson Borer",
+      "name": "Cory Borer",
     },
   },
 }
@@ -70,7 +70,7 @@ Object {
   "anything": Object {
     "__typename": "User",
     "id": "MS1Vc2Vy",
-    "name": "Moses Satterfield",
+    "name": "Randolph Satterfield",
   },
 }
 `;
@@ -79,7 +79,7 @@ exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {
     "description": "Et voluptatem nostrum.",
-    "headline": "Elliott Monahan IV",
+    "headline": "Suzanne Moore IV",
     "id": "Mi1BdXRob3I=",
   },
   "something": Object {
@@ -90,7 +90,7 @@ Object {
   },
   "user": Object {
     "description": "Sint voluptatibus deserunt totam quae eos.",
-    "headline": "Elaina Wiza III",
+    "headline": "Micheal Wiza III",
     "id": "MS1Vc2Vy",
   },
 }

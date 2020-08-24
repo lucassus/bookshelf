@@ -25,14 +25,14 @@ describe("GET /api/users", () => {
         email: "alice@email.com"
       },
       {
-        id: 2,
-        name: "John",
-        email: "john@email.com"
-      },
-      {
         id: 3,
         name: "Anna",
         email: "anna@email.com"
+      },
+      {
+        id: 2,
+        name: "John",
+        email: "john@email.com"
       }
     ]);
   });

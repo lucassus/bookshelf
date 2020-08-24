@@ -3,22 +3,28 @@ import express from "express";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import path from "path";
 import "reflect-metadata";
-import { createConnection } from "typeorm";
+import { Container } from "typedi";
+import { createConnection, useContainer, Connection } from "typeorm";
 
 import { PORT } from "./config";
 import { routes } from "./rest";
 import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 import { createServer } from "./server";
 
+useContainer(Container);
+
 const startServer = async () => {
-  await createConnection();
-  const apolloServer = createServer();
+  const connection = await createConnection();
+  Container.set(Connection, connection);
 
   const app = express();
   app.use(cookieParser());
   app.use(authenticationMiddleware);
+
+  const apolloServer = createServer();
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
+
   app.use("/", routes);
 
   const distDir = path.join(__dirname, "../../../web/dist");

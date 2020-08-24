@@ -1,11 +1,16 @@
 import httpMocks from "node-mocks-http";
+import { Container } from "typedi";
 
 import { AUTH_COOKIE_NAME } from "../../config";
-import { UserRepository } from "../../database/repositories/UserRepository";
+import { User } from "../../database/entity";
 import {
   MutationLoginArgs,
   ResolversTypes
 } from "../resolvers-types.generated";
+import {
+  AuthenticationService,
+  InvalidEmailOrPasswordError
+} from "./AuthenticationService";
 import resolvers from "./resolvers";
 
 const login = resolvers.Mutation!.login! as (
@@ -17,13 +22,11 @@ const login = resolvers.Mutation!.login! as (
 describe("login authentication resolver", () => {
   test("on login success", async () => {
     // Given
-    const user = { id: 123 };
-    const userRepository = {
-      findByEmailAndPassword: jest.fn().mockResolvedValue(user)
-    };
-    const connection = {
-      getCustomRepository: jest.fn().mockReturnValue(userRepository)
-    };
+    const fakeUser = new User();
+    const authenticationService = Container.get(AuthenticationService);
+    jest
+      .spyOn(authenticationService, "findUserByEmailAndPasswordOrFail")
+      .mockResolvedValue(fakeUser);
 
     const res = httpMocks.createResponse();
 
@@ -31,15 +34,13 @@ describe("login authentication resolver", () => {
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "password" } },
-      { connection, res }
+      { res, container: Container }
     );
 
     // Then
-    expect(connection.getCustomRepository).toHaveBeenCalledWith(UserRepository);
-    expect(userRepository.findByEmailAndPassword).toHaveBeenCalledWith(
-      "example@email.com",
-      "password"
-    );
+    expect(
+      authenticationService.findUserByEmailAndPasswordOrFail
+    ).toHaveBeenCalledWith("example@email.com", "password");
 
     expect(res.cookies).toMatchObject({
       [AUTH_COOKIE_NAME]: {
@@ -56,18 +57,18 @@ describe("login authentication resolver", () => {
 
   test("on login error", async () => {
     // Given
-    const user = undefined;
-    const connection = {
-      getCustomRepository: jest.fn().mockReturnValue({
-        findByEmailAndPassword: jest.fn().mockResolvedValue(user)
-      })
-    };
+    const authenticationService = Container.get(AuthenticationService);
+    jest
+      .spyOn(authenticationService, "findUserByEmailAndPasswordOrFail")
+      .mockImplementation(() => {
+        throw new InvalidEmailOrPasswordError("Invalid password!");
+      });
 
     // When
     const result = await login(
       undefined,
       { input: { email: "example@email.com", password: "invalid password" } },
-      { connection }
+      { container: Container }
     );
 
     // Then

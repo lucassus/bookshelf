@@ -1,34 +1,32 @@
-import { Book, User } from "../../database/entity";
-import { BookCopyRepository } from "../../database/repositories/BookCopyRepository";
-import { BookRepository } from "../../database/repositories/BookRepository";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { UsersService } from "../users/UsersService";
+import { BookCopiesService } from "./services/BookCopiesService";
+import { BooksService } from "./services/BooksService";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    booksCount: (rootValue, args, { connection }) =>
-      connection.manager.count(Book),
+    booksCount: (rootValue, args, { container }) =>
+      container.get(BooksService).count(),
 
-    books: (rootValue, { limit: take, offset: skip }, { connection }) =>
-      connection
-        .getRepository(Book)
-        .find({ order: { title: "ASC" }, take, skip }),
+    books: (rootValue, { limit: take, offset: skip }, { container }) =>
+      container.get(BooksService).paginate(take, skip),
 
-    book: (rootValue, { id }, { connection }) =>
-      connection.manager.findOneOrFail(Book, id),
+    book: (rootValue, { id }, { container }) =>
+      container.get(BooksService).findByIdOrFail(id),
 
-    randomBook: (rootValue, args, { connection }) =>
-      connection.getCustomRepository(BookRepository).findRandom()
+    randomBook: (rootValue, args, { container }) =>
+      container.get(BooksService).findRandom()
   },
 
   Mutation: {
     updateBookFavourite: async (
       rootValue,
       { id, favourite },
-      { connection }
+      { container }
     ) => {
-      const book = await connection.manager
-        .getCustomRepository(BookRepository)
+      const book = await container
+        .get(BooksService)
         .updateFavourite(id, favourite);
 
       return {
@@ -40,9 +38,9 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    borrowBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
-      const bookCopy = await connection.manager
-        .getCustomRepository(BookCopyRepository)
+    borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+      const bookCopy = await container
+        .get(BookCopiesService)
         .borrow(id, currentUser!.id);
 
       return {
@@ -52,9 +50,9 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
-    returnBookCopy: async (rootValue, { id }, { connection, currentUser }) => {
-      const bookCopy = await connection.manager
-        .getCustomRepository(BookCopyRepository)
+    returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+      const bookCopy = await container
+        .get(BookCopiesService)
         .return(id, currentUser!.id);
 
       return {
@@ -76,14 +74,12 @@ const resolvers: Resolvers<Context> = {
   },
 
   BookCopy: {
-    // TODO: A workaround for user.avatar eager loading, see https://github.com/typeorm/typeorm/issues/2315
-    owner: (bookCopy, args, { connection }) =>
-      connection.manager.findOneOrFail(User, bookCopy.ownerId),
+    owner: (bookCopy, args, { container }) =>
+      container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
 
-    // TODO: A workaround for user.avatar eager loading, see https://github.com/typeorm/typeorm/issues/2315
-    borrower: (bookCopy, args, { connection }) =>
+    borrower: (bookCopy, args, { container }) =>
       bookCopy.borrowerId
-        ? connection.manager.findOneOrFail(User, bookCopy.borrowerId)
+        ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
         : null
   }
 };

@@ -17,12 +17,12 @@ Object {
         },
         "borrower": Object {
           "id": "MS1Vc2Vy",
-          "name": "Moses Satterfield",
+          "name": "Randolph Satterfield",
         },
       },
     ],
     "info": "Inventore praesentium et.",
-    "name": "Moses Satterfield",
+    "name": "Randolph Satterfield",
     "ownedBookCopies": Array [
       Object {
         "book": Object {
@@ -31,7 +31,7 @@ Object {
         },
         "owner": Object {
           "id": "MS1Vc2Vy",
-          "name": "Moses Satterfield",
+          "name": "Randolph Satterfield",
         },
       },
       Object {
@@ -41,7 +41,7 @@ Object {
         },
         "owner": Object {
           "id": "MS1Vc2Vy",
-          "name": "Moses Satterfield",
+          "name": "Randolph Satterfield",
         },
       },
     ],

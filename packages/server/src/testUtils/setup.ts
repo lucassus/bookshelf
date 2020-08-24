@@ -1,11 +1,21 @@
 import faker from "faker";
-import { createConnection, getConnection } from "typeorm";
+import { Container } from "typedi";
+import { createConnection, useContainer, Connection } from "typeorm";
+
+useContainer(Container);
 
 beforeEach(() => {
   faker.seed(42);
   faker.locale = "en";
 });
 
-beforeEach(() => createConnection());
+let connection: Connection;
 
-afterEach(() => getConnection().close());
+beforeEach(async () => {
+  Container.reset();
+
+  connection = await createConnection();
+  Container.set(Connection, connection);
+});
+
+afterEach(() => connection?.close());
