@@ -3,29 +3,47 @@ beforeEach(() => {
   cy.findByText("Login").click();
 });
 
-it("validates the login form", () => {
+function fillInLoginFormAndSubmit({
+  email,
+  password
+}: { email?: string; password?: string } = {}) {
   cy.get("form").within(() => {
+    cy.findByLabelText("Email").clear();
+    cy.findByLabelText("Password").clear();
+
+    cy.fixture("credentials.json").then(
+      ({ email: validEmail, password: validPassword }) => {
+        let text = email ?? validEmail;
+        if (text !== "") {
+          cy.findByLabelText("Email").type(text);
+        }
+
+        text = password ?? validPassword;
+        if (text !== "") {
+          cy.findByLabelText("Password").type(text);
+        }
+      }
+    );
+
     cy.findByText("Login").click();
-    cy.findByText("email is a required field");
-    cy.findByText("password is a required field");
-
-    cy.findByLabelText("Email").type("invalid");
-    cy.findByText("email must be a valid email");
-
-    cy.findByLabelText("Password").type("short");
-    cy.findByText("password must be at least 6 characters");
   });
+}
+
+it("validates the login form", () => {
+  fillInLoginFormAndSubmit({ email: "", password: "" });
+  cy.findByText("email is a required field");
+  cy.findByText("password is a required field");
+
+  fillInLoginFormAndSubmit({ email: "invalid", password: "" });
+  cy.findByText("email must be a valid email");
+
+  fillInLoginFormAndSubmit({ email: "valid@email.com", password: "short" });
+  cy.findByText("email must be a valid email").should("not.exist");
+  cy.findByText("password must be at least 6 characters");
 });
 
 it("allows to login with valid credentials", () => {
-  cy.get("form").within(() => {
-    cy.fixture("credentials.json").then(({ email, password }) => {
-      cy.findByLabelText("Email").clear().type(email);
-      cy.findByLabelText("Password").clear().type(password);
-    });
-
-    cy.findByText("Login").click();
-  });
+  fillInLoginFormAndSubmit();
 
   cy.findByText("You are logged in as Bob");
   cy.getCookie("bookshelf:authToken")
@@ -41,15 +59,13 @@ it("allows to login with valid credentials", () => {
   cy.findByText("Logout").click();
 });
 
-it("can reuse the old authentication token", () => {
-  cy.get("form").within(() => {
-    cy.fixture("credentials.json").then(({ email, password }) => {
-      cy.findByLabelText("Email").clear().type(email);
-      cy.findByLabelText("Password").clear().type(password);
-    });
+it("does not allow to login with invalid credentials", () => {
+  fillInLoginFormAndSubmit({ password: "invalid password" });
+  cy.findByText("You are logged in as Bob").should("not.exist");
+});
 
-    cy.findByText("Login").click();
-  });
+it("reuses the old authentication token", () => {
+  fillInLoginFormAndSubmit();
 
   // Save the auth cookie
   let authCookie: any = null;
@@ -71,17 +87,4 @@ it("can reuse the old authentication token", () => {
 
   cy.reload();
   cy.findByText("You are logged in as Bob");
-});
-
-it("does not allow to login with invalid credentials", () => {
-  cy.get("form").within(() => {
-    cy.fixture("credentials.json").then(({ email }) => {
-      cy.findByLabelText("Email").clear().type(email);
-      cy.findByLabelText("Password").clear().type("invalid password");
-    });
-
-    cy.findByText("Login").click();
-  });
-
-  cy.findByText("You are logged in as Bob").should("not.exist");
 });
