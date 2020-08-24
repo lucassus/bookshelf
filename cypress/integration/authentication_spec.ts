@@ -19,6 +19,12 @@ it("handles the authentication flow", () => {
   });
 
   cy.contains("You are logged in as Bob");
+  cy.getCookie("bookshelf:authToken")
+    .should("exist")
+    .then((cookie: any) => {
+      expect(cookie.path).to.eq("/");
+      expect(cookie.httpOnly).to.eq(true);
+    });
 
   cy.reload();
   cy.contains("You are logged in as Bob");
