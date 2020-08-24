@@ -1,4 +1,4 @@
-it("handles navigation", () => {
+it("handles the navigation", () => {
   cy.visit("/");
 
   cy.findByText("Personal Library");
