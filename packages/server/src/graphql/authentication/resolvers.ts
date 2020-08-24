@@ -1,5 +1,4 @@
-import { clearAuthCookie, sendAuthCookie } from "../../common/authCookies";
-import { generateAuthToken } from "../../common/authTokens";
+import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import {
@@ -26,8 +25,7 @@ const resolvers: Resolvers<Context> = {
           password
         );
 
-        const authToken = generateAuthToken(user);
-        sendAuthCookie(res, authToken);
+        sendAuthCookie(res, user);
 
         return {
           success: true,

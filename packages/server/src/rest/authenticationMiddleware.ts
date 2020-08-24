@@ -1,6 +1,6 @@
 import express from "express";
 
-import { authenticateRequest } from "../common/authenticateRequest";
+import { authenticateRequest } from "../common/authentication";
 
 export const authenticationMiddleware = async (
   req: express.Request,
