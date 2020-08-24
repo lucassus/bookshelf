@@ -1,33 +1,32 @@
-beforeEach(() => {
-  cy.visit("/");
-  cy.findByText("Login").click();
-});
-
 function fillInLoginFormAndSubmit({
   email,
   password
 }: { email?: string; password?: string } = {}) {
   cy.get("form").within(() => {
     cy.findByLabelText("Email").clear();
+    if (email) {
+      cy.findByLabelText("Email").type(email);
+    }
+
     cy.findByLabelText("Password").clear();
-
-    cy.fixture("credentials.json").then(
-      ({ email: validEmail, password: validPassword }) => {
-        let text = email ?? validEmail;
-        if (text !== "") {
-          cy.findByLabelText("Email").type(text);
-        }
-
-        text = password ?? validPassword;
-        if (text !== "") {
-          cy.findByLabelText("Password").type(text);
-        }
-      }
-    );
+    if (password) {
+      cy.findByLabelText("Password").type(password);
+    }
 
     cy.findByText("Login").click();
   });
 }
+
+function fillInLoginFormWithValidCredentialsAndSubmit() {
+  cy.fixture("credentials.json").then(({ email, password }) => {
+    fillInLoginFormAndSubmit({ email, password });
+  });
+}
+
+beforeEach(() => {
+  cy.visit("/");
+  cy.findByText("Login").click();
+});
 
 it("validates the login form", () => {
   fillInLoginFormAndSubmit({ email: "", password: "" });
@@ -43,7 +42,7 @@ it("validates the login form", () => {
 });
 
 it("allows to login with valid credentials", () => {
-  fillInLoginFormAndSubmit();
+  fillInLoginFormWithValidCredentialsAndSubmit();
 
   cy.findByText("You are logged in as Bob");
   cy.getCookie("bookshelf:authToken")
@@ -60,12 +59,16 @@ it("allows to login with valid credentials", () => {
 });
 
 it("does not allow to login with invalid credentials", () => {
-  fillInLoginFormAndSubmit({ password: "invalid password" });
+  fillInLoginFormAndSubmit({
+    email: "invalid@email.com",
+    password: "invalid password"
+  });
+
   cy.findByText("You are logged in as Bob").should("not.exist");
 });
 
 it("reuses the old authentication token", () => {
-  fillInLoginFormAndSubmit();
+  fillInLoginFormWithValidCredentialsAndSubmit();
 
   // Save the auth cookie
   let authCookie: any = null;
