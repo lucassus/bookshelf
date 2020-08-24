@@ -10,8 +10,10 @@ it("handles the authentication flow", () => {
     cy.get('input[name="email"]').type("invalid");
     cy.contains("email must be a valid email");
 
-    cy.get('input[name="email"]').clear().type("bob@example.com");
-    cy.get('input[name="password"]').type("password");
+    cy.fixture("credentials.json").then(({ email, password }) => {
+      cy.get('input[name="email"]').clear().type(email);
+      cy.get('input[name="password"]').type(password);
+    });
 
     cy.contains("Login").click();
   });
