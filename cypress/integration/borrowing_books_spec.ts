@@ -2,18 +2,18 @@ it("handles borrowing and returning books", () => {
   cy.seed();
 
   cy.visit("/");
-  cy.contains("Login").click();
+  cy.findByText("Login").click();
 
   cy.get("form").within(() => {
     cy.fixture("credentials.json").then(({ email, password }) => {
-      cy.get('input[name="email"]').clear().type(email);
-      cy.get('input[name="password"]').type(password);
+      cy.findByLabelText("Email").type(email);
+      cy.findByLabelText("Password").type(password);
     });
 
-    cy.contains("Login").click();
+    cy.findByText("Login").click();
   });
 
-  cy.contains("Blood of Elves").click();
-  cy.contains("borrow").click();
-  cy.contains("return").click();
+  cy.findByText("Blood of Elves").click();
+  cy.findByText("borrow").click();
+  cy.findByText("return").click();
 });
