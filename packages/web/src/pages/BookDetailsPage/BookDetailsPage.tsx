@@ -23,38 +23,48 @@ export const BookDetailsPage: React.FunctionComponent = () => {
 
   const { book } = data;
 
-  return (
-    <div className={styles.container}>
-      <h2>{book.title}</h2>
+  // eslint-disable-next-line no-underscore-dangle
+  if (book.__typename === "BookNotFoundError") {
+    return <ErrorAlert message="Count not found a book!" />;
+  }
 
-      <div>
-        <img
-          className={styles.bookCover}
-          src={book.cover.url}
-          alt="Book cover"
-        />
+  // eslint-disable-next-line no-underscore-dangle
+  if (book.__typename === "Book") {
+    return (
+      <div className={styles.container}>
+        <h2>{book.title}</h2>
 
         <div>
-          <h3>
-            Written by{" "}
-            <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
-          </h3>
+          <img
+            className={styles.bookCover}
+            src={book.cover.url}
+            alt="Book cover"
+          />
 
-          <p>{book.description}</p>
-        </div>
-      </div>
+          <div>
+            <h3>
+              Written by{" "}
+              <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
+            </h3>
 
-      {book.copies.length > 0 && (
-        <div className={styles.bookCopiesContainer}>
-          <h3>Copies</h3>
-
-          <div className={styles.bookCopies}>
-            {book.copies.map((bookCopy) => (
-              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
+            <p>{book.description}</p>
           </div>
         </div>
-      )}
-    </div>
-  );
+
+        {book.copies.length > 0 && (
+          <div className={styles.bookCopiesContainer}>
+            <h3>Copies</h3>
+
+            <div className={styles.bookCopies}>
+              {book.copies.map((bookCopy) => (
+                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return null;
 };

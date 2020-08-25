@@ -1,18 +1,24 @@
 query GetBook($id: ExternalID!) {
   book(id: $id) {
-    id
-    title
-    description
-    favourite
-    author {
+    ... on BookNotFoundError {
+      message
+    }
+
+    ... on Book {
       id
-      name
-    }
-    cover {
-      url
-    }
-    copies {
-      ...BookCopy
+      title
+      description
+      favourite
+      author {
+        id
+        name
+      }
+      cover {
+        url
+      }
+      copies {
+        ...BookCopy
+      }
     }
   }
 }
