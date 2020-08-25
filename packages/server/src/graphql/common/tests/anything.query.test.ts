@@ -144,9 +144,11 @@ it("fetches with aliases", async () => {
         }
 
         author(id: $authorId) {
-          id
-          headline: name
-          description: bio
+          ... on Author {
+            id
+            headline: name
+            description: bio
+          }
         }
 
         user(id: $userId) {

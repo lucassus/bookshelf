@@ -7,8 +7,18 @@ const resolvers: Resolvers<Context> = {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
-    // TODO: Handle not found errors
-    author: (rootValue, { id }, { authorsLoader }) => authorsLoader.load(id)
+    author: async (rootValue, { id }, { authorsLoader }) => {
+      const author = await authorsLoader.load(id);
+
+      if (!author) {
+        return {
+          __typename: "AuthorNotFoundError",
+          message: `Could not find any entity of type "Author" matching: "${id}"`
+        };
+      }
+
+      return Object.assign(author, { __typename: "Author" });
+    }
   },
 
   Author: {

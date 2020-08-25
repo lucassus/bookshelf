@@ -23,23 +23,33 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
 
   const { author } = data;
 
-  return (
-    <div>
-      <h2>{author.name}</h2>
+  // TODO: Create a nice 404 page
+  if (author.__typename === "AuthorNotFoundError") {
+    return <ErrorAlert message="Count not find author!" />;
+  }
 
-      <div className={styles.info}>
-        {author.photo && <img src={author.photo.url} alt={author.name} />}
+  // TODO: Find a better solution
+  if (author.__typename === "Author") {
+    return (
+      <div>
+        <h2>{author.name}</h2>
 
-        <article>{author.bio}</article>
-      </div>
+        <div className={styles.info}>
+          {author.photo && <img src={author.photo.url} alt={author.name} />}
 
-      {author.books && (
-        <div className={styles.booksList}>
-          {author.books.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
+          <article>{author.bio}</article>
         </div>
-      )}
-    </div>
-  );
+
+        {author.books && (
+          <div className={styles.booksList}>
+            {author.books.map((book) => (
+              <BookCard key={book.id} book={book} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return null;
 };
