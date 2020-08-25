@@ -1,3 +1,5 @@
+import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
+
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
@@ -7,8 +9,22 @@ const resolvers: Resolvers<Context> = {
     users: (rootValue, args, { container }) =>
       container.get(UsersService).findAll(),
 
-    user: (rootValue, { id }, { container }) =>
-      container.get(UsersService).findByIdOrFail(id)
+    // TODO: Figure out how to dry up not found error handling
+    user: async (rootValue, { id }, { container }) => {
+      try {
+        const user = await container.get(UsersService).findByIdOrFail(id);
+        return Object.assign(user, { __typename: "User" });
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return {
+            __typename: "UserNotFoundError",
+            message: error.message
+          };
+        }
+
+        throw error;
+      }
+    }
   },
 
   Mutation: {

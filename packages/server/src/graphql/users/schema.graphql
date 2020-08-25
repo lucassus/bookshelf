@@ -64,9 +64,17 @@ type DeleteUserPayload implements MutationResponse {
   message: String!
 }
 
+# TODO: Create an interfacte fpr Errors
+type UserNotFoundError {
+  message: String!
+}
+
+# TODO: UserResult or UserPayload, find a better naming convention
+union UserResult = User | UserNotFoundError
+
 extend type Query {
   users: [User!]!
-  user(id: ExternalID!): User!
+  user(id: ExternalID!): UserResult!
 }
 
 extend type Mutation {

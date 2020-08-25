@@ -4,54 +4,90 @@ import { secureId } from "../../../common/secureId";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBookCopy, createUser } from "../../../testUtils/factories";
 
-test("user query", async () => {
-  // Given
-  const user = await createUser();
-  await createBookCopy({ owner: user });
-  await createBookCopy({ owner: user });
-  await createBookCopy({ borrower: user });
+describe("user query", () => {
+  it("fetches a user", async () => {
+    // Given
+    const user = await createUser();
+    await createBookCopy({ owner: user });
+    await createBookCopy({ owner: user });
+    await createBookCopy({ borrower: user });
 
-  // When
-  const res = await createTestClient().query({
-    query: gql`
-      query($id: ExternalID!) {
-        user(id: $id) {
-          name
-          info
-          avatar {
-            color
-            image {
-              url
-            }
-          }
-          ownedBookCopies {
-            book {
-              id
-              title
-            }
-            owner {
+    // When
+    const id = secureId.toExternal(user.id, "User");
+    const res = await createTestClient().query({
+      query: gql`
+        query($id: ExternalID!) {
+          user(id: $id) {
+            ... on User {
               id
               name
-            }
-          }
-          borrowedBookCopies {
-            borrower {
-              id
-              name
-            }
-            book {
-              id
-              title
+              info
+              avatar {
+                color
+                image {
+                  url
+                }
+              }
+              ownedBookCopies {
+                book {
+                  id
+                  title
+                }
+                owner {
+                  id
+                  name
+                }
+              }
+              borrowedBookCopies {
+                borrower {
+                  id
+                  name
+                }
+                book {
+                  id
+                  title
+                }
+              }
             }
           }
         }
+      `,
+      variables: { id }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      user: {
+        id,
+        name: user.name,
+        info: user.info,
+        ownedBookCopies: expect.any(Array),
+        borrowedBookCopies: expect.any(Array)
       }
-    `,
-    variables: { id: secureId.toExternal(user.id, "User") }
+    });
   });
 
-  // Then
-  expect(res.errors).toBe(undefined);
-  expect(res.data).not.toBeNull();
-  expect(res.data).toMatchSnapshot();
+  it("responds with error when user cannot be found", async () => {
+    // When
+    const res = await createTestClient().query({
+      query: gql`
+        query($id: ExternalID!) {
+          user(id: $id) {
+            ... on UserNotFoundError {
+              message
+            }
+          }
+        }
+      `,
+      variables: { id: secureId.toExternal(1, "User") }
+    });
+
+    // Then
+    expect(res.data).toEqual({
+      user: {
+        message: 'Could not find any entity of type "User" matching: "1"'
+      }
+    });
+  });
 });

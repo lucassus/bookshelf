@@ -7,6 +7,7 @@ const resolvers: Resolvers<Context> = {
     authors: (rootValue, args, { connection }) =>
       connection.manager.find(Author),
 
+    // TODO: Handle not found errors
     author: (rootValue, { id }, { authorsLoader }) => authorsLoader.load(id)
   },
 

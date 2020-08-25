@@ -19,39 +19,47 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <ErrorAlert message="Count not load user!" />;
+    return <ErrorAlert message="Count not load a user!" />;
   }
 
   const { user } = data;
 
-  return (
-    <div>
-      <UserCard user={user} />
-      <span>{user.info}</span>
+  if (user.__typename === "UserNotFoundError") {
+    return <ErrorAlert message="Count not find a user!" />;
+  }
 
-      {user.ownedBookCopies.length > 0 && (
-        <>
-          <h3>Owned book copies</h3>
+  if (user.__typename === "User") {
+    return (
+      <div>
+        <UserCard user={user} />
+        <span>{user.info}</span>
 
-          <div className={styles.bookCopies}>
-            {user.ownedBookCopies.map((bookCopy) => (
-              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
-          </div>
-        </>
-      )}
+        {user.ownedBookCopies.length > 0 && (
+          <>
+            <h3>Owned book copies</h3>
 
-      {user.borrowedBookCopies.length > 0 && (
-        <>
-          <h3>Borrowed book copies</h3>
+            <div className={styles.bookCopies}>
+              {user.ownedBookCopies.map((bookCopy) => (
+                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+              ))}
+            </div>
+          </>
+        )}
 
-          <div className={styles.bookCopies}>
-            {user.borrowedBookCopies.map((bookCopy) => (
-              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
+        {user.borrowedBookCopies.length > 0 && (
+          <>
+            <h3>Borrowed book copies</h3>
+
+            <div className={styles.bookCopies}>
+              {user.borrowedBookCopies.map((bookCopy) => (
+                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+  }
+
+  return null;
 };
