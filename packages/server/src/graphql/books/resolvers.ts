@@ -1,6 +1,5 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
-import { Book } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
@@ -8,17 +7,6 @@ import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
 const resolvers: Resolvers<Context> = {
-  // TODO: Find a more elegant solution
-  BookResult: {
-    __resolveType: (bookOrError) => {
-      if (bookOrError instanceof Book) {
-        return "Book";
-      }
-
-      return "BookNotFoundError";
-    }
-  },
-
   Query: {
     booksCount: (rootValue, args, { container }) =>
       container.get(BooksService).count(),
@@ -29,10 +17,10 @@ const resolvers: Resolvers<Context> = {
     book: async (rootValue, { id }, { container }) => {
       try {
         const book = await container.get(BooksService).findByIdOrFail(id);
-        return book;
+        return Object.assign(book, { __typename: "Book" });
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: error.message };
+          return { __typename: "BookNotFoundError", message: error.message };
         }
 
         throw error;
