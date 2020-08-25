@@ -26,7 +26,7 @@
     "@testing-library/react": "10.4.9",
     "@testing-library/user-event": "12.1.2",
     "@types/graphql": "14.5.0",
-    "@types/react": "16.9.46",
+    "@types/react": "16.9.47",
     "@types/react-dom": "16.9.8",
     "@types/react-icons": "3.0.0",
     "@types/react-router-dom": "5.1.5",
