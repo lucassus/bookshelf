@@ -5,6 +5,27 @@ import { createTestClient } from "../../../testUtils/createTestClient";
 import { createAuthor } from "../../../testUtils/factories";
 
 describe("author query", () => {
+  const GetAuthorQuery = gql`
+    query($id: ExternalID!) {
+      author(id: $id) {
+        ... on AuthorNotFoundError {
+          message
+        }
+
+        ... on Author {
+          id
+          name
+          bio
+          photo {
+            url
+          }
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  `;
+
   it("fetches author", async () => {
     // Given
     const author = await createAuthor({
@@ -17,22 +38,7 @@ describe("author query", () => {
 
     // When
     const res = await createTestClient().query({
-      query: gql`
-        query($id: ExternalID!) {
-          author(id: $id) {
-            ... on Author {
-              id
-              name
-              bio
-              photo {
-                url
-              }
-              createdAt
-              updatedAt
-            }
-          }
-        }
-      `,
+      query: GetAuthorQuery,
       variables: { id: secureId.toExternal(author.id, "Author") }
     });
 
@@ -52,15 +58,7 @@ describe("author query", () => {
   it("responds with error when author cannot be found", async () => {
     // When
     const res = await createTestClient().query({
-      query: gql`
-        query($id: ExternalID!) {
-          author(id: $id) {
-            ... on AuthorNotFoundError {
-              message
-            }
-          }
-        }
-      `,
+      query: GetAuthorQuery,
       variables: { id: secureId.toExternal(1, "Author") }
     });
 
