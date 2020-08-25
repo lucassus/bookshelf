@@ -35,7 +35,7 @@ type ReturnBookCopyPayload implements MutationResponse {
   bookCopy: BookCopy
 }
 
-type BookNotFoundError {
+type BookNotFoundError implements Error{
   message: String!
 }
 

@@ -64,8 +64,7 @@ type DeleteUserPayload implements MutationResponse {
   message: String!
 }
 
-# TODO: Create an interfacte fpr Errors
-type UserNotFoundError {
+type UserNotFoundError implements Error {
   message: String!
 }
 
