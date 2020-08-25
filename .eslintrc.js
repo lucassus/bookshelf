@@ -26,6 +26,7 @@ module.exports = {
     ],
     "import/no-cycle": "off",
     "import/prefer-default-export": "off",
-    "max-classes-per-file": "off"
+    "max-classes-per-file": "off",
+    "no-underscore-dangle": ["error", { allow: ["__typename"] }]
   }
 };

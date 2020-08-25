@@ -23,12 +23,10 @@ export const BookDetailsPage: React.FunctionComponent = () => {
 
   const { book } = data;
 
-  // eslint-disable-next-line no-underscore-dangle
   if (book.__typename === "BookNotFoundError") {
     return <ErrorAlert message="Count not found a book!" />;
   }
 
-  // eslint-disable-next-line no-underscore-dangle
   if (book.__typename === "Book") {
     return (
       <div className={styles.container}>
