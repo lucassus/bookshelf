@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { NotFoundPage } from "../NotFoundPage";
 import styles from "./AuthorDetailsPage.module.scss";
 import { useGetAuthorQuery } from "./GetAuthor.query.generated";
 
@@ -23,9 +24,8 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
 
   const { author } = data;
 
-  // TODO: Create a nice 404 page
   if (author.__typename === "AuthorNotFoundError") {
-    return <ErrorAlert message="Count not find author!" />;
+    return <NotFoundPage message="Count not find an author!" />;
   }
 
   return (

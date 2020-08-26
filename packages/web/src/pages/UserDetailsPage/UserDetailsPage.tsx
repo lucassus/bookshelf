@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
+import { NotFoundPage } from "../NotFoundPage";
 import { useGetUserQuery } from "./GetUser.query.generated";
 import styles from "./UserDetailsPage.module.scss";
 
@@ -25,7 +26,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   const { user } = data;
 
   if (user.__typename === "UserNotFoundError") {
-    return <ErrorAlert message="Count not find a user!" />;
+    return <NotFoundPage message="Count not find a user!" />;
   }
 
   return (
