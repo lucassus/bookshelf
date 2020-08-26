@@ -8,11 +8,7 @@ type Author implements Resource & Timestampable {
   updatedAt: String!
 }
 
-type AuthorNotFoundError implements Error {
-  message: String!
-}
-
-union AuthorResponse = Author | AuthorNotFoundError
+union AuthorResponse = Author | ResourceNotFoundError
 
 extend type Query {
   authors: [Author!]!

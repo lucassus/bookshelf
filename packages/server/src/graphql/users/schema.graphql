@@ -64,12 +64,8 @@ type DeleteUserPayload implements MutationResponse {
   message: String!
 }
 
-type UserNotFoundError implements Error {
-  message: String!
-}
-
 # TODO: UserResult or UserPayload, find a better naming convention
-union UserResult = User | UserNotFoundError
+union UserResult = User | ResourceNotFoundError
 
 extend type Query {
   users: [User!]!

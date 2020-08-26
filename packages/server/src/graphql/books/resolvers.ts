@@ -20,7 +20,10 @@ const resolvers: Resolvers<Context> = {
         return Object.assign(book, { __typename: "Book" });
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { __typename: "BookNotFoundError", message: error.message };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: error.message
+          };
         }
 
         throw error;

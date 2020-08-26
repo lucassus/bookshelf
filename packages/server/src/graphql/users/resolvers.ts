@@ -10,6 +10,7 @@ const resolvers: Resolvers<Context> = {
       container.get(UsersService).findAll(),
 
     // TODO: Figure out how to dry up not found error handling
+    // TODO: Use resolvers composition?
     user: async (rootValue, { id }, { container }) => {
       try {
         const user = await container.get(UsersService).findByIdOrFail(id);
@@ -17,7 +18,7 @@ const resolvers: Resolvers<Context> = {
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
           return {
-            __typename: "UserNotFoundError",
+            __typename: "ResourceNotFoundError",
             message: error.message
           };
         }

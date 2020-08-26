@@ -12,7 +12,7 @@ const resolvers: Resolvers<Context> = {
 
       if (!author) {
         return {
-          __typename: "AuthorNotFoundError",
+          __typename: "ResourceNotFoundError",
           message: `Could not find any entity of type "Author" matching: "${id}"`
         };
       }

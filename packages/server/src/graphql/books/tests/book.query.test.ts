@@ -161,7 +161,7 @@ describe("book query", () => {
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {
-            ... on BookNotFoundError {
+            ... on ResourceNotFoundError {
               message
             }
           }

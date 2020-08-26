@@ -8,7 +8,7 @@ describe("author query", () => {
   const GetAuthorQuery = gql`
     query($id: ExternalID!) {
       author(id: $id) {
-        ... on AuthorNotFoundError {
+        ... on ResourceNotFoundError {
           message
         }
 

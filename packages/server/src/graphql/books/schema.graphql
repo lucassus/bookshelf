@@ -35,11 +35,7 @@ type ReturnBookCopyPayload implements MutationResponse {
   bookCopy: BookCopy
 }
 
-type BookNotFoundError implements Error{
-  message: String!
-}
-
-union BookResult = Book | BookNotFoundError
+union BookResult = Book | ResourceNotFoundError
 
 extend type Query {
   booksCount: Int!

@@ -74,7 +74,7 @@ describe("user query", () => {
       query: gql`
         query($id: ExternalID!) {
           user(id: $id) {
-            ... on UserNotFoundError {
+            ... on ResourceNotFoundError {
               message
             }
           }

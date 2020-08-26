@@ -24,7 +24,7 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
 
   const { author } = data;
 
-  if (author.__typename === "AuthorNotFoundError") {
+  if (author.__typename === "ResourceNotFoundError") {
     return <NotFoundPage message="Count not find an author!" />;
   }
 
