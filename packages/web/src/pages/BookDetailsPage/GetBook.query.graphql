@@ -1,6 +1,7 @@
 query GetBook($id: ExternalID!) {
   book(id: $id) {
     ... on BookNotFoundError {
+      __typename
       message
     }
 

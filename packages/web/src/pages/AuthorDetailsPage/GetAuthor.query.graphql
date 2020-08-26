@@ -1,6 +1,7 @@
 query GetAuthor($id: ExternalID!) {
   author(id: $id) {
     ... on AuthorNotFoundError {
+      __typename
       message
     }
 

@@ -28,28 +28,23 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Count not find author!" />;
   }
 
-  // TODO: Find a better solution
-  if (author.__typename === "Author") {
-    return (
-      <div>
-        <h2>{author.name}</h2>
+  return (
+    <div>
+      <h2>{author.name}</h2>
 
-        <div className={styles.info}>
-          {author.photo && <img src={author.photo.url} alt={author.name} />}
+      <div className={styles.info}>
+        {author.photo && <img src={author.photo.url} alt={author.name} />}
 
-          <article>{author.bio}</article>
-        </div>
-
-        {author.books && (
-          <div className={styles.booksList}>
-            {author.books.map((book) => (
-              <BookCard key={book.id} book={book} />
-            ))}
-          </div>
-        )}
+        <article>{author.bio}</article>
       </div>
-    );
-  }
 
-  return null;
+      {author.books && (
+        <div className={styles.booksList}>
+          {author.books.map((book) => (
+            <BookCard key={book.id} book={book} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
