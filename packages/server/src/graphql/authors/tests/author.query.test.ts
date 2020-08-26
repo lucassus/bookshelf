@@ -37,16 +37,17 @@ describe("author query", () => {
     });
 
     // When
+    const id = secureId.toExternal(author.id, "Author");
     const res = await createTestClient().query({
       query: GetAuthorQuery,
-      variables: { id: secureId.toExternal(author.id, "Author") }
+      variables: { id }
     });
 
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       author: {
-        id: expect.any(String),
+        id,
         bio: author.bio,
         name: author.name,
         createdAt: "2019-12-31T14:30:00.000Z",
