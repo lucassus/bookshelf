@@ -26,7 +26,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   const { user } = data;
 
   if (user.__typename === "ResourceNotFoundError") {
-    return <NotFoundPage message="Count not find a user!" />;
+    return <NotFoundPage message={user.message} />;
   }
 
   return (

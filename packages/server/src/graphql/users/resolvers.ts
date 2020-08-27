@@ -19,7 +19,7 @@ const resolvers: Resolvers<Context> = {
         if (error instanceof EntityNotFoundError) {
           return {
             __typename: "ResourceNotFoundError",
-            message: error.message
+            message: "Could not find User"
           };
         }
 

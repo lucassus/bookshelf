@@ -173,7 +173,7 @@ describe("book query", () => {
     // Then
     expect(res.data).toEqual({
       book: {
-        message: 'Could not find any entity of type "Book" matching: "200"'
+        message: "Could not find Book"
       }
     });
   });

@@ -25,7 +25,7 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   const { book } = data;
 
   if (book.__typename === "ResourceNotFoundError") {
-    return <NotFoundPage message="Count not found a book!" />;
+    return <NotFoundPage message={book.message} />;
   }
 
   return (

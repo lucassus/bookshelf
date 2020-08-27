@@ -86,7 +86,7 @@ describe("user query", () => {
     // Then
     expect(res.data).toEqual({
       user: {
-        message: 'Could not find any entity of type "User" matching: "1"'
+        message: "Could not find User"
       }
     });
   });

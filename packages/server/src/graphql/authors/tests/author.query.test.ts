@@ -67,7 +67,7 @@ describe("author query", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       author: {
-        message: 'Could not find any entity of type "Author" matching: "1"'
+        message: "Could not find Author"
       }
     });
   });
