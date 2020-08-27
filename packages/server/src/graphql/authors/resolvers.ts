@@ -1,5 +1,3 @@
-import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
-
 import { Author } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
@@ -9,21 +7,18 @@ const resolvers: Resolvers<Context> = {
     authors: (rootValue, args, { connection }) =>
       connection.getRepository(Author).find(),
 
-    // TODO: Bring back dataloader?
-    author: async (rootValue, { id }, { connection }) => {
-      try {
-        const author = await connection.getRepository(Author).findOneOrFail(id);
-        return Object.assign(author, { __typename: "Author" });
-      } catch (error) {
-        if (error instanceof EntityNotFoundError) {
-          return {
-            __typename: "ResourceNotFoundError",
-            message: `Could not find any entity of type "Author" matching: "${id}"`
-          };
-        }
+    author: async (rootValue, { id }, { authorsLoader }) => {
+      const author = await authorsLoader.load(id);
 
-        throw error;
+      if (!author) {
+        return {
+          __typename: "ResourceNotFoundError",
+          // TODO: It reveals server side implementation details
+          message: `Could not find any entity of type "Author" matching: "${id}"`
+        };
       }
+
+      return Object.assign(author, { __typename: "Author" });
     }
   },
 
