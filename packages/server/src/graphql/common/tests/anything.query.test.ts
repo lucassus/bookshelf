@@ -135,22 +135,28 @@ it("fetches with aliases", async () => {
         $userId: ExternalID!
       ) {
         something: book(id: $bookId) {
-          id
-          externalId: id
-          headline: title
-          description
+          ... on Book {
+            id
+            externalId: id
+            headline: title
+            description
+          }
         }
 
         author(id: $authorId) {
-          id
-          headline: name
-          description: bio
+          ... on Author {
+            id
+            headline: name
+            description: bio
+          }
         }
 
         user(id: $userId) {
-          id
-          headline: name
-          description: info
+          ... on User {
+            id
+            headline: name
+            description: info
+          }
         }
       }
     `,

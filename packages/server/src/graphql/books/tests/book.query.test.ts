@@ -20,11 +20,13 @@ describe("book query", () => {
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {
-            id
-            title
-            description
-            createdAt
-            updatedAt
+            ... on Book {
+              id
+              title
+              description
+              createdAt
+              updatedAt
+            }
           }
         }
       `,
@@ -71,37 +73,39 @@ describe("book query", () => {
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {
-            id
-            title
-            description
-            author {
+            ... on Book {
               id
-              name
-            }
-            createdAt
-            updatedAt
-            copies {
-              id
-              owner {
+              title
+              description
+              author {
                 id
                 name
-                avatar {
-                  image {
-                    path
-                    url
-                  }
-                  color
-                }
               }
-              borrower {
+              createdAt
+              updatedAt
+              copies {
                 id
-                name
-                avatar {
-                  image {
-                    path
-                    url
+                owner {
+                  id
+                  name
+                  avatar {
+                    image {
+                      path
+                      url
+                    }
+                    color
                   }
-                  color
+                }
+                borrower {
+                  id
+                  name
+                  avatar {
+                    image {
+                      path
+                      url
+                    }
+                    color
+                  }
                 }
               }
             }
@@ -157,8 +161,9 @@ describe("book query", () => {
       query: gql`
         query($id: ExternalID!) {
           book(id: $id) {
-            id
-            title
+            ... on ResourceNotFoundError {
+              message
+            }
           }
         }
       `,
@@ -166,9 +171,10 @@ describe("book query", () => {
     });
 
     // Then
-    expect(res.data).toBe(null);
-    expect(res.errors![0].message).toEqual(
-      'Could not find any entity of type "Book" matching: "200"'
-    );
+    expect(res.data).toEqual({
+      book: {
+        message: "Could not find Book"
+      }
+    });
   });
 });

@@ -17,13 +17,6 @@ type BookCopy implements Resource {
   borrower: User
 }
 
-extend type Query {
-  booksCount: Int!
-  books(offset: Int = 0, limit: Int = 9): [Book!]!
-  book(id: ExternalID!): Book!
-  randomBook: Book
-}
-
 type UpdateBookFavouritePayload implements MutationResponse {
   success: Boolean!
   message: String!
@@ -40,6 +33,15 @@ type ReturnBookCopyPayload implements MutationResponse {
   success: Boolean!
   message: String!
   bookCopy: BookCopy
+}
+
+union BookResult = Book | ResourceNotFoundError
+
+extend type Query {
+  booksCount: Int!
+  books(offset: Int = 0, limit: Int = 9): [Book!]!
+  book(id: ExternalID!): BookResult!
+  randomBook: Book
 }
 
 extend type Mutation {

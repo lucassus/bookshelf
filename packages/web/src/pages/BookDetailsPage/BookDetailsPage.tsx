@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { NotFoundPage } from "../NotFoundPage";
 import styles from "./BookDetailsPage.module.scss";
 import { useGetBookQuery } from "./GetBook.query.generated";
 
@@ -22,6 +23,10 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   }
 
   const { book } = data;
+
+  if (book.__typename === "ResourceNotFoundError") {
+    return <NotFoundPage message={book.message} />;
+  }
 
   return (
     <div className={styles.container}>

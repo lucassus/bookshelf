@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { BookCard } from "../../components/BookCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { NotFoundPage } from "../NotFoundPage";
 import styles from "./AuthorDetailsPage.module.scss";
 import { useGetAuthorQuery } from "./GetAuthor.query.generated";
 
@@ -22,6 +23,10 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
   }
 
   const { author } = data;
+
+  if (author.__typename === "ResourceNotFoundError") {
+    return <NotFoundPage message={author.message} />;
+  }
 
   return (
     <div>

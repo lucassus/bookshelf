@@ -64,9 +64,11 @@ type DeleteUserPayload implements MutationResponse {
   message: String!
 }
 
+union UserResult = User | ResourceNotFoundError
+
 extend type Query {
   users: [User!]!
-  user(id: ExternalID!): User!
+  user(id: ExternalID!): UserResult!
 }
 
 extend type Mutation {

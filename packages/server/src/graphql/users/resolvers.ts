@@ -1,14 +1,43 @@
+import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
+
+import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
 
 const resolvers: Resolvers<Context> = {
+  Avatar: {
+    image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
+  },
+
+  UserResult: {
+    __resolveType: (maybeUser) => {
+      if (maybeUser instanceof User) {
+        return "User";
+      }
+
+      return "ResourceNotFoundError";
+    }
+  },
+
   Query: {
     users: (rootValue, args, { container }) =>
       container.get(UsersService).findAll(),
 
-    user: (rootValue, { id }, { container }) =>
-      container.get(UsersService).findByIdOrFail(id)
+    user: async (rootValue, { id }, { container }) => {
+      try {
+        return await await container.get(UsersService).findByIdOrFail(id);
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return { message: "Could not find User" };
+        }
+
+        throw error;
+      }
+    }
   },
 
   Mutation: {
@@ -46,13 +75,6 @@ const resolvers: Resolvers<Context> = {
         message: "User was successfully deleted."
       };
     }
-  },
-
-  Avatar: {
-    image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
-      path,
-      url: assetsBaseUrl + path
-    })
   }
 };
 

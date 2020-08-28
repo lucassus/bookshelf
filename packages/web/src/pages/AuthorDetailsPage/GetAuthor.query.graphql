@@ -1,13 +1,20 @@
 query GetAuthor($id: ExternalID!) {
   author(id: $id) {
-    name
-    bio
-    photo {
-      url
+    ... on ResourceNotFoundError {
+      __typename
+      message
     }
 
-    books {
-      ...BookCard
+    ... on Author {
+      name
+      bio
+      photo {
+        url
+      }
+
+      books {
+        ...BookCard
+      }
     }
   }
 }

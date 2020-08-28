@@ -1,5 +1,12 @@
 import React from "react";
 
-export const NotFoundPage: React.FunctionComponent = () => (
-  <div>Page not found!</div>
+type Props = {
+  message?: string;
+};
+
+export const NotFoundPage: React.FunctionComponent<Props> = ({ message }) => (
+  <div>
+    <h3>Page not found!</h3>
+    {message && <h4>{message}</h4>}
+  </div>
 );

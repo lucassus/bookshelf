@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { BookCopy } from "../../components/BookCopy";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
+import { NotFoundPage } from "../NotFoundPage";
 import { useGetUserQuery } from "./GetUser.query.generated";
 import styles from "./UserDetailsPage.module.scss";
 
@@ -19,10 +20,14 @@ export const UserDetailsPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <ErrorAlert message="Count not load user!" />;
+    return <ErrorAlert message="Count not load a user!" />;
   }
 
   const { user } = data;
+
+  if (user.__typename === "ResourceNotFoundError") {
+    return <NotFoundPage message={user.message} />;
+  }
 
   return (
     <div>
