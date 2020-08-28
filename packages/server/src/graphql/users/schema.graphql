@@ -25,6 +25,7 @@ type CurrentUser implements Resource & Timestampable {
 type Avatar {
   image: Image!
   color: String!
+  flagged: Boolean!
 }
 
 input AvatarInput {

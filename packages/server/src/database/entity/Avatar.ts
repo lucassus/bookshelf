@@ -17,6 +17,9 @@ export class Avatar {
   @Column()
   color: string;
 
+  @Column({ default: false })
+  flagged: boolean;
+
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 

@@ -27,6 +27,7 @@ describe("user query", () => {
                 image {
                   url
                 }
+                flagged
               }
               ownedBookCopies {
                 book {
@@ -62,6 +63,9 @@ describe("user query", () => {
         id,
         name: user.name,
         info: user.info,
+        avatar: {
+          flagged: false
+        },
         ownedBookCopies: expect.any(Array),
         borrowedBookCopies: expect.any(Array)
       }
