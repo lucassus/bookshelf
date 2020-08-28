@@ -3,6 +3,23 @@ import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
+  Author: {
+    photo: ({ photoPath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
+  },
+
+  AuthorResponse: {
+    __resolveType: (maybeAuthor) => {
+      if (maybeAuthor instanceof Author) {
+        return "Author";
+      }
+
+      return "ResourceNotFoundError";
+    }
+  },
+
   Query: {
     authors: (rootValue, args, { connection }) =>
       connection.getRepository(Author).find(),
@@ -11,21 +28,11 @@ const resolvers: Resolvers<Context> = {
       const author = await authorsLoader.load(id);
 
       if (!author) {
-        return {
-          __typename: "ResourceNotFoundError",
-          message: "Could not find Author"
-        };
+        return { message: "Could not find Author" };
       }
 
-      return Object.assign(author, { __typename: "Author" });
+      return author;
     }
-  },
-
-  Author: {
-    photo: ({ photoPath: path }, args, { assetsBaseUrl }) => ({
-      path,
-      url: assetsBaseUrl + path
-    })
   }
 };
 
