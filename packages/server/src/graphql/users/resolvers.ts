@@ -1,26 +1,38 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
+import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
 
 const resolvers: Resolvers<Context> = {
+  Avatar: {
+    image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
+  },
+
+  UserResult: {
+    __resolveType: (maybeUser) => {
+      if (maybeUser instanceof User) {
+        return "User";
+      }
+
+      return "ResourceNotFoundError";
+    }
+  },
+
   Query: {
     users: (rootValue, args, { container }) =>
       container.get(UsersService).findAll(),
 
-    // TODO: Figure out how to dry up not found error handling
-    // TODO: Use resolvers composition?
     user: async (rootValue, { id }, { container }) => {
       try {
-        const user = await container.get(UsersService).findByIdOrFail(id);
-        return Object.assign(user, { __typename: "User" });
+        return await await container.get(UsersService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return {
-            __typename: "ResourceNotFoundError",
-            message: "Could not find User"
-          };
+          return { message: "Could not find User" };
         }
 
         throw error;
@@ -63,13 +75,6 @@ const resolvers: Resolvers<Context> = {
         message: "User was successfully deleted."
       };
     }
-  },
-
-  Avatar: {
-    image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
-      path,
-      url: assetsBaseUrl + path
-    })
   }
 };
 
