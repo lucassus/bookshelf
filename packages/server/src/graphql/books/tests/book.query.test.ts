@@ -89,22 +89,26 @@ describe("book query", () => {
                   id
                   name
                   avatar {
-                    image {
-                      path
-                      url
+                    ... on Avatar {
+                      image {
+                        path
+                        url
+                      }
+                      color
                     }
-                    color
                   }
                 }
                 borrower {
                   id
                   name
                   avatar {
-                    image {
-                      path
-                      url
+                    ... on Avatar {
+                      image {
+                        path
+                        url
+                      }
+                      color
                     }
-                    color
                   }
                 }
               }

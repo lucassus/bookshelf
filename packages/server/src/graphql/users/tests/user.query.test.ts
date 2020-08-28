@@ -23,11 +23,13 @@ describe("user query", () => {
               name
               info
               avatar {
-                color
-                image {
-                  url
+                ... on Avatar {
+                  color
+                  image {
+                    url
+                  }
+                  flagged
                 }
-                flagged
               }
               ownedBookCopies {
                 book {
@@ -68,6 +70,41 @@ describe("user query", () => {
         },
         ownedBookCopies: expect.any(Array),
         borrowedBookCopies: expect.any(Array)
+      }
+    });
+  });
+
+  it("fetches a user with flagged avatar", async () => {
+    // Given
+    const user = await createUser({ avatarAttributes: { flagged: true } });
+
+    // When
+    const res = await createTestClient().query({
+      query: gql`
+        query($id: ExternalID!) {
+          user(id: $id) {
+            ... on User {
+              avatar {
+                ... on FlaggedAvatarError {
+                  __typename
+                  message
+                }
+              }
+            }
+          }
+        }
+      `,
+      variables: { id: secureId.toExternal(user.id, "User") }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      user: {
+        avatar: {
+          __typename: "FlaggedAvatarError",
+          message: "Avatar is flagged!"
+        }
       }
     });
   });

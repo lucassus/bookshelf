@@ -4,7 +4,7 @@ type User implements Resource & Timestampable {
   info: String
   email: String! @requireAuthorization(role: Admin)
   isAdmin: Boolean! @requireAuthorization(role: Admin)
-  avatar: Avatar!
+  avatar: AvatarResult!
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
   createdAt: String!
@@ -17,7 +17,7 @@ type CurrentUser implements Resource & Timestampable {
   email: String!
   isAdmin: Boolean!
   info: String
-  avatar: Avatar!
+  avatar: AvatarResult!
   createdAt: String!
   updatedAt: String!
 }
@@ -27,6 +27,12 @@ type Avatar {
   color: String!
   flagged: Boolean!
 }
+
+type FlaggedAvatarError implements Error {
+  message: String!
+}
+
+union AvatarResult = Avatar | FlaggedAvatarError
 
 input AvatarInput {
   imagePath: String!
