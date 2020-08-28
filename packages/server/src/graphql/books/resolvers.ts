@@ -1,5 +1,6 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
+import { Book } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
@@ -7,6 +8,36 @@ import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
 const resolvers: Resolvers<Context> = {
+  Book: {
+    author: (book, args, { authorsLoader }) =>
+      authorsLoader.load(book.authorId),
+
+    cover: ({ coverPath: path }, args, { assetsBaseUrl }) => ({
+      path,
+      url: assetsBaseUrl + path
+    })
+  },
+
+  BookCopy: {
+    owner: (bookCopy, args, { container }) =>
+      container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
+
+    borrower: (bookCopy, args, { container }) =>
+      bookCopy.borrowerId
+        ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
+        : null
+  },
+
+  BookResult: {
+    __resolveType: (maybeBook) => {
+      if (maybeBook instanceof Book) {
+        return "Book";
+      }
+
+      return "ResourceNotFoundError";
+    }
+  },
+
   Query: {
     booksCount: (rootValue, args, { container }) =>
       container.get(BooksService).count(),
@@ -16,14 +47,10 @@ const resolvers: Resolvers<Context> = {
 
     book: async (rootValue, { id }, { container }) => {
       try {
-        const book = await container.get(BooksService).findByIdOrFail(id);
-        return Object.assign(book, { __typename: "Book" });
+        return await container.get(BooksService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return {
-            __typename: "ResourceNotFoundError",
-            message: "Could not find Book"
-          };
+          return { message: "Could not find Book" };
         }
 
         throw error;
@@ -76,26 +103,6 @@ const resolvers: Resolvers<Context> = {
         bookCopy
       };
     }
-  },
-
-  Book: {
-    author: (book, args, { authorsLoader }) =>
-      authorsLoader.load(book.authorId),
-
-    cover: ({ coverPath: path }, args, { assetsBaseUrl }) => ({
-      path,
-      url: assetsBaseUrl + path
-    })
-  },
-
-  BookCopy: {
-    owner: (bookCopy, args, { container }) =>
-      container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
-
-    borrower: (bookCopy, args, { container }) =>
-      bookCopy.borrowerId
-        ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
-        : null
   }
 };
 
