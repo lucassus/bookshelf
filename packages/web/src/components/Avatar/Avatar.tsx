@@ -10,36 +10,28 @@ type Props = {
 };
 
 // TODO: Use cloudinary integration
-// TODO: Develop with storybook
+// TODO: Big avatar on user details page
 export const Avatar: React.FunctionComponent<Props> = ({
   name,
-  // TODO: Big avatar on user details page
   small = false,
   avatar
 }) => {
-  // TODO: Dry it
-  if (avatar.__typename === "FlaggedAvatarError") {
-    return (
-      <img
-        className={styles.container}
-        src="https://res.cloudinary.com/lucassus/image/upload/v1598608061/bookshelf/users/avatar-placeholder.png"
-        alt={name}
-        style={{
-          backgroundColor: "red",
-          height: small ? "50px" : "inherit"
-        }}
-      />
-    );
-  }
+  const src =
+    avatar.__typename === "FlaggedAvatarError"
+      ? "https://res.cloudinary.com/lucassus/image/upload/v1598608061/bookshelf/users/avatar-placeholder.png"
+      : avatar.image.url;
+
+  const backgroundColor =
+    avatar.__typename === "FlaggedAvatarError" ? "red" : avatar.color;
 
   return (
     <img
       className={styles.container}
-      src={avatar.image.url}
+      src={src}
       alt={name}
       style={{
-        backgroundColor: avatar.color,
-        height: small ? "50px" : "inherit"
+        backgroundColor,
+        height: small ? "50px" : "160px"
       }}
     />
   );
