@@ -4,7 +4,7 @@ type User implements Resource & Timestampable {
   info: String
   email: String! @requireAuthorization(role: Admin)
   isAdmin: Boolean! @requireAuthorization(role: Admin)
-  avatar: Avatar!
+  avatar: AvatarResult!
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
   createdAt: String!
@@ -17,7 +17,7 @@ type CurrentUser implements Resource & Timestampable {
   email: String!
   isAdmin: Boolean!
   info: String
-  avatar: Avatar!
+  avatar: AvatarResult!
   createdAt: String!
   updatedAt: String!
 }
@@ -25,7 +25,14 @@ type CurrentUser implements Resource & Timestampable {
 type Avatar {
   image: Image!
   color: String!
+  flagged: Boolean!
 }
+
+type FlaggedAvatarError implements Error {
+  message: String!
+}
+
+union AvatarResult = Avatar | FlaggedAvatarError
 
 input AvatarInput {
   imagePath: String!
@@ -47,19 +54,19 @@ input UpdateUserInput {
   info: String!
 }
 
-type CreateUserPayload implements MutationResponse {
+type CreateUserResult implements MutationResponse {
   success: Boolean!
   message: String!
   user: User
 }
 
-type UpdateUserPayload implements MutationResponse {
+type UpdateUserResult implements MutationResponse {
   success: Boolean!
   message: String!
   user: User
 }
 
-type DeleteUserPayload implements MutationResponse {
+type DeleteUserResult implements MutationResponse {
   success: Boolean!
   message: String!
 }
@@ -72,7 +79,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthorization(role: Admin)
-  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthorization(role: Admin)
-  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthorization(role: Admin)
+  createUser(input: CreateUserInput!): CreateUserResult! @requireAuthorization(role: Admin)
+  updateUser(input: UpdateUserInput!): UpdateUserResult! @requireAuthorization(role: Admin)
+  deleteUser(id: ExternalID!): DeleteUserResult! @requireAuthorization(role: Admin)
 }

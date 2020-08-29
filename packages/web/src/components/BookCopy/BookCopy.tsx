@@ -24,8 +24,8 @@ export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => {
         <div className={styles.ownerAvatar}>
           <Link to={`/users/${bookCopy.owner.id}`}>
             <Avatar
-              name={bookCopy.owner.name}
-              small
+              label={bookCopy.owner.name}
+              size="small"
               avatar={bookCopy.owner.avatar}
             />
           </Link>
@@ -35,8 +35,8 @@ export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => {
           <div className={styles.borrowerAvatar}>
             <Link to={`/users/${bookCopy.borrower.id}`}>
               <Avatar
-                name={bookCopy.borrower.name}
-                small
+                label={bookCopy.borrower.name}
+                size="small"
                 avatar={bookCopy.borrower.avatar}
               />
             </Link>

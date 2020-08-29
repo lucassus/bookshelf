@@ -1,4 +1,4 @@
-import { Author, Book, User } from "../types.generated";
+import { Author, Book } from "../types.generated";
 
 type Factory<T> = (attributes?: Partial<T>) => T;
 
@@ -28,26 +28,6 @@ export const createBook: Factory<Book> = (attributes = {}) => ({
   },
   author: createAuthor(),
   copies: [],
-  createdAt: "2020-07-19T14:00:00.00Z",
-  updatedAt: "2020-07-19T14:00:00.00Z",
-  ...attributes
-});
-
-export const createUser: Factory<User> = (attributes = {}) => ({
-  id: "1",
-  name: "Bob",
-  info: "Professional problem solver.",
-  email: "bob@email.com",
-  isAdmin: false,
-  avatar: {
-    image: {
-      path: "/avatars/m25.png",
-      url: "http://examples.devmastery.pl/assets/images/avatars/m25.png"
-    },
-    color: "yellow"
-  },
-  ownedBookCopies: [],
-  borrowedBookCopies: [],
   createdAt: "2020-07-19T14:00:00.00Z",
   updatedAt: "2020-07-19T14:00:00.00Z",
   ...attributes

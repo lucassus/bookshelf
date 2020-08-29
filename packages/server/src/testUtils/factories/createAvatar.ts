@@ -4,10 +4,10 @@ import { Avatar } from "../../database/entity";
 import { createEntity } from "./createEntity";
 
 const AVATAR_IMAGES = [
-  "/images/avatars/w13.png",
-  "/images/avatars/m10.png",
-  "/images/avatars/w2.png",
-  "/images/avatars/m25.png"
+  "/users/w13.png",
+  "/users/m10.png",
+  "/users/w2.png",
+  "/users/m25.png"
 ];
 
 const AVATAR_COLORS = [

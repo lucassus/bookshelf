@@ -13,6 +13,19 @@ const resolvers: Resolvers<Context> = {
     })
   },
 
+  User: {
+    avatar: (user) => {
+      if (user.avatar.flagged) {
+        return {
+          __typename: "FlaggedAvatarError",
+          message: "Avatar is flagged!"
+        };
+      }
+
+      return { __typename: "Avatar", ...user.avatar };
+    }
+  },
+
   UserResult: {
     __resolveType: (maybeUser) => {
       if (maybeUser instanceof User) {

@@ -315,6 +315,17 @@ async function loadUsers() {
       color: "blue"
     }
   });
+
+  await createUser({
+    name: "Luke",
+    email: "luke@example.com",
+    info: `Amateur photographer.`,
+    avatarAttributes: {
+      imagePath: "/users/m25.png",
+      color: "red",
+      flagged: true
+    }
+  });
 }
 
 async function loadBookCopies() {

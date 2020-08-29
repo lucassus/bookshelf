@@ -1,6 +1,14 @@
-fragment Avatar on Avatar {
-  image {
-    url
+fragment Avatar on AvatarResult {
+  __typename
+
+  ... on FlaggedAvatarError {
+    message
   }
-  color
+
+  ... on Avatar {
+    image {
+      url
+    }
+    color
+  }
 }

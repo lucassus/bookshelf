@@ -13,10 +13,11 @@ import "typeface-roboto";
 import { App } from "./App";
 import { AuthContextProvider } from "./components/AuthContext";
 import { GRAPHQL_ENDPOINT } from "./config";
+import introspectionResult from "./introspectionResult.generated";
 
 const cache = new InMemoryCache({
   addTypename: true,
-  resultCaching: false
+  possibleTypes: introspectionResult.possibleTypes
 });
 
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });

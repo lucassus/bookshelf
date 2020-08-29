@@ -19,10 +19,12 @@ test("createUser mutation", async () => {
             name
             info
             avatar {
-              image {
-                path
+              ... on Avatar {
+                image {
+                  path
+                }
+                color
               }
-              color
             }
             createdAt
             updatedAt

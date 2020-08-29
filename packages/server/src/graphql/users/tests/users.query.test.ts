@@ -20,11 +20,13 @@ describe("users query", () => {
             name
             info
             avatar {
-              image {
-                path
-                url
+              ... on Avatar {
+                image {
+                  path
+                  url
+                }
+                color
               }
-              color
             }
           }
         }
