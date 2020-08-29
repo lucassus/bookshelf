@@ -3,17 +3,23 @@ import React from "react";
 import { AvatarFragment } from "./Avatar.fragment.generated";
 import styles from "./Avatar.module.scss";
 
+type AvatarSize = "small" | "medium";
+
 type Props = {
   name: string;
-  small?: boolean;
+  size?: AvatarSize;
   avatar: AvatarFragment;
 };
 
-// TODO: Use cloudinary integration
-// TODO: Big avatar on user details page
+const AVATAR_SIZES: Record<AvatarSize, string> = {
+  small: "50px",
+  medium: "160px"
+};
+
+// TODO: Rename name to alt
 export const Avatar: React.FunctionComponent<Props> = ({
   name,
-  small = false,
+  size = "medium",
   avatar
 }) => {
   const src =
@@ -31,7 +37,7 @@ export const Avatar: React.FunctionComponent<Props> = ({
       alt={name}
       style={{
         backgroundColor,
-        height: small ? "50px" : "160px"
+        height: AVATAR_SIZES[size]
       }}
     />
   );
