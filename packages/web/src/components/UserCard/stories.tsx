@@ -1,8 +1,8 @@
 import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 
-import { createUser } from "../../testUtils/factories";
 import { UserCard } from "./UserCard";
+import { UserCardFragment } from "./UserCard.fragment.generated";
 
 export default {
   title: "UserAvatar",
@@ -11,6 +11,17 @@ export default {
 };
 
 export const Basic = () => {
-  const user = createUser({ name: text("User Name", "Bob") });
+  const user: UserCardFragment = {
+    name: text("User Name", "Bob"),
+    avatar: {
+      __typename: "Avatar",
+      image: {
+        url:
+          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m25.png"
+      },
+      color: "blue"
+    }
+  };
+
   return <UserCard user={user} />;
 };

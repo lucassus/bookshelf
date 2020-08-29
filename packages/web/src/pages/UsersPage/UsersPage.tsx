@@ -18,7 +18,6 @@ export const UsersPage: React.FunctionComponent = () => {
   }
 
   const { users } = data;
-  console.log({ data });
 
   return (
     <div>
