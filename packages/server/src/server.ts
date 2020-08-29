@@ -16,6 +16,8 @@ export const createServer = () =>
     introspection: true,
     playground: true,
     engine: {
+      reportSchema: true,
+      variant: "current",
       debugPrintReports: true
     }
   });
