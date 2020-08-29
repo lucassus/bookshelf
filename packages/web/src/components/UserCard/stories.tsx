@@ -1,4 +1,4 @@
-import { text, withKnobs } from "@storybook/addon-knobs";
+import { select, text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 
 import { UserCard } from "./UserCard";
@@ -19,7 +19,11 @@ export const Basic = () => {
         url:
           "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m25.png"
       },
-      color: "blue"
+      color: select(
+        "Avatar Color",
+        ["red", "green", "blue", "yellow", "magenta", "pink", "black"],
+        "blue"
+      )
     }
   };
 
