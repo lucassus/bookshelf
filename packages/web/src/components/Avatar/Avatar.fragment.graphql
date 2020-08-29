@@ -1,6 +1,7 @@
 fragment Avatar on AvatarResult {
+  __typename
+
   ... on FlaggedAvatarError {
-    __typename
     message
   }
 

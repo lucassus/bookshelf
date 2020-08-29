@@ -14,7 +14,7 @@ export const Avatar: React.FunctionComponent<Props> = ({
   small = false,
   avatar
 }) => {
-  console.log(avatar);
+  console.log({ name, avatar });
 
   // TODO: Dry it
   if (avatar.__typename === "FlaggedAvatarError") {
@@ -31,6 +31,7 @@ export const Avatar: React.FunctionComponent<Props> = ({
     );
   }
 
+  // TODO: For some reason avatar is empty
   return (
     <img
       className={styles.container}
