@@ -17,7 +17,6 @@ import introspectionResult from "./introspectionResult.generated";
 
 const cache = new InMemoryCache({
   addTypename: true,
-  resultCaching: false,
   possibleTypes: introspectionResult.possibleTypes
 });
 
