@@ -12,7 +12,7 @@ export const UserCard: React.FunctionComponent<Props> = ({
   user: { name, avatar }
 }) => (
   <figure className={styles.container}>
-    <Avatar name={name} avatar={avatar} />
+    <Avatar label={name} avatar={avatar} />
     <figcaption>{name}</figcaption>
   </figure>
 );

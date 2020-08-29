@@ -10,7 +10,7 @@ export default {
   decorators: [withKnobs]
 };
 
-const getUserName = () => text("User Name", "Bob");
+const getAlt = () => text("Label", "Bob");
 
 const getSize = () => select("Size", ["small", "medium"], "medium");
 
@@ -36,7 +36,7 @@ export const Basic = () => {
     )
   };
 
-  return <Avatar name={getUserName()} size={getSize()} avatar={avatar} />;
+  return <Avatar label={getAlt()} size={getSize()} avatar={avatar} />;
 };
 
 export const Flagged = () => {
@@ -45,5 +45,5 @@ export const Flagged = () => {
     message: "Avatar is flagged!"
   };
 
-  return <Avatar name={getUserName()} size={getSize()} avatar={avatar} />;
+  return <Avatar label={getAlt()} size={getSize()} avatar={avatar} />;
 };

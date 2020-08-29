@@ -6,7 +6,7 @@ import styles from "./Avatar.module.scss";
 type AvatarSize = "small" | "medium";
 
 type Props = {
-  name: string;
+  label: string;
   size?: AvatarSize;
   avatar: AvatarFragment;
 };
@@ -16,9 +16,8 @@ const AVATAR_SIZES: Record<AvatarSize, string> = {
   medium: "160px"
 };
 
-// TODO: Rename name to alt
 export const Avatar: React.FunctionComponent<Props> = ({
-  name,
+  label,
   size = "medium",
   avatar
 }) => {
@@ -34,7 +33,7 @@ export const Avatar: React.FunctionComponent<Props> = ({
     <img
       className={styles.container}
       src={src}
-      alt={name}
+      alt={label}
       style={{
         backgroundColor,
         height: AVATAR_SIZES[size]
