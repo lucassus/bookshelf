@@ -9,13 +9,14 @@ type Props = {
   avatar: AvatarFragment;
 };
 
+// TODO: Use cloudinary integration
+// TODO: Develop with storybook
 export const Avatar: React.FunctionComponent<Props> = ({
   name,
+  // TODO: Big avatar on user details page
   small = false,
   avatar
 }) => {
-  console.log({ name, avatar });
-
   // TODO: Dry it
   if (avatar.__typename === "FlaggedAvatarError") {
     return (
@@ -31,7 +32,6 @@ export const Avatar: React.FunctionComponent<Props> = ({
     );
   }
 
-  // TODO: For some reason avatar is empty
   return (
     <img
       className={styles.container}
