@@ -17,7 +17,7 @@ const login = resolvers.Mutation!.login! as (
   rootValue: any,
   args: MutationLoginArgs,
   context: any
-) => ResolversTypes["LoginPayload"];
+) => ResolversTypes["LoginResult"];
 
 describe("login authentication resolver", () => {
   test("on login success", async () => {

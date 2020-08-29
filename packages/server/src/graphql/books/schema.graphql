@@ -17,19 +17,19 @@ type BookCopy implements Resource {
   borrower: User
 }
 
-type UpdateBookFavouritePayload implements MutationResponse {
+type UpdateBookFavouriteResult implements MutationResponse {
   success: Boolean!
   message: String!
   book: Book!
 }
 
-type BorrowBookCopyPayload implements MutationResponse {
+type BorrowBookCopyResult implements MutationResponse {
   success: Boolean!
   message: String!
   bookCopy: BookCopy
 }
 
-type ReturnBookCopyPayload implements MutationResponse {
+type ReturnBookCopyResult implements MutationResponse {
   success: Boolean!
   message: String!
   bookCopy: BookCopy
@@ -45,8 +45,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  updateBookFavourite(id: ExternalID!, favourite: Boolean!): UpdateBookFavouritePayload!
+  updateBookFavourite(id: ExternalID!, favourite: Boolean!): UpdateBookFavouriteResult!
 
-  borrowBookCopy(id: ExternalID!): BorrowBookCopyPayload! @requireAuthorization
-  returnBookCopy(id: ExternalID!): ReturnBookCopyPayload! @requireAuthorization
+  borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
+  returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
 }

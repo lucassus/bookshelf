@@ -54,20 +54,19 @@ input UpdateUserInput {
   info: String!
 }
 
-# TODO: Rename to *Result
-type CreateUserPayload implements MutationResponse {
+type CreateUserResult implements MutationResponse {
   success: Boolean!
   message: String!
   user: User
 }
 
-type UpdateUserPayload implements MutationResponse {
+type UpdateUserResult implements MutationResponse {
   success: Boolean!
   message: String!
   user: User
 }
 
-type DeleteUserPayload implements MutationResponse {
+type DeleteUserResult implements MutationResponse {
   success: Boolean!
   message: String!
 }
@@ -80,7 +79,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): CreateUserPayload! @requireAuthorization(role: Admin)
-  updateUser(input: UpdateUserInput!): UpdateUserPayload! @requireAuthorization(role: Admin)
-  deleteUser(id: ExternalID!): DeleteUserPayload! @requireAuthorization(role: Admin)
+  createUser(input: CreateUserInput!): CreateUserResult! @requireAuthorization(role: Admin)
+  updateUser(input: UpdateUserInput!): UpdateUserResult! @requireAuthorization(role: Admin)
+  deleteUser(id: ExternalID!): DeleteUserResult! @requireAuthorization(role: Admin)
 }
