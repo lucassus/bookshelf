@@ -44,7 +44,8 @@ export const createUser: Factory<User> = (attributes = {}) => ({
       path: "/avatars/m25.png",
       url: "http://examples.devmastery.pl/assets/images/avatars/m25.png"
     },
-    color: "yellow"
+    color: "yellow",
+    flagged: false
   },
   ownedBookCopies: [],
   borrowedBookCopies: [],

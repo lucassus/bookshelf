@@ -3,10 +3,7 @@ query GetUsers {
     id
     name
     avatar {
-      image {
-        url
-      }
-      color
+      ...Avatar
     }
   }
 }
