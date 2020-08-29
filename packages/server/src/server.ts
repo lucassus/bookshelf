@@ -17,7 +17,6 @@ export const createServer = () =>
     playground: true,
     engine: {
       reportSchema: true,
-      variant: "current",
       debugPrintReports: true
     }
   });
