@@ -1,6 +1,6 @@
+import { titleizeSentence } from "@bookshelf/string-utils";
 import faker from "faker";
 
-import { titleizeSentence } from "../../common/strings";
 import { Author, Book } from "../../database/entity";
 import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";

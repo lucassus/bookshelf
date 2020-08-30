@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@bookshelf/secure-id": "1.0.0",
+    "@bookshelf/string-utils": "1.0.0",
     "@graphql-tools/graphql-file-loader": "6.1.0",
     "@graphql-tools/load": "6.1.0",
     "@graphql-tools/load-files": "6.1.0",
