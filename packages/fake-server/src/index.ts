@@ -1,15 +1,11 @@
-import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
-import { loadSchemaSync } from "@graphql-tools/load";
 import { ApolloServer } from "apollo-server";
-import path from "path";
+import { buildClientSchema } from "graphql";
 
 import { PORT } from "./config";
 import { mocks } from "./mocks";
+import introspectionResult from "./schema.json";
 
-const schema = loadSchemaSync(
-  path.join(__dirname, "/schema.generated.graphql"),
-  { loaders: [new GraphQLFileLoader()] }
-);
+const schema = buildClientSchema(introspectionResult as any);
 
 const server = new ApolloServer({
   schema,

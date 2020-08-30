@@ -26,9 +26,9 @@ generates:
       - typescript
       - typescript-resolvers
 
-  packages/fake-server/src/schema.generated.graphql:
+  packages/fake-server/src/schema.json:
     plugins:
-      - schema-ast
+      - introspection
 
   packages/web/src/introspectionResult.generated.ts:
     plugins:

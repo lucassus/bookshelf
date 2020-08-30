@@ -29,6 +29,6 @@ export const mocks = {
   }),
   Query: () => ({
     booksCount: 2,
-    books: () => new MockList([2, 6])
+    books: (rootValue, args) => new MockList(args.limit)
   })
 };
