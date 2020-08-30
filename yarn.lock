@@ -1668,6 +1668,15 @@
     "@graphql-tools/utils" "6.1.0"
     tslib "~2.0.1"
 
+"@graphql-tools/mock@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/mock/-/mock-6.1.0.tgz#085ecfb2b71c7b2e670bcaf930b63c9534084511"
+  integrity sha512-6sMBav9NQXyUZymZY4nfodqK45FytSXXIimL8DLnyZAsfGHxlYfeGVD03LkJz0X5xb0rRjyNq5DTpU2+5uL4TA==
+  dependencies:
+    "@graphql-tools/schema" "6.1.0"
+    "@graphql-tools/utils" "6.1.0"
+    tslib "~2.0.1"
+
 "@graphql-tools/prisma-loader@^6.0.18":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-tools/prisma-loader/-/prisma-loader-6.1.0.tgz#4c5a821b213b3bd1bee667725e03426767c10093"

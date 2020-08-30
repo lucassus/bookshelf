@@ -8,6 +8,7 @@ import {
   createUser
 } from "./factories";
 
+// TODO: Use paths from here
 async function loadAuthors() {
   await createAuthor({
     name: "J. K. Rowling",

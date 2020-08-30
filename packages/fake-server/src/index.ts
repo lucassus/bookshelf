@@ -1,3 +1,4 @@
+import { addMocksToSchema } from "@graphql-tools/mock";
 import { ApolloServer } from "apollo-server";
 import { buildClientSchema } from "graphql";
 
@@ -7,10 +8,13 @@ import introspectionResult from "./schema.json";
 
 const schema = buildClientSchema(introspectionResult as any);
 
-const server = new ApolloServer({
+const schemaWithMocks = addMocksToSchema({
   schema,
-  mocks
+  mocks,
+  preserveResolvers: true
 });
+
+const server = new ApolloServer({ schema: schemaWithMocks });
 
 server.listen(PORT).then(({ url }) => {
   console.log(`🚀 Fake server ready at ${url}`);
