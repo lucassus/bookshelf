@@ -11,7 +11,7 @@ import { rootSchema } from "../graphql/rootSchema";
 export function createTestClient(
   contextExtra: Partial<Context> = {}
 ): ApolloServerTestClient {
-  const server = new ApolloServer({
+  const config = {
     schema: rootSchema,
     context: () =>
       buildContext({
@@ -19,7 +19,7 @@ export function createTestClient(
         res: httpMocks.createResponse(),
         ...contextExtra
       })
-  });
+  };
 
-  return createApolloTestClient(server);
+  return createApolloTestClient(new ApolloServer(config));
 }

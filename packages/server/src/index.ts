@@ -1,3 +1,4 @@
+import { ApolloServer } from "apollo-server-express";
 import cookieParser from "cookie-parser";
 import express from "express";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
@@ -7,9 +8,9 @@ import { Container } from "typedi";
 import { createConnection, useContainer, Connection } from "typeorm";
 
 import { PORT } from "./config";
+import { buildConfig } from "./graphql/config";
 import { routes } from "./rest";
 import { authenticationMiddleware } from "./rest/authenticationMiddleware";
-import { createServer } from "./server";
 
 useContainer(Container);
 
@@ -21,7 +22,7 @@ const startServer = async () => {
   app.use(cookieParser());
   app.use(authenticationMiddleware);
 
-  const apolloServer = createServer();
+  const apolloServer = new ApolloServer(buildConfig(process.env.ENV));
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 
