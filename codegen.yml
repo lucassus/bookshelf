@@ -26,6 +26,10 @@ generates:
       - typescript
       - typescript-resolvers
 
+  packages/fake-server/src/schema.generated.graphql:
+    plugins:
+      - schema-ast
+
   packages/web/src/introspectionResult.generated.ts:
     plugins:
       - fragment-matcher
