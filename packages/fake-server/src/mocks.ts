@@ -31,9 +31,6 @@ export const mocks = {
   },
   User: () => ({
     __typename: "User",
-    name: faker.name.findName(),
-    email: faker.internet.email(),
-    info: faker.lorem.paragraph(),
     ownedBookCopies: () => new MockList([0, 8]),
     borrowedBookCopies: () => new MockList([0, 4])
   }),
