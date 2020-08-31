@@ -33,7 +33,9 @@ export const mocks = {
     __typename: "User",
     name: faker.name.findName(),
     email: faker.internet.email(),
-    info: faker.lorem.paragraph()
+    info: faker.lorem.paragraph(),
+    ownedBookCopies: () => new MockList([0, 8]),
+    borrowedBookCopies: () => new MockList([0, 4])
   }),
   Book: (rootValue, args, { assetsBaseUrl }) => {
     const path = faker.random.arrayElement(BOOK_COVERS);
