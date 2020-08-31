@@ -65,14 +65,10 @@ export const mocks = {
       }
     };
   },
-  Query: () => {
-    faker.seed(42);
-
-    return {
-      booksCount: () => faker.random.number({ min: 1, max: 64 }),
-      authors: () => new MockList([3, 8]),
-      books: (rootValue, args) => new MockList(args.limit),
-      users: () => new MockList([4, 16])
-    };
-  }
+  Query: () => ({
+    booksCount: () => faker.random.number({ min: 1, max: 64 }),
+    authors: () => new MockList([3, 8]),
+    books: (rootValue, args) => new MockList(args.limit),
+    users: () => new MockList([4, 16])
+  })
 };
