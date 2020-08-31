@@ -3,7 +3,6 @@ import { titleizeSentence } from "@bookshelf/string-utils";
 import { MockList } from "apollo-server";
 import faker from "faker";
 
-import { ASSETS_BASE_URL } from "./config";
 import {
   AUTHOR_PHOTOS,
   AVATAR_COLORS,
@@ -19,13 +18,13 @@ export const mocks = {
       faker.random.number({ min: 1, max: 1000 }),
       resource.__typename
     ),
-  Avatar: () => {
+  Avatar: (rootValue, args, { assetsBaseUrl }) => {
     const path = faker.random.arrayElement(AVATAR_IMAGES);
 
     return {
       image: {
         path,
-        url: ASSETS_BASE_URL + path
+        url: assetsBaseUrl + path
       },
       color: faker.random.arrayElement(AVATAR_COLORS)
     };
@@ -36,7 +35,7 @@ export const mocks = {
     email: faker.internet.email(),
     info: faker.lorem.paragraph()
   }),
-  Book: () => {
+  Book: (rootValue, args, { assetsBaseUrl }) => {
     const path = faker.random.arrayElement(BOOK_COVERS);
 
     return {
@@ -46,14 +45,14 @@ export const mocks = {
       ),
       cover: {
         path,
-        url: ASSETS_BASE_URL + path
+        url: assetsBaseUrl + path
       },
       description: faker.lorem.paragraph(2),
       favourite: faker.random.boolean(),
       copies: () => new MockList([0, 4])
     };
   },
-  Author: () => {
+  Author: (rootValue, args, { assetsBaseUrl }) => {
     const path = faker.random.arrayElement(AUTHOR_PHOTOS);
 
     return {
@@ -62,7 +61,7 @@ export const mocks = {
       bio: faker.lorem.paragraphs(4),
       photo: {
         path,
-        url: ASSETS_BASE_URL + path
+        url: assetsBaseUrl + path
       }
     };
   },

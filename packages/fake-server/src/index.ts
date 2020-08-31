@@ -2,7 +2,7 @@ import { addMocksToSchema } from "@graphql-tools/mock";
 import { ApolloServer } from "apollo-server";
 import { buildClientSchema } from "graphql";
 
-import { PORT } from "./config";
+import { ASSETS_BASE_URL, PORT } from "./config";
 import { mocks } from "./mocks";
 import introspectionResult from "./schema.json";
 
@@ -14,7 +14,12 @@ const schemaWithMocks = addMocksToSchema({
   preserveResolvers: true
 });
 
-const server = new ApolloServer({ schema: schemaWithMocks });
+const server = new ApolloServer({
+  schema: schemaWithMocks,
+  context: {
+    assetsBaseUrl: ASSETS_BASE_URL
+  }
+});
 
 server.listen(PORT).then(({ url }) => {
   console.log(`🚀 Fake server ready at ${url}`);
