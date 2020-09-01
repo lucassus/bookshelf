@@ -26,7 +26,7 @@ generates:
       - typescript
       - typescript-resolvers
 
-  packages/fake-server/src/schema.json:
+  packages/fake-server/src/schema.generated.json:
     plugins:
       - introspection
 
