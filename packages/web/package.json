@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.11.4",
+    "@graphql-tools/merge": "6.1.0",
     "@graphql-tools/mock": "6.1.0",
     "@graphql-tools/schema": "6.1.0",
     "@storybook/addon-actions": "6.0.20",
