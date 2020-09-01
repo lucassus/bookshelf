@@ -30,6 +30,10 @@ generates:
     plugins:
       - introspection
 
+  packages/web/src/schema.generated.json:
+    plugins:
+      - introspection
+
   packages/web/src/introspectionResult.generated.ts:
     plugins:
       - fragment-matcher

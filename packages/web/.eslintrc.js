@@ -21,7 +21,7 @@ module.exports = {
           "src/**/*.test.{ts,tsx}",
           "src/**/*.stories.tsx",
           "src/**/stories.tsx",
-          "src/testUtils/**/*.ts"
+          "src/testUtils/**/*.{ts,tsx}"
         ]
       }
     ],
