@@ -1,31 +1,31 @@
+import { titleizeSentence } from "@bookshelf/string-utils";
 import faker from "faker";
 
-import { titleizeSentence } from "../../common/strings";
 import { Author, Book } from "../../database/entity";
 import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";
 
 const BOOK_COVERS = [
-  "/images/book-covers/harry1.jpg",
-  "/images/book-covers/harry2.jpg",
-  "/images/book-covers/harry3.jpg",
-  "/images/book-covers/harry4.jpg",
-  "/images/book-covers/harry5.jpg",
-  "/images/book-covers/harry6.jpg",
-  "/images/book-covers/harry7.jpg",
-  "/images/book-covers/expanse1.jpg",
-  "/images/book-covers/expanse2.jpg",
-  "/images/book-covers/expanse3.jpg",
-  "/images/book-covers/expanse4.jpg",
-  "/images/book-covers/expanse5.jpg",
-  "/images/book-covers/expanse6.jpg",
-  "/images/book-covers/expanse7.jpg",
-  "/images/book-covers/expanse8.jpg",
-  "/images/book-covers/witcher1.jpg",
-  "/images/book-covers/witcher2.jpg",
-  "/images/book-covers/witcher3.jpg",
-  "/images/book-covers/witcher4.jpg",
-  "/images/book-covers/witcher5.jpg"
+  "/covers/harry1.jpg",
+  "/covers/harry2.jpg",
+  "/covers/harry3.jpg",
+  "/covers/harry4.jpg",
+  "/covers/harry5.jpg",
+  "/covers/harry6.jpg",
+  "/covers/harry7.jpg",
+  "/covers/expanse1.jpg",
+  "/covers/expanse2.jpg",
+  "/covers/expanse3.jpg",
+  "/covers/expanse4.jpg",
+  "/covers/expanse5.jpg",
+  "/covers/expanse6.jpg",
+  "/covers/expanse7.jpg",
+  "/covers/expanse8.jpg",
+  "/covers/witcher1.jpg",
+  "/covers/witcher2.jpg",
+  "/covers/witcher3.jpg",
+  "/covers/witcher4.jpg",
+  "/covers/witcher5.jpg"
 ];
 
 export type CreateBookAttributes = Omit<Partial<Book>, "author"> & {

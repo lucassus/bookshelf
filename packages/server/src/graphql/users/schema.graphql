@@ -1,4 +1,12 @@
-type User implements Resource & Timestampable {
+interface Person {
+  name: String!
+  email: String!
+  info: String
+  isAdmin: Boolean!
+  avatar: AvatarResult!
+}
+
+type User implements Resource & Timestampable & Person {
   id: ExternalID!
   name: String!
   info: String
@@ -11,7 +19,7 @@ type User implements Resource & Timestampable {
   updatedAt: String!
 }
 
-type CurrentUser implements Resource & Timestampable {
+type CurrentUser implements Resource & Timestampable & Person {
   id: ExternalID!
   name: String!
   email: String!

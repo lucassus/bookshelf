@@ -4,9 +4,10 @@ import { Author } from "../../database/entity";
 import { createEntity } from "./createEntity";
 
 const AUTHOR_PHOTOS = [
-  "/images/book-authors/j-k-rowling.jpg",
-  "/images/book-authors/james-s-a-corey.jpg",
-  "/images/book-authors/andrzej-sapkowski.jpg"
+  "/authors/JK%20Rowling.jpg",
+  "/authors/James%20S.%20A.%20Corey.jpg",
+  "/authors/Andrzej%20Sapkowski.jpg",
+  "/authors/JRR%20Tolkien.jpg"
 ];
 
 export type CreateAuthorAttributes = Partial<Author>;
