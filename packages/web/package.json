@@ -38,7 +38,7 @@
     "eslint-plugin-react": "7.20.6",
     "eslint-plugin-react-hooks": "4.1.0",
     "eslint-plugin-testing-library": "3.7.0",
-    "file-loader": "6.0.0",
+    "file-loader": "6.1.0",
     "html-webpack-plugin": "4.4.1",
     "sass": "1.26.10",
     "sass-loader": "10.0.1",
