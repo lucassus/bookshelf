@@ -10,10 +10,6 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/typeorm/**",
-      "**/typeorm"
     ]
   },
   "devDependencies": {

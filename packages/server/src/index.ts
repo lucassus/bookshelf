@@ -5,9 +5,10 @@ import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import path from "path";
 import "reflect-metadata";
 import { Container } from "typedi";
-import { createConnection, useContainer, Connection } from "typeorm";
+import { Connection, useContainer } from "typeorm";
 
 import { PORT } from "./config";
+import { createConnection } from "./database/createConnection";
 import { buildConfig } from "./graphql/config";
 import { routes } from "./rest";
 import { authenticationMiddleware } from "./rest/authenticationMiddleware";

@@ -1,6 +1,8 @@
 import faker from "faker";
 import { Container } from "typedi";
-import { createConnection, useContainer, Connection } from "typeorm";
+import { useContainer, Connection } from "typeorm";
+
+import { createConnection } from "../database/createConnection";
 
 useContainer(Container);
 
