@@ -1,23 +1,20 @@
-directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
-
 enum Role {
   Admin
   User
 }
+
+directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
 
 input LoginInput {
   email: String!
   password: String!
 }
 
-type LoginSuccess implements MutationResponse {
-  success: Boolean!
-  message: String!
+type LoginSuccess {
   currentUser: CurrentUser!
 }
 
-type LoginFailure implements MutationResponse {
-  success: Boolean!
+type LoginFailure {
   message: String!
 }
 

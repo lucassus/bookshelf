@@ -29,15 +29,12 @@ const resolvers: Resolvers<Context> = {
 
         return {
           __typename: "LoginSuccess",
-          success: true,
-          message: "Login success!",
           currentUser: user
         };
       } catch (error) {
         if (error instanceof InvalidEmailOrPasswordError) {
           return {
             __typename: "LoginFailure",
-            success: false,
             message: "Invalid email or password!"
           };
         }
