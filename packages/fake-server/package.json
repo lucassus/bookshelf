@@ -11,7 +11,8 @@
     "apollo-server": "2.17.0",
     "faker": "5.1.0",
     "graphql": "15.3.0",
-    "ts-node-dev": "1.0.0-pre.62"
+    "ts-node-dev": "1.0.0-pre.62",
+    "typescript": "4.0.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.0.1",
@@ -23,12 +24,12 @@
     "prettier": "2.1.1"
   },
   "scripts": {
-    "clean:dist": "rimraf dist",
+    "clean:dist": "yarn rimraf dist",
     "clean": "yarn clean:dist && yarn rimraf coverage",
     "compile": "yarn tsc -p tsconfig.build.json",
     "build": "yarn clean && yarn compile",
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
+    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
     "typecheck": "yarn tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts"
+    "lint": "yarn eslint . --ext .ts"
   }
 }
