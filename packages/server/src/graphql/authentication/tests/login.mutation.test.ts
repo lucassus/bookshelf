@@ -27,10 +27,19 @@ describe("login mutation", () => {
         mutation: gql`
           mutation($input: LoginInput!) {
             login(input: $input) {
-              success
-              message
-              currentUser {
-                email
+              __typename
+
+              ... on LoginSuccess {
+                success
+                message
+                currentUser {
+                  email
+                }
+              }
+
+              ... on LoginFailure {
+                success
+                message
               }
             }
           }
@@ -44,14 +53,15 @@ describe("login mutation", () => {
       expect(res.errors).toBe(undefined);
       expect(res.data).toMatchObject({
         login: {
+          __typename: success ? "LoginSuccess" : "LoginFailure",
           success,
-          message,
-          currentUser: success ? { email: user.email } : null
+          message
         }
       });
 
       if (success) {
         expect(expressRes.cookies[AUTH_COOKIE_NAME]).not.toBe(undefined);
+        expect(res.data!.login.currentUser).toEqual({ email: user.email });
       } else {
         expect(expressRes.cookies[AUTH_COOKIE_NAME]).toBe(undefined);
       }

@@ -64,6 +64,7 @@ it("does not allow to login with invalid credentials", () => {
     password: "invalid password"
   });
 
+  cy.findByText("Invalid email or password!").should("exist");
   cy.findByText("You are logged in as Bob").should("not.exist");
 });
 

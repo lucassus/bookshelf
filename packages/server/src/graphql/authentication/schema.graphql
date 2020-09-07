@@ -10,11 +10,18 @@ input LoginInput {
   password: String!
 }
 
-type LoginResult implements MutationResponse {
+type LoginSuccess implements MutationResponse {
   success: Boolean!
   message: String!
-  currentUser: CurrentUser
+  currentUser: CurrentUser!
 }
+
+type LoginFailure implements MutationResponse {
+  success: Boolean!
+  message: String!
+}
+
+union LoginResult = LoginSuccess | LoginFailure
 
 type LogoutResult implements MutationResponse {
   success: Boolean!

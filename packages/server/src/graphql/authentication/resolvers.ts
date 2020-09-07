@@ -28,6 +28,7 @@ const resolvers: Resolvers<Context> = {
         sendAuthCookie(res, user);
 
         return {
+          __typename: "LoginSuccess",
           success: true,
           message: "Login success!",
           currentUser: user
@@ -35,6 +36,7 @@ const resolvers: Resolvers<Context> = {
       } catch (error) {
         if (error instanceof InvalidEmailOrPasswordError) {
           return {
+            __typename: "LoginFailure",
             success: false,
             message: "Invalid email or password!"
           };

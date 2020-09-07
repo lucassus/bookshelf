@@ -22,21 +22,18 @@ export const LoginPage: React.FunctionComponent = () => {
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting }: FormikHelpers<Values>
+    { setSubmitting, setFieldError }: FormikHelpers<Values>
   ) => {
     setSubmitting(true);
 
     try {
-      const result = await login({ variables: { input: values } });
+      const { data } = await login({ variables: { input: values } });
+      const result = data!.login;
 
-      if (result.data) {
-        const { success, message, currentUser } = result.data.login;
-
-        if (success && currentUser) {
-          authorize(currentUser);
-        } else {
-          window.alert(message);
-        }
+      if (result.__typename === "LoginSuccess") {
+        authorize(result.currentUser);
+      } else {
+        setFieldError("password", result.message);
       }
     } finally {
       setSubmitting(false);
