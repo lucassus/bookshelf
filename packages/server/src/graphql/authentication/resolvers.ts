@@ -28,15 +28,19 @@ const resolvers: Resolvers<Context> = {
         sendAuthCookie(res, user);
 
         return {
-          success: true,
-          message: "Login success!",
+          __typename: "LoginSuccess",
           currentUser: user
         };
       } catch (error) {
         if (error instanceof InvalidEmailOrPasswordError) {
           return {
-            success: false,
-            message: "Invalid email or password!"
+            __typename: "LoginFailure",
+            validationErrors: [
+              {
+                path: "password",
+                message: "Invalid email or password!"
+              }
+            ]
           };
         }
 

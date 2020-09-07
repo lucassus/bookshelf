@@ -1,9 +1,18 @@
 mutation Login($input: LoginInput!) {
   login(input: $input) {
-    success
-    message
-    currentUser {
-      ... CurrentUser
+    __typename
+
+    ... on LoginSuccess {
+      currentUser {
+        ...CurrentUser
+      }
+    }
+
+    ... on LoginFailure {
+      validationErrors {
+        path
+        message
+      }
     }
   }
 }

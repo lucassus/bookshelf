@@ -9,14 +9,62 @@ describe("login mutation", () => {
   const validEmail = "valid@email.com";
   const validPassword = "valid password";
 
+  const mutation = gql`
+    mutation($input: LoginInput!) {
+      login(input: $input) {
+        __typename
+
+        ... on LoginSuccess {
+          currentUser {
+            email
+          }
+        }
+
+        ... on LoginFailure {
+          validationErrors {
+            path
+            message
+          }
+        }
+      }
+    }
+  `;
+
+  test("on success", async () => {
+    // Given
+    const user = await createUser({
+      email: validEmail,
+      password: validPassword
+    });
+    const expressRes = httpMocks.createResponse();
+
+    // When
+    const res = await createTestClient({ res: expressRes }).mutate({
+      mutation,
+      variables: {
+        input: { email: validEmail, password: validPassword }
+      }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      login: {
+        __typename: "LoginSuccess",
+        currentUser: { email: user.email }
+      }
+    });
+
+    expect(expressRes.cookies[AUTH_COOKIE_NAME]).not.toBe(undefined);
+  });
+
   [
-    [validEmail, validPassword, true, "Login success!"],
-    ["invalid@email.com", validPassword, false, "Invalid email or password!"],
-    [validEmail, "invalid password", false, "Invalid email or password!"]
-  ].forEach(([email, password, success, message]) => {
-    test(`for ${email} and ${password} responds with ${message}`, async () => {
+    ["invalid@email.com", validPassword, "Invalid email or password!"],
+    [validEmail, "invalid password", "Invalid email or password!"]
+  ].forEach(([email, password, message]) => {
+    test(`on error responds with ${message}`, async () => {
       // Given
-      const user = await createUser({
+      await createUser({
         email: validEmail,
         password: validPassword
       });
@@ -24,17 +72,7 @@ describe("login mutation", () => {
 
       // When
       const res = await createTestClient({ res: expressRes }).mutate({
-        mutation: gql`
-          mutation($input: LoginInput!) {
-            login(input: $input) {
-              success
-              message
-              currentUser {
-                email
-              }
-            }
-          }
-        `,
+        mutation,
         variables: {
           input: { email, password }
         }
@@ -44,17 +82,14 @@ describe("login mutation", () => {
       expect(res.errors).toBe(undefined);
       expect(res.data).toMatchObject({
         login: {
-          success,
-          message,
-          currentUser: success ? { email: user.email } : null
+          __typename: "LoginFailure",
+          validationErrors: [
+            { path: "password", message: "Invalid email or password!" }
+          ]
         }
       });
 
-      if (success) {
-        expect(expressRes.cookies[AUTH_COOKIE_NAME]).not.toBe(undefined);
-      } else {
-        expect(expressRes.cookies[AUTH_COOKIE_NAME]).toBe(undefined);
-      }
+      expect(expressRes.cookies[AUTH_COOKIE_NAME]).toBe(undefined);
     });
   });
 });
