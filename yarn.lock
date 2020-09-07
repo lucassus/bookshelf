@@ -1692,6 +1692,7 @@ __metadata:
     "@types/react-dom": 16.9.8
     "@types/react-icons": 3.0.0
     "@types/react-router-dom": 5.1.5
+    "@types/rimraf": ^3
     "@types/testing-library__jest-dom": 5.9.2
     "@types/webpack": 4.41.22
     "@typescript-eslint/eslint-plugin": 4.0.1
@@ -1720,6 +1721,7 @@ __metadata:
     react-icons: 3.11.0
     react-router: 6.0.0-alpha.5
     react-router-dom: 6.0.0-alpha.5
+    rimraf: 3.0.2
     sass: 1.26.10
     sass-loader: 10.0.2
     style-loader: 1.2.1
