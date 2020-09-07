@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 
+import { createConnection } from "../src/database/createConnection";
 import { loadFixtures } from "../src/testUtils/fixtures";
 
 const seed = async () => {
