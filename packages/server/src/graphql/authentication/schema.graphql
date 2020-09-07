@@ -15,7 +15,7 @@ type LoginSuccess {
 }
 
 type LoginFailure {
-  message: String!
+  validationErrors: [ValidationError!]!
 }
 
 union LoginResult = LoginSuccess | LoginFailure

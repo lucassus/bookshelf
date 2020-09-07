@@ -35,7 +35,12 @@ const resolvers: Resolvers<Context> = {
         if (error instanceof InvalidEmailOrPasswordError) {
           return {
             __typename: "LoginFailure",
-            message: "Invalid email or password!"
+            validationErrors: [
+              {
+                path: "password",
+                message: "Invalid email or password!"
+              }
+            ]
           };
         }
 

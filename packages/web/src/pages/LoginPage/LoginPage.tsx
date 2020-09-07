@@ -3,6 +3,7 @@ import React from "react";
 import * as yup from "yup";
 
 import { useAuth } from "../../components/AuthContext";
+import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useLoginMutation } from "./Login.mutation.generated";
 import styles from "./LoginPage.module.scss";
 
@@ -22,7 +23,7 @@ export const LoginPage: React.FunctionComponent = () => {
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting, setFieldError }: FormikHelpers<Values>
+    { setSubmitting, setErrors }: FormikHelpers<Values>
   ) => {
     setSubmitting(true);
 
@@ -33,7 +34,7 @@ export const LoginPage: React.FunctionComponent = () => {
       if (result.__typename === "LoginSuccess") {
         authorize(result.currentUser);
       } else {
-        setFieldError("password", result.message);
+        setErrors(normalizeValidationErrors(result.validationErrors));
       }
     } finally {
       setSubmitting(false);

@@ -21,7 +21,10 @@ describe("login mutation", () => {
         }
 
         ... on LoginFailure {
-          message
+          validationErrors {
+            path
+            message
+          }
         }
       }
     }
@@ -80,7 +83,9 @@ describe("login mutation", () => {
       expect(res.data).toMatchObject({
         login: {
           __typename: "LoginFailure",
-          message
+          validationErrors: [
+            { path: "password", message: "Invalid email or password!" }
+          ]
         }
       });
 

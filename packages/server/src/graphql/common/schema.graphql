@@ -24,6 +24,11 @@ type ResourceNotFoundError implements Error {
   message: String!
 }
 
+type ValidationError implements Error {
+  path: String!
+  message: String!
+}
+
 interface MutationResponse {
   "A boolean that indicates whether the mutation was successful."
   success: Boolean!
