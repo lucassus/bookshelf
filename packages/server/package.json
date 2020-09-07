@@ -63,7 +63,7 @@
     "compile": "yarn tsc -p tsconfig.build.json && yarn copy-graphql",
     "build": "yarn clean && yarn compile",
     "start": "yarn node dist/src/index.js",
-    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
+    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
     "typecheck": "yarn tsc --project tsconfig.json --noEmit",
     "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest",
