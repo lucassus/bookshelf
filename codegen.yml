@@ -44,7 +44,7 @@ generates:
     plugins:
       - typescript-operations
       - typescript-react-apollo
-    preset: near-operation-file
+    preset: near-operation-file-preset
     presetConfig:
       extension: .generated.tsx
       baseTypesPath: types.generated.ts

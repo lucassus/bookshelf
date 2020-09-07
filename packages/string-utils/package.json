@@ -23,10 +23,10 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf covarage",
-    "compile": "tsc -p tsconfig.build.json",
+    "compile": "yarn tsc -p tsconfig.build.json",
     "build": "yarn clean && yarn compile",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "lint": "yarn eslint . --ext .ts",
+    "test": "yarn jest"
   }
 }

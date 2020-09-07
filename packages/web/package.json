@@ -5,11 +5,13 @@
   "dependencies": {
     "@apollo/client": "3.1.4",
     "formik": "2.1.5",
+    "graphql": "15.3.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-icons": "3.11.0",
     "react-router": "6.0.0-alpha.5",
     "react-router-dom": "6.0.0-alpha.5",
+    "ts-jest": "26.3.0",
     "typeface-roboto": "0.0.75",
     "yup": "0.29.3"
   },
@@ -48,6 +50,7 @@
     "file-loader": "6.1.0",
     "html-webpack-plugin": "4.4.1",
     "jest": "26.4.2",
+    "jest-watch-typeahead": "0.6.1",
     "prettier": "2.1.1",
     "sass": "1.26.10",
     "sass-loader": "10.0.2",
@@ -60,13 +63,13 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf coverage",
+    "clean": "yarn rimraf dist && yarn rimraf coverage",
     "compile": "yarn webpack --config webpack.config.js --mode production",
     "build": "yarn clean && yarn compile",
-    "dev": "webpack-dev-server --mode development",
-    "test": "jest",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx",
+    "dev": "yarn webpack-dev-server --mode development",
+    "test": "yarn jest",
+    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "lint": "yarn eslint . --ext .ts,.tsx",
     "storybook": "start-storybook --port 6006 --ci",
     "storybook:build": "build-storybook"
   }

@@ -22,8 +22,8 @@
     "typescript": "4.0.2"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf covarage",
-    "compile": "tsc -p tsconfig.build.json",
+    "clean": "yarn rimraf dist && yarn rimraf covarage",
+    "compile": "yarn tsc -p tsconfig.build.json",
     "build": "yarn clean && yarn compile",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts",

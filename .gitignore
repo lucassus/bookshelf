@@ -1,7 +1,11 @@
-.cache
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 .idea
 coverage
 dist
-node_modules
 README.local.md
-
