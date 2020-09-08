@@ -20,7 +20,7 @@
     "@storybook/addon-actions": "6.0.20",
     "@storybook/addon-info": "5.3.21",
     "@storybook/addon-knobs": "6.0.20",
-    "@storybook/addon-links": "6.0.20",
+    "@storybook/addon-links": "6.0.21",
     "@storybook/addons": "6.0.20",
     "@storybook/react": "6.0.20",
     "@testing-library/jest-dom": "5.11.4",
