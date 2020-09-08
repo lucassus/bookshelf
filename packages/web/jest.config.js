@@ -9,8 +9,8 @@ module.exports = {
   moduleNameMapper: {
     "^.+\\.(css|scss)$": "<rootDir>/__mocks__/cssTransform.js"
   },
-  setupFilesAfterEnv: ["./src/setupTests.ts"],
-  testPathIgnorePatterns: ["/dist/", "/node_modules/"],
+  setupFilesAfterEnv: ["./src/testUtils/setup.ts"],
+  testPathIgnorePatterns: ["/dist/"],
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },

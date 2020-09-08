@@ -5,11 +5,13 @@
   "dependencies": {
     "@apollo/client": "3.1.4",
     "formik": "2.1.5",
+    "graphql": "15.3.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-icons": "3.11.0",
     "react-router": "6.0.0-alpha.5",
     "react-router-dom": "6.0.0-alpha.5",
+    "ts-jest": "26.3.0",
     "typeface-roboto": "0.0.75",
     "yup": "0.29.3"
   },
@@ -30,12 +32,16 @@
     "@types/react-dom": "16.9.8",
     "@types/react-icons": "3.0.0",
     "@types/react-router-dom": "5.1.5",
+    "@types/rimraf": "^3",
+    "@types/testing-library__jest-dom": "5.9.2",
     "@types/webpack": "4.41.22",
     "@typescript-eslint/eslint-plugin": "4.0.1",
     "babel-loader": "8.1.0",
     "clean-webpack-plugin": "3.0.0",
+    "core-js": "3.6.5",
     "css-loader": "4.2.2",
     "eslint": "7.8.1",
+    "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-typescript": "10.0.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.22.0",
@@ -48,7 +54,10 @@
     "file-loader": "6.1.0",
     "html-webpack-plugin": "4.4.1",
     "jest": "26.4.2",
+    "jest-watch-typeahead": "0.6.1",
+    "pnp-webpack-plugin": "1.6.4",
     "prettier": "2.1.1",
+    "rimraf": "3.0.2",
     "sass": "1.26.10",
     "sass-loader": "10.0.2",
     "style-loader": "1.2.1",
@@ -60,14 +69,14 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf coverage",
+    "clean": "yarn rimraf dist && yarn rimraf coverage",
     "compile": "yarn webpack --config webpack.config.js --mode production",
     "build": "yarn clean && yarn compile",
-    "dev": "webpack-dev-server --mode development",
-    "test": "jest",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx",
+    "dev": "yarn webpack-dev-server --mode development",
+    "test": "yarn jest",
+    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "lint": "yarn eslint . --ext .ts,.tsx",
     "storybook": "start-storybook --port 6006 --ci",
-    "storybook:build": "build-storybook"
+    "storybook:build": "yarn build-storybook"
   }
 }

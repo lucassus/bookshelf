@@ -1,6 +1,7 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const PnpWebpackPlugin = require("pnp-webpack-plugin");
 
 module.exports = {
   mode: "none",
@@ -25,7 +26,15 @@ module.exports = {
   },
   target: "web",
   resolve: {
-    extensions: [".ts", ".tsx", ".js"]
+    plugins: [
+      PnpWebpackPlugin,
+    ],
+    extensions: [".ts", ".tsx", ".js"],
+  },
+  resolveLoader: {
+    plugins: [
+      PnpWebpackPlugin.moduleLoader(module),
+    ],
   },
   module: {
     rules: [
@@ -48,8 +57,7 @@ module.exports = {
             loader: "ts-loader",
             options: { transpileOnly: true }
           }
-        ],
-        exclude: "/node_modules/"
+        ]
       }
     ]
   },
