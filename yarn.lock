@@ -4392,7 +4392,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2.0.0":
+"@types/prettier@npm:^2, @types/prettier@npm:^2.0.0":
   version: 2.1.0
   resolution: "@types/prettier@npm:2.1.0"
   checksum: 607790eae3a61d2b42afff7fbce119cc556f978f178075d8a5c3fe188b9a54ab90dec2d335dd01af828ef1a66719f4d4632c392591b77ca0e6a1d122e8af1b8e
@@ -6685,10 +6685,12 @@ __metadata:
     "@graphql-codegen/typescript-react-apollo": 2.0.6
     "@graphql-codegen/typescript-resolvers": 1.17.9
     "@testing-library/cypress": 7.0.0
+    "@types/prettier": ^2
     concurrently: 5.3.0
     cypress: 5.1.0
     graphql: 15.3.0
     jest: 26.4.2
+    prettier: 2.1.1
     rimraf: 3.0.2
   languageName: unknown
   linkType: soft
