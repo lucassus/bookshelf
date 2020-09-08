@@ -28,7 +28,7 @@
     "clean": "yarn clean:dist && yarn rimraf coverage",
     "compile": "yarn tsc -p tsconfig.build.json",
     "build": "yarn clean && yarn compile",
-    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
+    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
     "typecheck": "yarn tsc --project tsconfig.json --noEmit",
     "lint": "yarn eslint . --ext .ts"
   }
