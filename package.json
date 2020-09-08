@@ -41,12 +41,12 @@
     "clean:codegen": "rimraf graphql.schema.json packages/**/*.generated.{ts,tsx,graphlq}",
     "clean": "yarn clean:codegen && yarn workspaces foreach --verbose run clean",
     "codegen": "yarn graphql-codegen --config codegen.yml",
-    "build": "yarn codegen && yarn workspaces foreach --verbose run build",
+    "build": "yarn codegen && yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
     "typecheck": "yarn workspaces foreach --verbose run typecheck",
     "lint": "yarn workspaces foreach --verbose run lint",
     "test": "yarn jest",
     "start": "yarn workspace @bookshelf/server start",
-    "predev": "yarn workspace @bookshelf/secure-id build",
+    "predev": "yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build",
     "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
   }
 }
