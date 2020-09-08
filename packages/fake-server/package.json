@@ -17,6 +17,7 @@
   "devDependencies": {
     "@types/eslint-plugin-prettier": "^3",
     "@types/prettier": "^2",
+    "@types/rimraf": "^3",
     "@typescript-eslint/eslint-plugin": "4.0.1",
     "eslint": "7.8.1",
     "eslint-config-prettier": "6.11.0",
@@ -24,7 +25,8 @@
     "eslint-plugin-jsx-a11y": "latest",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.6",
-    "prettier": "2.1.1"
+    "prettier": "2.1.1",
+    "rimraf": "3.0.2"
   },
   "scripts": {
     "clean:dist": "yarn rimraf dist",
