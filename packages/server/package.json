@@ -54,6 +54,7 @@
     "sqlite3": "5.0.0",
     "supertest": "4.0.2",
     "ts-jest": "26.3.0",
+    "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.62",
     "typescript": "4.0.2"
   },
@@ -69,6 +70,6 @@
     "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest",
     "typeorm": "yarn ts-node ./node_modules/typeorm/cli.js",
-    "db:seed": "yarn ts-node scripts/seed.ts"
+    "db:seed": "yarn ts-node ./scripts/seed.ts"
   }
 }
