@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Cypress {
   interface Chainable {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     seed: typeof seed;
   }
 }
