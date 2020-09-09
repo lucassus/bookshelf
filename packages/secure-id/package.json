@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/jest": "26.0.13",
     "@types/node": "14.6.4",
-    "@types/rimraf": "^3",
+    "@types/rimraf": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "4.0.1",
     "eslint": "7.8.1",
     "eslint-config-airbnb-typescript": "10.0.0",
@@ -28,9 +28,9 @@
   },
   "scripts": {
     "clean": "yarn rimraf dist && yarn rimraf covarage",
-    "compile": "yarn tsc -p tsconfig.build.json",
+    "compile": "yarn tsc --build tsconfig.json",
     "build": "yarn clean && yarn compile",
-    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest"
   }
