@@ -19,17 +19,6 @@ type User implements Resource & Timestampable & Person {
   updatedAt: String!
 }
 
-type CurrentUser implements Resource & Timestampable & Person {
-  id: ExternalID!
-  name: String!
-  email: String!
-  isAdmin: Boolean!
-  info: String
-  avatar: AvatarResult!
-  createdAt: String!
-  updatedAt: String!
-}
-
 type Avatar {
   image: Image!
   color: String!
