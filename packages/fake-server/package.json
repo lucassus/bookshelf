@@ -31,7 +31,7 @@
   "scripts": {
     "clean:dist": "yarn rimraf dist",
     "clean": "yarn clean:dist && yarn rimraf coverage",
-    "compile": "yarn tsc -p tsconfig.build.json",
+    "compile": "yarn tsc --build tsconfig.json",
     "build": "yarn clean && yarn compile",
     "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
     "typecheck": "yarn tsc --project tsconfig.json --noEmit",

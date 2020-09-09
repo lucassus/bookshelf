@@ -25,7 +25,7 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf covarage",
-    "compile": "yarn tsc -p tsconfig.build.json",
+    "compile": "yarn tsc --build",
     "build": "yarn clean && yarn compile",
     "typecheck": "yarn tsc --project tsconfig.json --noEmit",
     "lint": "yarn eslint . --ext .ts",

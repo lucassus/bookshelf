@@ -61,7 +61,7 @@
     "clean:dist": "rimraf dist",
     "clean": "yarn clean:dist && yarn rimraf coverage",
     "copy-graphql": "./copy-graphql.sh",
-    "compile": "yarn tsc -p tsconfig.build.json && yarn copy-graphql",
+    "compile": "yarn tsc --build tsconfig.build.json && yarn copy-graphql",
     "build": "yarn clean && yarn compile",
     "start": "yarn node dist/src/index.js",
     "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
