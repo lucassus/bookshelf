@@ -8,7 +8,7 @@
     "typescript": "4.0.2"
   },
   "scripts": {
-    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts"
   }
 }

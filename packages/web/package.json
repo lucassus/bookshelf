@@ -74,7 +74,7 @@
     "build": "yarn clean && yarn compile",
     "dev": "yarn webpack-dev-server --mode development",
     "test": "yarn jest",
-    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts,.tsx",
     "storybook": "start-storybook --port 6006 --ci",
     "storybook:build": "yarn build-storybook"

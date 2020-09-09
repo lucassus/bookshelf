@@ -27,7 +27,7 @@
     "clean": "rimraf dist && rimraf covarage",
     "compile": "yarn tsc --build",
     "build": "yarn clean && yarn compile",
-    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest"
   }

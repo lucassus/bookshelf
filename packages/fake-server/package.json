@@ -34,7 +34,7 @@
     "compile": "yarn tsc --build tsconfig.json",
     "build": "yarn clean && yarn compile",
     "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
-    "typecheck": "yarn tsc --project tsconfig.json --noEmit",
+    "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts"
   }
 }
