@@ -42,7 +42,7 @@ input RegistrationInput {
   password: String!
 }
 
-type RegistrationSucces {
+type RegistrationSuccess {
   currentUser: CurrentUser!
 }
 
@@ -50,7 +50,7 @@ type RegistrationFailure {
   validationErrors: [ValidationError!]!
 }
 
-union RegistrationResult = RegistrationSucces | RegistrationFailure
+union RegistrationResult = RegistrationSuccess | RegistrationFailure
 
 extend type Query {
   """

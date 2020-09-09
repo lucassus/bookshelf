@@ -1,6 +1,9 @@
+import { QueryFailedError } from "typeorm";
+
 import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { UsersService } from "../users/UsersService";
 import {
   AuthenticationService,
   InvalidEmailOrPasswordError
@@ -12,6 +15,34 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    register: async (rootValue, { input }, { container }) => {
+      try {
+        const user = await container.get(UsersService).create(input, {
+          imagePath: "/users/avatar-placeholder.png",
+          color: "green"
+        });
+
+        return {
+          __typename: "RegistrationSuccess",
+          currentUser: user
+        };
+      } catch (error) {
+        if (error instanceof QueryFailedError) {
+          return {
+            __typename: "RegistrationFailure",
+            validationErrors: [
+              {
+                path: "email",
+                message: "The given email is already taken!"
+              }
+            ]
+          };
+        }
+
+        throw error;
+      }
+    },
+
     login: async (
       rootValue,
       { input: { email, password } },
