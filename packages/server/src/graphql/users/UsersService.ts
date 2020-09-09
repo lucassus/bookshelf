@@ -50,6 +50,15 @@ export class UsersService {
     }
   }
 
+  register(userAttributes: { name: string; email: string; password: string }) {
+    const defaultAvatarAttributes = {
+      imagePath: "/users/avatar-placeholder.png",
+      color: "green"
+    };
+
+    return this.create(userAttributes, defaultAvatarAttributes);
+  }
+
   async update(
     id: string | number,
     userAttributes: Partial<User>

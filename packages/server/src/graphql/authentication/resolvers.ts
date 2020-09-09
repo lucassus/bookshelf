@@ -17,10 +17,7 @@ const resolvers: Resolvers<Context> = {
   Mutation: {
     register: async (rootValue, { input }, { container }) => {
       try {
-        const user = await container.get(UsersService).create(input, {
-          imagePath: "/users/avatar-placeholder.png",
-          color: "green"
-        });
+        const user = await container.get(UsersService).register(input);
 
         return {
           __typename: "RegistrationSuccess",
