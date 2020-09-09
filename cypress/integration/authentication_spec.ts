@@ -1,7 +1,7 @@
 function fillInLoginFormAndSubmit({
   email,
   password
-} = {}) {
+}: { email?: string; password?: string } = {}) {
   cy.get("form").within(() => {
     cy.findByLabelText("Email").clear();
     if (email) {
@@ -47,7 +47,7 @@ it("allows to login with valid credentials", () => {
   cy.findByText("You are logged in as Bob");
   cy.getCookie("bookshelf:authToken")
     .should("exist")
-    .then((cookie) => {
+    .then((cookie: any) => {
       expect(cookie.path).to.eq("/");
       expect(cookie.httpOnly).to.eq(true);
     });
@@ -72,7 +72,7 @@ it("reuses the old authentication token", () => {
   fillInLoginFormWithValidCredentialsAndSubmit();
 
   // Save the auth cookie
-  let authCookie = null;
+  let authCookie: any = null;
   cy.getCookie("bookshelf:authToken")
     .should("exist")
     .then((cookie) => {
