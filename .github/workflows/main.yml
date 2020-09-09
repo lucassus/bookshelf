@@ -18,14 +18,14 @@ jobs:
     - name: Generate GrapQL web components
       run: yarn codegen
 
+    - name: Build
+      run: yarn build
+
     - name: Type Check
       run: yarn typecheck
 
     - name: Lint
       run: yarn lint
-
-    - name: Build
-      run: yarn build
 
     - name: Test
       run: yarn test --coverage --runInBand
