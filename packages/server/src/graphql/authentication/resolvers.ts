@@ -15,9 +15,11 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    register: async (rootValue, { input }, { container }) => {
+    register: async (rootValue, { input }, { container, res }) => {
       try {
         const user = await container.get(UsersService).register(input);
+
+        sendAuthCookie(res, user);
 
         return {
           __typename: "RegistrationSuccess",

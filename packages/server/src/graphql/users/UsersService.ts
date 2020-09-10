@@ -41,6 +41,8 @@ export class UsersService {
       });
       await queryRunner.manager.save(user);
 
+      await queryRunner.commitTransaction();
+
       return user;
     } catch (error) {
       await queryRunner.rollbackTransaction();
