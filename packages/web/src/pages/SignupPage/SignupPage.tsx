@@ -14,13 +14,13 @@ type Values = {
   passwordConfirmation: string;
 };
 
-// TODO: Add better validation for passwordConfirmation
-// TODO: Write unit test for the schema
 const schema = yup.object().shape({
   name: yup.string().required().min(3),
   email: yup.string().required().email(),
   password: yup.string().required().min(6),
-  passwordConfirmation: yup.string().required().min(6)
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords don't match")
 });
 
 export const SignupPage: React.FunctionComponent = () => {
@@ -96,7 +96,7 @@ export const SignupPage: React.FunctionComponent = () => {
             </div>
 
             <button type="submit" disabled={isSubmitting}>
-              Login
+              Signup
             </button>
           </Form>
         )}
