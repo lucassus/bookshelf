@@ -1,26 +1,10 @@
-// TODO: Rework such helpers
-function fillInLoginFormAndSubmit({
-  email,
-  password
-}: { email?: string; password?: string } = {}) {
-  cy.get("form").within(() => {
-    cy.findByLabelText("Email").clear();
-    if (email) {
-      cy.findByLabelText("Email").type(email);
-    }
-
-    cy.findByLabelText("Password").clear();
-    if (password) {
-      cy.findByLabelText("Password").type(password);
-    }
-
-    cy.findByText("Login").click();
-  });
-}
-
 function fillInLoginFormWithValidCredentialsAndSubmit() {
   cy.fixture("credentials.json").then(({ email, password }) => {
-    fillInLoginFormAndSubmit({ email, password });
+    cy.get("form").within(() => {
+      cy.findByLabelText("Email").clear().type(email);
+      cy.findByLabelText("Password").clear().type(password);
+      cy.findByText("Login").click();
+    });
   });
 }
 
@@ -31,16 +15,20 @@ describe("login flow", () => {
   });
 
   it("validates the login form", () => {
-    fillInLoginFormAndSubmit({ email: "", password: "" });
-    cy.findByText("email is a required field");
-    cy.findByText("password is a required field");
+    cy.get("form").within(() => {
+      cy.findByText("Login").click();
+      cy.findByText("email is a required field");
+      cy.findByText("password is a required field");
 
-    fillInLoginFormAndSubmit({ email: "invalid", password: "" });
-    cy.findByText("email must be a valid email");
+      cy.findByLabelText("Email").type("invalid");
+      cy.findByText("email must be a valid email");
 
-    fillInLoginFormAndSubmit({ email: "valid@email.com", password: "short" });
-    cy.findByText("email must be a valid email").should("not.exist");
-    cy.findByText("password must be at least 6 characters");
+      cy.findByLabelText("Email").clear().type("valid@email.com");
+      cy.findByLabelText("Password").type("hort");
+
+      cy.findByText("email must be a valid email").should("not.exist");
+      cy.findByText("password must be at least 6 characters");
+    });
   });
 
   it("allows to login with valid credentials", () => {
@@ -63,9 +51,10 @@ describe("login flow", () => {
   });
 
   it("does not allow to login with invalid credentials", () => {
-    fillInLoginFormAndSubmit({
-      email: "invalid@email.com",
-      password: "invalid password"
+    cy.get("form").within(() => {
+      cy.findByLabelText("Email").type("invalid@email.com");
+      cy.findByLabelText("Password").type("invalid password");
+      cy.findByText("Login").click();
     });
 
     cy.findByText("Invalid email or password!").should("exist");
@@ -76,7 +65,7 @@ describe("login flow", () => {
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.findByText("You are logged in as Anna");
+    cy.findByText("You are logged in as Bob");
 
     // Save the auth cookie
     let authCookie: any = null;

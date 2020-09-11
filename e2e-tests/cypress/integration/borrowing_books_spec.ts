@@ -1,6 +1,7 @@
 it("handles borrowing and returning books", () => {
   cy.seed();
 
+  // TODO: Faster login
   cy.visit("/");
   cy.findByText("Login").click();
 
