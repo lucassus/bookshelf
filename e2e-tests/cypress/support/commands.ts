@@ -1,16 +1,18 @@
 import { print } from "graphql";
 import gql from "graphql-tag";
 
+/* eslint-disable */
 declare global {
   namespace Cypress {
-    interface Chainable<Subject> {
+    interface Chainable {
       seed: typeof seed;
       login: typeof login;
     }
   }
 }
+/* eslint-enable */
 
-export const seed = () => {
+const seed = () => {
   return cy
     .request({
       method: "POST",
@@ -19,7 +21,7 @@ export const seed = () => {
     .then((response) => response.body);
 };
 
-export const login = () => {
+const login = () => {
   return cy.fixture("credentials.json").then(({ email, password }) => {
     cy.request({
       url: `${Cypress.config().baseUrl}/graphql`,
