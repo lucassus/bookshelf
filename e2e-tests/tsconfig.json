@@ -7,6 +7,6 @@
     "skipLibCheck": true
   },
   "include": [
-    "cypress/**/*.ts"
+    "cypress/**/*"
   ]
 }

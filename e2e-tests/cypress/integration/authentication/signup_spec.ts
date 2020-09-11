@@ -43,8 +43,6 @@ describe("signup flow", () => {
   });
 
   it("allows to signup and login a user", () => {
-    cy.seed();
-
     cy.get("form").within(() => {
       cy.findByLabelText("Name").type("Anna");
       cy.findByLabelText("Email").type("anna@email.com");
