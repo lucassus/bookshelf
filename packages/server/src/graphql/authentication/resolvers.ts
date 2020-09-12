@@ -10,6 +10,20 @@ import {
 } from "./AuthenticationService";
 
 const resolvers: Resolvers<Context> = {
+  // TODO: Figure out how to dry it
+  CurrentUser: {
+    avatar: (user) => {
+      if (user.avatar.flagged) {
+        return {
+          __typename: "FlaggedAvatarError",
+          message: "Avatar is flagged!"
+        };
+      }
+
+      return { __typename: "Avatar", ...user.avatar };
+    }
+  },
+
   Query: {
     currentUser: (rootValue, arg, { currentUser }) => currentUser!
   },

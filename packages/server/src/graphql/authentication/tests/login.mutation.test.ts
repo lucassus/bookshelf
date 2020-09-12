@@ -17,6 +17,15 @@ describe("login mutation", () => {
         ... on LoginSuccess {
           currentUser {
             email
+            avatar {
+              __typename
+              ... on Avatar {
+                image {
+                  path
+                }
+                color
+              }
+            }
           }
         }
 
