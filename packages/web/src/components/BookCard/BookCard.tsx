@@ -11,30 +11,32 @@ type Props = {
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  // TODO: Figure out how to debug apollo cache
-  const [updateFavourite] = useUpdateBookFavouriteMutation({
-    variables: { id: book.id, favourite: !book.favourite },
-    optimisticResponse: {
-      __typename: "Mutation",
-      updateBookFavourite: {
-        // TODO: Use the other mutation responses format
-        __typename: "UpdateBookFavouriteResult",
-        success: true,
-        message: "Success...",
-        book: {
-          __typename: "Book",
-          id: book.id,
-          favourite: !book.favourite
-        }
-      }
-    }
-  });
+  const [updateFavourite] = useUpdateBookFavouriteMutation();
 
   const handleToggleFavourite = (event: MouseEvent) => {
     event.stopPropagation();
 
-    // TODO: Move variables and optimistic update here
-    return updateFavourite();
+    const { id } = book;
+    const favourite = !book.favourite;
+
+    return updateFavourite({
+      variables: { id, favourite },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updateBookFavourite: {
+          __typename: "UpdateBookFavouriteResult",
+          success: true,
+          message: favourite
+            ? "Book was added to favourites."
+            : "Book was removed from favourites.",
+          book: {
+            __typename: "Book",
+            id,
+            favourite
+          }
+        }
+      }
+    });
   };
 
   return (

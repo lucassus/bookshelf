@@ -1,7 +1,8 @@
 query GetUser($id: ExternalID!) {
   user(id: $id) {
+    __typename
+
     ... on ResourceNotFoundError {
-      __typename
       message
     }
 
