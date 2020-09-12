@@ -11,13 +11,32 @@ type Props = {
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  const [updateFavourite, { loading }] = useUpdateBookFavouriteMutation({
-    variables: { id: book.id, favourite: !book.favourite }
-  });
+  const [updateFavourite] = useUpdateBookFavouriteMutation();
 
   const handleToggleFavourite = (event: MouseEvent) => {
     event.stopPropagation();
-    return updateFavourite();
+
+    const { id } = book;
+    const favourite = !book.favourite;
+
+    return updateFavourite({
+      variables: { id, favourite },
+      optimisticResponse: {
+        __typename: "Mutation",
+        updateBookFavourite: {
+          __typename: "UpdateBookFavouriteResult",
+          success: true,
+          message: favourite
+            ? "Book was added to favourites."
+            : "Book was removed from favourites.",
+          book: {
+            __typename: "Book",
+            id,
+            favourite
+          }
+        }
+      }
+    });
   };
 
   return (
@@ -41,7 +60,6 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
             labelOn="Remove from favourites"
             labelOff="Add to favourites"
             toggled={book.favourite}
-            disabled={loading}
             onToggle={handleToggleFavourite}
           />
         </div>

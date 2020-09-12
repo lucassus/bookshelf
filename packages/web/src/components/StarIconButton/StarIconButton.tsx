@@ -6,21 +6,15 @@ type Props = {
   labelOff?: string;
   toggled: boolean;
   onToggle: MouseEventHandler;
-  disabled?: boolean;
 };
 
 export const StarIconButton: React.FunctionComponent<Props> = ({
   labelOn,
   labelOff,
   toggled,
-  onToggle,
-  disabled
+  onToggle
 }) => (
-  <button
-    disabled={disabled}
-    onClick={onToggle}
-    aria-label={toggled ? labelOn : labelOff}
-  >
+  <button onClick={onToggle} aria-label={toggled ? labelOn : labelOff}>
     {toggled ? <FaStar /> : <FaRegStar />}
   </button>
 );

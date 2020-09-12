@@ -31,13 +31,7 @@ export class BooksService {
     return book || null;
   }
 
-  async updateFavourite(
-    id: string | number,
-    favourite: boolean
-  ): Promise<Book> {
-    const book = await this.findByIdOrFail(id);
-
-    book.favourite = favourite;
-    return this.repository.save(book);
+  async updateFavourite(book: Book, favourite: boolean): Promise<Book> {
+    return this.repository.save(this.repository.merge(book, { favourite }));
   }
 }

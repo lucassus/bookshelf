@@ -67,17 +67,27 @@ const resolvers: Resolvers<Context> = {
       { id, favourite },
       { container }
     ) => {
-      const book = await container
-        .get(BooksService)
-        .updateFavourite(id, favourite);
+      const book = await container.get(BooksService).findByIdOrFail(id);
 
-      return {
-        success: true,
-        message: book.favourite
-          ? "Book was added to favourites."
-          : "Book was removed from favourites.",
-        book
-      };
+      try {
+        const updatedBook = await container
+          .get(BooksService)
+          .updateFavourite(book, favourite);
+
+        return {
+          success: true,
+          message: updatedBook.favourite
+            ? "Book was added to favourites."
+            : "Book was removed from favourites.",
+          book: updatedBook
+        };
+      } catch {
+        return {
+          success: false,
+          message: "Something went wrong!",
+          book
+        };
+      }
     },
 
     borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
