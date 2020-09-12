@@ -17,17 +17,17 @@ describe("login flow", () => {
   it("validates the login form", () => {
     cy.get("form").within(() => {
       cy.findByText("Login").click();
-      cy.findByText("email is a required field");
-      cy.findByText("password is a required field");
+      cy.findByText("email is a required field").should("exists");
+      cy.findByText("password is a required field").should("exists");
 
       cy.findByLabelText("Email").type("invalid");
-      cy.findByText("email must be a valid email");
+      cy.findByText("email must be a valid email").should("exists");
 
       cy.findByLabelText("Email").clear().type("valid@email.com");
       cy.findByLabelText("Password").type("hort");
 
       cy.findByText("email must be a valid email").should("not.exist");
-      cy.findByText("password must be at least 6 characters");
+      cy.findByText("password must be at least 6 characters").should("exists");
     });
   });
 
@@ -42,10 +42,12 @@ describe("login flow", () => {
         expect(cookie.path).to.eq("/");
         expect(cookie.httpOnly).to.eq(true);
       });
-    cy.findByText("You are logged in as Bob");
+
+    // TODO: Fix it
+    cy.findByText("You are logged in as Bob").should("exists");
 
     cy.reload();
-    cy.findByText("You are logged in as Bob");
+    cy.findByText("You are logged in as Bob").should("exists");
 
     cy.findByText("Logout").click();
   });
@@ -65,7 +67,7 @@ describe("login flow", () => {
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.findByText("You are logged in as Bob");
+    cy.findByText("You are logged in as Bob").should("exist");
 
     // Save the auth cookie
     let authCookie: any = null;
@@ -86,6 +88,6 @@ describe("login flow", () => {
       });
 
     cy.reload();
-    cy.findByText("You are logged in as Bob");
+    cy.findByText("You are logged in as Bob").should("exists");
   });
 });

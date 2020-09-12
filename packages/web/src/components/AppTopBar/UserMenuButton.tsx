@@ -9,12 +9,14 @@ export const UserMenuButton: React.FunctionComponent<{
   currentUser: CurrentUserFragment;
 }> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
   return (
     <li className={styles.container}>
       <button
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={handleClick}
         title={`${currentUser.name} (${currentUser.email})`}
       >
         <Avatar

@@ -8,24 +8,24 @@ describe("signup flow", () => {
     cy.get("form").within(() => {
       cy.findByText("Signup").click();
 
-      cy.findByText("name is a required field");
-      cy.findByText("email is a required field");
-      cy.findByText("password is a required field");
+      cy.findByText("name is a required field").should("exists");
+      cy.findByText("email is a required field").should("exists");
+      cy.findByText("password is a required field").should("exists");
 
       cy.findByLabelText("Email").type("invalid");
-      cy.findByText("email must be a valid email");
+      cy.findByText("email must be a valid email").should("exists");
 
       cy.findByLabelText("Name").type("Luke");
       cy.findByLabelText("Email").clear().type("luke@email.com");
       cy.findByLabelText("Password").type("short");
 
       cy.findByText("email must be a valid email").should("not.exist");
-      cy.findByText("password must be at least 6 characters");
+      cy.findByText("password must be at least 6 characters").should("exists");
 
       cy.findByLabelText("Password").clear().type("password");
       cy.findByLabelText("Password confirmation").type("password123");
 
-      cy.findByText("Passwords don't match");
+      cy.findByText("Passwords don't match").should("exists");
     });
   });
 
@@ -38,7 +38,7 @@ describe("signup flow", () => {
 
       cy.findByText("Signup").click();
 
-      cy.findByText("The given email is already taken!");
+      cy.findByText("The given email is already taken!").should("exists");
     });
   });
 
@@ -52,7 +52,7 @@ describe("signup flow", () => {
       cy.findByText("Signup").click();
     });
 
-    cy.findByText("You are logged in as Anna");
+    cy.findByText("You are logged in as Anna").should("exists");
 
     // TODO: Testing implementation details?
     cy.getCookie("bookshelf:authToken")
@@ -63,6 +63,6 @@ describe("signup flow", () => {
       });
 
     cy.reload();
-    cy.findByText("You are logged in as Anna");
+    cy.findByText("You are logged in as Anna").should("exists");
   });
 });

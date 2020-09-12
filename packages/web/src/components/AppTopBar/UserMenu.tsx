@@ -14,6 +14,7 @@ type Props = {
   currentUser: CurrentUserFragment;
 };
 
+// TODO: Close the menu if click inside
 export const UserMenu: React.FunctionComponent<Props> = ({
   onClose,
   currentUser
@@ -24,7 +25,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   useClickAway(ref, onClose);
 
   return createPortal(
-    <section className={styles.container} ref={ref}>
+    <section className={styles.container} ref={ref} data-cy="user-menu">
       <header>
         <div>Account</div>
         <button onClick={onClose}>

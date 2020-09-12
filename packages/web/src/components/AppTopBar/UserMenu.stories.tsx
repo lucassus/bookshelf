@@ -31,7 +31,7 @@ export const Basic = () => {
 
   return (
     <MemoryRouter>
-      <UserMenu currentUser={currentUser} />
+      <UserMenu onClose={() => {}} currentUser={currentUser} />
     </MemoryRouter>
   );
 };
