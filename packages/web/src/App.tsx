@@ -11,6 +11,7 @@ import { BookDetailsPage } from "./pages/BookDetailsPage";
 import { BooksPage } from "./pages/BooksPage";
 import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { ProfilePage } from "./pages/ProfilePage";
 import { SignupPage } from "./pages/SignupPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";
 import { UsersPage } from "./pages/UsersPage";
@@ -30,6 +31,7 @@ export const App: React.FunctionComponent = () => (
         <Route path="/users/:id" element={<UserDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </main>
