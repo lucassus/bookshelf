@@ -33,5 +33,7 @@ export const App: React.FunctionComponent = () => (
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </main>
+
+    <div id="bookshelf-portal" />
   </ErrorBoundary>
 );

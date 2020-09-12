@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import { Avatar } from "../Avatar";
@@ -9,6 +9,7 @@ export const UserMenuButton: React.FunctionComponent<{
   currentUser: CurrentUserFragment;
 }> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => setIsOpen(false);
 
   return (
     <li className={styles.container}>
@@ -23,7 +24,7 @@ export const UserMenuButton: React.FunctionComponent<{
         />
       </button>
 
-      {isOpen && <UserMenu currentUser={currentUser} />}
+      {isOpen && <UserMenu onClose={handleClose} currentUser={currentUser} />}
     </li>
   );
 };
