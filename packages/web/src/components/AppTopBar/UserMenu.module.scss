@@ -1,0 +1,36 @@
+.container {
+  width: 300px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background: transparent;
+      border: none;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .userInfo {
+    align-items: center;
+    display: flex;
+
+    .userAvatar {
+      padding: 4px 12px 4px 4px;
+    }
+
+    .userName {
+      font-weight: bold;
+    }
+
+    .userEmail {
+      color: gray;
+    }
+  }
+}
