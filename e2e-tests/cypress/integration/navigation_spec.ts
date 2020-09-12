@@ -1,7 +1,7 @@
 it("handles the navigation", () => {
   cy.visit("/");
 
-  cy.findByText("Personal Library");
+  cy.get("nav").findByText("Personal Library");
   cy.findByText("Baptism of fire");
 
   cy.findByText("next").click();
@@ -18,12 +18,12 @@ it("handles the navigation", () => {
   cy.findByText("Andrzej Sapkowski").click();
   cy.contains("Andrzej Sapkowski, born June 21, 1948 in Łódź");
 
-  cy.findByText("Authors").click();
+  cy.get("nav").findByText("Authors").click();
   cy.findByText("J. K. Rowling");
   cy.findByText("James S. A. Corey");
   cy.findByText("Andrzej Sapkowski");
 
-  cy.findByText("Users").click();
+  cy.get("nav").findByText("Users").click();
   cy.findByText("Alice");
   cy.findByText("Bob");
   cy.findByText("Celine");

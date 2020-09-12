@@ -1654,6 +1654,7 @@ __metadata:
     sqlite3: 5.0.0
     supertest: 4.0.2
     ts-jest: 26.3.0
+    ts-node: 9.0.0
     ts-node-dev: 1.0.0-pre.62
     typedi: 0.8.0
     typeorm: 0.2.25
@@ -9240,6 +9241,8 @@ __metadata:
     "@types/testing-library__cypress": 5.0.6
     cypress: 5.1.0
     eslint: 7.8.1
+    graphql: 15.3.0
+    graphql-tag: 2.11.0
     typescript: 4.0.2
   languageName: unknown
   linkType: soft
@@ -11376,7 +11379,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql-tag@npm:^2.11.0, graphql-tag@npm:^2.9.2":
+"graphql-tag@npm:2.11.0, graphql-tag@npm:^2.11.0, graphql-tag@npm:^2.9.2":
   version: 2.11.0
   resolution: "graphql-tag@npm:2.11.0"
   peerDependencies:
@@ -19929,6 +19932,26 @@ fsevents@^1.2.7:
     ts-node-dev: lib/bin.js
     tsnd: lib/bin.js
   checksum: 2d47438b2bc63fe7d94a1a6de630fbe489da63583ffa2fda0a575bb89ad5baa943efe4915c7bf95bcb2aafbd9d643f007d0fa7b3cff27fb622739b7e57661b4d
+  languageName: node
+  linkType: hard
+
+"ts-node@npm:9.0.0":
+  version: 9.0.0
+  resolution: "ts-node@npm:9.0.0"
+  dependencies:
+    arg: ^4.1.0
+    diff: ^4.0.1
+    make-error: ^1.1.1
+    source-map-support: ^0.5.17
+    yn: 3.1.1
+  peerDependencies:
+    typescript: ">=2.7"
+  bin:
+    ts-node: dist/bin.js
+    ts-node-script: dist/bin-script.js
+    ts-node-transpile-only: dist/bin-transpile.js
+    ts-script: dist/bin-script-deprecated.js
+  checksum: 49d2ab087fc4b93f0a292e426ea6d242a80d1a4809ac008758bb0170aea1a85cd4182792c1d70889285fe5328cd8bd1ffb1e5108d1c4f31c39dbe9151ea4cabe
   languageName: node
   linkType: hard
 

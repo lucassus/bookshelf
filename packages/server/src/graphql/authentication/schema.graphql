@@ -5,6 +5,17 @@ enum Role {
 
 directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
 
+type CurrentUser implements Resource & Timestampable & Person {
+  id: ExternalID!
+  name: String!
+  email: String!
+  isAdmin: Boolean!
+  info: String
+  avatar: AvatarResult!
+  createdAt: String!
+  updatedAt: String!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -25,6 +36,22 @@ type LogoutResult implements MutationResponse {
   message: String!
 }
 
+input RegistrationInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type RegistrationSuccess {
+  currentUser: CurrentUser!
+}
+
+type RegistrationFailure {
+  validationErrors: [ValidationError!]!
+}
+
+union RegistrationResult = RegistrationSuccess | RegistrationFailure
+
 extend type Query {
   """
   Returns the currently logged in user.
@@ -33,6 +60,8 @@ extend type Query {
 }
 
 extend type Mutation {
+  register(input: RegistrationInput!): RegistrationResult!
+
   """
   Authenticates a user with the given credentials.
   """

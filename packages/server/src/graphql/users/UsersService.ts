@@ -41,6 +41,8 @@ export class UsersService {
       });
       await queryRunner.manager.save(user);
 
+      await queryRunner.commitTransaction();
+
       return user;
     } catch (error) {
       await queryRunner.rollbackTransaction();
@@ -48,6 +50,15 @@ export class UsersService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  register(userAttributes: { name: string; email: string; password: string }) {
+    const defaultAvatarAttributes = {
+      imagePath: "/users/avatar-placeholder.png",
+      color: "green"
+    };
+
+    return this.create(userAttributes, defaultAvatarAttributes);
   }
 
   async update(

@@ -8,13 +8,17 @@ import path from "path";
 
 import { RequireAuthorizationDirective } from "./authentication/RequireAuthorizationDirective";
 
+const schema = loadSchemaSync(path.join(__dirname, "./**/schema.graphql"), {
+  loaders: [new GraphQLFileLoader()]
+});
+
+const resolvers = mergeResolvers(
+  loadFilesSync(path.join(__dirname, "./**/resolvers.{js,ts}"))
+);
+
 const rootSchema = addResolversToSchema({
-  schema: loadSchemaSync(path.join(__dirname, "./**/schema.graphql"), {
-    loaders: [new GraphQLFileLoader()]
-  }),
-  resolvers: mergeResolvers(
-    loadFilesSync(path.join(__dirname, "./**/resolvers.{js,ts}"))
-  ),
+  schema,
+  resolvers,
   inheritResolversFromInterfaces: true
 });
 
