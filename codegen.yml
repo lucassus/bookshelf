@@ -50,7 +50,3 @@ generates:
       baseTypesPath: types.generated.ts
     config:
       gqlImport: "@apollo/client#gql"
-      reactApolloVersion: 3
-      withHooks: true
-      withComponent: false
-      withHOC: false
