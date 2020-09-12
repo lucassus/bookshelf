@@ -1,6 +1,7 @@
 import { QueryFailedError } from "typeorm";
 
 import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
+import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
@@ -90,6 +91,25 @@ const resolvers: Resolvers<Context> = {
 
         throw error;
       }
+    },
+
+    // TODO: It should re-authenticate
+    updateProfile: async (
+      rootValue,
+      { input },
+      { connection, currentUser }
+    ) => {
+      // TODO: Validate uniqueness of email
+      // TODO: Create a service
+      const repository = connection.getRepository(User);
+      const updatedCurrentUser = await repository.save(
+        repository.merge(currentUser!, input)
+      );
+
+      return {
+        __typename: "UpdateProfileSuccess",
+        currentUser: updatedCurrentUser
+      };
     },
 
     logout: (rootValue, args, { res }) => {
