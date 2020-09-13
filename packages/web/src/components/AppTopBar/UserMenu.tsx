@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef } from "react";
+import React, { useRef } from "react";
 import { createPortal } from "react-dom";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";

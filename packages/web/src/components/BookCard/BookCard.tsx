@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
 
 import { StarIconButton } from "../StarIconButton";
@@ -13,7 +13,7 @@ type Props = {
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const [updateFavourite] = useUpdateBookFavouriteMutation();
 
-  const handleToggleFavourite = (event: MouseEvent) => {
+  const handleToggleFavourite: MouseEventHandler = (event) => {
     event.stopPropagation();
 
     const { id } = book;
