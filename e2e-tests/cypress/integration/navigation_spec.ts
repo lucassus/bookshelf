@@ -37,7 +37,15 @@ it("handles the navigation", () => {
   cy.visit("/profile");
   cy.findByText("Page not found!").should("exist");
 
+  cy.visit("/login");
+  cy.get("form").within(() => {
+    cy.findByText("Login").should("exist");
+  });
+
   cy.login();
   cy.reload();
   cy.findByText("Page not found!").should("not.exist");
+
+  cy.visit("/login");
+  cy.findByText("Page not found!").should("exist");
 });

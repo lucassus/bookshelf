@@ -48,7 +48,7 @@ describe("profile page", () => {
     });
   });
 
-  it.only("updates the email", () => {
+  it("updates the email", () => {
     cy.get("form").within(() => {
       cy.findByLabelText("Email").clear().type("bob@gmail.com");
       cy.findByText("Update").click();

@@ -27,7 +27,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
 
-  const { data, loading, error } = useGetCurrentUserQuery();
+  const { data, loading } = useGetCurrentUserQuery();
 
   const [logout, { client }] = useLogoutMutation();
 
@@ -57,7 +57,7 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
     return <span>Loading...</span>;
   }
 
-  const { currentUser } = data!;
+  const currentUser = data!.currentUser ?? undefined;
 
   return (
     <AuthContext.Provider
