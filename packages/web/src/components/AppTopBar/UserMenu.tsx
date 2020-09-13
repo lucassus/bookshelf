@@ -23,6 +23,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   const ref = useRef<HTMLElement>(null);
   useClickAway(ref, onClose);
 
+  // TODO: Figure out how to improve this solution
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     if (
       event.target instanceof HTMLElement &&
@@ -74,7 +75,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
             </li>
 
             <li>
-              <Link to="#">Books</Link>
+              <Link to="/my/books">Books</Link>
             </li>
 
             <hr />

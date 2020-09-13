@@ -1,6 +1,6 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
-import { Avatar, User } from "../../database/entity";
+import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
