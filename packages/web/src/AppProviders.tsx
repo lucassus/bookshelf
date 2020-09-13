@@ -8,9 +8,8 @@ import { onError } from "@apollo/client/link/error";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { LogoutDocument } from "./components/AppTopBar/Logout.mutation.generated";
 import { AuthContextProvider } from "./components/AuthContext";
-import { GetCurrentUserDocument } from "./components/AuthContext/GetCurrentUser.query.generated";
+import { dispatchLogoutEventToAllWindows } from "./components/AuthContext/AuthContext";
 import { GRAPHQL_ENDPOINT } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
@@ -27,12 +26,7 @@ const errorsLink = onError(({ graphQLErrors }) => {
   );
 
   if (containsUnauthenticatedError) {
-    client.mutate({ mutation: LogoutDocument }).then(() => {
-      client.writeQuery({
-        query: GetCurrentUserDocument,
-        data: { currentUser: null }
-      });
-    });
+    dispatchLogoutEventToAllWindows();
   }
 });
 
