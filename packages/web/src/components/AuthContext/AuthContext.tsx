@@ -7,6 +7,10 @@ import {
   GetCurrentUserDocument,
   useGetCurrentUserQuery
 } from "./GetCurrentUser.query.generated";
+import {
+  createLogoutEventListener,
+  dispatchLogoutEventToAllWindows
+} from "./logoutEvent";
 
 interface AuthContextValue {
   currentUser?: CurrentUserFragment;
@@ -21,16 +25,6 @@ const DEFAULT_VALUE: AuthContextValue = {
 };
 
 const AuthContext = React.createContext<AuthContextValue>(DEFAULT_VALUE);
-
-const LOGOUT_EVENT_KEY = "logout";
-
-export const dispatchLogoutEventToAllWindows = () => {
-  window.localStorage.setItem(LOGOUT_EVENT_KEY, Math.random().toString());
-
-  // Dispatch the event in the current window
-  const event = new StorageEvent("storage", { key: LOGOUT_EVENT_KEY });
-  window.dispatchEvent(event);
-};
 
 export const useAuth = () => useContext(AuthContext);
 
@@ -60,14 +54,12 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
 
   // Listen for logout events
   useEffect(() => {
-    const logoutEventListener = async (event: any) => {
-      if (event.key === LOGOUT_EVENT_KEY) {
-        client.writeQuery({
-          query: GetCurrentUserDocument,
-          data: { currentUser: null }
-        });
-      }
-    };
+    const logoutEventListener = createLogoutEventListener(() =>
+      client.writeQuery({
+        query: GetCurrentUserDocument,
+        data: { currentUser: null }
+      })
+    );
 
     window.addEventListener("storage", logoutEventListener);
 

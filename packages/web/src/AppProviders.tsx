@@ -9,7 +9,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { AuthContextProvider } from "./components/AuthContext";
-import { dispatchLogoutEventToAllWindows } from "./components/AuthContext/AuthContext";
+import { dispatchLogoutEventToAllWindows } from "./components/AuthContext/logoutEvent";
 import { GRAPHQL_ENDPOINT } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
