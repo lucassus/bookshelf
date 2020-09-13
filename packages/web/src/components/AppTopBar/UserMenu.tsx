@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { MouseEvent, useRef } from "react";
 import { createPortal } from "react-dom";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -14,7 +14,6 @@ type Props = {
   currentUser: CurrentUserFragment;
 };
 
-// TODO: Close the menu if click inside
 export const UserMenu: React.FunctionComponent<Props> = ({
   onClose,
   currentUser
@@ -24,8 +23,24 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   const ref = useRef<HTMLElement>(null);
   useClickAway(ref, onClose);
 
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    if (
+      event.target instanceof HTMLElement &&
+      ["A", "BUTTON"].includes(event.target.tagName)
+    ) {
+      onClose();
+    }
+  };
+
+  const handleLogoutClick = () => unauthorize();
+
   return createPortal(
-    <section className={styles.container} ref={ref} data-cy="user-menu">
+    <section
+      onClick={handleClick}
+      className={styles.container}
+      ref={ref}
+      data-cy="user-menu"
+    >
       <header>
         <div>Account</div>
         <button onClick={onClose}>
@@ -55,11 +70,17 @@ export const UserMenu: React.FunctionComponent<Props> = ({
             <hr />
 
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/my/profile">Profile</Link>
             </li>
 
             <li>
-              <button onClick={() => unauthorize()}>Log Out</button>
+              <Link to="/my/books">Books</Link>
+            </li>
+
+            <hr />
+
+            <li>
+              <button onClick={handleLogoutClick}>Log Out</button>
             </li>
           </ul>
         </nav>

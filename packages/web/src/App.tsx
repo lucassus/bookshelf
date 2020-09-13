@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { AppTopBar } from "./components/AppTopBar";
 import { useAuth } from "./components/AuthContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { MyBooksPage } from "./pages/MyBooksPage";
 import { AuthorDetailsPage } from "./pages/AuthorDetailsPage";
 import { AuthorsPage } from "./pages/AuthorsPage";
 import { BookDetailsPage } from "./pages/BookDetailsPage";
@@ -39,8 +40,12 @@ export const App: React.FunctionComponent = () => {
           {currentUser && (
             <>
               <Route
-                path="/profile"
+                path="/my/profile"
                 element={<ProfilePage currentUser={currentUser} />}
+              />
+              <Route
+                path="/my/books"
+                element={<MyBooksPage currentUser={currentUser} />}
               />
             </>
           )}

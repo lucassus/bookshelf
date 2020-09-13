@@ -1,0 +1,10 @@
+query GetMyBooks {
+  currentUser {
+    ownedBookCopies {
+      ...BookCopy
+    }
+    borrowedBookCopies {
+      ...BookCopy
+    }
+  }
+}
