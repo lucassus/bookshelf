@@ -24,7 +24,7 @@ describe("profile page", () => {
     });
   });
 
-  it("updates the profile", () => {
+  it("updates the profile info", () => {
     cy.get("form").within(() => {
       cy.findByLabelText("Name").clear().type("Łukasz Bandzarewicz");
       cy.findByLabelText("Email").clear().type("lucassus@gmail.com");
@@ -46,5 +46,27 @@ describe("profile page", () => {
       cy.findByLabelText("Email").should("have.value", "lucassus@gmail.com");
       cy.findByLabelText("Info").should("have.value", "Foo bar");
     });
+  });
+
+  it.only("updates the email", () => {
+    cy.get("form").within(() => {
+      cy.findByLabelText("Email").clear().type("bob@gmail.com");
+      cy.findByText("Update").click();
+    });
+
+    cy.findByTitle("Bob (bob@gmail.com)").click();
+    cy.get("[data-cy=user-menu]").within(() => {
+      cy.findByText("Bob").should("exist");
+      cy.findByText("bob@gmail.com").should("exist");
+
+      cy.findByText("Profile").click();
+    });
+
+    cy.get("form").within(() => {
+      cy.findByLabelText("Email").should("have.value", "bob@gmail.com");
+    });
+
+    cy.reload();
+    cy.get("[data-cy=user-menu-button]").should("exist");
   });
 });

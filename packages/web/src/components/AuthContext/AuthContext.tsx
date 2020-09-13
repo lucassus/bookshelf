@@ -1,9 +1,12 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext } from "react";
 import { useNavigate } from "react-router";
 
 import { useLogoutMutation } from "../AppTopBar/Logout.mutation.generated";
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
-import { useGetCurrentUserQuery } from "./GetCurrentUser.query.generated";
+import {
+  GetCurrentUserDocument,
+  useGetCurrentUserQuery
+} from "./GetCurrentUser.query.generated";
 
 interface AuthContextValue {
   currentUser?: CurrentUserFragment;
@@ -24,39 +27,47 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = useState<
-    undefined | CurrentUserFragment
-  >(undefined);
-
-  useGetCurrentUserQuery({
-    onCompleted: (data) => setCurrentUser(data.currentUser),
-    onError: () => setCurrentUser(undefined)
-  });
+  const { data, loading, error } = useGetCurrentUserQuery();
 
   const [logout, { client }] = useLogoutMutation();
 
   const authorize = useCallback(
     (user: CurrentUserFragment) => {
-      setCurrentUser(user);
+      client.writeQuery({
+        query: GetCurrentUserDocument,
+        data: { currentUser: user }
+      });
+
       navigate("/");
     },
-    [navigate]
+    [client, navigate]
   );
 
   const unauthorize = useCallback(async () => {
     await logout();
-    await client.clearStore();
-    setCurrentUser(undefined);
+
+    client.writeQuery({
+      query: GetCurrentUserDocument,
+      data: { currentUser: null }
+    });
   }, [logout, client]);
 
-  const value = useMemo(
-    () => ({
-      currentUser,
-      authorize,
-      unauthorize
-    }),
-    [currentUser, authorize, unauthorize]
-  );
+  // TODO: Handle expired or invalid auth tokens
+  if (loading) {
+    return <span>Loading...</span>;
+  }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  const { currentUser } = data!;
+
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser,
+        authorize,
+        unauthorize
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };

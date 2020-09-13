@@ -33,10 +33,13 @@ export const LoginPage: React.FunctionComponent = () => {
 
       if (result.__typename === "LoginSuccess") {
         authorize(result.currentUser);
-      } else {
-        setErrors(normalizeValidationErrors(result.validationErrors));
       }
-    } finally {
+
+      if (result.__typename === "LoginFailure") {
+        setErrors(normalizeValidationErrors(result.validationErrors));
+        setSubmitting(false);
+      }
+    } catch {
       setSubmitting(false);
     }
   };

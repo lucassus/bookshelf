@@ -33,4 +33,11 @@ it("handles the navigation", () => {
   cy.findByText(
     "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer."
   ).should("exist");
+
+  cy.visit("/profile");
+  cy.findByText("Page not found!").should("exist");
+
+  cy.login();
+  cy.reload();
+  cy.findByText("Page not found!").should("not.exist");
 });

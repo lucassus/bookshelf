@@ -3,6 +3,8 @@ import React from "react";
 import * as yup from "yup";
 
 import { useAuth } from "../../components/AuthContext";
+import { CurrentUserFragment } from "../../components/AuthContext/CurrentUser.fragment.generated";
+import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import styles from "../LoginPage/LoginPage.module.scss";
 import { useUpdateProfileMutation } from "./UpdateProfile.mutation.generated";
 
@@ -18,13 +20,19 @@ const schema = yup.object().shape({
   info: yup.string()
 });
 
-export const ProfilePage: React.FunctionComponent = () => {
-  const { currentUser, authorize } = useAuth();
+type Props = {
+  currentUser: CurrentUserFragment;
+};
+
+export const ProfilePage: React.FunctionComponent<Props> = ({
+  currentUser
+}) => {
+  const { authorize } = useAuth();
   const [updateProfile] = useUpdateProfileMutation();
 
   const handleSubmit = async (
     values: Values,
-    { setSubmitting }: FormikHelpers<Values>
+    { setSubmitting, setErrors }: FormikHelpers<Values>
   ) => {
     setSubmitting(true);
 
@@ -35,22 +43,21 @@ export const ProfilePage: React.FunctionComponent = () => {
       if (result.__typename === "UpdateProfileSuccess") {
         authorize(result.currentUser);
       }
-    } finally {
+
+      if (result.__typename === "UpdateProfileFailure") {
+        setErrors(normalizeValidationErrors(result.validationErrors));
+        setSubmitting(false);
+      }
+    } catch {
       setSubmitting(false);
     }
   };
-
-  if (!currentUser) {
-    return null;
-  }
 
   const initialValues = {
     email: currentUser.email,
     name: currentUser.name,
     info: currentUser.info
   };
-
-  console.log(initialValues);
 
   return (
     <div>
@@ -63,7 +70,7 @@ export const ProfilePage: React.FunctionComponent = () => {
             <div>
               <label htmlFor="email-field">Email</label>
               <Field name="email" type="text" id="email-field" />
-              <p>{errors.name}</p>
+              <p>{errors.email}</p>
             </div>
 
             <div>
