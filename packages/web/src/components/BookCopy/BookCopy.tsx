@@ -44,7 +44,9 @@ export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => {
         )}
       </div>
 
-      {currentUser && <Actions bookCopy={bookCopy} />}
+      {currentUser && bookCopy.owner.id !== currentUser.id && (
+        <Actions bookCopy={bookCopy} />
+      )}
     </div>
   );
 };

@@ -74,7 +74,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
             </li>
 
             <li>
-              <Link to="/my/books">Books</Link>
+              <Link to="#">Books</Link>
             </li>
 
             <hr />
