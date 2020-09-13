@@ -1,6 +1,6 @@
 import express from "express";
 
-import { authenticateRequest, clearAuthCookie } from "../common/authentication";
+import { authenticateRequest } from "../common/authentication";
 
 export const authenticationMiddleware = async (
   req: express.Request,
@@ -11,8 +11,6 @@ export const authenticationMiddleware = async (
     req.currentUser = await authenticateRequest(req);
     next();
   } catch (error) {
-    // TODO: Is it a good idea?
-    clearAuthCookie(res);
     res.status(401).json({ error: error.message });
   }
 };

@@ -11,7 +11,6 @@ import { PORT } from "./config";
 import { createConnection } from "./database/createConnection";
 import { buildConfig } from "./graphql/config";
 import { routes } from "./rest";
-import { authenticationMiddleware } from "./rest/authenticationMiddleware";
 
 useContainer(Container);
 
@@ -21,7 +20,6 @@ const startServer = async () => {
 
   const app = express();
   app.use(cookieParser());
-  app.use(authenticationMiddleware);
 
   const apolloServer = new ApolloServer(buildConfig(process.env.ENV));
   apolloServer.applyMiddleware({ app });
