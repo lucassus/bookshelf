@@ -26,7 +26,7 @@ const resolvers: Resolvers<Context> = {
   },
 
   Query: {
-    currentUser: (rootValue, arg, { currentUser }) => currentUser!
+    currentUser: (rootValue, arg, { currentUser }) => currentUser || null
   },
 
   Mutation: {
@@ -41,6 +41,7 @@ const resolvers: Resolvers<Context> = {
           currentUser: user
         };
       } catch (error) {
+        // TODO: Refactor
         if (error instanceof QueryFailedError) {
           return {
             __typename: "RegistrationFailure",
@@ -93,22 +94,45 @@ const resolvers: Resolvers<Context> = {
       }
     },
 
-    // TODO: It should re-authenticate
     updateProfile: async (
       rootValue,
       { input },
-      { connection, currentUser }
+      { connection, currentUser, res }
     ) => {
       // TODO: Validate uniqueness of email
       // TODO: Create a service
       const repository = connection.getRepository(User);
-      const updatedCurrentUser = await repository.save(
-        repository.merge(currentUser!, input)
-      );
+
+      // TODO: Refactor
+      const emailTaken = await repository
+        .createQueryBuilder()
+        .where("id != :id AND email = :email", {
+          id: currentUser!.id,
+          email: input.email
+        })
+        .getCount();
+
+      if (!emailTaken) {
+        const updatedCurrentUser = await repository.save(
+          repository.merge(currentUser!, input)
+        );
+
+        sendAuthCookie(res, updatedCurrentUser);
+
+        return {
+          __typename: "UpdateProfileSuccess",
+          currentUser: updatedCurrentUser
+        };
+      }
 
       return {
-        __typename: "UpdateProfileSuccess",
-        currentUser: updatedCurrentUser
+        __typename: "UpdateProfileFailure",
+        validationErrors: [
+          {
+            path: "email",
+            message: "The given email is already taken!"
+          }
+        ]
       };
     },
 

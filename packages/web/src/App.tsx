@@ -11,7 +11,6 @@ import { AuthorsPage } from "./pages/AuthorsPage";
 import { BookDetailsPage } from "./pages/BookDetailsPage";
 import { BooksPage } from "./pages/BooksPage";
 import { LoginPage } from "./pages/LoginPage";
-import { MyBooksPage } from "./pages/MyBooksPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { SignupPage } from "./pages/SignupPage";
@@ -47,10 +46,6 @@ export const App: React.FunctionComponent = () => {
               <Route
                 path="/my/profile"
                 element={<ProfilePage currentUser={currentUser} />}
-              />
-              <Route
-                path="/my/books"
-                element={<MyBooksPage currentUser={currentUser} />}
               />
             </>
           )}

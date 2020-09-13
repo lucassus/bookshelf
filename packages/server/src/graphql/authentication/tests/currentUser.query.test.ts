@@ -43,10 +43,9 @@ describe("me query", () => {
     });
 
     // Then
-    expect(res.errors).not.toBe(undefined);
-
-    const error = res.errors![0];
-    expect(error.message).toBe("Unauthorized access! Please log in.");
-    expect(error.extensions!.code).toBe("UNAUTHENTICATED");
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      currentUser: null
+    });
   });
 });

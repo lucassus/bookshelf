@@ -70,9 +70,9 @@ union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
 
 extend type Query {
   """
-  Returns the currently logged in user.
+  Returns the currently logged in user or null if not logged in.
   """
-  currentUser: CurrentUser! @requireAuthorization
+  currentUser: CurrentUser
 }
 
 extend type Mutation {
