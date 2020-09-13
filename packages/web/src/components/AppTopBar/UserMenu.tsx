@@ -23,25 +23,13 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   const ref = useRef<HTMLElement>(null);
   useClickAway(ref, onClose);
 
-  // TODO: Figure out how to improve this solution
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
-    if (
-      event.target instanceof HTMLElement &&
-      ["A", "BUTTON"].includes(event.target.tagName)
-    ) {
-      onClose();
-    }
+  const handleLogoutClick = async () => {
+    await unauthorize();
+    onClose();
   };
 
-  const handleLogoutClick = () => unauthorize();
-
   return createPortal(
-    <section
-      onClick={handleClick}
-      className={styles.container}
-      ref={ref}
-      data-cy="user-menu"
-    >
+    <section className={styles.container} ref={ref} data-cy="user-menu">
       <header>
         <div>Account</div>
         <button onClick={onClose}>
@@ -71,11 +59,15 @@ export const UserMenu: React.FunctionComponent<Props> = ({
             <hr />
 
             <li>
-              <Link to="/my/profile">Profile</Link>
+              <Link to="/my/profile" onClick={onClose}>
+                Profile
+              </Link>
             </li>
 
             <li>
-              <Link to="/my/books">Books</Link>
+              <Link to="/my/books" onClick={onClose}>
+                Books
+              </Link>
             </li>
 
             <hr />
