@@ -1,6 +1,6 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
-import { User } from "../../database/entity";
+import { Avatar, User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
@@ -13,7 +13,7 @@ const resolvers: Resolvers<Context> = {
     })
   },
 
-  User: {
+  Person: {
     avatar: (user) => {
       if (user.avatar.flagged) {
         return {

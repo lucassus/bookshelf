@@ -7,17 +7,31 @@ describe("me query", () => {
   const GetCurrentUser = gql`
     query {
       currentUser {
+        __typename
         id
         name
         email
         isAdmin
+        avatar {
+          __typename
+
+          ... on Avatar {
+            image {
+              path
+            }
+            color
+          }
+        }
       }
     }
   `;
 
   it("returns the current user when authenticated", async () => {
     // Given
-    const currentUser = await createUser({ isAdmin: true });
+    const currentUser = await createUser({
+      isAdmin: true,
+      avatarAttributes: { color: "green" }
+    });
 
     // When
     const res = await createTestClient({ currentUser }).query({
@@ -28,10 +42,12 @@ describe("me query", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       currentUser: {
+        __typename: "CurrentUser",
         id: expect.any(String),
         name: currentUser.name,
         email: currentUser.email,
-        isAdmin: true
+        isAdmin: true,
+        avatar: { color: "green" }
       }
     });
   });
