@@ -34,19 +34,17 @@ export const App: React.FunctionComponent = () => {
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/:id" element={<UserDetailsPage />} />
 
-          {!currentUser && (
-            <>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-            </>
-          )}
-
-          {currentUser && (
+          {currentUser ? (
             <>
               <Route
                 path="/my/profile"
                 element={<ProfilePage currentUser={currentUser} />}
               />
+            </>
+          ) : (
+            <>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
             </>
           )}
 
