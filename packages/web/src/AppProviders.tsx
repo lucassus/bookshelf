@@ -4,6 +4,7 @@ import {
   HttpLink,
   InMemoryCache
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -18,23 +19,20 @@ const cache = new InMemoryCache({
 
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
 
-// TODO: Deprecated
-// const errorsLink = onError(({ operation, graphQLErrors }) => {
-//   const containsUnauthenticatedError = (graphQLErrors || []).some(
-//     (error) => error.extensions?.code === "UNAUTHENTICATED"
-//   );
-//
-//   if (
-//     operation.operationName !== "GetCurrentUser" &&
-//     containsUnauthenticatedError
-//   ) {
-//     window.location.reload();
-//   }
-// });
+const errorsLink = onError(({ operation, graphQLErrors }) => {
+  const containsUnauthenticatedError = (graphQLErrors || []).some(
+    (error) => error.extensions?.code === "UNAUTHENTICATED"
+  );
+
+  if (containsUnauthenticatedError) {
+    // TODO: Figure out how to logout
+    console.log(operation);
+  }
+});
 
 const client = new ApolloClient({
   cache,
-  link: httpLink
+  link: errorsLink.concat(httpLink)
 });
 
 export const AppProviders: React.FunctionComponent = ({ children }) => (
