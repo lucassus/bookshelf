@@ -9,6 +9,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { AuthContextProvider } from "./components/AuthContext";
+import { LogoutDocument } from "./components/AuthContext/Logout.mutation.generated";
 import { dispatchLogoutEventToAllWindows } from "./components/AuthContext/logoutEvent";
 import { GRAPHQL_ENDPOINT } from "./config";
 import introspectionResult from "./introspectionResult.generated";
@@ -20,13 +21,15 @@ const cache = new InMemoryCache({
 
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
 
-const errorsLink = onError(({ graphQLErrors }) => {
-  const containsUnauthenticatedError = (graphQLErrors || []).some(
+const errorsLink = onError(({ graphQLErrors = [] }) => {
+  const containsUnauthenticatedError = graphQLErrors.some(
     (error) => error.extensions?.code === "UNAUTHENTICATED"
   );
 
   if (containsUnauthenticatedError) {
-    dispatchLogoutEventToAllWindows();
+    client
+      .mutate({ mutation: LogoutDocument })
+      .then(() => dispatchLogoutEventToAllWindows());
   }
 });
 

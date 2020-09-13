@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { useLogoutMutation } from "../AppTopBar/Logout.mutation.generated";
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
 import {
   GetCurrentUserDocument,
   useGetCurrentUserQuery
 } from "./GetCurrentUser.query.generated";
+import { useLogoutMutation } from "./Logout.mutation.generated";
 import {
   createLogoutEventListener,
   dispatchLogoutEventToAllWindows
@@ -54,17 +54,19 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
 
   // Listen for logout events
   useEffect(() => {
-    const logoutEventListener = createLogoutEventListener(() =>
+    const logoutEventListener = createLogoutEventListener(() => {
       client.writeQuery({
         query: GetCurrentUserDocument,
         data: { currentUser: null }
-      })
-    );
+      });
+
+      navigate("/");
+    });
 
     window.addEventListener("storage", logoutEventListener);
 
     return () => window.removeEventListener("storage", logoutEventListener);
-  }, [client]);
+  }, [client, navigate]);
 
   if (loading) {
     return <span>Loading...</span>;
