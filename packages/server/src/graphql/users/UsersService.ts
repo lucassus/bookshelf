@@ -61,6 +61,7 @@ export class UsersService {
     return this.create(userAttributes, defaultAvatarAttributes);
   }
 
+  // TODO: Use it for profile update
   async update(
     id: string | number,
     userAttributes: Partial<User>
@@ -71,5 +72,20 @@ export class UsersService {
 
   delete(id: string | number) {
     return this.repository.delete(id);
+  }
+
+  async checkUniquenessOfEmail(
+    email: string,
+    user: undefined | User = undefined
+  ) {
+    const otherUser = await this.repository
+      .createQueryBuilder()
+      .where({ email })
+      .getOne();
+
+    return (
+      otherUser === undefined ||
+      (user !== undefined && otherUser.id === user.id)
+    );
   }
 }

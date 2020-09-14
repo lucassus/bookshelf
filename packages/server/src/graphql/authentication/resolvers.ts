@@ -17,7 +17,11 @@ const resolvers: Resolvers<Context> = {
 
   Mutation: {
     register: async (rootValue, { input }, { container, res }) => {
-      try {
+      const service = container.get(UsersService);
+
+      const emailNotTaken = await service.checkUniquenessOfEmail(input.email);
+
+      if (emailNotTaken) {
         const user = await container.get(UsersService).register(input);
 
         sendAuthCookie(res, user);
@@ -26,22 +30,17 @@ const resolvers: Resolvers<Context> = {
           __typename: "RegistrationSuccess",
           currentUser: user
         };
-      } catch (error) {
-        // TODO: Refactor
-        if (error instanceof QueryFailedError) {
-          return {
-            __typename: "RegistrationFailure",
-            validationErrors: [
-              {
-                path: "email",
-                message: "The given email is already taken!"
-              }
-            ]
-          };
-        }
-
-        throw error;
       }
+
+      return {
+        __typename: "RegistrationFailure",
+        validationErrors: [
+          {
+            path: "email",
+            message: "The given email is already taken!"
+          }
+        ]
+      };
     },
 
     login: async (
@@ -83,22 +82,18 @@ const resolvers: Resolvers<Context> = {
     updateProfile: async (
       rootValue,
       { input },
-      { connection, currentUser, res }
+      { container, connection, currentUser, res }
     ) => {
-      // TODO: Validate uniqueness of email
-      // TODO: Create a service
+      // TODO: Use a service
+      const service = container.get(UsersService);
       const repository = connection.getRepository(User);
 
-      // TODO: Refactor
-      const emailTaken = await repository
-        .createQueryBuilder()
-        .where("id != :id AND email = :email", {
-          id: currentUser!.id,
-          email: input.email
-        })
-        .getCount();
+      const emailNotTaken = await service.checkUniquenessOfEmail(
+        input.email,
+        currentUser!
+      );
 
-      if (!emailTaken) {
+      if (emailNotTaken) {
         const updatedCurrentUser = await repository.save(
           repository.merge(currentUser!, input)
         );

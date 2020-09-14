@@ -54,6 +54,7 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    // TODO: Validate uniqueness of email, respond with validation errors
     createUser: async (rootValue, args, { container }) => {
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 
@@ -68,6 +69,7 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
+    // TODO: Validate uniqueness of email, respond with validation errors
     updateUser: async (rootValue, args, { container }) => {
       const { id, ...userAttributes } = args.input;
 
