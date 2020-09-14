@@ -3,7 +3,7 @@ import React from "react";
 import { AvatarFragment } from "./Avatar.fragment.generated";
 import styles from "./Avatar.module.scss";
 
-type AvatarSize = "small" | "medium";
+type AvatarSize = "x-small" | "small" | "medium";
 
 type Props = {
   label: string;
@@ -12,6 +12,7 @@ type Props = {
 };
 
 const AVATAR_SIZES: Record<AvatarSize, string> = {
+  "x-small": "32px",
   small: "50px",
   medium: "160px"
 };

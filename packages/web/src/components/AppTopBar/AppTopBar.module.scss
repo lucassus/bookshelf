@@ -1,9 +1,12 @@
 .container {
   nav {
+    padding-left: 10px;
+    padding-right: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: antiquewhite;
 
     ul {
       list-style-type: none;

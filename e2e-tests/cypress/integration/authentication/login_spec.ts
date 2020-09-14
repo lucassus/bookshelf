@@ -17,17 +17,17 @@ describe("login flow", () => {
   it("validates the login form", () => {
     cy.get("form").within(() => {
       cy.findByText("Login").click();
-      cy.findByText("email is a required field");
-      cy.findByText("password is a required field");
+      cy.findByText("email is a required field").should("exist");
+      cy.findByText("password is a required field").should("exist");
 
       cy.findByLabelText("Email").type("invalid");
-      cy.findByText("email must be a valid email");
+      cy.findByText("email must be a valid email").should("exist");
 
       cy.findByLabelText("Email").clear().type("valid@email.com");
       cy.findByLabelText("Password").type("hort");
 
       cy.findByText("email must be a valid email").should("not.exist");
-      cy.findByText("password must be at least 6 characters");
+      cy.findByText("password must be at least 6 characters").should("exist");
     });
   });
 
@@ -42,12 +42,16 @@ describe("login flow", () => {
         expect(cookie.path).to.eq("/");
         expect(cookie.httpOnly).to.eq(true);
       });
-    cy.findByText("You are logged in as Bob");
+
+    cy.get("[data-cy=user-menu-button]").should("exist");
 
     cy.reload();
-    cy.findByText("You are logged in as Bob");
+    cy.get("[data-cy=user-menu-button]").should("exist");
 
-    cy.findByText("Logout").click();
+    cy.get("[data-cy=user-menu-button]").click();
+    cy.get("[data-cy=user-menu]").within(() => {
+      cy.findByText("Log Out").click();
+    });
   });
 
   it("does not allow to login with invalid credentials", () => {
@@ -58,14 +62,13 @@ describe("login flow", () => {
     });
 
     cy.findByText("Invalid email or password!").should("exist");
-    cy.findByText("You are logged in as Bob").should("not.exist");
+    cy.get("[data-cy=user-menu-button]").should("not.exist");
   });
 
-  // TODO: Testing implementation details?
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.findByText("You are logged in as Bob");
+    cy.get("[data-cy=user-menu-button]").should("exist");
 
     // Save the auth cookie
     let authCookie: any = null;
@@ -75,10 +78,13 @@ describe("login flow", () => {
         authCookie = cookie;
       });
 
-    cy.findByText("Logout").click();
+    cy.get("[data-cy=user-menu-button]").click();
+    cy.get("[data-cy=user-menu]").within(() => {
+      cy.findByText("Log Out").click();
+    });
 
     // Restore the auth cookie
-    cy.findByText("You are logged in as Bob")
+    cy.get("[data-cy=user-menu-button]")
       .should("not.exist")
       .then(() => {
         const { name, value, ...options } = authCookie;
@@ -86,6 +92,6 @@ describe("login flow", () => {
       });
 
     cy.reload();
-    cy.findByText("You are logged in as Bob");
+    cy.get("[data-cy=user-menu-button]").should("exist");
   });
 });

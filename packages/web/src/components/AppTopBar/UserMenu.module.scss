@@ -1,0 +1,49 @@
+.container {
+  width: 300px;
+  position: fixed;
+  top: 90px;
+  right: 5px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 8px 16px -4px rgba(9,30,66,.25), 0 0 0 1px rgba(9,30,66,.08);
+  padding: 8px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background: transparent;
+      border: none;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .userInfo {
+    align-items: center;
+    display: flex;
+
+    .userAvatar {
+      padding: 4px 12px 4px 4px;
+    }
+
+    .userName {
+      font-weight: bold;
+    }
+
+    .userEmail {
+      color: gray;
+    }
+  }
+}

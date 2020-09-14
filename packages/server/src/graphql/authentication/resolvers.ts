@@ -1,5 +1,3 @@
-import { QueryFailedError } from "typeorm";
-
 import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
@@ -11,12 +9,16 @@ import {
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    currentUser: (rootValue, arg, { currentUser }) => currentUser!
+    currentUser: (rootValue, arg, { currentUser }) => currentUser || null
   },
 
   Mutation: {
     register: async (rootValue, { input }, { container, res }) => {
-      try {
+      const service = container.get(UsersService);
+
+      const emailNotTaken = await service.checkUniquenessOfEmail(input.email);
+
+      if (emailNotTaken) {
         const user = await container.get(UsersService).register(input);
 
         sendAuthCookie(res, user);
@@ -25,21 +27,17 @@ const resolvers: Resolvers<Context> = {
           __typename: "RegistrationSuccess",
           currentUser: user
         };
-      } catch (error) {
-        if (error instanceof QueryFailedError) {
-          return {
-            __typename: "RegistrationFailure",
-            validationErrors: [
-              {
-                path: "email",
-                message: "The given email is already taken!"
-              }
-            ]
-          };
-        }
-
-        throw error;
       }
+
+      return {
+        __typename: "RegistrationFailure",
+        validationErrors: [
+          {
+            path: "email",
+            message: "The given email is already taken!"
+          }
+        ]
+      };
     },
 
     login: async (
@@ -76,6 +74,39 @@ const resolvers: Resolvers<Context> = {
 
         throw error;
       }
+    },
+
+    updateProfile: async (
+      rootValue,
+      { input },
+      { container, currentUser, res }
+    ) => {
+      const service = container.get(UsersService);
+
+      const emailNotTaken = await service.checkUniquenessOfEmail(
+        input.email,
+        currentUser!
+      );
+
+      if (emailNotTaken) {
+        const updatedCurrentUser = await service.update(currentUser!, input);
+        sendAuthCookie(res, updatedCurrentUser);
+
+        return {
+          __typename: "UpdateProfileSuccess",
+          currentUser: updatedCurrentUser
+        };
+      }
+
+      return {
+        __typename: "UpdateProfileFailure",
+        validationErrors: [
+          {
+            path: "email",
+            message: "The given email is already taken!"
+          }
+        ]
+      };
     },
 
     logout: (rootValue, args, { res }) => {

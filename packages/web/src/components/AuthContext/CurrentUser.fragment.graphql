@@ -4,4 +4,7 @@ fragment CurrentUser on CurrentUser {
   email
   info
   isAdmin
+  avatar {
+    ...Avatar
+  }
 }

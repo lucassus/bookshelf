@@ -3,23 +3,32 @@ import React from "react";
 import * as yup from "yup";
 
 import { useAuth } from "../../components/AuthContext";
+import { CurrentUserFragment } from "../../components/AuthContext/CurrentUser.fragment.generated";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
-import { useLoginMutation } from "./Login.mutation.generated";
-import styles from "./LoginPage.module.scss";
+import styles from "../LoginPage/LoginPage.module.scss";
+import { useUpdateProfileMutation } from "./UpdateProfile.mutation.generated";
 
 type Values = {
   email: string;
-  password: string;
+  name: string;
+  info: string;
 };
 
 const schema = yup.object().shape({
   email: yup.string().required().email(),
-  password: yup.string().required().min(6)
+  name: yup.string().required(),
+  info: yup.string()
 });
 
-export const LoginPage: React.FunctionComponent = () => {
-  const [login] = useLoginMutation();
+type Props = {
+  currentUser: CurrentUserFragment;
+};
+
+export const ProfilePage: React.FunctionComponent<Props> = ({
+  currentUser
+}) => {
   const { authorize } = useAuth();
+  const [updateProfile] = useUpdateProfileMutation();
 
   const handleSubmit = async (
     values: Values,
@@ -28,14 +37,14 @@ export const LoginPage: React.FunctionComponent = () => {
     setSubmitting(true);
 
     try {
-      const { data } = await login({ variables: { input: values } });
-      const result = data!.login;
+      const { data } = await updateProfile({ variables: { input: values } });
+      const result = data!.updateProfile;
 
-      if (result.__typename === "LoginSuccess") {
+      if (result.__typename === "UpdateProfileSuccess") {
         authorize(result.currentUser);
       }
 
-      if (result.__typename === "LoginFailure") {
+      if (result.__typename === "UpdateProfileFailure") {
         setErrors(normalizeValidationErrors(result.validationErrors));
         setSubmitting(false);
       }
@@ -44,12 +53,16 @@ export const LoginPage: React.FunctionComponent = () => {
     }
   };
 
+  const initialValues = {
+    email: currentUser.email,
+    name: currentUser.name,
+    info: currentUser.info
+  };
+
   return (
     <div>
-      <h2>Login</h2>
-
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
         render={({ errors, isSubmitting }) => (
@@ -61,13 +74,19 @@ export const LoginPage: React.FunctionComponent = () => {
             </div>
 
             <div>
-              <label htmlFor="password-field">Password</label>
-              <Field name="password" type="password" id="password-field" />
-              <p>{errors.password}</p>
+              <label htmlFor="name-field">Name</label>
+              <Field name="name" type="text" id="name-field" />
+              <p>{errors.name}</p>
+            </div>
+
+            <div>
+              <label htmlFor="info-field">Info</label>
+              <Field name="info" type="text" id="info-field" />
+              <p>{errors.info}</p>
             </div>
 
             <button type="submit" disabled={isSubmitting}>
-              Login
+              Update
             </button>
           </Form>
         )}

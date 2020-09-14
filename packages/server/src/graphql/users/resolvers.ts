@@ -13,7 +13,7 @@ const resolvers: Resolvers<Context> = {
     })
   },
 
-  User: {
+  Person: {
     avatar: (user) => {
       if (user.avatar.flagged) {
         return {
@@ -54,6 +54,7 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
+    // TODO: Validate uniqueness of email, respond with validation errors
     createUser: async (rootValue, args, { container }) => {
       const { avatar: avatarAttributes, ...userAttributes } = args.input;
 
@@ -68,15 +69,18 @@ const resolvers: Resolvers<Context> = {
       };
     },
 
+    // TODO: Validate uniqueness of email, respond with validation errors
     updateUser: async (rootValue, args, { container }) => {
       const { id, ...userAttributes } = args.input;
 
-      const user = await container.get(UsersService).update(id, userAttributes);
+      const service = container.get(UsersService);
+      const user = await service.findByIdOrFail(id);
+      const updatedUser = await service.update(user, userAttributes);
 
       return {
         success: true,
         message: "User was successfully updated.",
-        user
+        user: updatedUser
       };
     },
 

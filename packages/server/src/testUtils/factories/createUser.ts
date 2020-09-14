@@ -17,7 +17,7 @@ export async function createUser(
 
   const avatar = await createAvatar(avatarAttributes);
 
-  return createEntity(User, {
+  const user = await createEntity(User, {
     name: faker.name.findName(),
     email: faker.internet.email(),
     info: faker.lorem.sentence(),
@@ -26,4 +26,7 @@ export async function createUser(
     isAdmin: false,
     ...userAttributes
   });
+
+  user.avatar = avatar;
+  return user;
 }

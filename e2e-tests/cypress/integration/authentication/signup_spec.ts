@@ -8,24 +8,24 @@ describe("signup flow", () => {
     cy.get("form").within(() => {
       cy.findByText("Signup").click();
 
-      cy.findByText("name is a required field");
-      cy.findByText("email is a required field");
-      cy.findByText("password is a required field");
+      cy.findByText("name is a required field").should("exist");
+      cy.findByText("email is a required field").should("exist");
+      cy.findByText("password is a required field").should("exist");
 
       cy.findByLabelText("Email").type("invalid");
-      cy.findByText("email must be a valid email");
+      cy.findByText("email must be a valid email").should("exist");
 
       cy.findByLabelText("Name").type("Luke");
       cy.findByLabelText("Email").clear().type("luke@email.com");
       cy.findByLabelText("Password").type("short");
 
       cy.findByText("email must be a valid email").should("not.exist");
-      cy.findByText("password must be at least 6 characters");
+      cy.findByText("password must be at least 6 characters").should("exist");
 
       cy.findByLabelText("Password").clear().type("password");
       cy.findByLabelText("Password confirmation").type("password123");
 
-      cy.findByText("Passwords don't match");
+      cy.findByText("Passwords don't match").should("exist");
     });
   });
 
@@ -38,7 +38,7 @@ describe("signup flow", () => {
 
       cy.findByText("Signup").click();
 
-      cy.findByText("The given email is already taken!");
+      cy.findByText("The given email is already taken!").should("exist");
     });
   });
 
@@ -52,17 +52,16 @@ describe("signup flow", () => {
       cy.findByText("Signup").click();
     });
 
-    cy.findByText("You are logged in as Anna");
+    cy.get("[data-cy=user-menu-button]").should("exist");
 
-    // TODO: Testing implementation details?
     cy.getCookie("bookshelf:authToken")
-      .should("exist") // TODO: Randomly fails
+      .should("exist")
       .then((cookie: any) => {
         expect(cookie.path).to.eq("/");
         expect(cookie.httpOnly).to.eq(true);
       });
 
     cy.reload();
-    cy.findByText("You are logged in as Anna");
+    cy.get("[data-cy=user-menu-button]").should("exist");
   });
 });

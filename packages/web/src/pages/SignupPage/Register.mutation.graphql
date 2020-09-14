@@ -8,7 +8,7 @@ mutation Register($input: RegistrationInput!) {
       }
     }
 
-    ...on RegistrationFailure {
+    ... on RegistrationFailure {
       validationErrors {
         path
         message

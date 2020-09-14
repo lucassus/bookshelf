@@ -61,15 +61,31 @@ export class UsersService {
     return this.create(userAttributes, defaultAvatarAttributes);
   }
 
-  async update(
-    id: string | number,
-    userAttributes: Partial<User>
-  ): Promise<User> {
-    const user = await this.findByIdOrFail(id);
+  update(user: User, userAttributes: Partial<User>): Promise<User> {
     return this.repository.save(this.repository.merge(user, userAttributes));
   }
 
   delete(id: string | number) {
     return this.repository.delete(id);
+  }
+
+  async checkUniquenessOfEmail(
+    email: string,
+    user: undefined | User = undefined
+  ) {
+    const otherUser = await this.repository
+      .createQueryBuilder()
+      .where({ email })
+      .getOne();
+
+    if (otherUser === undefined) {
+      return true;
+    }
+
+    if (user !== undefined) {
+      return otherUser.id === user.id;
+    }
+
+    return false;
   }
 }

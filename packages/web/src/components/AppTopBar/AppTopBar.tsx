@@ -2,21 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../AuthContext";
-import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import styles from "./AppTopBar.module.scss";
-
-const CurrentUserMenu: React.FunctionComponent<{
-  currentUser: CurrentUserFragment;
-}> = ({ currentUser }) => {
-  const { unauthorize } = useAuth();
-
-  return (
-    <li>
-      You are logged in as {currentUser.name}
-      <button onClick={() => unauthorize()}>Logout</button>
-    </li>
-  );
-};
+import { UserMenuButton } from "./UserMenuButton";
 
 export const AppTopBar = () => {
   const { currentUser } = useAuth();
@@ -42,7 +29,7 @@ export const AppTopBar = () => {
           </li>
 
           {currentUser ? (
-            <CurrentUserMenu currentUser={currentUser} />
+            <UserMenuButton currentUser={currentUser} />
           ) : (
             <>
               <li>
