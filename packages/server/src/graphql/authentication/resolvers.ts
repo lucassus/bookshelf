@@ -15,6 +15,7 @@ const resolvers: Resolvers<Context> = {
     currentUser: (rootValue, arg, { currentUser }) => currentUser || null
   },
 
+  // TODO: Lots of todos here
   Mutation: {
     register: async (rootValue, { input }, { container, res }) => {
       const service = container.get(UsersService);
@@ -79,6 +80,7 @@ const resolvers: Resolvers<Context> = {
       }
     },
 
+    // TODO: Is there an option for making currentUSer not nullable?
     updateProfile: async (
       rootValue,
       { input },

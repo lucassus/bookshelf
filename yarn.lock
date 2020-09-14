@@ -1697,7 +1697,7 @@ __metadata:
     "@storybook/addons": 6.0.20
     "@storybook/react": 6.0.20
     "@testing-library/jest-dom": 5.11.4
-    "@testing-library/react": 11.0.3
+    "@testing-library/react": 11.0.4
     "@testing-library/user-event": 12.1.4
     "@types/graphql": 14.5.0
     "@types/jest": 26.0.13
@@ -3908,7 +3908,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^7.11.0, @testing-library/dom@npm:^7.22.2, @testing-library/dom@npm:^7.23.0":
+"@testing-library/dom@npm:^7.11.0, @testing-library/dom@npm:^7.22.2":
   version: 7.24.1
   resolution: "@testing-library/dom@npm:7.24.1"
   dependencies:
@@ -3920,6 +3920,21 @@ __metadata:
     dom-accessibility-api: ^0.5.1
     pretty-format: ^26.4.2
   checksum: e5ebd9a27e48f48012b77888e6c2bb16b6e36c2fe4db299ea17fb25d427491afea28cb3bf33379a4ea8d1f4fc76ef294964027747f58c102c69086ed1a1dbe50
+  languageName: node
+  linkType: hard
+
+"@testing-library/dom@npm:^7.24.2":
+  version: 7.24.2
+  resolution: "@testing-library/dom@npm:7.24.2"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/runtime": ^7.10.3
+    "@types/aria-query": ^4.2.0
+    aria-query: ^4.2.2
+    chalk: ^4.1.0
+    dom-accessibility-api: ^0.5.1
+    pretty-format: ^26.4.2
+  checksum: 544dff249c20543ca3aad6a9bef03bbb8b920c6724f41e89c874d78c23da0a226703f4c8a9264b875c913f05e4fc5b312ef2dae01f0ea865a9552c92541076ba
   languageName: node
   linkType: hard
 
@@ -3939,16 +3954,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:11.0.3":
-  version: 11.0.3
-  resolution: "@testing-library/react@npm:11.0.3"
+"@testing-library/react@npm:11.0.4":
+  version: 11.0.4
+  resolution: "@testing-library/react@npm:11.0.4"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@testing-library/dom": ^7.23.0
+    "@testing-library/dom": ^7.24.2
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: d1db95d17170c943efdd66d2dd28e8a3ab9e9916a9c239cfa2b49c309f231b4ae801dde969f8986a906ce61d03b986a5910f505fdeafd60fa0afe17feb315845
+  checksum: 3662df0d284b4ad0701aa86ec396652280357cccf22935c6bde02fbb9a08125c216a43c4960b188e6403f053bfa68a680d934a9ea90ff92312e16e57d6eaa986
   languageName: node
   linkType: hard
 
