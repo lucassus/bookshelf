@@ -83,9 +83,14 @@ export class UsersService {
       .where({ email })
       .getOne();
 
-    return (
-      otherUser === undefined ||
-      (user !== undefined && otherUser.id === user.id)
-    );
+    if (otherUser === undefined) {
+      return true;
+    }
+
+    if (user !== undefined) {
+      return otherUser.id === user.id;
+    }
+
+    return false;
   }
 }

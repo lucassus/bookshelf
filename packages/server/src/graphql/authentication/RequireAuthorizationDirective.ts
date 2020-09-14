@@ -41,7 +41,7 @@ export class RequireAuthorizationDirective extends SchemaDirectiveVisitor<
 
         const { currentUser } = context;
 
-        const isAuthenticated = !!currentUser;
+        const isAuthenticated = currentUser !== undefined;
         if ([Role.User, Role.Admin].includes(role) && !isAuthenticated) {
           throw new AuthenticationError("Unauthorized access! Please log in.");
         }
