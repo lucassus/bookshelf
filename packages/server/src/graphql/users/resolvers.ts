@@ -73,12 +73,14 @@ const resolvers: Resolvers<Context> = {
     updateUser: async (rootValue, args, { container }) => {
       const { id, ...userAttributes } = args.input;
 
-      const user = await container.get(UsersService).update(id, userAttributes);
+      const service = container.get(UsersService);
+      const user = await service.findByIdOrFail(id);
+      const updatedUser = await service.update(user, userAttributes);
 
       return {
         success: true,
         message: "User was successfully updated.",
-        user
+        user: updatedUser
       };
     },
 

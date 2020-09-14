@@ -61,12 +61,7 @@ export class UsersService {
     return this.create(userAttributes, defaultAvatarAttributes);
   }
 
-  // TODO: Use it for profile update
-  async update(
-    id: string | number,
-    userAttributes: Partial<User>
-  ): Promise<User> {
-    const user = await this.findByIdOrFail(id);
+  update(user: User, userAttributes: Partial<User>): Promise<User> {
     return this.repository.save(this.repository.merge(user, userAttributes));
   }
 

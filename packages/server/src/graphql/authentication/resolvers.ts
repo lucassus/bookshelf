@@ -1,5 +1,4 @@
 import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
-import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
@@ -13,7 +12,6 @@ const resolvers: Resolvers<Context> = {
     currentUser: (rootValue, arg, { currentUser }) => currentUser || null
   },
 
-  // TODO: Lots of todos here
   Mutation: {
     register: async (rootValue, { input }, { container, res }) => {
       const service = container.get(UsersService);
@@ -78,15 +76,12 @@ const resolvers: Resolvers<Context> = {
       }
     },
 
-    // TODO: Is there an option for making currentUSer not nullable?
     updateProfile: async (
       rootValue,
       { input },
-      { container, connection, currentUser, res }
+      { container, currentUser, res }
     ) => {
-      // TODO: Use a service
       const service = container.get(UsersService);
-      const repository = connection.getRepository(User);
 
       const emailNotTaken = await service.checkUniquenessOfEmail(
         input.email,
@@ -94,10 +89,7 @@ const resolvers: Resolvers<Context> = {
       );
 
       if (emailNotTaken) {
-        const updatedCurrentUser = await repository.save(
-          repository.merge(currentUser!, input)
-        );
-
+        const updatedCurrentUser = await service.update(currentUser!, input);
         sendAuthCookie(res, updatedCurrentUser);
 
         return {
