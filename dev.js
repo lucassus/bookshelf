@@ -3,11 +3,6 @@ const concurrently = require("concurrently");
 concurrently(
   [
     {
-      command: "yarn codegen --watch",
-      name: "codegen",
-      prefixColor: "yellow"
-    },
-    {
       command: "yarn workspace @bookshelf/server dev",
       name: "server",
       prefixColor: "red"
@@ -19,7 +14,7 @@ concurrently(
     }
   ],
   {
-    killOthers: ["failure", "success"],
+    killOthers: true,
     restartTries: 3
   }
 );
