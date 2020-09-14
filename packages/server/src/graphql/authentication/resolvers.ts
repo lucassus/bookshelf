@@ -1,5 +1,3 @@
-import { QueryFailedError } from "typeorm";
-
 import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
 import { User } from "../../database/entity";
 import { Context } from "../context";
