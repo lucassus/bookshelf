@@ -10,11 +10,20 @@ type Book implements Resource & Timestampable {
   updatedAt: String!
 }
 
+extend type Author {
+  books: [Book!]!
+}
+
 type BookCopy implements Resource {
   id: ExternalID!
   book: Book!
   owner: User!
   borrower: User
+}
+
+extend type User {
+  ownedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]!
 }
 
 type UpdateBookFavouriteResult implements MutationResponse {
