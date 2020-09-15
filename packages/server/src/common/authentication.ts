@@ -21,7 +21,7 @@ export const generateAuthToken = (user: User): string =>
 export async function authenticateRequest(
   req: express.Request
 ): Promise<undefined | User> {
-  const { [AUTH_COOKIE_NAME]: authToken } = req.cookies;
+  const { [AUTH_COOKIE_NAME]: authToken } = req.cookies || {};
   if (!authToken) {
     return undefined;
   }
