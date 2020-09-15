@@ -7,6 +7,10 @@ type Author implements Resource & Timestampable {
   updatedAt: String!
 }
 
+extend type Book {
+  author: Author!
+}
+
 union AuthorResponse = Author | ResourceNotFoundError
 
 extend type Query {

@@ -23,6 +23,11 @@ type Avatar {
   flagged: Boolean!
 }
 
+extend type BookCopy {
+  owner: User!
+  borrower: User
+}
+
 type FlaggedAvatarError implements Error {
   message: String!
 }

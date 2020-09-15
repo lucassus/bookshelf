@@ -4,7 +4,6 @@ type Book implements Resource & Timestampable {
   description: String
   cover: Image!
   favourite: Boolean!
-  author: Author!
   copies: [BookCopy!]!
   createdAt: String!
   updatedAt: String!
@@ -17,8 +16,6 @@ extend type Author {
 type BookCopy implements Resource {
   id: ExternalID!
   book: Book!
-  owner: User!
-  borrower: User
 }
 
 extend type User {
