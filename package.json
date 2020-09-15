@@ -48,6 +48,6 @@
     "predev": "yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build",
     "dev-server": "yarn workspace @bookshelf/server dev",
     "dev-web": "yarn workspace @bookshelf/web dev",
-    "dev": "concurrently --raw --kill-others-on-fail 'yarn:dev-*'"
+    "dev": "concurrently --kill-others-on-fail 'yarn:dev-*'"
   }
 }
