@@ -46,6 +46,8 @@
     "test": "yarn jest",
     "start": "yarn workspace @bookshelf/server start",
     "predev": "yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build",
-    "dev": "yarn node dev.js"
+    "dev-server": "yarn workspace @bookshelf/server dev",
+    "dev-web": "yarn workspace @bookshelf/web dev",
+    "dev": "concurrently --raw --kill-others-on-fail 'yarn:dev-*'"
   }
 }
