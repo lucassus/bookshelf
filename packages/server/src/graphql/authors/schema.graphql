@@ -3,9 +3,12 @@ type Author implements Resource & Timestampable {
   name: String!
   bio: String
   photo: Image!
-  books: [Book!]!
   createdAt: String!
   updatedAt: String!
+}
+
+extend type Book {
+  author: Author!
 }
 
 union AuthorResponse = Author | ResourceNotFoundError

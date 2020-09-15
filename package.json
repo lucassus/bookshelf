@@ -22,8 +22,8 @@
     "@graphql-codegen/typescript-resolvers": "1.17.9",
     "@types/eslint-plugin-prettier": "^3.1.0",
     "@types/prettier": "^2.1.0",
-    "@typescript-eslint/eslint-plugin": "4.1.0",
-    "@typescript-eslint/parser": "4.1.0",
+    "@typescript-eslint/eslint-plugin": "4.1.1",
+    "@typescript-eslint/parser": "4.1.1",
     "concurrently": "5.3.0",
     "eslint-config-airbnb-typescript": "10.0.0",
     "eslint-config-prettier": "6.11.0",
@@ -46,6 +46,8 @@
     "test": "yarn jest",
     "start": "yarn workspace @bookshelf/server start",
     "predev": "yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build",
-    "dev": "concurrently --raw --kill-others-on-fail 'yarn codegen --watch' 'yarn workspace @bookshelf/server dev' 'yarn workspace @bookshelf/web dev'"
+    "dev-server": "yarn workspace @bookshelf/server dev",
+    "dev-web": "yarn workspace @bookshelf/web dev",
+    "dev": "concurrently --kill-others-on-fail 'yarn:dev-*'"
   }
 }

@@ -4,17 +4,23 @@ type Book implements Resource & Timestampable {
   description: String
   cover: Image!
   favourite: Boolean!
-  author: Author!
   copies: [BookCopy!]!
   createdAt: String!
   updatedAt: String!
 }
 
+extend type Author {
+  books: [Book!]!
+}
+
 type BookCopy implements Resource {
   id: ExternalID!
   book: Book!
-  owner: User!
-  borrower: User
+}
+
+extend type User {
+  ownedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]!
 }
 
 type UpdateBookFavouriteResult implements MutationResponse {

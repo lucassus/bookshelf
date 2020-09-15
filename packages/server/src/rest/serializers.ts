@@ -32,6 +32,7 @@ export const serializeBooks = (books: Book[]) =>
       return {
         id: book.id,
         title: book.title,
+        description: book.description,
         author: {
           id: author.id,
           name: author.name

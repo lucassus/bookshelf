@@ -13,8 +13,6 @@ type User implements Resource & Timestampable & Person {
   email: String! @requireAuthorization(role: Admin)
   isAdmin: Boolean! @requireAuthorization(role: Admin)
   avatar: AvatarResult!
-  ownedBookCopies: [BookCopy!]!
-  borrowedBookCopies: [BookCopy!]!
   createdAt: String!
   updatedAt: String!
 }
@@ -23,6 +21,11 @@ type Avatar {
   image: Image!
   color: String!
   flagged: Boolean!
+}
+
+extend type BookCopy {
+  owner: User!
+  borrower: User
 }
 
 type FlaggedAvatarError implements Error {
