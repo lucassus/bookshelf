@@ -1,0 +1,55 @@
+type CurrentUser implements Resource & Timestampable & Person {
+  id: ExternalID!
+  name: String!
+  email: String!
+  isAdmin: Boolean!
+  info: String!
+  avatar: AvatarResult!
+  createdAt: String!
+  updatedAt: String!
+}
+
+input RegistrationInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type RegistrationSuccess {
+  currentUser: CurrentUser!
+}
+
+type RegistrationFailure {
+  validationErrors: [ValidationError!]!
+}
+
+union RegistrationResult = RegistrationSuccess | RegistrationFailure
+
+input UpdateProfileInput {
+  name: String!
+  email: String!
+  info: String!
+}
+
+type UpdateProfileSuccess {
+  currentUser: CurrentUser!
+}
+
+type UpdateProfileFailure {
+  validationErrors: [ValidationError!]!
+}
+
+union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
+
+extend type Query {
+  """
+  Returns the currently logged in user or null if not logged in.
+  """
+  currentUser: CurrentUser
+}
+
+extend type Mutation {
+  register(input: RegistrationInput!): RegistrationResult!
+
+  updateProfile(input: UpdateProfileInput!): UpdateProfileResult! @requireAuthorization
+}
