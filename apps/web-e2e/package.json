@@ -1,5 +1,7 @@
 {
-  "name": "e2e-tests",
+  "name": "@bookshelf/web-e2e",
+  "version": "1.0.0",
+  "private": true,
   "devDependencies": {
     "@testing-library/cypress": "7.0.0",
     "@types/testing-library__cypress": "5.0.6",

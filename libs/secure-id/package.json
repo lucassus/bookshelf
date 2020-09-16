@@ -1,5 +1,5 @@
 {
-  "name": "@bookshelf/string-utils",
+  "name": "@bookshelf/secure-id",
   "version": "1.0.0",
   "main": "dist/index",
   "types": "dist/index",
@@ -9,6 +9,8 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "26.0.13",
+    "@types/node": "14.10.2",
+    "@types/rimraf": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "4.1.1",
     "eslint": "7.9.0",
     "eslint-config-airbnb-typescript": "10.0.0",
@@ -20,15 +22,16 @@
     "eslint-plugin-react": "7.20.6",
     "jest": "26.4.2",
     "prettier": "2.1.2",
+    "rimraf": "3.0.2",
     "ts-jest": "26.3.0",
     "typescript": "4.0.2"
   },
   "scripts": {
-    "clean": "rimraf dist && rimraf covarage",
-    "compile": "yarn tsc --build",
+    "clean": "yarn rimraf dist && yarn rimraf covarage",
+    "compile": "yarn tsc --build tsconfig.json",
     "build": "yarn clean && yarn compile",
     "typecheck": "yarn tsc --noEmit",
-    "lint": "yarn eslint . --ext .ts",
+    "lint": "yarn eslint  --ext .ts",
     "test": "yarn jest"
   }
 }
