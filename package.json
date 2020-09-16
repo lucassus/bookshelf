@@ -8,8 +8,8 @@
     "node": "14.6.0"
   },
   "workspaces": [
-    "e2e-tests",
-    "packages/*"
+    "apps/*",
+    "libs/*"
   ],
   "devDependencies": {
     "@graphql-codegen/cli": "1.17.8",
@@ -37,7 +37,7 @@
     "typescript": "4.0.2"
   },
   "scripts": {
-    "clean:codegen": "rimraf graphql.schema.json packages/**/*.generated.{ts,tsx,graphlq}",
+    "clean:codegen": "rimraf graphql.schema.json apps/**/*.generated.{ts,tsx,graphlq}",
     "clean": "yarn clean:codegen && yarn workspaces foreach --verbose run clean",
     "codegen": "yarn graphql-codegen --config codegen.yml",
     "build": "yarn codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",

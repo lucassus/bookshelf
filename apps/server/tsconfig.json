@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "references": [
-    { "path": "../secure-id" },
-    { "path": "../string-utils" }
+    { "path": "../../libs/secure-id" },
+    { "path": "../../libs/string-utils" }
   ],
   "include": [
     "scripts/**/*",

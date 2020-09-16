@@ -1552,9 +1552,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bookshelf/fake-server@workspace:packages/fake-server":
+"@bookshelf/fake-server@workspace:apps/fake-server":
   version: 0.0.0-use.local
-  resolution: "@bookshelf/fake-server@workspace:packages/fake-server"
+  resolution: "@bookshelf/fake-server@workspace:apps/fake-server"
   dependencies:
     "@bookshelf/secure-id": "workspace:*"
     "@bookshelf/string-utils": "workspace:*"
@@ -1581,9 +1581,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@bookshelf/secure-id@workspace:*, @bookshelf/secure-id@workspace:packages/secure-id":
+"@bookshelf/secure-id@workspace:*, @bookshelf/secure-id@workspace:libs/secure-id":
   version: 0.0.0-use.local
-  resolution: "@bookshelf/secure-id@workspace:packages/secure-id"
+  resolution: "@bookshelf/secure-id@workspace:libs/secure-id"
   dependencies:
     "@types/jest": 26.0.13
     "@types/node": 14.10.2
@@ -1605,9 +1605,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@bookshelf/server@workspace:packages/server":
+"@bookshelf/server@workspace:apps/server":
   version: 0.0.0-use.local
-  resolution: "@bookshelf/server@workspace:packages/server"
+  resolution: "@bookshelf/server@workspace:apps/server"
   dependencies:
     "@bookshelf/secure-id": "workspace:*"
     "@bookshelf/string-utils": "workspace:*"
@@ -1664,9 +1664,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@bookshelf/string-utils@workspace:*, @bookshelf/string-utils@workspace:packages/string-utils":
+"@bookshelf/string-utils@workspace:*, @bookshelf/string-utils@workspace:libs/string-utils":
   version: 0.0.0-use.local
-  resolution: "@bookshelf/string-utils@workspace:packages/string-utils"
+  resolution: "@bookshelf/string-utils@workspace:libs/string-utils"
   dependencies:
     "@types/jest": 26.0.13
     "@typescript-eslint/eslint-plugin": 4.1.1
@@ -1685,9 +1685,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@bookshelf/web@workspace:packages/web":
+"@bookshelf/web-e2e@workspace:apps/web-e2e":
   version: 0.0.0-use.local
-  resolution: "@bookshelf/web@workspace:packages/web"
+  resolution: "@bookshelf/web-e2e@workspace:apps/web-e2e"
+  dependencies:
+    "@testing-library/cypress": 7.0.0
+    "@types/testing-library__cypress": 5.0.6
+    cypress: 5.1.0
+    eslint: 7.9.0
+    graphql: 15.3.0
+    graphql-tag: 2.11.0
+    typescript: 4.0.2
+  languageName: unknown
+  linkType: soft
+
+"@bookshelf/web@workspace:apps/web":
+  version: 0.0.0-use.local
+  resolution: "@bookshelf/web@workspace:apps/web"
   dependencies:
     "@apollo/client": 3.2.0
     "@babel/core": 7.11.6
@@ -9334,20 +9348,6 @@ __metadata:
   checksum: 7fe0adbc2d3523f31ae6e02d61ad586d3149cbea34c23044109b3cc18e7ee9fd80f09757847dfd0d225ae3d21c23faf7e975a01e97dd1d5533fe672ae4c57a15
   languageName: node
   linkType: hard
-
-"e2e-tests@workspace:e2e-tests":
-  version: 0.0.0-use.local
-  resolution: "e2e-tests@workspace:e2e-tests"
-  dependencies:
-    "@testing-library/cypress": 7.0.0
-    "@types/testing-library__cypress": 5.0.6
-    cypress: 5.1.0
-    eslint: 7.9.0
-    graphql: 15.3.0
-    graphql-tag: 2.11.0
-    typescript: 4.0.2
-  languageName: unknown
-  linkType: soft
 
 "ecc-jsbn@npm:~0.1.1":
   version: 0.1.2

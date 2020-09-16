@@ -5,8 +5,8 @@ import {
 
 export const createConnection = async () => {
   let root = process.cwd();
-  if (!root.includes("/packages/server")) {
-    root += "/packages/server";
+  if (!root.includes("/apps/server")) {
+    root += "/apps/server";
   }
 
   const optionsReader = new ConnectionOptionsReader({ root });
