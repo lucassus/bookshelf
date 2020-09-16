@@ -61,15 +61,15 @@
   "scripts": {
     "clean:dist": "rimraf dist",
     "clean": "yarn clean:dist && yarn rimraf coverage",
-    "copy-graphql": "copy-graphql.sh",
+    "copy-graphql": "./copy-graphql.sh",
     "compile": "yarn tsc --build tsconfig.build.json && yarn copy-graphql",
     "build": "yarn clean && yarn compile",
     "start": "yarn node dist/src/index.js",
-    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
+    "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
     "typecheck": "yarn tsc --noEmit",
-    "lint": "yarn eslint  --ext .ts",
+    "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest",
     "typeorm": "yarn ts-node ./node_modules/typeorm/cli.js",
-    "db:seed": "yarn ts-node scripts/seed.ts"
+    "db:seed": "yarn ts-node ./scripts/seed.ts"
   }
 }

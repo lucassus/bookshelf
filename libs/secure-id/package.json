@@ -31,7 +31,7 @@
     "compile": "yarn tsc --build tsconfig.json",
     "build": "yarn clean && yarn compile",
     "typecheck": "yarn tsc --noEmit",
-    "lint": "yarn eslint  --ext .ts",
+    "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest"
   }
 }
