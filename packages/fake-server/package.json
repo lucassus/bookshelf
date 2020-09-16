@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@types/eslint-plugin-prettier": "^3.1.0",
-    "@types/prettier": "^2.1.0",
-    "@types/rimraf": "^3.0.0",
+    "@types/prettier": "2.1.1",
+    "@types/rimraf": "3.0.0",
     "@typescript-eslint/eslint-plugin": "4.1.1",
     "eslint": "7.9.0",
     "eslint-config-prettier": "6.11.0",
@@ -25,7 +25,7 @@
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.6",
-    "prettier": "2.1.1",
+    "prettier": "2.1.2",
     "rimraf": "3.0.2"
   },
   "scripts": {

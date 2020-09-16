@@ -56,7 +56,7 @@
     "jest": "26.4.2",
     "jest-watch-typeahead": "0.6.1",
     "pnp-webpack-plugin": "1.6.4",
-    "prettier": "2.1.1",
+    "prettier": "2.1.2",
     "rimraf": "3.0.2",
     "sass": "1.26.10",
     "sass-loader": "10.0.2",
