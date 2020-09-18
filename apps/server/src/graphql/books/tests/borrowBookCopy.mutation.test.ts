@@ -11,6 +11,30 @@ import {
 } from "../../../testUtils/factories";
 
 describe("borrowBookCopy mutation", () => {
+  const BorrowBookCopyMutation = gql`
+    mutation($id: ExternalID!) {
+      borrowBookCopy(id: $id) {
+        success
+        message
+        bookCopy {
+          id
+          book {
+            id
+            title
+          }
+          owner {
+            id
+            name
+          }
+          borrower {
+            id
+            name
+          }
+        }
+      }
+    }
+  `;
+
   test("on success", async () => {
     // Given
     const currentUser = await createUser({ name: "Bob" });
@@ -21,29 +45,7 @@ describe("borrowBookCopy mutation", () => {
 
     // When
     const res = await createTestClient({ currentUser }).mutate({
-      mutation: gql`
-        mutation($id: ExternalID!) {
-          borrowBookCopy(id: $id) {
-            success
-            message
-            bookCopy {
-              id
-              book {
-                id
-                title
-              }
-              owner {
-                id
-                name
-              }
-              borrower {
-                id
-                name
-              }
-            }
-          }
-        }
-      `,
+      mutation: BorrowBookCopyMutation,
       variables: { id: toExternalId(bookCopy) }
     });
 
@@ -79,40 +81,12 @@ describe("borrowBookCopy mutation", () => {
   test("on error", async () => {
     // Given
     const currentUser = await createUser({ name: "Bob" });
-
-    const book = await createBook({ title: "Time of contempt" });
     const owner = await createUser({ name: "Alice" });
-    const bookCopy = await createBookCopy({
-      book,
-      owner,
-      borrower: currentUser
-    });
+    const bookCopy = await createBookCopy({ owner, borrower: currentUser });
 
     // When
     const res = await createTestClient({ currentUser }).mutate({
-      mutation: gql`
-        mutation($id: ExternalID!) {
-          borrowBookCopy(id: $id) {
-            success
-            message
-            bookCopy {
-              id
-              book {
-                id
-                title
-              }
-              owner {
-                id
-                name
-              }
-              borrower {
-                id
-                name
-              }
-            }
-          }
-        }
-      `,
+      mutation: BorrowBookCopyMutation,
       variables: { id: toExternalId(bookCopy) }
     });
 

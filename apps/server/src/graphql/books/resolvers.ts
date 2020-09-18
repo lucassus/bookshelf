@@ -110,16 +110,26 @@ const resolvers: Resolvers<Context> = {
     },
 
     returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
-      const bookCopy = await container
-        .get(BookCopiesService)
-        .return(id, currentUser!.id);
+      try {
+        const bookCopy = await container
+          .get(BookCopiesService)
+          .return(id, currentUser!.id);
 
-      // TODO: Add errors handling, eg. "Could not find borrowed book copy to return"
-      return {
-        success: true,
-        message: "Book was successfully returned.",
-        bookCopy
-      };
+        return {
+          success: true,
+          message: "Book was successfully returned.",
+          bookCopy
+        };
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return {
+            success: false,
+            message: "Could not find borrowed book copy to return!"
+          };
+        }
+
+        throw error;
+      }
     }
   }
 };
