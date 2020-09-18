@@ -6,7 +6,7 @@ import { buildClientSchema } from "graphql";
 import { ASSETS_BASE_URL, PORT } from "./config";
 import { mocks } from "./mocks";
 import { resolvers } from "./resolvers";
-import introspectionResult from "./schema.json";
+import introspectionResult from "./schema.generated.json";
 
 const schemaWithResolvers = addResolversToSchema({
   schema: buildClientSchema(introspectionResult as any),
