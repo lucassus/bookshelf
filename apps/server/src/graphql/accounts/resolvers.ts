@@ -56,8 +56,8 @@ const resolvers: Resolvers<Context> = {
       }
 
       return {
-        __typename: "UpdateProfileFailure",
-        validationErrors: [
+        __typename: "ValidationErrors",
+        errors: [
           {
             path: "email",
             message: "The given email is already taken!"

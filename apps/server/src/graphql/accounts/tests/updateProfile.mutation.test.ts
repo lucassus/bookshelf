@@ -17,8 +17,8 @@ describe("updateProfile mutation", () => {
           info
         }
 
-        ... on UpdateProfileFailure {
-          validationErrors {
+        ... on ValidationErrors {
+          errors {
             path
             message
           }
@@ -77,8 +77,8 @@ describe("updateProfile mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       updateProfile: {
-        __typename: "UpdateProfileFailure",
-        validationErrors: [
+        __typename: "ValidationErrors",
+        errors: [
           { path: "email", message: "The given email is already taken!" }
         ]
       }

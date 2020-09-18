@@ -6,8 +6,8 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
       ...CurrentUser
     }
 
-    ... on UpdateProfileFailure {
-      validationErrors {
+    ... on ValidationErrors {
+      errors {
         path
         message
       }

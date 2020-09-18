@@ -19,6 +19,7 @@ type RegistrationSuccess {
   currentUser: CurrentUser!
 }
 
+# TODO: Dry it ;)
 type RegistrationFailure {
   validationErrors: [ValidationError!]!
 }
@@ -31,11 +32,7 @@ input UpdateProfileInput {
   info: String!
 }
 
-type UpdateProfileFailure {
-  validationErrors: [ValidationError!]!
-}
-
-union UpdateProfileResult = CurrentUser | UpdateProfileFailure
+union UpdateProfileResult = CurrentUser | ValidationErrors
 
 extend type Query {
   """

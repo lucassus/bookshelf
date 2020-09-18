@@ -29,10 +29,7 @@ input UpdateProfileInput {
   email: String!
   info: String!
 }
-type UpdateProfileFailure {
-  validationErrors: [ValidationError!]!
-}
-union UpdateProfileResult = CurrentUser | UpdateProfileFailure
+union UpdateProfileResult = CurrentUser | ValidationErrors
 type Query {
   """
   Returns the currently logged in user or null if not logged in.
@@ -155,6 +152,9 @@ type ResourceNotFoundError implements Error {
 type ValidationError implements Error {
   path: String!
   message: String!
+}
+type ValidationErrors {
+  errors: [ValidationError!]!
 }
 interface MutationResponse {
   """

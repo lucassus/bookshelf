@@ -33,6 +33,10 @@ type ValidationError implements Error {
   message: String!
 }
 
+type ValidationErrors {
+  errors: [ValidationError!]!
+}
+
 # TODO: This interface is deprecated, use unions for more typesafe errors handling
 interface MutationResponse {
   "A boolean that indicates whether the mutation was successful."

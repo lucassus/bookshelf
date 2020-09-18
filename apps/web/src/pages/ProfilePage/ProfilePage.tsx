@@ -44,8 +44,8 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
         authorize(result);
       }
 
-      if (result.__typename === "UpdateProfileFailure") {
-        setErrors(normalizeValidationErrors(result.validationErrors));
+      if (result.__typename === "ValidationErrors") {
+        setErrors(normalizeValidationErrors(result.errors));
         setSubmitting(false);
       }
     } catch {
