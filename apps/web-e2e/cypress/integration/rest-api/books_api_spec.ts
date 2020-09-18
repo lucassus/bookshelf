@@ -11,7 +11,7 @@ describe("/api/books", () => {
     cy.get("@books")
       .its("body")
       .should((books) => {
-        expect(books).to.have.length(20);
+        expect(books).to.have.length(24);
         books.forEach((book: any) => {
           expect(book).to.have.all.keys("id", "title", "description", "author");
         });
