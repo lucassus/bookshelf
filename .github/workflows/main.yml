@@ -15,6 +15,9 @@ jobs:
     - name: Install packages
       run: yarn install
 
+    - name: GraphQL Validate
+      run: yarn graphql validate
+
     - name: GraphQL Code Generation
       run: yarn graphql codegen
 
@@ -37,3 +40,6 @@ jobs:
 
     - name: Build storybbok
       run: yarn workspace @bookshelf/web storybook:build
+
+    - name: GraphQL Diff
+      run: yarn graphql diff
