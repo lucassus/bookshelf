@@ -1,5 +1,6 @@
 import { gql } from "apollo-server-express";
 
+import { toExternalId } from "../../../common/secureId";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
 
@@ -9,12 +10,11 @@ describe("updateProfile mutation", () => {
       updateProfile(input: $input) {
         __typename
 
-        ... on UpdateProfileSuccess {
-          currentUser {
-            name
-            email
-            info
-          }
+        ... on CurrentUser {
+          id
+          name
+          email
+          info
         }
 
         ... on UpdateProfileFailure {
@@ -47,12 +47,11 @@ describe("updateProfile mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       updateProfile: {
-        __typename: "UpdateProfileSuccess",
-        currentUser: {
-          name: "Anna",
-          email: "anna@example.com",
-          info: "Foo bar"
-        }
+        __typename: "CurrentUser",
+        id: toExternalId(currentUser),
+        name: "Anna",
+        email: "anna@example.com",
+        info: "Foo bar"
       }
     });
   });

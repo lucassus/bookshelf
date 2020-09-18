@@ -29,13 +29,10 @@ input UpdateProfileInput {
   email: String!
   info: String!
 }
-type UpdateProfileSuccess {
-  currentUser: CurrentUser!
-}
 type UpdateProfileFailure {
   validationErrors: [ValidationError!]!
 }
-union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
+union UpdateProfileResult = CurrentUser | UpdateProfileFailure
 type Query {
   """
   Returns the currently logged in user or null if not logged in.

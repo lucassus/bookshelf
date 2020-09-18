@@ -52,10 +52,7 @@ const resolvers: Resolvers<Context> = {
         const updatedCurrentUser = await service.update(currentUser!, input);
         sendAuthCookie(res, updatedCurrentUser);
 
-        return {
-          __typename: "UpdateProfileSuccess",
-          currentUser: updatedCurrentUser
-        };
+        return Object.assign(updatedCurrentUser, { __typename: "CurrentUser" });
       }
 
       return {

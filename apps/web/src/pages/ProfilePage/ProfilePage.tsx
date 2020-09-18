@@ -40,8 +40,8 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
       const { data } = await updateProfile({ variables: { input: values } });
       const result = data!.updateProfile;
 
-      if (result.__typename === "UpdateProfileSuccess") {
-        authorize(result.currentUser);
+      if (result.__typename === "CurrentUser") {
+        authorize(result);
       }
 
       if (result.__typename === "UpdateProfileFailure") {

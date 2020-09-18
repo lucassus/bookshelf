@@ -31,15 +31,11 @@ input UpdateProfileInput {
   info: String!
 }
 
-type UpdateProfileSuccess {
-  currentUser: CurrentUser!
-}
-
 type UpdateProfileFailure {
   validationErrors: [ValidationError!]!
 }
 
-union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
+union UpdateProfileResult = CurrentUser | UpdateProfileFailure
 
 extend type Query {
   """
