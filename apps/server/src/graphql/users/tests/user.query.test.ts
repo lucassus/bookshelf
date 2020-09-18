@@ -28,7 +28,6 @@ describe("user query", () => {
                   image {
                     url
                   }
-                  flagged
                 }
               }
               ownedBookCopies {
@@ -65,9 +64,7 @@ describe("user query", () => {
         id: toExternalId(user),
         name: user.name,
         info: user.info,
-        avatar: {
-          flagged: false
-        },
+        avatar: { color: expect.any(String) },
         ownedBookCopies: expect.any(Array),
         borrowedBookCopies: expect.any(Array)
       }

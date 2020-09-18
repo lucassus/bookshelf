@@ -12,6 +12,11 @@ jobs:
       with:
         node-version: 14.6.0
 
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
     - name: Install packages
       run: yarn install
 
@@ -30,14 +35,23 @@ jobs:
       with:
         node-version: 14.6.0
 
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
     - name: Install packages
       run: yarn install
 
-    - name: Type Check
-      run: yarn typecheck
+    - name: GraphQL Code Generation
+      run: yarn graphql codegen
 
     - name: Lint
       run: yarn lint
+
+    # TODO: A workaround, remove `yarn build` from this step
+    - name: Type Check
+      run: yarn build && yarn typecheck
 
   test:
     runs-on: ubuntu-latest
@@ -47,6 +61,11 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 14.6.0
+
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install packages
       run: yarn install
@@ -73,6 +92,11 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 14.6.0
+
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install packages
       run: yarn install
