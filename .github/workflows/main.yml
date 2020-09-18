@@ -2,11 +2,10 @@ name: CI
 
 on: [push]
 
-jobs:
-  graphql-diff:
-    runs-on: ubuntu-latest
+defaults: &defaults
+  runs-on: ubuntu-latest
 
-    steps:
+  steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
@@ -14,24 +13,19 @@ jobs:
 
     - name: Install packages
       run: yarn install
+
+jobs:
+  graphql:
+    <<: *defaults
+
+    - name: GraphQL Validate
+      run: yarn graphql validate
 
     - name: GraphQL Diff
       run: yarn graphql diff
 
   build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.6.0
-
-    - name: Install packages
-      run: yarn install
-
-    - name: GraphQL Validate
-      run: yarn graphql validate
+    <<: *defaults
 
     - name: GraphQL Code Generation
       run: yarn graphql codegen
