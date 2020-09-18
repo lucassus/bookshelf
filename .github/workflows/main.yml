@@ -50,10 +50,6 @@ jobs:
     - name: Lint
       run: yarn lint
 
-    # TODO: A workaround, remove `yarn build` from this step
-    - name: Type Check
-      run: yarn build && yarn typecheck
-
   test:
     runs-on: ubuntu-latest
 
