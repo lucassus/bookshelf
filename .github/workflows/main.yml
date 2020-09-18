@@ -24,6 +24,9 @@ jobs:
     - name: GraphQL Validate
       run: yarn graphql validate
 
+    - name: GraphQL Similar
+      run: yarn graphql similar
+
     - name: GraphQL Diff
       run: yarn graphql diff
 

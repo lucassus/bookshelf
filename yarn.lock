@@ -2139,6 +2139,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-cli/similar@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-cli/similar@npm:2.1.0"
+  dependencies:
+    "@graphql-cli/common": 4.0.0
+    "@graphql-cli/loaders": 4.0.0
+    "@graphql-inspector/similar-command": 2.1.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 505657c9a4995789bfaa9a4ddadff8f755b230cd5c4919a8c07f80176d6d98b909fcba16f653763c77b78b7d13f3d80b838af85dc1d5bdf728d630bcc18e5ac5
+  languageName: node
+  linkType: hard
+
 "@graphql-cli/validate@npm:2.1.0":
   version: 2.1.0
   resolution: "@graphql-cli/validate@npm:2.1.0"
@@ -2466,6 +2480,20 @@ __metadata:
     std-env: 2.2.1
     tslib: ^2.0.0
   checksum: 235477ff3418d3c7249df87970a95ab78eeba48669e13027194fdfc9f52ddd80b97642e5dd7a8ee85d5eaa810d952bdeed7d57ec8196f48ae72a2e9eb4f02d60
+  languageName: node
+  linkType: hard
+
+"@graphql-inspector/similar-command@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/similar-command@npm:2.1.0"
+  dependencies:
+    "@graphql-inspector/commands": 2.1.0
+    "@graphql-inspector/core": 2.1.0
+    "@graphql-inspector/logger": 2.1.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: e3a1260c7a439fef151bfa5d276be748ad5688fa761e26abddb83e61d79f9c0eebae6f3591d9e61eeb819e48e9eac9810564e5f8dfa91e62cddec946243415c6
   languageName: node
   linkType: hard
 
@@ -7266,6 +7294,7 @@ __metadata:
     "@graphql-cli/codegen": 1.17.8
     "@graphql-cli/coverage": 2.1.0
     "@graphql-cli/diff": 2.1.0
+    "@graphql-cli/similar": 2.1.0
     "@graphql-cli/validate": 2.1.0
     "@graphql-codegen/cli": 1.17.8
     "@graphql-codegen/fragment-matcher": 1.17.8
