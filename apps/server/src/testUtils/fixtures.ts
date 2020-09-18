@@ -399,8 +399,9 @@ async function loadUsers() {
 async function loadBookCopies() {
   const { manager } = getConnection();
 
-  const userBob = await manager.findOneOrFail(User, { name: "Bob" });
   const userAlice = await manager.findOneOrFail(User, { name: "Alice" });
+  const userBob = await manager.findOneOrFail(User, { name: "Bob" });
+  const userDan = await manager.findOneOrFail(User, { name: "Dan" });
 
   let book = await manager.findOneOrFail(Book, { title: "Blood of Elves" });
   const borrower = await manager.findOneOrFail(User, { name: "Alice" });
@@ -415,6 +416,27 @@ async function loadBookCopies() {
     title: "The tower of the swallow"
   });
   await createBookCopy({ owner: userAlice, book, borrower: userBob });
+
+  book = await manager.findOneOrFail(Book, { title: "Dune" });
+  await createBookCopy({ owner: userAlice, book });
+  await createBookCopy({ owner: userBob, book });
+  await createBookCopy({ owner: userDan, book });
+
+  book = await manager.findOneOrFail(Book, { title: "Dune Messiah" });
+  await createBookCopy({ owner: userAlice, book });
+  await createBookCopy({ owner: userDan, book });
+
+  book = await manager.findOneOrFail(Book, { title: "Children of Dune" });
+  await createBookCopy({ owner: userDan, book });
+
+  book = await manager.findOneOrFail(Book, { title: "God Emperor of Dune" });
+  await createBookCopy({ owner: userDan, book });
+
+  const author = await manager.findOneOrFail(Author, { name: "J. K. Rowling" });
+  const harryPotterBooks = await manager.find(Book, { authorId: author.id });
+  for (book of harryPotterBooks) {
+    await createBookCopy({ owner: userAlice, book });
+  }
 }
 
 export const loadFixtures = async (): Promise<void> => {
