@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
+import { Book } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createAuthor,
@@ -15,7 +16,6 @@ describe("book query", () => {
     const book = await createBook();
 
     // When
-    const id = secureId.toExternal(book.id, "Book");
     const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
@@ -30,7 +30,7 @@ describe("book query", () => {
           }
         }
       `,
-      variables: { id }
+      variables: { id: toExternalId(book) }
     });
 
     // Then
@@ -38,7 +38,7 @@ describe("book query", () => {
     expect(res.data).not.toBe(null);
     expect(res.data).toEqual({
       book: {
-        id,
+        id: toExternalId(book),
         title: book.title,
         description: book.description,
         createdAt: book.createdAt.toISOString(),
@@ -67,8 +67,6 @@ describe("book query", () => {
     await createBookCopy({ book });
 
     // When
-    const id = secureId.toExternal(book.id, "Book");
-
     const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
@@ -116,7 +114,7 @@ describe("book query", () => {
           }
         }
       `,
-      variables: { id }
+      variables: { id: toExternalId(book) }
     });
 
     // Then
@@ -124,7 +122,7 @@ describe("book query", () => {
     expect(res.data).not.toBeNull();
     expect(res.data).toMatchObject({
       book: {
-        id,
+        id: toExternalId(book),
         title: book.title,
         description: book.description,
         author: {
@@ -160,6 +158,10 @@ describe("book query", () => {
   });
 
   it("responds with error when book cannot be found", async () => {
+    // Given
+    const book = new Book();
+    book.id = 1234;
+
     // When
     const res = await createTestClient().query({
       query: gql`
@@ -171,7 +173,7 @@ describe("book query", () => {
           }
         }
       `,
-      variables: { id: secureId.toExternal(200, "Book") }
+      variables: { id: toExternalId(book) }
     });
 
     // Then

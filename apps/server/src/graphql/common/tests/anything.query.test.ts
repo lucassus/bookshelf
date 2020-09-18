@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createAuthor,
@@ -65,7 +65,7 @@ describe("anything query", () => {
     // When
     const res = await createTestClient().query({
       query: GetAnythingQuery,
-      variables: { id: secureId.toExternal(author.id, "Author") }
+      variables: { id: toExternalId(author) }
     });
 
     // Then
@@ -80,7 +80,7 @@ describe("anything query", () => {
     // When
     const res = await createTestClient().query({
       query: GetAnythingQuery,
-      variables: { id: secureId.toExternal(book.id, "Book") }
+      variables: { id: toExternalId(book) }
     });
 
     // Then
@@ -95,7 +95,7 @@ describe("anything query", () => {
     // When
     const res = await createTestClient().query({
       query: GetAnythingQuery,
-      variables: { id: secureId.toExternal(user.id, "User") }
+      variables: { id: toExternalId(user) }
     });
 
     // Then
@@ -111,7 +111,7 @@ describe("anything query", () => {
     // When
     const res = await createTestClient().query({
       query: GetAnythingQuery,
-      variables: { id: secureId.toExternal(bookCopy.id, "BookCopy") }
+      variables: { id: toExternalId(bookCopy) }
     });
 
     // Then
@@ -161,9 +161,9 @@ it("fetches with aliases", async () => {
       }
     `,
     variables: {
-      bookId: secureId.toExternal(book.id, "Book"),
-      authorId: secureId.toExternal(author.id, "Author"),
-      userId: secureId.toExternal(user.id, "User")
+      bookId: toExternalId(book),
+      authorId: toExternalId(author),
+      userId: toExternalId(user)
     }
   });
 

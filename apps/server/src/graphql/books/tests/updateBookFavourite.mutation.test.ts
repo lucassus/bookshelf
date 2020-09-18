@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
 import { Book } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBook } from "../../../testUtils/factories";
@@ -14,8 +14,6 @@ test("updateBookFavourite mutation", async () => {
   });
 
   // When
-  const id = secureId.toExternal(book.id, "Book");
-
   const res = await createTestClient().mutate({
     mutation: gql`
       mutation($id: ExternalID!, $favourite: Boolean!) {
@@ -30,7 +28,7 @@ test("updateBookFavourite mutation", async () => {
         }
       }
     `,
-    variables: { id, favourite: true }
+    variables: { id: toExternalId(book), favourite: true }
   });
 
   // Then
@@ -43,7 +41,7 @@ test("updateBookFavourite mutation", async () => {
       success: true,
       message: "Book was added to favourites.",
       book: {
-        id,
+        id: toExternalId(book),
         title: updatedBook.title,
         favourite: updatedBook.favourite
       }

@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
+import { User } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBookCopy, createUser } from "../../../testUtils/factories";
 
@@ -13,7 +14,6 @@ describe("user query", () => {
     await createBookCopy({ borrower: user });
 
     // When
-    const id = secureId.toExternal(user.id, "User");
     const res = await createTestClient().query({
       query: gql`
         query($id: ExternalID!) {
@@ -55,14 +55,14 @@ describe("user query", () => {
           }
         }
       `,
-      variables: { id }
+      variables: { id: toExternalId(user) }
     });
 
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       user: {
-        id,
+        id: toExternalId(user),
         name: user.name,
         info: user.info,
         avatar: {
@@ -94,7 +94,7 @@ describe("user query", () => {
           }
         }
       `,
-      variables: { id: secureId.toExternal(user.id, "User") }
+      variables: { id: toExternalId(user) }
     });
 
     // Then
@@ -110,6 +110,10 @@ describe("user query", () => {
   });
 
   it("responds with error when user cannot be found", async () => {
+    // Given
+    const user = new User();
+    user.id = 1234;
+
     // When
     const res = await createTestClient().query({
       query: gql`
@@ -121,7 +125,7 @@ describe("user query", () => {
           }
         }
       `,
-      variables: { id: secureId.toExternal(1, "User") }
+      variables: { id: toExternalId(user) }
     });
 
     // Then

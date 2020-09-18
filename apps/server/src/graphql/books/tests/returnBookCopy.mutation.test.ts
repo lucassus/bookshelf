@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 import { getManager } from "typeorm";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
 import { BookCopy } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import {
@@ -19,8 +19,6 @@ test("returnBookCopy mutation", async () => {
   let bookCopy = await createBookCopy({ book, owner, borrower: currentUser });
 
   // When
-  const id = secureId.toExternal(bookCopy.id, "BookCopy");
-
   const res = await createTestClient({ currentUser }).mutate({
     mutation: gql`
       mutation($id: ExternalID!) {
@@ -45,7 +43,7 @@ test("returnBookCopy mutation", async () => {
         }
       }
     `,
-    variables: { id }
+    variables: { id: toExternalId(bookCopy) }
   });
 
   // Then
@@ -59,7 +57,7 @@ test("returnBookCopy mutation", async () => {
       success: true,
       message: "Book was successfully returned.",
       bookCopy: {
-        id,
+        id: toExternalId(bookCopy),
         book: {
           id: expect.any(String),
           title: book.title

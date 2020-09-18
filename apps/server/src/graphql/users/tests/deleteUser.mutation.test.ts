@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
 import { User } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
@@ -30,7 +30,7 @@ describe("deleteUser mutation", () => {
     // When
     const res = await createTestClient({ currentUser }).mutate({
       mutation: DeleteUserMutation,
-      variables: { id: secureId.toExternal(user.id, "User") }
+      variables: { id: toExternalId(user) }
     });
 
     // Then
@@ -55,7 +55,7 @@ describe("deleteUser mutation", () => {
     // When
     const res = await createTestClient({ currentUser }).mutate({
       mutation: DeleteUserMutation,
-      variables: { id: secureId.toExternal(user.id, "User") }
+      variables: { id: toExternalId(user) }
     });
 
     // Then
@@ -70,7 +70,7 @@ describe("deleteUser mutation", () => {
     // When
     const res = await createTestClient().mutate({
       mutation: DeleteUserMutation,
-      variables: { id: secureId.toExternal(user.id, "User") }
+      variables: { id: toExternalId(user) }
     });
 
     // Then

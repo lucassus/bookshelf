@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
 
-import { secureId } from "../../../common/secureId";
+import { toExternalId } from "../../../common/secureId";
+import { Author } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createAuthor } from "../../../testUtils/factories";
 
@@ -37,17 +38,16 @@ describe("author query", () => {
     });
 
     // When
-    const id = secureId.toExternal(author.id, "Author");
     const res = await createTestClient().query({
       query: GetAuthorQuery,
-      variables: { id }
+      variables: { id: toExternalId(author) }
     });
 
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       author: {
-        id,
+        id: toExternalId(author),
         bio: author.bio,
         name: author.name,
         createdAt: "2019-12-31T14:30:00.000Z",
@@ -58,9 +58,12 @@ describe("author query", () => {
 
   it("responds with error when author cannot be found", async () => {
     // When
+    const author = new Author();
+    author.id = 1234;
+
     const res = await createTestClient().query({
       query: GetAuthorQuery,
-      variables: { id: secureId.toExternal(1, "Author") }
+      variables: { id: toExternalId(author) }
     });
 
     // Then
