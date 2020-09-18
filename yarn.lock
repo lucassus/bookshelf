@@ -1585,8 +1585,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@bookshelf/secure-id@workspace:libs/secure-id"
   dependencies:
-    "@types/jest": 26.0.13
-    "@types/node": 14.10.2
+    "@types/jest": 26.0.14
+    "@types/node": 14.11.1
     "@types/rimraf": ^3.0.0
     "@typescript-eslint/eslint-plugin": 4.1.1
     eslint: 7.9.0
@@ -1621,7 +1621,7 @@ __metadata:
     "@types/cookie-parser": 1.4.2
     "@types/express": 4.17.8
     "@types/faker": 5.1.0
-    "@types/jest": 26.0.13
+    "@types/jest": 26.0.14
     "@types/jsonwebtoken": 8.5.0
     "@types/lodash.merge": 4.6.6
     "@types/rimraf": 3.0.0
@@ -1668,7 +1668,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@bookshelf/string-utils@workspace:libs/string-utils"
   dependencies:
-    "@types/jest": 26.0.13
+    "@types/jest": 26.0.14
     "@typescript-eslint/eslint-plugin": 4.1.1
     eslint: 7.9.0
     eslint-config-airbnb-typescript: 10.0.0
@@ -1715,7 +1715,7 @@ __metadata:
     "@testing-library/react": 11.0.4
     "@testing-library/user-event": 12.1.5
     "@types/graphql": 14.5.0
-    "@types/jest": 26.0.13
+    "@types/jest": 26.0.14
     "@types/react": 16.9.49
     "@types/react-dom": 16.9.8
     "@types/react-icons": 3.0.0
@@ -1753,14 +1753,14 @@ __metadata:
     react-router: 6.0.0-alpha.5
     react-router-dom: 6.0.0-alpha.5
     rimraf: 3.0.2
-    sass: 1.26.10
+    sass: 1.26.11
     sass-loader: 10.0.2
     style-loader: 1.2.1
     ts-jest: 26.3.0
     ts-loader: 8.0.3
     typeface-roboto: 0.0.75
     typescript: 4.0.2
-    webpack: 4.44.1
+    webpack: 4.44.2
     webpack-cli: 3.3.12
     webpack-dev-server: 3.11.0
     yup: 0.29.3
@@ -4360,13 +4360,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:*, @types/jest@npm:26.0.13, @types/jest@npm:26.x":
+"@types/jest@npm:*, @types/jest@npm:26.x":
   version: 26.0.13
   resolution: "@types/jest@npm:26.0.13"
   dependencies:
     jest-diff: ^25.2.1
     pretty-format: ^25.2.1
   checksum: 5476d59a99d1552d3ef99179d9ab8a59b24434c1990fda0836b8e6899a6a5fe898b62c0f0b8c9d3308b5c652cb95fca0b3b404028379b306f123a1e872413498
+  languageName: node
+  linkType: hard
+
+"@types/jest@npm:26.0.14":
+  version: 26.0.14
+  resolution: "@types/jest@npm:26.0.14"
+  dependencies:
+    jest-diff: ^25.2.1
+    pretty-format: ^25.2.1
+  checksum: bddbe82d12217c5217efabcad09e4fbe2c5eaecf9392da9b0edbe4c3d9fb240b3fab914f88c5f3708f6d5046640a2782458944873eae4ac01abcb17d32d3c78f
   languageName: node
   linkType: hard
 
@@ -4521,10 +4531,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:14.10.2":
-  version: 14.10.2
-  resolution: "@types/node@npm:14.10.2"
-  checksum: e3056686911078de7bbc3faf2f97cbdb9dffda9fe8f646aff6336f73fee7a64ad5f41d757c7c577b5e8d1bdc5e1ab7e9c3de610eb78c1d8d73dd797c93eef23d
+"@types/node@npm:14.11.1":
+  version: 14.11.1
+  resolution: "@types/node@npm:14.11.1"
+  checksum: f8bad278fcd5bdd3c173343967806a5601838570ee89ef96912909489df6d722ef7f4de08a31d98159293ef0005bd65353199327c65af77505d3aad2a05fd636
   languageName: node
   linkType: hard
 
@@ -18260,14 +18270,14 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"sass@npm:1.26.10":
-  version: 1.26.10
-  resolution: "sass@npm:1.26.10"
+"sass@npm:1.26.11":
+  version: 1.26.11
+  resolution: "sass@npm:1.26.11"
   dependencies:
     chokidar: ">=2.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: 001da3a0fa57087f92fc48f7fa9a0f832d6c0ac8a4377df485a555c9db4749bba3fe3da8e46eb015439cb4d40bc1add1f704523914152f5a18f2358bd58f51d9
+  checksum: edcc6127cdf8cc3640dc25f10e641daf5edf0ae853edaf87f948fbdf450743b500521cac77d7952cab87e0cba7b09c71912febde6974f821a1bc0f4905332a4a
   languageName: node
   linkType: hard
 
@@ -21001,7 +21011,45 @@ typescript@4.0.2:
   languageName: node
   linkType: hard
 
-"webpack@npm:4.44.1, webpack@npm:^4.43.0":
+"webpack@npm:4.44.2":
+  version: 4.44.2
+  resolution: "webpack@npm:4.44.2"
+  dependencies:
+    "@webassemblyjs/ast": 1.9.0
+    "@webassemblyjs/helper-module-context": 1.9.0
+    "@webassemblyjs/wasm-edit": 1.9.0
+    "@webassemblyjs/wasm-parser": 1.9.0
+    acorn: ^6.4.1
+    ajv: ^6.10.2
+    ajv-keywords: ^3.4.1
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^4.3.0
+    eslint-scope: ^4.0.3
+    json-parse-better-errors: ^1.0.2
+    loader-runner: ^2.4.0
+    loader-utils: ^1.2.3
+    memory-fs: ^0.4.1
+    micromatch: ^3.1.10
+    mkdirp: ^0.5.3
+    neo-async: ^2.6.1
+    node-libs-browser: ^2.2.1
+    schema-utils: ^1.0.0
+    tapable: ^1.1.3
+    terser-webpack-plugin: ^1.4.3
+    watchpack: ^1.7.4
+    webpack-sources: ^1.4.1
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+    webpack-command:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: cb4a9051d64df00494d18afd379d26669b96309f3f41e89e55b8531d99d67060bf8b262a996dbcdc2cda99adfb6c1c2bd9966630d329b09f9f9aa9fc732a3259
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^4.43.0":
   version: 4.44.1
   resolution: "webpack@npm:4.44.1"
   dependencies:
