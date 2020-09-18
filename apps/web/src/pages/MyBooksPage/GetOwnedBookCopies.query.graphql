@@ -1,7 +1,0 @@
-query GetOwnedBookCopies {
-  currentUser {
-    ownedBookCopies {
-      ...BookCopy
-    }
-  }
-}
