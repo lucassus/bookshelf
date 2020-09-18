@@ -44,10 +44,7 @@
   "scripts": {
     "clean:codegen": "rimraf graphql.schema.json apps/**/*.generated.{ts,tsx,graphlq}",
     "clean": "yarn clean:codegen && yarn workspaces foreach --verbose run clean",
-    "graphql:coverage": "yarn graphql coverage",
-    "graphql:validate": "yarn graphql validate",
-    "graphql:codegen": "yarn graphql codegen",
-    "build": "yarn graphql:codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
+    "build": "yarn graphql codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
     "typecheck": "yarn workspaces foreach --verbose run typecheck",
     "lint": "yarn workspaces foreach --verbose run lint",
     "test": "yarn jest",

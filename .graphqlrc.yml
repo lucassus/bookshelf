@@ -59,5 +59,3 @@ extensions:
       apps/web/src/types.generated.ts:
         plugins:
           - typescript
-  diff:
-    baseSchema: your-base-schema-here
