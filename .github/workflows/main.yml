@@ -15,8 +15,8 @@ jobs:
     - name: Install packages
       run: yarn install
 
-    - name: Generate GrapQL web components
-      run: yarn codegen
+    - name: GraphQL Code Generation
+      run: yarn graphql codegen
 
     - name: Build
       run: yarn build

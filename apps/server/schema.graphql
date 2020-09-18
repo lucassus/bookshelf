@@ -1,0 +1,233 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+type CurrentUser implements Resource & Timestampable & Person {
+  id: ExternalID!
+  name: String!
+  email: String!
+  isAdmin: Boolean!
+  info: String!
+  avatar: AvatarResult!
+  createdAt: String!
+  updatedAt: String!
+}
+input RegistrationInput {
+  name: String!
+  email: String!
+  password: String!
+}
+type RegistrationSuccess {
+  currentUser: CurrentUser!
+}
+type RegistrationFailure {
+  validationErrors: [ValidationError!]!
+}
+union RegistrationResult = RegistrationSuccess | RegistrationFailure
+input UpdateProfileInput {
+  name: String!
+  email: String!
+  info: String!
+}
+type UpdateProfileSuccess {
+  currentUser: CurrentUser!
+}
+type UpdateProfileFailure {
+  validationErrors: [ValidationError!]!
+}
+union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
+type Query {
+  """
+  Returns the currently logged in user or null if not logged in.
+  """
+  currentUser: CurrentUser
+  authors: [Author!]!
+  author(id: ExternalID!): AuthorResponse!
+  booksCount: Int!
+  books(offset: Int = 0, limit: Int = 9): [Book!]!
+  book(id: ExternalID!): BookResult!
+  randomBook: Book
+  resource(id: ID!): Resource!
+  anything(id: ID!): Anything!
+    @deprecated(reason: "No longer supported. Use 'resources' instead")
+  users: [User!]!
+  user(id: ExternalID!): UserResult!
+}
+type Mutation {
+  register(input: RegistrationInput!): RegistrationResult!
+  updateProfile(input: UpdateProfileInput!): UpdateProfileResult!
+    @requireAuthorization
+  """
+  Authenticates a user with the given credentials.
+  """
+  login(input: LoginInput!): LoginResult!
+  logout: LogoutResult!
+  updateBookFavourite(
+    id: ExternalID!
+    favourite: Boolean!
+  ): UpdateBookFavouriteResult!
+  borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
+  returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
+  createUser(input: CreateUserInput!): CreateUserResult!
+    @requireAuthorization(role: Admin)
+  updateUser(input: UpdateUserInput!): UpdateUserResult!
+    @requireAuthorization(role: Admin)
+  deleteUser(id: ExternalID!): DeleteUserResult!
+    @requireAuthorization(role: Admin)
+}
+enum Role {
+  Admin
+  User
+}
+input LoginInput {
+  email: String!
+  password: String!
+}
+type LoginSuccess {
+  currentUser: CurrentUser!
+}
+type LoginFailure {
+  validationErrors: [ValidationError!]!
+}
+union LoginResult = LoginSuccess | LoginFailure
+type LogoutResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+}
+type Author implements Resource & Timestampable {
+  id: ExternalID!
+  name: String!
+  bio: String
+  photo: Image!
+  createdAt: String!
+  updatedAt: String!
+  books: [Book!]!
+}
+type Book implements Resource & Timestampable {
+  author: Author!
+  id: ExternalID!
+  title: String!
+  description: String
+  cover: Image!
+  favourite: Boolean!
+  copies: [BookCopy!]!
+  createdAt: String!
+  updatedAt: String!
+}
+union AuthorResponse = Author | ResourceNotFoundError
+type BookCopy implements Resource {
+  id: ExternalID!
+  book: Book!
+  owner: User!
+  borrower: User
+}
+type User implements Resource & Timestampable & Person {
+  ownedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]!
+  id: ExternalID!
+  name: String!
+  info: String
+  email: String! @requireAuthorization(role: Admin)
+  isAdmin: Boolean! @requireAuthorization(role: Admin)
+  avatar: AvatarResult!
+  createdAt: String!
+  updatedAt: String!
+}
+type UpdateBookFavouriteResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+  book: Book!
+}
+type BorrowBookCopyResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+  bookCopy: BookCopy
+}
+type ReturnBookCopyResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+  bookCopy: BookCopy
+}
+union BookResult = Book | ResourceNotFoundError
+scalar ExternalID
+interface Resource {
+  id: ExternalID!
+}
+union Anything = Author | Book | User | BookCopy
+interface Timestampable {
+  createdAt: String!
+  updatedAt: String!
+}
+type Image {
+  path: String!
+  url: String!
+}
+interface Error {
+  message: String!
+}
+type ResourceNotFoundError implements Error {
+  message: String!
+}
+type ValidationError implements Error {
+  path: String!
+  message: String!
+}
+interface MutationResponse {
+  """
+  A boolean that indicates whether the mutation was successful.
+  """
+  success: Boolean!
+  """
+  Human-readable string that describes the result of the mutation
+  """
+  message: String!
+}
+interface Person {
+  name: String!
+  email: String!
+  info: String
+  isAdmin: Boolean!
+  avatar: AvatarResult!
+}
+type Avatar {
+  image: Image!
+  color: String!
+  flagged: Boolean!
+}
+type FlaggedAvatarError implements Error {
+  message: String!
+}
+union AvatarResult = Avatar | FlaggedAvatarError
+input AvatarInput {
+  imagePath: String!
+  color: String!
+}
+input CreateUserInput {
+  name: String!
+  info: String!
+  email: String!
+  password: String!
+  avatar: AvatarInput!
+}
+input UpdateUserInput {
+  id: ExternalID!
+  name: String!
+  email: String!
+  info: String!
+}
+type CreateUserResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+  user: User
+}
+type UpdateUserResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+  user: User
+}
+type DeleteUserResult implements MutationResponse {
+  success: Boolean!
+  message: String!
+}
+union UserResult = User | ResourceNotFoundError
+directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION

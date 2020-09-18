@@ -1,0 +1,64 @@
+schema: apps/server/src/graphql/**/*.graphql
+
+documents: apps/web/src/**/*.graphql
+
+extensions:
+  diff:
+    baseSchema: git:origin/master:apps/server/schema.graphql
+
+  codegen:
+    hooks:
+      afterAllFileWrite:
+        - prettier --write
+
+    overwrite: true
+
+    generates:
+      apps/fake-server/src/schema.json:
+        plugins:
+          - introspection
+
+      apps/server/schema.graphql:
+        config:
+          includeDirectives: true
+        plugins:
+          - schema-ast
+
+      apps/server/src/graphql/resolvers-types.generated.ts:
+        config:
+          mappers:
+            Author: ../database/entity#Author
+            Avatar: ../database/entity#Avatar
+            Book: ../database/entity#Book
+            BookCopy: ../database/entity#BookCopy
+            CurrentUser: ../database/entity#User
+            User: ../database/entity#User
+          mapperTypeSuffix: Entity
+          optionalResolveType: true
+          scalars:
+            ExternalID: string
+          showUnusedMappers: true
+        plugins:
+          - typescript
+          - typescript-resolvers
+
+      apps/web/src:
+        config:
+          gqlImport: '@apollo/client#gql'
+        plugins:
+          - typescript-operations
+          - typescript-react-apollo
+        preset: near-operation-file-preset
+        presetConfig:
+          baseTypesPath: types.generated.ts
+          extension: .generated.tsx
+
+      apps/web/src/introspectionResult.generated.ts:
+        config:
+          apolloClientVersion: 3
+        plugins:
+          - fragment-matcher
+
+      apps/web/src/types.generated.ts:
+        plugins:
+          - typescript

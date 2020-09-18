@@ -12,10 +12,15 @@
     "libs/*"
   ],
   "devDependencies": {
+    "@graphql-cli/codegen": "1.17.8",
+    "@graphql-cli/coverage": "2.1.0",
+    "@graphql-cli/diff": "2.1.0",
+    "@graphql-cli/validate": "2.1.0",
     "@graphql-codegen/cli": "1.17.8",
     "@graphql-codegen/fragment-matcher": "1.17.8",
     "@graphql-codegen/introspection": "1.17.8",
     "@graphql-codegen/near-operation-file-preset": "1.17.11",
+    "@graphql-codegen/schema-ast": "1.17.8",
     "@graphql-codegen/typescript": "1.17.9",
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@graphql-codegen/typescript-react-apollo": "2.0.6",
@@ -31,6 +36,7 @@
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-prettier": "3.1.4",
     "graphql": "15.3.0",
+    "graphql-cli": "4.0.0",
     "jest": "26.4.2",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
@@ -39,8 +45,7 @@
   "scripts": {
     "clean:codegen": "rimraf graphql.schema.json apps/**/*.generated.{ts,tsx,graphlq}",
     "clean": "yarn clean:codegen && yarn workspaces foreach --verbose run clean",
-    "codegen": "yarn graphql-codegen --config codegen.yml",
-    "build": "yarn codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
+    "build": "yarn graphql codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
     "typecheck": "yarn workspaces foreach --verbose run typecheck",
     "lint": "yarn workspaces foreach --verbose run lint",
     "test": "yarn jest",
