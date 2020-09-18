@@ -65,23 +65,23 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-    build:
-      runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-      steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.6.0
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.6.0
 
-      - name: Install packages
-        run: yarn install
+    - name: Install packages
+      run: yarn install
 
-      - name: GraphQL Code Generation
-        run: yarn graphql codegen
+    - name: GraphQL Code Generation
+      run: yarn graphql codegen
 
-      - name: Build
-        run: yarn build
+    - name: Build
+      run: yarn build
 
-      - name: Build storybbok
-        run: yarn workspace @bookshelf/web storybook:build
+    - name: Build storybbok
+      run: yarn workspace @bookshelf/web storybook:build
