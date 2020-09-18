@@ -61,7 +61,7 @@ type Mutation {
   Authenticates a user with the given credentials.
   """
   login(input: LoginInput!): LoginResult!
-  logout: LogoutResult!
+  logout: Boolean!
   updateBookFavourite(
     id: ExternalID!
     favourite: Boolean!
@@ -90,10 +90,6 @@ type LoginFailure {
   validationErrors: [ValidationError!]!
 }
 union LoginResult = LoginSuccess | LoginFailure
-type LogoutResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-}
 type Author implements Resource & Timestampable {
   id: ExternalID!
   name: String!

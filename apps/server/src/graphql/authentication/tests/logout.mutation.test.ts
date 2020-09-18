@@ -13,10 +13,7 @@ test("logout mutation", async () => {
   const res = await createTestClient({ res: expressRes }).mutate({
     mutation: gql`
       mutation {
-        logout {
-          success
-          message
-        }
+        logout
       }
     `
   });
@@ -24,10 +21,7 @@ test("logout mutation", async () => {
   // Then
   expect(res.errors).toBe(undefined);
   expect(res.data).toMatchObject({
-    logout: {
-      success: true,
-      message: "Logout success!"
-    }
+    logout: true
   });
 
   expect(expressRes.cookies[AUTH_COOKIE_NAME]).toMatchObject({
