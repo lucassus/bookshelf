@@ -192,7 +192,6 @@ interface Person {
 type Avatar {
   image: Image!
   color: String!
-  flagged: Boolean!
 }
 type FlaggedAvatarError implements Error {
   message: String!

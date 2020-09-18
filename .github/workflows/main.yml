@@ -3,7 +3,31 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  graphql:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.6.0
+
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install packages
+      run: yarn install
+
+    - name: GraphQL Validate
+      run: yarn graphql validate
+
+    - name: GraphQL Diff
+      run: yarn graphql diff
+
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -11,6 +35,34 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 14.6.0
+
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install packages
+      run: yarn install
+
+    - name: GraphQL Code Generation
+      run: yarn graphql codegen
+
+    - name: Lint
+      run: yarn lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.6.0
+
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install packages
       run: yarn install
@@ -21,12 +73,6 @@ jobs:
     - name: Build
       run: yarn build
 
-    - name: Type Check
-      run: yarn typecheck
-
-    - name: Lint
-      run: yarn lint
-
     - name: Test
       run: yarn test --coverage --runInBand
 
@@ -34,6 +80,29 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.6.0
+
+    - uses: actions/cache@v2
+      with:
+        path: "node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install packages
+      run: yarn install
+
+    - name: GraphQL Code Generation
+      run: yarn graphql codegen
+
+    - name: Build
+      run: yarn build
 
     - name: Build storybbok
       run: yarn workspace @bookshelf/web storybook:build

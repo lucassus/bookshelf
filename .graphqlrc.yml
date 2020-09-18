@@ -4,7 +4,7 @@ documents: apps/web/src/**/*.graphql
 
 extensions:
   diff:
-    baseSchema: git:origin/master:apps/server/schema.graphql
+    baseSchema: git:origin/master:apps/server/schema.generated.graphql
 
   codegen:
     hooks:
@@ -14,11 +14,11 @@ extensions:
     overwrite: true
 
     generates:
-      apps/fake-server/src/schema.json:
+      apps/fake-server/src/schema.generated.json:
         plugins:
           - introspection
 
-      apps/server/schema.graphql:
+      apps/server/schema.generated.graphql:
         config:
           includeDirectives: true
         plugins:
