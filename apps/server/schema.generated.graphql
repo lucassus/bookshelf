@@ -133,11 +133,7 @@ type User implements Resource & Timestampable & Person {
   createdAt: String!
   updatedAt: String!
 }
-type UpdateBookFavouriteResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  book: Book!
-}
+union UpdateBookFavouriteResult = Book | MutationError
 union BorrowBookCopyResult = BookCopy | MutationError
 union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError

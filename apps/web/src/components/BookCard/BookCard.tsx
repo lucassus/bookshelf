@@ -24,16 +24,9 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
       optimisticResponse: {
         __typename: "Mutation",
         updateBookFavourite: {
-          __typename: "UpdateBookFavouriteResult",
-          success: true,
-          message: favourite
-            ? "Book was added to favourites."
-            : "Book was removed from favourites.",
-          book: {
-            __typename: "Book",
-            id,
-            favourite
-          }
+          __typename: "Book",
+          id,
+          favourite
         }
       }
     });

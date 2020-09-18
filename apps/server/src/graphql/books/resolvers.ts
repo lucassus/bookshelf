@@ -74,18 +74,11 @@ const resolvers: Resolvers<Context> = {
           .get(BooksService)
           .updateFavourite(book, favourite);
 
-        return {
-          success: true,
-          message: updatedBook.favourite
-            ? "Book was added to favourites."
-            : "Book was removed from favourites.",
-          book: updatedBook
-        };
+        return Object.assign(updatedBook, { __typename: "Book" });
       } catch {
         return {
-          success: false,
-          message: "Something went wrong!",
-          book
+          __typename: "MutationError",
+          message: "Something went wrong!"
         };
       }
     },

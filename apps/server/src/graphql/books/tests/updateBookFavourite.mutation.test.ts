@@ -18,12 +18,16 @@ test("updateBookFavourite mutation", async () => {
     mutation: gql`
       mutation($id: ExternalID!, $favourite: Boolean!) {
         updateBookFavourite(id: $id, favourite: $favourite) {
-          success
-          message
-          book {
+          __typename
+
+          ... on Book {
             id
             title
             favourite
+          }
+
+          ... on MutationError {
+            message
           }
         }
       }
@@ -38,13 +42,10 @@ test("updateBookFavourite mutation", async () => {
   expect(res.errors).toBe(undefined);
   expect(res.data).toMatchObject({
     updateBookFavourite: {
-      success: true,
-      message: "Book was added to favourites.",
-      book: {
-        id: toExternalId(book),
-        title: updatedBook.title,
-        favourite: updatedBook.favourite
-      }
+      __typename: "Book",
+      id: toExternalId(book),
+      title: updatedBook.title,
+      favourite: updatedBook.favourite
     }
   });
 });
