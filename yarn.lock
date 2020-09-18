@@ -2067,6 +2067,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-cli/coverage@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-cli/coverage@npm:2.1.0"
+  dependencies:
+    "@graphql-cli/common": 4.0.0
+    "@graphql-inspector/coverage-command": 2.1.0
+    "@graphql-inspector/graphql-cli-common": 2.1.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 3d6ce66fafed5a0eeba5c81dbe991e055b280e82bab95059de5b2fec1510e2b690797cf2dff0c260df6021b7251b1b1d33b21b917309ac966e3aa989e9529181
+  languageName: node
+  linkType: hard
+
 "@graphql-cli/init@npm:4.0.0":
   version: 4.0.0
   resolution: "@graphql-cli/init@npm:4.0.0"
@@ -2089,6 +2103,37 @@ __metadata:
     tmp: 0.2.1
     tslib: ^2.0.0
   checksum: f5d7fc384ace64d3457edeb7d8393017884eb6ee36ab9cda18a1d805e897045356057535d30504041ffdddd8f8a94a284c9a3c1e3ceb6e4b6f10bf4fbbd15e19
+  languageName: node
+  linkType: hard
+
+"@graphql-cli/loaders@npm:4.0.0":
+  version: 4.0.0
+  resolution: "@graphql-cli/loaders@npm:4.0.0"
+  dependencies:
+    "@graphql-tools/apollo-engine-loader": ^6.0.0
+    "@graphql-tools/code-file-loader": ^6.0.0
+    "@graphql-tools/git-loader": ^6.0.0
+    "@graphql-tools/github-loader": ^6.0.0
+    "@graphql-tools/prisma-loader": ^6.0.0
+    "@graphql-tools/url-loader": ^6.0.0
+    "@graphql-tools/utils": ^6.0.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0
+  checksum: bb67ad2c7e83e3ed5621b5a21cbd89ac93ac916f60649694c11913223a79bb445684b906ba4580ba03006baec42d93cb6f1f9bb15d6ea1d278ae7dc47e312396
+  languageName: node
+  linkType: hard
+
+"@graphql-cli/validate@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-cli/validate@npm:2.1.0"
+  dependencies:
+    "@graphql-cli/common": 4.0.0
+    "@graphql-cli/loaders": 4.0.0
+    "@graphql-inspector/validate-command": 2.1.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 9889da9993271d3f7090990e018cdca3ab21746915fd3fe627a7b947d879746224343136852fff3ba4f2bfd2f3fbf61da3b0b5f78e3eb60e81dcb692d3d9db54
   languageName: node
   linkType: hard
 
@@ -2329,7 +2374,86 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/apollo-engine-loader@npm:^6.0.18":
+"@graphql-inspector/commands@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/commands@npm:2.1.0"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    "@graphql-inspector/config": 2.1.0
+    "@graphql-inspector/loaders": 2.1.0
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+    yargs: 15.3.1
+  checksum: 3480490e9e248173192dcf6bd08495ece83a1fcf73cd6a96cf70ca3ad6312ccb94bfde106d806126f3a292b131a24fe6e0e09d9c5cf79ae074e0c0f5755d4881
+  languageName: node
+  linkType: hard
+
+"@graphql-inspector/core@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/core@npm:2.1.0"
+  dependencies:
+    dependency-graph: 0.9.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 917747f41a4658900c3b4b291e1f1ba98fe1947305b5d937718bc4a9e0d00f79ff3b413bec1180c1d9eaaa8f154b1ddc80520f131887ee13d8ac427791d14afd
+  languageName: node
+  linkType: hard
+
+"@graphql-inspector/coverage-command@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/coverage-command@npm:2.1.0"
+  dependencies:
+    "@graphql-inspector/commands": 2.1.0
+    "@graphql-inspector/core": 2.1.0
+    "@graphql-inspector/logger": 2.1.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: a59805eabe83e76219047a7569e42802312fe457fbe2f5d7763d95d8fdea8600066ce2034e8fdcf43bdef9fe128385daf3be77c805f7a1f40419dfcbe6790f92
+  languageName: node
+  linkType: hard
+
+"@graphql-inspector/graphql-cli-common@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/graphql-cli-common@npm:2.1.0"
+  dependencies:
+    "@graphql-cli/loaders": 4.0.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql-config: ^3.0.0
+  checksum: 697151e8f34fcec5bf7b63039a8fffdf4e92963b843eb6ab6a2c2a77724302547db1cc8fa4c973265a5fbb87bb2327b08b327f2ffb2d7ec58ef67f8af1835bc7
+  languageName: node
+  linkType: hard
+
+"@graphql-inspector/logger@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/logger@npm:2.1.0"
+  dependencies:
+    chalk: 4.0.0
+    figures: 3.2.0
+    log-symbols: 4.0.0
+    std-env: 2.2.1
+    tslib: ^2.0.0
+  checksum: 235477ff3418d3c7249df87970a95ab78eeba48669e13027194fdfc9f52ddd80b97642e5dd7a8ee85d5eaa810d952bdeed7d57ec8196f48ae72a2e9eb4f02d60
+  languageName: node
+  linkType: hard
+
+"@graphql-inspector/validate-command@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@graphql-inspector/validate-command@npm:2.1.0"
+  dependencies:
+    "@graphql-inspector/commands": 2.1.0
+    "@graphql-inspector/core": 2.1.0
+    "@graphql-inspector/logger": 2.1.0
+    tslib: ^2.0.0
+  peerDependencies:
+    graphql: ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 0b3055738f9e16f9c82659e9c1c5cb47ff80842267d6e71fe629d590775b0b8c10df70b5db4613b0d9b5f4772d4c77f5093812c81ec5f46757a167e2e70a1c49
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/apollo-engine-loader@npm:^6.0.0, @graphql-tools/apollo-engine-loader@npm:^6.0.18":
   version: 6.2.1
   resolution: "@graphql-tools/apollo-engine-loader@npm:6.2.1"
   dependencies:
@@ -2342,7 +2466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/code-file-loader@npm:^6.0.18":
+"@graphql-tools/code-file-loader@npm:^6.0.0, @graphql-tools/code-file-loader@npm:^6.0.18":
   version: 6.2.1
   resolution: "@graphql-tools/code-file-loader@npm:6.2.1"
   dependencies:
@@ -2372,7 +2496,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/git-loader@npm:^6.0.18":
+"@graphql-tools/git-loader@npm:^6.0.0, @graphql-tools/git-loader@npm:^6.0.18":
   version: 6.2.1
   resolution: "@graphql-tools/git-loader@npm:6.2.1"
   dependencies:
@@ -2385,7 +2509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/github-loader@npm:^6.0.18":
+"@graphql-tools/github-loader@npm:^6.0.0, @graphql-tools/github-loader@npm:^6.0.18":
   version: 6.2.1
   resolution: "@graphql-tools/github-loader@npm:6.2.1"
   dependencies:
@@ -2576,7 +2700,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/prisma-loader@npm:^6.0.18":
+"@graphql-tools/prisma-loader@npm:^6.0.0, @graphql-tools/prisma-loader@npm:^6.0.18":
   version: 6.2.1
   resolution: "@graphql-tools/prisma-loader@npm:6.2.1"
   dependencies:
@@ -7110,6 +7234,8 @@ __metadata:
   resolution: "bookshelf@workspace:."
   dependencies:
     "@graphql-cli/codegen": 1.17.8
+    "@graphql-cli/coverage": 2.1.0
+    "@graphql-cli/validate": 2.1.0
     "@graphql-codegen/cli": 1.17.8
     "@graphql-codegen/fragment-matcher": 1.17.8
     "@graphql-codegen/introspection": 1.17.8
@@ -7810,6 +7936,13 @@ __metadata:
   dependencies:
     tslib: ^1.9.0
   checksum: 926fe23bc92e35c7fb666711c1dc1f342f289a728eb37d23bc4371df7587fe58152569eb57d657e2377f2e56093513939cab5a5a8f3589743938cc0b61527c02
+  languageName: node
+  linkType: hard
+
+"ci-info@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "ci-info@npm:1.6.0"
+  checksum: c53d8ead84b00b44a26099b9afbe25d07d1cf02a0b2e354f97e4765ab965525d5d831d264b045737ac03076be3c34e87b64dee0d94cfd87cfc227299cb1c0137
   languageName: node
   linkType: hard
 
@@ -9236,7 +9369,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dependency-graph@npm:^0.9.0":
+"dependency-graph@npm:0.9.0, dependency-graph@npm:^0.9.0":
   version: 0.9.0
   resolution: "dependency-graph@npm:0.9.0"
   checksum: bd4be777ce16fd5412db9cf7df3c7a5e76bd2029a79b624db716e130ed7efaf606f3086234fc26fa9f317db4a2760006cb6397d165b14a314f1bb50a1c632e2c
@@ -10870,6 +11003,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"figures@npm:3.2.0, figures@npm:^3.0.0":
+  version: 3.2.0
+  resolution: "figures@npm:3.2.0"
+  dependencies:
+    escape-string-regexp: ^1.0.5
+  checksum: 6c8acb1c17c4d27eeb6ff06801b5ae39a999c4794ec50eacf858a1e32746d92af77a9a907c3e1865e2e6ac7d9f1aa765f0f8a01a16a4676b79b6e90a7cc23f44
+  languageName: node
+  linkType: hard
+
 "figures@npm:^1.7.0":
   version: 1.7.0
   resolution: "figures@npm:1.7.0"
@@ -10886,15 +11028,6 @@ __metadata:
   dependencies:
     escape-string-regexp: ^1.0.5
   checksum: de1145903784bd0b8bca1716426825d0a608fa81f370e0779047ef3f8d4509896f81435093e62a887717aeed0b8c8a92da7953f7f506ca57e62cf95d12b6c65a
-  languageName: node
-  linkType: hard
-
-"figures@npm:^3.0.0":
-  version: 3.2.0
-  resolution: "figures@npm:3.2.0"
-  dependencies:
-    escape-string-regexp: ^1.0.5
-  checksum: 6c8acb1c17c4d27eeb6ff06801b5ae39a999c4794ec50eacf858a1e32746d92af77a9a907c3e1865e2e6ac7d9f1aa765f0f8a01a16a4676b79b6e90a7cc23f44
   languageName: node
   linkType: hard
 
@@ -14889,6 +15022,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"log-symbols@npm:4.0.0, log-symbols@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "log-symbols@npm:4.0.0"
+  dependencies:
+    chalk: ^4.0.0
+  checksum: 2cbdb0427d1853f2bd36645bff42aaca200902284f28aadacb3c0fa4c8c43fe6bfb71b5d61ab08b67063d066d7c55b8bf5fbb43b03e4a150dbcdd643e9cd1dbf
+  languageName: node
+  linkType: hard
+
 "log-symbols@npm:^1.0.2":
   version: 1.0.2
   resolution: "log-symbols@npm:1.0.2"
@@ -14913,15 +15055,6 @@ fsevents@^1.2.7:
   dependencies:
     chalk: ^2.4.2
   checksum: bfa7cceaea16d7e378b4f6a16e22c5c78bc4250350a84d653766927bdf27e5b94015f616e193bc275e80d13f882867ddf224a3c6c152e24289ed5e58d84d306e
-  languageName: node
-  linkType: hard
-
-"log-symbols@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "log-symbols@npm:4.0.0"
-  dependencies:
-    chalk: ^4.0.0
-  checksum: 2cbdb0427d1853f2bd36645bff42aaca200902284f28aadacb3c0fa4c8c43fe6bfb71b5d61ab08b67063d066d7c55b8bf5fbb43b03e4a150dbcdd643e9cd1dbf
   languageName: node
   linkType: hard
 
@@ -20014,6 +20147,15 @@ fsevents@^1.2.7:
   version: 1.5.0
   resolution: "statuses@npm:1.5.0"
   checksum: 57735269bf231176a60deb80f6d60214cb4a87663b0937e79497afe9aebe2597f8377fd28893f4d1776205f18dd0b927774a26b72051411ac5108e9e2dfc77d2
+  languageName: node
+  linkType: hard
+
+"std-env@npm:2.2.1":
+  version: 2.2.1
+  resolution: "std-env@npm:2.2.1"
+  dependencies:
+    ci-info: ^1.6.0
+  checksum: b778cd317198f14e9d4cd6d36a225554ba3498c004c5217874b82f5bd08d5d43bc47bca9b5bcb9386b87844f1f5de4ee588539a25e79ef10be3a4a67093a9f41
   languageName: node
   linkType: hard
 

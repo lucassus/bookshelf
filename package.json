@@ -13,6 +13,8 @@
   ],
   "devDependencies": {
     "@graphql-cli/codegen": "1.17.8",
+    "@graphql-cli/coverage": "2.1.0",
+    "@graphql-cli/validate": "2.1.0",
     "@graphql-codegen/cli": "1.17.8",
     "@graphql-codegen/fragment-matcher": "1.17.8",
     "@graphql-codegen/introspection": "1.17.8",
@@ -42,8 +44,10 @@
   "scripts": {
     "clean:codegen": "rimraf graphql.schema.json apps/**/*.generated.{ts,tsx,graphlq}",
     "clean": "yarn clean:codegen && yarn workspaces foreach --verbose run clean",
-    "codegen": "yarn graphql codegen",
-    "build": "yarn codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
+    "graphql:coverage": "yarn graphql coverage",
+    "graphql:validate": "yarn graphql validate",
+    "graphql:codegen": "yarn graphql codegen",
+    "build": "yarn graphql:codegen && yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
     "typecheck": "yarn workspaces foreach --verbose run typecheck",
     "lint": "yarn workspaces foreach --verbose run lint",
     "test": "yarn jest",
