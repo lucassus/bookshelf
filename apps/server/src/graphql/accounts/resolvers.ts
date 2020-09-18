@@ -19,15 +19,12 @@ const resolvers: Resolvers<Context> = {
 
         sendAuthCookie(res, user);
 
-        return {
-          __typename: "RegistrationSuccess",
-          currentUser: user
-        };
+        return Object.assign(user, { __typename: "CurrentUser" });
       }
 
       return {
-        __typename: "RegistrationFailure",
-        validationErrors: [
+        __typename: "ValidationErrors",
+        errors: [
           {
             path: "email",
             message: "The given email is already taken!"

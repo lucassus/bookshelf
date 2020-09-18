@@ -40,10 +40,10 @@ export const SignupPage: React.FunctionComponent = () => {
       });
       const result = data!.register;
 
-      if (result.__typename === "RegistrationSuccess") {
-        authorize(result.currentUser);
+      if (result.__typename === "CurrentUser") {
+        authorize(result);
       } else {
-        setErrors(normalizeValidationErrors(result.validationErrors));
+        setErrors(normalizeValidationErrors(result.errors));
       }
     } finally {
       setSubmitting(false);

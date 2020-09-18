@@ -15,16 +15,7 @@ input RegistrationInput {
   password: String!
 }
 
-type RegistrationSuccess {
-  currentUser: CurrentUser!
-}
-
-# TODO: Dry it ;)
-type RegistrationFailure {
-  validationErrors: [ValidationError!]!
-}
-
-union RegistrationResult = RegistrationSuccess | RegistrationFailure
+union RegistrationResult = CurrentUser | ValidationErrors
 
 input UpdateProfileInput {
   name: String!
