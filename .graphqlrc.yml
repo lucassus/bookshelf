@@ -15,11 +15,11 @@ extensions:
         plugins:
           - introspection
 
-#      apps/server/schema.graphql:
-#        config:
-#          includeDirectives: true
-#        plugins:
-#          - schema-ast
+      apps/server/schema.graphql:
+        config:
+          includeDirectives: true
+        plugins:
+          - schema-ast
 
       apps/server/src/graphql/resolvers-types.generated.ts:
         config:
