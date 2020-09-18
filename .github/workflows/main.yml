@@ -2,10 +2,11 @@ name: CI
 
 on: [push]
 
-defaults: &defaults
-  runs-on: ubuntu-latest
+jobs:
+  graphql:
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
@@ -14,10 +15,6 @@ defaults: &defaults
     - name: Install packages
       run: yarn install
 
-jobs:
-  graphql:
-    <<: *defaults
-
     - name: GraphQL Validate
       run: yarn graphql validate
 
@@ -25,7 +22,16 @@ jobs:
       run: yarn graphql diff
 
   lint:
-    <<: *defaults
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.6.0
+
+    - name: Install packages
+      run: yarn install
 
     - name: Type Check
       run: yarn typecheck
@@ -34,7 +40,16 @@ jobs:
       run: yarn lint
 
   test:
-    <<: *defaults
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.6.0
+
+    - name: Install packages
+      run: yarn install
 
     - name: GraphQL Code Generation
       run: yarn graphql codegen
@@ -51,7 +66,16 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
 
     build:
-      <<: *defaults
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.6.0
+
+      - name: Install packages
+        run: yarn install
 
       - name: GraphQL Code Generation
         run: yarn graphql codegen
