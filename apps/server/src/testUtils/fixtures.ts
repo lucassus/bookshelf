@@ -51,7 +51,17 @@ async function loadAuthors() {
       The Polish game publisher, CD Projekt, created a role-playing PC game based on this universe, called The Witcher, which was released in October 2007. There is also a mobile version of the game which has been created by Breakpoint Games and is being published by Hands-On Mobile in Western Europe,Latin America and Asia Pacific.
       
       The English translation of Sapkowski's novel Blood of Elves won the David Gemmell Legends Award in 2009.`,
-    photoPath: "/authors/Andrzej%20Sapkowski.jpg"
+    photoPath: "/authors/Andrzej Sapkowski.jpg"
+  });
+
+  await createAuthor({
+    name: "Frank Herbert",
+    bio: `American science-fiction writer noted as the author of the best-selling Dune series of futuristic novels, a group of highly complex works that explore such themes as ecology, human evolution, the consequences of genetic manipulation, and mystical and psychic possibilities.
+    
+      Until 1972, when he began to write full-time, Herbert held a variety of jobs while writing socially engaged science fiction. He was working as a journalist when his reputation was made with the publication of the epic Dune (1965), which was translated into 14 languages and sold some 12 million copies, more than any other science-fiction book in history; ironically, Dune had been rejected by 20 publishers before it was published. An abortive film version was attempted in 1975 by Chilean-French director Alejandro Jodorowsky; that effort was chronicled in the documentary Jodorowsky’s Dune (2013). Dino De Laurentiis purchased the rights in 1976, and an adaptation was filmed by David Lynch (1984). A television miniseries was released in 2000, followed by another miniseries (2003) that covered the events in the second and third Dune books.
+      
+      The novels in the Dune series include Dune Messiah (1969), Children of Dune (1976), God-Emperor of Dune (1981), Heretics of Dune (1984), and Chapterhouse: Dune (1985). In the late 1990s Herbert’s son Brian began collaborating with Kevin J. Anderson on a series of prequels to the Dune chronicles, employing some of the elder Herbert’s notes. Dune: House Atreides was released in 1999 and was followed by Dune: House Harkonnen (2000) and Dune: House Corrino (2001). Other entries include Dune: The Butlerian Jihad (2002), Dune: The Machine Crusade (2003), Dune: The Battle of Corrin (2004), Hunters of Dune (2006), Sandworms of Dune (2007), The Winds of Dune (2009), Sisterhood of Dune (2012), and Mentats of Dune (2014).`,
+    photoPath: "/authors/Frank Herbert.jpg"
   });
 }
 
@@ -71,6 +81,7 @@ async function loadBooks() {
       Full of sympathetic characters, wildly imaginative situations, and countless exciting details, the first installment in the series assembles an unforgettable magical world and sets the stage for many high-stakes adventures to come.`,
     coverPath: "/covers/harry1.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Harry Potter and the Chamber of Secrets",
@@ -81,18 +92,21 @@ async function loadBooks() {
       But each of these seem minor annoyances when the real trouble begins, and someone -- or something -- starts turning Hogwarts students to stone. Could it be Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid, whose mysterious past is finally told? Or could it be the one everyone at Hogwarts most suspects . . . Harry Potter himself?`,
     coverPath: "/covers/harry2.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Harry Potter and the Prisoner of Azkaban",
     description: `Harry Potter's third year at Hogwarts is full of new dangers. A convicted murderer, Sirius Black, has broken out of Azkaban prison, and it seems he's after Harry. Now Hogwarts is being patrolled by the dementors, the Azkaban guards who are hunting Sirius. But Harry can't imagine that Sirius or, for that matter, the evil Lord Voldemort could be more frightening than the dementors themselves, who have the terrible power to fill anyone they come across with aching loneliness and despair. Meanwhile, life continues as usual at Hogwarts. A top-of-the-line broom takes Harry's success at Quidditch, the sport of the Wizarding world, to new heights. A cute fourth-year student catches his eye. And he becomes close with the new Defense of the Dark Arts teacher, who was a childhood friend of his father. Yet despite the relative safety of life at Hogwarts and the best efforts of the dementors, the threat of Sirius Black grows ever closer. But if Harry has learned anything from his education in wizardry, it is that things are often not what they seem. Tragic revelations, heartwarming surprises, and high-stakes magical adventures await the boy wizard in this funny and poignant third installment of the beloved series.`,
     coverPath: "/covers/harry3.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Harry Potter and the Goblet of Fire",
     description: `Harry Potter is midway through his training as a wizard and his coming of age. Harry wants to get away from the pernicious Dursleys and go to the International Quidditch Cup. He wants to find out about the mysterious event that's supposed to take place at Hogwarts this year, an event involving two other rival schools of magic, and a competition that hasn't happened for a hundred years. He wants to be a normal, fourteen-year-old wizard. But unfortunately for Harry Potter, he's not normal - even by wizarding standards. And in his case, different can be deadly.`,
     coverPath: "/covers/harry4.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Harry Potter and the Order of the Phoenix",
@@ -105,6 +119,7 @@ async function loadBooks() {
       
       His fate depends on them all.`
   });
+
   await createBook({
     authorId: author.id,
     title: "Harry Potter and the Half-Blood Prince",
@@ -117,6 +132,7 @@ async function loadBooks() {
       Harry must use all the tools at his disposal to draw a final secret out of one of Riddle’s teachers, the sly Potions professor Horace Slughorn. Finally Harry and Dumbledore hold the key to the Dark Lord’s weaknesses... until a shocking reversal exposes Dumbledore’s own vulnerabilities, and casts Harry’s—and Hogwarts’s—future in shadow.`,
     coverPath: "/covers/harry6.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Harry Potter and the Deathly Hallows",
@@ -143,6 +159,7 @@ async function loadBooks() {
       Holden and Miller must thread the needle between the Earth government, the Outer Planet revolutionaries, and secretive corporations - and the odds are against them. But out in the Belt, the rules are different, and one small ship can change the fate of the universe.`,
     coverPath: "/covers/expanse1.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Caliban's War",
@@ -153,6 +170,7 @@ async function loadBooks() {
       Caliban's War is a breakneck science fiction adventure following the critically acclaimed Leviathan Wakes.`,
     coverPath: "/covers/expanse2.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Abaddon's Gate",
@@ -163,6 +181,7 @@ async function loadBooks() {
       Jim Holden and the crew of the Rocinante are part of a vast flotilla of scientific and military ships going out to examine the artefact. But behind the scenes, a complex plot is unfolding, with the destruction of Holden at its core. As the emissaries of the human race try to find whether the gate is an opportunity or a threat, the greatest danger is the one they brought with them.`,
     coverPath: "/covers/expanse3.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Cibola Burn",
@@ -171,6 +190,7 @@ async function loadBooks() {
       But Holden and his crew must also contend with the growing tensions between the settlers and the company which owns the official claim to the planet. Both sides will stop at nothing to defend what's theirs, but soon a terrible disease strikes and only Holden - with help from the ghostly Detective Miller - can find the cure.`,
     coverPath: "/covers/expanse4.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Nemesis Games",
@@ -183,6 +203,7 @@ async function loadBooks() {
       And as a new human order is struggling to be born in blood and fire, James Holden and the crew of the Rocinante must struggle to survive and get back to the only home they have left.`,
     coverPath: "/covers/expanse5.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Babylon's Ashes",
@@ -195,6 +216,7 @@ async function loadBooks() {
       But the new alliances are as flawed as the old, and the struggle for power has only just begun. As the chaos grows, an alien mystery deepens. Pirate fleets, mutiny and betrayal may be the least of the Rocinante's problems. And in the uncanny spaces past the ring gates, the choices of a few damaged and desperate people may determine the fate of more than just humanity.`,
     coverPath: "/covers/expanse6.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Persepolis Rising",
@@ -205,6 +227,7 @@ async function loadBooks() {
       New technologies clash with old as the history of human conflict returns to its ancient patterns of war and subjugation. But human nature is not the only enemy, and the forces being unleashed have their own price. A price that will change the shape of humanity -- and of the Rocinante -- unexpectedly and forever...`,
     coverPath: "/covers/expanse7.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Tiamat's Wrath",
@@ -241,6 +264,7 @@ async function loadBooks() {
       Against this backdrop of fear, Geralt and Yennefer must protect Ciri, the orphaned heir who is sought by all sides. For the child of prophecy has the power to change the world - if she lives to use it.`,
     coverPath: "/covers/witcher2.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "Baptism of fire",
@@ -253,6 +277,7 @@ async function loadBooks() {
       Injured or not, Geralt has a rescue mission on his hands.`,
     coverPath: "/covers/witcher3.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "The tower of the swallow",
@@ -263,6 +288,7 @@ async function loadBooks() {
       There is only one place left to run. The tower of the swallow is waiting...`,
     coverPath: "/covers/witcher4.jpg"
   });
+
   await createBook({
     authorId: author.id,
     title: "The lady of the lake",
@@ -272,6 +298,47 @@ async function loadBooks() {
       
       And the world is still at war.`,
     coverPath: "/covers/witcher5.jpg"
+  });
+
+  author = await manager.findOneOrFail(Author, { name: "Frank Herbert" });
+
+  await createBook({
+    author,
+    title: "Dune",
+    description: `Dune is a 1965 science-fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny's This Immortal for the Hugo Award in 1966,[2] and it won the inaugural Nebula Award for Best Novel.[3] It is the first installment of the Dune saga, and in 2003 it was cited as the world's best-selling science fiction novel.[4]
+
+Set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs, Dune tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis. While the planet is an inhospitable and sparsely populated desert wasteland, it is the only source of melange, or "the spice," a drug that extends life and enhances mental abilities. Melange is also necessary for space navigation, which requires a kind of multidimensional awareness and foresight that only the drug provides. As melange can only be produced on Arrakis, control of the planet is thus a coveted and dangerous undertaking. The story explores the multi-layered interactions of politics, religion, ecology, technology, and human emotion, as the factions of the empire confront each other in a struggle for the control of Arrakis and its spice.
+
+Herbert wrote five sequels: Dune Messiah, Children of Dune, God Emperor of Dune, Heretics of Dune, and Chapterhouse: Dune. The first novel also inspired a 1984 film adaptation by David Lynch, the 2000 Sci-Fi Channel miniseries Frank Herbert's Dune and its 2003 sequel Frank Herbert's Children of Dune (which combines the events of Dune Messiah and Children of Dune), a series of computer games, a board game, songs, and a series of follow-ups, including prequels and sequels, that were co-written by Kevin J. Anderson and the author's son, Brian Herbert, starting in 1999. A new film adaptation directed by Denis Villeneuve is scheduled to be released on December 18, 2020.`,
+    coverPath: "/covers/dune1.jpg"
+  });
+
+  await createBook({
+    author,
+    title: "Dune Messiah",
+    description:
+      "Dune Messiah is a science fiction novel by American writer Frank Herbert, the second in his Dune series of six novels. A sequel to Dune (1965), it was originally serialized in Galaxy magazine in 1969, and then published by Putnam the same year. Dune Messiah and its own sequel Children of Dune (1976) were collectively adapted by the Sci-Fi Channel in 2003 into a miniseries entitled Frank Herbert's Children of Dune.",
+    coverPath: "/covers/dune2.jpg"
+  });
+
+  await createBook({
+    author,
+    title: "Children of  Dune",
+    description: `Children of Dune is a 1976 science fiction novel by Frank Herbert, the third in his Dune series of six novels. It was originally serialized in Analog Science Fiction and Fact in 1976, and was the last Dune novel to be serialized before book publication.
+
+At the end of Dune Messiah, Paul Atreides walks into the desert, a blind man, leaving his twin children Leto and Ghanima in the care of the Fremen, while his sister Alia rules the universe as regent. Awakened in the womb by the spice, the children are the heirs to Paul's prescient vision of the fate of the universe, a role that Alia desperately craves. House Corrino schemes to return to the throne, while the Bene Gesserit make common cause with the Tleilaxu and Spacing Guild to gain control of the spice and the children of Paul Atreides.
+
+Initially selling over 75,000 copies, it became the first hardcover best-seller ever in the science fiction field. The novel was critically well-received for its gripping plot, action, and atmosphere, and was nominated for the Hugo Award for Best Novel in 1977. Dune Messiah (1969) and Children of Dune were collectively adapted by the Sci-Fi Channel in 2003 into a miniseries entitled Frank Herbert's Children of Dune.`,
+    coverPath: "/covers/dune3.jpg"
+  });
+
+  await createBook({
+    author,
+    title: "God Emperor of Dune",
+    description: `Leto II Atreides, the God Emperor, has ruled the universe as a tyrant for 3,500 years after becoming a hybrid of human and giant sandworm in Children of Dune. The death of all other sandworms, and his control of the remaining supply of the all-important drug melange, has allowed him to keep civilization under his complete command. Leto has been physically transformed into a worm, retaining only his human face and arms, and though he is now seemingly immortal and invulnerable to harm, he is prone to instinct-driven bouts of violence when provoked to anger. As a result, his rule is one of religious awe and despotic fear. Leto has disbanded the Landsraad to all but a few Great Houses; the remaining powers defer to his authority, although they individually conspire against him in secret. The Fremen have long since lost their identity and military power, and have been replaced as the Imperial army by the Fish Speakers, an all-female army who obey Leto without question. He has rendered the human population into a state of trans-galactic stagnation; space travel is non-existent to most people in his Empire, which he has deliberately kept to a near-medieval level of technological sophistication. All of this he has done in accordance with a prophecy divined through precognition that will establish an enforced peace preventing humanity from destroying itself through aggressive behavior.
+
+The desert planet Arrakis has been terraformed into a lush forested biosphere, except for a single section of desert retained by Leto for his Citadel. A string of Duncan Idaho gholas have served Leto over the millennia, and Leto has also fostered the bloodline of his twin sister Ghanima. Her descendant Moneo is Leto's majordomo and closest confidante, while Moneo's daughter Siona has become the leader of an Arrakis-based rebellion against Leto. She steals a set of secret records from his archives, not realizing that he has allowed it. Leto intends to breed Siona with the latest Duncan ghola, but is aware that the ghola, moved by his own morality, may try to assassinate him before this can occur. The Ixians send a new ambassador named Hwi Noree to serve Leto, and though he realizes that she has been specifically designed and trained to ensnare him, he cannot resist falling in love with her. She agrees to marry him. Leto tests Siona by taking her out to the middle of the desert. After improperly using her stillsuit to preserve moisture, dehydration forces her to accept Leto's offer of spice essence from his body to replenish her. Awakened to Leto's prophecy, known as the Golden Path, the experience convinces Siona of the importance of the Golden Path. She remains dedicated to Leto's destruction, and an errant rainstorm demonstrates for her his mortal vulnerability to water.`,
+    coverPath: "/covers/dune4.jpg"
   });
 }
 
