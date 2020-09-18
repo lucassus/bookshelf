@@ -14,9 +14,9 @@ describe("borrowBookCopy mutation", () => {
   const BorrowBookCopyMutation = gql`
     mutation($id: ExternalID!) {
       borrowBookCopy(id: $id) {
-        success
-        message
-        bookCopy {
+        __typename
+
+        ... on BookCopy {
           id
           book {
             id
@@ -30,6 +30,10 @@ describe("borrowBookCopy mutation", () => {
             id
             name
           }
+        }
+
+        ... on MutationError {
+          message
         }
       }
     }
@@ -57,22 +61,19 @@ describe("borrowBookCopy mutation", () => {
     expect(res.data).not.toBe(null);
     expect(res.data).toMatchObject({
       borrowBookCopy: {
-        success: true,
-        message: "Book was successfully borrowed.",
-        bookCopy: {
-          id: toExternalId(bookCopy),
-          book: {
-            id: expect.any(String),
-            title: book.title
-          },
-          owner: {
-            id: expect.any(String),
-            name: owner.name
-          },
-          borrower: {
-            id: expect.any(String),
-            name: currentUser.name
-          }
+        __typename: "BookCopy",
+        id: toExternalId(bookCopy),
+        book: {
+          id: expect.any(String),
+          title: book.title
+        },
+        owner: {
+          id: expect.any(String),
+          name: owner.name
+        },
+        borrower: {
+          id: expect.any(String),
+          name: currentUser.name
         }
       }
     });
@@ -94,9 +95,8 @@ describe("borrowBookCopy mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       borrowBookCopy: {
-        success: false,
-        message: "Cannot borrow this book copy. It is already borrowed.",
-        bookCopy: null
+        __typename: "MutationError",
+        message: "Cannot borrow this book copy. It is already borrowed."
       }
     });
   });

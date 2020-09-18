@@ -14,9 +14,9 @@ describe("returnBookCopy mutation", () => {
   const ReturnBookCopyMutation = gql`
     mutation($id: ExternalID!) {
       returnBookCopy(id: $id) {
-        success
-        message
-        bookCopy {
+        __typename
+
+        ... on BookCopy {
           id
           book {
             id
@@ -30,6 +30,10 @@ describe("returnBookCopy mutation", () => {
             id
             name
           }
+        }
+
+        ... on MutationError {
+          message
         }
       }
     }
@@ -54,21 +58,17 @@ describe("returnBookCopy mutation", () => {
     expect(bookCopy.borrowerId).toBe(null);
 
     expect(res.errors).toBe(undefined);
-    expect(res.data).not.toBe(null);
     expect(res.data).toMatchObject({
       returnBookCopy: {
-        success: true,
-        message: "Book was successfully returned.",
-        bookCopy: {
-          id: toExternalId(bookCopy),
-          book: {
-            id: expect.any(String),
-            title: book.title
-          },
-          owner: {
-            id: expect.any(String),
-            name: owner.name
-          }
+        __typename: "BookCopy",
+        id: toExternalId(bookCopy),
+        book: {
+          id: expect.any(String),
+          title: book.title
+        },
+        owner: {
+          id: expect.any(String),
+          name: owner.name
         }
       }
     });
@@ -92,7 +92,7 @@ describe("returnBookCopy mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       returnBookCopy: {
-        success: false,
+        __typename: "MutationError",
         message: "Could not find borrowed book copy to return!"
       }
     });

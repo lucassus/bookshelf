@@ -138,16 +138,8 @@ type UpdateBookFavouriteResult implements MutationResponse {
   message: String!
   book: Book!
 }
-type BorrowBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
-type ReturnBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
+union BorrowBookCopyResult = BookCopy | MutationError
+union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError
 scalar ExternalID
 interface Resource {
@@ -163,6 +155,9 @@ type Image {
   url: String!
 }
 interface Error {
+  message: String!
+}
+type MutationError implements Error {
   message: String!
 }
 type ResourceNotFoundError implements Error {

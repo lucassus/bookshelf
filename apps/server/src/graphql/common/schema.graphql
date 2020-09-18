@@ -20,6 +20,10 @@ interface Error {
   message: String!
 }
 
+type MutationError implements Error {
+  message: String!
+}
+
 type ResourceNotFoundError implements Error {
   message: String!
 }

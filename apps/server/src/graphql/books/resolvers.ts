@@ -96,14 +96,10 @@ const resolvers: Resolvers<Context> = {
           .get(BookCopiesService)
           .borrow(id, currentUser!.id);
 
-        return {
-          success: true,
-          message: "Book was successfully borrowed.",
-          bookCopy
-        };
+        return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {
         return {
-          success: false,
+          __typename: "MutationError",
           message: error.message
         };
       }
@@ -115,15 +111,11 @@ const resolvers: Resolvers<Context> = {
           .get(BookCopiesService)
           .return(id, currentUser!.id);
 
-        return {
-          success: true,
-          message: "Book was successfully returned.",
-          bookCopy
-        };
+        return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
           return {
-            success: false,
+            __typename: "MutationError",
             message: "Could not find borrowed book copy to return!"
           };
         }

@@ -29,17 +29,9 @@ type UpdateBookFavouriteResult implements MutationResponse {
   book: Book!
 }
 
-type BorrowBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
+union BorrowBookCopyResult = BookCopy | MutationError
 
-type ReturnBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
+union ReturnBookCopyResult = BookCopy | MutationError
 
 union BookResult = Book | ResourceNotFoundError
 
