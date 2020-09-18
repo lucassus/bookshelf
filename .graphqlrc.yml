@@ -3,6 +3,9 @@ schema: apps/server/src/graphql/**/*.graphql
 documents: apps/web/src/**/*.graphql
 
 extensions:
+  diff:
+    baseSchema: git:origin/master:apps/server/schema.graphql
+
   codegen:
     hooks:
       afterAllFileWrite:
