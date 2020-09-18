@@ -91,15 +91,22 @@ const resolvers: Resolvers<Context> = {
     },
 
     borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
-      const bookCopy = await container
-        .get(BookCopiesService)
-        .borrow(id, currentUser!.id);
+      try {
+        const bookCopy = await container
+          .get(BookCopiesService)
+          .borrow(id, currentUser!.id);
 
-      return {
-        success: true,
-        message: "Book was successfully borrowed.",
-        bookCopy
-      };
+        return {
+          success: true,
+          message: "Book was successfully borrowed.",
+          bookCopy
+        };
+      } catch (error) {
+        return {
+          success: false,
+          message: error.message
+        };
+      }
     },
 
     returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
@@ -107,6 +114,7 @@ const resolvers: Resolvers<Context> = {
         .get(BookCopiesService)
         .return(id, currentUser!.id);
 
+      // TODO: Add errors handling, eg. "Could not find borrowed book copy to return"
       return {
         success: true,
         message: "Book was successfully returned.",
