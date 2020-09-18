@@ -24,7 +24,16 @@ jobs:
     - name: GraphQL Diff
       run: yarn graphql diff
 
-  build:
+  lint:
+    <<: *defaults
+
+    - name: Type Check
+      run: yarn typecheck
+
+    - name: Lint
+      run: yarn lint
+
+  test:
     <<: *defaults
 
     - name: GraphQL Code Generation
@@ -32,12 +41,6 @@ jobs:
 
     - name: Build
       run: yarn build
-
-    - name: Type Check
-      run: yarn typecheck
-
-    - name: Lint
-      run: yarn lint
 
     - name: Test
       run: yarn test --coverage --runInBand
@@ -47,5 +50,14 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-    - name: Build storybbok
-      run: yarn workspace @bookshelf/web storybook:build
+    build:
+      <<: *defaults
+
+      - name: GraphQL Code Generation
+        run: yarn graphql codegen
+
+      - name: Build
+        run: yarn build
+
+      - name: Build storybbok
+        run: yarn workspace @bookshelf/web storybook:build
