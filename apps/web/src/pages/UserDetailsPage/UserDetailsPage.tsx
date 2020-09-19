@@ -29,6 +29,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
     return <NotFoundPage message={user.message} />;
   }
 
+  // TODO: Don't display borrowed books here, it should be private
   // TODO: Write e2e test for borrowedBooks
   return (
     <div>

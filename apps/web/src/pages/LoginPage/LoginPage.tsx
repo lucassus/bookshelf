@@ -47,12 +47,14 @@ export const LoginPage: React.FunctionComponent = () => {
     }
   };
 
+  const initialValues = { email: "", password: "" };
+
   return (
     <div>
       <h2>Login</h2>
 
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
         render={({ errors, isSubmitting }) => (

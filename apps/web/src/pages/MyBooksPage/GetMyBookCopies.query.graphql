@@ -1,5 +1,8 @@
 query GetMyBookCopies {
   currentUser {
+    __typename
+    id
+
     ownedBookCopies {
       ...BookCopy
     }
