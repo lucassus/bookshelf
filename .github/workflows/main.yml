@@ -3,6 +3,19 @@ name: CI
 on: [push]
 
 jobs:
+  grahpql-introspection:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - uses: kamilkisiela/graphql-inspector@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        schema: "master:apps/server/schema.generated.graphql"
+
   graphql:
     runs-on: ubuntu-latest
     continue-on-error: true
