@@ -5,13 +5,16 @@ import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
 
-// TODO: Refactor it
-const isPrivileged = (user: User, currentUser: User | undefined) => {
-  if (!currentUser) {
-    return false;
+const privilegedUserFieldResolver = (callback: (User) => any) => (
+  user: User,
+  args: any,
+  { currentUser }: Context
+) => {
+  if (currentUser && (currentUser.isAdmin || currentUser.id === user.id)) {
+    return callback(user);
   }
 
-  return currentUser.isAdmin || currentUser.id === user.id;
+  return null;
 };
 
 const resolvers: Resolvers<Context> = {
@@ -34,16 +37,11 @@ const resolvers: Resolvers<Context> = {
       return { __typename: "Avatar", ...user.avatar };
     },
 
-    // Resolvers for privileged fields
-
-    isAdmin: (user, args, { currentUser }) =>
-      isPrivileged(user, currentUser) ? user.isAdmin : null,
-
-    email: (user, args, { currentUser }) =>
-      isPrivileged(user, currentUser) ? user.email : null,
-
-    borrowedBookCopies: (user, args, { currentUser }) =>
-      isPrivileged(user, currentUser) ? user.borrowedBookCopies : null
+    isAdmin: privilegedUserFieldResolver((user) => user.isAdmin),
+    email: privilegedUserFieldResolver((user) => user.email),
+    borrowedBookCopies: privilegedUserFieldResolver(
+      (user) => user.borrowedBookCopies
+    )
   },
 
   UserResult: {
