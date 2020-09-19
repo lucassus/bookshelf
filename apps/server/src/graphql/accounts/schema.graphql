@@ -1,21 +1,10 @@
-type CurrentUser implements Resource & Timestampable & Person {
-  id: ExternalID!
-  name: String!
-  email: String!
-  isAdmin: Boolean!
-  info: String!
-  avatar: AvatarResult!
-  createdAt: String!
-  updatedAt: String!
-}
-
 input RegistrationInput {
   name: String!
   email: String!
   password: String!
 }
 
-union RegistrationResult = CurrentUser | ValidationErrors
+union RegistrationResult = User | ValidationErrors
 
 input UpdateProfileInput {
   name: String!
@@ -23,13 +12,13 @@ input UpdateProfileInput {
   info: String!
 }
 
-union UpdateProfileResult = CurrentUser | ValidationErrors
+union UpdateProfileResult = User | ValidationErrors
 
 extend type Query {
   """
   Returns the currently logged in user or null if not logged in.
   """
-  currentUser: CurrentUser
+  currentUser: User
 }
 
 extend type Mutation {

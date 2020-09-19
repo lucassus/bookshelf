@@ -20,7 +20,7 @@ type BookCopy implements Resource {
 
 extend type User {
   ownedBookCopies: [BookCopy!]!
-  borrowedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]
 }
 
 union UpdateBookFavouriteResult = Book | MutationError

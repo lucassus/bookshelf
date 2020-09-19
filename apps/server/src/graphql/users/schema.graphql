@@ -1,20 +1,16 @@
-interface Person {
-  name: String!
-  email: String!
-  info: String
-  isAdmin: Boolean!
-  avatar: AvatarResult!
-}
-
-type User implements Resource & Timestampable & Person {
+type User implements Resource & Timestampable {
   id: ExternalID!
+
   name: String!
-  info: String
-  email: String! @requireAuthorization(role: Admin)
-  isAdmin: Boolean! @requireAuthorization(role: Admin)
+  info: String!
   avatar: AvatarResult!
+
   createdAt: String!
   updatedAt: String!
+
+  # TODO: Priviledged fields, nullable for users without permissions
+  email: String
+  isAdmin: Boolean
 }
 
 type Avatar {
@@ -59,6 +55,7 @@ type CreateUserResult implements MutationResponse {
   user: User
 }
 
+# TODO: Mark these types as deprecated
 type UpdateUserResult implements MutationResponse {
   success: Boolean!
   message: String!

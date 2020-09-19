@@ -5,6 +5,15 @@ import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
 
+// TODO: Refactor it
+const isPrivileged = (user: User, currentUser: User | undefined) => {
+  if (!currentUser) {
+    return false;
+  }
+
+  return currentUser.isAdmin || currentUser.id === user.id;
+};
+
 const resolvers: Resolvers<Context> = {
   Avatar: {
     image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
@@ -13,7 +22,7 @@ const resolvers: Resolvers<Context> = {
     })
   },
 
-  Person: {
+  User: {
     avatar: (user) => {
       if (user.avatar.flagged) {
         return {
@@ -23,7 +32,18 @@ const resolvers: Resolvers<Context> = {
       }
 
       return { __typename: "Avatar", ...user.avatar };
-    }
+    },
+
+    // Resolvers for privileged fields
+
+    isAdmin: (user, args, { currentUser }) =>
+      isPrivileged(user, currentUser) ? user.isAdmin : null,
+
+    email: (user, args, { currentUser }) =>
+      isPrivileged(user, currentUser) ? user.email : null,
+
+    borrowedBookCopies: (user, args, { currentUser }) =>
+      isPrivileged(user, currentUser) ? user.borrowedBookCopies : null
   },
 
   UserResult: {

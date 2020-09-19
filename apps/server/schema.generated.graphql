@@ -2,33 +2,23 @@ schema {
   query: Query
   mutation: Mutation
 }
-type CurrentUser implements Resource & Timestampable & Person {
-  id: ExternalID!
-  name: String!
-  email: String!
-  isAdmin: Boolean!
-  info: String!
-  avatar: AvatarResult!
-  createdAt: String!
-  updatedAt: String!
-}
 input RegistrationInput {
   name: String!
   email: String!
   password: String!
 }
-union RegistrationResult = CurrentUser | ValidationErrors
+union RegistrationResult = User | ValidationErrors
 input UpdateProfileInput {
   name: String!
   email: String!
   info: String!
 }
-union UpdateProfileResult = CurrentUser | ValidationErrors
+union UpdateProfileResult = User | ValidationErrors
 type Query {
   """
   Returns the currently logged in user or null if not logged in.
   """
-  currentUser: CurrentUser
+  currentUser: User
   authors: [Author!]!
   author(id: ExternalID!): AuthorResponse!
   booksCount: Int!
@@ -72,7 +62,7 @@ input LoginInput {
   password: String!
 }
 type LoginSuccess {
-  currentUser: CurrentUser!
+  currentUser: User!
 }
 type LoginFailure {
   validationErrors: [ValidationError!]!
@@ -105,17 +95,17 @@ type BookCopy implements Resource {
   owner: User!
   borrower: User
 }
-type User implements Resource & Timestampable & Person {
+type User implements Resource & Timestampable {
   ownedBookCopies: [BookCopy!]!
-  borrowedBookCopies: [BookCopy!]!
+  borrowedBookCopies: [BookCopy!]
   id: ExternalID!
   name: String!
-  info: String
-  email: String! @requireAuthorization(role: Admin)
-  isAdmin: Boolean! @requireAuthorization(role: Admin)
+  info: String!
   avatar: AvatarResult!
   createdAt: String!
   updatedAt: String!
+  email: String
+  isAdmin: Boolean
 }
 union UpdateBookFavouriteResult = Book | MutationError
 union BorrowBookCopyResult = BookCopy | MutationError
@@ -159,13 +149,6 @@ interface MutationResponse {
   Human-readable string that describes the result of the mutation
   """
   message: String!
-}
-interface Person {
-  name: String!
-  email: String!
-  info: String
-  isAdmin: Boolean!
-  avatar: AvatarResult!
 }
 type Avatar {
   image: Image!

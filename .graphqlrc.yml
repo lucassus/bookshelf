@@ -31,7 +31,6 @@ extensions:
             Avatar: ../database/entity#Avatar
             Book: ../database/entity#Book
             BookCopy: ../database/entity#BookCopy
-            CurrentUser: ../database/entity#User
             User: ../database/entity#User
           mapperTypeSuffix: Entity
           optionalResolveType: true

@@ -9,7 +9,8 @@ describe("register mutation", () => {
       register(input: $input) {
         __typename
 
-        ... on CurrentUser {
+        ... on User {
+          id
           name
           email
         }
@@ -37,7 +38,8 @@ describe("register mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       register: {
-        __typename: "CurrentUser",
+        __typename: "User",
+        id: expect.any(String),
         name: "Luke",
         email: "luke@email.com"
       }
