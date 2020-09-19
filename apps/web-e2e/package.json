@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@testing-library/cypress": "7.0.0",
-    "@types/testing-library__cypress": "5.0.6",
+    "@types/testing-library__cypress": "5.0.7",
     "cypress": "5.1.0",
     "eslint": "7.9.0",
     "graphql": "15.3.0",
