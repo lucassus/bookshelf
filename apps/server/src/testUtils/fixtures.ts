@@ -388,6 +388,7 @@ async function loadUsers() {
     name: "Luke",
     email: "luke@example.com",
     info: `Amateur photographer.`,
+    isAdmin: true,
     avatarAttributes: {
       imagePath: "/users/m25.png",
       color: "red",

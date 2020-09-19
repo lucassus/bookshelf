@@ -11,29 +11,32 @@ import {
 import { User } from "../database/entity";
 
 const getAuthTokenSecretFor = (user: User) =>
-  [user.email, user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");
+  [user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");
 
 export const generateAuthToken = (user: User): string =>
-  jwt.sign({ sub: user.id }, getAuthTokenSecretFor(user), {
+  jwt.sign({ sub: user.email }, getAuthTokenSecretFor(user), {
     expiresIn: AUTH_TOKEN_EXPIRES_IN_SECONDS
   });
 
-export async function authenticateRequest(
+export const getAuthTokenFromRequest = (
   req: express.Request
-): Promise<undefined | User> {
+): undefined | string => {
   const { [AUTH_COOKIE_NAME]: authToken } = req.cookies || {};
-  if (!authToken) {
-    return undefined;
-  }
+  return authToken;
+};
 
+export async function tradeAuthTokenForUser(authToken: string): Promise<User> {
   const payload = jwt.decode(authToken);
-  if (!(payload && payload.sub)) {
+
+  if (!payload || !payload.sub) {
     throw new Error("Invalid token payload");
   }
 
-  const user = await getRepository(User).findOneOrFail({
-    id: payload.sub
-  });
+  const user = await getRepository(User).findOne({ email: payload.sub });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
 
   return new Promise((resolve, reject) => {
     jwt.verify(authToken, getAuthTokenSecretFor(user), (error) => {
