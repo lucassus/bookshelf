@@ -2,6 +2,6 @@
   "name": "Bookshelf GraphQL Schema",
   "includes": [
     "apps/server/src/**/*.graphql",
-    "apps/server/web/**/*.graphql"
+    "apps/web/**/*.graphql"
   ]
 }

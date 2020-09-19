@@ -23,23 +23,11 @@ extend type User {
   borrowedBookCopies: [BookCopy!]!
 }
 
-type UpdateBookFavouriteResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  book: Book!
-}
+union UpdateBookFavouriteResult = Book | MutationError
 
-type BorrowBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
+union BorrowBookCopyResult = BookCopy | MutationError
 
-type ReturnBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
+union ReturnBookCopyResult = BookCopy | MutationError
 
 union BookResult = Book | ResourceNotFoundError
 

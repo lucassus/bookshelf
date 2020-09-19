@@ -15,15 +15,7 @@ input RegistrationInput {
   password: String!
 }
 
-type RegistrationSuccess {
-  currentUser: CurrentUser!
-}
-
-type RegistrationFailure {
-  validationErrors: [ValidationError!]!
-}
-
-union RegistrationResult = RegistrationSuccess | RegistrationFailure
+union RegistrationResult = CurrentUser | ValidationErrors
 
 input UpdateProfileInput {
   name: String!
@@ -31,15 +23,7 @@ input UpdateProfileInput {
   info: String!
 }
 
-type UpdateProfileSuccess {
-  currentUser: CurrentUser!
-}
-
-type UpdateProfileFailure {
-  validationErrors: [ValidationError!]!
-}
-
-union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
+union UpdateProfileResult = CurrentUser | ValidationErrors
 
 extend type Query {
   """

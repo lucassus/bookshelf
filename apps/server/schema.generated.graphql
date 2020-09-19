@@ -17,25 +17,13 @@ input RegistrationInput {
   email: String!
   password: String!
 }
-type RegistrationSuccess {
-  currentUser: CurrentUser!
-}
-type RegistrationFailure {
-  validationErrors: [ValidationError!]!
-}
-union RegistrationResult = RegistrationSuccess | RegistrationFailure
+union RegistrationResult = CurrentUser | ValidationErrors
 input UpdateProfileInput {
   name: String!
   email: String!
   info: String!
 }
-type UpdateProfileSuccess {
-  currentUser: CurrentUser!
-}
-type UpdateProfileFailure {
-  validationErrors: [ValidationError!]!
-}
-union UpdateProfileResult = UpdateProfileSuccess | UpdateProfileFailure
+union UpdateProfileResult = CurrentUser | ValidationErrors
 type Query {
   """
   Returns the currently logged in user or null if not logged in.
@@ -61,7 +49,7 @@ type Mutation {
   Authenticates a user with the given credentials.
   """
   login(input: LoginInput!): LoginResult!
-  logout: LogoutResult!
+  logout: Boolean!
   updateBookFavourite(
     id: ExternalID!
     favourite: Boolean!
@@ -90,10 +78,6 @@ type LoginFailure {
   validationErrors: [ValidationError!]!
 }
 union LoginResult = LoginSuccess | LoginFailure
-type LogoutResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-}
 type Author implements Resource & Timestampable {
   id: ExternalID!
   name: String!
@@ -133,21 +117,9 @@ type User implements Resource & Timestampable & Person {
   createdAt: String!
   updatedAt: String!
 }
-type UpdateBookFavouriteResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  book: Book!
-}
-type BorrowBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
-type ReturnBookCopyResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  bookCopy: BookCopy
-}
+union UpdateBookFavouriteResult = Book | MutationError
+union BorrowBookCopyResult = BookCopy | MutationError
+union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError
 scalar ExternalID
 interface Resource {
@@ -165,12 +137,18 @@ type Image {
 interface Error {
   message: String!
 }
+type MutationError implements Error {
+  message: String!
+}
 type ResourceNotFoundError implements Error {
   message: String!
 }
 type ValidationError implements Error {
   path: String!
   message: String!
+}
+type ValidationErrors {
+  errors: [ValidationError!]!
 }
 interface MutationResponse {
   """

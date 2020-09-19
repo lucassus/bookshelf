@@ -9,15 +9,13 @@ describe("register mutation", () => {
       register(input: $input) {
         __typename
 
-        ... on RegistrationSuccess {
-          currentUser {
-            name
-            email
-          }
+        ... on CurrentUser {
+          name
+          email
         }
 
-        ... on RegistrationFailure {
-          validationErrors {
+        ... on ValidationErrors {
+          errors {
             path
             message
           }
@@ -39,11 +37,9 @@ describe("register mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       register: {
-        __typename: "RegistrationSuccess",
-        currentUser: {
-          name: "Luke",
-          email: "luke@email.com"
-        }
+        __typename: "CurrentUser",
+        name: "Luke",
+        email: "luke@email.com"
       }
     });
   });
@@ -64,8 +60,8 @@ describe("register mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       register: {
-        __typename: "RegistrationFailure",
-        validationErrors: [
+        __typename: "ValidationErrors",
+        errors: [
           { path: "email", message: "The given email is already taken!" }
         ]
       }

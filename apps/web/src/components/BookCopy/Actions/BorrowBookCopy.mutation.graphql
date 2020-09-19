@@ -1,9 +1,11 @@
 mutation BorrowBookCopy($id: ExternalID!) {
   borrowBookCopy(id: $id) {
-    success
-    message
-    bookCopy {
+    ... on BookCopy {
       ...BookCopy
+    }
+
+    ... on MutationError {
+      message
     }
   }
 }

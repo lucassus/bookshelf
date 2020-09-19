@@ -10,53 +10,57 @@ import {
   createUser
 } from "../../../testUtils/factories";
 
-test("returnBookCopy mutation", async () => {
-  // Given
-  const currentUser = await createUser({ name: "Bob" });
+describe("returnBookCopy mutation", () => {
+  const ReturnBookCopyMutation = gql`
+    mutation($id: ExternalID!) {
+      returnBookCopy(id: $id) {
+        __typename
 
-  const book = await createBook();
-  const owner = await createUser({ name: "Alice" });
-  let bookCopy = await createBookCopy({ book, owner, borrower: currentUser });
-
-  // When
-  const res = await createTestClient({ currentUser }).mutate({
-    mutation: gql`
-      mutation($id: ExternalID!) {
-        returnBookCopy(id: $id) {
-          success
-          message
-          bookCopy {
+        ... on BookCopy {
+          id
+          book {
             id
-            book {
-              id
-              title
-            }
-            owner {
-              id
-              name
-            }
-            borrower {
-              id
-              name
-            }
+            title
+          }
+          owner {
+            id
+            name
+          }
+          borrower {
+            id
+            name
           }
         }
+
+        ... on MutationError {
+          message
+        }
       }
-    `,
-    variables: { id: toExternalId(bookCopy) }
-  });
+    }
+  `;
 
-  // Then
-  bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
-  expect(bookCopy.borrowerId).toBe(null);
+  test("on success", async () => {
+    // Given
+    const currentUser = await createUser({ name: "Bob" });
 
-  expect(res.errors).toBe(undefined);
-  expect(res.data).not.toBe(null);
-  expect(res.data).toMatchObject({
-    returnBookCopy: {
-      success: true,
-      message: "Book was successfully returned.",
-      bookCopy: {
+    const book = await createBook();
+    const owner = await createUser({ name: "Alice" });
+    let bookCopy = await createBookCopy({ book, owner, borrower: currentUser });
+
+    // When
+    const res = await createTestClient({ currentUser }).mutate({
+      mutation: ReturnBookCopyMutation,
+      variables: { id: toExternalId(bookCopy) }
+    });
+
+    // Then
+    bookCopy = await getManager().findOneOrFail(BookCopy, bookCopy.id);
+    expect(bookCopy.borrowerId).toBe(null);
+
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      returnBookCopy: {
+        __typename: "BookCopy",
         id: toExternalId(bookCopy),
         book: {
           id: expect.any(String),
@@ -67,6 +71,30 @@ test("returnBookCopy mutation", async () => {
           name: owner.name
         }
       }
-    }
+    });
+  });
+
+  test("on error", async () => {
+    // Given
+    const currentUser = await createUser({ name: "Bob" });
+
+    const owner = await createUser({ name: "Alice" });
+    const borrower = await createUser({ name: "Dan" });
+    const bookCopy = await createBookCopy({ owner, borrower });
+
+    // When
+    const res = await createTestClient({ currentUser }).mutate({
+      mutation: ReturnBookCopyMutation,
+      variables: { id: toExternalId(bookCopy) }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      returnBookCopy: {
+        __typename: "MutationError",
+        message: "Could not find borrowed book copy to return!"
+      }
+    });
   });
 });

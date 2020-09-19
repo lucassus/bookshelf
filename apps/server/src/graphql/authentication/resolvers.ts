@@ -46,11 +46,7 @@ const resolvers: Resolvers<Context> = {
 
     logout: (rootValue, args, { res }) => {
       clearAuthCookie(res);
-
-      return {
-        success: true,
-        message: "Logout success!"
-      };
+      return true;
     }
   }
 };

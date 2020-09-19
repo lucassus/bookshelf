@@ -74,44 +74,47 @@ const resolvers: Resolvers<Context> = {
           .get(BooksService)
           .updateFavourite(book, favourite);
 
-        return {
-          success: true,
-          message: updatedBook.favourite
-            ? "Book was added to favourites."
-            : "Book was removed from favourites.",
-          book: updatedBook
-        };
+        return Object.assign(updatedBook, { __typename: "Book" });
       } catch {
         return {
-          success: false,
-          message: "Something went wrong!",
-          book
+          __typename: "MutationError",
+          message: "Something went wrong!"
         };
       }
     },
 
     borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
-      const bookCopy = await container
-        .get(BookCopiesService)
-        .borrow(id, currentUser!.id);
+      try {
+        const bookCopy = await container
+          .get(BookCopiesService)
+          .borrow(id, currentUser!.id);
 
-      return {
-        success: true,
-        message: "Book was successfully borrowed.",
-        bookCopy
-      };
+        return Object.assign(bookCopy, { __typename: "BookCopy" });
+      } catch (error) {
+        return {
+          __typename: "MutationError",
+          message: error.message
+        };
+      }
     },
 
     returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
-      const bookCopy = await container
-        .get(BookCopiesService)
-        .return(id, currentUser!.id);
+      try {
+        const bookCopy = await container
+          .get(BookCopiesService)
+          .return(id, currentUser!.id);
 
-      return {
-        success: true,
-        message: "Book was successfully returned.",
-        bookCopy
-      };
+        return Object.assign(bookCopy, { __typename: "BookCopy" });
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return {
+            __typename: "MutationError",
+            message: "Could not find borrowed book copy to return!"
+          };
+        }
+
+        throw error;
+      }
     }
   }
 };

@@ -19,15 +19,12 @@ const resolvers: Resolvers<Context> = {
 
         sendAuthCookie(res, user);
 
-        return {
-          __typename: "RegistrationSuccess",
-          currentUser: user
-        };
+        return Object.assign(user, { __typename: "CurrentUser" });
       }
 
       return {
-        __typename: "RegistrationFailure",
-        validationErrors: [
+        __typename: "ValidationErrors",
+        errors: [
           {
             path: "email",
             message: "The given email is already taken!"
@@ -52,15 +49,12 @@ const resolvers: Resolvers<Context> = {
         const updatedCurrentUser = await service.update(currentUser!, input);
         sendAuthCookie(res, updatedCurrentUser);
 
-        return {
-          __typename: "UpdateProfileSuccess",
-          currentUser: updatedCurrentUser
-        };
+        return Object.assign(updatedCurrentUser, { __typename: "CurrentUser" });
       }
 
       return {
-        __typename: "UpdateProfileFailure",
-        validationErrors: [
+        __typename: "ValidationErrors",
+        errors: [
           {
             path: "email",
             message: "The given email is already taken!"

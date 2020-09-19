@@ -2,14 +2,12 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
   updateProfile(input: $input) {
     __typename
 
-    ... on UpdateProfileSuccess {
-      currentUser {
-        ...CurrentUser
-      }
+    ... on CurrentUser {
+      ...CurrentUser
     }
 
-    ... on UpdateProfileFailure {
-      validationErrors {
+    ... on ValidationErrors {
+      errors {
         path
         message
       }

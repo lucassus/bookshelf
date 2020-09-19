@@ -10,10 +10,7 @@ type Props = {
 export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const [borrowBookCopy, { loading }] = useBorrowBookCopyMutation();
 
-  const handleClick = () =>
-    borrowBookCopy({
-      variables: { id: bookCopy.id }
-    });
+  const handleClick = () => borrowBookCopy({ variables: { id: bookCopy.id } });
 
   return (
     <button disabled={loading} onClick={handleClick}>

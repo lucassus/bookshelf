@@ -10,10 +10,7 @@ type Props = {
 export const ReturnButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const [returnBookCopy, { loading }] = useReturnBookCopyMutation();
 
-  const handleClick = () =>
-    returnBookCopy({
-      variables: { id: bookCopy.id }
-    });
+  const handleClick = () => returnBookCopy({ variables: { id: bookCopy.id } });
 
   return (
     <button disabled={loading} onClick={handleClick}>

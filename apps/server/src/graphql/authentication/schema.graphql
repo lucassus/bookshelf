@@ -20,16 +20,11 @@ type LoginFailure {
 
 union LoginResult = LoginSuccess | LoginFailure
 
-type LogoutResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-}
-
 extend type Mutation {
   """
   Authenticates a user with the given credentials.
   """
   login(input: LoginInput!): LoginResult!
 
-  logout: LogoutResult!
+  logout: Boolean!
 }
