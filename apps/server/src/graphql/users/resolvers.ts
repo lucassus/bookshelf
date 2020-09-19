@@ -62,7 +62,7 @@ const resolvers: Resolvers<Context> = {
 
     user: async (rootValue, { id }, { container }) => {
       try {
-        return await await container.get(UsersService).findByIdOrFail(id);
+        return await container.get(UsersService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
           return { message: "Could not find User" };
