@@ -1,6 +1,9 @@
 import express from "express";
 
-import { authenticateRequest } from "../common/authentication";
+import {
+  getAuthTokenFromRequest,
+  tradeAuthTokenForUser
+} from "../common/authentication";
 
 export const authenticationMiddleware = async (
   req: express.Request,
@@ -8,7 +11,11 @@ export const authenticationMiddleware = async (
   next: express.NextFunction
 ): Promise<void> => {
   try {
-    req.currentUser = await authenticateRequest(req);
+    const authToken = getAuthTokenFromRequest(req);
+    if (authToken) {
+      req.currentUser = await tradeAuthTokenForUser(authToken);
+    }
+
     next();
   } catch (error) {
     res.status(401).json({ error: error.message });
