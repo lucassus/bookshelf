@@ -16,7 +16,9 @@ describe("login mutation", () => {
 
         ... on LoginSuccess {
           currentUser {
+            id
             email
+            isAdmin
             avatar {
               __typename
               ... on Avatar {
@@ -60,7 +62,11 @@ describe("login mutation", () => {
     expect(res.data).toMatchObject({
       login: {
         __typename: "LoginSuccess",
-        currentUser: { email: user.email }
+        currentUser: {
+          id: expect.any(String),
+          email: user.email,
+          isAdmin: false
+        }
       }
     });
 

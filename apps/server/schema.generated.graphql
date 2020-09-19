@@ -7,18 +7,18 @@ input RegistrationInput {
   email: String!
   password: String!
 }
-union RegistrationResult = User | ValidationErrors
+union RegistrationResult = FullUserInfo | ValidationErrors
 input UpdateProfileInput {
   name: String!
   email: String!
   info: String!
 }
-union UpdateProfileResult = User | ValidationErrors
+union UpdateProfileResult = FullUserInfo | ValidationErrors
 type Query {
   """
   Returns the currently logged in user or null if not logged in.
   """
-  currentUser: User
+  currentUser: FullUserInfo
   authors: [Author!]!
   author(id: ExternalID!): AuthorResponse!
   booksCount: Int!
@@ -62,7 +62,7 @@ input LoginInput {
   password: String!
 }
 type LoginSuccess {
-  currentUser: User!
+  currentUser: FullUserInfo!
 }
 type LoginFailure {
   validationErrors: [ValidationError!]!
@@ -95,17 +95,26 @@ type BookCopy implements Resource {
   owner: User!
   borrower: User
 }
-type User implements Resource & Timestampable {
+interface User {
   ownedBookCopies: [BookCopy!]!
-  borrowedBookCopies: [BookCopy!]
   id: ExternalID!
   name: String!
   info: String!
   avatar: AvatarResult!
   createdAt: String!
   updatedAt: String!
-  email: String
-  isAdmin: Boolean
+}
+type FullUserInfo implements User & Resource & Timestampable {
+  borrowedBookCopies: [BookCopy!]!
+  id: ExternalID!
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+  createdAt: String!
+  updatedAt: String!
+  email: String!
+  isAdmin: Boolean!
+  ownedBookCopies: [BookCopy!]!
 }
 union UpdateBookFavouriteResult = Book | MutationError
 union BorrowBookCopyResult = BookCopy | MutationError
@@ -115,7 +124,7 @@ scalar ExternalID
 interface Resource {
   id: ExternalID!
 }
-union Anything = Author | Book | User | BookCopy
+union Anything = Author | Book | PublicUserInfo | BookCopy
 interface Timestampable {
   createdAt: String!
   updatedAt: String!
@@ -149,6 +158,15 @@ interface MutationResponse {
   Human-readable string that describes the result of the mutation
   """
   message: String!
+}
+type PublicUserInfo implements User & Resource & Timestampable {
+  id: ExternalID!
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+  createdAt: String!
+  updatedAt: String!
+  ownedBookCopies: [BookCopy!]!
 }
 type Avatar {
   image: Image!
@@ -189,5 +207,5 @@ type DeleteUserResult implements MutationResponse {
   success: Boolean!
   message: String!
 }
-union UserResult = User | ResourceNotFoundError
+union UserResult = PublicUserInfo | FullUserInfo | ResourceNotFoundError
 directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION

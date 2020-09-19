@@ -5,15 +5,6 @@ import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "./UsersService";
 
-// TODO: Refactor it
-const isPrivileged = (user: User, currentUser: User | undefined) => {
-  if (!currentUser) {
-    return false;
-  }
-
-  return currentUser.isAdmin || currentUser.id === user.id;
-};
-
 const resolvers: Resolvers<Context> = {
   Avatar: {
     image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
@@ -23,6 +14,14 @@ const resolvers: Resolvers<Context> = {
   },
 
   User: {
+    __resolveType: (user, { currentUser }) => {
+      if (currentUser && (currentUser.isAdmin || currentUser.id === user.id)) {
+        return "FullUserInfo";
+      }
+
+      return "PublicUserInfo";
+    },
+
     avatar: (user) => {
       if (user.avatar.flagged) {
         return {
@@ -31,25 +30,22 @@ const resolvers: Resolvers<Context> = {
         };
       }
 
-      return { __typename: "Avatar", ...user.avatar };
-    },
-
-    // Resolvers for privileged fields
-
-    isAdmin: (user, args, { currentUser }) =>
-      isPrivileged(user, currentUser) ? user.isAdmin : null,
-
-    email: (user, args, { currentUser }) =>
-      isPrivileged(user, currentUser) ? user.email : null,
-
-    borrowedBookCopies: (user, args, { currentUser }) =>
-      isPrivileged(user, currentUser) ? user.borrowedBookCopies : null
+      return Object.assign(user.avatar, { __typename: "Avatar" });
+    }
   },
 
   UserResult: {
-    __resolveType: (maybeUser) => {
+    __resolveType: (maybeUser, { currentUser }) => {
       if (maybeUser instanceof User) {
-        return "User";
+        // TODO: Figure out how to dry it
+        if (
+          currentUser &&
+          (currentUser.isAdmin || currentUser.id === maybeUser.id)
+        ) {
+          return "FullUserInfo";
+        }
+
+        return "PublicUserInfo";
       }
 
       return "ResourceNotFoundError";
@@ -62,7 +58,7 @@ const resolvers: Resolvers<Context> = {
 
     user: async (rootValue, { id }, { container }) => {
       try {
-        return await await container.get(UsersService).findByIdOrFail(id);
+        return await container.get(UsersService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
           return { message: "Could not find User" };

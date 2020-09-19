@@ -10,7 +10,7 @@ describe("updateProfile mutation", () => {
       updateProfile(input: $input) {
         __typename
 
-        ... on User {
+        ... on FullUserInfo {
           id
           name
           email
@@ -47,7 +47,7 @@ describe("updateProfile mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       updateProfile: {
-        __typename: "User",
+        __typename: "FullUserInfo",
         id: toExternalId(currentUser),
         name: "Anna",
         email: "anna@example.com",

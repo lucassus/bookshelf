@@ -1,4 +1,15 @@
-type User implements Resource & Timestampable {
+interface User implements Resource & Timestampable {
+  id: ExternalID!
+
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+
+  createdAt: String!
+  updatedAt: String!
+}
+
+type PublicUserInfo implements User & Resource & Timestampable {
   id: ExternalID!
 
   name: String!
@@ -8,9 +19,23 @@ type User implements Resource & Timestampable {
   createdAt: String!
   updatedAt: String!
 
-  # TODO: Priviledged fields, nullable for users without permissions
-  email: String
-  isAdmin: Boolean
+  ownedBookCopies: [BookCopy!]!
+}
+
+type FullUserInfo implements User & Resource & Timestampable {
+  id: ExternalID!
+
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+
+  createdAt: String!
+  updatedAt: String!
+
+  email: String!
+  isAdmin: Boolean!
+
+  ownedBookCopies: [BookCopy!]!
 }
 
 type Avatar {
@@ -67,7 +92,7 @@ type DeleteUserResult implements MutationResponse {
   message: String!
 }
 
-union UserResult = User | ResourceNotFoundError
+union UserResult = PublicUserInfo | FullUserInfo | ResourceNotFoundError
 
 extend type Query {
   users: [User!]!

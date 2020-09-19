@@ -9,12 +9,13 @@ describe("user query", () => {
   const GetUserQuery = gql`
     query($id: ExternalID!) {
       user(id: $id) {
+        __typename
+
         ... on User {
           id
           name
-          email
           info
-          isAdmin
+
           avatar {
             __typename
             ... on Avatar {
@@ -27,6 +28,7 @@ describe("user query", () => {
               message
             }
           }
+
           ownedBookCopies {
             book {
               id
@@ -37,6 +39,12 @@ describe("user query", () => {
               name
             }
           }
+        }
+
+        ... on FullUserInfo {
+          email
+          isAdmin
+
           borrowedBookCopies {
             borrower {
               id
@@ -76,11 +84,8 @@ describe("user query", () => {
         id: toExternalId(user),
         name: user.name,
         info: user.info,
-        email: null,
-        isAdmin: null,
         avatar: { color: expect.any(String) },
-        ownedBookCopies: expect.any(Array),
-        borrowedBookCopies: null
+        ownedBookCopies: expect.any(Array)
       }
     });
   });
@@ -173,6 +178,7 @@ describe("user query", () => {
     // Then
     expect(res.data).toEqual({
       user: {
+        __typename: "ResourceNotFoundError",
         message: "Could not find User"
       }
     });
