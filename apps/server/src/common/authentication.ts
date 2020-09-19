@@ -11,10 +11,10 @@ import {
 import { User } from "../database/entity";
 
 const getAuthTokenSecretFor = (user: User) =>
-  [user.email, user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");
+  [user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");
 
 export const generateAuthToken = (user: User): string =>
-  jwt.sign({ sub: user.id }, getAuthTokenSecretFor(user), {
+  jwt.sign({ sub: user.email }, getAuthTokenSecretFor(user), {
     expiresIn: AUTH_TOKEN_EXPIRES_IN_SECONDS
   });
 
@@ -31,9 +31,7 @@ export async function authenticateRequest(
     throw new Error("Invalid token payload");
   }
 
-  const user = await getRepository(User).findOneOrFail({
-    id: payload.sub
-  });
+  const user = await getRepository(User).findOneOrFail({ email: payload.sub });
 
   return new Promise((resolve, reject) => {
     jwt.verify(authToken, getAuthTokenSecretFor(user), (error) => {
