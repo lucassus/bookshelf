@@ -40,7 +40,7 @@ export const SignupPage: React.FunctionComponent = () => {
       });
       const result = data!.register;
 
-      if (result.__typename === "FullUserInfo") {
+      if (result.__typename === "ClassifiedUser") {
         authorize(result);
       } else {
         setErrors(normalizeValidationErrors(result.errors));

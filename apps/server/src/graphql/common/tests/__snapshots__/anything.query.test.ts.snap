@@ -68,7 +68,7 @@ Object {
 exports[`anything query fetches User 1`] = `
 Object {
   "anything": Object {
-    "__typename": "User",
+    "__typename": "PublicUser",
     "id": "MS1Vc2Vy",
     "name": "Randolph Satterfield",
   },

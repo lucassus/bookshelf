@@ -1,6 +1,6 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
-import { Book } from "../../database/entity";
+import { Book, BookCopy } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
@@ -9,6 +9,8 @@ import { BooksService } from "./services/BooksService";
 
 const resolvers: Resolvers<Context> = {
   Book: {
+    __isTypeOf: (maybeBook) => maybeBook instanceof Book,
+
     author: (book, args, { authorsLoader }) =>
       authorsLoader.load(book.authorId),
 
@@ -19,6 +21,8 @@ const resolvers: Resolvers<Context> = {
   },
 
   BookCopy: {
+    __isTypeOf: (maybeBookCopy) => maybeBookCopy instanceof BookCopy,
+
     owner: (bookCopy, args, { container }) =>
       container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
 

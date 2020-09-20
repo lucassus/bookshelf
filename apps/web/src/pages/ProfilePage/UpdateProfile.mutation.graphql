@@ -2,7 +2,7 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
   updateProfile(input: $input) {
     __typename
 
-    ... on FullUserInfo {
+    ... on ClassifiedUser {
       ...CurrentUser
     }
 

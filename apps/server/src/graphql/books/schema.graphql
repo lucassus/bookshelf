@@ -22,7 +22,7 @@ extend interface User {
   ownedBookCopies: [BookCopy!]!
 }
 
-extend type FullUserInfo {
+extend type ClassifiedUser {
   borrowedBookCopies: [BookCopy!]!
 }
 

@@ -28,16 +28,30 @@ const resolvers: Resolvers<Context> = {
   },
 
   Resource: {
+    // TODO: Refactor with __isTypeOf
     __resolveType: (resource) =>
       Object.getPrototypeOf(resource).constructor.name,
 
     id: (resource) => toExternalId(resource)
-  },
-
-  Anything: {
-    __resolveType: (anything) =>
-      Object.getPrototypeOf(anything).constructor.name
   }
+
+  // Anything: {
+  //   __resolveType(anything, { currentUser }) {
+  //     // if (anything instanceof User) {
+  //     //   // TODO: Figure out how to dry it
+  //     //   if (
+  //     //     currentUser &&
+  //     //     (currentUser.isAdmin || currentUser.id === anything.id)
+  //     //   ) {
+  //     //     return "ClassifiedUser";
+  //     //   }
+  //     //
+  //     //   return "PublicUser";
+  //     // }
+  //
+  //     return Object.getPrototypeOf(anything).constructor.name;
+  //   }
+  // }
 };
 
 export default resolvers;

@@ -47,7 +47,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         </>
       )}
 
-      {user.__typename === "FullUserInfo" &&
+      {user.__typename === "ClassifiedUser" &&
         user.borrowedBookCopies.length > 0 && (
           <>
             <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>

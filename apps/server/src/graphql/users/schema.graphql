@@ -9,7 +9,7 @@ interface User implements Resource & Timestampable {
   updatedAt: String!
 }
 
-type PublicUserInfo implements User & Resource & Timestampable {
+type PublicUser implements User & Resource & Timestampable {
   id: ExternalID!
 
   name: String!
@@ -22,7 +22,7 @@ type PublicUserInfo implements User & Resource & Timestampable {
   ownedBookCopies: [BookCopy!]!
 }
 
-type FullUserInfo implements User & Resource & Timestampable {
+type ClassifiedUser implements User & Resource & Timestampable {
   id: ExternalID!
 
   name: String!
@@ -92,7 +92,7 @@ type DeleteUserResult implements MutationResponse {
   message: String!
 }
 
-union UserResult = PublicUserInfo | FullUserInfo | ResourceNotFoundError
+union UserResult = PublicUser | ClassifiedUser | ResourceNotFoundError
 
 extend type Query {
   users: [User!]!

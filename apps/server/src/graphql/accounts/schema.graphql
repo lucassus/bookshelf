@@ -4,7 +4,7 @@ input RegistrationInput {
   password: String!
 }
 
-union RegistrationResult = FullUserInfo | ValidationErrors
+union RegistrationResult = ClassifiedUser | ValidationErrors
 
 input UpdateProfileInput {
   name: String!
@@ -12,13 +12,13 @@ input UpdateProfileInput {
   info: String!
 }
 
-union UpdateProfileResult = FullUserInfo | ValidationErrors
+union UpdateProfileResult = ClassifiedUser | ValidationErrors
 
 extend type Query {
   """
   Returns the currently logged in user or null if not logged in.
   """
-  currentUser: FullUserInfo
+  currentUser: ClassifiedUser
 }
 
 extend type Mutation {

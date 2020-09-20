@@ -2,7 +2,7 @@ mutation Register($input: RegistrationInput!) {
   register(input: $input) {
     __typename
 
-    ... on FullUserInfo {
+    ... on ClassifiedUser {
       ...CurrentUser
     }
 

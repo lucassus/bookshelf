@@ -11,7 +11,7 @@ input LoginInput {
 }
 
 type LoginSuccess {
-  currentUser: FullUserInfo!
+  currentUser: ClassifiedUser!
 }
 
 type LoginFailure {

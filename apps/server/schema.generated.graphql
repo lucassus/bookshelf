@@ -7,18 +7,18 @@ input RegistrationInput {
   email: String!
   password: String!
 }
-union RegistrationResult = FullUserInfo | ValidationErrors
+union RegistrationResult = ClassifiedUser | ValidationErrors
 input UpdateProfileInput {
   name: String!
   email: String!
   info: String!
 }
-union UpdateProfileResult = FullUserInfo | ValidationErrors
+union UpdateProfileResult = ClassifiedUser | ValidationErrors
 type Query {
   """
   Returns the currently logged in user or null if not logged in.
   """
-  currentUser: FullUserInfo
+  currentUser: ClassifiedUser
   authors: [Author!]!
   author(id: ExternalID!): AuthorResponse!
   booksCount: Int!
@@ -62,7 +62,7 @@ input LoginInput {
   password: String!
 }
 type LoginSuccess {
-  currentUser: FullUserInfo!
+  currentUser: ClassifiedUser!
 }
 type LoginFailure {
   validationErrors: [ValidationError!]!
@@ -104,7 +104,7 @@ interface User {
   createdAt: String!
   updatedAt: String!
 }
-type FullUserInfo implements User & Resource & Timestampable {
+type ClassifiedUser implements User & Resource & Timestampable {
   borrowedBookCopies: [BookCopy!]!
   id: ExternalID!
   name: String!
@@ -124,7 +124,7 @@ scalar ExternalID
 interface Resource {
   id: ExternalID!
 }
-union Anything = Author | Book | PublicUserInfo | BookCopy
+union Anything = PublicUser | ClassifiedUser | Author | Book | BookCopy
 interface Timestampable {
   createdAt: String!
   updatedAt: String!
@@ -159,7 +159,7 @@ interface MutationResponse {
   """
   message: String!
 }
-type PublicUserInfo implements User & Resource & Timestampable {
+type PublicUser implements User & Resource & Timestampable {
   id: ExternalID!
   name: String!
   info: String!
@@ -207,5 +207,5 @@ type DeleteUserResult implements MutationResponse {
   success: Boolean!
   message: String!
 }
-union UserResult = PublicUserInfo | FullUserInfo | ResourceNotFoundError
+union UserResult = PublicUser | ClassifiedUser | ResourceNotFoundError
 directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
