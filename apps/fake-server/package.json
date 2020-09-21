@@ -6,7 +6,7 @@
     "@bookshelf/secure-id": "workspace:*",
     "@bookshelf/string-utils": "workspace:*",
     "@graphql-tools/mock": "6.2.2",
-    "@graphql-tools/schema": "6.2.2",
+    "@graphql-tools/schema": "6.2.3",
     "@types/faker": "5.1.0",
     "apollo-server": "2.17.0",
     "faker": "5.1.0",
