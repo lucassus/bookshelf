@@ -3,6 +3,7 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { canSeeProtectedUserFields } from "./canSeeProtectedUserFields";
 import { UsersService } from "./UsersService";
 
 const resolvers: Resolvers<Context> = {
@@ -35,38 +36,16 @@ const resolvers: Resolvers<Context> = {
   },
 
   PublicUser: {
-    // TODO: Refactor and improve
+    // TODO: Find out why typings are broken
     // @ts-expect-error
-    __isTypeOf: (user, { currentUser }) => {
-      if (!(user instanceof User)) {
-        return false;
-      }
-
-      if (!currentUser) {
-        return true;
-      }
-
-      if (currentUser.isAdmin) {
-        return false;
-      }
-
-      return currentUser.id !== user.id;
-    }
+    __isTypeOf: (user, { currentUser }) =>
+      user instanceof User && !canSeeProtectedUserFields({ currentUser, user })
   },
 
   ProtectedUser: {
     // @ts-expect-error
-    __isTypeOf: (user, { currentUser }) => {
-      if (!(user instanceof User)) {
-        return false;
-      }
-
-      if (!currentUser) {
-        return false;
-      }
-
-      return currentUser.isAdmin || currentUser.id === user.id;
-    }
+    __isTypeOf: (user, { currentUser }) =>
+      user instanceof User && canSeeProtectedUserFields({ currentUser, user })
   },
 
   Query: {
