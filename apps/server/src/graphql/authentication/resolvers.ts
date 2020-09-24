@@ -1,6 +1,7 @@
-import { clearAuthCookie, sendAuthCookie } from "../../common/authentication";
+import { clearAuthCookie } from "../../common/authentication";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { authenticateContext } from "./authenticateContext";
 import {
   AuthenticationService,
   InvalidEmailOrPasswordError
@@ -8,12 +9,8 @@ import {
 
 const resolvers: Resolvers<Context> = {
   Mutation: {
-    login: async (
-      rootValue,
-      { input: { email, password } },
-      { res, container }
-    ) => {
-      const service = container.get(AuthenticationService);
+    login: async (rootValue, { input: { email, password } }, context) => {
+      const service = context.container.get(AuthenticationService);
 
       try {
         const user = await service.findUserByEmailAndPasswordOrFail(
@@ -21,7 +18,7 @@ const resolvers: Resolvers<Context> = {
           password
         );
 
-        sendAuthCookie(res, user);
+        authenticateContext(context, user);
 
         return {
           __typename: "LoginSuccess",

@@ -4,20 +4,14 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Author: {
+    __isTypeOf: (maybeAuthor) => {
+      return maybeAuthor instanceof Author;
+    },
+
     photo: ({ photoPath: path }, args, { assetsBaseUrl }) => ({
       path,
       url: assetsBaseUrl + path
     })
-  },
-
-  AuthorResponse: {
-    __resolveType: (maybeAuthor) => {
-      if (maybeAuthor instanceof Author) {
-        return "Author";
-      }
-
-      return "ResourceNotFoundError";
-    }
   },
 
   Query: {
@@ -28,7 +22,10 @@ const resolvers: Resolvers<Context> = {
       const author = await authorsLoader.load(id);
 
       if (!author) {
-        return { message: "Could not find Author" };
+        return {
+          __typename: "ResourceNotFoundError",
+          message: "Could not find Author"
+        };
       }
 
       return author;

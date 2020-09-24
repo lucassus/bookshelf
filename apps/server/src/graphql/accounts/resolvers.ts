@@ -1,4 +1,5 @@
 import { sendAuthCookie } from "../../common/authentication";
+import { authenticateContext } from "../authentication/authenticateContext";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
@@ -9,17 +10,17 @@ const resolvers: Resolvers<Context> = {
   },
 
   Mutation: {
-    register: async (rootValue, { input }, { container, res }) => {
-      const service = container.get(UsersService);
+    register: async (rootValue, { input }, context) => {
+      const service = context.container.get(UsersService);
 
       const emailNotTaken = await service.checkUniquenessOfEmail(input.email);
 
       if (emailNotTaken) {
-        const user = await container.get(UsersService).register(input);
+        const user = await context.container.get(UsersService).register(input);
 
-        sendAuthCookie(res, user);
+        authenticateContext(context, user);
 
-        return Object.assign(user, { __typename: "CurrentUser" });
+        return Object.assign(user, { __typename: "ProtectedUser" });
       }
 
       return {
@@ -49,7 +50,9 @@ const resolvers: Resolvers<Context> = {
         const updatedCurrentUser = await service.update(currentUser!, input);
         sendAuthCookie(res, updatedCurrentUser);
 
-        return Object.assign(updatedCurrentUser, { __typename: "CurrentUser" });
+        return Object.assign(updatedCurrentUser, {
+          __typename: "ProtectedUser"
+        });
       }
 
       return {

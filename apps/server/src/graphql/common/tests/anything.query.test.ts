@@ -52,6 +52,11 @@ describe("anything query", () => {
     fragment UserFragment on User {
       id
       name
+
+      ... on ProtectedUser {
+        email
+        isAdmin
+      }
     }
   `;
 
@@ -93,14 +98,22 @@ describe("anything query", () => {
     const user = await createUser();
 
     // When
-    const res = await createTestClient().query({
+    const res = await createTestClient({ currentUser: user }).query({
       query: GetAnythingQuery,
       variables: { id: toExternalId(user) }
     });
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchSnapshot();
+    expect(res.data).toMatchObject({
+      anything: {
+        __typename: "ProtectedUser",
+        id: expect.any(String),
+        name: "Randolph Satterfield",
+        email: "Lauryn.Crist@yahoo.com",
+        isAdmin: false
+      }
+    });
   });
 
   it("fetches BookCopy", async () => {

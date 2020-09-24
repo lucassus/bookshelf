@@ -65,16 +65,6 @@ Object {
 }
 `;
 
-exports[`anything query fetches User 1`] = `
-Object {
-  "anything": Object {
-    "__typename": "User",
-    "id": "MS1Vc2Vy",
-    "name": "Randolph Satterfield",
-  },
-}
-`;
-
 exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {

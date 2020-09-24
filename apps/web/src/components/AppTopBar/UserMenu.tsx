@@ -31,7 +31,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   return createPortal(
     <section className={styles.container} ref={ref} data-cy="user-menu">
       <header>
-        <div>Account</div>
+        {currentUser.isAdmin ? <div>Admin Account</div> : <div>Account</div>}
         <button onClick={onClose}>
           <FaTimes />
         </button>

@@ -2,7 +2,11 @@ import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { createAuthor, createBook } from "../../../testUtils/factories";
+import {
+  createAuthor,
+  createBook,
+  createUser
+} from "../../../testUtils/factories";
 
 describe("resource query", () => {
   const GetResourceQuery = gql`
@@ -19,6 +23,15 @@ describe("resource query", () => {
         ... on Author {
           name
           bio
+        }
+
+        ... on User {
+          name
+          info
+
+          ... on ProtectedUser {
+            email
+          }
         }
 
         ... on Timestampable {
@@ -70,6 +83,29 @@ describe("resource query", () => {
         __typename: "Author",
         name: author.name,
         bio: author.bio,
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String)
+      }
+    });
+  });
+
+  it("fetches a user", async () => {
+    const user = await createUser();
+
+    // When
+    const res = await createTestClient({ currentUser: user }).query({
+      query: GetResourceQuery,
+      variables: { id: toExternalId(user) }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      resource: {
+        __typename: "ProtectedUser",
+        name: user.name,
+        info: user.info,
+        email: user.email,
         createdAt: expect.any(String),
         updatedAt: expect.any(String)
       }

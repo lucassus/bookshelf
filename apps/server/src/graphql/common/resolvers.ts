@@ -28,15 +28,7 @@ const resolvers: Resolvers<Context> = {
   },
 
   Resource: {
-    __resolveType: (resource) =>
-      Object.getPrototypeOf(resource).constructor.name,
-
     id: (resource) => toExternalId(resource)
-  },
-
-  Anything: {
-    __resolveType: (anything) =>
-      Object.getPrototypeOf(anything).constructor.name
   }
 };
 

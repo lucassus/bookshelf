@@ -18,8 +18,11 @@ type BookCopy implements Resource {
   book: Book!
 }
 
-extend type User {
+extend interface User {
   ownedBookCopies: [BookCopy!]!
+}
+
+extend type ProtectedUser {
   borrowedBookCopies: [BookCopy!]!
 }
 

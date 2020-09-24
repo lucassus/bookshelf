@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
 
-describe("me query", () => {
+describe("currentUser query", () => {
   const GetCurrentUser = gql`
     query {
       currentUser {
@@ -42,7 +42,7 @@ describe("me query", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       currentUser: {
-        __typename: "CurrentUser",
+        __typename: "ProtectedUser",
         id: expect.any(String),
         name: currentUser.name,
         email: currentUser.email,

@@ -13,7 +13,7 @@ export default {
 
 export const Basic = () => {
   const currentUser: CurrentUserFragment = {
-    __typename: "CurrentUser",
+    __typename: "ProtectedUser",
     id: 1,
     name: text("User name", "Łukasz Bandzarewicz"),
     email: text("User email", "lucassus@gmail.com"),

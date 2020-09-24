@@ -40,7 +40,7 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
       const { data } = await updateProfile({ variables: { input: values } });
       const result = data!.updateProfile;
 
-      if (result.__typename === "CurrentUser") {
+      if (result.__typename === "ProtectedUser") {
         authorize(result);
       }
 
@@ -54,7 +54,7 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
   };
 
   const initialValues = {
-    email: currentUser.email,
+    email: currentUser.email!,
     name: currentUser.name,
     info: currentUser.info
   };

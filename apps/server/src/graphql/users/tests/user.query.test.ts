@@ -6,6 +6,64 @@ import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBookCopy, createUser } from "../../../testUtils/factories";
 
 describe("user query", () => {
+  const GetUserQuery = gql`
+    query($id: ExternalID!) {
+      user(id: $id) {
+        __typename
+
+        ... on User {
+          id
+          name
+          info
+
+          avatar {
+            __typename
+            ... on Avatar {
+              color
+              image {
+                url
+              }
+            }
+            ... on FlaggedAvatarError {
+              message
+            }
+          }
+
+          ownedBookCopies {
+            book {
+              id
+              title
+            }
+            owner {
+              id
+              name
+            }
+          }
+
+          ... on ProtectedUser {
+            email
+            isAdmin
+
+            borrowedBookCopies {
+              borrower {
+                id
+                name
+              }
+              book {
+                id
+                title
+              }
+            }
+          }
+        }
+
+        ... on ResourceNotFoundError {
+          message
+        }
+      }
+    }
+  `;
+
   it("fetches a user", async () => {
     // Given
     const user = await createUser();
@@ -15,45 +73,7 @@ describe("user query", () => {
 
     // When
     const res = await createTestClient().query({
-      query: gql`
-        query($id: ExternalID!) {
-          user(id: $id) {
-            ... on User {
-              id
-              name
-              info
-              avatar {
-                ... on Avatar {
-                  color
-                  image {
-                    url
-                  }
-                }
-              }
-              ownedBookCopies {
-                book {
-                  id
-                  title
-                }
-                owner {
-                  id
-                  name
-                }
-              }
-              borrowedBookCopies {
-                borrower {
-                  id
-                  name
-                }
-                book {
-                  id
-                  title
-                }
-              }
-            }
-          }
-        }
-      `,
+      query: GetUserQuery,
       variables: { id: toExternalId(user) }
     });
 
@@ -65,9 +85,63 @@ describe("user query", () => {
         name: user.name,
         info: user.info,
         avatar: { color: expect.any(String) },
-        ownedBookCopies: expect.any(Array),
-        borrowedBookCopies: expect.any(Array)
+        ownedBookCopies: expect.any(Array)
       }
+    });
+  });
+
+  describe("fetching the current user", () => {
+    it("fetches a user with protected fields", async () => {
+      // Given
+      const user = await createUser();
+      await createBookCopy({ borrower: user });
+
+      // When
+      const res = await createTestClient({ currentUser: user }).query({
+        query: GetUserQuery,
+        variables: { id: toExternalId(user) }
+      });
+
+      // Then
+      expect(res.errors).toBe(undefined);
+      expect(res.data).toMatchObject({
+        user: {
+          id: toExternalId(user),
+          name: user.name,
+          info: user.info,
+          email: user.email,
+          isAdmin: false,
+          borrowedBookCopies: expect.any(Array)
+        }
+      });
+    });
+  });
+
+  describe("fetching as admin user", () => {
+    it("fetches a user with privileged fields", async () => {
+      // Given
+      const adminUser = await createUser({ isAdmin: true });
+      const user = await createUser();
+      await createBookCopy({ borrower: user });
+
+      // When
+      const res = await createTestClient({ currentUser: adminUser }).query({
+        query: GetUserQuery,
+        variables: { id: toExternalId(user) }
+      });
+
+      // Then
+      expect(res.errors).toBe(undefined);
+      expect(res.data).toMatchObject({
+        user: {
+          id: toExternalId(user),
+          name: user.name,
+          info: user.info,
+          email: user.email,
+          isAdmin: false,
+          borrowedBookCopies: expect.any(Array)
+        }
+      });
     });
   });
 
@@ -77,20 +151,7 @@ describe("user query", () => {
 
     // When
     const res = await createTestClient().query({
-      query: gql`
-        query($id: ExternalID!) {
-          user(id: $id) {
-            ... on User {
-              avatar {
-                ... on FlaggedAvatarError {
-                  __typename
-                  message
-                }
-              }
-            }
-          }
-        }
-      `,
+      query: GetUserQuery,
       variables: { id: toExternalId(user) }
     });
 
@@ -113,21 +174,14 @@ describe("user query", () => {
 
     // When
     const res = await createTestClient().query({
-      query: gql`
-        query($id: ExternalID!) {
-          user(id: $id) {
-            ... on ResourceNotFoundError {
-              message
-            }
-          }
-        }
-      `,
+      query: GetUserQuery,
       variables: { id: toExternalId(user) }
     });
 
     // Then
     expect(res.data).toEqual({
       user: {
+        __typename: "ResourceNotFoundError",
         message: "Could not find User"
       }
     });

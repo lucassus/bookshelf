@@ -3,6 +3,7 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 import { User } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
+import { canSeeProtectedUserFields } from "./canSeeProtectedUserFields";
 import { UsersService } from "./UsersService";
 
 const resolvers: Resolvers<Context> = {
@@ -13,7 +14,15 @@ const resolvers: Resolvers<Context> = {
     })
   },
 
-  Person: {
+  User: {
+    __resolveType: (user, { currentUser }) => {
+      if (currentUser && (currentUser.isAdmin || currentUser.id === user.id)) {
+        return "ProtectedUser";
+      }
+
+      return "PublicUser";
+    },
+
     avatar: (user) => {
       if (user.avatar.flagged) {
         return {
@@ -22,18 +31,20 @@ const resolvers: Resolvers<Context> = {
         };
       }
 
-      return { __typename: "Avatar", ...user.avatar };
+      return Object.assign(user.avatar, { __typename: "Avatar" });
     }
   },
 
-  UserResult: {
-    __resolveType: (maybeUser) => {
-      if (maybeUser instanceof User) {
-        return "User";
-      }
+  PublicUser: {
+    // @ts-expect-error, see: https://github.com/dotansimha/graphql-code-generator/issues/4789
+    __isTypeOf: (user, { currentUser }) =>
+      user instanceof User && !canSeeProtectedUserFields({ currentUser, user })
+  },
 
-      return "ResourceNotFoundError";
-    }
+  ProtectedUser: {
+    // @ts-expect-error, see: https://github.com/dotansimha/graphql-code-generator/issues/4789
+    __isTypeOf: (user, { currentUser }) =>
+      user instanceof User && canSeeProtectedUserFields({ currentUser, user })
   },
 
   Query: {
@@ -42,10 +53,13 @@ const resolvers: Resolvers<Context> = {
 
     user: async (rootValue, { id }, { container }) => {
       try {
-        return await await container.get(UsersService).findByIdOrFail(id);
+        return await container.get(UsersService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: "Could not find User" };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find User"
+          };
         }
 
         throw error;

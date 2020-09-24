@@ -29,6 +29,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
     return <NotFoundPage message={user.message} />;
   }
 
+  // TODO: Write e2e test for borrowedBooks
   return (
     <div>
       <UserCard user={user} />
@@ -36,7 +37,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
 
       {user.ownedBookCopies.length > 0 && (
         <>
-          <h3>Owned book copies</h3>
+          <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
 
           <div className={styles.bookCopies}>
             {user.ownedBookCopies.map((bookCopy) => (
@@ -46,17 +47,18 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         </>
       )}
 
-      {user.borrowedBookCopies.length > 0 && (
-        <>
-          <h3>Borrowed book copies</h3>
+      {user.__typename === "ProtectedUser" &&
+        user.borrowedBookCopies.length > 0 && (
+          <>
+            <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
 
-          <div className={styles.bookCopies}>
-            {user.borrowedBookCopies.map((bookCopy) => (
-              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
-          </div>
-        </>
-      )}
+            <div className={styles.bookCopies}>
+              {user.borrowedBookCopies.map((bookCopy) => (
+                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+              ))}
+            </div>
+          </>
+        )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ input LoginInput {
 }
 
 type LoginSuccess {
-  currentUser: CurrentUser!
+  currentUser: ProtectedUser!
 }
 
 type LoginFailure {

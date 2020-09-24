@@ -16,6 +16,10 @@ query GetUser($id: ExternalID!) {
       ownedBookCopies {
         ...BookCopy
       }
+    }
+
+    ... on ProtectedUser {
+      email
       borrowedBookCopies {
         ...BookCopy
       }
