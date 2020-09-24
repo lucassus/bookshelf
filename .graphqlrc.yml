@@ -32,7 +32,7 @@ extensions:
             Book: ../database/entity#Book
             BookCopy: ../database/entity#BookCopy
             PublicUser: ../database/entity#User
-            ClassifiedUser: ../database/entity#User
+            ProtectedUser: ../database/entity#User
           mapperTypeSuffix: Entity
           optionalResolveType: true
           scalars:

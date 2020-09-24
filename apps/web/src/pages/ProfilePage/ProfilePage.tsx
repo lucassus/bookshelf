@@ -40,7 +40,7 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
       const { data } = await updateProfile({ variables: { input: values } });
       const result = data!.updateProfile;
 
-      if (result.__typename === "ClassifiedUser") {
+      if (result.__typename === "ProtectedUser") {
         authorize(result);
       }
 

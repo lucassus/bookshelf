@@ -4,7 +4,7 @@ interface Resource {
   id: ExternalID!
 }
 
-union Anything = PublicUser | ClassifiedUser | Author | Book | BookCopy
+union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
 
 interface Timestampable {
   createdAt: String!

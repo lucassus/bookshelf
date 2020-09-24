@@ -16,7 +16,7 @@ const resolvers: Resolvers<Context> = {
   User: {
     __resolveType: (user, { currentUser }) => {
       if (currentUser && (currentUser.isAdmin || currentUser.id === user.id)) {
-        return "ClassifiedUser";
+        return "ProtectedUser";
       }
 
       return "PublicUser";
@@ -36,8 +36,12 @@ const resolvers: Resolvers<Context> = {
 
   PublicUser: {
     // TODO: Improve it
-    // The idea here being that IsTypeOf follows Open/Closed principle and ResolveType does not. I've found that ResolveType is a "gotcha" that people new to GraphQL run into.
-    __isTypeOf: (user, info, { currentUser }) => {
+    // TODO: Wrong typing, context is missing?
+    __isTypeOf: (user, { currentUser }) => {
+      if (!(user instanceof User)) {
+        return false;
+      }
+
       if (!currentUser) {
         return true;
       }
@@ -50,8 +54,12 @@ const resolvers: Resolvers<Context> = {
     }
   },
 
-  ClassifiedUser: {
-    __isTypeOf: (user, info, { currentUser }) => {
+  ProtectedUser: {
+    __isTypeOf: (user, { currentUser }) => {
+      if (!(user instanceof User)) {
+        return false;
+      }
+
       if (!currentUser) {
         return false;
       }
@@ -68,7 +76,7 @@ const resolvers: Resolvers<Context> = {
           currentUser &&
           (currentUser.isAdmin || currentUser.id === maybeUser.id)
         ) {
-          return "ClassifiedUser";
+          return "ProtectedUser";
         }
 
         return "PublicUser";

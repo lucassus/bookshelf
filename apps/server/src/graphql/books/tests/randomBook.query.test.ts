@@ -2,15 +2,15 @@ import { gql } from "apollo-server-express";
 import { Container } from "typedi";
 
 import { createTestClient } from "../../../testUtils/createTestClient";
+import { createBook } from "../../../testUtils/factories";
 import { BooksService } from "../services/BooksService";
 
 test("randomBook query", async () => {
   // Given
-  const book = {
-    id: "1234",
+  const book = await createBook({
     title: "The tower of the swallow",
     coverPath: "/images/book-covers/witcher4.jpg"
-  };
+  });
 
   const fakeBooksService: Partial<BooksService> = {
     findRandom: jest.fn().mockResolvedValue(book)

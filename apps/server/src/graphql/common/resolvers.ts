@@ -43,7 +43,7 @@ const resolvers: Resolvers<Context> = {
   //     //     currentUser &&
   //     //     (currentUser.isAdmin || currentUser.id === anything.id)
   //     //   ) {
-  //     //     return "ClassifiedUser";
+  //     //     return "ProtectedUser";
   //     //   }
   //     //
   //     //   return "PublicUser";

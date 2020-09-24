@@ -18,7 +18,7 @@ query GetUser($id: ExternalID!) {
       }
     }
 
-    ... on ClassifiedUser {
+    ... on ProtectedUser {
       email
       borrowedBookCopies {
         ...BookCopy

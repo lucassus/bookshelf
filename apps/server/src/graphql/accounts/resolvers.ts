@@ -20,7 +20,7 @@ const resolvers: Resolvers<Context> = {
 
         authenticateContext(context, user);
 
-        return Object.assign(user, { __typename: "ClassifiedUser" });
+        return Object.assign(user, { __typename: "ProtectedUser" });
       }
 
       return {
@@ -51,7 +51,7 @@ const resolvers: Resolvers<Context> = {
         sendAuthCookie(res, updatedCurrentUser);
 
         return Object.assign(updatedCurrentUser, {
-          __typename: "ClassifiedUser"
+          __typename: "ProtectedUser"
         });
       }
 

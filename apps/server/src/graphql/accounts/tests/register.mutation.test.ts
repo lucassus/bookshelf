@@ -9,7 +9,7 @@ describe("register mutation", () => {
       register(input: $input) {
         __typename
 
-        ... on ClassifiedUser {
+        ... on ProtectedUser {
           id
           name
           email
@@ -38,7 +38,7 @@ describe("register mutation", () => {
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
       register: {
-        __typename: "ClassifiedUser",
+        __typename: "ProtectedUser",
         id: expect.any(String),
         name: "Luke",
         email: "luke@email.com"

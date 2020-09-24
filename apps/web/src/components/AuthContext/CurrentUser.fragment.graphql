@@ -1,4 +1,4 @@
-fragment CurrentUser on ClassifiedUser {
+fragment CurrentUser on ProtectedUser {
   id
   name
   email

@@ -41,7 +41,7 @@ describe("user query", () => {
           }
         }
 
-        ... on ClassifiedUser {
+        ... on ProtectedUser {
           email
           isAdmin
 

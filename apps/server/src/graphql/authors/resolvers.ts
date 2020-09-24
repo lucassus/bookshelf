@@ -4,7 +4,9 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Author: {
-    __isTypeOf: (maybeAuthor) => maybeAuthor instanceof Author,
+    __isTypeOf: (maybeAuthor) => {
+      return maybeAuthor instanceof Author;
+    },
 
     photo: ({ photoPath: path }, args, { assetsBaseUrl }) => ({
       path,

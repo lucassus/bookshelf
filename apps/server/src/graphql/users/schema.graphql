@@ -22,7 +22,7 @@ type PublicUser implements User & Resource & Timestampable {
   ownedBookCopies: [BookCopy!]!
 }
 
-type ClassifiedUser implements User & Resource & Timestampable {
+type ProtectedUser implements User & Resource & Timestampable {
   id: ExternalID!
 
   name: String!
@@ -92,7 +92,7 @@ type DeleteUserResult implements MutationResponse {
   message: String!
 }
 
-union UserResult = PublicUser | ClassifiedUser | ResourceNotFoundError
+union UserResult = PublicUser | ProtectedUser | ResourceNotFoundError
 
 extend type Query {
   users: [User!]!
