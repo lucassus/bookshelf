@@ -36,14 +36,13 @@ const resolvers: Resolvers<Context> = {
   },
 
   PublicUser: {
-    // TODO: Find out why typings are broken
-    // @ts-expect-error
+    // @ts-expect-error, see: https://github.com/dotansimha/graphql-code-generator/issues/4789
     __isTypeOf: (user, { currentUser }) =>
       user instanceof User && !canSeeProtectedUserFields({ currentUser, user })
   },
 
   ProtectedUser: {
-    // @ts-expect-error
+    // @ts-expect-error, see: https://github.com/dotansimha/graphql-code-generator/issues/4789
     __isTypeOf: (user, { currentUser }) =>
       user instanceof User && canSeeProtectedUserFields({ currentUser, user })
   },
