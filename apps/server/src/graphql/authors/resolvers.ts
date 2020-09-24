@@ -14,16 +14,6 @@ const resolvers: Resolvers<Context> = {
     })
   },
 
-  AuthorResponse: {
-    __resolveType: (maybeAuthor) => {
-      if (maybeAuthor instanceof Author) {
-        return "Author";
-      }
-
-      return "ResourceNotFoundError";
-    }
-  },
-
   Query: {
     authors: (rootValue, args, { connection }) =>
       connection.getRepository(Author).find(),
@@ -32,7 +22,10 @@ const resolvers: Resolvers<Context> = {
       const author = await authorsLoader.load(id);
 
       if (!author) {
-        return { message: "Could not find Author" };
+        return {
+          __typename: "ResourceNotFoundError",
+          message: "Could not find Author"
+        };
       }
 
       return author;

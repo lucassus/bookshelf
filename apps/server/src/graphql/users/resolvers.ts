@@ -35,8 +35,8 @@ const resolvers: Resolvers<Context> = {
   },
 
   PublicUser: {
-    // TODO: Improve it
-    // TODO: Wrong typing, context is missing?
+    // TODO: Refactor and improve
+    // @ts-expect-error
     __isTypeOf: (user, { currentUser }) => {
       if (!(user instanceof User)) {
         return false;
@@ -55,6 +55,7 @@ const resolvers: Resolvers<Context> = {
   },
 
   ProtectedUser: {
+    // @ts-expect-error
     __isTypeOf: (user, { currentUser }) => {
       if (!(user instanceof User)) {
         return false;
@@ -68,24 +69,6 @@ const resolvers: Resolvers<Context> = {
     }
   },
 
-  UserResult: {
-    __resolveType: (maybeUser, { currentUser }) => {
-      if (maybeUser instanceof User) {
-        // TODO: Figure out how to dry it
-        if (
-          currentUser &&
-          (currentUser.isAdmin || currentUser.id === maybeUser.id)
-        ) {
-          return "ProtectedUser";
-        }
-
-        return "PublicUser";
-      }
-
-      return "ResourceNotFoundError";
-    }
-  },
-
   Query: {
     users: (rootValue, args, { container }) =>
       container.get(UsersService).findAll(),
@@ -95,7 +78,10 @@ const resolvers: Resolvers<Context> = {
         return await container.get(UsersService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: "Could not find User" };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find User"
+          };
         }
 
         throw error;

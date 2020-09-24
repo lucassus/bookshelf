@@ -39,20 +39,20 @@ describe("user query", () => {
               name
             }
           }
-        }
 
-        ... on ProtectedUser {
-          email
-          isAdmin
+          ... on ProtectedUser {
+            email
+            isAdmin
 
-          borrowedBookCopies {
-            borrower {
-              id
-              name
-            }
-            book {
-              id
-              title
+            borrowedBookCopies {
+              borrower {
+                id
+                name
+              }
+              book {
+                id
+                title
+              }
             }
           }
         }
@@ -90,55 +90,58 @@ describe("user query", () => {
     });
   });
 
-  it("fetches a user with privileged fields", async () => {
-    // Given
-    const user = await createUser();
-    await createBookCopy({ borrower: user });
+  describe("fetching the current user", () => {
+    it("fetches a user with protected fields", async () => {
+      // Given
+      const user = await createUser();
+      await createBookCopy({ borrower: user });
 
-    // When
-    const res = await createTestClient({ currentUser: user }).query({
-      query: GetUserQuery,
-      variables: { id: toExternalId(user) }
-    });
+      // When
+      const res = await createTestClient({ currentUser: user }).query({
+        query: GetUserQuery,
+        variables: { id: toExternalId(user) }
+      });
 
-    // Then
-    expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchObject({
-      user: {
-        id: toExternalId(user),
-        name: user.name,
-        info: user.info,
-        email: user.email,
-        isAdmin: false,
-        borrowedBookCopies: expect.any(Array)
-      }
+      // Then
+      expect(res.errors).toBe(undefined);
+      expect(res.data).toMatchObject({
+        user: {
+          id: toExternalId(user),
+          name: user.name,
+          info: user.info,
+          email: user.email,
+          isAdmin: false,
+          borrowedBookCopies: expect.any(Array)
+        }
+      });
     });
   });
 
-  // TODO: Dry it or refactor
-  it("fetches a user with privileged fields 2", async () => {
-    // Given
-    const adminUser = await createUser({ isAdmin: true });
-    const user = await createUser();
-    await createBookCopy({ borrower: user });
+  describe("fetching as admin user", () => {
+    it("fetches a user with privileged fields", async () => {
+      // Given
+      const adminUser = await createUser({ isAdmin: true });
+      const user = await createUser();
+      await createBookCopy({ borrower: user });
 
-    // When
-    const res = await createTestClient({ currentUser: adminUser }).query({
-      query: GetUserQuery,
-      variables: { id: toExternalId(user) }
-    });
+      // When
+      const res = await createTestClient({ currentUser: adminUser }).query({
+        query: GetUserQuery,
+        variables: { id: toExternalId(user) }
+      });
 
-    // Then
-    expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchObject({
-      user: {
-        id: toExternalId(user),
-        name: user.name,
-        info: user.info,
-        email: user.email,
-        isAdmin: false,
-        borrowedBookCopies: expect.any(Array)
-      }
+      // Then
+      expect(res.errors).toBe(undefined);
+      expect(res.data).toMatchObject({
+        user: {
+          id: toExternalId(user),
+          name: user.name,
+          info: user.info,
+          email: user.email,
+          isAdmin: false,
+          borrowedBookCopies: expect.any(Array)
+        }
+      });
     });
   });
 
