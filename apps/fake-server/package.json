@@ -8,7 +8,7 @@
     "@graphql-tools/mock": "6.2.3",
     "@graphql-tools/schema": "6.2.3",
     "@types/faker": "5.1.2",
-    "apollo-server": "2.18.0",
+    "apollo-server": "2.18.1",
     "faker": "5.1.0",
     "graphql": "15.3.0",
     "ts-node-dev": "1.0.0-pre.63",
