@@ -23,7 +23,7 @@ type Props = {
   currentUser: CurrentUserFragment;
 };
 
-export const ProfilePage: React.FunctionComponent<Props> = ({
+export const MyProfilePage: React.FunctionComponent<Props> = ({
   currentUser
 }) => {
   const [updateProfile] = useUpdateProfileMutation();

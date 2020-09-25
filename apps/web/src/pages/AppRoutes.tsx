@@ -8,8 +8,8 @@ import { BookDetailsPage } from "./BookDetailsPage";
 import { BooksPage } from "./BooksPage";
 import { LoginPage } from "./LoginPage";
 import { MyBooksPage } from "./MyBooksPage";
+import { MyProfilePage } from "./MyProfilePage";
 import { NotFoundPage } from "./NotFoundPage";
-import { ProfilePage } from "./ProfilePage";
 import { SignupPage } from "./SignupPage";
 import { UserDetailsPage } from "./UserDetailsPage";
 import { UsersPage } from "./UsersPage";
@@ -32,7 +32,7 @@ export const AppRoutes: React.FunctionComponent<Props> = ({ currentUser }) => (
       <>
         <Route
           path="/my/profile"
-          element={<ProfilePage currentUser={currentUser} />}
+          element={<MyProfilePage currentUser={currentUser} />}
         />
 
         <Route path="/my/books" element={<MyBooksPage />} />
