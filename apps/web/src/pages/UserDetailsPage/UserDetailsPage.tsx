@@ -29,27 +29,31 @@ export const UserDetailsPage: React.FunctionComponent = () => {
     return <NotFoundPage message={user.message} />;
   }
 
-  // TODO: Don't display borrowed books here, it should be private
   // TODO: Write e2e test for borrowedBooks
   return (
     <div>
       <UserCard user={user} />
       <span>{user.info}</span>
 
-      {user.ownedBookCopies.length > 0 && (
-        <>
-          <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
+      <div>
+        {user.ownedBookCopies.length > 0 ? (
+          <>
+            <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
 
-          <div className={styles.bookCopies}>
-            {user.ownedBookCopies.map((bookCopy) => (
-              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
-          </div>
-        </>
-      )}
+            <div className={styles.bookCopies}>
+              {user.ownedBookCopies.map((bookCopy) => (
+                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <span>User does not have any books.</span>
+        )}
+      </div>
 
-      {user.__typename === "ProtectedUser" &&
-        user.borrowedBookCopies.length > 0 && (
+      <div>
+        {user.__typename === "ProtectedUser" &&
+        user.borrowedBookCopies.length > 0 ? (
           <>
             <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
 
@@ -59,7 +63,10 @@ export const UserDetailsPage: React.FunctionComponent = () => {
               ))}
             </div>
           </>
+        ) : (
+          <span>User does not have any borrowed books.</span>
         )}
+      </div>
     </div>
   );
 };
