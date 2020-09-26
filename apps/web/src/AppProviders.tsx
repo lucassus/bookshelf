@@ -14,7 +14,12 @@ import introspectionResult from "./introspectionResult.generated";
 const client = new ApolloClient({
   cache: new InMemoryCache({
     addTypename: true,
-    possibleTypes: introspectionResult.possibleTypes
+    possibleTypes: introspectionResult.possibleTypes,
+    typePolicies: {
+      ProtectedUser: {
+        keyFields: ["email"]
+      }
+    }
   }),
   link: new HttpLink({ uri: GRAPHQL_ENDPOINT })
 });
