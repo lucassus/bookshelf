@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
 
-import { useAuth } from "../../components/AuthContext";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useLoginMutation } from "./Login.mutation.generated";
 import styles from "./LoginPage.module.scss";
