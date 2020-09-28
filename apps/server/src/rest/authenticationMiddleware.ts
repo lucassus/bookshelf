@@ -1,4 +1,4 @@
-import express from "express";
+import { RequestHandler } from "express";
 
 import {
   getAuthTokenFromRequest,
@@ -6,10 +6,10 @@ import {
 } from "../common/authentication";
 import { HttpStatusCodes } from "../http-status-codes";
 
-export const authenticationMiddleware = async (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
+export const authenticationMiddleware: RequestHandler = async (
+  req,
+  res,
+  next
 ): Promise<void> => {
   try {
     const authToken = getAuthTokenFromRequest(req);
