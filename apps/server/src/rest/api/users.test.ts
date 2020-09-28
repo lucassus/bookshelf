@@ -18,7 +18,7 @@ describe("GET /api/users", () => {
     );
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.Ok);
+    expect(response.status).toBe(HttpStatusCodes.OK);
     expect(response.body).toMatchObject([
       {
         id: 1,
@@ -40,6 +40,6 @@ describe("GET /api/users", () => {
 
   it("responds with error when not authenticated", async () => {
     const response = await createRestTestClient().get("/api/users");
-    expect(response.status).toBe(401);
+    expect(response.status).toBe(HttpStatusCodes.Forbidden);
   });
 });

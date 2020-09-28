@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 
   await loadFixtures();
 
-  res.send(HttpStatusCodes.Ok);
+  res.send(HttpStatusCodes.OK);
 });
 
 export { router as seed };

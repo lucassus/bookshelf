@@ -18,7 +18,7 @@ test("GET /api/books", async () => {
   const response = await createRestTestClient().get("/api/books");
 
   // Then
-  expect(response.status).toBe(HttpStatusCodes.Ok);
+  expect(response.status).toBe(HttpStatusCodes.OK);
   expect(response.body).toMatchObject([
     {
       id: 1,

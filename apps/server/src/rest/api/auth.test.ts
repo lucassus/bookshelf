@@ -23,7 +23,7 @@ test("GET /api/auth/me", async () => {
   );
 
   // Then
-  expect(response.status).toBe(HttpStatusCodes.Ok);
+  expect(response.status).toBe(HttpStatusCodes.OK);
   expect(response.body).toMatchObject({
     id: expect.any(Number),
     name: "Luke",

@@ -10,16 +10,16 @@ export const authenticationMiddleware: RequestHandler = async (
   req,
   res,
   next
-): Promise<void> => {
-  try {
-    const authToken = getAuthTokenFromRequest(req);
+) => {
+  const authToken = getAuthTokenFromRequest(req);
 
-    if (authToken) {
+  if (authToken) {
+    try {
       req.currentUser = await tradeAuthTokenForUser(authToken);
+    } catch {
+      return res.sendStatus(HttpStatusCodes.Unauthorized);
     }
-
-    next();
-  } catch (error) {
-    res.status(HttpStatusCodes.Unauthenticated).json({ error: error.message });
   }
+
+  return next();
 };
