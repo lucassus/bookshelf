@@ -19,6 +19,7 @@ router.post("/", async (req, res) => {
 
   await loadFixtures();
 
+  // TODO: Deprecated res.send(status): Use res.sendStatus(status) instead. Here and for everything else.
   res.send(HttpStatusCodes.OK);
 });
 
