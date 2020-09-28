@@ -1,7 +1,4 @@
-import {
-  ApolloServerExpressConfig,
-  AuthenticationError
-} from "apollo-server-express";
+import { ApolloServerExpressConfig } from "apollo-server-express";
 
 import {
   getAuthTokenFromRequest,
@@ -23,7 +20,7 @@ export const buildConfig = (
         const currentUser = await tradeAuthTokenForUser(authToken);
         return buildContext({ req, res, currentUser });
       } catch {
-        throw new AuthenticationError("Invalid access token!");
+        return buildContext({ req, res });
       }
     }
 
