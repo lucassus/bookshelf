@@ -32,7 +32,7 @@ export const LoginPage: React.FunctionComponent = () => {
       const result = data!.login;
 
       if (result.__typename === "LoginSuccess") {
-        authorize(result.currentUser);
+        authorize();
       }
 
       if (result.__typename === "LoginFailure") {

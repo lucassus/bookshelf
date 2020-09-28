@@ -41,7 +41,7 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
       const result = data!.updateProfile;
 
       if (result.__typename === "ProtectedUser") {
-        authorize(result);
+        authorize();
       }
 
       if (result.__typename === "ValidationErrors") {

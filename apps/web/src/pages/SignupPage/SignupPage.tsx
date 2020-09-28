@@ -41,7 +41,7 @@ export const SignupPage: React.FunctionComponent = () => {
       const result = data!.register;
 
       if (result.__typename === "ProtectedUser") {
-        authorize(result);
+        authorize();
       } else {
         setErrors(normalizeValidationErrors(result.errors));
       }
