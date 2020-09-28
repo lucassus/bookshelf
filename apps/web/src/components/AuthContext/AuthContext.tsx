@@ -7,13 +7,11 @@ import { useLogoutMutation } from "./Logout.mutation.generated";
 
 interface AuthContextValue {
   currentUser?: CurrentUserFragment;
-  authorize: () => void;
   unauthorize: () => Promise<void>;
 }
 
 const DEFAULT_VALUE: AuthContextValue = {
   currentUser: undefined,
-  authorize: () => {},
   unauthorize: async () => {}
 };
 
@@ -27,11 +25,6 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const { data, loading } = useGetCurrentUserQuery({ errorPolicy: "ignore" });
 
   const [logout, { client }] = useLogoutMutation();
-
-  const authorize = useCallback(async () => {
-    await client.resetStore();
-    navigate("/");
-  }, [client, navigate]);
 
   const unauthorize = useCallback(async () => {
     await logout();
@@ -47,13 +40,7 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const currentUser = data ? data.currentUser : undefined;
 
   return (
-    <AuthContext.Provider
-      value={{
-        currentUser,
-        authorize,
-        unauthorize
-      }}
-    >
+    <AuthContext.Provider value={{ currentUser, unauthorize }}>
       {children}
     </AuthContext.Provider>
   );
