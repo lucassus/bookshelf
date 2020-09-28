@@ -1,3 +1,4 @@
+import { HttpStatusCodes } from "../../http-status-codes";
 import { createRestTestClient } from "../../testUtils/createRestTestClient";
 import { createUser } from "../../testUtils/factories";
 
@@ -17,7 +18,7 @@ describe("GET /api/users", () => {
     );
 
     // Then
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(HttpStatusCodes.Ok);
     expect(response.body).toMatchObject([
       {
         id: 1,

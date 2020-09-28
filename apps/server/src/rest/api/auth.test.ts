@@ -1,3 +1,4 @@
+import { HttpStatusCodes } from "../../http-status-codes";
 import { createRestTestClient } from "../../testUtils/createRestTestClient";
 import { createBookCopy, createUser } from "../../testUtils/factories";
 
@@ -22,7 +23,7 @@ test("GET /api/auth/me", async () => {
   );
 
   // Then
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(HttpStatusCodes.Ok);
   expect(response.body).toMatchObject({
     id: expect.any(Number),
     name: "Luke",

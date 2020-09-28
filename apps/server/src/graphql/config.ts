@@ -13,9 +13,14 @@ export const buildConfig = (
 ): ApolloServerExpressConfig => ({
   schema: rootSchema,
   context: async ({ req, res }): Promise<Context> => {
+    // TODO: Or just use `req.currentUser` and share the auth middleware
     const authToken = getAuthTokenFromRequest(req);
+
+    // TODO: Rethink this approach and figure out how to test it
     if (authToken) {
-      const currentUser = await tradeAuthTokenForUser(authToken);
+      const currentUser = await tradeAuthTokenForUser(authToken).catch(
+        () => undefined
+      );
       return buildContext({ req, res, currentUser });
     }
 
