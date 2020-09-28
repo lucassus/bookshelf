@@ -40,3 +40,20 @@ test("GET /api/auth/me", async () => {
     ]
   });
 });
+
+test("POST /api/auth/logout", async () => {
+  // Given
+  const currentUser = await createUser({
+    name: "Luke",
+    email: "luke@example.com"
+  });
+
+  // When
+  const response = await createRestTestClient({ currentUser }).post(
+    "/api/auth/logout"
+  );
+
+  // Then
+  expect(response.status).toBe(HttpStatusCodes.OK);
+  expect(response.headers["set-cookie"][0]).toContain("bookshelf:authToken=;");
+});
