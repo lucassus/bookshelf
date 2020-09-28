@@ -1,17 +1,20 @@
 const EVENT_KEY = "event:logout";
 const EVENT_VALUE = "true";
 
-export const dispatchLogoutEventToAllWindows = () => {
+const dispatchLogoutEventToOtherTabs = () => {
   window.localStorage.setItem(EVENT_KEY, EVENT_VALUE);
+  window.localStorage.removeItem(EVENT_KEY);
+};
 
-  // Dispatch the event in the current window
+export const dispatchLogoutEventToAllTabs = () => {
+  dispatchLogoutEventToOtherTabs();
+
+  // Dispatch the event in the current tab
   const event = new StorageEvent("storage", {
     key: EVENT_KEY,
     newValue: EVENT_VALUE
   });
   window.dispatchEvent(event);
-
-  window.localStorage.removeItem(EVENT_KEY);
 };
 
 export const createLogoutEventListener = (callback: () => void) => (

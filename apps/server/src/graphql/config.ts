@@ -1,31 +1,14 @@
 import { ApolloServerExpressConfig } from "apollo-server-express";
 
-import {
-  getAuthTokenFromRequest,
-  tradeAuthTokenForUser
-} from "../common/authentication";
 import { Environment } from "../config";
-import { buildContext, Context } from "./context";
+import { buildContext } from "./context";
 import { rootSchema } from "./rootSchema";
 
 export const buildConfig = (
   environment: string = Environment.development
 ): ApolloServerExpressConfig => ({
   schema: rootSchema,
-  context: async ({ req, res }): Promise<Context> => {
-    const authToken = getAuthTokenFromRequest(req);
-
-    if (authToken) {
-      try {
-        const currentUser = await tradeAuthTokenForUser(authToken);
-        return buildContext({ req, res, currentUser });
-      } catch {
-        return buildContext({ req, res });
-      }
-    }
-
-    return buildContext({ req, res });
-  },
+  context: buildContext,
   debug: environment === Environment.development,
   introspection: true,
   playground: true,
