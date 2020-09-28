@@ -20,6 +20,7 @@ query GetUser($id: ExternalID!) {
 
     ... on ProtectedUser {
       email
+      isAdmin
       borrowedBookCopies {
         ...BookCopy
       }
