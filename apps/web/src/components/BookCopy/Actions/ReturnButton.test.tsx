@@ -5,21 +5,21 @@ import React from "react";
 
 import { AuthContext, AuthContextValue } from "../../AuthContext/AuthContext";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
-import { BorrowBookCopyDocument } from "./BorrowBookCopy.mutation.generated";
-import { BorrowButton } from "./BorrowButton";
+import { ReturnBookCopyDocument } from "./ReturnBookCopy.mutation.generated";
+import { ReturnButton } from "./ReturnButton";
 
-test("<BorrowButton />", async () => {
+test("<ReturnButton />", async () => {
   // Given
   const mocks: MockedResponse[] = [
     {
       request: {
-        query: BorrowBookCopyDocument,
+        query: ReturnBookCopyDocument,
         variables: { id: "bookCopy:1" }
       },
       result: {
         data: {
           __typename: "Mutation",
-          borrowBookCopy: {
+          returnBookCopy: {
             id: "bookCopy:1",
             __typename: "BookCopy"
           }
@@ -71,6 +71,18 @@ test("<BorrowButton />", async () => {
           url: "https://example.com/image.jpg"
         }
       }
+    },
+    borrower: {
+      id: "user:1",
+      __typename: "PublicUser",
+      name: "Bob",
+      avatar: {
+        __typename: "Avatar",
+        color: "blue",
+        image: {
+          url: "https://example.com/image.jpg"
+        }
+      }
     }
   };
 
@@ -78,7 +90,7 @@ test("<BorrowButton />", async () => {
     "ProtectedUser:user:1": {
       id: "user:1",
       __typename: "ProtectedUser",
-      borrowedBookCopies: []
+      borrowedBookCopies: [{ __ref: "BookCopy:bookCopy:1" }]
     }
   });
 
@@ -86,21 +98,19 @@ test("<BorrowButton />", async () => {
     <MockedProvider cache={cache} mocks={mocks}>
       <AuthContext.Provider value={authContextValue}>
         {" "}
-        <BorrowButton bookCopy={bookCopy} />
+        <ReturnButton bookCopy={bookCopy} />
       </AuthContext.Provider>
     </MockedProvider>
   );
 
   // When
-  fireEvent.click(screen.getByText("borrow"));
-  expect(screen.getByText("borrow")).toHaveAttribute("disabled");
+  fireEvent.click(screen.getByText("return"));
+  expect(screen.getByText("return")).toHaveAttribute("disabled");
   await waitFor(() =>
-    expect(screen.getByText("borrow")).not.toHaveAttribute("disabled")
+    expect(screen.getByText("return")).not.toHaveAttribute("disabled")
   );
 
   // Then
   const updatedCache = cache.extract();
-  expect(updatedCache["ProtectedUser:user:1"]!.borrowedBookCopies).toEqual([
-    { __ref: "BookCopy:bookCopy:1" }
-  ]);
+  expect(updatedCache["ProtectedUser:user:1"]!.borrowedBookCopies).toEqual([]);
 });
