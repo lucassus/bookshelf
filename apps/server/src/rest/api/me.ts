@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const { currentUser } = req;
 
-  const userJson = await serializeUser(currentUser);
+  const userJson = await serializeUser(currentUser!);
   return res.json(userJson);
 });
 

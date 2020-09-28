@@ -36,7 +36,7 @@ export const adminAuthenticationMiddleware: RequestHandler = (
 ) => {
   const { currentUser } = req;
 
-  if (currentUser.isAdmin) {
+  if (currentUser!.isAdmin) {
     return res.sendStatus(HttpStatusCodes.Forbidden);
   }
 
