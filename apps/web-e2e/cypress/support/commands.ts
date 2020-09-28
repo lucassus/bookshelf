@@ -7,6 +7,7 @@ declare global {
     interface Chainable {
       seed: typeof seed;
       login: typeof login;
+      loginAs: typeof loginAs;
     }
   }
 }
@@ -23,22 +24,27 @@ const seed = () => {
 
 const login = () => {
   return cy.fixture("credentials.json").then(({ email, password }) => {
-    cy.request({
-      url: `${Cypress.config().baseUrl}/graphql`,
-      method: "POST",
-      body: {
-        query: print(gql`
-          mutation($input: LoginInput!) {
-            login(input: $input) {
-              __typename
-            }
+    return cy.loginAs({ email, password });
+  });
+};
+
+const loginAs = ({ email, password }: { email: string; password: string }) => {
+  cy.request({
+    url: `${Cypress.config().baseUrl}/graphql`,
+    method: "POST",
+    body: {
+      query: print(gql`
+        mutation($input: LoginInput!) {
+          login(input: $input) {
+            __typename
           }
-        `),
-        variables: { input: { email, password } }
-      }
-    });
+        }
+      `),
+      variables: { input: { email, password } }
+    }
   });
 };
 
 Cypress.Commands.add("seed", seed);
 Cypress.Commands.add("login", login);
+Cypress.Commands.add("loginAs", loginAs);
