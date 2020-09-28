@@ -6,7 +6,7 @@ import { UsersService } from "../users/UsersService";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    currentUser: (rootValue, arg, { currentUser }) => currentUser || null
+    currentUser: (rootValue, arg, { currentUser }) => currentUser!
   },
 
   Mutation: {

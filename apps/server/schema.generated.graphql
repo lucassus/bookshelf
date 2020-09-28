@@ -18,7 +18,7 @@ type Query {
   """
   Returns the currently logged in user or null if not logged in.
   """
-  currentUser: ProtectedUser
+  currentUser: ProtectedUser! @requireAuthorization
   authors: [Author!]!
   author(id: ExternalID!): AuthorResponse!
   booksCount: Int!

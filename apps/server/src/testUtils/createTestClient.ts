@@ -30,7 +30,7 @@ export function createTestClient({
         };
       }
 
-      return buildContext(req, res);
+      return buildContext({ req, res });
     }
   };
 

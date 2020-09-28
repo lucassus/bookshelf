@@ -63,7 +63,7 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
         data: { currentUser: null }
       });
 
-      // TODO: It breaks e2e tests :/
+      // TODO: It breaks the e2e tests :/
       // navigate("/");
     });
 
@@ -76,7 +76,7 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
     return <span>Loading...</span>;
   }
 
-  const currentUser = data!.currentUser ?? undefined;
+  const currentUser = data ? data.currentUser : undefined;
 
   return (
     <AuthContext.Provider

@@ -59,9 +59,11 @@ describe("currentUser query", () => {
     });
 
     // Then
-    expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchObject({
-      currentUser: null
-    });
+    expect(res.errors).toHaveLength(1);
+
+    const error = res.errors![0];
+    expect(error.message).toBe("Unauthorized access! Please log in.");
+    expect(error.path).toEqual(["currentUser"]);
+    expect(error.extensions!.code).toBe("UNAUTHENTICATED");
   });
 });
