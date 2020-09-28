@@ -8,21 +8,17 @@ query GetUser($id: ExternalID!) {
 
     ... on User {
       id
-      name
       info
-      avatar {
-        ...Avatar
-      }
       ownedBookCopies {
         ...BookCopy
       }
-    }
 
-    ... on ProtectedUser {
-      email
-      isAdmin
-      borrowedBookCopies {
-        ...BookCopy
+      ...UserCard
+
+      ... on ProtectedUser {
+        borrowedBookCopies {
+          ...BookCopy
+        }
       }
     }
   }
