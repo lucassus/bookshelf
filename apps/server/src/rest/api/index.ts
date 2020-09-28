@@ -14,6 +14,10 @@ import { seed } from "./seed";
 const routes = express.Router();
 
 // Public routes
+if (process.env.NODE_ENV !== Environment.production) {
+  routes.use("/seed", seed);
+}
+
 routes.use("/auth", auth);
 routes.use("/books", books);
 
@@ -24,9 +28,5 @@ routes.use("/me", me);
 // Admin routes
 routes.use(adminAuthenticationMiddleware);
 routes.use("/admin", admin);
-
-if (process.env.NODE_ENV !== Environment.production) {
-  routes.use("/seed", seed);
-}
 
 export { routes as api };
