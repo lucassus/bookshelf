@@ -6,6 +6,7 @@ it("handles the navigation", () => {
 
   cy.findByText("next").click();
   cy.findByText("next").click();
+  cy.findByText("next").click();
   cy.findByText("The lady of the lake").should("exist");
 
   cy.findByText("first").click();
