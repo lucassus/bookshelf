@@ -9,8 +9,7 @@ it("shows my books page", () => {
     cy.findByText("borrow").should("exist").click();
   });
 
-  cy.get("[data-cy=user-menu-button]").click();
-  cy.get("[data-cy=user-menu]").within(() => {
+  cy.openUserMenu().within(() => {
     cy.findByText("Books").click();
   });
 
@@ -37,8 +36,7 @@ it("shows my books page", () => {
     cy.findByText("borrow").click();
   });
 
-  cy.get("[data-cy=user-menu-button]").click();
-  cy.get("[data-cy=user-menu]").within(() => {
+  cy.openUserMenu().within(() => {
     cy.findByText("Books").click();
   });
 
