@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext } from "react";
 import { useNavigate } from "react-router";
 
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
@@ -7,10 +7,6 @@ import {
   useGetCurrentUserQuery
 } from "./GetCurrentUser.query.generated";
 import { useLogoutMutation } from "./Logout.mutation.generated";
-import {
-  createLogoutEventListener,
-  dispatchLogoutEventToAllTabs
-} from "./logoutEvent";
 
 interface AuthContextValue {
   currentUser?: CurrentUserFragment;
@@ -31,13 +27,13 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
 
-  const { data, loading } = useGetCurrentUserQuery();
+  const { data, loading } = useGetCurrentUserQuery({ errorPolicy: "ignore" });
 
   const [logout, { client }] = useLogoutMutation();
 
+  // TODO: Clear the store after login
   const authorize = useCallback(
     (currentUser: CurrentUserFragment) => {
-      // TODO: Does it work?
       client.writeQuery({
         query: GetCurrentUserDocument,
         data: { currentUser }
@@ -50,27 +46,10 @@ export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
 
   const unauthorize = useCallback(async () => {
     await logout();
-    dispatchLogoutEventToAllTabs();
-  }, [logout]);
+    await client.resetStore();
 
-  // Listen for logout events
-  useEffect(() => {
-    const logoutEventListener = createLogoutEventListener(() => {
-      // TODO: Does it work with ProtectedUser?
-      // TODO: It should clear the whole cache
-      client.writeQuery({
-        query: GetCurrentUserDocument,
-        data: { currentUser: null }
-      });
-
-      // TODO: It breaks the e2e tests :/
-      // navigate("/");
-    });
-
-    window.addEventListener("storage", logoutEventListener);
-
-    return () => window.removeEventListener("storage", logoutEventListener);
-  }, [client, navigate]);
+    navigate("/");
+  }, [client, logout, navigate]);
 
   if (loading) {
     return <span>Loading...</span>;
