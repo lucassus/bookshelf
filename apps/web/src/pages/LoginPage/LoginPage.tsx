@@ -20,7 +20,6 @@ const schema = yup.object().shape({
 export const LoginPage: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
-  // TODO: Write unit test for clearing store after login
   const [login] = useLoginMutation({
     update: (cache) => cache.reset()
   });

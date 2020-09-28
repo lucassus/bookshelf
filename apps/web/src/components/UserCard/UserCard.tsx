@@ -12,8 +12,7 @@ export const UserCard: React.FunctionComponent<Props> = ({ user }) => (
   <figure className={styles.container}>
     <Avatar label={user.name} avatar={user.avatar} />
     <figcaption>
-      {user.name}{" "}
-      {user.__typename === "ProtectedUser" && <span>&lt;{user.email}&gt;</span>}
+      {user.name} {user.__typename === "ProtectedUser" && `<${user.email}>`}
     </figcaption>
   </figure>
 );

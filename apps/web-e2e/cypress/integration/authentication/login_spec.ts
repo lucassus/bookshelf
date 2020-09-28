@@ -54,6 +54,30 @@ describe("login flow", () => {
     });
   });
 
+  it("allows to login as admin", () => {
+    // Load users as unauthenticated user
+    cy.get("nav").findByText("Users").click();
+    cy.findByText("dan@example.com").should("not.exist");
+    cy.findByText("luke@example.com").should("not.exist");
+
+    cy.get("nav").findByText("Login").click();
+
+    cy.get("form").within(() => {
+      cy.findByLabelText("Email").clear().type("luke@example.com");
+      cy.findByLabelText("Password").clear().type("password");
+      cy.findByText("Login").click();
+    });
+
+    cy.get("[data-cy=user-menu-button]").click();
+    cy.get("[data-cy=user-menu]").within(() => {
+      cy.findByText("Admin Account");
+    });
+
+    cy.get("nav").findByText("Users").click();
+    cy.findByText("Dan <dan@example.com>").should("exist");
+    cy.findByText("Luke <luke@example.com>").should("exist");
+  });
+
   it("does not allow to login with invalid credentials", () => {
     cy.get("form").within(() => {
       cy.findByLabelText("Email").type("invalid@email.com");
