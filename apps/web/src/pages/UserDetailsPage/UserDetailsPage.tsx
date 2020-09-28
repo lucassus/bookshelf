@@ -51,7 +51,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         )}
       </div>
 
-      <div>
+      <div data-testid="borrowed-book-copies-list">
         {user.__typename === "ProtectedUser" &&
         user.borrowedBookCopies.length > 0 ? (
           <>

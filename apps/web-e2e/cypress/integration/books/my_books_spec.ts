@@ -5,8 +5,6 @@ it("shows my books page", () => {
   cy.findByText("Users").click();
   cy.findByText("Dan").click();
 
-  // TODO: Find a better solution, bookCopy.book.title is not unique,
-  //  since a used could borrow many books with the same title.
   cy.get("[data-testid='book-copy:Children of Dune']").within(() => {
     cy.findByText("borrow").should("exist").click();
   });
@@ -16,10 +14,12 @@ it("shows my books page", () => {
     cy.findByText("Books").click();
   });
 
-  cy.get("[data-testid='book-copy:Children of Dune']").within(() => {
-    cy.findByText("return").click();
+  cy.get("[data-testid=borrowed-book-copies-list]").within(() => {
+    cy.get("[data-testid='book-copy:Children of Dune']").within(() => {
+      cy.findByText("return").click();
+    });
+    cy.get("[data-testid='book-copy:Children of Dune']").should("not.exist");
   });
-  cy.get("[data-testid='book-copy:Children of Dune']").should("not.exist");
 
   cy.findByText("Users").click();
   cy.findByText("Dan").click();
@@ -42,11 +42,13 @@ it("shows my books page", () => {
     cy.findByText("Books").click();
   });
 
-  cy.get("[data-testid='book-copy:Dune']").within(() => {
-    cy.findByText("return").should("exist");
-  });
+  cy.get("[data-testid=borrowed-book-copies-list]").within(() => {
+    cy.get("[data-testid='book-copy:Dune']").within(() => {
+      cy.findByText("return").should("exist");
+    });
 
-  cy.get("[data-testid='book-copy:Dune Messiah']").within(() => {
-    cy.findByText("return").should("exist");
+    cy.get("[data-testid='book-copy:Dune Messiah']").within(() => {
+      cy.findByText("return").should("exist");
+    });
   });
 });

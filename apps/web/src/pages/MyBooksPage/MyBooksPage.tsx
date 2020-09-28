@@ -30,7 +30,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
         </div>
       </div>
 
-      <div>
+      <div data-testid="borrowed-book-copies-list">
         <h2>Borrowed book copies ({borrowedBookCopies.length})</h2>
 
         <div className={styles.bookCopies}>

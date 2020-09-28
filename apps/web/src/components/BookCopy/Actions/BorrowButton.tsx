@@ -10,7 +10,6 @@ type Props = {
 
 export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const [borrowBookCopy, { loading }] = useBorrowBookCopyMutation();
-  // TODO: Create `CurrentUserProvider` and `useCurrentUser` hook
   const { currentUser } = useAuth();
 
   const handleClick = () =>
