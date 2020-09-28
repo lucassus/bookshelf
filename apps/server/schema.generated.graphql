@@ -16,7 +16,7 @@ input UpdateProfileInput {
 union UpdateProfileResult = ProtectedUser | ValidationErrors
 type Query {
   """
-  Returns the currently logged in user or null if not logged in.
+  Returns the currently logged in user.
   """
   currentUser: ProtectedUser! @requireAuthorization
   authors: [Author!]!
