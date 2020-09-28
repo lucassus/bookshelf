@@ -5,9 +5,13 @@ import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment
 import { UserMenu } from "./UserMenu";
 import styles from "./UserMenuButton.module.scss";
 
-export const UserMenuButton: React.FunctionComponent<{
+type Props = {
   currentUser: CurrentUserFragment;
-}> = ({ currentUser }) => {
+};
+
+export const UserMenuButton: React.FunctionComponent<Props> = ({
+  currentUser
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => setIsOpen(true);
