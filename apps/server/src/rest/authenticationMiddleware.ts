@@ -17,7 +17,9 @@ export const authenticationMiddleware: RequestHandler = async (
     try {
       req.currentUser = await tradeAuthTokenForUser(authToken);
     } catch {
-      return res.sendStatus(HttpStatusCodes.Unauthorized);
+      return res
+        .status(HttpStatusCodes.Unauthorized)
+        .send("Invalid access token!");
     }
   }
 

@@ -1,4 +1,7 @@
-import { ApolloServerExpressConfig } from "apollo-server-express";
+import {
+  ApolloServerExpressConfig,
+  AuthenticationError
+} from "apollo-server-express";
 
 import {
   getAuthTokenFromRequest,
@@ -13,15 +16,15 @@ export const buildConfig = (
 ): ApolloServerExpressConfig => ({
   schema: rootSchema,
   context: async ({ req, res }): Promise<Context> => {
-    // TODO: Or just use `req.currentUser` and share the auth middleware
     const authToken = getAuthTokenFromRequest(req);
 
-    // TODO: Rethink this approach and figure out how to test it
     if (authToken) {
-      const currentUser = await tradeAuthTokenForUser(authToken).catch(
-        () => undefined
-      );
-      return buildContext({ req, res, currentUser });
+      try {
+        const currentUser = await tradeAuthTokenForUser(authToken);
+        return buildContext({ req, res, currentUser });
+      } catch {
+        throw new AuthenticationError("Invalid access token!");
+      }
     }
 
     return buildContext({ req, res });
