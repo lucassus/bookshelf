@@ -1,4 +1,3 @@
-import { useApolloClient } from "@apollo/client";
 import React, { useCallback, useContext } from "react";
 import { useNavigate } from "react-router";
 
@@ -22,29 +21,23 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider: React.FunctionComponent = ({ children }) => {
   const navigate = useNavigate();
-  const client = useApolloClient();
 
-  const {
-    data,
-    loading,
-    refetch: refetchCurrentUser
-  } = useGetCurrentUserQuery({ errorPolicy: "ignore" });
+  const { data, loading } = useGetCurrentUserQuery();
 
-  const [logout] = useLogoutMutation();
+  const [logout] = useLogoutMutation({
+    update: (cache) => cache.reset()
+  });
 
   const unauthorize = useCallback(async () => {
     await logout();
-    await client.clearStore();
-    await refetchCurrentUser();
-
     navigate("/");
-  }, [client, logout, refetchCurrentUser, navigate]);
+  }, [logout, navigate]);
 
-  if (loading) {
+  if (loading || !data) {
     return <span>Loading...</span>;
   }
 
-  const currentUser = data ? data.currentUser : undefined;
+  const currentUser = data.currentUser ?? undefined;
 
   return (
     <AuthContext.Provider value={{ currentUser, unauthorize }}>
