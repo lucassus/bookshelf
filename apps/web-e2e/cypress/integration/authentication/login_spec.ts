@@ -12,6 +12,7 @@ describe("login flow", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.get("nav").findByText("Login").click();
+    cy.location("pathname").should("equal", "/login");
   });
 
   it("validates the login form", () => {
@@ -73,6 +74,7 @@ describe("login flow", () => {
       cy.findByText("Admin Account");
     });
 
+    // Verify that list of users has been reloaded
     cy.get("nav").findByText("Users").click();
     cy.findByText("Dan <dan@example.com>").should("exist");
     cy.findByText("Luke <luke@example.com>").should("exist");

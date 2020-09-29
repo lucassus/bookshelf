@@ -2,6 +2,7 @@ describe("signup flow", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.get("nav").findByText("Signup").click();
+    cy.location("pathname").should("equal", "/signup");
   });
 
   it("validates the signup form", () => {
@@ -52,6 +53,7 @@ describe("signup flow", () => {
       cy.findByText("Signup").click();
     });
 
+    cy.location("pathname").should("equal", "/");
     cy.get("[data-cy=user-menu-button]").should("exist");
 
     cy.getCookie("bookshelf:authToken")

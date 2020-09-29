@@ -7,6 +7,7 @@ describe("profile page", () => {
     cy.get("[data-cy=user-menu]").within(() => {
       cy.findByText("Profile").click();
     });
+    cy.location("pathname").should("equal", "/my/profile");
   });
 
   it("validates the form", () => {
