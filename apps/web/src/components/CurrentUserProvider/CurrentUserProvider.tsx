@@ -3,9 +3,9 @@ import React, { useContext } from "react";
 import { CurrentUserFragment } from "./CurrentUser.fragment.generated";
 import { useGetCurrentUserQuery } from "./GetCurrentUser.query.generated";
 
-const CurrentUserContext = React.createContext<undefined | CurrentUserFragment>(
-  undefined
-);
+export const CurrentUserContext = React.createContext<
+  undefined | CurrentUserFragment
+>(undefined);
 
 export const useCurrentUser = () => useContext(CurrentUserContext);
 

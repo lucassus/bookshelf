@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { CurrentUserFragment } from "../components/AuthContext/CurrentUser.fragment.generated";
+import { CurrentUserFragment } from "../components/CurrentUserProvider/CurrentUser.fragment.generated";
 import { AuthorDetailsPage } from "./AuthorDetailsPage";
 import { AuthorsPage } from "./AuthorsPage";
 import { BookDetailsPage } from "./BookDetailsPage";

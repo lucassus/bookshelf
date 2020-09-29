@@ -3,7 +3,8 @@ import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 
-import { AuthContext, AuthContextValue } from "../../AuthContext/AuthContext";
+import { CurrentUserContext } from "../../CurrentUserProvider";
+import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
 import { BorrowBookCopyDocument } from "./BorrowBookCopy.mutation.generated";
 import { BorrowButton } from "./BorrowButton";
@@ -28,24 +29,20 @@ test("<BorrowButton />", async () => {
     }
   ];
 
-  const authContextValue: AuthContextValue = {
-    authorize: () => {},
-    currentUser: {
-      id: "user:1",
-      __typename: "ProtectedUser",
-      name: "Bob",
-      email: "bob@example.com",
-      isAdmin: false,
-      info: "The current user",
-      avatar: {
-        __typename: "Avatar",
-        color: "blue",
-        image: {
-          url: "https://example.com/image.jpg"
-        }
+  const currentUser: CurrentUserFragment = {
+    id: "user:1",
+    __typename: "ProtectedUser",
+    name: "Bob",
+    email: "bob@example.com",
+    isAdmin: false,
+    info: "The current user",
+    avatar: {
+      __typename: "Avatar",
+      color: "blue",
+      image: {
+        url: "https://example.com/image.jpg"
       }
-    },
-    unauthorize: () => Promise.resolve()
+    }
   };
 
   const bookCopy: BookCopyFragment = {
@@ -84,10 +81,10 @@ test("<BorrowButton />", async () => {
 
   render(
     <MockedProvider cache={cache} mocks={mocks}>
-      <AuthContext.Provider value={authContextValue}>
+      <CurrentUserContext.Provider value={currentUser}>
         {" "}
         <BorrowButton bookCopy={bookCopy} />
-      </AuthContext.Provider>
+      </CurrentUserContext.Provider>
     </MockedProvider>
   );
 

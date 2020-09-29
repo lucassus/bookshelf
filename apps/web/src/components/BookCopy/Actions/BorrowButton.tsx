@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useAuth } from "../../AuthContext";
+import { useCurrentUser } from "../../CurrentUserProvider";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
 import { useBorrowBookCopyMutation } from "./BorrowBookCopy.mutation.generated";
 
@@ -10,7 +10,7 @@ type Props = {
 
 export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const [borrowBookCopy, { loading }] = useBorrowBookCopyMutation();
-  const { currentUser } = useAuth();
+  const currentUser = useCurrentUser();
 
   const handleClick = () =>
     borrowBookCopy({
