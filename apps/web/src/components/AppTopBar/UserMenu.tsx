@@ -1,11 +1,11 @@
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import { createPortal } from "react-dom";
 import { FaTimes } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import { Avatar } from "../Avatar";
-import { useLogoutMutation } from "./Logout.mutation.generated";
+import { LogoutButton } from "../LogoutButton";
 import { useClickAway } from "./useClickAway";
 import styles from "./UserMenu.module.scss";
 
@@ -14,25 +14,12 @@ type Props = {
   currentUser: CurrentUserFragment;
 };
 
-// TODO: Create a separate component for logout button
 export const UserMenu: React.FunctionComponent<Props> = ({
   onClose,
   currentUser
 }) => {
-  const navigate = useNavigate();
-
-  const [logout] = useLogoutMutation({
-    update: (cache) => cache.reset()
-  });
-
   const ref = useRef<HTMLElement>(null);
   useClickAway(ref, onClose);
-
-  const handleLogoutClick = useCallback(async () => {
-    await logout();
-    navigate("/");
-    onClose();
-  }, [logout, navigate, onClose]);
 
   return createPortal(
     <section className={styles.container} ref={ref} data-cy="user-menu">
@@ -79,7 +66,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
             <hr />
 
             <li>
-              <button onClick={handleLogoutClick}>Log Out</button>
+              <LogoutButton onSuccess={onClose}>Log Out</LogoutButton>
             </li>
           </ul>
         </nav>
