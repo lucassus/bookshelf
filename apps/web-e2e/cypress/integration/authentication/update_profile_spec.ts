@@ -4,7 +4,7 @@ describe("profile page", () => {
     cy.visit("/");
 
     cy.findByTitle("Bob (bob@example.com)").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Profile").click();
     });
     cy.location("pathname").should("equal", "/my/profile");
@@ -40,7 +40,7 @@ describe("profile page", () => {
     });
 
     cy.findByTitle("Łukasz Bandzarewicz (bob@example.com)").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Łukasz Bandzarewicz").should("exist");
       cy.findByText("Profile").click();
     });
@@ -62,7 +62,7 @@ describe("profile page", () => {
     });
 
     cy.findByTitle("Bob (bob@gmail.com)").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Bob").should("exist");
       cy.findByText("bob@gmail.com").should("exist");
 
@@ -74,6 +74,6 @@ describe("profile page", () => {
     });
 
     cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.findByTestId("user-menu-button").should("exist");
   });
 });

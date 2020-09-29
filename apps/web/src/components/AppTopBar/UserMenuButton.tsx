@@ -18,7 +18,7 @@ export const UserMenuButton: React.FunctionComponent<{
       <button
         onClick={handleClick}
         title={`${currentUser.name} (${currentUser.email})`}
-        data-cy="user-menu-button"
+        data-testid="user-menu-button"
       >
         <Avatar
           size="x-small"

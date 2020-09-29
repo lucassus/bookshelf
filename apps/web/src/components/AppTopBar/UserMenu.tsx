@@ -22,7 +22,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   useClickAway(ref, onClose);
 
   return createPortal(
-    <section className={styles.container} ref={ref} data-cy="user-menu">
+    <section className={styles.container} ref={ref} data-testid="user-menu">
       <header>
         {currentUser.isAdmin ? <div>Admin Account</div> : <div>Account</div>}
         <button onClick={onClose}>

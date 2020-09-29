@@ -44,13 +44,13 @@ describe("login flow", () => {
         expect(cookie.httpOnly).to.eq(true);
       });
 
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.findByTestId("user-menu-button").should("exist");
 
     cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.findByTestId("user-menu-button").should("exist");
 
-    cy.get("[data-cy=user-menu-button]").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.findByTestId("user-menu-button").click();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Log Out").click();
     });
   });
@@ -69,8 +69,8 @@ describe("login flow", () => {
       cy.findByText("Login").click();
     });
 
-    cy.get("[data-cy=user-menu-button]").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.findByTestId("user-menu-button").click();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Admin Account");
     });
 
@@ -88,13 +88,13 @@ describe("login flow", () => {
     });
 
     cy.findByText("Invalid email or password!").should("exist");
-    cy.get("[data-cy=user-menu-button]").should("not.exist");
+    cy.findByTestId("user-menu-button").should("not.exist");
   });
 
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.findByTestId("user-menu-button").should("exist");
 
     // Save the auth cookie
     let authCookie: any = null;
@@ -104,13 +104,13 @@ describe("login flow", () => {
         authCookie = cookie;
       });
 
-    cy.get("[data-cy=user-menu-button]").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.findByTestId("user-menu-button").click();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Log Out").click();
     });
 
     // Restore the auth cookie
-    cy.get("[data-cy=user-menu-button]")
+    cy.findByTestId("user-menu-button")
       .should("not.exist")
       .then(() => {
         const { name, value, ...options } = authCookie;
@@ -118,6 +118,6 @@ describe("login flow", () => {
       });
 
     cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.findByTestId("user-menu-button").should("exist");
   });
 });
