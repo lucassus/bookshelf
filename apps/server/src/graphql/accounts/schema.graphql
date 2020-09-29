@@ -16,9 +16,9 @@ union UpdateProfileResult = ProtectedUser | ValidationErrors
 
 extend type Query {
   """
-  Returns the currently logged in user.
+  Returns the currently logged in user or null if not logged in.
   """
-  currentUser: ProtectedUser! @requireAuthorization
+  currentUser: ProtectedUser
 }
 
 extend type Mutation {
