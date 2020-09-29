@@ -6,7 +6,13 @@ import { UsersService } from "../users/UsersService";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    currentUser: (rootValue, arg, { currentUser }) => currentUser || null
+    currentUser: (rootValue, arg, { currentUser }) => {
+      if (!currentUser) {
+        return { __typename: "GuestUser" };
+      }
+
+      return currentUser;
+    }
   },
 
   Mutation: {

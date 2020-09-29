@@ -8,18 +8,21 @@ describe("currentUser query", () => {
     query {
       currentUser {
         __typename
-        id
-        name
-        email
-        isAdmin
-        avatar {
-          __typename
 
-          ... on Avatar {
-            image {
-              path
+        ... on ProtectedUser {
+          id
+          name
+          email
+          isAdmin
+          avatar {
+            __typename
+
+            ... on Avatar {
+              image {
+                path
+              }
+              color
             }
-            color
           }
         }
       }
@@ -61,7 +64,9 @@ describe("currentUser query", () => {
     // Then
     expect(res.errors).toBe(undefined);
     expect(res.data).toMatchObject({
-      currentUser: null
+      currentUser: {
+        __typename: "GuestUser"
+      }
     });
   });
 });
