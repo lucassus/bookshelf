@@ -23,8 +23,7 @@ export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
         const { borrowBookCopy: borrowedBookCopy } = data;
 
         cache.modify({
-          // @ts-expect-error
-          id: cache.identify(currentUser),
+          id: cache.identify(currentUser!),
           fields: {
             borrowedBookCopies(refs, { toReference }) {
               return [...refs, toReference(borrowedBookCopy)];

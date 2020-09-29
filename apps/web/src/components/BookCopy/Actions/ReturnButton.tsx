@@ -23,8 +23,7 @@ export const ReturnButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
         const { returnBookCopy: returnedBookCopy } = data;
 
         cache.modify({
-          // @ts-expect-error
-          id: cache.identify(currentUser),
+          id: cache.identify(currentUser!),
           fields: {
             borrowedBookCopies(refs, { readField }) {
               return refs.filter(
