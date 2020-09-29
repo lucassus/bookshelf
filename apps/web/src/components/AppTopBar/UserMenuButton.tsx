@@ -15,11 +15,7 @@ export const UserMenuButton: React.FunctionComponent<{
 
   return (
     <li className={styles.container}>
-      <button
-        onClick={handleClick}
-        title={`${currentUser.name} (${currentUser.email})`}
-        data-testid="user-menu-button"
-      >
+      <button onClick={handleClick}>
         <Avatar
           size="x-small"
           label={currentUser.name}

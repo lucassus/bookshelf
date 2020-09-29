@@ -1,5 +1,7 @@
 function fillInLoginFormWithValidCredentialsAndSubmit() {
-  cy.fixture("credentials.json").then(({ email, password }) => {
+  cy.fixture("credentials.json").then((credentials) => {
+    const { email, password } = credentials.user;
+
     cy.get("form").within(() => {
       cy.findByLabelText("Email").clear().type(email);
       cy.findByLabelText("Password").clear().type(password);
@@ -44,12 +46,12 @@ describe("login flow", () => {
         expect(cookie.httpOnly).to.eq(true);
       });
 
-    cy.findByTestId("user-menu-button").should("exist");
+    cy.get("nav").findByTestId("avatar:Bob").should("exist");
 
     cy.reload();
-    cy.findByTestId("user-menu-button").should("exist");
+    cy.get("nav").findByTestId("avatar:Bob").should("exist");
 
-    cy.findByTestId("user-menu-button").click();
+    cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
       cy.findByText("Log Out").click();
     });
@@ -69,7 +71,7 @@ describe("login flow", () => {
       cy.findByText("Login").click();
     });
 
-    cy.findByTestId("user-menu-button").click();
+    cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
       cy.findByText("Admin Account");
     });
@@ -88,13 +90,13 @@ describe("login flow", () => {
     });
 
     cy.findByText("Invalid email or password!").should("exist");
-    cy.findByTestId("user-menu-button").should("not.exist");
+    cy.get("nav").findByTestId("avatar:Bob").should("not.exist");
   });
 
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.findByTestId("user-menu-button").should("exist");
+    cy.get("nav").findByTestId("avatar:Bob").should("exist");
 
     // Save the auth cookie
     let authCookie: any = null;
@@ -104,13 +106,14 @@ describe("login flow", () => {
         authCookie = cookie;
       });
 
-    cy.findByTestId("user-menu-button").click();
+    cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
       cy.findByText("Log Out").click();
     });
 
     // Restore the auth cookie
-    cy.findByTestId("user-menu-button")
+    cy.get("nav")
+      .findByTestId("avatar:Bob")
       .should("not.exist")
       .then(() => {
         const { name, value, ...options } = authCookie;
@@ -118,6 +121,6 @@ describe("login flow", () => {
       });
 
     cy.reload();
-    cy.findByTestId("user-menu-button").should("exist");
+    cy.get("nav").findByTestId("avatar:Bob").should("exist");
   });
 });

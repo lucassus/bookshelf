@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const UserCard: React.FunctionComponent<Props> = ({ user }) => (
-  <figure className={styles.container}>
+  <figure className={styles.container} data-testid={`user-card:${user.name}`}>
     <Avatar label={user.name} avatar={user.avatar} />
     <figcaption>
       {user.name} {user.__typename === "ProtectedUser" && `<${user.email}>`}

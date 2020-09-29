@@ -3,10 +3,11 @@ describe("profile page", () => {
     cy.login();
     cy.visit("/");
 
-    cy.findByTitle("Bob (bob@example.com)").click();
+    cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
       cy.findByText("Profile").click();
     });
+
     cy.location("pathname").should("equal", "/my/profile");
   });
 
@@ -39,7 +40,7 @@ describe("profile page", () => {
       cy.findByText("Update").click();
     });
 
-    cy.findByTitle("Łukasz Bandzarewicz (bob@example.com)").click();
+    cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
       cy.findByText("Łukasz Bandzarewicz").should("exist");
       cy.findByText("Profile").click();
@@ -61,7 +62,7 @@ describe("profile page", () => {
       cy.findByText("Update").click();
     });
 
-    cy.findByTitle("Bob (bob@gmail.com)").click();
+    cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
       cy.findByText("Bob").should("exist");
       cy.findByText("bob@gmail.com").should("exist");
@@ -74,6 +75,6 @@ describe("profile page", () => {
     });
 
     cy.reload();
-    cy.findByTestId("user-menu-button").should("exist");
+    cy.get("nav").findByTestId("avatar:Bob").should("exist");
   });
 });

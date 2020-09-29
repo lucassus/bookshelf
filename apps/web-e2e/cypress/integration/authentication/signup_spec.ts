@@ -54,16 +54,6 @@ describe("signup flow", () => {
     });
 
     cy.location("pathname").should("equal", "/");
-    cy.findByTestId("user-menu-button").should("exist");
-
-    cy.getCookie("bookshelf:authToken")
-      .should("exist")
-      .then((cookie: any) => {
-        expect(cookie.path).to.eq("/");
-        expect(cookie.httpOnly).to.eq(true);
-      });
-
-    cy.reload();
-    cy.findByTestId("user-menu-button").should("exist");
+    cy.get("nav").findByTestId("avatar:Anna").should("exist");
   });
 });

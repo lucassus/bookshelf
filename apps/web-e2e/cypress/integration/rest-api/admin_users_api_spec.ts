@@ -1,7 +1,7 @@
-describe("/api/users", () => {
+describe("/api/admin/users", () => {
   describe("when authenticated", () => {
     beforeEach(() => {
-      cy.loginAs({ email: "luke@example.com", password: "password" });
+      cy.login({ as: "admin" });
       cy.request("/api/admin/users").as("users");
     });
 
