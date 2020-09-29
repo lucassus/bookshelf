@@ -4,7 +4,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { AppTopBar } from "./components/AppTopBar";
-import { useAuth } from "./components/AuthContext";
+import { useCurrentUser } from "./components/CurrentUserProvider";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AuthorDetailsPage } from "./pages/AuthorDetailsPage";
 import { AuthorsPage } from "./pages/AuthorsPage";
@@ -18,7 +18,7 @@ import { UserDetailsPage } from "./pages/UserDetailsPage";
 import { UsersPage } from "./pages/UsersPage";
 
 export const App: React.FunctionComponent = () => {
-  const { currentUser } = useAuth();
+  const currentUser = useCurrentUser();
 
   return (
     <ErrorBoundary>

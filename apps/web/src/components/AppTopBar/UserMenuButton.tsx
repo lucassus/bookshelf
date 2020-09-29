@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import { Avatar } from "../Avatar";
+import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { UserMenu } from "./UserMenu";
 import styles from "./UserMenuButton.module.scss";
 

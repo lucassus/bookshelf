@@ -1,3 +1,4 @@
+import { HttpStatusCodes } from "../../http-status-codes";
 import { createRestTestClient } from "../../testUtils/createRestTestClient";
 import { createBook } from "../../testUtils/factories";
 
@@ -17,7 +18,7 @@ test("GET /api/books", async () => {
   const response = await createRestTestClient().get("/api/books");
 
   // Then
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(HttpStatusCodes.OK);
   expect(response.body).toMatchObject([
     {
       id: 1,

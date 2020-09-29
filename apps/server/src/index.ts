@@ -7,9 +7,10 @@ import "reflect-metadata";
 import { Container } from "typedi";
 import { Connection, useContainer } from "typeorm";
 
-import { PORT } from "./config";
+import { ENVIRONMENT, Environment, PORT } from "./config";
 import { createConnection } from "./database/createConnection";
-import { buildConfig } from "./graphql/config";
+import { buildContext } from "./graphql/context";
+import { rootSchema } from "./graphql/rootSchema";
 import { routes } from "./rest";
 
 useContainer(Container);
@@ -21,7 +22,20 @@ const startServer = async () => {
   const app = express();
   app.use(cookieParser());
 
-  const apolloServer = new ApolloServer(buildConfig(process.env.ENV));
+  const apolloServer = new ApolloServer({
+    schema: rootSchema,
+    context: buildContext,
+    debug: ENVIRONMENT === Environment.development,
+    introspection: true,
+    playground: true,
+    engine:
+      ENVIRONMENT === Environment.production
+        ? {
+            reportSchema: true,
+            debugPrintReports: true
+          }
+        : false
+  });
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 

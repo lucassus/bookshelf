@@ -2,8 +2,7 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import React from "react";
 import * as yup from "yup";
 
-import { useAuth } from "../../components/AuthContext";
-import { CurrentUserFragment } from "../../components/AuthContext/CurrentUser.fragment.generated";
+import { CurrentUserFragment } from "../../components/CurrentUserProvider/CurrentUser.fragment.generated";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import styles from "../LoginPage/LoginPage.module.scss";
 import { useUpdateProfileMutation } from "./UpdateProfile.mutation.generated";
@@ -27,7 +26,6 @@ type Props = {
 export const ProfilePage: React.FunctionComponent<Props> = ({
   currentUser
 }) => {
-  const { authorize } = useAuth();
   const [updateProfile] = useUpdateProfileMutation();
 
   const handleSubmit = async (
@@ -39,10 +37,6 @@ export const ProfilePage: React.FunctionComponent<Props> = ({
     try {
       const { data } = await updateProfile({ variables: { input: values } });
       const result = data!.updateProfile;
-
-      if (result.__typename === "ProtectedUser") {
-        authorize(result);
-      }
 
       if (result.__typename === "ValidationErrors") {
         setErrors(normalizeValidationErrors(result.errors));

@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "../AuthContext";
-import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import { Avatar } from "../Avatar";
+import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
+import { LogoutButton } from "../LogoutButton";
 import { useClickAway } from "./useClickAway";
 import styles from "./UserMenu.module.scss";
 
@@ -18,15 +18,8 @@ export const UserMenu: React.FunctionComponent<Props> = ({
   onClose,
   currentUser
 }) => {
-  const { unauthorize } = useAuth();
-
   const ref = useRef<HTMLElement>(null);
   useClickAway(ref, onClose);
-
-  const handleLogoutClick = async () => {
-    await unauthorize();
-    onClose();
-  };
 
   return createPortal(
     <section className={styles.container} ref={ref} data-cy="user-menu">
@@ -73,7 +66,7 @@ export const UserMenu: React.FunctionComponent<Props> = ({
             <hr />
 
             <li>
-              <button onClick={handleLogoutClick}>Log Out</button>
+              <LogoutButton onSuccess={onClose}>Log Out</LogoutButton>
             </li>
           </ul>
         </nav>

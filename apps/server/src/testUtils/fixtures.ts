@@ -8,7 +8,6 @@ import {
   createUser
 } from "./factories";
 
-// TODO: Use paths from here
 async function loadAuthors() {
   await createAuthor({
     name: "J. K. Rowling",
@@ -323,7 +322,7 @@ Herbert wrote five sequels: Dune Messiah, Children of Dune, God Emperor of Dune,
 
   await createBook({
     author,
-    title: "Children of  Dune",
+    title: "Children of Dune",
     description: `Children of Dune is a 1976 science fiction novel by Frank Herbert, the third in his Dune series of six novels. It was originally serialized in Analog Science Fiction and Fact in 1976, and was the last Dune novel to be serialized before book publication.
 
 At the end of Dune Messiah, Paul Atreides walks into the desert, a blind man, leaving his twin children Leto and Ghanima in the care of the Fremen, while his sister Alia rules the universe as regent. Awakened in the womb by the spice, the children are the heirs to Paul's prescient vision of the fate of the universe, a role that Alia desperately craves. House Corrino schemes to return to the throne, while the Bene Gesserit make common cause with the Tleilaxu and Spacing Guild to gain control of the spice and the children of Paul Atreides.

@@ -1,8 +1,8 @@
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import React from "react";
+import { useNavigate } from "react-router";
 import * as yup from "yup";
 
-import { useAuth } from "../../components/AuthContext";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useLoginMutation } from "./Login.mutation.generated";
 import styles from "./LoginPage.module.scss";
@@ -18,8 +18,11 @@ const schema = yup.object().shape({
 });
 
 export const LoginPage: React.FunctionComponent = () => {
-  const [login] = useLoginMutation();
-  const { authorize } = useAuth();
+  const navigate = useNavigate();
+
+  const [login] = useLoginMutation({
+    update: (cache) => cache.reset()
+  });
 
   const handleSubmit = async (
     values: Values,
@@ -32,7 +35,7 @@ export const LoginPage: React.FunctionComponent = () => {
       const result = data!.login;
 
       if (result.__typename === "LoginSuccess") {
-        authorize(result.currentUser);
+        navigate("/");
       }
 
       if (result.__typename === "LoginFailure") {

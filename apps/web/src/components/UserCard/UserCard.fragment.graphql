@@ -3,4 +3,9 @@ fragment UserCard on User {
   avatar {
     ...Avatar
   }
+
+  ...on ProtectedUser {
+    email
+    isAdmin
+  }
 }

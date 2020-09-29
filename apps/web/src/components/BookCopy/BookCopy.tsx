@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "../AuthContext";
 import { Avatar } from "../Avatar";
+import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
 import { BookCopyFragment } from "./BookCopy.fragment.generated";
 import styles from "./BookCopy.module.scss";
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => {
-  const { currentUser } = useAuth();
+  const currentUser = useCurrentUser();
 
   return (
     <div className={styles.container}>

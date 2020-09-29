@@ -1,9 +1,6 @@
 query GetUsers {
   users {
     id
-    name
-    avatar {
-      ...Avatar
-    }
+    ...UserCard
   }
 }

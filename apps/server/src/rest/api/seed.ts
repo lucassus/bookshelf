@@ -2,6 +2,7 @@ import express from "express";
 import { getConnection } from "typeorm";
 
 import { Author, Avatar, Book, BookCopy, User } from "../../database/entity";
+import { HttpStatusCodes } from "../../http-status-codes";
 import { loadFixtures } from "../../testUtils/fixtures";
 
 const router = express.Router();
@@ -18,7 +19,7 @@ router.post("/", async (req, res) => {
 
   await loadFixtures();
 
-  res.send(200);
+  res.sendStatus(HttpStatusCodes.OK);
 });
 
 export { router as seed };

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useAuth } from "../AuthContext";
+import { useCurrentUser } from "../CurrentUserProvider";
 import styles from "./AppTopBar.module.scss";
 import { UserMenuButton } from "./UserMenuButton";
 
 export const AppTopBar = () => {
-  const { currentUser } = useAuth();
+  const currentUser = useCurrentUser();
 
   return (
     <header className={styles.container}>

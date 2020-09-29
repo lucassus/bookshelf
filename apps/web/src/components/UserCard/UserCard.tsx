@@ -8,11 +8,11 @@ type Props = {
   user: UserCardFragment;
 };
 
-export const UserCard: React.FunctionComponent<Props> = ({
-  user: { name, avatar }
-}) => (
+export const UserCard: React.FunctionComponent<Props> = ({ user }) => (
   <figure className={styles.container}>
-    <Avatar label={name} avatar={avatar} />
-    <figcaption>{name}</figcaption>
+    <Avatar label={user.name} avatar={user.avatar} />
+    <figcaption>
+      {user.name} {user.__typename === "ProtectedUser" && `<${user.email}>`}
+    </figcaption>
   </figure>
 );

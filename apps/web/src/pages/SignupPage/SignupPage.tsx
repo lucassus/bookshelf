@@ -1,8 +1,8 @@
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import React from "react";
+import { useNavigate } from "react-router";
 import * as yup from "yup";
 
-import { useAuth } from "../../components/AuthContext";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useRegisterMutation } from "./Register.mutation.generated";
 import styles from "./SignupPage.module.scss";
@@ -24,8 +24,8 @@ const schema = yup.object().shape({
 });
 
 export const SignupPage: React.FunctionComponent = () => {
-  const [register] = useRegisterMutation();
-  const { authorize } = useAuth();
+  const navigate = useNavigate();
+  const [register] = useRegisterMutation({ update: (cache) => cache.reset() });
 
   const handleSubmit = async (
     values: Values,
@@ -41,7 +41,7 @@ export const SignupPage: React.FunctionComponent = () => {
       const result = data!.register;
 
       if (result.__typename === "ProtectedUser") {
-        authorize(result);
+        navigate("/");
       } else {
         setErrors(normalizeValidationErrors(result.errors));
       }
