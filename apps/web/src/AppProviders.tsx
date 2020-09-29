@@ -7,7 +7,7 @@ import {
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { AuthContextProvider } from "./components/AuthContext";
+import { CurrentUserProvider } from "./components/CurrentUserProvider";
 import { GRAPHQL_ENDPOINT } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
@@ -22,7 +22,7 @@ const client = new ApolloClient({
 export const AppProviders: React.FunctionComponent = ({ children }) => (
   <Router>
     <ApolloProvider client={client}>
-      <AuthContextProvider>{children}</AuthContextProvider>
+      <CurrentUserProvider>{children}</CurrentUserProvider>
     </ApolloProvider>
   </Router>
 );

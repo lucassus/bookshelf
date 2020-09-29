@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
 import { Avatar } from "../Avatar";
+import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { LogoutButton } from "../LogoutButton";
 import { useClickAway } from "./useClickAway";
 import styles from "./UserMenu.module.scss";

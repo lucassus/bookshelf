@@ -2,7 +2,7 @@ import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { CurrentUserFragment } from "../AuthContext/CurrentUser.fragment.generated";
+import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { UserMenu } from "./UserMenu";
 
 export default {

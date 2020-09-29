@@ -19,7 +19,7 @@ export const LogoutButton: React.FunctionComponent<Props> = ({
     await logout();
     navigate("/");
     onSuccess();
-  }, [logout, navigate]);
+  }, [logout, navigate, onSuccess]);
 
   return <button onClick={handleClick}>{children}</button>;
 };

@@ -2,7 +2,7 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import React from "react";
 import * as yup from "yup";
 
-import { CurrentUserFragment } from "../../components/AuthContext/CurrentUser.fragment.generated";
+import { CurrentUserFragment } from "../../components/CurrentUserProvider/CurrentUser.fragment.generated";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import styles from "../LoginPage/LoginPage.module.scss";
 import { useUpdateProfileMutation } from "./UpdateProfile.mutation.generated";
