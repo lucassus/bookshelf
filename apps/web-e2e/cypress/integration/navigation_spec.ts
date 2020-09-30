@@ -38,7 +38,7 @@ it("handles the navigation", () => {
     "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer."
   ).should("exist");
 
-  cy.visit("/profile");
+  cy.visit("/my/profile");
   cy.findByText("Page not found!").should("exist");
 
   cy.visit("/login");

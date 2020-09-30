@@ -75,6 +75,6 @@ describe("profile page", () => {
     });
 
     cy.reload();
-    cy.get("nav").findByTestId("avatar:Bob").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
   });
 });

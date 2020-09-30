@@ -9,6 +9,6 @@ it("allows to log out", () => {
 
   cy.location("pathname").should("equal", "/");
 
-  cy.get("nav").findByTestId("avatar:Bob").should("not.exist");
+  cy.get("nav").findUserAvatar("Bob").should("not.exist");
   cy.get("nav").findByText("Login").should("exist");
 });

@@ -34,8 +34,22 @@ const openUserMenu = () =>
   cy
     .get("nav")
     .findByTestId(/^avatar/)
+    .should("exist")
+    .parent("button")
     .click();
 
+// TODO: Fix typings
+const findUserAvatar = (subject, name) => {
+  const root = subject ? cy.wrap(subject) : cy.root();
+  return root.findByTestId(`avatar:${name}`);
+};
+
+const findBookCopies = (subject, title) => {
+  const root = subject ? cy.wrap(subject) : cy.root();
+  return root.findAllByTestId(`book-copy:${title}`);
+};
+
+// TODO: Make it less tedious
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
@@ -43,6 +57,8 @@ declare global {
       seed: typeof seed;
       login: typeof login;
       openUserMenu: typeof openUserMenu;
+      findUserAvatar: typeof findUserAvatar;
+      findBookCopies: typeof findBookCopies;
     }
   }
 }
@@ -50,3 +66,13 @@ declare global {
 Cypress.Commands.add("seed", seed);
 Cypress.Commands.add("login", login);
 Cypress.Commands.add("openUserMenu", openUserMenu);
+Cypress.Commands.add(
+  "findUserAvatar",
+  { prevSubject: ["optional", "element"] },
+  findUserAvatar
+);
+Cypress.Commands.add(
+  "findBookCopies",
+  { prevSubject: ["optional", "element"] },
+  findBookCopies
+);

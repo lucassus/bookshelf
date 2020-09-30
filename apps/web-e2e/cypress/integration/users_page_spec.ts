@@ -18,6 +18,7 @@ describe("Users page", () => {
     cy.visit("/");
     cy.get("nav").findByText("Users").click();
 
+    // TODO: Add cy.findUserCard
     cy.findAllByTestId("user-card:Bob").within(() => {
       cy.findByText("Bob <bob@example.com>").should("exist");
     });

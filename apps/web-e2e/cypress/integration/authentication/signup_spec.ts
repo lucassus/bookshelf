@@ -54,6 +54,6 @@ describe("signup flow", () => {
     });
 
     cy.location("pathname").should("equal", "/");
-    cy.get("nav").findByTestId("avatar:Anna").should("exist");
+    cy.get("nav").findUserAvatar("Anna").should("exist");
   });
 });

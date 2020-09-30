@@ -46,10 +46,10 @@ describe("login flow", () => {
         expect(cookie.httpOnly).to.eq(true);
       });
 
-    cy.get("nav").findByTestId("avatar:Bob").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
 
     cy.reload();
-    cy.get("nav").findByTestId("avatar:Bob").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
 
     cy.openUserMenu();
     cy.findByTestId("user-menu").within(() => {
@@ -90,13 +90,13 @@ describe("login flow", () => {
     });
 
     cy.findByText("Invalid email or password!").should("exist");
-    cy.get("nav").findByTestId("avatar:Bob").should("not.exist");
+    cy.get("nav").findUserAvatar("Bob").should("not.exist");
   });
 
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.get("nav").findByTestId("avatar:Bob").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
 
     // Save the auth cookie
     let authCookie: any = null;
@@ -113,7 +113,7 @@ describe("login flow", () => {
 
     // Restore the auth cookie
     cy.get("nav")
-      .findByTestId("avatar:Bob")
+      .findUserAvatar("Bob")
       .should("not.exist")
       .then(() => {
         const { name, value, ...options } = authCookie;
@@ -121,6 +121,6 @@ describe("login flow", () => {
       });
 
     cy.reload();
-    cy.get("nav").findByTestId("avatar:Bob").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
   });
 });
