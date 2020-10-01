@@ -5,11 +5,11 @@ describe("Users page", () => {
 
     cy.findAllByTestId(/^user-card/).should("have.length", 5);
 
-    cy.findByTestId("user-card:Alice").should("exist");
-    cy.findByTestId("user-card:Bob").should("exist");
-    cy.findByTestId("user-card:Celine").should("exist");
-    cy.findByTestId("user-card:Dan").should("exist");
-    cy.findByTestId("user-card:Luke").should("exist");
+    cy.findUserCard("Alice").should("exist");
+    cy.findUserCard("Bob").should("exist");
+    cy.findUserCard("Celine").should("exist");
+    cy.findUserCard("Dan").should("exist");
+    cy.findUserCard("Luke").should("exist");
   });
 
   it("logged in user should see his email address", () => {
@@ -18,12 +18,11 @@ describe("Users page", () => {
     cy.visit("/");
     cy.get("nav").findByText("Users").click();
 
-    // TODO: Add cy.findUserCard
-    cy.findAllByTestId("user-card:Bob").within(() => {
+    cy.findUserCard("Bob").within(() => {
       cy.findByText("Bob <bob@example.com>").should("exist");
     });
 
-    cy.findAllByTestId("user-card:Alice").within(() => {
+    cy.findUserCard("Alice").within(() => {
       cy.findByText("Alice").should("exist");
       cy.findByText("Alice <alice@example.com>").should("not.exist");
     });
@@ -35,15 +34,15 @@ describe("Users page", () => {
     cy.visit("/");
     cy.get("nav").findByText("Users").click();
 
-    cy.findAllByTestId("user-card:Bob").within(() => {
+    cy.findUserCard("Bob").within(() => {
       cy.findByText("Bob <bob@example.com>").should("exist");
     });
 
-    cy.findAllByTestId("user-card:Alice").within(() => {
+    cy.findUserCard("Alice").within(() => {
       cy.findByText("Alice <alice@example.com>").should("exist");
     });
 
-    cy.findAllByTestId("user-card:Luke").within(() => {
+    cy.findUserCard("Luke").within(() => {
       cy.findByText("Luke <luke@example.com>").should("exist");
     });
   });

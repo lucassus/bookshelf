@@ -10,6 +10,7 @@ const seed = () => {
     .then((response) => response.body);
 };
 
+// TODO: Move to a separate file, like authentication
 const login = ({ as = "user" }: { as?: "user" | "admin" } = {}) => {
   return cy.fixture("credentials.json").then((credentials) => {
     const { email, password } = credentials[as];
@@ -44,9 +45,15 @@ const findUserAvatar = (subject, name) => {
   return root.findByTestId(`avatar:${name}`);
 };
 
+// TODO: Fix typings
 const findBookCopies = (subject, title) => {
   const root = subject ? cy.wrap(subject) : cy.root();
   return root.findAllByTestId(`book-copy:${title}`);
+};
+
+const findUserCard = (subject, name) => {
+  const root = subject ? cy.wrap(subject) : cy.root();
+  return root.findByTestId(`user-card:${name}`);
 };
 
 // TODO: Make it less tedious
@@ -59,6 +66,7 @@ declare global {
       openUserMenu: typeof openUserMenu;
       findUserAvatar: typeof findUserAvatar;
       findBookCopies: typeof findBookCopies;
+      findUserCard: typeof findUserCard;
     }
   }
 }
@@ -75,4 +83,9 @@ Cypress.Commands.add(
   "findBookCopies",
   { prevSubject: ["optional", "element"] },
   findBookCopies
+);
+Cypress.Commands.add(
+  "findUserCard",
+  { prevSubject: ["optional", "element"] },
+  findUserCard
 );
