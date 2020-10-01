@@ -22,3 +22,13 @@ const login = ({ as = "user" }: { as?: "user" | "admin" } = {}) => {
 };
 
 Cypress.Commands.add("login", login);
+
+export {};
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      login: typeof login;
+    }
+  }
+}

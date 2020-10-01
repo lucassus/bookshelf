@@ -1,10 +1,18 @@
-const seed = () => {
+Cypress.Commands.add("seed", () => {
   return cy
     .request({
       method: "POST",
       url: "/api/seed"
     })
     .then((response) => response.body);
-};
+});
 
-Cypress.Commands.add("seed", seed);
+export {};
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      seed: () => any;
+    }
+  }
+}
