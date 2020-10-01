@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Avatar } from "../Avatar";
 import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
 import { BookCopyFragment } from "./BookCopy.fragment.generated";
