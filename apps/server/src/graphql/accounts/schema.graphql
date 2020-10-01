@@ -14,11 +14,17 @@ input UpdateProfileInput {
 
 union UpdateProfileResult = ProtectedUser | ValidationErrors
 
+type GuestUser {
+  _: Boolean # noop field
+}
+
+union CurrentUserResult = GuestUser | ProtectedUser
+
 extend type Query {
   """
-  Returns the currently logged in user or null if not logged in.
+  Returns the currently logged in user.
   """
-  currentUser: ProtectedUser
+  currentUser: CurrentUserResult!
 }
 
 extend type Mutation {

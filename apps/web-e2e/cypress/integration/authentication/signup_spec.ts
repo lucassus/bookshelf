@@ -2,6 +2,7 @@ describe("signup flow", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.get("nav").findByText("Signup").click();
+    cy.location("pathname").should("equal", "/signup");
   });
 
   it("validates the signup form", () => {
@@ -52,16 +53,7 @@ describe("signup flow", () => {
       cy.findByText("Signup").click();
     });
 
-    cy.get("[data-cy=user-menu-button]").should("exist");
-
-    cy.getCookie("bookshelf:authToken")
-      .should("exist")
-      .then((cookie: any) => {
-        expect(cookie.path).to.eq("/");
-        expect(cookie.httpOnly).to.eq(true);
-      });
-
-    cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.location("pathname").should("equal", "/");
+    cy.get("nav").findUserAvatar("Anna").should("exist");
   });
 });

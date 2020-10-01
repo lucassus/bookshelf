@@ -1,5 +1,7 @@
 function fillInLoginFormWithValidCredentialsAndSubmit() {
-  cy.fixture("credentials.json").then(({ email, password }) => {
+  cy.fixture("credentials.json").then((credentials) => {
+    const { email, password } = credentials.user;
+
     cy.get("form").within(() => {
       cy.findByLabelText("Email").clear().type(email);
       cy.findByLabelText("Password").clear().type(password);
@@ -12,6 +14,7 @@ describe("login flow", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.get("nav").findByText("Login").click();
+    cy.location("pathname").should("equal", "/login");
   });
 
   it("validates the login form", () => {
@@ -43,13 +46,13 @@ describe("login flow", () => {
         expect(cookie.httpOnly).to.eq(true);
       });
 
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
 
     cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
 
-    cy.get("[data-cy=user-menu-button]").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.openUserMenu();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Log Out").click();
     });
   });
@@ -68,11 +71,12 @@ describe("login flow", () => {
       cy.findByText("Login").click();
     });
 
-    cy.get("[data-cy=user-menu-button]").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.openUserMenu();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Admin Account");
     });
 
+    // Verify that list of users has been reloaded
     cy.get("nav").findByText("Users").click();
     cy.findByText("Dan <dan@example.com>").should("exist");
     cy.findByText("Luke <luke@example.com>").should("exist");
@@ -86,13 +90,13 @@ describe("login flow", () => {
     });
 
     cy.findByText("Invalid email or password!").should("exist");
-    cy.get("[data-cy=user-menu-button]").should("not.exist");
+    cy.get("nav").findUserAvatar("Bob").should("not.exist");
   });
 
   it("reuses the old authentication token", () => {
     fillInLoginFormWithValidCredentialsAndSubmit();
 
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
 
     // Save the auth cookie
     let authCookie: any = null;
@@ -102,13 +106,14 @@ describe("login flow", () => {
         authCookie = cookie;
       });
 
-    cy.get("[data-cy=user-menu-button]").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.openUserMenu();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Log Out").click();
     });
 
     // Restore the auth cookie
-    cy.get("[data-cy=user-menu-button]")
+    cy.get("nav")
+      .findUserAvatar("Bob")
       .should("not.exist")
       .then(() => {
         const { name, value, ...options } = authCookie;
@@ -116,6 +121,6 @@ describe("login flow", () => {
       });
 
     cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
   });
 });

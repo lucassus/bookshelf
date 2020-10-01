@@ -1602,7 +1602,7 @@ __metadata:
     jest: 26.4.2
     prettier: 2.1.2
     rimraf: 3.0.2
-    ts-jest: 26.4.0
+    ts-jest: 26.4.1
     typescript: 4.0.3
   languageName: unknown
   linkType: soft
@@ -1656,7 +1656,7 @@ __metadata:
     rimraf: 3.0.2
     sqlite3: 5.0.0
     supertest: 5.0.0
-    ts-jest: 26.4.0
+    ts-jest: 26.4.1
     ts-node: 9.0.0
     ts-node-dev: 1.0.0-pre.63
     typedi: 0.8.0
@@ -1684,7 +1684,7 @@ __metadata:
     jest: 26.4.2
     prettier: 2.1.2
     rimraf: 3.0.2
-    ts-jest: 26.4.0
+    ts-jest: 26.4.1
     typescript: 4.0.3
   languageName: unknown
   linkType: soft
@@ -1725,7 +1725,7 @@ __metadata:
     "@types/react-icons": 3.0.0
     "@types/react-router-dom": 5.1.5
     "@types/rimraf": ^3.0.0
-    "@types/testing-library__jest-dom": 5.9.3
+    "@types/testing-library__jest-dom": 5.9.4
     "@types/webpack": 4.41.22
     "@typescript-eslint/eslint-plugin": 4.3.0
     babel-loader: 8.1.0
@@ -1744,7 +1744,7 @@ __metadata:
     eslint-plugin-react-hooks: 4.1.2
     eslint-plugin-testing-library: 3.9.0
     file-loader: 6.1.0
-    formik: 2.1.5
+    formik: 2.1.6
     graphql: 15.3.0
     html-webpack-plugin: 4.5.0
     jest: 26.4.2
@@ -1760,7 +1760,7 @@ __metadata:
     sass: 1.26.11
     sass-loader: 10.0.2
     style-loader: 1.2.1
-    ts-jest: 26.4.0
+    ts-jest: 26.4.1
     ts-loader: 8.0.4
     typeface-roboto: 0.0.75
     typescript: 4.0.3
@@ -5362,12 +5362,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/testing-library__jest-dom@npm:5.9.3":
-  version: 5.9.3
-  resolution: "@types/testing-library__jest-dom@npm:5.9.3"
+"@types/testing-library__jest-dom@npm:5.9.4":
+  version: 5.9.4
+  resolution: "@types/testing-library__jest-dom@npm:5.9.4"
   dependencies:
     "@types/jest": "*"
-  checksum: 38d22704b15c5ca3dc4a501347ab4026385726c836781b0be7cbe55c8b0efb353c0c097b1a91d1861f0b9d8d7b64613451a67fa6589f4ee9c64c0c6db2f7f9b0
+  checksum: d7505891cc04c51c373d0139980a3f9052ca7f2ab8882809c2715c0d6bff941f2e6e7b1e998ca2ed8312a5053e3aef0ae72f104d93cbf1f1514460073affb3ff
   languageName: node
   linkType: hard
 
@@ -11716,9 +11716,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formik@npm:2.1.5":
-  version: 2.1.5
-  resolution: "formik@npm:2.1.5"
+"formik@npm:2.1.6":
+  version: 2.1.6
+  resolution: "formik@npm:2.1.6"
   dependencies:
     deepmerge: ^2.1.1
     hoist-non-react-statics: ^3.3.0
@@ -11730,7 +11730,7 @@ __metadata:
     tslib: ^1.10.0
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 5a84001cc471afd4b214bf470b93038a46ebe89c4f90c43c59f1093262dd3cf8a21bdc95f656cc7034e1883c0706a5ace7ac6178bc211cfe0afb5716276a1f05
+  checksum: bd4fd61585015bb0663bc3893c4bbf25d933f92eb69c9dcb89c1348735248435cbcfe9802ff18b32196345faccfc69cec88bee8aa6a0be684d02585ea4b34dd5
   languageName: node
   linkType: hard
 
@@ -21479,9 +21479,9 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:26.4.0":
-  version: 26.4.0
-  resolution: "ts-jest@npm:26.4.0"
+"ts-jest@npm:26.4.1":
+  version: 26.4.1
+  resolution: "ts-jest@npm:26.4.1"
   dependencies:
     "@types/jest": 26.x
     bs-logger: 0.x
@@ -21499,7 +21499,7 @@ fsevents@^1.2.7:
     typescript: ">=3.8 <5.0"
   bin:
     ts-jest: cli.js
-  checksum: 1c3d1aad6d62d016eaad42fdaeb9592fed2c19b3ed11a284667c1f8cfc74e8b7fd707fea3af6ca361b26b4e850a7b51a7bc856748061f4256193f3c11dec0f3a
+  checksum: d57275098b82156a75fd4b67903822ea9fa2d523d2ec0ef407bb7eb60f611af1b5a0f7d25531dbfc436e29c3baa7e0fcdeeb2f4b19d94b1aa70a3566114c132f
   languageName: node
   linkType: hard
 

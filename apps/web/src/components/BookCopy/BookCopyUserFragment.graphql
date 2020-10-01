@@ -1,0 +1,7 @@
+fragment BookCopyUser on User {
+  id
+  name
+  avatar {
+    ...Avatar
+  }
+}

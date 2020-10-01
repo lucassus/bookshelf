@@ -19,11 +19,15 @@ it("handles the navigation", () => {
   cy.contains("Andrzej Sapkowski, born June 21, 1948 in Łódź");
 
   cy.get("nav").findByText("Authors").click();
+  cy.location("pathname").should("equal", "/authors");
+
   cy.findByText("J. K. Rowling").should("exist");
   cy.findByText("James S. A. Corey").should("exist");
   cy.findByText("Andrzej Sapkowski").should("exist");
 
   cy.get("nav").findByText("Users").click();
+  cy.location("pathname").should("equal", "/users");
+
   cy.findByText("Alice").should("exist");
   cy.findByText("Bob").should("exist");
   cy.findByText("Celine").should("exist");
@@ -34,7 +38,7 @@ it("handles the navigation", () => {
     "Food scholar. Incurable tv fanatic. Reader. Typical zombie buff. Gamer. Lifelong creator. Certified organizer."
   ).should("exist");
 
-  cy.visit("/profile");
+  cy.visit("/my/profile");
   cy.findByText("Page not found!").should("exist");
 
   cy.visit("/login");

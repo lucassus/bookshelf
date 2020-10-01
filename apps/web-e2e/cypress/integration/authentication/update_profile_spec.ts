@@ -3,10 +3,12 @@ describe("profile page", () => {
     cy.login();
     cy.visit("/");
 
-    cy.findByTitle("Bob (bob@example.com)").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.openUserMenu();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Profile").click();
     });
+
+    cy.location("pathname").should("equal", "/my/profile");
   });
 
   it("validates the form", () => {
@@ -38,8 +40,8 @@ describe("profile page", () => {
       cy.findByText("Update").click();
     });
 
-    cy.findByTitle("Łukasz Bandzarewicz (bob@example.com)").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.openUserMenu();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Łukasz Bandzarewicz").should("exist");
       cy.findByText("Profile").click();
     });
@@ -60,8 +62,8 @@ describe("profile page", () => {
       cy.findByText("Update").click();
     });
 
-    cy.findByTitle("Bob (bob@gmail.com)").click();
-    cy.get("[data-cy=user-menu]").within(() => {
+    cy.openUserMenu();
+    cy.findByTestId("user-menu").within(() => {
       cy.findByText("Bob").should("exist");
       cy.findByText("bob@gmail.com").should("exist");
 
@@ -73,6 +75,6 @@ describe("profile page", () => {
     });
 
     cy.reload();
-    cy.get("[data-cy=user-menu-button]").should("exist");
+    cy.get("nav").findUserAvatar("Bob").should("exist");
   });
 });

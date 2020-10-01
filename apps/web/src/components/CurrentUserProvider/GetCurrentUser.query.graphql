@@ -1,5 +1,9 @@
 query GetCurrentUser {
   currentUser {
-    ...CurrentUser
+    __typename
+
+    ...on ProtectedUser {
+      ...CurrentUser
+    }
   }
 }

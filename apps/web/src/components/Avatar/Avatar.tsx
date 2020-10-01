@@ -32,6 +32,7 @@ export const Avatar: React.FunctionComponent<Props> = ({
 
   return (
     <img
+      data-testid={`avatar:${label}`}
       className={styles.container}
       src={src}
       alt={label}
