@@ -20,7 +20,7 @@ type GuestUser {
 union CurrentUserResult = GuestUser | ProtectedUser
 type Query {
   """
-  Returns the currently logged in user or null if not logged in.
+  Returns the currently logged in user.
   """
   currentUser: CurrentUserResult!
   authors: [Author!]!
