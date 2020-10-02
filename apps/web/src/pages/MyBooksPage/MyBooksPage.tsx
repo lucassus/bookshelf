@@ -13,14 +13,16 @@ export const MyBooksPage: React.FunctionComponent = () => {
   }
 
   if (error || !data) {
-    return <ErrorAlert message="Could not load books..." />;
+    return <ErrorAlert message="Could not load your books..." />;
   }
 
-  if (data.currentUser.__typename !== "ProtectedUser") {
+  const { currentUser } = data;
+
+  if (currentUser.__typename === "GuestUser") {
     return null;
   }
 
-  const { ownedBookCopies, borrowedBookCopies } = data.currentUser;
+  const { ownedBookCopies, borrowedBookCopies } = currentUser;
 
   return (
     <div>
