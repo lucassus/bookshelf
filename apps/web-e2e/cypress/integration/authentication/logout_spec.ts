@@ -2,8 +2,7 @@ it("allows to log out", () => {
   cy.login();
   cy.visit("/");
 
-  cy.openUserMenu();
-  cy.findByTestId("user-menu").within(() => {
+  cy.openUserMenu().within(() => {
     cy.findByText("Log Out").click();
   });
 

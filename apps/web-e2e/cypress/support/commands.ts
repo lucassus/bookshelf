@@ -1,10 +1,12 @@
-const openUserMenu = () =>
-  cy
-    .get("nav")
+const openUserMenu = () => {
+  cy.get("nav")
     .findByTestId(/^avatar/)
     .should("exist")
     .parent("button")
     .click();
+
+  return cy.findByTestId("user-menu");
+};
 Cypress.Commands.add("openUserMenu", openUserMenu);
 
 Cypress.Commands.add(

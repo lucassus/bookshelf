@@ -51,8 +51,7 @@ describe("login flow", () => {
     cy.reload();
     cy.get("nav").findUserAvatar("Bob").should("exist");
 
-    cy.openUserMenu();
-    cy.findByTestId("user-menu").within(() => {
+    cy.openUserMenu().within(() => {
       cy.findByText("Log Out").click();
     });
   });
@@ -71,8 +70,7 @@ describe("login flow", () => {
       cy.findByText("Login").click();
     });
 
-    cy.openUserMenu();
-    cy.findByTestId("user-menu").within(() => {
+    cy.openUserMenu().within(() => {
       cy.findByText("Admin Account");
     });
 
@@ -106,8 +104,7 @@ describe("login flow", () => {
         authCookie = cookie;
       });
 
-    cy.openUserMenu();
-    cy.findByTestId("user-menu").within(() => {
+    cy.openUserMenu().within(() => {
       cy.findByText("Log Out").click();
     });
 

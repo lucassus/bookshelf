@@ -3,8 +3,7 @@ describe("profile page", () => {
     cy.login();
     cy.visit("/");
 
-    cy.openUserMenu();
-    cy.findByTestId("user-menu").within(() => {
+    cy.openUserMenu().within(() => {
       cy.findByText("Profile").click();
     });
 
@@ -40,8 +39,7 @@ describe("profile page", () => {
       cy.findByText("Update").click();
     });
 
-    cy.openUserMenu();
-    cy.findByTestId("user-menu").within(() => {
+    cy.openUserMenu().within(() => {
       cy.findByText("Łukasz Bandzarewicz").should("exist");
       cy.findByText("Profile").click();
     });
@@ -62,8 +60,7 @@ describe("profile page", () => {
       cy.findByText("Update").click();
     });
 
-    cy.openUserMenu();
-    cy.findByTestId("user-menu").within(() => {
+    cy.openUserMenu().within(() => {
       cy.findByText("Bob").should("exist");
       cy.findByText("bob@gmail.com").should("exist");
 
