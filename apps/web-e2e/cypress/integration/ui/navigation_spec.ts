@@ -6,8 +6,7 @@ it("handles the navigation", () => {
 
   cy.findByText("next").click();
   cy.findByText("next").click();
-  cy.findByText("next").click();
-  cy.findByText("The lady of the lake").should("exist");
+  cy.findByText("The Lady of the Lake").should("exist");
 
   cy.findByText("first").click();
   cy.findByText("Blood of Elves").click();
@@ -40,6 +39,9 @@ it("handles the navigation", () => {
   ).should("exist");
 
   cy.visit("/my/profile");
+  cy.findByText("Page not found!").should("exist");
+
+  cy.visit("/my/books");
   cy.findByText("Page not found!").should("exist");
 
   cy.visit("/login");

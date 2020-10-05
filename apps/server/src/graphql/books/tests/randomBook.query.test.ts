@@ -8,7 +8,7 @@ import { BooksService } from "../services/BooksService";
 test("randomBook query", async () => {
   // Given
   const book = await createBook({
-    title: "The tower of the swallow",
+    title: "The Tower of the Swallow",
     coverPath: "/images/book-covers/witcher4.jpg"
   });
 

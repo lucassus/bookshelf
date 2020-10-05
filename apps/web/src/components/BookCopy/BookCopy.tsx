@@ -24,12 +24,15 @@ export const BookCopy: React.FunctionComponent<Props> = ({ bookCopy }) => {
           <img src={bookCopy.book.cover.url} alt={bookCopy.book.title} />
         </Link>
 
-        <div className={styles.ownerAvatar}>
+        <div className={styles.ownerAvatar} data-testid="book-copy-owner">
           <BookCopyUser user={bookCopy.owner} />
         </div>
 
         {bookCopy.borrower && (
-          <div className={styles.borrowerAvatar}>
+          <div
+            className={styles.borrowerAvatar}
+            data-testid="book-copy-borrower"
+          >
             <BookCopyUser user={bookCopy.borrower} />
           </div>
         )}

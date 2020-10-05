@@ -26,7 +26,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <div>
+      <div data-testid="owned-book-copies-list">
         <h2>Owned book copies ({ownedBookCopies.length})</h2>
 
         <div className={styles.bookCopies}>

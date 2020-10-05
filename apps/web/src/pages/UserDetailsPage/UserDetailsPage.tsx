@@ -35,7 +35,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
       <UserCard user={user} />
       <span>{user.info}</span>
 
-      <div>
+      <div data-testid="owned-book-copies-list">
         {user.ownedBookCopies.length > 0 ? (
           <>
             <h3>Owned book copies ({user.ownedBookCopies.length})</h3>

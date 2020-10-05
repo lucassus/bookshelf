@@ -279,19 +279,19 @@ async function loadBooks() {
 
   await createBook({
     authorId: author.id,
-    title: "The tower of the swallow",
+    title: "The Tower of the Swallow",
     description: `The world has fallen into war. Ciri, the child of prophecy, has vanished. Hunted by friends and foes alike, she has taken on the guise of a petty bandit and lives free for the first time in her life.
 
       But the net around her is closing. Geralt, the Witcher, has assembled a group of allies determined to rescue her. Both sides of the war have sent brutal mercenaries to hunt her down. Her crimes have made her famous.
       
-      There is only one place left to run. The tower of the swallow is waiting...`,
+      There is only one place left to run. The Tower of the Swallow is waiting...`,
     coverPath: "/covers/witcher4.jpg"
   });
 
   await createBook({
     authorId: author.id,
-    title: "The lady of the lake",
-    description: `After walking through a portal in the Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
+    title: "The Lady of the Lake",
+    description: `After walking through a portal in The Tower of the Swallow, thus narrowly escaping death, the Witcher girl, Ciri, finds herself in a completely different world... a world of the Elves. She is trapped with no way out. Time does not seem to exist and there are no obvious borders or portals to cross back into her home world.
 
       But this is Ciri, the child of prophecy, and she will not be defeated. She knows she must escape to finally rejoin the Witcher, Geralt, and his companions - and also to try to conquer her worst nightmare. Leo Bonhart, the man who chased, wounded and tortured Ciri, is still on her trail.
       
@@ -402,6 +402,7 @@ async function loadBookCopies() {
   const userAlice = await manager.findOneOrFail(User, { name: "Alice" });
   const userBob = await manager.findOneOrFail(User, { name: "Bob" });
   const userDan = await manager.findOneOrFail(User, { name: "Dan" });
+  const userCeline = await manager.findOneOrFail(User, { name: "Celine" });
 
   let book = await manager.findOneOrFail(Book, { title: "Blood of Elves" });
   const borrower = await manager.findOneOrFail(User, { name: "Alice" });
@@ -409,17 +410,17 @@ async function loadBookCopies() {
   await createBookCopy({ owner: userBob, book, borrower });
   await createBookCopy({ owner: userAlice, book });
 
-  book = await manager.findOneOrFail(Book, { title: "The lady of the lake" });
+  book = await manager.findOneOrFail(Book, { title: "The Lady of the Lake" });
   await createBookCopy({ owner: userBob, book });
 
   book = await manager.findOneOrFail(Book, {
-    title: "The tower of the swallow"
+    title: "The Tower of the Swallow"
   });
   await createBookCopy({ owner: userAlice, book, borrower: userBob });
 
   book = await manager.findOneOrFail(Book, { title: "Dune" });
-  await createBookCopy({ owner: userAlice, book });
-  await createBookCopy({ owner: userBob, book });
+  await createBookCopy({ owner: userAlice, book, borrower: userCeline });
+  await createBookCopy({ owner: userDan, book, borrower: userBob });
   await createBookCopy({ owner: userDan, book });
 
   book = await manager.findOneOrFail(Book, { title: "Dune Messiah" });
@@ -428,16 +429,18 @@ async function loadBookCopies() {
 
   book = await manager.findOneOrFail(Book, { title: "Children of Dune" });
   await createBookCopy({ owner: userDan, book });
+  await createBookCopy({ owner: userAlice, book, borrower: userDan });
 
   book = await manager.findOneOrFail(Book, { title: "God Emperor of Dune" });
   await createBookCopy({ owner: userDan, book });
 
   const author = await manager.findOneOrFail(Author, { name: "J. K. Rowling" });
   const harryPotterBooks = await manager.find(Book, { authorId: author.id });
-  const promises = harryPotterBooks.map((harryPotterBook) =>
-    createBookCopy({ owner: userAlice, book: harryPotterBook })
+  await Promise.all(
+    harryPotterBooks.map((harryPotterBook) =>
+      createBookCopy({ owner: userAlice, book: harryPotterBook })
+    )
   );
-  await Promise.all(promises);
 }
 
 export const loadFixtures = async (): Promise<void> => {

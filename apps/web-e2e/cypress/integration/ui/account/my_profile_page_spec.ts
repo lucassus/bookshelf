@@ -90,4 +90,13 @@ describe("My profile page", () => {
     cy.reload();
     cy.get("nav").findUserAvatar("Bob").should("exist");
   });
+
+  it("is accessible only for logged in users", () => {
+    cy.openUserMenu().within(() => {
+      cy.findByText("Log Out").click();
+    });
+
+    cy.visit("/my/profile");
+    cy.findByText("Page not found!").should("exist");
+  });
 });
