@@ -1,4 +1,4 @@
-describe("signup flow", () => {
+describe("Signup page", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.get("nav").findByText("Signup").click();

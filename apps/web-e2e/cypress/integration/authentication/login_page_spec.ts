@@ -10,7 +10,7 @@ function fillInLoginFormWithValidCredentialsAndSubmit() {
   });
 }
 
-describe("login flow", () => {
+describe("Login page", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.get("nav").findByText("Login").click();

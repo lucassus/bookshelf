@@ -1,4 +1,4 @@
-describe("profile page", () => {
+describe("My profile page", () => {
   beforeEach(() => {
     cy.login();
     cy.visit("/");
@@ -26,51 +26,67 @@ describe("profile page", () => {
   });
 
   it("updates the profile info", () => {
+    const newName = "John";
+    const newInfo = "Foo bar";
+
     cy.get("form").within(() => {
       cy.findByLabelText("Name")
         .should("have.value", "Bob")
         .clear()
-        .type("Łukasz Bandzarewicz");
+        .type(newName);
 
       cy.findByLabelText("Email").should("have.value", "bob@example.com");
 
-      cy.findByLabelText("Info").clear().type("Foo bar");
+      cy.findByLabelText("Info")
+        .should(
+          "have.value",
+          "Twitter fan. Social media expert. Hardcore explorer. Communicator. Amateur coffee lover."
+        )
+        .clear()
+        .type(newInfo);
 
       cy.findByText("Update").click();
     });
 
     cy.openUserMenu().within(() => {
-      cy.findByText("Łukasz Bandzarewicz").should("exist");
+      cy.findByText(newName).should("exist");
       cy.findByText("Profile").click();
     });
 
     cy.get("form").within(() => {
-      cy.findByLabelText("Name").should("have.value", "Łukasz Bandzarewicz");
+      cy.findByLabelText("Name").should("have.value", newName);
       cy.findByLabelText("Email").should("have.value", "bob@example.com");
-      cy.findByLabelText("Info").should("have.value", "Foo bar");
+      cy.findByLabelText("Info").should("have.value", newInfo);
     });
+
+    cy.get("nav").findByText("Users").click();
+    cy.findByTestId("users-list").findUserAvatar(newName).click();
+    cy.findByText(newInfo).should("exist");
   });
 
   it("updates the email", () => {
+    const newEmail = "john@example.com";
+
     cy.get("form").within(() => {
       cy.findByLabelText("Email")
         .should("have.value", "bob@example.com")
         .clear()
-        .type("bob@gmail.com");
+        .type(newEmail);
       cy.findByText("Update").click();
     });
 
     cy.openUserMenu().within(() => {
       cy.findByText("Bob").should("exist");
-      cy.findByText("bob@gmail.com").should("exist");
+      cy.findByText(newEmail).should("exist");
 
       cy.findByText("Profile").click();
     });
 
     cy.get("form").within(() => {
-      cy.findByLabelText("Email").should("have.value", "bob@gmail.com");
+      cy.findByLabelText("Email").should("have.value", newEmail);
     });
 
+    // Do not logout a user after email change
     cy.reload();
     cy.get("nav").findUserAvatar("Bob").should("exist");
   });
