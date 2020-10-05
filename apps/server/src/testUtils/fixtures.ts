@@ -434,10 +434,10 @@ async function loadBookCopies() {
 
   const author = await manager.findOneOrFail(Author, { name: "J. K. Rowling" });
   const harryPotterBooks = await manager.find(Book, { authorId: author.id });
-  for (book of harryPotterBooks) {
-    // eslint-disable-next-line no-await-in-loop
-    await createBookCopy({ owner: userAlice, book });
-  }
+  const promises = harryPotterBooks.map((harryPotterBook) =>
+    createBookCopy({ owner: userAlice, book: harryPotterBook })
+  );
+  await Promise.all(promises);
 }
 
 export const loadFixtures = async (): Promise<void> => {
