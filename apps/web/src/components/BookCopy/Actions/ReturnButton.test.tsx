@@ -49,7 +49,7 @@ test("<ReturnButton />", async () => {
     id: "bookCopy:1",
     __typename: "BookCopy",
     book: {
-      id: "book:!",
+      id: "book:1",
       __typename: "Book",
       title: "Dune",
       cover: {

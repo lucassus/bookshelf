@@ -5,48 +5,62 @@ it("shows my books page", () => {
   cy.findByText("Users").click();
   cy.findByText("Dan").click();
 
-  cy.get("[data-testid='book-copy:Children of Dune']").within(() => {
-    cy.findByText("borrow").should("exist").click();
-  });
+  cy.findBookCopies("Children of Dune")
+    .first()
+    .within(() => {
+      cy.findByText("borrow").should("exist").click();
+    });
 
   cy.openUserMenu().within(() => {
     cy.findByText("Books").click();
   });
 
   cy.get("[data-testid=borrowed-book-copies-list]").within(() => {
-    cy.get("[data-testid='book-copy:Children of Dune']").within(() => {
-      cy.findByText("return").click();
-    });
-    cy.get("[data-testid='book-copy:Children of Dune']").should("not.exist");
+    cy.findBookCopies("Children of Dune")
+      .first()
+      .within(() => {
+        cy.findByText("return").click();
+      });
+    cy.findBookCopies("Children of Dune").should("have.length", 0);
   });
 
   cy.findByText("Users").click();
   cy.findByText("Dan").click();
 
-  cy.get("[data-testid='book-copy:Children of Dune']").within(() => {
-    cy.findByText("borrow").should("exist");
-    cy.findByText("return").should("not.exist");
-  });
+  cy.findBookCopies("Children of Dune")
+    .first()
+    .within(() => {
+      cy.findByText("borrow").should("exist");
+      cy.findByText("return").should("not.exist");
+    });
 
-  cy.get("[data-testid='book-copy:Dune']").within(() => {
-    cy.findByText("borrow").click();
-  });
+  cy.findBookCopies("Children of Dune")
+    .first()
+    .within(() => {
+      cy.findByText("borrow").click();
+    });
 
-  cy.get("[data-testid='book-copy:Dune Messiah']").within(() => {
-    cy.findByText("borrow").click();
-  });
+  cy.findBookCopies("Dune Messiah")
+    .first()
+    .within(() => {
+      cy.findByText("borrow").click();
+    });
 
   cy.openUserMenu().within(() => {
     cy.findByText("Books").click();
   });
 
   cy.get("[data-testid=borrowed-book-copies-list]").within(() => {
-    cy.get("[data-testid='book-copy:Dune']").within(() => {
-      cy.findByText("return").should("exist");
-    });
+    cy.findBookCopies("Children of Dune")
+      .first()
+      .within(() => {
+        cy.findByText("return").should("exist");
+      });
 
-    cy.get("[data-testid='book-copy:Dune Messiah']").within(() => {
-      cy.findByText("return").should("exist");
-    });
+    cy.findBookCopies("Dune Messiah")
+      .first()
+      .within(() => {
+        cy.findByText("return").should("exist");
+      });
   });
 });

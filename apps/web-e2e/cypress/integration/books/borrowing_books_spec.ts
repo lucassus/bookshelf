@@ -1,3 +1,4 @@
+// TODO: Duplicated test?
 it("handles borrowing and returning books", () => {
   cy.login();
   cy.visit("/");
