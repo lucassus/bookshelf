@@ -75,7 +75,7 @@ export const MyProfilePage: React.FunctionComponent<Props> = ({
 
             <div>
               <label htmlFor="info-field">Info</label>
-              <Field name="info" type="text" id="info-field" />
+              <Field name="info" type="text" id="info-field" as="textarea" />
               <p>{errors.info}</p>
             </div>
 
