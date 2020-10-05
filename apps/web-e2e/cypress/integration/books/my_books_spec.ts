@@ -16,11 +16,15 @@ it("shows my books page", () => {
   });
 
   cy.get("[data-testid=borrowed-book-copies-list]").within(() => {
+    cy.findByText("Borrowed book copies (2)").should("exist");
+
     cy.findBookCopies("Children of Dune")
       .first()
       .within(() => {
         cy.findByText("return").click();
       });
+
+    cy.findByText("Borrowed book copies (1)").should("exist");
     cy.findBookCopies("Children of Dune").should("have.length", 0);
   });
 
@@ -51,6 +55,8 @@ it("shows my books page", () => {
   });
 
   cy.get("[data-testid=borrowed-book-copies-list]").within(() => {
+    cy.findByText("Borrowed book copies (3)").should("exist");
+
     cy.findBookCopies("Children of Dune")
       .first()
       .within(() => {
