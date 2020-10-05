@@ -1,21 +1,30 @@
 import React from "react";
 
+import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
 import { BorrowButton } from "./BorrowButton";
 import { ReturnButton } from "./ReturnButton";
 
 type Props = {
+  currentUser: CurrentUserFragment;
   bookCopy: BookCopyFragment;
 };
 
-export const Actions: React.FunctionComponent<Props> = ({ bookCopy }) => {
+export const Actions: React.FunctionComponent<Props> = ({
+  currentUser,
+  bookCopy
+}) => {
   const canBorrow = !bookCopy.borrower;
   const canReturn = !canBorrow;
 
   return (
     <div>
-      {canBorrow && <BorrowButton bookCopy={bookCopy} />}
-      {canReturn && <ReturnButton bookCopy={bookCopy} />}
+      {canBorrow && (
+        <BorrowButton currentUser={currentUser} bookCopy={bookCopy} />
+      )}
+      {canReturn && (
+        <ReturnButton currentUser={currentUser} bookCopy={bookCopy} />
+      )}
     </div>
   );
 };

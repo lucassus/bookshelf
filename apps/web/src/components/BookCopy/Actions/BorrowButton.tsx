@@ -1,16 +1,20 @@
 import React from "react";
 
-import { useCurrentUser } from "../../CurrentUserProvider";
+import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
 import { useBorrowBookCopyMutation } from "./BorrowBookCopy.mutation.generated";
 
 type Props = {
+  currentUser: CurrentUserFragment;
   bookCopy: BookCopyFragment;
 };
 
-export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
+// TODO: Merge these buttons?
+export const BorrowButton: React.FunctionComponent<Props> = ({
+  currentUser,
+  bookCopy
+}) => {
   const [borrowBookCopy, { loading }] = useBorrowBookCopyMutation();
-  const currentUser = useCurrentUser();
 
   const handleClick = () =>
     borrowBookCopy({
@@ -23,7 +27,7 @@ export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
         const { borrowBookCopy: borrowedBookCopy } = data;
 
         cache.modify({
-          id: cache.identify(currentUser!),
+          id: cache.identify(currentUser),
           fields: {
             borrowedBookCopies(refs, { toReference }) {
               return [...refs, toReference(borrowedBookCopy)];

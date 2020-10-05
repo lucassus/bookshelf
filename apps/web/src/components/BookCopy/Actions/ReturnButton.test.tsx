@@ -3,7 +3,6 @@ import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 
-import { CurrentUserContext } from "../../CurrentUserProvider";
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
 import { ReturnBookCopyDocument } from "./ReturnBookCopy.mutation.generated";
@@ -93,10 +92,7 @@ test("<ReturnButton />", async () => {
 
   render(
     <MockedProvider cache={cache} mocks={mocks}>
-      <CurrentUserContext.Provider value={currentUser}>
-        {" "}
-        <ReturnButton bookCopy={bookCopy} />
-      </CurrentUserContext.Provider>
+      <ReturnButton currentUser={currentUser} bookCopy={bookCopy} />
     </MockedProvider>
   );
 

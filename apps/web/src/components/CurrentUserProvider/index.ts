@@ -1,5 +1,1 @@
-export {
-  useCurrentUser,
-  CurrentUserContext,
-  CurrentUserProvider
-} from "./CurrentUserProvider";
+export { useCurrentUser, CurrentUserProvider } from "./CurrentUserProvider";

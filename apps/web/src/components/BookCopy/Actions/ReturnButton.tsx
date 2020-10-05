@@ -1,16 +1,19 @@
 import React from "react";
 
-import { useCurrentUser } from "../../CurrentUserProvider";
+import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyFragment } from "../BookCopy.fragment.generated";
 import { useReturnBookCopyMutation } from "./ReturnBookCopy.mutation.generated";
 
 type Props = {
+  currentUser: CurrentUserFragment;
   bookCopy: BookCopyFragment;
 };
 
-export const ReturnButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
+export const ReturnButton: React.FunctionComponent<Props> = ({
+  currentUser,
+  bookCopy
+}) => {
   const [returnBookCopy, { loading }] = useReturnBookCopyMutation();
-  const currentUser = useCurrentUser();
 
   const handleClick = () => {
     return returnBookCopy({
@@ -23,7 +26,7 @@ export const ReturnButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
         const { returnBookCopy: returnedBookCopy } = data;
 
         cache.modify({
-          id: cache.identify(currentUser!),
+          id: cache.identify(currentUser),
           fields: {
             borrowedBookCopies(refs, { readField }) {
               return refs.filter(

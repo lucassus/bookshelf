@@ -12,7 +12,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
     return <span>Loading...</span>;
   }
 
-  if (error || !data) {
+  if (error || !data || !data.currentUser) {
     return <ErrorAlert message="Could not load your books..." />;
   }
 
