@@ -1573,7 +1573,7 @@ __metadata:
     eslint-plugin-import: 2.22.1
     eslint-plugin-jsx-a11y: 6.3.1
     eslint-plugin-prettier: 3.1.4
-    eslint-plugin-react: 7.21.2
+    eslint-plugin-react: 7.21.3
     faker: 5.1.0
     graphql: 15.3.0
     prettier: 2.1.2
@@ -1598,7 +1598,7 @@ __metadata:
     eslint-plugin-jest: 24.0.2
     eslint-plugin-jsx-a11y: 6.3.1
     eslint-plugin-prettier: 3.1.4
-    eslint-plugin-react: 7.21.2
+    eslint-plugin-react: 7.21.3
     jest: 26.4.2
     prettier: 2.1.2
     rimraf: 3.0.2
@@ -1641,7 +1641,7 @@ __metadata:
     eslint-plugin-jest: 24.0.2
     eslint-plugin-jsx-a11y: 6.3.1
     eslint-plugin-prettier: 3.1.4
-    eslint-plugin-react: 7.21.2
+    eslint-plugin-react: 7.21.3
     express: 4.17.1
     faker: 5.1.0
     graphql: 15.3.0
@@ -1650,7 +1650,7 @@ __metadata:
     jest-watch-typeahead: 0.6.1
     jsonwebtoken: 8.5.1
     node-mocks-http: 1.9.0
-    pg: 8.3.3
+    pg: 8.4.0
     prettier: 2.1.2
     reflect-metadata: 0.1.13
     rimraf: 3.0.2
@@ -1660,7 +1660,7 @@ __metadata:
     ts-node: 9.0.0
     ts-node-dev: 1.0.0-pre.63
     typedi: 0.8.0
-    typeorm: 0.2.26
+    typeorm: 0.2.28
     typeorm-typedi-extensions: 0.2.3
     typescript: 4.0.3
   languageName: unknown
@@ -1680,7 +1680,7 @@ __metadata:
     eslint-plugin-jest: 24.0.2
     eslint-plugin-jsx-a11y: 6.3.1
     eslint-plugin-prettier: 3.1.4
-    eslint-plugin-react: 7.21.2
+    eslint-plugin-react: 7.21.3
     jest: 26.4.2
     prettier: 2.1.2
     rimraf: 3.0.2
@@ -1717,7 +1717,7 @@ __metadata:
     "@storybook/react": 6.0.22
     "@testing-library/jest-dom": 5.11.4
     "@testing-library/react": 11.0.4
-    "@testing-library/user-event": 12.1.6
+    "@testing-library/user-event": 12.1.7
     "@types/graphql": 14.5.0
     "@types/jest": 26.0.14
     "@types/react": 16.9.50
@@ -1740,7 +1740,7 @@ __metadata:
     eslint-plugin-jest: 24.0.2
     eslint-plugin-jsx-a11y: 6.3.1
     eslint-plugin-prettier: 3.1.4
-    eslint-plugin-react: 7.21.2
+    eslint-plugin-react: 7.21.3
     eslint-plugin-react-hooks: 4.1.2
     eslint-plugin-testing-library: 3.9.0
     file-loader: 6.1.0
@@ -1759,7 +1759,7 @@ __metadata:
     rimraf: 3.0.2
     sass: 1.26.11
     sass-loader: 10.0.2
-    style-loader: 1.2.1
+    style-loader: 1.3.0
     ts-jest: 26.4.1
     ts-loader: 8.0.4
     typeface-roboto: 0.0.75
@@ -3712,6 +3712,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sqltools/formatter@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@sqltools/formatter@npm:1.2.2"
+  checksum: 67b5b8050c742e9430824ee20664b20b042cd5b6cce4af50f199c41e2a01d41066bf51c70c8e4af0981a6a68173566402d11fe291557d741f9f18afa14e2fb2b
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-actions@npm:6.0.22":
   version: 6.0.22
   resolution: "@storybook/addon-actions@npm:6.0.22"
@@ -4590,14 +4597,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:12.1.6":
-  version: 12.1.6
-  resolution: "@testing-library/user-event@npm:12.1.6"
+"@testing-library/user-event@npm:12.1.7":
+  version: 12.1.7
+  resolution: "@testing-library/user-event@npm:12.1.7"
   dependencies:
     "@babel/runtime": ^7.10.2
   peerDependencies:
     "@testing-library/dom": ">=7.21.4"
-  checksum: 547bb93b2269c36f1229fabaebca574eaf798e338cfe961f3b55f294b99faa4856b40a95f299e948a087480239d32ae94987479e73dfa5bbf77a0c923b0e40fd
+  checksum: b0a855a5a0c991a9b1e1cd1b1adfc73b54ad10b2baba7f157ca66eb55ad418aa420e1e98af8d5a33dcf62942fb08dea6030986858954d1a5990c648bd7edbadc
   languageName: node
   linkType: hard
 
@@ -7929,7 +7936,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer@npm:^5.1.0":
+"buffer@npm:^5.5.0":
   version: 5.6.0
   resolution: "buffer@npm:5.6.0"
   dependencies:
@@ -8456,7 +8463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-highlight@npm:^2.0.0":
+"cli-highlight@npm:^2.1.4":
   version: 2.1.4
   resolution: "cli-highlight@npm:2.1.4"
   dependencies:
@@ -10766,9 +10773,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.21.2":
-  version: 7.21.2
-  resolution: "eslint-plugin-react@npm:7.21.2"
+"eslint-plugin-react@npm:7.21.3":
+  version: 7.21.3
+  resolution: "eslint-plugin-react@npm:7.21.3"
   dependencies:
     array-includes: ^3.1.1
     array.prototype.flatmap: ^1.2.3
@@ -10783,7 +10790,7 @@ __metadata:
     string.prototype.matchall: ^4.0.2
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7
-  checksum: 48ec4da08a53b5d73ce66132a73a9553b7c4300c23ecbb3e14f4c9df8bbaca2b5bff559adecd7014e217ce7eb445f99ba4a6683ce6c958ee78769b992bd183f4
+  checksum: 8a126d405448534821126dd636a1aee8df3a4f49b3fcec8944ac8500cdb5119bccaf9e209512f20e73879ddce08f657deb32fdae2f92e6393614de61fed1cca8
   languageName: node
   linkType: hard
 
@@ -17687,6 +17694,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"pg-connection-string@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "pg-connection-string@npm:2.4.0"
+  checksum: fdb3ec1c3daa8356381b1de3ed5fe03269e69d88644c4eb83a30aec1d1e320e0a8450d7ff8c04666dd06a4798c996c9dd006497f038d338790667965ec940d1d
+  languageName: node
+  linkType: hard
+
 "pg-int8@npm:1.0.1":
   version: 1.0.1
   resolution: "pg-int8@npm:1.0.1"
@@ -17707,6 +17721,13 @@ fsevents@^1.2.7:
   version: 1.2.5
   resolution: "pg-protocol@npm:1.2.5"
   checksum: d61b446eebf2ed4a6c9f46f6b6e882ebb4dcfd2cd0d6b2b16954233cb41985f6cb0e61d18e816125d52734ceff5ab5ec1541e9402e07bea0131686742be97e5a
+  languageName: node
+  linkType: hard
+
+"pg-protocol@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "pg-protocol@npm:1.3.0"
+  checksum: 2f84434e07560c9d1b1af61c6674f36a0d193aa2ee73929dad649cec96d09e2d4793a3076d59122323554e60a7eefae44e86a089c70d58e7e7d7c27e78464da9
   languageName: node
   linkType: hard
 
@@ -17736,6 +17757,26 @@ fsevents@^1.2.7:
     pgpass: 1.x
     semver: 4.3.2
   checksum: 56fc9d6c8537cc5ba5136861fc7fdfc284afb885034c617446af7ea8ce521b5c0514ffad1e1818ab12c800f0531934776a43434b05d87f56939156dbe562679c
+  languageName: node
+  linkType: hard
+
+"pg@npm:8.4.0":
+  version: 8.4.0
+  resolution: "pg@npm:8.4.0"
+  dependencies:
+    buffer-writer: 2.0.0
+    packet-reader: 1.0.0
+    pg-connection-string: ^2.4.0
+    pg-pool: ^3.2.1
+    pg-protocol: ^1.3.0
+    pg-types: ^2.1.0
+    pgpass: 1.x
+  peerDependencies:
+    pg-native: ">=2.0.0"
+  peerDependenciesMeta:
+    pg-native:
+      optional: true
+  checksum: f80c84e7b70767e77921c6f5f54225dcb0dd742c3f3e37b54492a59f5f6a78fd3d916219e3db9b8f92ff0b770f5ce55ec136717873a700042aa079ecf0d78f07
   languageName: node
   linkType: hard
 
@@ -20916,7 +20957,19 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"style-loader@npm:1.2.1, style-loader@npm:^1.2.1":
+"style-loader@npm:1.3.0":
+  version: 1.3.0
+  resolution: "style-loader@npm:1.3.0"
+  dependencies:
+    loader-utils: ^2.0.0
+    schema-utils: ^2.7.0
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 4654b5178cb2c32f8d35363938b8bbb2b435fcfd2f81865185e3899183a3ad1390a24da467890463a6c9d07f6785d568a269805b706c8d56086c942530d77d95
+  languageName: node
+  linkType: hard
+
+"style-loader@npm:^1.2.1":
   version: 1.2.1
   resolution: "style-loader@npm:1.2.1"
   dependencies:
@@ -21721,7 +21774,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0, tslib@npm:^1.9.3":
+"tslib@npm:^1.10.0, tslib@npm:^1.13.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0, tslib@npm:^1.9.3":
   version: 1.13.0
   resolution: "tslib@npm:1.13.0"
   checksum: 5dc3bdaea3b67c76ef4a14c28fcb2171da7bcf292fd9c59a260098729626b1ce766c52b588f08e324ed9a0c52ea8a93a815920f980d75981abc9d850fbf310fb
@@ -21893,28 +21946,29 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"typeorm@npm:0.2.26":
-  version: 0.2.26
-  resolution: "typeorm@npm:0.2.26"
+"typeorm@npm:0.2.28":
+  version: 0.2.28
+  resolution: "typeorm@npm:0.2.28"
   dependencies:
+    "@sqltools/formatter": 1.2.2
     app-root-path: ^3.0.0
-    buffer: ^5.1.0
-    chalk: ^2.4.2
-    cli-highlight: ^2.0.0
+    buffer: ^5.5.0
+    chalk: ^4.1.0
+    cli-highlight: ^2.1.4
     debug: ^4.1.1
     dotenv: ^8.2.0
-    glob: ^7.1.2
-    js-yaml: ^3.13.1
-    mkdirp: ^1.0.3
+    glob: ^7.1.6
+    js-yaml: ^3.14.0
+    mkdirp: ^1.0.4
     reflect-metadata: ^0.1.13
     sha.js: ^2.4.11
-    tslib: ^1.9.0
-    xml2js: ^0.4.17
+    tslib: ^1.13.0
+    xml2js: ^0.4.23
     yargonaut: ^1.1.2
-    yargs: ^13.2.1
+    yargs: ^16.0.3
   bin:
     typeorm: cli.js
-  checksum: fd2b4ac11ae0c793c1bc8194dd020246768af66a56d25beb1951c683882779fe4b314462c7f291a86758a2b86bf4e172718e17f8ff5ccca868bfc1de67a4d2f3
+  checksum: 3f931c698ed857e420da31f31ddcf1c59deafc40bf6cc5927602d41868a1c85fde8058db995e24f55aa74b00bf7f6a325fa2cbb6ebcd9740a0ef4146a48d43c6
   languageName: node
   linkType: hard
 
@@ -23019,7 +23073,7 @@ typescript@4.0.3:
   languageName: node
   linkType: hard
 
-"xml2js@npm:^0.4.17":
+"xml2js@npm:^0.4.23":
   version: 0.4.23
   resolution: "xml2js@npm:0.4.23"
   dependencies:
@@ -23179,7 +23233,7 @@ typescript@4.0.3:
   languageName: node
   linkType: hard
 
-"yargs@npm:^13.2.1, yargs@npm:^13.3.0, yargs@npm:^13.3.2":
+"yargs@npm:^13.3.0, yargs@npm:^13.3.2":
   version: 13.3.2
   resolution: "yargs@npm:13.3.2"
   dependencies:
