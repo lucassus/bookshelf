@@ -19,24 +19,21 @@ describe("Book details page", () => {
   });
 
   it("displays book copies", () => {
-    cy.findBookCopies("Dune").should("have.length", 3);
+    cy.findBookCopyCards("Dune").should("have.length", 4);
 
-    cy.findBookCopies("Dune")
+    cy.findBookCopyCards("Dune")
       .eq(0)
-      .findByTestId("book-copy-owner")
-      .findUserAvatar("Alice")
+      .findBookCopyOwnerAvatar("Alice")
       .should("exist");
 
-    cy.findBookCopies("Dune")
+    cy.findBookCopyCards("Dune")
       .eq(1)
-      .findByTestId("book-copy-owner")
-      .findUserAvatar("Dan")
+      .findBookCopyOwnerAvatar("Dan")
       .should("exist");
 
-    cy.findBookCopies("Dune")
+    cy.findBookCopyCards("Dune")
       .eq(2)
-      .findByTestId("book-copy-owner")
-      .findUserAvatar("Dan")
+      .findBookCopyOwnerAvatar("Dan")
       .should("exist");
   });
 
@@ -50,25 +47,18 @@ describe("Book details page", () => {
       cy.reload();
     });
 
-    // TODO: User should not be able to return other user book
     it("allows to borrow a book", () => {
-      cy.findBookCopies("Dune").eq(0).findByText("borrow").should("not.exist");
+      cy.findBookCopyCards("Dune")
+        .eq(0)
+        .findByText("borrow")
+        .should("not.exist");
 
-      cy.findBookCopies("Dune")
+      cy.findBookCopyCards("Dune")
         .eq(2)
         .within(() => {
-          cy.findByTestId("book-copy-owner")
-            .findUserAvatar("Dan")
-            .should("exist");
-
+          cy.findBookCopyOwnerAvatar("Dan").should("exist");
           cy.findByText("borrow").click();
-
-          cy.findByTestId("book-copy-owner")
-            .findUserAvatar("Dan")
-            .should("exist");
-          cy.findByTestId("book-copy-borrower")
-            .findUserAvatar("Bob")
-            .should("exist");
+          cy.findBookCopyBorrowerAvatar("Bob").should("exist");
 
           cy.findByText("borrow").should("not.exist");
           cy.findByText("return").should("exist");
@@ -76,34 +66,38 @@ describe("Book details page", () => {
     });
 
     it("allows to return a book", () => {
-      cy.findBookCopies("Dune")
-        .should("have.length", 3)
+      cy.findBookCopyCards("Dune")
+        .should("have.length", 4)
         .eq(1)
         .within(() => {
-          cy.findByTestId("book-copy-owner")
-            .findUserAvatar("Dan")
-            .should("exist");
-          cy.findByTestId("book-copy-borrower")
-            .findUserAvatar("Bob")
-            .should("exist");
+          cy.findBookCopyOwnerAvatar("Dan").should("exist");
+          cy.findBookCopyBorrowerAvatar("Bob").should("exist");
 
           cy.findByText("return").click();
-          cy.findByTestId("book-copy-borrower").should("not.exist");
+          cy.findBookCopyBorrowerAvatar().should("not.exist");
         });
     });
 
     it("does not allow to borrow a book copy from myself", () => {
-      cy.findBookCopies("Dune")
-        .eq(1)
+      cy.findBookCopyCards("Dune")
+        .eq(3)
         .within(() => {
-          cy.findByTestId("book-copy-owner")
-            .findUserAvatar("Bob")
-            .should("exist");
+          cy.findBookCopyOwnerAvatar("Bob").should("exist");
           cy.findByText("borrow").should("not.exist");
         });
     });
 
-    it("does not allow to return book copy borrowed by the other user");
+    it("does not allow to return book copy borrowed by the other user", () => {
+      cy.findBookCopyCards("Dune")
+        .eq(0)
+        .within(() => {
+          cy.findBookCopyOwnerAvatar("Alice").should("exist");
+          cy.findBookCopyBorrowerAvatar("Bob").should("not.exist");
+          cy.findBookCopyBorrowerAvatar("Celine").should("exist");
+
+          cy.findByText("return").should("not.exist");
+        });
+    });
   });
 
   it("displays 404 error page when a book cannot be found", () => {

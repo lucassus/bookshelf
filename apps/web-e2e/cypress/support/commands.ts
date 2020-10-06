@@ -19,15 +19,6 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add(
-  "findBookCopies",
-  { prevSubject: ["optional", "element"] },
-  (subject, title) => {
-    const root = subject ? cy.wrap(subject) : cy.root();
-    return root.findAllByTestId(`book-copy:${title}`);
-  }
-);
-
-Cypress.Commands.add(
   "findUserCard",
   { prevSubject: ["optional", "element"] },
   (subject, name) => {
@@ -43,9 +34,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Chainable {
       openUserMenu: typeof openUserMenu;
-      findUserAvatar: (name: string) => Chainable<JQuery>;
-      findBookCopies: (name: string) => Chainable<JQuery>;
       findUserCard: (name: string) => Chainable<JQuery>;
+      findUserAvatar: (name: string) => Chainable<JQuery>;
     }
   }
 }

@@ -38,9 +38,7 @@ export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
         )}
       </div>
 
-      {currentUser && bookCopy.owner.id !== currentUser.id && (
-        <Actions currentUser={currentUser} bookCopy={bookCopy} />
-      )}
+      {currentUser && <Actions currentUser={currentUser} bookCopy={bookCopy} />}
     </div>
   );
 };

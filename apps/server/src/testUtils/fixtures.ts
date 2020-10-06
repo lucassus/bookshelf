@@ -422,6 +422,7 @@ async function loadBookCopies() {
   await createBookCopy({ owner: userAlice, book, borrower: userCeline });
   await createBookCopy({ owner: userDan, book, borrower: userBob });
   await createBookCopy({ owner: userDan, book });
+  await createBookCopy({ owner: userBob, book });
 
   book = await manager.findOneOrFail(Book, { title: "Dune Messiah" });
   await createBookCopy({ owner: userAlice, book });

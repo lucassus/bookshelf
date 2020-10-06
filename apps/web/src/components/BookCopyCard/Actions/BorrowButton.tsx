@@ -1,7 +1,7 @@
 import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
-import { BookCopyFragment } from "../BookCopy.fragment.generated";
+import { BookCopyFragment } from "../BookCopyCard.fragment.generated";
 import { useBorrowBookCopyMutation } from "./BorrowBookCopy.mutation.generated";
 
 type Props = {
@@ -9,7 +9,6 @@ type Props = {
   bookCopy: BookCopyFragment;
 };
 
-// TODO: Merge these buttons?
 export const BorrowButton: React.FunctionComponent<Props> = ({
   currentUser,
   bookCopy
