@@ -25,7 +25,10 @@ if (NODE_ENV === "test") {
 if (NODE_ENV === "development") {
   module.exports = {
     ...DEFAULTS,
-    url: "postgres://localhost:5432/bookshelf_development",
+    host: process.env.POSTGRES_HOST || "localhost",
+    username: process.env.POSTGRES_USER || "",
+    password: process.env.POSTGRES_PASSWORD || "",
+    database: "bookshelf_development",
     logging: true
   };
 }
