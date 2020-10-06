@@ -1,7 +1,7 @@
 import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
-import { BookCopyFragment } from "../BookCopy.fragment.generated";
+import { BookCopyFragment } from "../BookCopyCard.fragment.generated";
 import { BorrowButton } from "./BorrowButton";
 import { ReturnButton } from "./ReturnButton";
 

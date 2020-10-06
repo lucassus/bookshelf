@@ -1,7 +1,7 @@
 mutation ReturnBookCopy($id: ExternalID!) {
   returnBookCopy(id: $id) {
     ... on BookCopy {
-      ...BookCopy
+      ...BookCopyCard
     }
 
     ... on MutationError {

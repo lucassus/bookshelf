@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BookCopy } from "../../components/BookCopy";
+import { BookCopyCard } from "../../components/BookCopyCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetMyBookCopiesQuery } from "./GetMyBookCopies.query.generated";
 import styles from "./MyBooksPage.module.scss";
@@ -31,7 +31,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
 
         <div className={styles.bookCopies}>
           {ownedBookCopies.map((bookCopy) => (
-            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+            <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
           ))}
         </div>
       </div>
@@ -41,7 +41,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
 
         <div className={styles.bookCopies}>
           {borrowedBookCopies.map((bookCopy) => (
-            <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+            <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
           ))}
         </div>
       </div>

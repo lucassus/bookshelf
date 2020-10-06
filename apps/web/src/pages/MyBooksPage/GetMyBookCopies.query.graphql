@@ -6,11 +6,11 @@ query GetMyBookCopies {
       id
 
       ownedBookCopies {
-        ...BookCopy
+        ...BookCopyCard
       }
 
       borrowedBookCopies {
-        ...BookCopy
+        ...BookCopyCard
       }
     }
   }

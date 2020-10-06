@@ -1,4 +1,4 @@
-fragment BookCopy on BookCopy {
+fragment BookCopyCard on BookCopy {
   id
 
   book {

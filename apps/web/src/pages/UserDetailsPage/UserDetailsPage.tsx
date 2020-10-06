@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCopy } from "../../components/BookCopy";
+import { BookCopyCard } from "../../components/BookCopyCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { NotFoundPage } from "../NotFoundPage";
@@ -42,7 +42,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
 
             <div className={styles.bookCopies}>
               {user.ownedBookCopies.map((bookCopy) => (
-                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
               ))}
             </div>
           </>
@@ -59,7 +59,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
 
             <div className={styles.bookCopies}>
               {user.borrowedBookCopies.map((bookCopy) => (
-                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
               ))}
             </div>
           </>
