@@ -1,14 +1,3 @@
-const openUserMenu = () => {
-  cy.get("nav")
-    .findByTestId(/^avatar/)
-    .should("exist")
-    .parent("button")
-    .click();
-
-  return cy.findByTestId("user-menu");
-};
-Cypress.Commands.add("openUserMenu", openUserMenu);
-
 Cypress.Commands.add(
   "findUserAvatar",
   { prevSubject: ["optional", "element"] },
@@ -33,7 +22,6 @@ declare global {
   namespace Cypress {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Chainable {
-      openUserMenu: typeof openUserMenu;
       findUserCard: (name: string) => Chainable<JQuery>;
       findUserAvatar: (name: string) => Chainable<JQuery>;
     }
