@@ -25,7 +25,8 @@ describe("BookCopiesService", () => {
       const { bookCopy, borrower } = await loadFixtures();
 
       // When
-      await service.borrow(bookCopy.id, borrower.id);
+      const now = new Date(Date.UTC(2020, 9, 8, 11, 45));
+      await service.borrow(bookCopy.id, borrower.id, now);
 
       // Then
       const updatedBookCopy = await getManager().findOneOrFail(
@@ -38,6 +39,7 @@ describe("BookCopiesService", () => {
         name: borrower.name
       });
       expect(updatedBookCopy.borrowedAt).not.toBe(null);
+      expect(updatedBookCopy.borrowedAt!.getTime()).toBe(now.getTime());
     });
 
     it("raises an error when borrowing own book", async () => {
