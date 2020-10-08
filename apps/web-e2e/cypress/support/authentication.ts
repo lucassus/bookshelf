@@ -8,7 +8,6 @@ const login = ({ as = "user" }: { as?: "user" | "admin" } = {}) => {
     const log = Cypress.log({
       name: "login",
       message: `Logging as ${email} (${as})`,
-      // @ts-ignore
       autoEnd: false
     });
 

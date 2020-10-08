@@ -8,3 +8,11 @@ import "./seed";
 beforeEach(() => {
   cy.seed();
 });
+
+declare global {
+  namespace Cypress {
+    interface LogConfig {
+      autoEnd: boolean;
+    }
+  }
+}

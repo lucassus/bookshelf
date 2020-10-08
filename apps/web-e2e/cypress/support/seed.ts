@@ -1,7 +1,6 @@
 Cypress.Commands.add("seed", () => {
   const log = Cypress.log({
     name: "seed",
-    // @ts-ignore
     autoEnd: false
   });
 
