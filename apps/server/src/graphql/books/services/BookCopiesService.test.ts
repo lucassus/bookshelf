@@ -37,6 +37,7 @@ describe("BookCopiesService", () => {
         id: borrower.id,
         name: borrower.name
       });
+      expect(updatedBookCopy.borrowedAt).not.toBe(null);
     });
 
     it("raises an error when borrowing own book", async () => {
@@ -74,6 +75,8 @@ describe("BookCopiesService", () => {
       BookCopy,
       bookCopy.id
     );
-    expect(updatedBookCopy.borrowerId).toBeNull();
+
+    expect(updatedBookCopy.borrowerId).toBe(null);
+    expect(updatedBookCopy.borrowedAt).toBe(null);
   });
 });

@@ -96,6 +96,7 @@ union AuthorResponse = Author | ResourceNotFoundError
 type BookCopy implements Resource {
   id: ExternalID!
   book: Book!
+  borrowedAt: String
   owner: User!
   borrower: User
 }

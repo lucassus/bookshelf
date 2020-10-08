@@ -9,7 +9,11 @@ export class BookCopiesService {
   @InjectRepository(BookCopy)
   private repository: Repository<BookCopy>;
 
-  async borrow(id: string | number, borrowerId: number): Promise<BookCopy> {
+  async borrow(
+    id: string | number,
+    borrowerId: number,
+    now = new Date()
+  ): Promise<BookCopy> {
     const bookCopy = await this.repository.findOneOrFail(id);
 
     if (bookCopy.ownerId === borrowerId) {
@@ -21,6 +25,8 @@ export class BookCopiesService {
     }
 
     bookCopy.borrowerId = borrowerId;
+    bookCopy.borrowedAt = now;
+
     return this.repository.save(bookCopy);
   }
 
@@ -33,6 +39,8 @@ export class BookCopiesService {
     });
 
     bookCopy.borrowerId = null;
+    bookCopy.borrowedAt = null;
+
     return this.repository.save(bookCopy);
   }
 }

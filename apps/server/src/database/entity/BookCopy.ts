@@ -34,4 +34,7 @@ export class BookCopy {
 
   @Column({ name: "borrower_id", nullable: true })
   borrowerId: null | number;
+
+  @Column({ name: "borrowed_at", type: "datetime", nullable: true })
+  borrowedAt: null | Date;
 }
