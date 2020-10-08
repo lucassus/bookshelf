@@ -1,3 +1,5 @@
+import faker from "faker";
+
 import { Book, BookCopy, User } from "../../database/entity";
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
@@ -43,6 +45,8 @@ export async function createBookCopy(
     bookCopyAttributes.borrowerId = borrower
       ? borrower.id
       : (await createUser(borrowerAttributes)).id;
+
+    bookCopyAttributes.borrowedAt = faker.date.past(1);
   }
 
   return createEntity(BookCopy, bookCopyAttributes);

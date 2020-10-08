@@ -23,19 +23,23 @@ describe("returnBookCopy mutation", () => {
             title
           }
           owner {
-            id
-            name
+            ...User
           }
           borrower {
-            id
-            name
+            ...User
           }
+          borrowedAt
         }
 
         ... on MutationError {
           message
         }
       }
+    }
+
+    fragment User on User {
+      id
+      name
     }
   `;
 
@@ -69,7 +73,8 @@ describe("returnBookCopy mutation", () => {
         owner: {
           id: expect.any(String),
           name: owner.name
-        }
+        },
+        borrowedAt: null
       }
     });
   });

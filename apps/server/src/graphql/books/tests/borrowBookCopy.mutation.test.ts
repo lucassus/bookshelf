@@ -30,6 +30,7 @@ describe("borrowBookCopy mutation", () => {
             id
             name
           }
+          borrowedAt
         }
 
         ... on MutationError {
@@ -74,7 +75,8 @@ describe("borrowBookCopy mutation", () => {
         borrower: {
           id: expect.any(String),
           name: currentUser.name
-        }
+        },
+        borrowedAt: expect.any(String)
       }
     });
   });

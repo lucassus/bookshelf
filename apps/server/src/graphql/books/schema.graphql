@@ -16,6 +16,7 @@ extend type Author {
 type BookCopy implements Resource {
   id: ExternalID!
   book: Book!
+  borrowedAt: String
 }
 
 extend interface User {
