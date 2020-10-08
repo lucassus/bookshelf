@@ -5,10 +5,11 @@ import { MemoryRouter } from "react-router";
 
 import { createAuthor, createBook } from "../../testUtils/factories";
 import { BookCard } from "./BookCard";
+import { BookCardFragment } from "./BookCard.fragment.generated";
 import { UpdateBookFavouriteDocument } from "./UpdateBookFavourite.mutation.generated";
 
 describe("<BookCard />", () => {
-  const book = createBook({
+  const book: BookCardFragment = createBook({
     id: "1",
     author: createAuthor({ name: "Andrzej Sapkowski" })
   });

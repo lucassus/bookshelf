@@ -1,0 +1,11 @@
+mutation BorrowBookCopy($id: ExternalID!) {
+  borrowBookCopy(id: $id) {
+    ... on BookCopy {
+      ...BookCopyCard
+    }
+
+    ... on MutationError {
+      message
+    }
+  }
+}

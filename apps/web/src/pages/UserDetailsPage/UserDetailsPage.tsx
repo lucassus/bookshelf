@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCopy } from "../../components/BookCopy";
+import { BookCopyCard } from "../../components/BookCopyCard";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { NotFoundPage } from "../NotFoundPage";
@@ -35,30 +35,38 @@ export const UserDetailsPage: React.FunctionComponent = () => {
       <UserCard user={user} />
       <span>{user.info}</span>
 
-      {user.ownedBookCopies.length > 0 && (
-        <>
-          <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
+      <div data-testid="owned-book-copies-list">
+        {user.ownedBookCopies.length > 0 ? (
+          <>
+            <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
 
-          <div className={styles.bookCopies}>
-            {user.ownedBookCopies.map((bookCopy) => (
-              <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
-          </div>
-        </>
-      )}
+            <div className={styles.bookCopies}>
+              {user.ownedBookCopies.map((bookCopy) => (
+                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <span>User does not have any books.</span>
+        )}
+      </div>
 
-      {user.__typename === "ProtectedUser" &&
-        user.borrowedBookCopies.length > 0 && (
+      <div data-testid="borrowed-book-copies-list">
+        {user.__typename === "ProtectedUser" &&
+        user.borrowedBookCopies.length > 0 ? (
           <>
             <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
 
             <div className={styles.bookCopies}>
               {user.borrowedBookCopies.map((bookCopy) => (
-                <BookCopy key={bookCopy.id} bookCopy={bookCopy} />
+                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
               ))}
             </div>
           </>
+        ) : (
+          <span>User does not have any borrowed books.</span>
         )}
+      </div>
     </div>
   );
 };

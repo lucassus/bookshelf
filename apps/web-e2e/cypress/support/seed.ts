@@ -1,10 +1,15 @@
 Cypress.Commands.add("seed", () => {
+  const log = Cypress.log({
+    name: "seed",
+    autoEnd: false
+  });
+
   return cy
     .request({
       method: "POST",
       url: "/api/seed"
     })
-    .then((response) => response.body);
+    .then(() => log.end());
 });
 
 export {};

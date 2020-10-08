@@ -1,1 +1,0 @@
-export { BookCopy } from "./BookCopy";

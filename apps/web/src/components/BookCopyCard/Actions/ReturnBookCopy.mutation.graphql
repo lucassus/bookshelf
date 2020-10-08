@@ -1,0 +1,11 @@
+mutation ReturnBookCopy($id: ExternalID!) {
+  returnBookCopy(id: $id) {
+    ... on BookCopy {
+      ...BookCopyCard
+    }
+
+    ... on MutationError {
+      message
+    }
+  }
+}

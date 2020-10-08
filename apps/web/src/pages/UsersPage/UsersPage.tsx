@@ -23,7 +23,7 @@ export const UsersPage: React.FunctionComponent = () => {
     <div>
       <h2>Users</h2>
 
-      <div className={styles.list}>
+      <div className={styles.list} data-testid="users-list">
         {users.map((user) => (
           <Link key={user.id} to={`/users/${user.id}`} color="inherit">
             <UserCard user={user} />

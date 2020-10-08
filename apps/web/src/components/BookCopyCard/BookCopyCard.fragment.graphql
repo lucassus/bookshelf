@@ -1,0 +1,19 @@
+fragment BookCopyCard on BookCopy {
+  id
+
+  book {
+    title
+    id
+    cover {
+      url
+    }
+  }
+
+  owner {
+    ...BookCopyUser
+  }
+
+  borrower {
+    ...BookCopyUser
+  }
+}
