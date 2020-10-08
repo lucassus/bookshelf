@@ -46,7 +46,7 @@ export async function createBookCopy(
       ? borrower.id
       : (await createUser(borrowerAttributes)).id;
 
-    bookCopyAttributes.borrowedAt = faker.date.past(1);
+    bookCopyAttributes.borrowedAt ??= faker.date.past(1);
   }
 
   return createEntity(BookCopy, bookCopyAttributes);

@@ -22,7 +22,11 @@ describe("books query", () => {
     await createBookCopy({ book, ownerAttributes: { name: "John" } });
 
     const borrower = await createUser({ name: "Paul" });
-    await createBookCopy({ book, borrower });
+    await createBookCopy({
+      book,
+      borrower,
+      borrowedAt: new Date(Date.UTC(2020, 9, 6, 8, 30))
+    });
 
     await createBook({ title: "Blood of Elves" });
 
@@ -43,6 +47,7 @@ describe("books query", () => {
                 id
                 name
               }
+              borrowedAt
             }
           }
         }
@@ -63,7 +68,8 @@ describe("books query", () => {
             { owner: { id: expect.any(String), name: "John" }, borrower: null },
             {
               owner: expect.any(Object),
-              borrower: { id: expect.any(String), name: "Paul" }
+              borrower: { id: expect.any(String), name: "Paul" },
+              borrowedAt: "2020-10-06T08:30:00.000Z"
             }
           ]
         },

@@ -59,7 +59,6 @@ describe("borrowBookCopy mutation", () => {
     expect(bookCopy.borrowerId).toBe(currentUser.id);
 
     expect(res.errors).toBe(undefined);
-    expect(res.data).not.toBe(null);
     expect(res.data).toMatchObject({
       borrowBookCopy: {
         __typename: "BookCopy",
