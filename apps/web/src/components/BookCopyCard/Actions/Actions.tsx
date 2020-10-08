@@ -1,13 +1,13 @@
 import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
-import { BookCopyFragment } from "../BookCopyCard.fragment.generated";
+import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
 import { BorrowButton } from "./BorrowButton";
 import { ReturnButton } from "./ReturnButton";
 
 type Props = {
   currentUser: CurrentUserFragment;
-  bookCopy: BookCopyFragment;
+  bookCopy: BookCopyCardFragment;
 };
 
 export const Actions: React.FunctionComponent<Props> = ({

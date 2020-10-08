@@ -4,7 +4,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
-import { BookCopyFragment } from "../BookCopy.fragment.generated";
+import { BookCopyCardFragment } from "../BookCopy.fragment.generated";
 import { ReturnBookCopyDocument } from "./ReturnBookCopy.mutation.generated";
 import { ReturnButton } from "./ReturnButton";
 
@@ -44,7 +44,7 @@ test("<ReturnButton />", async () => {
     }
   };
 
-  const bookCopy: BookCopyFragment = {
+  const bookCopy: BookCopyCardFragment = {
     id: "bookCopy:1",
     __typename: "BookCopy",
     book: {
