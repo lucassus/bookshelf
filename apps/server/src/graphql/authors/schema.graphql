@@ -3,8 +3,8 @@ type Author implements Resource & Timestampable {
   name: String!
   bio: String
   photo: Image!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 }
 
 extend type Book {

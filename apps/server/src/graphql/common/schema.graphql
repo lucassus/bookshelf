@@ -1,5 +1,7 @@
 scalar ExternalID
 
+scalar ISODateString
+
 interface Resource {
   id: ExternalID!
 }
@@ -7,8 +9,8 @@ interface Resource {
 union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
 
 interface Timestampable {
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 }
 
 type Image {

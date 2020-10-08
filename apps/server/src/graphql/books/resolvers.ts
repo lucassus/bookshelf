@@ -29,15 +29,7 @@ const resolvers: Resolvers<Context> = {
     borrower: (bookCopy, args, { container }) =>
       bookCopy.borrowerId
         ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
-        : null,
-
-    borrowedAt: (bookCopy) => {
-      if (!bookCopy.borrowedAt) {
-        return null;
-      }
-
-      return bookCopy.borrowedAt.toISOString();
-    }
+        : null
   },
 
   BookResult: {

@@ -75,9 +75,7 @@ describe("borrowBookCopy mutation", () => {
           id: expect.any(String),
           name: currentUser.name
         },
-        borrowedAt: expect.stringMatching(
-          /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.(\d{3})Z/
-        )
+        borrowedAt: expect.any(String)
       }
     });
   });
