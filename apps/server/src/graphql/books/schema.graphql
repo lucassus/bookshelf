@@ -13,10 +13,12 @@ extend type Author {
   books: [Book!]!
 }
 
-type BookCopy implements Resource {
+type BookCopy implements Resource & Timestampable {
   id: ExternalID!
   book: Book!
   borrowedAt: String
+  createdAt: String!
+  updatedAt: String!
 }
 
 extend interface User {

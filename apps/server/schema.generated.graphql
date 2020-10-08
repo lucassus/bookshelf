@@ -93,10 +93,12 @@ type Book implements Resource & Timestampable {
   updatedAt: String!
 }
 union AuthorResponse = Author | ResourceNotFoundError
-type BookCopy implements Resource {
+type BookCopy implements Resource & Timestampable {
   id: ExternalID!
   book: Book!
   borrowedAt: String
+  createdAt: String!
+  updatedAt: String!
   owner: User!
   borrower: User
 }
