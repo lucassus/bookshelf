@@ -46,7 +46,10 @@ export async function createBookCopy(
       ? borrower.id
       : (await createUser(borrowerAttributes)).id;
 
-    bookCopyAttributes.borrowedAt ??= faker.date.past(1);
+    bookCopyAttributes.borrowedAt ??= faker.date.between(
+      new Date(Date.UTC(2020, 0, 1)),
+      new Date()
+    );
   }
 
   return createEntity(BookCopy, bookCopyAttributes);
