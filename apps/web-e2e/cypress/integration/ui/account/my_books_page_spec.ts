@@ -82,8 +82,11 @@ describe("My books page", () => {
     });
   });
 
-  // TODO: Refactor this scenario...
   it("allows to borrow a book copy", () => {
+    cy.findByTestId("borrowed-book-copies-list").within(() => {
+      cy.findByText("Borrowed book copies (2)").should("exist");
+    });
+
     cy.findByText("Users").click();
     cy.findByText("Dan").click();
 
@@ -115,24 +118,6 @@ describe("My books page", () => {
       cy.findByText("Borrowed book copies (2)").should("exist");
       cy.findBookCopyCards("Children of Dune").should("have.length", 0);
     });
-
-    cy.findByText("Users").click();
-    cy.findByText("Dan").click();
-
-    cy.findBookCopyCards("Children of Dune")
-      .first()
-      .within(() => {
-        cy.findByText("borrow").should("exist");
-        cy.findByText("return").should("not.exist");
-      });
-
-    cy.findBookCopyCards("Dune Messiah")
-      .first()
-      .within(() => {
-        cy.findBookCopyBorrowerAvatar().should("not.exist");
-        cy.findByText("borrow").click();
-        cy.findBookCopyBorrowerAvatar("Bob").should("exist");
-      });
   });
 
   it("is accessible only for logged in users", () => {
