@@ -26,19 +26,6 @@ describe("anything query", () => {
         ...BookFragment
 
         ...UserFragment
-
-        ... on BookCopy {
-          id
-          owner {
-            ...UserFragment
-          }
-          borrower {
-            ...UserFragment
-          }
-          book {
-            ...BookFragment
-          }
-        }
       }
     }
 
@@ -114,22 +101,6 @@ describe("anything query", () => {
         isAdmin: false
       }
     });
-  });
-
-  it("fetches BookCopy", async () => {
-    // Given
-    const borrower = await createUser();
-    const bookCopy = await createBookCopy({ borrower });
-
-    // When
-    const res = await createTestClient().query({
-      query: GetAnythingQuery,
-      variables: { id: toExternalId(bookCopy) }
-    });
-
-    // Then
-    expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchSnapshot();
   });
 });
 

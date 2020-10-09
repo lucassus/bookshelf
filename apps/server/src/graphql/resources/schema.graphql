@@ -6,7 +6,7 @@ type ResourceNotFoundError implements Error {
   message: String!
 }
 
-union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
+union Anything = PublicUser | ProtectedUser | Author | Book
 
 extend type Query {
   resources: [Resource!]! @requireAuthorization(role: Admin)
