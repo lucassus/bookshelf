@@ -15,6 +15,7 @@ export const Basic = () => {
   const author: Author = {
     id: "1",
     name: text("Author Name", "J. K. Rowling"),
+    bio: "Lorem ipsum",
     photo: {
       path: "/book-authors/j-k-rowling.jpg",
       url:
