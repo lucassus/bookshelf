@@ -29,7 +29,7 @@ type Query {
   books(offset: Int = 0, limit: Int = 9): [Book!]!
   book(id: ExternalID!): BookResult!
   randomBook: Book
-  resources: [Resource!]!
+  resources: [Resource!]! @requireAuthorization(role: Admin)
   resource(id: ID!): Resource!
   anything(id: ID!): Anything!
     @deprecated(reason: "No longer supported. Use 'resource' instead")
@@ -76,7 +76,7 @@ union LoginResult = LoginSuccess | LoginFailure
 type Author implements Resource & Timestampable {
   id: ExternalID!
   name: String!
-  bio: String
+  bio: String!
   photo: Image!
   createdAt: ISODateString!
   updatedAt: ISODateString!
@@ -86,7 +86,7 @@ type Book implements Resource & Timestampable {
   author: Author!
   id: ExternalID!
   title: String!
-  description: String
+  description: String!
   cover: Image!
   favourite: Boolean!
   copies: [BookCopy!]!

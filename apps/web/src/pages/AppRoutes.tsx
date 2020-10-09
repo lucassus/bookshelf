@@ -10,6 +10,7 @@ import { LoginPage } from "./LoginPage";
 import { MyBooksPage } from "./MyBooksPage";
 import { MyProfilePage } from "./MyProfilePage";
 import { NotFoundPage } from "./NotFoundPage";
+import { ResourcesPage } from "./ResourcesPage";
 import { SignupPage } from "./SignupPage";
 import { UserDetailsPage } from "./UserDetailsPage";
 import { UsersPage } from "./UsersPage";
@@ -36,6 +37,12 @@ export const AppRoutes: React.FunctionComponent<Props> = ({ currentUser }) => (
         />
 
         <Route path="/my/books" element={<MyBooksPage />} />
+
+        {currentUser.isAdmin && (
+          <>
+            <Route path="/resources" element={<ResourcesPage />} />
+          </>
+        )}
       </>
     ) : (
       <>

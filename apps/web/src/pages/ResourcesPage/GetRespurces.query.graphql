@@ -1,0 +1,22 @@
+query GetResources {
+  resources {
+    __typename
+    id
+
+    ... on ProtectedUser {
+      name
+      description: info
+    }
+
+    ... on Author {
+      name
+      description: bio
+    }
+
+    ... on Book {
+      name: title
+      description
+    }
+  }
+}
+
