@@ -1,0 +1,17 @@
+interface Resource {
+  id: ExternalID!
+}
+
+type ResourceNotFoundError implements Error {
+  message: String!
+}
+
+union Anything = PublicUser | ProtectedUser | Author | Book
+
+extend type Query {
+  resources: [Resource!]! @requireAuthorization(role: Admin)
+  # TODO: Add resource not found errors handling
+  resource(id: ID!): Resource!
+
+  anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resource' instead")
+}

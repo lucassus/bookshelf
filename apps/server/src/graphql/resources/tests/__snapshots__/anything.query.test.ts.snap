@@ -42,29 +42,6 @@ Object {
 }
 `;
 
-exports[`anything query fetches BookCopy 1`] = `
-Object {
-  "anything": Object {
-    "__typename": "BookCopy",
-    "book": Object {
-      "description": "Consequatur et voluptatem nostrum cupiditate laborum in.",
-      "favourite": false,
-      "id": "MS1Cb29r",
-      "title": "Sit Et Corporis Laborum",
-    },
-    "borrower": Object {
-      "id": "MS1Vc2Vy",
-      "name": "Randolph Satterfield",
-    },
-    "id": "MS1Cb29rQ29weQ==",
-    "owner": Object {
-      "id": "Mi1Vc2Vy",
-      "name": "Cory Borer",
-    },
-  },
-}
-`;
-
 exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {

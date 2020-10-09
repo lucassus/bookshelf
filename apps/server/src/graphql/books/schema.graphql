@@ -1,7 +1,7 @@
 type Book implements Resource & Timestampable {
   id: ExternalID!
   title: String!
-  description: String
+  description: String!
   cover: Image!
   favourite: Boolean!
   copies: [BookCopy!]!
@@ -13,7 +13,7 @@ extend type Author {
   books: [Book!]!
 }
 
-type BookCopy implements Resource & Timestampable {
+type BookCopy implements Timestampable {
   id: ExternalID!
   book: Book!
   borrowedAt: ISODateString

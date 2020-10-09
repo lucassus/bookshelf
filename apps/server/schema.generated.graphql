@@ -29,9 +29,10 @@ type Query {
   books(offset: Int = 0, limit: Int = 9): [Book!]!
   book(id: ExternalID!): BookResult!
   randomBook: Book
+  resources: [Resource!]! @requireAuthorization(role: Admin)
   resource(id: ID!): Resource!
   anything(id: ID!): Anything!
-    @deprecated(reason: "No longer supported. Use 'resources' instead")
+    @deprecated(reason: "No longer supported. Use 'resource' instead")
   users: [User!]!
   user(id: ExternalID!): UserResult!
 }
@@ -75,7 +76,7 @@ union LoginResult = LoginSuccess | LoginFailure
 type Author implements Resource & Timestampable {
   id: ExternalID!
   name: String!
-  bio: String
+  bio: String!
   photo: Image!
   createdAt: ISODateString!
   updatedAt: ISODateString!
@@ -85,7 +86,7 @@ type Book implements Resource & Timestampable {
   author: Author!
   id: ExternalID!
   title: String!
-  description: String
+  description: String!
   cover: Image!
   favourite: Boolean!
   copies: [BookCopy!]!
@@ -93,7 +94,7 @@ type Book implements Resource & Timestampable {
   updatedAt: ISODateString!
 }
 union AuthorResponse = Author | ResourceNotFoundError
-type BookCopy implements Resource & Timestampable {
+type BookCopy implements Timestampable {
   id: ExternalID!
   book: Book!
   borrowedAt: ISODateString
@@ -129,10 +130,6 @@ union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError
 scalar ExternalID
 scalar ISODateString
-interface Resource {
-  id: ExternalID!
-}
-union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
 interface Timestampable {
   createdAt: ISODateString!
   updatedAt: ISODateString!
@@ -145,9 +142,6 @@ interface Error {
   message: String!
 }
 type MutationError implements Error {
-  message: String!
-}
-type ResourceNotFoundError implements Error {
   message: String!
 }
 type ValidationError implements Error {
@@ -167,6 +161,13 @@ interface MutationResponse {
   """
   message: String!
 }
+interface Resource {
+  id: ExternalID!
+}
+type ResourceNotFoundError implements Error {
+  message: String!
+}
+union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
 type PublicUser implements User & Resource & Timestampable {
   id: ExternalID!
   name: String!

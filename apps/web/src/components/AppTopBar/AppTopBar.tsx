@@ -29,7 +29,15 @@ export const AppTopBar = () => {
           </li>
 
           {currentUser ? (
-            <UserMenuButton currentUser={currentUser} />
+            <>
+              {currentUser.isAdmin && (
+                <li>
+                  <Link to="/resources">Resources</Link>
+                </li>
+              )}
+
+              <UserMenuButton currentUser={currentUser} />
+            </>
           ) : (
             <>
               <li>

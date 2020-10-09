@@ -1,5 +1,6 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
+import { toExternalId } from "../../common/secureId";
 import { Book, BookCopy } from "../../database/entity";
 import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
@@ -22,6 +23,8 @@ const resolvers: Resolvers<Context> = {
 
   BookCopy: {
     __isTypeOf: (maybeBookCopy) => maybeBookCopy instanceof BookCopy,
+
+    id: (bookCopy) => toExternalId(bookCopy),
 
     owner: (bookCopy, args, { container }) =>
       container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
