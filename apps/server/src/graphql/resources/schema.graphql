@@ -9,7 +9,9 @@ type ResourceNotFoundError implements Error {
 union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
 
 extend type Query {
+  resources: [Resource!]!
   # TODO: Add resource not found errors handling
   resource(id: ID!): Resource!
+
   anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resource' instead")
 }
