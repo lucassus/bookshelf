@@ -35,13 +35,20 @@ test("resources query", async () => {
           ... on ProtectedUser {
             name
             description: info
+            avatar {
+              ... on Avatar {
+                image {
+                  ...ResourceImageFragment
+                }
+              }
+            }
           }
 
           ... on Author {
             name
             description: bio
             image: photo {
-              path
+              ...ResourceImageFragment
             }
           }
 
@@ -49,10 +56,15 @@ test("resources query", async () => {
             name: title
             description
             image: cover {
-              path
+              ...ResourceImageFragment
             }
           }
         }
+      }
+
+      fragment ResourceImageFragment on Image {
+        path
+        url
       }
     `
   });
@@ -65,7 +77,8 @@ test("resources query", async () => {
         __typename: "ProtectedUser",
         id: toExternalId(user),
         name: user.name,
-        description: user.info
+        description: user.info,
+        avatar: { image: { path: user.avatar.imagePath } }
       },
       {
         __typename: "Author",
