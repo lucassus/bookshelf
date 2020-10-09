@@ -28,11 +28,11 @@ test("resources query", async () => {
 
           ... on Author {
             name
-            bio
+            description: bio
           }
 
           ... on Book {
-            title
+            name: title
             description
           }
         }
@@ -48,12 +48,12 @@ test("resources query", async () => {
         __typename: "Author",
         id: toExternalId(author),
         name: author.name,
-        bio: author.bio
+        description: author.bio
       },
       {
         __typename: "Book",
         id: toExternalId(book),
-        title: book.title,
+        name: book.title,
         description: book.description
       }
     ]
