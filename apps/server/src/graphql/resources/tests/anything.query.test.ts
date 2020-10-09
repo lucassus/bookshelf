@@ -5,7 +5,6 @@ import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createAuthor,
   createBook,
-  createBookCopy,
   createUser
 } from "../../../testUtils/factories";
 
