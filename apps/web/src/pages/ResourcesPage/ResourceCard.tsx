@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { ResourceCardFragment } from "./ResourceCard.fragment.generated";
+import styles from "./ResourceCard.module.scss";
+import { ResourceImage } from "./ResourceImage";
 
 const linkToResource = (resource: ResourceCardFragment) => {
   switch (resource.__typename) {
@@ -25,16 +27,31 @@ type Props = {
 };
 
 export const ResourceCard: React.FunctionComponent<Props> = ({ resource }) => (
-  <dl key={resource.id}>
-    <dt>Id</dt>
-    <dd>
-      <Link to={linkToResource(resource)}>{resource.id}</Link>
-    </dd>
+  <div className={styles.container}>
+    <div>
+      {resource.__typename === "PublicUser" ||
+        (resource.__typename === "ProtectedUser" &&
+          resource.avatar.__typename === "Avatar" && (
+            <ResourceImage image={resource.avatar.image} />
+          ))}
 
-    <dt>Name</dt>
-    <dd>{resource.name}</dd>
+      {(resource.__typename === "Author" || resource.__typename === "Book") &&
+        resource.image.__typename === "Image" && (
+          <ResourceImage image={resource.image} />
+        )}
+    </div>
 
-    <dt>Description</dt>
-    <dd>{resource.description}</dd>
-  </dl>
+    <dl key={resource.id}>
+      <dt>Id</dt>
+      <dd>
+        <Link to={linkToResource(resource)}>{resource.id}</Link>
+      </dd>
+
+      <dt>Name</dt>
+      <dd>{resource.name}</dd>
+
+      <dt>Description</dt>
+      <dd>{resource.description}</dd>
+    </dl>
+  </div>
 );

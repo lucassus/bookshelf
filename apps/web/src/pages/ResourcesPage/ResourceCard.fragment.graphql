@@ -5,20 +5,40 @@ fragment ResourceCard on Resource {
   ... on PublicUser {
     name
     description: info
+    avatar {
+      ... on Avatar {
+        image {
+          ...ResourceImageFragment
+        }
+      }
+    }
   }
 
   ... on ProtectedUser {
     name
     description: info
+    avatar {
+      ... on Avatar {
+        image {
+          ...ResourceImageFragment
+        }
+      }
+    }
   }
 
   ... on Author {
     name
     description: bio
+    image: photo {
+      ...ResourceImageFragment
+    }
   }
 
   ... on Book {
     name: title
     description
+    image: cover {
+      ...ResourceImageFragment
+    }
   }
 }
