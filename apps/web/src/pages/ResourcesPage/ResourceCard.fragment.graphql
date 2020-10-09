@@ -2,6 +2,11 @@ fragment ResourceCard on Resource {
   __typename
   id
 
+  ... on PublicUser {
+    name
+    description: info
+  }
+
   ... on ProtectedUser {
     name
     description: info
