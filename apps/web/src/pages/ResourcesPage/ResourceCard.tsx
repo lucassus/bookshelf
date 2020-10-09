@@ -5,6 +5,7 @@ import { ResourceCardFragment } from "./ResourceCard.fragment.generated";
 
 const linkToResource = (resource: ResourceCardFragment) => {
   switch (resource.__typename) {
+    case "PublicUser":
     case "ProtectedUser":
       return `/users/${resource.id}`;
 
