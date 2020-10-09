@@ -32,6 +32,11 @@ test("resources query", async () => {
           __typename
           id
 
+          ... on ProtectedUser {
+            name
+            description: info
+          }
+
           ... on Author {
             name
             description: bio
@@ -50,6 +55,12 @@ test("resources query", async () => {
   expect(resp.errors).toBe(undefined);
   expect(resp.data).toMatchObject({
     resources: [
+      {
+        __typename: "ProtectedUser",
+        id: toExternalId(user),
+        name: user.name,
+        description: user.info
+      },
       {
         __typename: "Author",
         id: toExternalId(author),

@@ -1,7 +1,7 @@
 type Book implements Resource & Timestampable {
   id: ExternalID!
   title: String!
-  description: String
+  description: String!
   cover: Image!
   favourite: Boolean!
   copies: [BookCopy!]!
