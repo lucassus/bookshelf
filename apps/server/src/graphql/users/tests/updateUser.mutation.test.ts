@@ -23,6 +23,13 @@ describe("updateUser mutation", () => {
         ... on ResourceNotFoundError {
           message
         }
+
+        ... on ValidationErrors {
+          errors {
+            path
+            message
+          }
+        }
       }
     }
   `;
@@ -89,6 +96,42 @@ describe("updateUser mutation", () => {
       updateUser: {
         __typename: "ResourceNotFoundError",
         message: "Could not find User"
+      }
+    });
+  });
+
+  test("on validation errors", async () => {
+    // Given
+    const currentUser = await createUser({
+      email: "taken@email.com",
+      isAdmin: true
+    });
+    const user = await createUser();
+
+    // When
+    const res = await createTestClient({ currentUser }).mutate({
+      mutation: UpdateUserMutation,
+      variables: {
+        input: {
+          id: toExternalId(user),
+          name: "Bob",
+          info: "Fantasy lover",
+          email: currentUser.email
+        }
+      }
+    });
+
+    // Then
+    expect(res.errors).toBe(undefined);
+    expect(res.data).toMatchObject({
+      updateUser: {
+        __typename: "ValidationErrors",
+        errors: [
+          {
+            path: "email",
+            message: "The given email is already taken!"
+          }
+        ]
       }
     });
   });

@@ -212,5 +212,8 @@ type DeleteUserResult implements MutationResponse {
   message: String!
 }
 union UserResult = PublicUser | ProtectedUser | ResourceNotFoundError
-union UpdateUserResult = ProtectedUser | ResourceNotFoundError
+union UpdateUserResult =
+    ProtectedUser
+  | ResourceNotFoundError
+  | ValidationErrors
 directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION

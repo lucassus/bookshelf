@@ -92,7 +92,7 @@ extend type Query {
   user(id: ExternalID!): UserResult!
 }
 
-union UpdateUserResult = ProtectedUser | ResourceNotFoundError
+union UpdateUserResult = ProtectedUser | ResourceNotFoundError | ValidationErrors
 
 extend type Mutation {
   createUser(input: CreateUserInput!): CreateUserResult! @requireAuthorization(role: Admin)
