@@ -6,7 +6,7 @@ import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment
 import { UserMenu } from "./UserMenu";
 
 export default {
-  title: "USerMenu",
+  title: "UserMenu",
   component: UserMenu,
   decorators: [withKnobs]
 };
