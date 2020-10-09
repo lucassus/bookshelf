@@ -4,7 +4,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
-import { BookCopyCardFragment } from "../BookCopy.fragment.generated";
+import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
 import { BorrowBookCopyDocument } from "./BorrowBookCopy.mutation.generated";
 import { BorrowButton } from "./BorrowButton";
 
