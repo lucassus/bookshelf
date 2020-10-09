@@ -8,13 +8,12 @@ import { Resolvers } from "../resolvers-types.generated";
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    resources: async (rootValue, args, { connection }) => {
-      const users = await connection.getRepository(User).find();
-      const authors = await connection.getRepository(Author).find();
-      const books = await connection.getRepository(Book).find();
-
-      return [...users, ...authors, ...books];
-    },
+    resources: (rootValue, args, { connection }) =>
+      Promise.all([
+        connection.getRepository(User).find(),
+        connection.getRepository(Author).find(),
+        connection.getRepository(Book).find()
+      ]).then(([users, authors, books]) => [...users, ...authors, ...books]),
 
     resource: (rootValue, { id }, { connection }) =>
       findAnythingOrFail(id, connection),
