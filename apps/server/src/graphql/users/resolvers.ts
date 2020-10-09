@@ -85,15 +85,22 @@ const resolvers: Resolvers<Context> = {
     updateUser: async (rootValue, args, { container }) => {
       const { id, ...userAttributes } = args.input;
 
-      const service = container.get(UsersService);
-      const user = await service.findByIdOrFail(id);
-      const updatedUser = await service.update(user, userAttributes);
+      try {
+        const service = container.get(UsersService);
+        const user = await service.findByIdOrFail(id);
+        const updatedUser = await service.update(user, userAttributes);
 
-      return {
-        success: true,
-        message: "User was successfully updated.",
-        user: updatedUser
-      };
+        return updatedUser;
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find User"
+          };
+        }
+
+        throw error;
+      }
     },
 
     deleteUser: async (rootValue, { id }, { container }) => {

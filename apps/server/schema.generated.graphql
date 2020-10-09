@@ -167,7 +167,7 @@ interface Resource {
 type ResourceNotFoundError implements Error {
   message: String!
 }
-union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
+union Anything = PublicUser | ProtectedUser | Author | Book
 type PublicUser implements User & Resource & Timestampable {
   id: ExternalID!
   name: String!
@@ -207,14 +207,10 @@ type CreateUserResult implements MutationResponse {
   message: String!
   user: User
 }
-type UpdateUserResult implements MutationResponse {
-  success: Boolean!
-  message: String!
-  user: User
-}
 type DeleteUserResult implements MutationResponse {
   success: Boolean!
   message: String!
 }
 union UserResult = PublicUser | ProtectedUser | ResourceNotFoundError
+union UpdateUserResult = ProtectedUser | ResourceNotFoundError
 directive @requireAuthorization(role: Role = User) on OBJECT | FIELD_DEFINITION
