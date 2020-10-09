@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const linkToResource = (resource: { __typename: string; id: string }) => {
+import { ResourceCardFragment } from "./ResourceCard.fragment.generated";
+
+const linkToResource = (resource: ResourceCardFragment) => {
   switch (resource.__typename) {
     case "ProtectedUser":
       return `/users/${resource.id}`;
@@ -9,7 +11,7 @@ const linkToResource = (resource: { __typename: string; id: string }) => {
     case "Author":
       return `/authors/${resource.id}`;
 
-    case "Books":
+    case "Book":
       return `/books/${resource.id}`;
 
     default:
@@ -18,12 +20,7 @@ const linkToResource = (resource: { __typename: string; id: string }) => {
 };
 
 type Props = {
-  resource: {
-    __typename: string;
-    id: string;
-    name: string;
-    description: string;
-  };
+  resource: ResourceCardFragment;
 };
 
 export const ResourceCard: React.FunctionComponent<Props> = ({ resource }) => (
