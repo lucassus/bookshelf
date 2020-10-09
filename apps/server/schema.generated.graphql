@@ -77,8 +77,8 @@ type Author implements Resource & Timestampable {
   name: String!
   bio: String
   photo: Image!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
   books: [Book!]!
 }
 type Book implements Resource & Timestampable {
@@ -89,13 +89,16 @@ type Book implements Resource & Timestampable {
   cover: Image!
   favourite: Boolean!
   copies: [BookCopy!]!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 }
 union AuthorResponse = Author | ResourceNotFoundError
-type BookCopy implements Resource {
+type BookCopy implements Resource & Timestampable {
   id: ExternalID!
   book: Book!
+  borrowedAt: ISODateString
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
   owner: User!
   borrower: User
 }
@@ -105,8 +108,8 @@ interface User {
   name: String!
   info: String!
   avatar: AvatarResult!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 }
 type ProtectedUser implements User & Resource & Timestampable {
   borrowedBookCopies: [BookCopy!]!
@@ -114,8 +117,8 @@ type ProtectedUser implements User & Resource & Timestampable {
   name: String!
   info: String!
   avatar: AvatarResult!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
   email: String!
   isAdmin: Boolean!
   ownedBookCopies: [BookCopy!]!
@@ -125,13 +128,14 @@ union BorrowBookCopyResult = BookCopy | MutationError
 union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError
 scalar ExternalID
+scalar ISODateString
 interface Resource {
   id: ExternalID!
 }
 union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
 interface Timestampable {
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 }
 type Image {
   path: String!
@@ -168,8 +172,8 @@ type PublicUser implements User & Resource & Timestampable {
   name: String!
   info: String!
   avatar: AvatarResult!
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
   ownedBookCopies: [BookCopy!]!
 }
 type Avatar {

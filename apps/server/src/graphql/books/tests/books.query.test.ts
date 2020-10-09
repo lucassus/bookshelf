@@ -43,6 +43,7 @@ describe("books query", () => {
                 id
                 name
               }
+              borrowedAt
             }
           }
         }
@@ -63,7 +64,8 @@ describe("books query", () => {
             { owner: { id: expect.any(String), name: "John" }, borrower: null },
             {
               owner: expect.any(Object),
-              borrower: { id: expect.any(String), name: "Paul" }
+              borrower: { id: expect.any(String), name: "Paul" },
+              borrowedAt: expect.any(String)
             }
           ]
         },

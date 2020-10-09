@@ -37,6 +37,7 @@ extensions:
           optionalResolveType: true
           scalars:
             ExternalID: string
+            ISODateString: string
           showUnusedMappers: true
         plugins:
           - typescript

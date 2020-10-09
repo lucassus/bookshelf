@@ -14,18 +14,16 @@ const resolvers: Resolvers<Context> = {
       findAnythingOrFail(id, connection)
   },
 
-  ExternalID: new GraphQLScalarType({
-    name: "ExternalID",
-    parseValue: (externalId) => toInternalId(externalId)
+  ISODateString: new GraphQLScalarType({
+    name: "ISODateString",
+    serialize: (value) => (value instanceof Date ? value.toISOString() : null)
   }),
 
-  Timestampable: {
-    __resolveType: (timestampable) =>
-      Object.getPrototypeOf(timestampable).constructor.name,
-
-    createdAt: (timestampable) => timestampable.createdAt.toISOString(),
-    updatedAt: (timestampable) => timestampable.updatedAt.toISOString()
-  },
+  ExternalID: new GraphQLScalarType({
+    name: "ExternalID",
+    // `serialize` is handled by `Resource.id` resolver, because it requires object type
+    parseValue: (externalId) => toInternalId(externalId)
+  }),
 
   Resource: {
     id: (resource) => toExternalId(resource)

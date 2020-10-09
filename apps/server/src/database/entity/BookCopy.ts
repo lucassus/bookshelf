@@ -1,11 +1,14 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from "typeorm";
 
+import { Environment } from "../../config";
 import { Book } from "./Book";
 import { User } from "./User";
 
@@ -34,4 +37,18 @@ export class BookCopy {
 
   @Column({ name: "borrower_id", nullable: true })
   borrowerId: null | number;
+
+  @Column({
+    name: "borrowed_at",
+    // A workaround for sqlite, see https://github.com/typeorm/typeorm/issues/1776
+    type: process.env.NODE_ENV === Environment.test ? "datetime" : "timestamp",
+    nullable: true
+  })
+  borrowedAt: null | Date;
+
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: "updated_at" })
+  updatedAt: Date;
 }

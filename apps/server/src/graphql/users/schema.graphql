@@ -5,8 +5,8 @@ interface User implements Resource & Timestampable {
   info: String!
   avatar: AvatarResult!
 
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 }
 
 type PublicUser implements User & Resource & Timestampable {
@@ -16,8 +16,8 @@ type PublicUser implements User & Resource & Timestampable {
   info: String!
   avatar: AvatarResult!
 
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 
   ownedBookCopies: [BookCopy!]!
 }
@@ -29,8 +29,8 @@ type ProtectedUser implements User & Resource & Timestampable {
   info: String!
   avatar: AvatarResult!
 
-  createdAt: String!
-  updatedAt: String!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
 
   email: String!
   isAdmin: Boolean!

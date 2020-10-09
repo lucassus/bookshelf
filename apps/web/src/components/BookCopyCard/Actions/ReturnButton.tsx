@@ -1,13 +1,22 @@
 import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
-import { BookCopyFragment } from "../BookCopyCard.fragment.generated";
+import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
 import { useReturnBookCopyMutation } from "./ReturnBookCopy.mutation.generated";
 
 type Props = {
   currentUser: CurrentUserFragment;
-  bookCopy: BookCopyFragment;
+  bookCopy: BookCopyCardFragment;
 };
+
+const formatDateTime = (dateString: string) =>
+  new Intl.DateTimeFormat("default", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric"
+  }).format(new Date(dateString));
 
 export const ReturnButton: React.FunctionComponent<Props> = ({
   currentUser,
@@ -41,7 +50,11 @@ export const ReturnButton: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <button disabled={loading} onClick={handleClick}>
+    <button
+      disabled={loading}
+      onClick={handleClick}
+      title={`Borrowed at ${formatDateTime(bookCopy.borrowedAt)}`}
+    >
       return
     </button>
   );

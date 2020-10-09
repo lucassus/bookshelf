@@ -1,4 +1,5 @@
 fragment BookCopyCard on BookCopy {
+  __typename
   id
 
   book {
@@ -16,4 +17,6 @@ fragment BookCopyCard on BookCopy {
   borrower {
     ...BookCopyUser
   }
+
+  borrowedAt
 }

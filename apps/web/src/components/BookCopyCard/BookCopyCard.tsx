@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
-import { BookCopyFragment } from "./BookCopyCard.fragment.generated";
+import { BookCopyCardFragment } from "./BookCopyCard.fragment.generated";
 import styles from "./BookCopyCard.module.scss";
 import { BookCopyUser } from "./BookCopyUser";
 
 type Props = {
-  bookCopy: BookCopyFragment;
+  bookCopy: BookCopyCardFragment;
 };
 
 export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
