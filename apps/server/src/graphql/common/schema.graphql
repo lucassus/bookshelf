@@ -2,12 +2,6 @@ scalar ExternalID
 
 scalar ISODateString
 
-interface Resource {
-  id: ExternalID!
-}
-
-union Anything = PublicUser | ProtectedUser | Author | Book | BookCopy
-
 interface Timestampable {
   createdAt: ISODateString!
   updatedAt: ISODateString!
@@ -23,10 +17,6 @@ interface Error {
 }
 
 type MutationError implements Error {
-  message: String!
-}
-
-type ResourceNotFoundError implements Error {
   message: String!
 }
 
@@ -46,9 +36,4 @@ interface MutationResponse {
 
   "Human-readable string that describes the result of the mutation"
   message: String!
-}
-
-extend type Query {
-  resource(id: ID!): Resource!
-  anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resources' instead")
 }
