@@ -40,11 +40,17 @@ test("resources query", async () => {
           ... on Author {
             name
             description: bio
+            image: photo {
+              path
+            }
           }
 
           ... on Book {
             name: title
             description
+            image: cover {
+              path
+            }
           }
         }
       }
@@ -65,13 +71,15 @@ test("resources query", async () => {
         __typename: "Author",
         id: toExternalId(author),
         name: author.name,
-        description: author.bio
+        description: author.bio,
+        image: { path: author.photoPath }
       },
       {
         __typename: "Book",
         id: toExternalId(book),
         name: book.title,
-        description: book.description
+        description: book.description,
+        image: { path: book.coverPath }
       }
     ]
   });
