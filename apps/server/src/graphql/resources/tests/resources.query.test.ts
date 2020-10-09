@@ -2,10 +2,16 @@ import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { createAuthor, createBook } from "../../../testUtils/factories";
+import {
+  createAuthor,
+  createBook,
+  createUser
+} from "../../../testUtils/factories";
 
 test("resources query", async () => {
   // Given
+  const user = await createUser({ isAdmin: true });
+
   const author = await createAuthor({
     name: "Frank Herbert",
     bio: "American science-fiction writer"
@@ -19,7 +25,7 @@ test("resources query", async () => {
   });
 
   // When
-  const resp = await createTestClient().query({
+  const resp = await createTestClient({ currentUser: user }).query({
     query: gql`
       query {
         resources {
