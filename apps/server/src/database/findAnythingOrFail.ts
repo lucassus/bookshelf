@@ -1,19 +1,18 @@
 import { Connection, ObjectType } from "typeorm";
 
 import { toInternalIdAndType } from "../common/secureId";
-import { Author, Book, BookCopy, User } from "./entity";
+import { Author, Book, User } from "./entity";
 
 export const findAnythingOrFail = (
   externalId: string,
   connection: Connection
-): Promise<Author | Book | User | BookCopy> => {
+): Promise<Author | Book | User> => {
   const [id, type] = toInternalIdAndType(externalId);
 
-  const map: Record<string, ObjectType<Author | Book | User | BookCopy>> = {
+  const map: Record<string, ObjectType<Author | Book | User>> = {
     Author,
     Book,
-    User,
-    BookCopy
+    User
   };
 
   if (!map[type]) {
