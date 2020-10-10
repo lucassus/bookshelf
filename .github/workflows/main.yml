@@ -97,14 +97,25 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
-  build:
+  test-e2e:
     runs-on: ubuntu-latest
+    container: node:14.6.0
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bookshelf_development
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.6.0
 
     - uses: actions/cache@v2
       with:
@@ -120,5 +131,21 @@ jobs:
     - name: Build
       run: yarn build
 
-    - name: Build storybbok
-      run: yarn workspace @bookshelf/web storybook:build
+#    - name: Seed Database
+#      env:
+#        POSTGRES_HOST: postgres
+#        POSTGRES_USER: postgres
+#        POSTGRES_PASSWORD: postgres
+#      run: yarn workspace @bookshelf/server db:seed
+
+    - name: Start server in the background
+      run: yarn dev &
+
+    # TODO: It uses a fork that supports yarn berry, see https://github.com/cypress-io/github-action/issues/170
+    - uses: tutorbookapp/github-action@master
+      with:
+        working-directory: apps/web-e2e
+        wait-on: "http://localhost:8080"
+
+#    - name: Build storybbok
+#      run: yarn workspace @bookshelf/web storybook:build
