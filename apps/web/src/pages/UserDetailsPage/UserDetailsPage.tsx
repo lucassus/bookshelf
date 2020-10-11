@@ -29,7 +29,6 @@ export const UserDetailsPage: React.FunctionComponent = () => {
     return <NotFoundPage message={user.message} />;
   }
 
-  // TODO: Write e2e test for borrowedBooks
   return (
     <div>
       <UserCard user={user} />
