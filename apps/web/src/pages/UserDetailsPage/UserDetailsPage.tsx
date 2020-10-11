@@ -50,22 +50,23 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         )}
       </div>
 
-      <div data-testid="borrowed-book-copies-list">
-        {user.__typename === "ProtectedUser" &&
-        user.borrowedBookCopies.length > 0 ? (
-          <>
-            <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
+      {user.__typename === "ProtectedUser" && (
+        <div data-testid="borrowed-book-copies-list">
+          {user.borrowedBookCopies.length > 0 ? (
+            <>
+              <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
 
-            <div className={styles.bookCopies}>
-              {user.borrowedBookCopies.map((bookCopy) => (
-                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <span>User does not have any borrowed books.</span>
-        )}
-      </div>
+              <div className={styles.bookCopies}>
+                {user.borrowedBookCopies.map((bookCopy) => (
+                  <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <span>User does not have any borrowed books.</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };
