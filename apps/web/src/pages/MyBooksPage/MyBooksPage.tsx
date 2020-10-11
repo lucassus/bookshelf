@@ -6,9 +6,12 @@ import { useGetMyBookCopiesQuery } from "./GetMyBookCopies.query.generated";
 import styles from "./MyBooksPage.module.scss";
 
 export const MyBooksPage: React.FunctionComponent = () => {
-  const { data, error, loading } = useGetMyBookCopiesQuery();
+  // TODO: It loads the query twice, see https://github.com/apollographql/apollo-client/issues/6832
+  const { data, error, loading } = useGetMyBookCopiesQuery({
+    fetchPolicy: "cache-and-network"
+  });
 
-  if (loading) {
+  if (loading && data === undefined) {
     return <span>Loading...</span>;
   }
 
