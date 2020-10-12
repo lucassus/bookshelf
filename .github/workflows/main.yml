@@ -34,6 +34,9 @@ jobs:
     - name: Install packages
       run: yarn install
 
+    - name: Check integrity for generated graphql files
+      run: ./scripts/check-grahpql-codegen-integrity.sh
+
     - name: GraphQL Validate
       run: yarn graphql validate
 
