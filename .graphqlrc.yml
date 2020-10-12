@@ -42,6 +42,7 @@ extensions:
             ExternalID: string
             ISODateString: string
           showUnusedMappers: true
+          noSchemaStitching: true
 
       apps/web/src:
         plugins:
