@@ -1,3 +1,4 @@
+*.generated.graphql linguist-generated=true
 *.generated.json linguist-generated=true
 *.generated.ts linguist-generated=true
 *.generated.tsx linguist-generated=true
