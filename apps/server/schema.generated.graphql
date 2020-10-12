@@ -14,15 +14,11 @@ input UpdateProfileInput {
   info: String!
 }
 union UpdateProfileResult = ProtectedUser | ValidationErrors
-type GuestUser {
-  _: Boolean
-}
-union CurrentUserResult = GuestUser | ProtectedUser
 type Query {
   """
   Returns the currently logged in user.
   """
-  currentUser: CurrentUserResult!
+  currentUser: ProtectedUser
   authors: [Author!]!
   author(id: ExternalID!): AuthorResponse!
   booksCount: Int!

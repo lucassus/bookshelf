@@ -63,10 +63,6 @@ describe("currentUser query", () => {
 
     // Then
     expect(res.errors).toBe(undefined);
-    expect(res.data).toMatchObject({
-      currentUser: {
-        __typename: "GuestUser"
-      }
-    });
+    expect(res.data).toMatchObject({ currentUser: null });
   });
 });
