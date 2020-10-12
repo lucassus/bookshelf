@@ -43,6 +43,7 @@ extensions:
             ISODateString: string
           showUnusedMappers: true
           noSchemaStitching: true
+          immutableTypes: true
 
       apps/web/src:
         plugins:
