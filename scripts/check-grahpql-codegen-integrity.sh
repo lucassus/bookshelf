@@ -2,10 +2,12 @@
 
 yarn graphql codegen
 
-if [[ -z $(git status -s) ]]
+GIT_STATUS=$(git status --short)
+
+if [[ -z ${GIT_STATUS} ]]
 then
   exit 0
 else
-  git status
+  echo ${GIT_STATUS}
   exit 1
 fi
