@@ -12,15 +12,11 @@ export const MyBooksPage: React.FunctionComponent = () => {
     return <span>Loading...</span>;
   }
 
-  if (error || !data) {
+  if (error || !data || !data.currentUser) {
     return <ErrorAlert message="Could not load your books..." />;
   }
 
   const { currentUser } = data;
-
-  if (currentUser.__typename === "GuestUser") {
-    return null;
-  }
 
   const { ownedBookCopies, borrowedBookCopies } = currentUser;
 
