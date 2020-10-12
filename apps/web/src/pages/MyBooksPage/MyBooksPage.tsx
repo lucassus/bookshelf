@@ -16,9 +16,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
     return <ErrorAlert message="Could not load your books..." />;
   }
 
-  const { currentUser } = data;
-
-  const { ownedBookCopies, borrowedBookCopies } = currentUser;
+  const { ownedBookCopies, borrowedBookCopies } = data.currentUser;
 
   return (
     <div>

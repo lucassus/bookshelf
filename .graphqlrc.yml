@@ -44,11 +44,12 @@ extensions:
           - typescript-resolvers
 
       apps/web/src:
-        config:
-          gqlImport: '@apollo/client#gql'
         plugins:
           - typescript-operations
           - typescript-react-apollo
+        config:
+          gqlImport: '@apollo/client#gql'
+          avoidOptionals: true
         preset: near-operation-file-preset
         presetConfig:
           baseTypesPath: types.generated.ts

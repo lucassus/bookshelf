@@ -46,17 +46,10 @@ export type UpdateProfileInput = {
 
 export type UpdateProfileResult = ProtectedUser | ValidationErrors;
 
-export type GuestUser = {
-  __typename?: "GuestUser";
-  _?: Maybe<Scalars["Boolean"]>;
-};
-
-export type CurrentUserResult = GuestUser | ProtectedUser;
-
 export type Query = {
   __typename?: "Query";
   /** Returns the currently logged in user. */
-  currentUser: CurrentUserResult;
+  currentUser?: Maybe<ProtectedUser>;
   authors: Array<Author>;
   author: AuthorResponse;
   booksCount: Scalars["Int"];
@@ -483,15 +476,11 @@ export type ResolversTypes = {
   UpdateProfileResult:
     | ResolversTypes["ProtectedUser"]
     | ResolversTypes["ValidationErrors"];
-  GuestUser: ResolverTypeWrapper<GuestUser>;
-  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
-  CurrentUserResult:
-    | ResolversTypes["GuestUser"]
-    | ResolversTypes["ProtectedUser"];
   Query: ResolverTypeWrapper<{}>;
   Int: ResolverTypeWrapper<Scalars["Int"]>;
   ID: ResolverTypeWrapper<Scalars["ID"]>;
   Mutation: ResolverTypeWrapper<{}>;
+  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
   Role: Role;
   LoginInput: LoginInput;
   LoginSuccess: ResolverTypeWrapper<
@@ -582,15 +571,11 @@ export type ResolversParentTypes = {
   UpdateProfileResult:
     | ResolversParentTypes["ProtectedUser"]
     | ResolversParentTypes["ValidationErrors"];
-  GuestUser: GuestUser;
-  Boolean: Scalars["Boolean"];
-  CurrentUserResult:
-    | ResolversParentTypes["GuestUser"]
-    | ResolversParentTypes["ProtectedUser"];
   Query: {};
   Int: Scalars["Int"];
   ID: Scalars["ID"];
   Mutation: {};
+  Boolean: Scalars["Boolean"];
   LoginInput: LoginInput;
   LoginSuccess: Omit<LoginSuccess, "currentUser"> & {
     currentUser: ResolversParentTypes["ProtectedUser"];
@@ -706,31 +691,12 @@ export type UpdateProfileResultResolvers<
   >;
 };
 
-export type GuestUserResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["GuestUser"] = ResolversParentTypes["GuestUser"]
-> = {
-  _?: Resolver<Maybe<ResolversTypes["Boolean"]>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type CurrentUserResultResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["CurrentUserResult"] = ResolversParentTypes["CurrentUserResult"]
-> = {
-  __resolveType?: TypeResolveFn<
-    "GuestUser" | "ProtectedUser",
-    ParentType,
-    ContextType
-  >;
-};
-
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
 > = {
   currentUser?: Resolver<
-    ResolversTypes["CurrentUserResult"],
+    Maybe<ResolversTypes["ProtectedUser"]>,
     ParentType,
     ContextType
   >;
@@ -1293,8 +1259,6 @@ export type UpdateUserResultResolvers<
 export type Resolvers<ContextType = any> = {
   RegistrationResult?: RegistrationResultResolvers<ContextType>;
   UpdateProfileResult?: UpdateProfileResultResolvers<ContextType>;
-  GuestUser?: GuestUserResolvers<ContextType>;
-  CurrentUserResult?: CurrentUserResultResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   LoginSuccess?: LoginSuccessResolvers<ContextType>;

@@ -7,7 +7,6 @@ const result: PossibleTypesResultData = {
   possibleTypes: {
     RegistrationResult: ["ProtectedUser", "ValidationErrors"],
     UpdateProfileResult: ["ProtectedUser", "ValidationErrors"],
-    CurrentUserResult: ["GuestUser", "ProtectedUser"],
     LoginResult: ["LoginSuccess", "LoginFailure"],
     AuthorResponse: ["Author", "ResourceNotFoundError"],
     User: ["ProtectedUser", "PublicUser"],

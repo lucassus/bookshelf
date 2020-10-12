@@ -16,7 +16,7 @@ import { UserDetailsPage } from "./UserDetailsPage";
 import { UsersPage } from "./UsersPage";
 
 type Props = {
-  currentUser?: CurrentUserFragment;
+  currentUser: null | CurrentUserFragment;
 };
 
 export const AppRoutes: React.FunctionComponent<Props> = ({ currentUser }) => (

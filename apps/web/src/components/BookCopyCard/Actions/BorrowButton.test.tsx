@@ -67,7 +67,8 @@ test("<BorrowButton />", async () => {
           url: "https://example.com/image.jpg"
         }
       }
-    }
+    },
+    borrower: null
   };
 
   const cache = new InMemoryCache().restore({
