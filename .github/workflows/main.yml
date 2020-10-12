@@ -47,7 +47,6 @@ jobs:
       run: yarn graphql diff
 
   lint:
-    needs: graphql
     runs-on: ubuntu-latest
 
     steps:
@@ -68,7 +67,6 @@ jobs:
       run: yarn lint
 
   test:
-    needs: graphql
     runs-on: ubuntu-latest
 
     steps:
@@ -97,7 +95,6 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
-    needs: [graphql, lint, test]
     runs-on: ubuntu-latest
 
     steps:
