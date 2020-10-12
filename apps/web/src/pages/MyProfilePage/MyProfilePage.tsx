@@ -49,7 +49,7 @@ export const MyProfilePage: React.FunctionComponent<Props> = ({
   };
 
   const initialValues = {
-    email: currentUser.email!,
+    email: currentUser.email,
     name: currentUser.name,
     info: currentUser.info
   };
