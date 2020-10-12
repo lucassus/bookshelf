@@ -16,7 +16,7 @@ export type BookCopyCardFragment = { __typename: "BookCopy" } & Pick<
     owner:
       | ({ __typename?: "ProtectedUser" } & BookCopyUser_ProtectedUser_Fragment)
       | ({ __typename?: "PublicUser" } & BookCopyUser_PublicUser_Fragment);
-    borrower?: Types.Maybe<
+    borrower: Types.Maybe<
       | ({ __typename?: "ProtectedUser" } & BookCopyUser_ProtectedUser_Fragment)
       | ({ __typename?: "PublicUser" } & BookCopyUser_PublicUser_Fragment)
     >;

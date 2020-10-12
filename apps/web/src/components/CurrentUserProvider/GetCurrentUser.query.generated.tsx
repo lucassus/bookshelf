@@ -9,9 +9,9 @@ export type GetCurrentUserQueryVariables = Types.Exact<{
 }>;
 
 export type GetCurrentUserQuery = { __typename?: "Query" } & {
-  currentUser:
-    | { __typename: "GuestUser" }
-    | ({ __typename: "ProtectedUser" } & CurrentUserFragment);
+  currentUser: Types.Maybe<
+    { __typename: "ProtectedUser" } & CurrentUserFragment
+  >;
 };
 
 export const GetCurrentUserDocument = gql`

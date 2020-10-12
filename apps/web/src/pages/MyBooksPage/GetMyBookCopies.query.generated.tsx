@@ -9,30 +9,28 @@ export type GetMyBookCopiesQueryVariables = Types.Exact<{
 }>;
 
 export type GetMyBookCopiesQuery = { __typename?: "Query" } & {
-  currentUser:
-    | { __typename: "GuestUser" }
-    | ({ __typename: "ProtectedUser" } & Pick<Types.ProtectedUser, "id"> & {
-          ownedBookCopies: Array<
-            { __typename?: "BookCopy" } & BookCopyCardFragment
-          >;
-          borrowedBookCopies: Array<
-            { __typename?: "BookCopy" } & BookCopyCardFragment
-          >;
-        });
+  currentUser: Types.Maybe<
+    { __typename: "ProtectedUser" } & Pick<Types.ProtectedUser, "id"> & {
+        ownedBookCopies: Array<
+          { __typename?: "BookCopy" } & BookCopyCardFragment
+        >;
+        borrowedBookCopies: Array<
+          { __typename?: "BookCopy" } & BookCopyCardFragment
+        >;
+      }
+  >;
 };
 
 export const GetMyBookCopiesDocument = gql`
   query GetMyBookCopies {
     currentUser {
       __typename
-      ... on ProtectedUser {
-        id
-        ownedBookCopies {
-          ...BookCopyCard
-        }
-        borrowedBookCopies {
-          ...BookCopyCard
-        }
+      id
+      ownedBookCopies {
+        ...BookCopyCard
+      }
+      borrowedBookCopies {
+        ...BookCopyCard
       }
     }
   }

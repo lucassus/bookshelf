@@ -5,8 +5,8 @@ import { gql } from "@apollo/client";
 import { BookCardFragmentDoc } from "../../components/BookCard/BookCard.fragment.generated";
 import * as Apollo from "@apollo/client";
 export type GetBooksQueryVariables = Types.Exact<{
-  limit?: Types.Maybe<Types.Scalars["Int"]>;
-  offset?: Types.Maybe<Types.Scalars["Int"]>;
+  limit: Types.Maybe<Types.Scalars["Int"]>;
+  offset: Types.Maybe<Types.Scalars["Int"]>;
 }>;
 
 export type GetBooksQuery = { __typename?: "Query" } & Pick<
