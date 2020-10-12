@@ -16,8 +16,6 @@ export const CurrentUserProvider: React.FunctionComponent = ({ children }) => {
     return <span>Loading...</span>;
   }
 
-  // TODO: current user could be ProtectedUser | null | undefined
-  // TODO: Try use `avoidOptionals` flag
   const { currentUser } = data;
 
   return (
