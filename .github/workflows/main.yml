@@ -60,9 +60,6 @@ jobs:
     - name: Install packages
       run: yarn install
 
-    - name: GraphQL Code Generation
-      run: yarn graphql codegen
-
     - name: Lint
       run: yarn lint
 
@@ -82,9 +79,6 @@ jobs:
 
     - name: Install packages
       run: yarn install
-
-    - name: GraphQL Code Generation
-      run: yarn graphql codegen
 
     - name: Build
       run: yarn build
@@ -113,9 +107,6 @@ jobs:
 
     - name: Install packages
       run: yarn install
-
-    - name: GraphQL Code Generation
-      run: yarn graphql codegen
 
     - name: Build
       run: yarn build
