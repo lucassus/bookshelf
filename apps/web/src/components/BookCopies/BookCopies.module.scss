@@ -1,6 +1,7 @@
-.bookCopies {
+.container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   & > div {
     margin: 1rem;

@@ -1,12 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCopyCard } from "../../components/BookCopyCard";
+import { BookCopies } from "../../components/BookCopies";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { NotFoundPage } from "../NotFoundPage";
 import { useGetUserQuery } from "./GetUser.query.generated";
-import styles from "./UserDetailsPage.module.scss";
 
 export const UserDetailsPage: React.FunctionComponent = () => {
   const params = useParams();
@@ -38,12 +37,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         {user.ownedBookCopies.length > 0 ? (
           <>
             <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
-
-            <div className={styles.bookCopies}>
-              {user.ownedBookCopies.map((bookCopy) => (
-                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-              ))}
-            </div>
+            <BookCopies bookCopies={user.ownedBookCopies} />
           </>
         ) : (
           <span>User does not have any books.</span>
@@ -55,12 +49,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
           {user.borrowedBookCopies.length > 0 ? (
             <>
               <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
-
-              <div className={styles.bookCopies}>
-                {user.borrowedBookCopies.map((bookCopy) => (
-                  <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-                ))}
-              </div>
+              <BookCopies bookCopies={user.borrowedBookCopies} />
             </>
           ) : (
             <span>User does not have any borrowed books.</span>

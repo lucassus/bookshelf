@@ -1,9 +1,8 @@
 import React from "react";
 
-import { BookCopyCard } from "../../components/BookCopyCard";
+import { BookCopies } from "../../components/BookCopies";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetMyBookCopiesQuery } from "./GetMyBookCopies.query.generated";
-import styles from "./MyBooksPage.module.scss";
 
 export const MyBooksPage: React.FunctionComponent = () => {
   // TODO: It loads the query twice, see https://github.com/apollographql/apollo-client/issues/6832
@@ -25,22 +24,12 @@ export const MyBooksPage: React.FunctionComponent = () => {
     <div>
       <div data-testid="owned-book-copies-list">
         <h2>Owned book copies ({ownedBookCopies.length})</h2>
-
-        <div className={styles.bookCopies}>
-          {ownedBookCopies.map((bookCopy) => (
-            <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-          ))}
-        </div>
+        <BookCopies bookCopies={ownedBookCopies} />
       </div>
 
       <div data-testid="borrowed-book-copies-list">
         <h2>Borrowed book copies ({borrowedBookCopies.length})</h2>
-
-        <div className={styles.bookCopies}>
-          {borrowedBookCopies.map((bookCopy) => (
-            <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-          ))}
-        </div>
+        <BookCopies bookCopies={borrowedBookCopies} />
       </div>
     </div>
   );

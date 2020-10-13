@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-import { BookCopyCard } from "../../components/BookCopyCard";
+import { BookCopies } from "../../components/BookCopies";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { NotFoundPage } from "../NotFoundPage";
 import styles from "./BookDetailsPage.module.scss";
@@ -52,12 +52,7 @@ export const BookDetailsPage: React.FunctionComponent = () => {
       {book.copies.length > 0 && (
         <div className={styles.bookCopiesContainer}>
           <h3>Copies</h3>
-
-          <div className={styles.bookCopies}>
-            {book.copies.map((bookCopy) => (
-              <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-            ))}
-          </div>
+          <BookCopies bookCopies={book.copies} />
         </div>
       )}
     </div>
