@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCopies } from "../../components/BookCopies";
+import { BookCopiesList } from "../../components/BookCopiesList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { NotFoundPage } from "../NotFoundPage";
@@ -37,7 +37,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         {user.ownedBookCopies.length > 0 ? (
           <>
             <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
-            <BookCopies bookCopies={user.ownedBookCopies} />
+            <BookCopiesList bookCopies={user.ownedBookCopies} />
           </>
         ) : (
           <span>User does not have any books.</span>
@@ -49,7 +49,7 @@ export const UserDetailsPage: React.FunctionComponent = () => {
           {user.borrowedBookCopies.length > 0 ? (
             <>
               <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
-              <BookCopies bookCopies={user.borrowedBookCopies} />
+              <BookCopiesList bookCopies={user.borrowedBookCopies} />
             </>
           ) : (
             <span>User does not have any borrowed books.</span>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BookCopies } from "../../components/BookCopies";
+import { BookCopiesList } from "../../components/BookCopiesList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { useGetMyBookCopiesQuery } from "./GetMyBookCopies.query.generated";
 
@@ -24,12 +24,12 @@ export const MyBooksPage: React.FunctionComponent = () => {
     <div>
       <div data-testid="owned-book-copies-list">
         <h2>Owned book copies ({ownedBookCopies.length})</h2>
-        <BookCopies bookCopies={ownedBookCopies} />
+        <BookCopiesList bookCopies={ownedBookCopies} />
       </div>
 
       <div data-testid="borrowed-book-copies-list">
         <h2>Borrowed book copies ({borrowedBookCopies.length})</h2>
-        <BookCopies bookCopies={borrowedBookCopies} />
+        <BookCopiesList bookCopies={borrowedBookCopies} />
       </div>
     </div>
   );

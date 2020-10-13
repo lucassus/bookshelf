@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-import { BookCopies } from "../../components/BookCopies";
+import { BookCopiesList } from "../../components/BookCopiesList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { NotFoundPage } from "../NotFoundPage";
 import styles from "./BookDetailsPage.module.scss";
@@ -52,7 +52,7 @@ export const BookDetailsPage: React.FunctionComponent = () => {
       {book.copies.length > 0 && (
         <div className={styles.bookCopiesContainer}>
           <h3>Copies</h3>
-          <BookCopies bookCopies={book.copies} />
+          <BookCopiesList bookCopies={book.copies} />
         </div>
       )}
     </div>
