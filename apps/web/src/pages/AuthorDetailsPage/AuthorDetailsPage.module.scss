@@ -1,6 +1,7 @@
 .info {
   display: flex;
   flex-direction: row;
+  margin-bottom: 1em;
 
   img {
     height: 300px;
@@ -9,11 +10,4 @@
   article {
     margin-left: 1em;
   }
-}
-
-.booksList {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 1em;
 }

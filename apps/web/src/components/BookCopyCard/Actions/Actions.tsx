@@ -21,12 +21,8 @@ export const Actions: React.FunctionComponent<Props> = ({
 
   return (
     <div>
-      {canBorrow && (
-        <BorrowButton currentUser={currentUser} bookCopy={bookCopy} />
-      )}
-      {canReturn && (
-        <ReturnButton currentUser={currentUser} bookCopy={bookCopy} />
-      )}
+      {canBorrow && <BorrowButton bookCopy={bookCopy} />}
+      {canReturn && <ReturnButton bookCopy={bookCopy} />}
     </div>
   );
 };

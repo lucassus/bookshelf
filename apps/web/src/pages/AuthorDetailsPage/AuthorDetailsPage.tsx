@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCard } from "../../components/BookCard";
+import { BooksList } from "../../components/BooksList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { NotFoundPage } from "../NotFoundPage";
 import styles from "./AuthorDetailsPage.module.scss";
@@ -33,18 +33,11 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
       <h2>{author.name}</h2>
 
       <div className={styles.info}>
-        {author.photo && <img src={author.photo.url} alt={author.name} />}
-
+        <img src={author.photo.url} alt={author.name} />
         <article>{author.bio}</article>
       </div>
 
-      {author.books && (
-        <div className={styles.booksList}>
-          {author.books.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
-        </div>
-      )}
+      {author.books.length > 0 && <BooksList books={author.books} />}
     </div>
   );
 };

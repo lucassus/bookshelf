@@ -1,59 +1,23 @@
 import React from "react";
 
-import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
+import { formatDateTime } from "../../../utils/formatDateTime";
 import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
 import { useReturnBookCopyMutation } from "./ReturnBookCopy.mutation.generated";
 
 type Props = {
-  currentUser: CurrentUserFragment;
   bookCopy: BookCopyCardFragment;
 };
 
-const formatDateTime = (dateString: string) =>
-  new Intl.DateTimeFormat("default", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric"
-  }).format(new Date(dateString));
-
-export const ReturnButton: React.FunctionComponent<Props> = ({
-  currentUser,
-  bookCopy
-}) => {
+export const ReturnButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const [returnBookCopy, { loading }] = useReturnBookCopyMutation();
 
-  const handleClick = () => {
-    return returnBookCopy({
-      variables: { id: bookCopy.id },
-      update(cache, { data }) {
-        if (!data || data.returnBookCopy.__typename !== "BookCopy") {
-          return;
-        }
-
-        const { returnBookCopy: returnedBookCopy } = data;
-
-        cache.modify({
-          id: cache.identify(currentUser),
-          fields: {
-            borrowedBookCopies(refs, { readField }) {
-              return refs.filter(
-                (bookCopyRef) =>
-                  readField("id", bookCopyRef) !== returnedBookCopy.id
-              );
-            }
-          }
-        });
-      }
-    });
-  };
+  const handleClick = () => returnBookCopy({ variables: { id: bookCopy.id } });
 
   return (
     <button
       disabled={loading}
       onClick={handleClick}
-      title={`Borrowed at ${formatDateTime(bookCopy.borrowedAt)}`}
+      title={`Borrowed at ${formatDateTime(new Date(bookCopy.borrowedAt))}`}
     >
       return
     </button>

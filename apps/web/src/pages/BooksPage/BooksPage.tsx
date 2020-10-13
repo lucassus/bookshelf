@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import { useParams } from "react-router";
 
-import { BookCard } from "../../components/BookCard";
+import { BooksList } from "../../components/BooksList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { Pager } from "../../components/Pager";
-import styles from "./BooksPage.module.scss";
 import { useGetBooksQuery } from "./GetBooks.query.generated";
 
 const PER_PAGE = 8;
@@ -42,11 +41,7 @@ export const BooksPage: React.FunctionComponent = () => {
         buildPathFor={(page) => (page === 1 ? "/" : `/page/${page}`)}
       />
 
-      <div className={styles.list}>
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-      </div>
+      <BooksList books={books} />
     </div>
   );
 };

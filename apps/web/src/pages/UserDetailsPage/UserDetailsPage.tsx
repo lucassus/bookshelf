@@ -1,12 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { BookCopyCard } from "../../components/BookCopyCard";
+import { BookCopiesList } from "../../components/BookCopiesList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { NotFoundPage } from "../NotFoundPage";
 import { useGetUserQuery } from "./GetUser.query.generated";
-import styles from "./UserDetailsPage.module.scss";
 
 export const UserDetailsPage: React.FunctionComponent = () => {
   const params = useParams();
@@ -29,7 +28,6 @@ export const UserDetailsPage: React.FunctionComponent = () => {
     return <NotFoundPage message={user.message} />;
   }
 
-  // TODO: Write e2e test for borrowedBooks
   return (
     <div>
       <UserCard user={user} />
@@ -39,34 +37,25 @@ export const UserDetailsPage: React.FunctionComponent = () => {
         {user.ownedBookCopies.length > 0 ? (
           <>
             <h3>Owned book copies ({user.ownedBookCopies.length})</h3>
-
-            <div className={styles.bookCopies}>
-              {user.ownedBookCopies.map((bookCopy) => (
-                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-              ))}
-            </div>
+            <BookCopiesList bookCopies={user.ownedBookCopies} />
           </>
         ) : (
           <span>User does not have any books.</span>
         )}
       </div>
 
-      <div data-testid="borrowed-book-copies-list">
-        {user.__typename === "ProtectedUser" &&
-        user.borrowedBookCopies.length > 0 ? (
-          <>
-            <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
-
-            <div className={styles.bookCopies}>
-              {user.borrowedBookCopies.map((bookCopy) => (
-                <BookCopyCard key={bookCopy.id} bookCopy={bookCopy} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <span>User does not have any borrowed books.</span>
-        )}
-      </div>
+      {user.__typename === "ProtectedUser" && (
+        <div data-testid="borrowed-book-copies-list">
+          {user.borrowedBookCopies.length > 0 ? (
+            <>
+              <h3>Borrowed book copies ({user.borrowedBookCopies.length})</h3>
+              <BookCopiesList bookCopies={user.borrowedBookCopies} />
+            </>
+          ) : (
+            <span>User does not have any borrowed books.</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };
