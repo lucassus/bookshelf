@@ -1,4 +1,4 @@
-const dateTimeFormatter = new Intl.DateTimeFormat("default", {
+const dateTimeFormatter = new Intl.DateTimeFormat("en-GB", {
   year: "numeric",
   month: "numeric",
   day: "numeric",
