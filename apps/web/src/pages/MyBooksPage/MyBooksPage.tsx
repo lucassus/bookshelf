@@ -10,11 +10,11 @@ export const MyBooksPage: React.FunctionComponent = () => {
     fetchPolicy: "cache-and-network"
   });
 
-  if (loading && data === undefined) {
+  if (loading) {
     return <span>Loading...</span>;
   }
 
-  if (error || !data || !data.currentUser) {
+  if (error || data === undefined || !data.currentUser) {
     return <ErrorAlert message="Could not load your books..." />;
   }
 
