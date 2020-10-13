@@ -31,44 +31,37 @@ export type Scalars = {
 };
 
 export type RegistrationInput = {
-  name: Scalars["String"];
-  email: Scalars["String"];
-  password: Scalars["String"];
+  readonly name: Scalars["String"];
+  readonly email: Scalars["String"];
+  readonly password: Scalars["String"];
 };
 
 export type RegistrationResult = ProtectedUser | ValidationErrors;
 
 export type UpdateProfileInput = {
-  name: Scalars["String"];
-  email: Scalars["String"];
-  info: Scalars["String"];
+  readonly name: Scalars["String"];
+  readonly email: Scalars["String"];
+  readonly info: Scalars["String"];
 };
 
 export type UpdateProfileResult = ProtectedUser | ValidationErrors;
 
-export type GuestUser = {
-  __typename?: "GuestUser";
-  _?: Maybe<Scalars["Boolean"]>;
-};
-
-export type CurrentUserResult = GuestUser | ProtectedUser;
-
 export type Query = {
-  __typename?: "Query";
+  readonly __typename?: "Query";
   /** Returns the currently logged in user. */
-  currentUser: CurrentUserResult;
-  authors: Array<Author>;
-  author: AuthorResponse;
-  booksCount: Scalars["Int"];
-  books: Array<Book>;
-  book: BookResult;
-  randomBook?: Maybe<Book>;
-  resources: Array<Resource>;
-  resource: Resource;
+  readonly currentUser?: Maybe<ProtectedUser>;
+  readonly authors: ReadonlyArray<Author>;
+  readonly author: AuthorResponse;
+  readonly booksCount: Scalars["Int"];
+  readonly books: ReadonlyArray<Book>;
+  readonly book: BookResult;
+  readonly randomBook?: Maybe<Book>;
+  readonly resources: ReadonlyArray<Resource>;
+  readonly resource: Resource;
   /** @deprecated No longer supported. Use 'resource' instead */
-  anything: Anything;
-  users: Array<User>;
-  user: UserResult;
+  readonly anything: Anything;
+  readonly users: ReadonlyArray<User>;
+  readonly user: UserResult;
 };
 
 export type QueryAuthorArgs = {
@@ -97,18 +90,18 @@ export type QueryUserArgs = {
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
-  register: RegistrationResult;
-  updateProfile: UpdateProfileResult;
+  readonly __typename?: "Mutation";
+  readonly register: RegistrationResult;
+  readonly updateProfile: UpdateProfileResult;
   /** Authenticates a user with the given credentials. */
-  login: LoginResult;
-  logout: Scalars["Boolean"];
-  updateBookFavourite: UpdateBookFavouriteResult;
-  borrowBookCopy: BorrowBookCopyResult;
-  returnBookCopy: ReturnBookCopyResult;
-  createUser: CreateUserResult;
-  updateUser: UpdateUserResult;
-  deleteUser: DeleteUserResult;
+  readonly login: LoginResult;
+  readonly logout: Scalars["Boolean"];
+  readonly updateBookFavourite: UpdateBookFavouriteResult;
+  readonly borrowBookCopy: BorrowBookCopyResult;
+  readonly returnBookCopy: ReturnBookCopyResult;
+  readonly createUser: CreateUserResult;
+  readonly updateUser: UpdateUserResult;
+  readonly deleteUser: DeleteUserResult;
 };
 
 export type MutationRegisterArgs = {
@@ -154,85 +147,85 @@ export enum Role {
 }
 
 export type LoginInput = {
-  email: Scalars["String"];
-  password: Scalars["String"];
+  readonly email: Scalars["String"];
+  readonly password: Scalars["String"];
 };
 
 export type LoginSuccess = {
-  __typename?: "LoginSuccess";
-  currentUser: ProtectedUser;
+  readonly __typename?: "LoginSuccess";
+  readonly currentUser: ProtectedUser;
 };
 
 export type LoginFailure = {
-  __typename?: "LoginFailure";
-  validationErrors: Array<ValidationError>;
+  readonly __typename?: "LoginFailure";
+  readonly validationErrors: ReadonlyArray<ValidationError>;
 };
 
 export type LoginResult = LoginSuccess | LoginFailure;
 
 export type Author = Resource &
   Timestampable & {
-    __typename?: "Author";
-    id: Scalars["ExternalID"];
-    name: Scalars["String"];
-    bio: Scalars["String"];
-    photo: Image;
-    createdAt: Scalars["ISODateString"];
-    updatedAt: Scalars["ISODateString"];
-    books: Array<Book>;
+    readonly __typename?: "Author";
+    readonly id: Scalars["ExternalID"];
+    readonly name: Scalars["String"];
+    readonly bio: Scalars["String"];
+    readonly photo: Image;
+    readonly createdAt: Scalars["ISODateString"];
+    readonly updatedAt: Scalars["ISODateString"];
+    readonly books: ReadonlyArray<Book>;
   };
 
 export type Book = Resource &
   Timestampable & {
-    __typename?: "Book";
-    author: Author;
-    id: Scalars["ExternalID"];
-    title: Scalars["String"];
-    description: Scalars["String"];
-    cover: Image;
-    favourite: Scalars["Boolean"];
-    copies: Array<BookCopy>;
-    createdAt: Scalars["ISODateString"];
-    updatedAt: Scalars["ISODateString"];
+    readonly __typename?: "Book";
+    readonly author: Author;
+    readonly id: Scalars["ExternalID"];
+    readonly title: Scalars["String"];
+    readonly description: Scalars["String"];
+    readonly cover: Image;
+    readonly favourite: Scalars["Boolean"];
+    readonly copies: ReadonlyArray<BookCopy>;
+    readonly createdAt: Scalars["ISODateString"];
+    readonly updatedAt: Scalars["ISODateString"];
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
 
 export type BookCopy = Timestampable & {
-  __typename?: "BookCopy";
-  id: Scalars["ExternalID"];
-  book: Book;
-  borrowedAt?: Maybe<Scalars["ISODateString"]>;
-  createdAt: Scalars["ISODateString"];
-  updatedAt: Scalars["ISODateString"];
-  owner: User;
-  borrower?: Maybe<User>;
+  readonly __typename?: "BookCopy";
+  readonly id: Scalars["ExternalID"];
+  readonly book: Book;
+  readonly borrowedAt?: Maybe<Scalars["ISODateString"]>;
+  readonly createdAt: Scalars["ISODateString"];
+  readonly updatedAt: Scalars["ISODateString"];
+  readonly owner: User;
+  readonly borrower?: Maybe<User>;
 };
 
 export type User = {
-  ownedBookCopies: Array<BookCopy>;
-  id: Scalars["ExternalID"];
-  name: Scalars["String"];
-  info: Scalars["String"];
-  avatar: AvatarResult;
-  createdAt: Scalars["ISODateString"];
-  updatedAt: Scalars["ISODateString"];
+  readonly ownedBookCopies: ReadonlyArray<BookCopy>;
+  readonly id: Scalars["ExternalID"];
+  readonly name: Scalars["String"];
+  readonly info: Scalars["String"];
+  readonly avatar: AvatarResult;
+  readonly createdAt: Scalars["ISODateString"];
+  readonly updatedAt: Scalars["ISODateString"];
 };
 
 export type ProtectedUser = User &
   Resource &
   Timestampable & {
-    __typename?: "ProtectedUser";
-    borrowedBookCopies: Array<BookCopy>;
-    id: Scalars["ExternalID"];
-    name: Scalars["String"];
-    info: Scalars["String"];
-    avatar: AvatarResult;
-    createdAt: Scalars["ISODateString"];
-    updatedAt: Scalars["ISODateString"];
-    email: Scalars["String"];
-    isAdmin: Scalars["Boolean"];
-    ownedBookCopies: Array<BookCopy>;
+    readonly __typename?: "ProtectedUser";
+    readonly borrowedBookCopies: ReadonlyArray<BookCopy>;
+    readonly id: Scalars["ExternalID"];
+    readonly name: Scalars["String"];
+    readonly info: Scalars["String"];
+    readonly avatar: AvatarResult;
+    readonly createdAt: Scalars["ISODateString"];
+    readonly updatedAt: Scalars["ISODateString"];
+    readonly email: Scalars["String"];
+    readonly isAdmin: Scalars["Boolean"];
+    readonly ownedBookCopies: ReadonlyArray<BookCopy>;
   };
 
 export type UpdateBookFavouriteResult = Book | MutationError;
@@ -244,50 +237,50 @@ export type ReturnBookCopyResult = BookCopy | MutationError;
 export type BookResult = Book | ResourceNotFoundError;
 
 export type Timestampable = {
-  createdAt: Scalars["ISODateString"];
-  updatedAt: Scalars["ISODateString"];
+  readonly createdAt: Scalars["ISODateString"];
+  readonly updatedAt: Scalars["ISODateString"];
 };
 
 export type Image = {
-  __typename?: "Image";
-  path: Scalars["String"];
-  url: Scalars["String"];
+  readonly __typename?: "Image";
+  readonly path: Scalars["String"];
+  readonly url: Scalars["String"];
 };
 
 export type Error = {
-  message: Scalars["String"];
+  readonly message: Scalars["String"];
 };
 
 export type MutationError = Error & {
-  __typename?: "MutationError";
-  message: Scalars["String"];
+  readonly __typename?: "MutationError";
+  readonly message: Scalars["String"];
 };
 
 export type ValidationError = Error & {
-  __typename?: "ValidationError";
-  path: Scalars["String"];
-  message: Scalars["String"];
+  readonly __typename?: "ValidationError";
+  readonly path: Scalars["String"];
+  readonly message: Scalars["String"];
 };
 
 export type ValidationErrors = {
-  __typename?: "ValidationErrors";
-  errors: Array<ValidationError>;
+  readonly __typename?: "ValidationErrors";
+  readonly errors: ReadonlyArray<ValidationError>;
 };
 
 export type MutationResponse = {
   /** A boolean that indicates whether the mutation was successful. */
-  success: Scalars["Boolean"];
+  readonly success: Scalars["Boolean"];
   /** Human-readable string that describes the result of the mutation */
-  message: Scalars["String"];
+  readonly message: Scalars["String"];
 };
 
 export type Resource = {
-  id: Scalars["ExternalID"];
+  readonly id: Scalars["ExternalID"];
 };
 
 export type ResourceNotFoundError = Error & {
-  __typename?: "ResourceNotFoundError";
-  message: Scalars["String"];
+  readonly __typename?: "ResourceNotFoundError";
+  readonly message: Scalars["String"];
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
@@ -295,60 +288,60 @@ export type Anything = PublicUser | ProtectedUser | Author | Book;
 export type PublicUser = User &
   Resource &
   Timestampable & {
-    __typename?: "PublicUser";
-    id: Scalars["ExternalID"];
-    name: Scalars["String"];
-    info: Scalars["String"];
-    avatar: AvatarResult;
-    createdAt: Scalars["ISODateString"];
-    updatedAt: Scalars["ISODateString"];
-    ownedBookCopies: Array<BookCopy>;
+    readonly __typename?: "PublicUser";
+    readonly id: Scalars["ExternalID"];
+    readonly name: Scalars["String"];
+    readonly info: Scalars["String"];
+    readonly avatar: AvatarResult;
+    readonly createdAt: Scalars["ISODateString"];
+    readonly updatedAt: Scalars["ISODateString"];
+    readonly ownedBookCopies: ReadonlyArray<BookCopy>;
   };
 
 export type Avatar = {
-  __typename?: "Avatar";
-  image: Image;
-  color: Scalars["String"];
+  readonly __typename?: "Avatar";
+  readonly image: Image;
+  readonly color: Scalars["String"];
 };
 
 export type FlaggedAvatarError = Error & {
-  __typename?: "FlaggedAvatarError";
-  message: Scalars["String"];
+  readonly __typename?: "FlaggedAvatarError";
+  readonly message: Scalars["String"];
 };
 
 export type AvatarResult = Avatar | FlaggedAvatarError;
 
 export type AvatarInput = {
-  imagePath: Scalars["String"];
-  color: Scalars["String"];
+  readonly imagePath: Scalars["String"];
+  readonly color: Scalars["String"];
 };
 
 export type CreateUserInput = {
-  name: Scalars["String"];
-  info: Scalars["String"];
-  email: Scalars["String"];
-  password: Scalars["String"];
-  avatar: AvatarInput;
+  readonly name: Scalars["String"];
+  readonly info: Scalars["String"];
+  readonly email: Scalars["String"];
+  readonly password: Scalars["String"];
+  readonly avatar: AvatarInput;
 };
 
 export type UpdateUserInput = {
-  id: Scalars["ExternalID"];
-  name: Scalars["String"];
-  email: Scalars["String"];
-  info: Scalars["String"];
+  readonly id: Scalars["ExternalID"];
+  readonly name: Scalars["String"];
+  readonly email: Scalars["String"];
+  readonly info: Scalars["String"];
 };
 
 export type CreateUserResult = MutationResponse & {
-  __typename?: "CreateUserResult";
-  success: Scalars["Boolean"];
-  message: Scalars["String"];
-  user?: Maybe<User>;
+  readonly __typename?: "CreateUserResult";
+  readonly success: Scalars["Boolean"];
+  readonly message: Scalars["String"];
+  readonly user?: Maybe<User>;
 };
 
 export type DeleteUserResult = MutationResponse & {
-  __typename?: "DeleteUserResult";
-  success: Scalars["Boolean"];
-  message: Scalars["String"];
+  readonly __typename?: "DeleteUserResult";
+  readonly success: Scalars["Boolean"];
+  readonly message: Scalars["String"];
 };
 
 export type UserResult = PublicUser | ProtectedUser | ResourceNotFoundError;
@@ -360,21 +353,12 @@ export type UpdateUserResult =
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
-export type LegacyStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  fragment: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-
-export type NewStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  selectionSet: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-export type StitchingResolver<TResult, TParent, TContext, TArgs> =
-  | LegacyStitchingResolver<TResult, TParent, TContext, TArgs>
-  | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | StitchingResolver<TResult, TParent, TContext, TArgs>;
+export type Resolver<
+  TResult,
+  TParent = {},
+  TContext = {},
+  TArgs = {}
+> = ResolverFn<TResult, TParent, TContext, TArgs>;
 
 export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -483,15 +467,11 @@ export type ResolversTypes = {
   UpdateProfileResult:
     | ResolversTypes["ProtectedUser"]
     | ResolversTypes["ValidationErrors"];
-  GuestUser: ResolverTypeWrapper<GuestUser>;
-  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
-  CurrentUserResult:
-    | ResolversTypes["GuestUser"]
-    | ResolversTypes["ProtectedUser"];
   Query: ResolverTypeWrapper<{}>;
   Int: ResolverTypeWrapper<Scalars["Int"]>;
   ID: ResolverTypeWrapper<Scalars["ID"]>;
   Mutation: ResolverTypeWrapper<{}>;
+  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
   Role: Role;
   LoginInput: LoginInput;
   LoginSuccess: ResolverTypeWrapper<
@@ -582,15 +562,11 @@ export type ResolversParentTypes = {
   UpdateProfileResult:
     | ResolversParentTypes["ProtectedUser"]
     | ResolversParentTypes["ValidationErrors"];
-  GuestUser: GuestUser;
-  Boolean: Scalars["Boolean"];
-  CurrentUserResult:
-    | ResolversParentTypes["GuestUser"]
-    | ResolversParentTypes["ProtectedUser"];
   Query: {};
   Int: Scalars["Int"];
   ID: Scalars["ID"];
   Mutation: {};
+  Boolean: Scalars["Boolean"];
   LoginInput: LoginInput;
   LoginSuccess: Omit<LoginSuccess, "currentUser"> & {
     currentUser: ResolversParentTypes["ProtectedUser"];
@@ -706,35 +682,20 @@ export type UpdateProfileResultResolvers<
   >;
 };
 
-export type GuestUserResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["GuestUser"] = ResolversParentTypes["GuestUser"]
-> = {
-  _?: Resolver<Maybe<ResolversTypes["Boolean"]>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type CurrentUserResultResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["CurrentUserResult"] = ResolversParentTypes["CurrentUserResult"]
-> = {
-  __resolveType?: TypeResolveFn<
-    "GuestUser" | "ProtectedUser",
-    ParentType,
-    ContextType
-  >;
-};
-
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
 > = {
   currentUser?: Resolver<
-    ResolversTypes["CurrentUserResult"],
+    Maybe<ResolversTypes["ProtectedUser"]>,
     ParentType,
     ContextType
   >;
-  authors?: Resolver<Array<ResolversTypes["Author"]>, ParentType, ContextType>;
+  authors?: Resolver<
+    ReadonlyArray<ResolversTypes["Author"]>,
+    ParentType,
+    ContextType
+  >;
   author?: Resolver<
     ResolversTypes["AuthorResponse"],
     ParentType,
@@ -743,7 +704,7 @@ export type QueryResolvers<
   >;
   booksCount?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   books?: Resolver<
-    Array<ResolversTypes["Book"]>,
+    ReadonlyArray<ResolversTypes["Book"]>,
     ParentType,
     ContextType,
     RequireFields<QueryBooksArgs, "offset" | "limit">
@@ -756,7 +717,7 @@ export type QueryResolvers<
   >;
   randomBook?: Resolver<Maybe<ResolversTypes["Book"]>, ParentType, ContextType>;
   resources?: Resolver<
-    Array<ResolversTypes["Resource"]>,
+    ReadonlyArray<ResolversTypes["Resource"]>,
     ParentType,
     ContextType
   >;
@@ -772,7 +733,11 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryAnythingArgs, "id">
   >;
-  users?: Resolver<Array<ResolversTypes["User"]>, ParentType, ContextType>;
+  users?: Resolver<
+    ReadonlyArray<ResolversTypes["User"]>,
+    ParentType,
+    ContextType
+  >;
   user?: Resolver<
     ResolversTypes["UserResult"],
     ParentType,
@@ -859,7 +824,7 @@ export type LoginFailureResolvers<
   ParentType extends ResolversParentTypes["LoginFailure"] = ResolversParentTypes["LoginFailure"]
 > = {
   validationErrors?: Resolver<
-    Array<ResolversTypes["ValidationError"]>,
+    ReadonlyArray<ResolversTypes["ValidationError"]>,
     ParentType,
     ContextType
   >;
@@ -895,7 +860,11 @@ export type AuthorResolvers<
     ParentType,
     ContextType
   >;
-  books?: Resolver<Array<ResolversTypes["Book"]>, ParentType, ContextType>;
+  books?: Resolver<
+    ReadonlyArray<ResolversTypes["Book"]>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -909,7 +878,11 @@ export type BookResolvers<
   description?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   cover?: Resolver<ResolversTypes["Image"], ParentType, ContextType>;
   favourite?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  copies?: Resolver<Array<ResolversTypes["BookCopy"]>, ParentType, ContextType>;
+  copies?: Resolver<
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
+    ParentType,
+    ContextType
+  >;
   createdAt?: Resolver<
     ResolversTypes["ISODateString"],
     ParentType,
@@ -970,7 +943,7 @@ export type UserResolvers<
     ContextType
   >;
   ownedBookCopies?: Resolver<
-    Array<ResolversTypes["BookCopy"]>,
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
     ParentType,
     ContextType
   >;
@@ -995,7 +968,7 @@ export type ProtectedUserResolvers<
   ParentType extends ResolversParentTypes["ProtectedUser"] = ResolversParentTypes["ProtectedUser"]
 > = {
   borrowedBookCopies?: Resolver<
-    Array<ResolversTypes["BookCopy"]>,
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
     ParentType,
     ContextType
   >;
@@ -1016,7 +989,7 @@ export type ProtectedUserResolvers<
   email?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   isAdmin?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
   ownedBookCopies?: Resolver<
-    Array<ResolversTypes["BookCopy"]>,
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
     ParentType,
     ContextType
   >;
@@ -1144,7 +1117,7 @@ export type ValidationErrorsResolvers<
   ParentType extends ResolversParentTypes["ValidationErrors"] = ResolversParentTypes["ValidationErrors"]
 > = {
   errors?: Resolver<
-    Array<ResolversTypes["ValidationError"]>,
+    ReadonlyArray<ResolversTypes["ValidationError"]>,
     ParentType,
     ContextType
   >;
@@ -1214,7 +1187,7 @@ export type PublicUserResolvers<
     ContextType
   >;
   ownedBookCopies?: Resolver<
-    Array<ResolversTypes["BookCopy"]>,
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
     ParentType,
     ContextType
   >;
@@ -1293,8 +1266,6 @@ export type UpdateUserResultResolvers<
 export type Resolvers<ContextType = any> = {
   RegistrationResult?: RegistrationResultResolvers<ContextType>;
   UpdateProfileResult?: UpdateProfileResultResolvers<ContextType>;
-  GuestUser?: GuestUserResolvers<ContextType>;
-  CurrentUserResult?: CurrentUserResultResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   LoginSuccess?: LoginSuccessResolvers<ContextType>;

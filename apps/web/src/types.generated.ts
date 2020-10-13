@@ -29,17 +29,10 @@ export type UpdateProfileInput = {
 
 export type UpdateProfileResult = ProtectedUser | ValidationErrors;
 
-export type GuestUser = {
-  __typename?: "GuestUser";
-  _?: Maybe<Scalars["Boolean"]>;
-};
-
-export type CurrentUserResult = GuestUser | ProtectedUser;
-
 export type Query = {
   __typename?: "Query";
   /** Returns the currently logged in user. */
-  currentUser: CurrentUserResult;
+  currentUser?: Maybe<ProtectedUser>;
   authors: Array<Author>;
   author: AuthorResponse;
   booksCount: Scalars["Int"];

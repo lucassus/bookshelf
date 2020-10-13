@@ -1,17 +1,14 @@
 query GetMyBookCopies {
   currentUser {
     __typename
+    id
 
-    ... on ProtectedUser {
-      id
+    ownedBookCopies {
+      ...BookCopyCard
+    }
 
-      ownedBookCopies {
-        ...BookCopyCard
-      }
-
-      borrowedBookCopies {
-        ...BookCopyCard
-      }
+    borrowedBookCopies {
+      ...BookCopyCard
     }
   }
 }
