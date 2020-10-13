@@ -10,7 +10,7 @@ export const MyBooksPage: React.FunctionComponent = () => {
     fetchPolicy: "cache-and-network"
   });
 
-  if (loading) {
+  if (loading && data === undefined) {
     return <span>Loading...</span>;
   }
 
