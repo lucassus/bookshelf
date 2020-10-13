@@ -52,7 +52,7 @@
     "eslint-plugin-react": "7.21.4",
     "eslint-plugin-react-hooks": "4.1.2",
     "eslint-plugin-testing-library": "3.9.0",
-    "file-loader": "6.1.0",
+    "file-loader": "6.1.1",
     "html-webpack-plugin": "4.5.0",
     "jest": "26.5.3",
     "jest-watch-typeahead": "0.6.1",
