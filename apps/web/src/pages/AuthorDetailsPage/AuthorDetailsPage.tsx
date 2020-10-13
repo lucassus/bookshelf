@@ -33,12 +33,11 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
       <h2>{author.name}</h2>
 
       <div className={styles.info}>
-        {author.photo && <img src={author.photo.url} alt={author.name} />}
-
+        <img src={author.photo.url} alt={author.name} />
         <article>{author.bio}</article>
       </div>
 
-      {author.books && (
+      {author.books.length > 0 && (
         <div className={styles.booksList}>
           {author.books.map((book) => (
             <BookCard key={book.id} book={book} />
