@@ -119,3 +119,30 @@ jobs:
 
       - name: Build storybbok
         run: yarn workspace @bookshelf/web storybook:build
+
+  db-seed:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.6.0
+
+      - uses: actions/cache@v2
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install packages
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Seed database
+        env:
+          NODE_ENV: production
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: yarn workspace @bookshelf/server node ./dist/scripts/seed.js
