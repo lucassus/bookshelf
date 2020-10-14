@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ResourceImageFragmentFragment } from "./ResourceImage.fragment.generated";
-import styles from "./ResourceImage.module.scss";
+import styles from "./ResourceImage.scss";
 
 type Props = {
   image: ResourceImageFragmentFragment;

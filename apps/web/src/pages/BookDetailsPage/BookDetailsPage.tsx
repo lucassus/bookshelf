@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { BookCopiesList } from "../../components/BookCopiesList";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { NotFoundPage } from "../NotFoundPage";
-import styles from "./BookDetailsPage.module.scss";
+import styles from "./BookDetailsPage.scss";
 import { useGetBookQuery } from "./GetBook.query.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {

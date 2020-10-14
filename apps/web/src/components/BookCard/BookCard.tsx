@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { StarIconButton } from "../StarIconButton";
 import { BookCardFragment } from "./BookCard.fragment.generated";
-import styles from "./BookCard.module.scss";
+import styles from "./BookCard.scss";
 import { useUpdateBookFavouriteMutation } from "./UpdateBookFavourite.mutation.generated";
 
 type Props = {
