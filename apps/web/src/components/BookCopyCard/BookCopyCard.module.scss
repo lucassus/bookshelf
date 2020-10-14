@@ -1,4 +1,6 @@
 .container {
+  composes: card from "../../layout.scss";
+
   .bookCoverWithAvatars {
     position: relative;
 
