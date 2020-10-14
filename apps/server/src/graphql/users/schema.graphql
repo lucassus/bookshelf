@@ -92,10 +92,18 @@ extend type Query {
   user(id: ExternalID!): UserResult!
 }
 
-union UpdateUserResult = ProtectedUser | ResourceNotFoundError | ValidationErrors
+union UpdateUserResult =
+    ProtectedUser
+  | ResourceNotFoundError
+  | ValidationErrors
 
 extend type Mutation {
-  createUser(input: CreateUserInput!): CreateUserResult! @requireAuthorization(role: Admin)
-  updateUser(input: UpdateUserInput!): UpdateUserResult! @requireAuthorization(role: Admin)
-  deleteUser(id: ExternalID!): DeleteUserResult! @requireAuthorization(role: Admin)
+  createUser(input: CreateUserInput!): CreateUserResult!
+    @requireAuthorization(role: Admin)
+
+  updateUser(input: UpdateUserInput!): UpdateUserResult!
+    @requireAuthorization(role: Admin)
+
+  deleteUser(id: ExternalID!): DeleteUserResult!
+    @requireAuthorization(role: Admin)
 }
