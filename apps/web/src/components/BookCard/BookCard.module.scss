@@ -1,11 +1,10 @@
-@value small as bp-small, medium as bp-medium, large as bp-large from "../../styles/breakpoints.scss";
+@value x-small as bp-x-small, small as bp-small, medium as bp-medium, large as bp-large from "../../styles/breakpoints.scss";
 
 .container {
   composes: card from "../../styles/layout.scss";
 
   display: flex;
   flex-direction: row;
-  width: 100%;
 
   img {
     height: 150px;
@@ -22,6 +21,12 @@
 
 .buttons {
   margin-top: 1em;
+}
+
+@media bp-x-small {
+  .container {
+    width: 100%;
+  }
 }
 
 @media bp-small {
