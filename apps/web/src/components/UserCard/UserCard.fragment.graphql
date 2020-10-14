@@ -4,7 +4,7 @@ fragment UserCard on User {
     ...Avatar
   }
 
-  ...on ProtectedUser {
+  ... on ProtectedUser {
     email
     isAdmin
   }

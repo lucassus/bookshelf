@@ -1,0 +1,4 @@
+.list {
+  composes: list from "../../styles/layout.scss";
+  justify-content: space-between;
+}

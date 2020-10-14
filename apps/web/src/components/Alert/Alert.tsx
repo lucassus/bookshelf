@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Alert.module.scss";
+import styles from "./Alert.scss";
 
 type Props = {
   severity: "error";

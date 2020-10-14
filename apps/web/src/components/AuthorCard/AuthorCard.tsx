@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { AuthorCardFragment } from "./AuthorCard.fragment.generated";
-import styles from "./AuthorCard.module.scss";
+import styles from "./AuthorCard.scss";
 
 type Props = {
   author: AuthorCardFragment;

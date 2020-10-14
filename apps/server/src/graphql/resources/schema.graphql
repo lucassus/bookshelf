@@ -13,5 +13,6 @@ extend type Query {
   # TODO: Add resource not found errors handling
   resource(id: ID!): Resource!
 
-  anything(id: ID!): Anything! @deprecated(reason: "No longer supported. Use 'resource' instead")
+  anything(id: ID!): Anything!
+    @deprecated(reason: "No longer supported. Use 'resource' instead")
 }

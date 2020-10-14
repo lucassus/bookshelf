@@ -1,4 +1,6 @@
 .container {
+  composes: card from "../../styles/layout.scss";
+
   display: flex;
   flex-direction: column;
   align-items: center;

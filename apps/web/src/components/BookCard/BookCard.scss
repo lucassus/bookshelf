@@ -1,8 +1,10 @@
+@value x-small as bp-x-small, small as bp-small, medium as bp-medium, large as bp-large from "../../styles/breakpoints.scss";
+
 .container {
+  composes: card from "../../styles/layout.scss";
+
   display: flex;
   flex-direction: row;
-  margin-bottom: 0.5em;
-  width: 100%;
 
   img {
     height: 150px;
@@ -21,19 +23,25 @@
   margin-top: 1em;
 }
 
-@media only screen and (min-width: 768px) {
+@media bp-x-small {
+  .container {
+    width: 100%;
+  }
+}
+
+@media bp-small {
   .container {
     width: 50%;
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media bp-medium {
   .container {
     width: 33%;
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media bp-large {
   .container {
     width: 25%;
   }

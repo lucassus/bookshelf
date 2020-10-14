@@ -2,7 +2,7 @@ query GetCurrentUser {
   currentUser {
     __typename
 
-    ...on ProtectedUser {
+    ... on ProtectedUser {
       ...CurrentUser
     }
   }

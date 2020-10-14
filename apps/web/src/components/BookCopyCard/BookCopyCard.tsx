@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
 import { BookCopyCardFragment } from "./BookCopyCard.fragment.generated";
-import styles from "./BookCopyCard.module.scss";
+import styles from "./BookCopyCard.scss";
 import { BookCopyUser } from "./BookCopyUser";
 
 type Props = {

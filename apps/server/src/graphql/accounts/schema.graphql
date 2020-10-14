@@ -24,5 +24,6 @@ extend type Query {
 extend type Mutation {
   register(input: RegistrationInput!): RegistrationResult!
 
-  updateProfile(input: UpdateProfileInput!): UpdateProfileResult! @requireAuthorization
+  updateProfile(input: UpdateProfileInput!): UpdateProfileResult!
+    @requireAuthorization
 }

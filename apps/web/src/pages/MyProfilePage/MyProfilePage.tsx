@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 import { CurrentUserFragment } from "../../components/CurrentUserProvider/CurrentUser.fragment.generated";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
-import styles from "../LoginPage/LoginPage.module.scss";
+import styles from "../LoginPage/LoginPage.scss";
 import { useUpdateProfileMutation } from "./UpdateProfile.mutation.generated";
 
 type Values = {

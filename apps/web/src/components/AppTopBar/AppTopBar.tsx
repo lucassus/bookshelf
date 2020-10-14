@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useCurrentUser } from "../CurrentUserProvider";
-import styles from "./AppTopBar.module.scss";
+import styles from "./AppTopBar.scss";
 import { UserMenuButton } from "./UserMenuButton";
 
 export const AppTopBar = () => {

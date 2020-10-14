@@ -7,11 +7,6 @@
     { "path": "../../libs/secure-id" },
     { "path": "../../libs/string-utils" }
   ],
-  "include": [
-    "scripts/**/*",
-    "src/**/*"
-  ],
-  "exclude": [
-    "src/**/*.test.ts"
-  ]
+  "include": ["scripts/**/*", "src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
 }

@@ -1,6 +1,5 @@
 query GetResources {
   resources {
-    ... ResourceCard
+    ...ResourceCard
   }
 }
-

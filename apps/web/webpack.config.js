@@ -26,15 +26,11 @@ module.exports = {
   },
   target: "web",
   resolve: {
-    plugins: [
-      PnpWebpackPlugin,
-    ],
-    extensions: [".ts", ".tsx", ".js"],
+    plugins: [PnpWebpackPlugin],
+    extensions: [".ts", ".tsx", ".js"]
   },
   resolveLoader: {
-    plugins: [
-      PnpWebpackPlugin.moduleLoader(module),
-    ],
+    plugins: [PnpWebpackPlugin.moduleLoader(module)]
   },
   module: {
     rules: [

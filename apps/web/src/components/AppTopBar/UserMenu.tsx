@@ -7,7 +7,7 @@ import { Avatar } from "../Avatar";
 import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { LogoutButton } from "../LogoutButton";
 import { useClickAway } from "./useClickAway";
-import styles from "./UserMenu.module.scss";
+import styles from "./UserMenu.scss";
 
 type Props = {
   onClose: () => void;

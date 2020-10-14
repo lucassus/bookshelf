@@ -2,7 +2,7 @@ import React from "react";
 
 import { Avatar } from "../Avatar";
 import { UserCardFragment } from "./UserCard.fragment.generated";
-import styles from "./UserCard.module.scss";
+import styles from "./UserCard.scss";
 
 type Props = {
   user: UserCardFragment;

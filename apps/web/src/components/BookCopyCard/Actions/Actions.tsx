@@ -2,6 +2,7 @@ import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
+import styles from "./Actions.scss";
 import { BorrowButton } from "./BorrowButton";
 import { ReturnButton } from "./ReturnButton";
 
@@ -20,7 +21,7 @@ export const Actions: React.FunctionComponent<Props> = ({
     bookCopy.borrower && bookCopy.borrower.id === currentUser.id;
 
   return (
-    <div>
+    <div className={styles.container}>
       {canBorrow && <BorrowButton bookCopy={bookCopy} />}
       {canReturn && <ReturnButton bookCopy={bookCopy} />}
     </div>

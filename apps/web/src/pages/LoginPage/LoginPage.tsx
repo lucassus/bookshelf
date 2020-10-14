@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useLoginMutation } from "./Login.mutation.generated";
-import styles from "./LoginPage.module.scss";
+import styles from "./LoginPage.scss";
 
 type Values = {
   email: string;
