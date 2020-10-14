@@ -1,5 +1,5 @@
 .container {
-  composes: card from "../../layout.scss";
+  composes: card from "../../styles/layout.scss";
 
   img {
     height: 200px;
