@@ -6,7 +6,5 @@
     "types": ["cypress", "@types/testing-library__cypress"],
     "skipLibCheck": true
   },
-  "include": [
-    "cypress/**/*"
-  ]
+  "include": ["cypress/**/*"]
 }

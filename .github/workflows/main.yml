@@ -8,114 +8,114 @@ jobs:
     continue-on-error: true
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@master
 
-    - uses: kamilkisiela/graphql-inspector@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        schema: "master:apps/server/schema.generated.graphql"
+      - uses: kamilkisiela/graphql-inspector@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          schema: "master:apps/server/schema.generated.graphql"
 
   graphql:
     runs-on: ubuntu-latest
     continue-on-error: true
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.6.0
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.6.0
 
-    - uses: actions/cache@v2
-      with:
-        path: "node_modules"
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - uses: actions/cache@v2
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install packages
-      run: yarn install
+      - name: Install packages
+        run: yarn install
 
-    - name: Check integrity for generated graphql files
-      run: ./scripts/check-grahpql-codegen-integrity.sh
+      - name: Check integrity for generated graphql files
+        run: ./scripts/check-grahpql-codegen-integrity.sh
 
-    - name: GraphQL Validate
-      run: yarn graphql validate
+      - name: GraphQL Validate
+        run: yarn graphql validate
 
-    - name: GraphQL Similar
-      run: yarn graphql similar
+      - name: GraphQL Similar
+        run: yarn graphql similar
 
-    - name: GraphQL Diff
-      run: yarn graphql diff
+      - name: GraphQL Diff
+        run: yarn graphql diff
 
   lint:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.6.0
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.6.0
 
-    - uses: actions/cache@v2
-      with:
-        path: "node_modules"
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - uses: actions/cache@v2
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install packages
-      run: yarn install
+      - name: Install packages
+        run: yarn install
 
-    - name: Prettier
-      run: yarn prettier . --check
+      - name: Prettier
+        run: yarn prettier . --check
 
-    - name: Lint
-      run: yarn lint
+      - name: Lint
+        run: yarn lint
 
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.6.0
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.6.0
 
-    - uses: actions/cache@v2
-      with:
-        path: "node_modules"
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - uses: actions/cache@v2
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install packages
-      run: yarn install
+      - name: Install packages
+        run: yarn install
 
-    - name: Build
-      run: yarn build
+      - name: Build
+        run: yarn build
 
-    - name: Test
-      run: yarn test --coverage --runInBand
+      - name: Test
+        run: yarn test --coverage --runInBand
 
-    - name: Upload test coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.6.0
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.6.0
 
-    - uses: actions/cache@v2
-      with:
-        path: "node_modules"
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - uses: actions/cache@v2
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install packages
-      run: yarn install
+      - name: Install packages
+        run: yarn install
 
-    - name: Build
-      run: yarn build
+      - name: Build
+        run: yarn build
 
-    - name: Build storybbok
-      run: yarn workspace @bookshelf/web storybook:build
+      - name: Build storybbok
+        run: yarn workspace @bookshelf/web storybook:build
