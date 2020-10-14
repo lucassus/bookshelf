@@ -1,5 +1,3 @@
 .list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  composes: list from "../../layout.scss";;
 }

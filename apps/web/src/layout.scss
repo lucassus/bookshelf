@@ -1,3 +1,9 @@
 .card {
   margin: 0.5em;
 }
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
