@@ -6,20 +6,17 @@ Object {
     "__typename": "Author",
     "books": Array [
       Object {
-        "description": "Laborum cupiditate consequatur et voluptatem.",
-        "favourite": true,
-        "id": "Mi1Cb29r",
-        "title": "Et",
+        "description": "Consequatur incidunt blanditiis sunt repellendus et velit eum sint voluptatibus.",
+        "id": "My1Cb29r",
+        "title": "Nostrum",
       },
       Object {
-        "description": "Aut consequatur incidunt blanditiis sunt.",
-        "favourite": true,
-        "id": "My1Cb29r",
-        "title": "In Eos Quae",
+        "description": "Consequatur et voluptatem nostrum cupiditate laborum in.",
+        "id": "Mi1Cb29r",
+        "title": "Sit Et Corporis Laborum",
       },
       Object {
         "description": "Voluptatem inventore ut quisquam fugiat itaque non alias.",
-        "favourite": true,
         "id": "MS1Cb29r",
         "title": "Suscipit Animi Qui Impedit",
       },
@@ -35,7 +32,6 @@ Object {
   "anything": Object {
     "__typename": "Book",
     "description": "Voluptatem inventore ut quisquam fugiat itaque non alias.",
-    "favourite": true,
     "id": "MS1Cb29r",
     "title": "Suscipit Animi Qui Impedit",
   },
@@ -45,8 +41,8 @@ Object {
 exports[`fetches with aliases 1`] = `
 Object {
   "author": Object {
-    "description": "Et voluptatem nostrum.",
-    "headline": "Suzanne Moore IV",
+    "description": "Cupiditate consequatur et voluptatem nostrum cupiditate laborum.",
+    "headline": "Luther Gutmann",
     "id": "Mi1BdXRob3I=",
   },
   "something": Object {
@@ -57,7 +53,7 @@ Object {
   },
   "user": Object {
     "description": "Sint voluptatibus deserunt totam quae eos.",
-    "headline": "Micheal Wiza III",
+    "headline": "Vivian Feest",
     "id": "MS1Vc2Vy",
   },
 }

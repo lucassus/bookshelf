@@ -1,7 +1,6 @@
 import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
-import { Book } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createBook, createUser } from "../../../testUtils/factories";
 
