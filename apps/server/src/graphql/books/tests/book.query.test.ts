@@ -1,4 +1,5 @@
 import { gql } from "apollo-server-express";
+import { getConnection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
 import { Book } from "../../../database/entity";
@@ -44,6 +45,69 @@ describe("book query", () => {
         createdAt: book.createdAt.toISOString(),
         updatedAt: book.createdAt.toISOString()
       }
+    });
+  });
+
+  describe("isFavourite resolver", () => {
+    const query = gql`
+      query($id: ExternalID!) {
+        book(id: $id) {
+          ... on Book {
+            id
+            title
+            isFavourite
+          }
+        }
+      }
+    `;
+
+    it("return null when not authenticated", async () => {
+      // Given
+      const book = await createBook();
+
+      // When
+      const resp = await createTestClient().query({
+        query,
+        variables: { id: toExternalId(book) }
+      });
+
+      // Then
+      expect(resp.data!.book.isFavourite).toBe(null);
+    });
+
+    describe("when a user is authenticated", () => {
+      it("returns true", async () => {
+        // Given
+        const book = await createBook();
+
+        const user = await createUser();
+        user.favouriteBooks = Promise.resolve([book]);
+        await getConnection().manager.save(user);
+
+        // When
+        const resp = await createTestClient({ currentUser: user }).query({
+          query,
+          variables: { id: toExternalId(book) }
+        });
+
+        // Then
+        expect(resp.data!.book.isFavourite).toBe(true);
+      });
+
+      it("returns false", async () => {
+        // Given
+        const book = await createBook();
+        const user = await createUser();
+
+        // When
+        const resp = await createTestClient({ currentUser: user }).query({
+          query,
+          variables: { id: toExternalId(book) }
+        });
+
+        // Then
+        expect(resp.data!.book.isFavourite).toBe(false);
+      });
     });
   });
 

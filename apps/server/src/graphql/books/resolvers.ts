@@ -17,7 +17,19 @@ const resolvers: Resolvers = {
     cover: ({ coverPath: path }, args, { assetsBaseUrl }) => ({
       path,
       url: assetsBaseUrl + path
-    })
+    }),
+
+    isFavourite: async (book, args, { currentUser }) => {
+      if (!currentUser) {
+        return null;
+      }
+
+      // TODO: Optimize it
+      const favouriteBooks = await currentUser.favouriteBooks;
+      return favouriteBooks.some(
+        (favouriteBook) => favouriteBook.id === book.id
+      );
+    }
   },
 
   BookCopy: {

@@ -5,6 +5,7 @@ type Book implements Resource & Timestampable {
   cover: Image!
   favourite: Boolean!
   copies: [BookCopy!]!
+  isFavourite: Boolean
   createdAt: ISODateString!
   updatedAt: ISODateString!
 }

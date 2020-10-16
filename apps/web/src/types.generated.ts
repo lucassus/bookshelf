@@ -168,6 +168,7 @@ export type Book = Resource &
     cover: Image;
     favourite: Scalars["Boolean"];
     copies: Array<BookCopy>;
+    isFavourite?: Maybe<Scalars["Boolean"]>;
     createdAt: Scalars["ISODateString"];
     updatedAt: Scalars["ISODateString"];
   };

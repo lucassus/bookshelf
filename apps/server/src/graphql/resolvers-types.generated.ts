@@ -186,6 +186,7 @@ export type Book = Resource &
     readonly cover: Image;
     readonly favourite: Scalars["Boolean"];
     readonly copies: ReadonlyArray<BookCopy>;
+    readonly isFavourite?: Maybe<Scalars["Boolean"]>;
     readonly createdAt: Scalars["ISODateString"];
     readonly updatedAt: Scalars["ISODateString"];
   };
@@ -882,6 +883,11 @@ export type BookResolvers<
   favourite?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
   copies?: Resolver<
     ReadonlyArray<ResolversTypes["BookCopy"]>,
+    ParentType,
+    ContextType
+  >;
+  isFavourite?: Resolver<
+    Maybe<ResolversTypes["Boolean"]>,
     ParentType,
     ContextType
   >;
