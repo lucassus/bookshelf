@@ -77,6 +77,12 @@ export const LoginPage: React.FunctionComponent = () => {
           </Form>
         )}
       />
+
+      <h3>Example credentials</h3>
+      <ul>
+        <li>Regular user: bob@example.com / password</li>
+        <li>Admin user: luke@example.com / password</li>
+      </ul>
     </div>
   );
 };
