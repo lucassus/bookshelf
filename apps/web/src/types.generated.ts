@@ -80,6 +80,8 @@ export type Mutation = {
   login: LoginResult;
   logout: Scalars["Boolean"];
   updateBookFavourite: UpdateBookFavouriteResult;
+  addBookToFavourites: BookResult;
+  removeBookFromFavourites: BookResult;
   borrowBookCopy: BorrowBookCopyResult;
   returnBookCopy: ReturnBookCopyResult;
   createUser: CreateUserResult;
@@ -102,6 +104,14 @@ export type MutationLoginArgs = {
 export type MutationUpdateBookFavouriteArgs = {
   id: Scalars["ExternalID"];
   isFavourite: Scalars["Boolean"];
+};
+
+export type MutationAddBookToFavouritesArgs = {
+  id: Scalars["ExternalID"];
+};
+
+export type MutationRemoveBookFromFavouritesArgs = {
+  id: Scalars["ExternalID"];
 };
 
 export type MutationBorrowBookCopyArgs = {

@@ -98,6 +98,8 @@ export type Mutation = {
   readonly login: LoginResult;
   readonly logout: Scalars["Boolean"];
   readonly updateBookFavourite: UpdateBookFavouriteResult;
+  readonly addBookToFavourites: BookResult;
+  readonly removeBookFromFavourites: BookResult;
   readonly borrowBookCopy: BorrowBookCopyResult;
   readonly returnBookCopy: ReturnBookCopyResult;
   readonly createUser: CreateUserResult;
@@ -120,6 +122,14 @@ export type MutationLoginArgs = {
 export type MutationUpdateBookFavouriteArgs = {
   id: Scalars["ExternalID"];
   isFavourite: Scalars["Boolean"];
+};
+
+export type MutationAddBookToFavouritesArgs = {
+  id: Scalars["ExternalID"];
+};
+
+export type MutationRemoveBookFromFavouritesArgs = {
+  id: Scalars["ExternalID"];
 };
 
 export type MutationBorrowBookCopyArgs = {
@@ -776,6 +786,18 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationUpdateBookFavouriteArgs, "id" | "isFavourite">
+  >;
+  addBookToFavourites?: Resolver<
+    ResolversTypes["BookResult"],
+    ParentType,
+    AuthenticatedContext,
+    RequireFields<MutationAddBookToFavouritesArgs, "id">
+  >;
+  removeBookFromFavourites?: Resolver<
+    ResolversTypes["BookResult"],
+    ParentType,
+    AuthenticatedContext,
+    RequireFields<MutationRemoveBookFromFavouritesArgs, "id">
   >;
   borrowBookCopy?: Resolver<
     ResolversTypes["BorrowBookCopyResult"],

@@ -45,6 +45,8 @@ type Mutation {
     id: ExternalID!
     isFavourite: Boolean!
   ): UpdateBookFavouriteResult! @requireAuthorization
+  addBookToFavourites(id: ExternalID!): BookResult! @requireAuthorization
+  removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
   returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
   createUser(input: CreateUserInput!): CreateUserResult!

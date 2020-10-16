@@ -51,11 +51,13 @@ extend type Query {
 }
 
 extend type Mutation {
-  # TODO: Create separate mutations: addBookToFavourities, removeBookFromFavourities
   updateBookFavourite(
     id: ExternalID!
     isFavourite: Boolean!
   ): UpdateBookFavouriteResult! @requireAuthorization
+
+  addBookToFavourites(id: ExternalID!): BookResult! @requireAuthorization
+  removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
 
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
   returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization

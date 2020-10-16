@@ -1,7 +1,7 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
-import { Book, BookCopy } from "../../database/entity";
+import { Book, BookCopy, User } from "../../database/entity";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
@@ -116,6 +116,54 @@ const resolvers: Resolvers = {
           __typename: "MutationError",
           message: "Something went wrong!"
         };
+      }
+    },
+
+    addBookToFavourites: async (
+      rootValue,
+      { id },
+      { container, currentUser, connection }
+    ) => {
+      try {
+        const book = await container.get(BooksService).findByIdOrFail(id);
+
+        // TODO: Move this logic to the service
+        const favouriteBooks = await currentUser.favouriteBooks;
+        currentUser.favouriteBooks = Promise.resolve([...favouriteBooks, book]);
+        await connection.manager.save(book);
+
+        return book;
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return { message: "Could not find Book" };
+        }
+
+        throw error;
+      }
+    },
+
+    removeBookFromFavourites: async (
+      rootValue,
+      { id },
+      { container, currentUser, connection }
+    ) => {
+      try {
+        const book = await container.get(BooksService).findByIdOrFail(id);
+
+        // TODO: Move this logic to the service
+        const favouriteBooks = await currentUser.favouriteBooks;
+        currentUser.favouriteBooks = Promise.resolve(
+          favouriteBooks.filter((favouriteBook) => favouriteBook.id !== book.id)
+        );
+        await connection.manager.save(book);
+
+        return book;
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return { message: "Could not find Book" };
+        }
+
+        throw error;
       }
     },
 
