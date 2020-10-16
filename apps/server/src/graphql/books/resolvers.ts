@@ -80,19 +80,37 @@ const resolvers: Resolvers = {
   },
 
   Mutation: {
+    // TODO: Refactor this resolver
     updateBookFavourite: async (
       rootValue,
       { id, favourite },
-      { container }
+      { container, currentUser, connection }
     ) => {
+      if (!currentUser) {
+        throw new Error("Not authenticated!");
+      }
+
       const book = await container.get(BooksService).findByIdOrFail(id);
 
       try {
-        const updatedBook = await container
-          .get(BooksService)
-          .updateFavourite(book, favourite);
+        const favouriteBooks = await currentUser.favouriteBooks;
 
-        return Object.assign(updatedBook, { __typename: "Book" });
+        if (favourite) {
+          currentUser.favouriteBooks = Promise.resolve([
+            ...favouriteBooks,
+            book
+          ]);
+        } else {
+          currentUser.favouriteBooks = Promise.resolve(
+            favouriteBooks.filter(
+              (favouriteBook) => favouriteBook.id !== book.id
+            )
+          );
+        }
+
+        await connection.manager.save(currentUser);
+
+        return Object.assign(book, { __typename: "Book" });
       } catch {
         return {
           __typename: "MutationError",

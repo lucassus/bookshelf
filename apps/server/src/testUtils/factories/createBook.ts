@@ -50,7 +50,6 @@ export async function createBook(
     ),
     description: faker.lorem.sentence(),
     coverPath: faker.random.arrayElement(BOOK_COVERS),
-    favourite: faker.random.boolean(),
     ...bookAttributes
   });
 }
