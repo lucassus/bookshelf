@@ -23,13 +23,11 @@ Cypress.Commands.add(
 Cypress.Commands.add("findBookCopyBorrowerAvatar", (name) => {
   Cypress.log({ name: "findBookCopyBorrowerAvatar" });
 
-  const borrower = cy.findByTestId("book-copy-card-borrower");
-
   if (name) {
-    return borrower.findUserAvatar(name);
+    return cy.findByTestId("book-copy-card-borrower").findUserAvatar(name);
   }
 
-  return borrower;
+  return cy.findByTestId("book-copy-card-borrower");
 });
 
 export {};
