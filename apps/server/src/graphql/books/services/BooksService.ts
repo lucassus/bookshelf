@@ -30,8 +30,4 @@ export class BooksService {
 
     return book || null;
   }
-
-  async updateFavourite(book: Book, favourite: boolean): Promise<Book> {
-    return this.repository.save(this.repository.merge(book, { favourite }));
-  }
 }

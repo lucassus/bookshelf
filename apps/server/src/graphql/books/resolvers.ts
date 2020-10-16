@@ -1,7 +1,7 @@
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
-import { Book, BookCopy, User } from "../../database/entity";
+import { Book, BookCopy } from "../../database/entity";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
@@ -80,45 +80,6 @@ const resolvers: Resolvers = {
   },
 
   Mutation: {
-    // TODO: Refactor this resolver
-    updateBookFavourite: async (
-      rootValue,
-      { id, isFavourite },
-      { container, currentUser, connection }
-    ) => {
-      if (!currentUser) {
-        throw new Error("Not authenticated!");
-      }
-
-      const book = await container.get(BooksService).findByIdOrFail(id);
-
-      try {
-        const favouriteBooks = await currentUser.favouriteBooks;
-
-        if (isFavourite) {
-          currentUser.favouriteBooks = Promise.resolve([
-            ...favouriteBooks,
-            book
-          ]);
-        } else {
-          currentUser.favouriteBooks = Promise.resolve(
-            favouriteBooks.filter(
-              (favouriteBook) => favouriteBook.id !== book.id
-            )
-          );
-        }
-
-        await connection.manager.save(currentUser);
-
-        return Object.assign(book, { __typename: "Book" });
-      } catch {
-        return {
-          __typename: "MutationError",
-          message: "Something went wrong!"
-        };
-      }
-    },
-
     addBookToFavourites: async (
       rootValue,
       { id },
