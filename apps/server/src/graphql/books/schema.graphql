@@ -25,8 +25,14 @@ extend interface User {
   ownedBookCopies: [BookCopy!]!
 }
 
+extend type PublicUser {
+  ownedBookCopies: [BookCopy!]!
+}
+
 extend type ProtectedUser {
+  ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
+  favouriteBooks: [Book!]!
 }
 
 union UpdateBookFavouriteResult = Book | MutationError

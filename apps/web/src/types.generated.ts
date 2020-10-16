@@ -195,11 +195,26 @@ export type User = {
   updatedAt: Scalars["ISODateString"];
 };
 
+export type PublicUser = User &
+  Resource &
+  Timestampable & {
+    __typename?: "PublicUser";
+    ownedBookCopies: Array<BookCopy>;
+    id: Scalars["ExternalID"];
+    name: Scalars["String"];
+    info: Scalars["String"];
+    avatar: AvatarResult;
+    createdAt: Scalars["ISODateString"];
+    updatedAt: Scalars["ISODateString"];
+  };
+
 export type ProtectedUser = User &
   Resource &
   Timestampable & {
     __typename?: "ProtectedUser";
+    ownedBookCopies: Array<BookCopy>;
     borrowedBookCopies: Array<BookCopy>;
+    favouriteBooks: Array<Book>;
     id: Scalars["ExternalID"];
     name: Scalars["String"];
     info: Scalars["String"];
@@ -208,7 +223,6 @@ export type ProtectedUser = User &
     updatedAt: Scalars["ISODateString"];
     email: Scalars["String"];
     isAdmin: Scalars["Boolean"];
-    ownedBookCopies: Array<BookCopy>;
   };
 
 export type UpdateBookFavouriteResult = Book | MutationError;
@@ -267,19 +281,6 @@ export type ResourceNotFoundError = Error & {
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
-
-export type PublicUser = User &
-  Resource &
-  Timestampable & {
-    __typename?: "PublicUser";
-    id: Scalars["ExternalID"];
-    name: Scalars["String"];
-    info: Scalars["String"];
-    avatar: AvatarResult;
-    createdAt: Scalars["ISODateString"];
-    updatedAt: Scalars["ISODateString"];
-    ownedBookCopies: Array<BookCopy>;
-  };
 
 export type Avatar = {
   __typename?: "Avatar";

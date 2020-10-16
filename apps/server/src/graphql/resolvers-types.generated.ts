@@ -213,11 +213,26 @@ export type User = {
   readonly updatedAt: Scalars["ISODateString"];
 };
 
+export type PublicUser = User &
+  Resource &
+  Timestampable & {
+    readonly __typename?: "PublicUser";
+    readonly ownedBookCopies: ReadonlyArray<BookCopy>;
+    readonly id: Scalars["ExternalID"];
+    readonly name: Scalars["String"];
+    readonly info: Scalars["String"];
+    readonly avatar: AvatarResult;
+    readonly createdAt: Scalars["ISODateString"];
+    readonly updatedAt: Scalars["ISODateString"];
+  };
+
 export type ProtectedUser = User &
   Resource &
   Timestampable & {
     readonly __typename?: "ProtectedUser";
+    readonly ownedBookCopies: ReadonlyArray<BookCopy>;
     readonly borrowedBookCopies: ReadonlyArray<BookCopy>;
+    readonly favouriteBooks: ReadonlyArray<Book>;
     readonly id: Scalars["ExternalID"];
     readonly name: Scalars["String"];
     readonly info: Scalars["String"];
@@ -226,7 +241,6 @@ export type ProtectedUser = User &
     readonly updatedAt: Scalars["ISODateString"];
     readonly email: Scalars["String"];
     readonly isAdmin: Scalars["Boolean"];
-    readonly ownedBookCopies: ReadonlyArray<BookCopy>;
   };
 
 export type UpdateBookFavouriteResult = Book | MutationError;
@@ -285,19 +299,6 @@ export type ResourceNotFoundError = Error & {
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
-
-export type PublicUser = User &
-  Resource &
-  Timestampable & {
-    readonly __typename?: "PublicUser";
-    readonly id: Scalars["ExternalID"];
-    readonly name: Scalars["String"];
-    readonly info: Scalars["String"];
-    readonly avatar: AvatarResult;
-    readonly createdAt: Scalars["ISODateString"];
-    readonly updatedAt: Scalars["ISODateString"];
-    readonly ownedBookCopies: ReadonlyArray<BookCopy>;
-  };
 
 export type Avatar = {
   readonly __typename?: "Avatar";
@@ -488,7 +489,8 @@ export type ResolversTypes = {
     | ResolversTypes["Author"]
     | ResolversTypes["ResourceNotFoundError"];
   BookCopy: ResolverTypeWrapper<BookCopyEntity>;
-  User: ResolversTypes["ProtectedUser"] | ResolversTypes["PublicUser"];
+  User: ResolversTypes["PublicUser"] | ResolversTypes["ProtectedUser"];
+  PublicUser: ResolverTypeWrapper<UserEntity>;
   ProtectedUser: ResolverTypeWrapper<UserEntity>;
   UpdateBookFavouriteResult:
     | ResolversTypes["Book"]
@@ -506,8 +508,8 @@ export type ResolversTypes = {
     | ResolversTypes["Author"]
     | ResolversTypes["Book"]
     | ResolversTypes["BookCopy"]
-    | ResolversTypes["ProtectedUser"]
-    | ResolversTypes["PublicUser"];
+    | ResolversTypes["PublicUser"]
+    | ResolversTypes["ProtectedUser"];
   Image: ResolverTypeWrapper<Image>;
   Error:
     | ResolversTypes["MutationError"]
@@ -523,15 +525,14 @@ export type ResolversTypes = {
   Resource:
     | ResolversTypes["Author"]
     | ResolversTypes["Book"]
-    | ResolversTypes["ProtectedUser"]
-    | ResolversTypes["PublicUser"];
+    | ResolversTypes["PublicUser"]
+    | ResolversTypes["ProtectedUser"];
   ResourceNotFoundError: ResolverTypeWrapper<ResourceNotFoundError>;
   Anything:
     | ResolversTypes["PublicUser"]
     | ResolversTypes["ProtectedUser"]
     | ResolversTypes["Author"]
     | ResolversTypes["Book"];
-  PublicUser: ResolverTypeWrapper<UserEntity>;
   Avatar: ResolverTypeWrapper<AvatarEntity>;
   FlaggedAvatarError: ResolverTypeWrapper<FlaggedAvatarError>;
   AvatarResult: ResolversTypes["Avatar"] | ResolversTypes["FlaggedAvatarError"];
@@ -583,8 +584,9 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["ResourceNotFoundError"];
   BookCopy: BookCopyEntity;
   User:
-    | ResolversParentTypes["ProtectedUser"]
-    | ResolversParentTypes["PublicUser"];
+    | ResolversParentTypes["PublicUser"]
+    | ResolversParentTypes["ProtectedUser"];
+  PublicUser: UserEntity;
   ProtectedUser: UserEntity;
   UpdateBookFavouriteResult:
     | ResolversParentTypes["Book"]
@@ -604,8 +606,8 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["Book"]
     | ResolversParentTypes["BookCopy"]
-    | ResolversParentTypes["ProtectedUser"]
-    | ResolversParentTypes["PublicUser"];
+    | ResolversParentTypes["PublicUser"]
+    | ResolversParentTypes["ProtectedUser"];
   Image: Image;
   Error:
     | ResolversParentTypes["MutationError"]
@@ -621,15 +623,14 @@ export type ResolversParentTypes = {
   Resource:
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["Book"]
-    | ResolversParentTypes["ProtectedUser"]
-    | ResolversParentTypes["PublicUser"];
+    | ResolversParentTypes["PublicUser"]
+    | ResolversParentTypes["ProtectedUser"];
   ResourceNotFoundError: ResourceNotFoundError;
   Anything:
     | ResolversParentTypes["PublicUser"]
     | ResolversParentTypes["ProtectedUser"]
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["Book"];
-  PublicUser: UserEntity;
   Avatar: AvatarEntity;
   FlaggedAvatarError: FlaggedAvatarError;
   AvatarResult:
@@ -939,7 +940,7 @@ export type UserResolvers<
   ParentType extends ResolversParentTypes["User"] = ResolversParentTypes["User"]
 > = {
   __resolveType?: TypeResolveFn<
-    "ProtectedUser" | "PublicUser",
+    "PublicUser" | "ProtectedUser",
     ParentType,
     ContextType
   >;
@@ -964,12 +965,48 @@ export type UserResolvers<
   >;
 };
 
+export type PublicUserResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes["PublicUser"] = ResolversParentTypes["PublicUser"]
+> = {
+  ownedBookCopies?: Resolver<
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
+    ParentType,
+    ContextType
+  >;
+  id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  info?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+  avatar?: Resolver<ResolversTypes["AvatarResult"], ParentType, ContextType>;
+  createdAt?: Resolver<
+    ResolversTypes["ISODateString"],
+    ParentType,
+    ContextType
+  >;
+  updatedAt?: Resolver<
+    ResolversTypes["ISODateString"],
+    ParentType,
+    ContextType
+  >;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type ProtectedUserResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes["ProtectedUser"] = ResolversParentTypes["ProtectedUser"]
 > = {
+  ownedBookCopies?: Resolver<
+    ReadonlyArray<ResolversTypes["BookCopy"]>,
+    ParentType,
+    ContextType
+  >;
   borrowedBookCopies?: Resolver<
     ReadonlyArray<ResolversTypes["BookCopy"]>,
+    ParentType,
+    ContextType
+  >;
+  favouriteBooks?: Resolver<
+    ReadonlyArray<ResolversTypes["Book"]>,
     ParentType,
     ContextType
   >;
@@ -989,11 +1026,6 @@ export type ProtectedUserResolvers<
   >;
   email?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   isAdmin?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  ownedBookCopies?: Resolver<
-    ReadonlyArray<ResolversTypes["BookCopy"]>,
-    ParentType,
-    ContextType
-  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1056,7 +1088,7 @@ export type TimestampableResolvers<
   ParentType extends ResolversParentTypes["Timestampable"] = ResolversParentTypes["Timestampable"]
 > = {
   __resolveType?: TypeResolveFn<
-    "Author" | "Book" | "BookCopy" | "ProtectedUser" | "PublicUser",
+    "Author" | "Book" | "BookCopy" | "PublicUser" | "ProtectedUser",
     ParentType,
     ContextType
   >;
@@ -1143,7 +1175,7 @@ export type ResourceResolvers<
   ParentType extends ResolversParentTypes["Resource"] = ResolversParentTypes["Resource"]
 > = {
   __resolveType?: TypeResolveFn<
-    "Author" | "Book" | "ProtectedUser" | "PublicUser",
+    "Author" | "Book" | "PublicUser" | "ProtectedUser",
     ParentType,
     ContextType
   >;
@@ -1167,32 +1199,6 @@ export type AnythingResolvers<
     ParentType,
     ContextType
   >;
-};
-
-export type PublicUserResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes["PublicUser"] = ResolversParentTypes["PublicUser"]
-> = {
-  id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-  info?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-  avatar?: Resolver<ResolversTypes["AvatarResult"], ParentType, ContextType>;
-  createdAt?: Resolver<
-    ResolversTypes["ISODateString"],
-    ParentType,
-    ContextType
-  >;
-  updatedAt?: Resolver<
-    ResolversTypes["ISODateString"],
-    ParentType,
-    ContextType
-  >;
-  ownedBookCopies?: Resolver<
-    ReadonlyArray<ResolversTypes["BookCopy"]>,
-    ParentType,
-    ContextType
-  >;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type AvatarResolvers<
@@ -1277,6 +1283,7 @@ export type Resolvers<ContextType = Context> = {
   AuthorResponse?: AuthorResponseResolvers<ContextType>;
   BookCopy?: BookCopyResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  PublicUser?: PublicUserResolvers<ContextType>;
   ProtectedUser?: ProtectedUserResolvers<ContextType>;
   UpdateBookFavouriteResult?: UpdateBookFavouriteResultResolvers<ContextType>;
   BorrowBookCopyResult?: BorrowBookCopyResultResolvers<ContextType>;
@@ -1294,7 +1301,6 @@ export type Resolvers<ContextType = Context> = {
   Resource?: ResourceResolvers<ContextType>;
   ResourceNotFoundError?: ResourceNotFoundErrorResolvers<ContextType>;
   Anything?: AnythingResolvers<ContextType>;
-  PublicUser?: PublicUserResolvers<ContextType>;
   Avatar?: AvatarResolvers<ContextType>;
   FlaggedAvatarError?: FlaggedAvatarErrorResolvers<ContextType>;
   AvatarResult?: AvatarResultResolvers<ContextType>;

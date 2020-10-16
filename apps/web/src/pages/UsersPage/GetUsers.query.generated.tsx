@@ -1,8 +1,8 @@
 import * as Types from "../../types.generated";
 
 import {
-  UserCard_ProtectedUser_Fragment,
-  UserCard_PublicUser_Fragment
+  UserCard_PublicUser_Fragment,
+  UserCard_ProtectedUser_Fragment
 } from "../../components/UserCard/UserCard.fragment.generated";
 import { gql } from "@apollo/client";
 import { UserCardFragmentDoc } from "../../components/UserCard/UserCard.fragment.generated";
@@ -11,10 +11,10 @@ export type GetUsersQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type GetUsersQuery = { __typename?: "Query" } & {
   users: Array<
-    | ({ __typename?: "ProtectedUser" } & Pick<Types.ProtectedUser, "id"> &
-        UserCard_ProtectedUser_Fragment)
     | ({ __typename?: "PublicUser" } & Pick<Types.PublicUser, "id"> &
         UserCard_PublicUser_Fragment)
+    | ({ __typename?: "ProtectedUser" } & Pick<Types.ProtectedUser, "id"> &
+        UserCard_ProtectedUser_Fragment)
   >;
 };
 

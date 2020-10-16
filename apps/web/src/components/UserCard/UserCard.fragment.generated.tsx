@@ -6,16 +6,6 @@ import {
 } from "../Avatar/Avatar.fragment.generated";
 import { gql } from "@apollo/client";
 import { AvatarFragmentDoc } from "../Avatar/Avatar.fragment.generated";
-export type UserCard_ProtectedUser_Fragment = {
-  __typename?: "ProtectedUser";
-} & Pick<Types.ProtectedUser, "email" | "isAdmin" | "name"> & {
-    avatar:
-      | ({ __typename?: "Avatar" } & Avatar_Avatar_Fragment)
-      | ({
-          __typename?: "FlaggedAvatarError";
-        } & Avatar_FlaggedAvatarError_Fragment);
-  };
-
 export type UserCard_PublicUser_Fragment = { __typename?: "PublicUser" } & Pick<
   Types.PublicUser,
   "name"
@@ -27,9 +17,19 @@ export type UserCard_PublicUser_Fragment = { __typename?: "PublicUser" } & Pick<
         } & Avatar_FlaggedAvatarError_Fragment);
   };
 
+export type UserCard_ProtectedUser_Fragment = {
+  __typename?: "ProtectedUser";
+} & Pick<Types.ProtectedUser, "email" | "isAdmin" | "name"> & {
+    avatar:
+      | ({ __typename?: "Avatar" } & Avatar_Avatar_Fragment)
+      | ({
+          __typename?: "FlaggedAvatarError";
+        } & Avatar_FlaggedAvatarError_Fragment);
+  };
+
 export type UserCardFragment =
-  | UserCard_ProtectedUser_Fragment
-  | UserCard_PublicUser_Fragment;
+  | UserCard_PublicUser_Fragment
+  | UserCard_ProtectedUser_Fragment;
 
 export const UserCardFragmentDoc = gql`
   fragment UserCard on User {

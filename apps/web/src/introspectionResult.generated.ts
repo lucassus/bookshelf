@@ -9,7 +9,7 @@ const result: PossibleTypesResultData = {
     UpdateProfileResult: ["ProtectedUser", "ValidationErrors"],
     LoginResult: ["LoginSuccess", "LoginFailure"],
     AuthorResponse: ["Author", "ResourceNotFoundError"],
-    User: ["ProtectedUser", "PublicUser"],
+    User: ["PublicUser", "ProtectedUser"],
     UpdateBookFavouriteResult: ["Book", "MutationError"],
     BorrowBookCopyResult: ["BookCopy", "MutationError"],
     ReturnBookCopyResult: ["BookCopy", "MutationError"],
@@ -18,8 +18,8 @@ const result: PossibleTypesResultData = {
       "Author",
       "Book",
       "BookCopy",
-      "ProtectedUser",
-      "PublicUser"
+      "PublicUser",
+      "ProtectedUser"
     ],
     Error: [
       "MutationError",
@@ -28,7 +28,7 @@ const result: PossibleTypesResultData = {
       "FlaggedAvatarError"
     ],
     MutationResponse: ["CreateUserResult", "DeleteUserResult"],
-    Resource: ["Author", "Book", "ProtectedUser", "PublicUser"],
+    Resource: ["Author", "Book", "PublicUser", "ProtectedUser"],
     Anything: ["PublicUser", "ProtectedUser", "Author", "Book"],
     AvatarResult: ["Avatar", "FlaggedAvatarError"],
     UserResult: ["PublicUser", "ProtectedUser", "ResourceNotFoundError"],

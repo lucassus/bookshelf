@@ -1,9 +1,14 @@
 import { gql } from "apollo-server-express";
+import { getConnection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
 import { User } from "../../../database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { createBookCopy, createUser } from "../../../testUtils/factories";
+import {
+  createBook,
+  createBookCopy,
+  createUser
+} from "../../../testUtils/factories";
 
 describe("user query", () => {
   const GetUserQuery = gql`
@@ -54,6 +59,11 @@ describe("user query", () => {
                 title
               }
             }
+
+            favouriteBooks {
+              id
+              title
+            }
           }
         }
 
@@ -93,8 +103,13 @@ describe("user query", () => {
   describe("fetching the current user", () => {
     it("fetches a user with protected fields", async () => {
       // Given
+      const book = await createBook();
       const user = await createUser();
-      await createBookCopy({ borrower: user });
+
+      user.favouriteBooks = Promise.resolve([book]);
+      await getConnection().manager.save(user);
+
+      await createBookCopy({ borrower: user, book });
 
       // When
       const res = await createTestClient({ currentUser: user }).query({
@@ -111,7 +126,13 @@ describe("user query", () => {
           info: user.info,
           email: user.email,
           isAdmin: false,
-          borrowedBookCopies: expect.any(Array)
+          borrowedBookCopies: expect.any(Array),
+          favouriteBooks: [
+            {
+              id: toExternalId(book),
+              title: book.title
+            }
+          ]
         }
       });
     });

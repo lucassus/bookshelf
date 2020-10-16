@@ -1,8 +1,8 @@
 import * as Types from "../../types.generated";
 
 import {
-  BookCopyUser_ProtectedUser_Fragment,
-  BookCopyUser_PublicUser_Fragment
+  BookCopyUser_PublicUser_Fragment,
+  BookCopyUser_ProtectedUser_Fragment
 } from "./BookCopyUserFragment.generated";
 import { gql } from "@apollo/client";
 import { BookCopyUserFragmentDoc } from "./BookCopyUserFragment.generated";
@@ -14,11 +14,13 @@ export type BookCopyCardFragment = { __typename: "BookCopy" } & Pick<
         cover: { __typename?: "Image" } & Pick<Types.Image, "url">;
       };
     owner:
-      | ({ __typename?: "ProtectedUser" } & BookCopyUser_ProtectedUser_Fragment)
-      | ({ __typename?: "PublicUser" } & BookCopyUser_PublicUser_Fragment);
-    borrower: Types.Maybe<
-      | ({ __typename?: "ProtectedUser" } & BookCopyUser_ProtectedUser_Fragment)
       | ({ __typename?: "PublicUser" } & BookCopyUser_PublicUser_Fragment)
+      | ({
+          __typename?: "ProtectedUser";
+        } & BookCopyUser_ProtectedUser_Fragment);
+    borrower: Types.Maybe<
+      | ({ __typename?: "PublicUser" } & BookCopyUser_PublicUser_Fragment)
+      | ({ __typename?: "ProtectedUser" } & BookCopyUser_ProtectedUser_Fragment)
     >;
   };
 

@@ -17,18 +17,6 @@ export type ResourceCard_Book_Fragment = { __typename: "Book" } & Pick<
     image: { __typename?: "Image" } & ResourceImageFragmentFragment;
   };
 
-export type ResourceCard_ProtectedUser_Fragment = {
-  __typename: "ProtectedUser";
-} & Pick<Types.ProtectedUser, "name" | "id"> & {
-    description: Types.ProtectedUser["info"];
-  } & {
-    avatar:
-      | ({ __typename?: "Avatar" } & {
-          image: { __typename?: "Image" } & ResourceImageFragmentFragment;
-        })
-      | { __typename?: "FlaggedAvatarError" };
-  };
-
 export type ResourceCard_PublicUser_Fragment = {
   __typename: "PublicUser";
 } & Pick<Types.PublicUser, "name" | "id"> & {
@@ -41,11 +29,23 @@ export type ResourceCard_PublicUser_Fragment = {
       | { __typename?: "FlaggedAvatarError" };
   };
 
+export type ResourceCard_ProtectedUser_Fragment = {
+  __typename: "ProtectedUser";
+} & Pick<Types.ProtectedUser, "name" | "id"> & {
+    description: Types.ProtectedUser["info"];
+  } & {
+    avatar:
+      | ({ __typename?: "Avatar" } & {
+          image: { __typename?: "Image" } & ResourceImageFragmentFragment;
+        })
+      | { __typename?: "FlaggedAvatarError" };
+  };
+
 export type ResourceCardFragment =
   | ResourceCard_Author_Fragment
   | ResourceCard_Book_Fragment
-  | ResourceCard_ProtectedUser_Fragment
-  | ResourceCard_PublicUser_Fragment;
+  | ResourceCard_PublicUser_Fragment
+  | ResourceCard_ProtectedUser_Fragment;
 
 export const ResourceCardFragmentDoc = gql`
   fragment ResourceCard on Resource {
