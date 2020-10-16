@@ -8,7 +8,7 @@ import {
   createUser
 } from "./factories";
 
-async function loadAuthors() {
+async function createAuthors() {
   await createAuthor({
     name: "J. K. Rowling",
     bio: `Although she writes under the pen name J.K. Rowling, pronounced like rolling, her name when her first Harry Potter book was published was simply Joanne Rowling. Anticipating that the target audience of young boys might not want to read a book written by a woman, her publishers demanded that she use two initials, rather than her full name. As she had no middle name, she chose K as the second initial of her pen name, from her paternal grandmother Kathleen Ada Bulgen Rowling. She calls herself Jo and has said, "No one ever called me 'Joanne' when I was young, unless they were angry." Following her marriage, she has sometimes used the name Joanne Murray when conducting personal business. During the Leveson Inquiry she gave evidence under the name of Joanne Kathleen Rowling. In a 2012 interview, Rowling noted that she no longer cared that people pronounced her name incorrectly.
@@ -64,7 +64,7 @@ async function loadAuthors() {
   });
 }
 
-async function loadBooks() {
+async function createBooks() {
   const { manager } = getConnection();
 
   let author = await manager.findOneOrFail(Author, { name: "J. K. Rowling" });
@@ -341,7 +341,7 @@ The desert planet Arrakis has been terraformed into a lush forested biosphere, e
   });
 }
 
-async function loadUsers() {
+async function createUsers() {
   await createUser({
     name: "Alice",
     email: "alice@example.com",
@@ -396,7 +396,7 @@ async function loadUsers() {
   });
 }
 
-async function loadBookCopies() {
+async function createBookCopies() {
   const { manager } = getConnection();
 
   const userAlice = await manager.findOneOrFail(User, { name: "Alice" });
@@ -444,9 +444,28 @@ async function loadBookCopies() {
   );
 }
 
-export const loadFixtures = async (): Promise<void> => {
-  await loadAuthors();
-  await loadBooks();
-  await loadUsers();
-  await loadBookCopies();
-};
+async function createFavouriteBooks() {
+  const { manager } = getConnection();
+
+  const userBob = await manager.findOneOrFail(User, { name: "Bob" });
+
+  const books = await Promise.all(
+    [
+      "Dune",
+      "Dune Messiah",
+      "Children of Dune",
+      "Blood of Elves"
+    ].map((title) => manager.findOneOrFail(Book, { title }))
+  );
+
+  userBob.favouriteBooks = Promise.resolve(books);
+  await manager.save(userBob);
+}
+
+export async function loadFixtures(): Promise<void> {
+  await createAuthors();
+  await createBooks();
+  await createUsers();
+  await createBookCopies();
+  await createFavouriteBooks();
+}

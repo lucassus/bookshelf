@@ -7,10 +7,13 @@ import {
   Index,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany
+  OneToMany,
+  ManyToMany,
+  JoinTable
 } from "typeorm";
 
 import { Avatar } from "./Avatar";
+import { Book } from "./Book";
 import { BookCopy } from "./BookCopy";
 
 @Entity({ name: "users" })
@@ -46,6 +49,10 @@ export class User {
 
   @OneToMany(() => BookCopy, (bookCopy) => bookCopy.borrower)
   borrowedBookCopies: Promise<BookCopy[]>;
+
+  @ManyToMany((type) => Book)
+  @JoinTable({ name: "users_favourite_books" })
+  favouriteBooks: Promise<Book[]>;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
