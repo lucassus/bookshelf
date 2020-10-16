@@ -12,7 +12,6 @@ type Props = {
 };
 
 // TODO: Update the db diagram
-// TODO: Write e2e test
 // TODO: Refactor
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const [addToFavourites] = useAddBookToFavouritesMutation();
@@ -20,6 +19,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
 
   // TODO: Move this logic to the button
   // TODO: Display only when a user is logged in
+  // TODO: Display favourite book on book details page
   const handleToggleFavourite: MouseEventHandler = (event) => {
     event.stopPropagation();
 
@@ -53,7 +53,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid={`book-card:${book.title}`}>
       <Link to={`/books/${book.id}`}>
         <img src={book.cover.url} alt="Book cover" />
       </Link>
