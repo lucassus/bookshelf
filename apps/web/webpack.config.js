@@ -6,6 +6,7 @@ const PnpWebpackPlugin = require("pnp-webpack-plugin");
 module.exports = {
   mode: "none",
   entry: ["./src/index.tsx"],
+  devtool: "inline-source-map",
   output: {
     chunkFilename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
