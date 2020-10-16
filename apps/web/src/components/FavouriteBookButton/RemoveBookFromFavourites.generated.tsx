@@ -1,6 +1,8 @@
 import * as Types from "../../types.generated";
 
+import { FavouriteBookButtonFragment } from "./FavouriteBookButton.fragment.generated";
 import { gql } from "@apollo/client";
+import { FavouriteBookButtonFragmentDoc } from "./FavouriteBookButton.fragment.generated";
 import * as Apollo from "@apollo/client";
 export type RemoveBookFromFavouritesMutationVariables = Types.Exact<{
   id: Types.Scalars["ExternalID"];
@@ -8,7 +10,7 @@ export type RemoveBookFromFavouritesMutationVariables = Types.Exact<{
 
 export type RemoveBookFromFavouritesMutation = { __typename?: "Mutation" } & {
   removeBookFromFavourites:
-    | ({ __typename?: "Book" } & Pick<Types.Book, "id" | "isFavourite">)
+    | ({ __typename?: "Book" } & FavouriteBookButtonFragment)
     | ({ __typename?: "ResourceNotFoundError" } & Pick<
         Types.ResourceNotFoundError,
         "message"
@@ -19,14 +21,14 @@ export const RemoveBookFromFavouritesDocument = gql`
   mutation RemoveBookFromFavourites($id: ExternalID!) {
     removeBookFromFavourites(id: $id) {
       ... on Book {
-        id
-        isFavourite
+        ...FavouriteBookButton
       }
       ... on ResourceNotFoundError {
         message
       }
     }
   }
+  ${FavouriteBookButtonFragmentDoc}
 `;
 export type RemoveBookFromFavouritesMutationFn = Apollo.MutationFunction<
   RemoveBookFromFavouritesMutation,

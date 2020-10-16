@@ -1,8 +1,7 @@
 mutation RemoveBookFromFavourites($id: ExternalID!) {
   removeBookFromFavourites(id: $id) {
     ... on Book {
-      id
-      isFavourite
+      ...FavouriteBookButton
     }
 
     ... on ResourceNotFoundError {
