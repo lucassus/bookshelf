@@ -101,7 +101,7 @@ export type MutationLoginArgs = {
 
 export type MutationUpdateBookFavouriteArgs = {
   id: Scalars["ExternalID"];
-  favourite: Scalars["Boolean"];
+  isFavourite: Scalars["Boolean"];
 };
 
 export type MutationBorrowBookCopyArgs = {
@@ -166,7 +166,6 @@ export type Book = Resource &
     title: Scalars["String"];
     description: Scalars["String"];
     cover: Image;
-    favourite: Scalars["Boolean"];
     copies: Array<BookCopy>;
     isFavourite?: Maybe<Scalars["Boolean"]>;
     createdAt: Scalars["ISODateString"];

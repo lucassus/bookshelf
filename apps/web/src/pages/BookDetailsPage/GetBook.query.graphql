@@ -10,7 +10,7 @@ query GetBook($id: ExternalID!) {
       id
       title
       description
-      favourite
+      isFavourite
       author {
         id
         name

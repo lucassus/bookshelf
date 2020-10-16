@@ -119,7 +119,7 @@ export type MutationLoginArgs = {
 
 export type MutationUpdateBookFavouriteArgs = {
   id: Scalars["ExternalID"];
-  favourite: Scalars["Boolean"];
+  isFavourite: Scalars["Boolean"];
 };
 
 export type MutationBorrowBookCopyArgs = {
@@ -184,7 +184,6 @@ export type Book = Resource &
     readonly title: Scalars["String"];
     readonly description: Scalars["String"];
     readonly cover: Image;
-    readonly favourite: Scalars["Boolean"];
     readonly copies: ReadonlyArray<BookCopy>;
     readonly isFavourite?: Maybe<Scalars["Boolean"]>;
     readonly createdAt: Scalars["ISODateString"];
@@ -776,7 +775,7 @@ export type MutationResolvers<
     ResolversTypes["UpdateBookFavouriteResult"],
     ParentType,
     ContextType,
-    RequireFields<MutationUpdateBookFavouriteArgs, "id" | "favourite">
+    RequireFields<MutationUpdateBookFavouriteArgs, "id" | "isFavourite">
   >;
   borrowBookCopy?: Resolver<
     ResolversTypes["BorrowBookCopyResult"],
@@ -880,7 +879,6 @@ export type BookResolvers<
   title?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   description?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   cover?: Resolver<ResolversTypes["Image"], ParentType, ContextType>;
-  favourite?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
   copies?: Resolver<
     ReadonlyArray<ResolversTypes["BookCopy"]>,
     ParentType,

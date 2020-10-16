@@ -12,7 +12,7 @@ export type GetBookQuery = { __typename?: "Query" } & {
   book:
     | ({ __typename: "Book" } & Pick<
         Types.Book,
-        "id" | "title" | "description" | "favourite"
+        "id" | "title" | "description" | "isFavourite"
       > & {
           author: { __typename?: "Author" } & Pick<Types.Author, "id" | "name">;
           cover: { __typename?: "Image" } & Pick<Types.Image, "url">;
@@ -35,7 +35,7 @@ export const GetBookDocument = gql`
         id
         title
         description
-        favourite
+        isFavourite
         author {
           id
           name

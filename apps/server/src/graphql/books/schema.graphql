@@ -3,7 +3,6 @@ type Book implements Resource & Timestampable {
   title: String!
   description: String!
   cover: Image!
-  favourite: Boolean!
   copies: [BookCopy!]!
   isFavourite: Boolean
   createdAt: ISODateString!
@@ -55,7 +54,7 @@ extend type Mutation {
   # TODO: Create separate mutations: addBookToFavourities, removeBookFromFavourities
   updateBookFavourite(
     id: ExternalID!
-    favourite: Boolean!
+    isFavourite: Boolean!
   ): UpdateBookFavouriteResult! @requireAuthorization
 
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization

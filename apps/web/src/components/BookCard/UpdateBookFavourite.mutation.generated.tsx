@@ -4,21 +4,21 @@ import { gql } from "@apollo/client";
 import * as Apollo from "@apollo/client";
 export type UpdateBookFavouriteMutationVariables = Types.Exact<{
   id: Types.Scalars["ExternalID"];
-  favourite: Types.Scalars["Boolean"];
+  isFavourite: Types.Scalars["Boolean"];
 }>;
 
 export type UpdateBookFavouriteMutation = { __typename?: "Mutation" } & {
   updateBookFavourite:
-    | ({ __typename?: "Book" } & Pick<Types.Book, "id" | "favourite">)
+    | ({ __typename?: "Book" } & Pick<Types.Book, "id" | "isFavourite">)
     | ({ __typename?: "MutationError" } & Pick<Types.MutationError, "message">);
 };
 
 export const UpdateBookFavouriteDocument = gql`
-  mutation UpdateBookFavourite($id: ExternalID!, $favourite: Boolean!) {
-    updateBookFavourite(id: $id, favourite: $favourite) {
+  mutation UpdateBookFavourite($id: ExternalID!, $isFavourite: Boolean!) {
+    updateBookFavourite(id: $id, isFavourite: $isFavourite) {
       ... on Book {
         id
-        favourite
+        isFavourite
       }
       ... on MutationError {
         message
@@ -45,7 +45,7 @@ export type UpdateBookFavouriteMutationFn = Apollo.MutationFunction<
  * const [updateBookFavouriteMutation, { data, loading, error }] = useUpdateBookFavouriteMutation({
  *   variables: {
  *      id: // value for 'id'
- *      favourite: // value for 'favourite'
+ *      isFavourite: // value for 'isFavourite'
  *   },
  * });
  */

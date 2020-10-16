@@ -24,7 +24,7 @@ const mocks = [
       data: {
         updateBookFavourite: {
           id: 1,
-          favourite: true
+          isFavourite: true
         }
       }
     }
@@ -35,7 +35,7 @@ export const Basic = () => {
   const book = createBook({
     id: "1",
     title: text("Title", "Blood of Elves"),
-    favourite: false,
+    isFavourite: false,
     author: createAuthor({
       name: text("Author Name", "Andrzej Sapkowski")
     })

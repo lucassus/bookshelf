@@ -83,7 +83,7 @@ const resolvers: Resolvers = {
     // TODO: Refactor this resolver
     updateBookFavourite: async (
       rootValue,
-      { id, favourite },
+      { id, isFavourite },
       { container, currentUser, connection }
     ) => {
       if (!currentUser) {
@@ -95,7 +95,7 @@ const resolvers: Resolvers = {
       try {
         const favouriteBooks = await currentUser.favouriteBooks;
 
-        if (favourite) {
+        if (isFavourite) {
           currentUser.favouriteBooks = Promise.resolve([
             ...favouriteBooks,
             book

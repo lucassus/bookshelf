@@ -642,7 +642,7 @@
                 "defaultValue": null
               },
               {
-                "name": "favourite",
+                "name": "isFavourite",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -1205,22 +1205,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Image",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "favourite",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
                 "ofType": null
               }
             },
