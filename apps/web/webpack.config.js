@@ -3,10 +3,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const PnpWebpackPlugin = require("pnp-webpack-plugin");
 
-module.exports = {
+const config = {
   mode: "none",
   entry: ["./src/index.tsx"],
-  devtool: "inline-source-map",
   output: {
     chunkFilename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
@@ -70,4 +69,12 @@ module.exports = {
       "/voyager": "http://localhost:4000"
     }
   }
+};
+
+module.exports = (env, argv) => {
+  if (argv.mode === "development") {
+    config.devtool = "inline-source-map";
+  }
+
+  return config;
 };
