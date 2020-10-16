@@ -3,9 +3,9 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { createAuthor, createBook } from "../../testUtils/factories";
+import { AddBookToFavouritesDocument } from "../FavouriteBookButton/AddBookToFavourites.generated";
 import { BookCard } from "./BookCard";
-import { UpdateBookFavouriteDocument } from "./UpdateBookFavourite.mutation.generated";
+import { BookCardFragment } from "./BookCard.fragment.generated";
 
 export default {
   title: "BookCard",
@@ -17,12 +17,13 @@ export default {
 const mocks = [
   {
     request: {
-      query: UpdateBookFavouriteDocument,
-      variables: { id: 1, favourite: true }
+      query: AddBookToFavouritesDocument,
+      variables: { id: 1 }
     },
     result: {
       data: {
         updateBookFavourite: {
+          __typename: "Book",
           id: 1,
           isFavourite: true
         }
@@ -32,14 +33,20 @@ const mocks = [
 ];
 
 export const Basic = () => {
-  const book = createBook({
+  const book: BookCardFragment = {
+    __typename: "Book",
     id: "1",
     title: text("Title", "Blood of Elves"),
     isFavourite: false,
-    author: createAuthor({
+    author: {
+      id: "1",
       name: text("Author Name", "Andrzej Sapkowski")
-    })
-  });
+    },
+    cover: {
+      url:
+        "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
+    }
+  };
 
   return (
     <MemoryRouter>

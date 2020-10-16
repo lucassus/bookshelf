@@ -1,0 +1,5 @@
+fragment FavouriteBookButton on Book {
+  __typename
+  id
+  isFavourite
+}

@@ -1,12 +1,12 @@
 import React, { MouseEventHandler } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
-import { BookCardFragment } from "../BookCard/BookCard.fragment.generated";
 import { useAddBookToFavouritesMutation } from "./AddBookToFavourites.generated";
+import { FavouriteBookButtonFragment } from "./FavouriteBookButton.fragment.generated";
 import { useRemoveBookFromFavouritesMutation } from "./RemoveBookFromFavourites.generated";
 
 type Props = {
-  book: BookCardFragment;
+  book: FavouriteBookButtonFragment;
 };
 
 export const FavouriteBookButton: React.FunctionComponent<Props> = ({
