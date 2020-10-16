@@ -116,7 +116,7 @@ const resolvers: Resolvers = {
         currentUser.favouriteBooks = Promise.resolve(
           favouriteBooks.filter((favouriteBook) => favouriteBook.id !== book.id)
         );
-        await connection.manager.save(book);
+        await connection.manager.save(currentUser);
 
         return book;
       } catch (error) {

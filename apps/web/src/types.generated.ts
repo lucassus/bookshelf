@@ -79,7 +79,6 @@ export type Mutation = {
   /** Authenticates a user with the given credentials. */
   login: LoginResult;
   logout: Scalars["Boolean"];
-  updateBookFavourite: UpdateBookFavouriteResult;
   addBookToFavourites: BookResult;
   removeBookFromFavourites: BookResult;
   borrowBookCopy: BorrowBookCopyResult;
@@ -99,11 +98,6 @@ export type MutationUpdateProfileArgs = {
 
 export type MutationLoginArgs = {
   input: LoginInput;
-};
-
-export type MutationUpdateBookFavouriteArgs = {
-  id: Scalars["ExternalID"];
-  isFavourite: Scalars["Boolean"];
 };
 
 export type MutationAddBookToFavouritesArgs = {

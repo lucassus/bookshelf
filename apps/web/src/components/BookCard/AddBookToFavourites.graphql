@@ -1,0 +1,12 @@
+mutation AddBookToFavourites($id: ExternalID!) {
+  addBookToFavourites(id: $id) {
+    ... on Book {
+      id
+      isFavourite
+    }
+
+    ... on ResourceNotFoundError {
+      message
+    }
+  }
+}

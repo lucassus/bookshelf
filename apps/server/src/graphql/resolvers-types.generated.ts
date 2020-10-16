@@ -97,7 +97,6 @@ export type Mutation = {
   /** Authenticates a user with the given credentials. */
   readonly login: LoginResult;
   readonly logout: Scalars["Boolean"];
-  readonly updateBookFavourite: UpdateBookFavouriteResult;
   readonly addBookToFavourites: BookResult;
   readonly removeBookFromFavourites: BookResult;
   readonly borrowBookCopy: BorrowBookCopyResult;
@@ -117,11 +116,6 @@ export type MutationUpdateProfileArgs = {
 
 export type MutationLoginArgs = {
   input: LoginInput;
-};
-
-export type MutationUpdateBookFavouriteArgs = {
-  id: Scalars["ExternalID"];
-  isFavourite: Scalars["Boolean"];
 };
 
 export type MutationAddBookToFavouritesArgs = {
@@ -781,12 +775,6 @@ export type MutationResolvers<
     RequireFields<MutationLoginArgs, "input">
   >;
   logout?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  updateBookFavourite?: Resolver<
-    ResolversTypes["UpdateBookFavouriteResult"],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateBookFavouriteArgs, "id" | "isFavourite">
-  >;
   addBookToFavourites?: Resolver<
     ResolversTypes["BookResult"],
     ParentType,

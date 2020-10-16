@@ -2,16 +2,21 @@ import React, { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
 
 import { StarIconButton } from "../StarIconButton";
+import { useAddBookToFavouritesMutation } from "./AddBookToFavourites.generated";
 import { BookCardFragment } from "./BookCard.fragment.generated";
 import styles from "./BookCard.scss";
-import { useUpdateBookFavouriteMutation } from "./UpdateBookFavourite.mutation.generated";
+import { useRemoveBookFromFavouritesMutation } from "./RemoveBookFromFavourites.generated";
 
 type Props = {
   book: BookCardFragment;
 };
 
+// TODO: Update the db diagram
+// TODO: Write e2e test
+// TODO: Refactor
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  const [updateFavourite] = useUpdateBookFavouriteMutation();
+  const [addToFavourites] = useAddBookToFavouritesMutation();
+  const [removeFromFavourites] = useRemoveBookFromFavouritesMutation();
 
   // TODO: Move this logic to the button
   // TODO: Display only when a user is logged in
@@ -19,16 +24,29 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
     event.stopPropagation();
 
     const { id } = book;
-    const isFavourite = !book.isFavourite;
 
-    return updateFavourite({
-      variables: { id, isFavourite },
+    if (!book.isFavourite) {
+      return addToFavourites({
+        variables: { id },
+        optimisticResponse: {
+          __typename: "Mutation",
+          addBookToFavourites: {
+            __typename: "Book",
+            id,
+            isFavourite: true
+          }
+        }
+      });
+    }
+
+    return removeFromFavourites({
+      variables: { id },
       optimisticResponse: {
         __typename: "Mutation",
-        updateBookFavourite: {
+        removeBookFromFavourites: {
           __typename: "Book",
           id,
-          isFavourite
+          isFavourite: false
         }
       }
     });

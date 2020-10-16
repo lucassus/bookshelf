@@ -41,10 +41,6 @@ type Mutation {
   """
   login(input: LoginInput!): LoginResult!
   logout: Boolean!
-  updateBookFavourite(
-    id: ExternalID!
-    isFavourite: Boolean!
-  ): UpdateBookFavouriteResult! @requireAuthorization
   addBookToFavourites(id: ExternalID!): BookResult! @requireAuthorization
   removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization

@@ -51,11 +51,6 @@ extend type Query {
 }
 
 extend type Mutation {
-  updateBookFavourite(
-    id: ExternalID!
-    isFavourite: Boolean!
-  ): UpdateBookFavouriteResult! @requireAuthorization
-
   addBookToFavourites(id: ExternalID!): BookResult! @requireAuthorization
   removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
 
