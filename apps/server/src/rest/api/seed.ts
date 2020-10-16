@@ -10,13 +10,12 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   const connection = getConnection();
 
-  const entities = [Book, BookCopy, Author, User, Avatar];
-  await connection.query(
-    `TRUNCATE TABLE ${entities
-      .map((entity) => connection.getMetadata(entity).tableName)
-      .join(", ")};`
+  const tables = [Book, BookCopy, Author, User, Avatar].map(
+    (entity) => connection.getMetadata(entity).tableName
   );
+  tables.push("users_favourite_books");
 
+  await connection.query(`TRUNCATE TABLE ${tables.join(", ")};`);
   await loadFixtures();
 
   res.sendStatus(HttpStatusCodes.OK);
