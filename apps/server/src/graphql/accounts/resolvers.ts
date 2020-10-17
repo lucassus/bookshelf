@@ -42,11 +42,11 @@ const resolvers: Resolvers = {
 
       const emailNotTaken = await service.checkUniquenessOfEmail(
         input.email,
-        currentUser!
+        currentUser
       );
 
       if (emailNotTaken) {
-        const updatedCurrentUser = await service.update(currentUser!, input);
+        const updatedCurrentUser = await service.update(currentUser, input);
         sendAuthCookie(res, updatedCurrentUser);
 
         return Object.assign(updatedCurrentUser, {

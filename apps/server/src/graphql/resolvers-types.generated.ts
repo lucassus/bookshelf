@@ -10,7 +10,7 @@ import {
   BookCopy as BookCopyEntity,
   User as UserEntity
 } from "../database/entity";
-import { Context } from "./context";
+import { Context, AuthenticatedContext } from "./context";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
@@ -760,7 +760,7 @@ export type MutationResolvers<
   updateProfile?: Resolver<
     ResolversTypes["UpdateProfileResult"],
     ParentType,
-    ContextType,
+    AuthenticatedContext,
     RequireFields<MutationUpdateProfileArgs, "input">
   >;
   login?: Resolver<
@@ -779,13 +779,13 @@ export type MutationResolvers<
   borrowBookCopy?: Resolver<
     ResolversTypes["BorrowBookCopyResult"],
     ParentType,
-    ContextType,
+    AuthenticatedContext,
     RequireFields<MutationBorrowBookCopyArgs, "id">
   >;
   returnBookCopy?: Resolver<
     ResolversTypes["ReturnBookCopyResult"],
     ParentType,
-    ContextType,
+    AuthenticatedContext,
     RequireFields<MutationReturnBookCopyArgs, "id">
   >;
   createUser?: Resolver<

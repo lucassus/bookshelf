@@ -93,7 +93,7 @@ const resolvers: Resolvers = {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
-          .borrow(id, currentUser!.id);
+          .borrow(id, currentUser.id);
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {
@@ -108,7 +108,7 @@ const resolvers: Resolvers = {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
-          .return(id, currentUser!.id);
+          .return(id, currentUser.id);
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {

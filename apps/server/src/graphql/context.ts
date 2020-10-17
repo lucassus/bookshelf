@@ -20,13 +20,17 @@ export interface Context {
   currentUser?: User;
 }
 
+export interface AuthenticatedContext extends Context {
+  currentUser: User;
+}
+
 export const buildContext = async ({
   req,
   res
 }: {
   req: express.Request;
   res: express.Response;
-}): Promise<Context> => {
+}): Promise<Context | AuthenticatedContext> => {
   const authToken = getAuthTokenFromRequest(req);
 
   const currentUser = authToken
