@@ -1,8 +1,9 @@
 import React, { MouseEventHandler } from "react";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 import { useAddBookToFavouritesMutation } from "./AddBookToFavourites.generated";
 import { FavouriteBookButtonFragment } from "./FavouriteBookButton.fragment.generated";
+import styles from "./FavouriteBookButton.scss";
 import { useRemoveBookFromFavouritesMutation } from "./RemoveBookFromFavourites.generated";
 
 type Props = {
@@ -48,8 +49,9 @@ export const FavouriteBookButton: React.FunctionComponent<Props> = ({
       onClick={isFavourite ? handleRemoveFromFavourites : handleAddToFavourites}
       aria-label={isFavourite ? "Remove from favourites" : "Add to favourites"}
       data-testid="favourite-book-button"
+      className={styles.container}
     >
-      {isFavourite ? <FaStar /> : <FaRegStar />}
+      {isFavourite ? <FaHeart /> : <FaRegHeart />}
     </button>
   );
 };
