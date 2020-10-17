@@ -81,7 +81,6 @@ const resolvers: Resolvers = {
   },
 
   Mutation: {
-    // TODO: `AuthenticatedContext`?
     addBookToFavourites: async (
       rootValue,
       { id },
