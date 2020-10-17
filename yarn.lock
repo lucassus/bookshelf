@@ -1797,7 +1797,7 @@ __metadata:
     supertest: 5.0.0
     ts-jest: 26.4.1
     ts-node: 9.0.0
-    ts-node-dev: 1.0.0
+    ts-node-dev: 1.0.0-pre.63
     typedi: 0.8.0
     typeorm: 0.2.28
     typeorm-typedi-extensions: 0.2.3
@@ -21997,6 +21997,34 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"ts-node-dev@npm:1.0.0-pre.63":
+  version: 1.0.0-pre.63
+  resolution: "ts-node-dev@npm:1.0.0-pre.63"
+  dependencies:
+    chokidar: ^3.4.0
+    dateformat: ~1.0.4-1.2.3
+    dynamic-dedupe: ^0.3.0
+    minimist: ^1.2.5
+    mkdirp: ^1.0.4
+    resolve: ^1.0.0
+    rimraf: ^2.6.1
+    source-map-support: ^0.5.12
+    tree-kill: ^1.2.2
+    ts-node: ^8.10.2
+    tsconfig: ^7.0.0
+  peerDependencies:
+    node-notifier: "*"
+    typescript: "*"
+  peerDependenciesMeta:
+    node-notifier:
+      optional: true
+  bin:
+    ts-node-dev: lib/bin.js
+    tsnd: lib/bin.js
+  checksum: 532243e2de5ba0b46de79b1e276602e4abcd42a1f7a245346349fdddb5764faadf8afb848e9d27569822271d43a3820c9de73e5ba7b07a49716d9da110bc9207
+  languageName: node
+  linkType: hard
+
 "ts-node@npm:9.0.0, ts-node@npm:^9.0.0":
   version: 9.0.0
   resolution: "ts-node@npm:9.0.0"
@@ -22014,6 +22042,26 @@ fsevents@^1.2.7:
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
   checksum: 49d2ab087fc4b93f0a292e426ea6d242a80d1a4809ac008758bb0170aea1a85cd4182792c1d70889285fe5328cd8bd1ffb1e5108d1c4f31c39dbe9151ea4cabe
+  languageName: node
+  linkType: hard
+
+"ts-node@npm:^8.10.2":
+  version: 8.10.2
+  resolution: "ts-node@npm:8.10.2"
+  dependencies:
+    arg: ^4.1.0
+    diff: ^4.0.1
+    make-error: ^1.1.1
+    source-map-support: ^0.5.17
+    yn: 3.1.1
+  peerDependencies:
+    typescript: ">=2.7"
+  bin:
+    ts-node: dist/bin.js
+    ts-node-script: dist/bin-script.js
+    ts-node-transpile-only: dist/bin-transpile.js
+    ts-script: dist/bin-script-deprecated.js
+  checksum: cd6e023e073d65ea346cf4a5b70bfd1e7c7f342c967a23a83038fd3462067558a4dda4fc8b238e6709db69aca3847590a93b4c52ae001e23ed9fef3b4fecbc71
   languageName: node
   linkType: hard
 
