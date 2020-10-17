@@ -46,17 +46,6 @@ const resolvers: Resolvers = {
         : null
   },
 
-  BookResult: {
-    // TODO: Refactor it, inline ResourceNotFoundError. It will be more readable.
-    __resolveType: (maybeBook) => {
-      if (maybeBook instanceof Book) {
-        return "Book";
-      }
-
-      return "ResourceNotFoundError";
-    }
-  },
-
   Query: {
     booksCount: (rootValue, args, { container }) =>
       container.get(BooksService).count(),
@@ -69,7 +58,10 @@ const resolvers: Resolvers = {
         return await container.get(BooksService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: "Could not find Book" };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find Book"
+          };
         }
 
         throw error;
@@ -93,7 +85,10 @@ const resolvers: Resolvers = {
         return book;
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: "Could not find Book" };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find Book"
+          };
         }
 
         throw error;
@@ -114,7 +109,10 @@ const resolvers: Resolvers = {
         return book;
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: "Could not find Book" };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find Book"
+          };
         }
 
         throw error;
