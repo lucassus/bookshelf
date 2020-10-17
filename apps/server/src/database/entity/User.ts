@@ -51,7 +51,11 @@ export class User {
   borrowedBookCopies: Promise<BookCopy[]>;
 
   @ManyToMany((type) => Book)
-  @JoinTable({ name: "users_favourite_books" })
+  @JoinTable({
+    name: "users_favourite_books",
+    joinColumn: { name: "user_id" },
+    inverseJoinColumn: { name: "book_id" }
+  })
   favouriteBooks: Promise<Book[]>;
 
   @CreateDateColumn({ name: "created_at" })
