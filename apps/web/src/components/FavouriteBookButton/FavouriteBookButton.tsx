@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 import { useAddBookToFavouritesMutation } from "./AddBookToFavourites.generated";
@@ -18,7 +18,7 @@ export const FavouriteBookButton: React.FunctionComponent<Props> = ({
 
   const { id, isFavourite } = book;
 
-  const handleAddToFavourites: MouseEventHandler = () =>
+  const handleAddToFavourites = () =>
     addToFavourites({
       variables: { id },
       optimisticResponse: {
