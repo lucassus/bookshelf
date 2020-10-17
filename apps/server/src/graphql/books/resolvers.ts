@@ -83,15 +83,11 @@ const resolvers: Resolvers = {
     addBookToFavourites: async (
       rootValue,
       { id },
-      { container, currentUser, connection }
+      { container, currentUser }
     ) => {
       try {
         const book = await container.get(BooksService).findByIdOrFail(id);
-
-        // TODO: Move this logic to the service
-        const favouriteBooks = await currentUser.favouriteBooks;
-        currentUser.favouriteBooks = Promise.resolve([...favouriteBooks, book]);
-        await connection.manager.save(book);
+        await container.get(BooksService).addToFavourite(book, currentUser);
 
         return book;
       } catch (error) {
@@ -106,17 +102,13 @@ const resolvers: Resolvers = {
     removeBookFromFavourites: async (
       rootValue,
       { id },
-      { container, currentUser, connection }
+      { container, currentUser }
     ) => {
       try {
         const book = await container.get(BooksService).findByIdOrFail(id);
-
-        // TODO: Move this logic to the service
-        const favouriteBooks = await currentUser.favouriteBooks;
-        currentUser.favouriteBooks = Promise.resolve(
-          favouriteBooks.filter((favouriteBook) => favouriteBook.id !== book.id)
-        );
-        await connection.manager.save(currentUser);
+        await container
+          .get(BooksService)
+          .removeFromFavourites(book, currentUser);
 
         return book;
       } catch (error) {

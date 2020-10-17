@@ -1,13 +1,16 @@
 import { Service } from "typedi";
-import { Repository } from "typeorm";
-import { InjectRepository } from "typeorm-typedi-extensions";
+import { EntityManager, Repository } from "typeorm";
+import { InjectManager, InjectRepository } from "typeorm-typedi-extensions";
 
-import { Book } from "../../../database/entity";
+import { Book, User } from "../../../database/entity";
 
 @Service()
 export class BooksService {
   @InjectRepository(Book)
   private repository: Repository<Book>;
+
+  @InjectManager()
+  private manager: EntityManager;
 
   count() {
     return this.repository.count();
@@ -29,5 +32,19 @@ export class BooksService {
       .getOne();
 
     return book || null;
+  }
+
+  async addToFavourite(book: Book, user: User) {
+    const favouriteBooks = await user.favouriteBooks;
+    user.favouriteBooks = Promise.resolve([...favouriteBooks, book]);
+    await this.manager.save(user);
+  }
+
+  async removeFromFavourites(book: Book, user: User) {
+    const favouriteBooks = await user.favouriteBooks;
+    user.favouriteBooks = Promise.resolve(
+      favouriteBooks.filter((favouriteBook) => favouriteBook.id !== book.id)
+    );
+    await this.manager.save(user);
   }
 }
