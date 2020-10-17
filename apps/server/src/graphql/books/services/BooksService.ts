@@ -12,15 +12,15 @@ export class BooksService {
   @InjectManager()
   private manager: EntityManager;
 
-  count() {
+  count(): Promise<number> {
     return this.repository.count();
   }
 
-  paginate(take: number, skip: number) {
+  paginate(take: number, skip: number): Promise<Book[]> {
     return this.repository.find({ order: { title: "ASC" }, take, skip });
   }
 
-  findByIdOrFail(id: string | number) {
+  findByIdOrFail(id: string | number): Promise<Book> {
     return this.repository.findOneOrFail(id);
   }
 
@@ -34,17 +34,23 @@ export class BooksService {
     return book || null;
   }
 
-  async addToFavourite(book: Book, user: User) {
+  async addToFavourite(book: Book, user: User): Promise<User> {
     const favouriteBooks = await user.favouriteBooks;
-    user.favouriteBooks = Promise.resolve([...favouriteBooks, book]);
-    await this.manager.save(user);
+
+    const updatedUser = user;
+    updatedUser.favouriteBooks = Promise.resolve([...favouriteBooks, book]);
+
+    return this.manager.save(updatedUser);
   }
 
-  async removeFromFavourites(book: Book, user: User) {
+  async removeFromFavourites(book: Book, user: User): Promise<User> {
     const favouriteBooks = await user.favouriteBooks;
-    user.favouriteBooks = Promise.resolve(
+
+    const updatedUser = user;
+    updatedUser.favouriteBooks = Promise.resolve(
       favouriteBooks.filter((favouriteBook) => favouriteBook.id !== book.id)
     );
-    await this.manager.save(user);
+
+    return this.manager.save(updatedUser);
   }
 }
