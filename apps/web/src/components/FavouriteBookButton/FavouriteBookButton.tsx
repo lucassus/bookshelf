@@ -47,6 +47,7 @@ export const FavouriteBookButton: React.FunctionComponent<Props> = ({
     <button
       onClick={isFavourite ? handleRemoveFromFavourites : handleAddToFavourites}
       aria-label={isFavourite ? "Remove from favourites" : "Add to favourites"}
+      data-testid="favourite-book-button"
     >
       {isFavourite ? <FaStar /> : <FaRegStar />}
     </button>

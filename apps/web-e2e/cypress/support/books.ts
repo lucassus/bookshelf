@@ -10,6 +10,15 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add(
+  "findFavouriteBookButton",
+  { prevSubject: ["optional", "element"] },
+  () => {
+    Cypress.log({ name: "findFavouriteBookButton" });
+    return cy.findAllByTestId(`favourite-book-button`);
+  }
+);
+
+Cypress.Commands.add(
   "findBookCopyCards",
   { prevSubject: ["optional", "element"] },
   (subject, title) => {
@@ -48,6 +57,7 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Chainable {
       findBookCard: (name: string) => Chainable<JQuery>;
+      findFavouriteBookButton: () => Chainable<JQuery>;
       findBookCopyCards: (name: string) => Chainable<JQuery>;
       findBookCopyOwnerAvatar: (name: string) => Chainable<JQuery>;
       findBookCopyBorrowerAvatar: (name?: string) => Chainable<JQuery>;
