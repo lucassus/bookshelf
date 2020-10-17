@@ -67,8 +67,10 @@ const resolvers: Resolvers = {
       }
     },
 
-    randomBook: (rootValue, args, { container }) =>
-      container.get(BooksService).findRandom()
+    randomBook: async (rootValue, args, { container }) => {
+      const book = await container.get(BooksService).findRandom();
+      return book ?? null;
+    }
   },
 
   Mutation: {

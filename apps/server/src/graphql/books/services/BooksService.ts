@@ -24,14 +24,12 @@ export class BooksService {
     return this.repository.findOneOrFail(id);
   }
 
-  async findRandom(): Promise<Book | null> {
-    const book = await this.repository
+  findRandom(): Promise<Book | undefined> {
+    return this.repository
       .createQueryBuilder()
       .orderBy("RANDOM()")
       .limit(1)
       .getOne();
-
-    return book || null;
   }
 
   async addToFavourite(book: Book, user: User): Promise<User> {
