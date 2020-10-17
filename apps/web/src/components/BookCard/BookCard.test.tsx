@@ -33,36 +33,4 @@ describe("<BookCard />", () => {
 
     expect(screen.getByText("Andrzej Sapkowski")).toBeInTheDocument();
   });
-
-  // TODO: Fix this test
-  // it("handles add to favourites", async () => {
-  //   // Given
-  //   let mutationCalled = false;
-  //   const mocks = [
-  //     {
-  //       request: {
-  //         query: UpdateBookFavouriteDocument,
-  //         variables: { id: "1", favourite: true }
-  //       },
-  //       result: () => {
-  //         mutationCalled = true;
-  //         return {};
-  //       }
-  //     }
-  //   ];
-  //
-  //   render(
-  //     <MemoryRouter>
-  //       <MockedProvider mocks={mocks}>
-  //         <BookCard book={book} />
-  //       </MockedProvider>
-  //     </MemoryRouter>
-  //   );
-  //
-  //   // When
-  //   fireEvent.click(screen.getByLabelText("Add to favourites"));
-  //
-  //   // Then
-  //   await waitFor(() => expect(mutationCalled).toBe(true));
-  // });
 });
