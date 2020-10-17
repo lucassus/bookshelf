@@ -1,8 +1,7 @@
 import { Author } from "../../database/entity";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Author: {
     __isTypeOf: (maybeAuthor) => {
       return maybeAuthor instanceof Author;

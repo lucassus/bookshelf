@@ -2,13 +2,12 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
 import { Book, BookCopy } from "../../database/entity";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Book: {
     __isTypeOf: (maybeBook) => maybeBook instanceof Book,
 
@@ -94,7 +93,7 @@ const resolvers: Resolvers<Context> = {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
-          .borrow(id, currentUser!.id);
+          .borrow(id, currentUser.id);
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {
@@ -109,7 +108,7 @@ const resolvers: Resolvers<Context> = {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
-          .return(id, currentUser!.id);
+          .return(id, currentUser.id);
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {

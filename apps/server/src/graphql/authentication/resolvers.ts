@@ -1,5 +1,4 @@
 import { clearAuthCookie } from "../../common/authentication";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { authenticateContext } from "./authenticateContext";
 import {
@@ -7,7 +6,7 @@ import {
   InvalidEmailOrPasswordError
 } from "./AuthenticationService";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Mutation: {
     login: async (rootValue, { input: { email, password } }, context) => {
       const service = context.container.get(AuthenticationService);

@@ -29,6 +29,11 @@ extensions:
           - typescript
           - typescript-resolvers
         config:
+          contextType: ./context#Context
+          fieldContextTypes:
+            - Mutation.updateProfile#./context#AuthenticatedContext
+            - Mutation.borrowBookCopy#./context#AuthenticatedContext
+            - Mutation.returnBookCopy#./context#AuthenticatedContext
           mappers:
             Author: ../database/entity#Author
             Avatar: ../database/entity#Avatar

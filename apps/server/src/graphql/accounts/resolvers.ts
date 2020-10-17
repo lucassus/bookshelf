@@ -1,10 +1,9 @@
 import { sendAuthCookie } from "../../common/authentication";
 import { authenticateContext } from "../authentication/authenticateContext";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Query: {
     currentUser: (rootValue, arg, { currentUser }) => currentUser ?? null
   },
@@ -43,11 +42,11 @@ const resolvers: Resolvers<Context> = {
 
       const emailNotTaken = await service.checkUniquenessOfEmail(
         input.email,
-        currentUser!
+        currentUser
       );
 
       if (emailNotTaken) {
-        const updatedCurrentUser = await service.update(currentUser!, input);
+        const updatedCurrentUser = await service.update(currentUser, input);
         sendAuthCookie(res, updatedCurrentUser);
 
         return Object.assign(updatedCurrentUser, {
