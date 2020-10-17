@@ -10,7 +10,6 @@ type Props = {
   book: BookCardFragment;
 };
 
-// TODO: Update the db diagram
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const currentUser = useCurrentUser();
 
