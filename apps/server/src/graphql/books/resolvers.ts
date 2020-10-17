@@ -24,7 +24,6 @@ const resolvers: Resolvers = {
         return null;
       }
 
-      // TODO: Optimize it
       const favouriteBooks = await currentUser.favouriteBooks;
       return favouriteBooks.some(
         (favouriteBook) => favouriteBook.id === book.id
