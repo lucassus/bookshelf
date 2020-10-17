@@ -50,7 +50,7 @@ export class User {
   @OneToMany(() => BookCopy, (bookCopy) => bookCopy.borrower)
   borrowedBookCopies: Promise<BookCopy[]>;
 
-  @ManyToMany((type) => Book)
+  @ManyToMany(() => Book)
   @JoinTable({
     name: "users_favourite_books",
     joinColumn: { name: "user_id" },
