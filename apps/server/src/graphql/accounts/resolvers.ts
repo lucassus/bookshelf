@@ -1,10 +1,9 @@
 import { sendAuthCookie } from "../../common/authentication";
 import { authenticateContext } from "../authentication/authenticateContext";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Query: {
     currentUser: (rootValue, arg, { currentUser }) => currentUser ?? null
   },

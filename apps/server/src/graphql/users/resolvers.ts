@@ -2,12 +2,11 @@ import { QueryFailedError } from "typeorm";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { User } from "../../database/entity";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { canSeeProtectedUserFields } from "./canSeeProtectedUserFields";
 import { UsersService } from "./UsersService";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Avatar: {
     image: ({ imagePath: path }, args, { assetsBaseUrl }) => ({
       path,

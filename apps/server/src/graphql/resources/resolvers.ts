@@ -3,10 +3,9 @@ import { GraphQLScalarType } from "graphql";
 import { toExternalId, toInternalId } from "../../common/secureId";
 import { Author, Book, User } from "../../database/entity";
 import { findAnythingOrFail } from "../../database/findAnythingOrFail";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 
-const resolvers: Resolvers<Context> = {
+const resolvers: Resolvers = {
   Query: {
     resources: (rootValue, args, { connection }) =>
       Promise.all([

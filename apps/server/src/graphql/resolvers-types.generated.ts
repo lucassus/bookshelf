@@ -10,6 +10,7 @@ import {
   BookCopy as BookCopyEntity,
   User as UserEntity
 } from "../database/entity";
+import { Context } from "./context";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
@@ -656,12 +657,12 @@ export type RequireAuthorizationDirectiveArgs = { role?: Maybe<Role> };
 export type RequireAuthorizationDirectiveResolver<
   Result,
   Parent,
-  ContextType = any,
+  ContextType = Context,
   Args = RequireAuthorizationDirectiveArgs
 > = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type RegistrationResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["RegistrationResult"] = ResolversParentTypes["RegistrationResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -672,7 +673,7 @@ export type RegistrationResultResolvers<
 };
 
 export type UpdateProfileResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["UpdateProfileResult"] = ResolversParentTypes["UpdateProfileResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -683,7 +684,7 @@ export type UpdateProfileResultResolvers<
 };
 
 export type QueryResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]
 > = {
   currentUser?: Resolver<
@@ -747,7 +748,7 @@ export type QueryResolvers<
 };
 
 export type MutationResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Mutation"] = ResolversParentTypes["Mutation"]
 > = {
   register?: Resolver<
@@ -808,7 +809,7 @@ export type MutationResolvers<
 };
 
 export type LoginSuccessResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["LoginSuccess"] = ResolversParentTypes["LoginSuccess"]
 > = {
   currentUser?: Resolver<
@@ -820,7 +821,7 @@ export type LoginSuccessResolvers<
 };
 
 export type LoginFailureResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["LoginFailure"] = ResolversParentTypes["LoginFailure"]
 > = {
   validationErrors?: Resolver<
@@ -832,7 +833,7 @@ export type LoginFailureResolvers<
 };
 
 export type LoginResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["LoginResult"] = ResolversParentTypes["LoginResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -843,7 +844,7 @@ export type LoginResultResolvers<
 };
 
 export type AuthorResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Author"] = ResolversParentTypes["Author"]
 > = {
   id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
@@ -869,7 +870,7 @@ export type AuthorResolvers<
 };
 
 export type BookResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Book"] = ResolversParentTypes["Book"]
 > = {
   author?: Resolver<ResolversTypes["Author"], ParentType, ContextType>;
@@ -897,7 +898,7 @@ export type BookResolvers<
 };
 
 export type AuthorResponseResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["AuthorResponse"] = ResolversParentTypes["AuthorResponse"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -908,7 +909,7 @@ export type AuthorResponseResolvers<
 };
 
 export type BookCopyResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["BookCopy"] = ResolversParentTypes["BookCopy"]
 > = {
   id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
@@ -934,7 +935,7 @@ export type BookCopyResolvers<
 };
 
 export type UserResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["User"] = ResolversParentTypes["User"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -964,7 +965,7 @@ export type UserResolvers<
 };
 
 export type ProtectedUserResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["ProtectedUser"] = ResolversParentTypes["ProtectedUser"]
 > = {
   borrowedBookCopies?: Resolver<
@@ -997,7 +998,7 @@ export type ProtectedUserResolvers<
 };
 
 export type UpdateBookFavouriteResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["UpdateBookFavouriteResult"] = ResolversParentTypes["UpdateBookFavouriteResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1008,7 +1009,7 @@ export type UpdateBookFavouriteResultResolvers<
 };
 
 export type BorrowBookCopyResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["BorrowBookCopyResult"] = ResolversParentTypes["BorrowBookCopyResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1019,7 +1020,7 @@ export type BorrowBookCopyResultResolvers<
 };
 
 export type ReturnBookCopyResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["ReturnBookCopyResult"] = ResolversParentTypes["ReturnBookCopyResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1030,7 +1031,7 @@ export type ReturnBookCopyResultResolvers<
 };
 
 export type BookResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["BookResult"] = ResolversParentTypes["BookResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1051,7 +1052,7 @@ export interface IsoDateStringScalarConfig
 }
 
 export type TimestampableResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Timestampable"] = ResolversParentTypes["Timestampable"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1072,7 +1073,7 @@ export type TimestampableResolvers<
 };
 
 export type ImageResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Image"] = ResolversParentTypes["Image"]
 > = {
   path?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
@@ -1081,7 +1082,7 @@ export type ImageResolvers<
 };
 
 export type ErrorResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Error"] = ResolversParentTypes["Error"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1096,7 +1097,7 @@ export type ErrorResolvers<
 };
 
 export type MutationErrorResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["MutationError"] = ResolversParentTypes["MutationError"]
 > = {
   message?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
@@ -1104,7 +1105,7 @@ export type MutationErrorResolvers<
 };
 
 export type ValidationErrorResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["ValidationError"] = ResolversParentTypes["ValidationError"]
 > = {
   path?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
@@ -1113,7 +1114,7 @@ export type ValidationErrorResolvers<
 };
 
 export type ValidationErrorsResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["ValidationErrors"] = ResolversParentTypes["ValidationErrors"]
 > = {
   errors?: Resolver<
@@ -1125,7 +1126,7 @@ export type ValidationErrorsResolvers<
 };
 
 export type MutationResponseResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["MutationResponse"] = ResolversParentTypes["MutationResponse"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1138,7 +1139,7 @@ export type MutationResponseResolvers<
 };
 
 export type ResourceResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Resource"] = ResolversParentTypes["Resource"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1150,7 +1151,7 @@ export type ResourceResolvers<
 };
 
 export type ResourceNotFoundErrorResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["ResourceNotFoundError"] = ResolversParentTypes["ResourceNotFoundError"]
 > = {
   message?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
@@ -1158,7 +1159,7 @@ export type ResourceNotFoundErrorResolvers<
 };
 
 export type AnythingResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Anything"] = ResolversParentTypes["Anything"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1169,7 +1170,7 @@ export type AnythingResolvers<
 };
 
 export type PublicUserResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["PublicUser"] = ResolversParentTypes["PublicUser"]
 > = {
   id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
@@ -1195,7 +1196,7 @@ export type PublicUserResolvers<
 };
 
 export type AvatarResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["Avatar"] = ResolversParentTypes["Avatar"]
 > = {
   image?: Resolver<ResolversTypes["Image"], ParentType, ContextType>;
@@ -1204,7 +1205,7 @@ export type AvatarResolvers<
 };
 
 export type FlaggedAvatarErrorResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["FlaggedAvatarError"] = ResolversParentTypes["FlaggedAvatarError"]
 > = {
   message?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
@@ -1212,7 +1213,7 @@ export type FlaggedAvatarErrorResolvers<
 };
 
 export type AvatarResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["AvatarResult"] = ResolversParentTypes["AvatarResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1223,7 +1224,7 @@ export type AvatarResultResolvers<
 };
 
 export type CreateUserResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["CreateUserResult"] = ResolversParentTypes["CreateUserResult"]
 > = {
   success?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
@@ -1233,7 +1234,7 @@ export type CreateUserResultResolvers<
 };
 
 export type DeleteUserResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["DeleteUserResult"] = ResolversParentTypes["DeleteUserResult"]
 > = {
   success?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
@@ -1242,7 +1243,7 @@ export type DeleteUserResultResolvers<
 };
 
 export type UserResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["UserResult"] = ResolversParentTypes["UserResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1253,7 +1254,7 @@ export type UserResultResolvers<
 };
 
 export type UpdateUserResultResolvers<
-  ContextType = any,
+  ContextType = Context,
   ParentType extends ResolversParentTypes["UpdateUserResult"] = ResolversParentTypes["UpdateUserResult"]
 > = {
   __resolveType?: TypeResolveFn<
@@ -1263,7 +1264,7 @@ export type UpdateUserResultResolvers<
   >;
 };
 
-export type Resolvers<ContextType = any> = {
+export type Resolvers<ContextType = Context> = {
   RegistrationResult?: RegistrationResultResolvers<ContextType>;
   UpdateProfileResult?: UpdateProfileResultResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
@@ -1307,8 +1308,8 @@ export type Resolvers<ContextType = any> = {
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
-export type IResolvers<ContextType = any> = Resolvers<ContextType>;
-export type DirectiveResolvers<ContextType = any> = {
+export type IResolvers<ContextType = Context> = Resolvers<ContextType>;
+export type DirectiveResolvers<ContextType = Context> = {
   requireAuthorization?: RequireAuthorizationDirectiveResolver<
     any,
     any,
@@ -1320,6 +1321,6 @@ export type DirectiveResolvers<ContextType = any> = {
  * @deprecated
  * Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
  */
-export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<
+export type IDirectiveResolvers<ContextType = Context> = DirectiveResolvers<
   ContextType
 >;

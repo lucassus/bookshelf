@@ -29,6 +29,7 @@ extensions:
           - typescript
           - typescript-resolvers
         config:
+          contextType: ./context#Context
           mappers:
             Author: ../database/entity#Author
             Avatar: ../database/entity#Avatar
