@@ -1,7 +1,10 @@
 fragment BookCard on Book {
   id
   title
-  favourite
+  isFavourite
+
+  ...FavouriteBookButton
+
   cover {
     url
   }

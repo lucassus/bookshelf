@@ -3,8 +3,8 @@ import * as Types from "../../types.generated";
 import {
   ResourceCard_Author_Fragment,
   ResourceCard_Book_Fragment,
-  ResourceCard_ProtectedUser_Fragment,
-  ResourceCard_PublicUser_Fragment
+  ResourceCard_PublicUser_Fragment,
+  ResourceCard_ProtectedUser_Fragment
 } from "./ResourceCard.fragment.generated";
 import { gql } from "@apollo/client";
 import { ResourceCardFragmentDoc } from "./ResourceCard.fragment.generated";
@@ -15,8 +15,8 @@ export type GetResourcesQuery = { __typename?: "Query" } & {
   resources: Array<
     | ({ __typename?: "Author" } & ResourceCard_Author_Fragment)
     | ({ __typename?: "Book" } & ResourceCard_Book_Fragment)
-    | ({ __typename?: "ProtectedUser" } & ResourceCard_ProtectedUser_Fragment)
     | ({ __typename?: "PublicUser" } & ResourceCard_PublicUser_Fragment)
+    | ({ __typename?: "ProtectedUser" } & ResourceCard_ProtectedUser_Fragment)
   >;
 };
 

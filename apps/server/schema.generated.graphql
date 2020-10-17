@@ -41,10 +41,8 @@ type Mutation {
   """
   login(input: LoginInput!): LoginResult!
   logout: Boolean!
-  updateBookFavourite(
-    id: ExternalID!
-    favourite: Boolean!
-  ): UpdateBookFavouriteResult!
+  addBookToFavourites(id: ExternalID!): BookResult! @requireAuthorization
+  removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
   returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
   createUser(input: CreateUserInput!): CreateUserResult!
@@ -84,8 +82,8 @@ type Book implements Resource & Timestampable {
   title: String!
   description: String!
   cover: Image!
-  favourite: Boolean!
   copies: [BookCopy!]!
+  isFavourite: Boolean
   createdAt: ISODateString!
   updatedAt: ISODateString!
 }
@@ -108,8 +106,19 @@ interface User {
   createdAt: ISODateString!
   updatedAt: ISODateString!
 }
+type PublicUser implements User & Resource & Timestampable {
+  ownedBookCopies: [BookCopy!]!
+  id: ExternalID!
+  name: String!
+  info: String!
+  avatar: AvatarResult!
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
 type ProtectedUser implements User & Resource & Timestampable {
+  ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
+  favouriteBooks: [Book!]!
   id: ExternalID!
   name: String!
   info: String!
@@ -118,7 +127,6 @@ type ProtectedUser implements User & Resource & Timestampable {
   updatedAt: ISODateString!
   email: String!
   isAdmin: Boolean!
-  ownedBookCopies: [BookCopy!]!
 }
 union UpdateBookFavouriteResult = Book | MutationError
 union BorrowBookCopyResult = BookCopy | MutationError
@@ -164,15 +172,6 @@ type ResourceNotFoundError implements Error {
   message: String!
 }
 union Anything = PublicUser | ProtectedUser | Author | Book
-type PublicUser implements User & Resource & Timestampable {
-  id: ExternalID!
-  name: String!
-  info: String!
-  avatar: AvatarResult!
-  createdAt: ISODateString!
-  updatedAt: ISODateString!
-  ownedBookCopies: [BookCopy!]!
-}
 type Avatar {
   image: Image!
   color: String!

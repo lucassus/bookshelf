@@ -17,7 +17,18 @@ const resolvers: Resolvers = {
     cover: ({ coverPath: path }, args, { assetsBaseUrl }) => ({
       path,
       url: assetsBaseUrl + path
-    })
+    }),
+
+    isFavourite: async (book, args, { currentUser }) => {
+      if (!currentUser) {
+        return null;
+      }
+
+      const favouriteBooks = await currentUser.favouriteBooks;
+      return favouriteBooks.some(
+        (favouriteBook) => favouriteBook.id === book.id
+      );
+    }
   },
 
   BookCopy: {
@@ -34,16 +45,6 @@ const resolvers: Resolvers = {
         : null
   },
 
-  BookResult: {
-    __resolveType: (maybeBook) => {
-      if (maybeBook instanceof Book) {
-        return "Book";
-      }
-
-      return "ResourceNotFoundError";
-    }
-  },
-
   Query: {
     booksCount: (rootValue, args, { container }) =>
       container.get(BooksService).count(),
@@ -56,36 +57,66 @@ const resolvers: Resolvers = {
         return await container.get(BooksService).findByIdOrFail(id);
       } catch (error) {
         if (error instanceof EntityNotFoundError) {
-          return { message: "Could not find Book" };
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find Book"
+          };
         }
 
         throw error;
       }
     },
 
-    randomBook: (rootValue, args, { container }) =>
-      container.get(BooksService).findRandom()
+    randomBook: async (rootValue, args, { container }) => {
+      const book = await container.get(BooksService).findRandom();
+      return book ?? null;
+    }
   },
 
   Mutation: {
-    updateBookFavourite: async (
+    addBookToFavourites: async (
       rootValue,
-      { id, favourite },
-      { container }
+      { id },
+      { container, currentUser }
     ) => {
-      const book = await container.get(BooksService).findByIdOrFail(id);
-
       try {
-        const updatedBook = await container
-          .get(BooksService)
-          .updateFavourite(book, favourite);
+        const book = await container.get(BooksService).findByIdOrFail(id);
+        await container.get(BooksService).addToFavourite(book, currentUser);
 
-        return Object.assign(updatedBook, { __typename: "Book" });
-      } catch {
-        return {
-          __typename: "MutationError",
-          message: "Something went wrong!"
-        };
+        return book;
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find Book"
+          };
+        }
+
+        throw error;
+      }
+    },
+
+    removeBookFromFavourites: async (
+      rootValue,
+      { id },
+      { container, currentUser }
+    ) => {
+      try {
+        const book = await container.get(BooksService).findByIdOrFail(id);
+        await container
+          .get(BooksService)
+          .removeFromFavourites(book, currentUser);
+
+        return book;
+      } catch (error) {
+        if (error instanceof EntityNotFoundError) {
+          return {
+            __typename: "ResourceNotFoundError",
+            message: "Could not find Book"
+          };
+        }
+
+        throw error;
       }
     },
 

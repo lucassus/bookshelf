@@ -32,7 +32,6 @@ describe("anything query", () => {
       id
       title
       description
-      favourite
     }
 
     fragment UserFragment on User {

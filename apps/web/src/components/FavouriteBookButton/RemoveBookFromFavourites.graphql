@@ -1,0 +1,11 @@
+mutation RemoveBookFromFavourites($id: ExternalID!) {
+  removeBookFromFavourites(id: $id) {
+    ... on Book {
+      ...FavouriteBookButton
+    }
+
+    ... on ResourceNotFoundError {
+      message
+    }
+  }
+}

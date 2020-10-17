@@ -18,8 +18,6 @@ type PublicUser implements User & Resource & Timestampable {
 
   createdAt: ISODateString!
   updatedAt: ISODateString!
-
-  ownedBookCopies: [BookCopy!]!
 }
 
 type ProtectedUser implements User & Resource & Timestampable {
@@ -34,8 +32,6 @@ type ProtectedUser implements User & Resource & Timestampable {
 
   email: String!
   isAdmin: Boolean!
-
-  ownedBookCopies: [BookCopy!]!
 }
 
 type Avatar {

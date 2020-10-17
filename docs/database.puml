@@ -66,4 +66,5 @@ BookCopy --> Book : book
 
 Book -> Author : author
 Author --> Book : books
+User --> Book : favouriteBooks
 @enduml

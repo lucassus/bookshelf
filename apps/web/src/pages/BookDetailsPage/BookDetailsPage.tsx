@@ -2,13 +2,16 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 
 import { BookCopiesList } from "../../components/BookCopiesList";
+import { useCurrentUser } from "../../components/CurrentUserProvider";
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { FavouriteBookButton } from "../../components/FavouriteBookButton";
 import { NotFoundPage } from "../NotFoundPage";
 import styles from "./BookDetailsPage.scss";
 import { useGetBookQuery } from "./GetBook.query.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
   const params = useParams();
+  const currentUser = useCurrentUser();
 
   const { loading, data, error } = useGetBookQuery({
     variables: { id: params.id }
@@ -47,6 +50,12 @@ export const BookDetailsPage: React.FunctionComponent = () => {
 
           <p>{book.description}</p>
         </div>
+
+        {currentUser && (
+          <div>
+            <FavouriteBookButton book={book} />
+          </div>
+        )}
       </div>
 
       {book.copies.length > 0 && (

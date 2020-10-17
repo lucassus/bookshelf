@@ -44,8 +44,8 @@ test("createBookCopy factory", async () => {
   });
 
   const owner = await bookCopy.owner;
-  expect(owner.name).toBe("Rita Lockman");
-  expect(owner.email).toBe("Christine_Bartell77@yahoo.com");
+  expect(owner.name).toBe("Everett Durgan");
+  expect(owner.email).toBe("Kenyatta96@yahoo.com");
 
   const book = await bookCopy.book;
   expect(book.title).toBe("Ubik");

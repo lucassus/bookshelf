@@ -7,7 +7,7 @@ Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Et",
+            "title": "Sit Et Corporis Laborum",
           },
           Object {
             "title": "Suscipit Animi Qui Impedit",
@@ -15,13 +15,13 @@ Object {
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Et",
+      "title": "Sit Et Corporis Laborum",
     },
     Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Et",
+            "title": "Sit Et Corporis Laborum",
           },
           Object {
             "title": "Suscipit Animi Qui Impedit",
@@ -57,18 +57,18 @@ Object {
     Object {
       "author": Object {
         "id": "My1BdXRob3I=",
-        "name": "Nichole Howe",
+        "name": "Katie Haag",
       },
       "id": "NC1Cb29r",
-      "title": "Quia Est Dolores",
+      "title": "Nobis Quia",
     },
     Object {
       "author": Object {
         "id": "Mi1BdXRob3I=",
-        "name": "Harry Beahan",
+        "name": "Mrs. Boyd Hilll",
       },
       "id": "My1Cb29r",
-      "title": "Velit Eum Sint",
+      "title": "Totam Quae Eos",
     },
   ],
   "booksCount": 4,

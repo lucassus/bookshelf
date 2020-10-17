@@ -2,8 +2,8 @@ import * as Types from "../../types.generated";
 
 import { BookCopyCardFragment } from "../../components/BookCopyCard/BookCopyCard.fragment.generated";
 import {
-  UserCard_ProtectedUser_Fragment,
-  UserCard_PublicUser_Fragment
+  UserCard_PublicUser_Fragment,
+  UserCard_ProtectedUser_Fragment
 } from "../../components/UserCard/UserCard.fragment.generated";
 import { gql } from "@apollo/client";
 import { BookCopyCardFragmentDoc } from "../../components/BookCopyCard/BookCopyCard.fragment.generated";

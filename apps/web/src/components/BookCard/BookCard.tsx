@@ -1,39 +1,20 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import { StarIconButton } from "../StarIconButton";
+import { useCurrentUser } from "../CurrentUserProvider";
+import { FavouriteBookButton } from "../FavouriteBookButton";
 import { BookCardFragment } from "./BookCard.fragment.generated";
 import styles from "./BookCard.scss";
-import { useUpdateBookFavouriteMutation } from "./UpdateBookFavourite.mutation.generated";
 
 type Props = {
   book: BookCardFragment;
 };
 
 export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
-  const [updateFavourite] = useUpdateBookFavouriteMutation();
-
-  const handleToggleFavourite: MouseEventHandler = (event) => {
-    event.stopPropagation();
-
-    const { id } = book;
-    const favourite = !book.favourite;
-
-    return updateFavourite({
-      variables: { id, favourite },
-      optimisticResponse: {
-        __typename: "Mutation",
-        updateBookFavourite: {
-          __typename: "Book",
-          id,
-          favourite
-        }
-      }
-    });
-  };
+  const currentUser = useCurrentUser();
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid={`book-card:${book.title}`}>
       <Link to={`/books/${book.id}`}>
         <img src={book.cover.url} alt="Book cover" />
       </Link>
@@ -48,14 +29,11 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
           <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
         </span>
 
-        <div className={styles.buttons}>
-          <StarIconButton
-            labelOn="Remove from favourites"
-            labelOff="Add to favourites"
-            toggled={book.favourite}
-            onToggle={handleToggleFavourite}
-          />
-        </div>
+        {currentUser && (
+          <div className={styles.buttons}>
+            <FavouriteBookButton book={book} />
+          </div>
+        )}
       </div>
     </div>
   );

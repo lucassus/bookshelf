@@ -79,7 +79,8 @@ export type Mutation = {
   /** Authenticates a user with the given credentials. */
   login: LoginResult;
   logout: Scalars["Boolean"];
-  updateBookFavourite: UpdateBookFavouriteResult;
+  addBookToFavourites: BookResult;
+  removeBookFromFavourites: BookResult;
   borrowBookCopy: BorrowBookCopyResult;
   returnBookCopy: ReturnBookCopyResult;
   createUser: CreateUserResult;
@@ -99,9 +100,12 @@ export type MutationLoginArgs = {
   input: LoginInput;
 };
 
-export type MutationUpdateBookFavouriteArgs = {
+export type MutationAddBookToFavouritesArgs = {
   id: Scalars["ExternalID"];
-  favourite: Scalars["Boolean"];
+};
+
+export type MutationRemoveBookFromFavouritesArgs = {
+  id: Scalars["ExternalID"];
 };
 
 export type MutationBorrowBookCopyArgs = {
@@ -166,8 +170,8 @@ export type Book = Resource &
     title: Scalars["String"];
     description: Scalars["String"];
     cover: Image;
-    favourite: Scalars["Boolean"];
     copies: Array<BookCopy>;
+    isFavourite?: Maybe<Scalars["Boolean"]>;
     createdAt: Scalars["ISODateString"];
     updatedAt: Scalars["ISODateString"];
   };
@@ -195,11 +199,26 @@ export type User = {
   updatedAt: Scalars["ISODateString"];
 };
 
+export type PublicUser = User &
+  Resource &
+  Timestampable & {
+    __typename?: "PublicUser";
+    ownedBookCopies: Array<BookCopy>;
+    id: Scalars["ExternalID"];
+    name: Scalars["String"];
+    info: Scalars["String"];
+    avatar: AvatarResult;
+    createdAt: Scalars["ISODateString"];
+    updatedAt: Scalars["ISODateString"];
+  };
+
 export type ProtectedUser = User &
   Resource &
   Timestampable & {
     __typename?: "ProtectedUser";
+    ownedBookCopies: Array<BookCopy>;
     borrowedBookCopies: Array<BookCopy>;
+    favouriteBooks: Array<Book>;
     id: Scalars["ExternalID"];
     name: Scalars["String"];
     info: Scalars["String"];
@@ -208,7 +227,6 @@ export type ProtectedUser = User &
     updatedAt: Scalars["ISODateString"];
     email: Scalars["String"];
     isAdmin: Scalars["Boolean"];
-    ownedBookCopies: Array<BookCopy>;
   };
 
 export type UpdateBookFavouriteResult = Book | MutationError;
@@ -267,19 +285,6 @@ export type ResourceNotFoundError = Error & {
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
-
-export type PublicUser = User &
-  Resource &
-  Timestampable & {
-    __typename?: "PublicUser";
-    id: Scalars["ExternalID"];
-    name: Scalars["String"];
-    info: Scalars["String"];
-    avatar: AvatarResult;
-    createdAt: Scalars["ISODateString"];
-    updatedAt: Scalars["ISODateString"];
-    ownedBookCopies: Array<BookCopy>;
-  };
 
 export type Avatar = {
   __typename?: "Avatar";

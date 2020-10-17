@@ -3,13 +3,12 @@ import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { createAuthor } from "../../testUtils/factories";
-import { Author } from "../../types.generated";
+import { AuthorCardFragment } from "../../components/AuthorCard/AuthorCard.fragment.generated";
 import { AuthorsPage } from "./AuthorsPage";
 import { GetAuthorsDocument } from "./GetAuthors.query.generated";
 
 export const GetAuthorsDocumentMock: MockedResponse<{
-  authors: Author[];
+  authors: AuthorCardFragment[];
 }> = {
   request: {
     query: GetAuthorsDocument
@@ -19,11 +18,21 @@ export const GetAuthorsDocumentMock: MockedResponse<{
       authors: [
         {
           __typename: "Author",
-          ...createAuthor({ id: "1", name: "J. K. Rowling" })
+          id: "1",
+          name: "J. K. Rowling",
+          photo: {
+            url:
+              "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
+          }
         },
         {
           __typename: "Author",
-          ...createAuthor({ id: "2", name: "Andrzej Sapkowski" })
+          id: "2",
+          name: "Andrzej Sapkowski",
+          photo: {
+            url:
+              "http://examples.devmastery.pl/assets/images/book-authors/sapkowski.jpg"
+          }
         }
       ]
     }

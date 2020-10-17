@@ -34,6 +34,8 @@ extensions:
             - Mutation.updateProfile#./context#AuthenticatedContext
             - Mutation.borrowBookCopy#./context#AuthenticatedContext
             - Mutation.returnBookCopy#./context#AuthenticatedContext
+            - Mutation.addBookToFavourites#./context#AuthenticatedContext
+            - Mutation.removeBookFromFavourites#./context#AuthenticatedContext
           mappers:
             Author: ../database/entity#Author
             Avatar: ../database/entity#Avatar

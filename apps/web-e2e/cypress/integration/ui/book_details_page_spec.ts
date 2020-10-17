@@ -37,8 +37,14 @@ describe("Book details page", () => {
       .should("exist");
   });
 
-  it("does now allow to borrow a book when a user is not logged in", () => {
-    cy.findByText("borrow").should("not.exist");
+  describe("when a user is not logged in", () => {
+    it("does now allow to borrow a book", () => {
+      cy.findByText("borrow").should("not.exist");
+    });
+
+    it("does not display favourite book button", () => {
+      cy.findFavouriteBookButton().should("not.exist");
+    });
   });
 
   describe("when a user is logged in", () => {
@@ -97,6 +103,30 @@ describe("Book details page", () => {
 
           cy.findByText("return").should("not.exist");
         });
+    });
+
+    it("allows to add book to favourites", () => {
+      cy.findFavouriteBookButton()
+        .should("exist")
+        .should("have.attr", "aria-label", "Remove from favourites")
+        .click()
+        .should("have.attr", "aria-label", "Add to favourites");
+
+      cy.visit("/");
+
+      cy.findBookCard("Dune").within(() => {
+        cy.findFavouriteBookButton()
+          .should("have.attr", "aria-label", "Add to favourites")
+          .click();
+
+        cy.get("img").click();
+      });
+
+      cy.findFavouriteBookButton().should(
+        "have.attr",
+        "aria-label",
+        "Remove from favourites"
+      );
     });
   });
 

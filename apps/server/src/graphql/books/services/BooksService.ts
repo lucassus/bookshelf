@@ -1,37 +1,54 @@
 import { Service } from "typedi";
-import { Repository } from "typeorm";
-import { InjectRepository } from "typeorm-typedi-extensions";
+import { EntityManager, Repository } from "typeorm";
+import { InjectManager, InjectRepository } from "typeorm-typedi-extensions";
 
-import { Book } from "../../../database/entity";
+import { Book, User } from "../../../database/entity";
 
 @Service()
 export class BooksService {
   @InjectRepository(Book)
   private repository: Repository<Book>;
 
-  count() {
+  @InjectManager()
+  private manager: EntityManager;
+
+  count(): Promise<number> {
     return this.repository.count();
   }
 
-  paginate(take: number, skip: number) {
+  paginate(take: number, skip: number): Promise<Book[]> {
     return this.repository.find({ order: { title: "ASC" }, take, skip });
   }
 
-  findByIdOrFail(id: string | number) {
+  findByIdOrFail(id: string | number): Promise<Book> {
     return this.repository.findOneOrFail(id);
   }
 
-  async findRandom(): Promise<Book | null> {
-    const book = await this.repository
+  findRandom(): Promise<Book | undefined> {
+    return this.repository
       .createQueryBuilder()
       .orderBy("RANDOM()")
       .limit(1)
       .getOne();
-
-    return book || null;
   }
 
-  async updateFavourite(book: Book, favourite: boolean): Promise<Book> {
-    return this.repository.save(this.repository.merge(book, { favourite }));
+  async addToFavourite(book: Book, user: User): Promise<User> {
+    const favouriteBooks = await user.favouriteBooks;
+
+    const updatedUser = user;
+    updatedUser.favouriteBooks = Promise.resolve([...favouriteBooks, book]);
+
+    return this.manager.save(updatedUser);
+  }
+
+  async removeFromFavourites(book: Book, user: User): Promise<User> {
+    const favouriteBooks = await user.favouriteBooks;
+
+    const updatedUser = user;
+    updatedUser.favouriteBooks = Promise.resolve(
+      favouriteBooks.filter((favouriteBook) => favouriteBook.id !== book.id)
+    );
+
+    return this.manager.save(updatedUser);
   }
 }
