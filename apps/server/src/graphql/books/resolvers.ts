@@ -47,6 +47,7 @@ const resolvers: Resolvers = {
   },
 
   BookResult: {
+    // TODO: Refactor it, inline ResourceNotFoundError. It will be more readable.
     __resolveType: (maybeBook) => {
       if (maybeBook instanceof Book) {
         return "Book";
@@ -80,6 +81,7 @@ const resolvers: Resolvers = {
   },
 
   Mutation: {
+    // TODO: `AuthenticatedContext`?
     addBookToFavourites: async (
       rootValue,
       { id },
