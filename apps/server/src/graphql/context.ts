@@ -1,4 +1,5 @@
 import express from "express";
+import { ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
@@ -24,15 +25,17 @@ export interface AuthenticatedContext extends Context {
   currentUser: User;
 }
 
-export const buildContext = async ({
+export const createContext = async ({
   req,
-  res
+  res,
+  connection
 }: {
   req: express.Request;
   res: express.Response;
+  connection?: ExecutionParams;
 }): Promise<Context | AuthenticatedContext> => {
-  // TODO: Fix ws authentication
-  const authToken = req && getAuthTokenFromRequest(req);
+  // TODO: Implement ws authentication
+  const authToken = connection ? undefined : getAuthTokenFromRequest(req);
 
   const currentUser = authToken
     ? await tradeAuthTokenForUser(authToken).catch(() => undefined)

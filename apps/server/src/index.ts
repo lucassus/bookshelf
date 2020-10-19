@@ -10,7 +10,7 @@ import { Connection, useContainer } from "typeorm";
 
 import { ENVIRONMENT, Environment, PORT } from "./config";
 import { createConnection } from "./database/createConnection";
-import { buildContext } from "./graphql/context";
+import { createContext } from "./graphql/context";
 import { rootSchema } from "./graphql/rootSchema";
 import { routes } from "./rest";
 
@@ -25,7 +25,7 @@ const startServer = async () => {
 
   const apolloServer = new ApolloServer({
     schema: rootSchema,
-    context: buildContext,
+    context: createContext,
     debug: ENVIRONMENT === Environment.development,
     introspection: true,
     playground: true,

@@ -9,7 +9,7 @@ import httpMocks from "node-mocks-http";
 import { generateAuthToken } from "../common/authentication";
 import { AUTH_COOKIE_NAME } from "../config";
 import { User } from "../database/entity";
-import { buildContext } from "../graphql/context";
+import { createContext } from "../graphql/context";
 import { rootSchema } from "../graphql/rootSchema";
 
 export function createTestClient({
@@ -30,7 +30,7 @@ export function createTestClient({
         };
       }
 
-      return buildContext({ req, res });
+      return createContext({ req, res });
     }
   };
 
