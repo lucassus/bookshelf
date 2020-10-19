@@ -1,0 +1,22 @@
+subscription BookCopyReturned {
+  bookCopyReturned {
+    id
+
+    book {
+      id
+      title
+    }
+
+    owner {
+      id
+      name
+    }
+
+    borrower {
+      id
+      name
+    }
+
+    borrowedAt
+  }
+}
