@@ -237,6 +237,12 @@ export type ReturnBookCopyResult = BookCopy | MutationError;
 
 export type BookResult = Book | ResourceNotFoundError;
 
+export type Subscription = {
+  __typename?: "Subscription";
+  bookCopyBorrowed: BookCopy;
+  bookCopyReturned: BookCopy;
+};
+
 export type Timestampable = {
   createdAt: Scalars["ISODateString"];
   updatedAt: Scalars["ISODateString"];

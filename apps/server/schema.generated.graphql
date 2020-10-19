@@ -1,6 +1,7 @@
 schema {
   query: Query
   mutation: Mutation
+  subscription: Subscription
 }
 input RegistrationInput {
   name: String!
@@ -132,6 +133,10 @@ union UpdateBookFavouriteResult = Book | MutationError
 union BorrowBookCopyResult = BookCopy | MutationError
 union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError
+type Subscription {
+  bookCopyBorrowed: BookCopy!
+  bookCopyReturned: BookCopy!
+}
 scalar ExternalID
 scalar ISODateString
 interface Timestampable {

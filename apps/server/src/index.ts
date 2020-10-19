@@ -2,6 +2,7 @@ import { ApolloServer } from "apollo-server-express";
 import cookieParser from "cookie-parser";
 import express from "express";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
+import http from "http";
 import path from "path";
 import "reflect-metadata";
 import { Container } from "typedi";
@@ -47,7 +48,10 @@ const startServer = async () => {
     res.sendFile(path.join(distDir, "index.html"));
   });
 
-  app.listen({ port: PORT });
+  // TODO: Refactor
+  const httpServer = http.createServer(app);
+  apolloServer.installSubscriptionHandlers(httpServer);
+  httpServer.listen(PORT);
 
   return apolloServer;
 };
@@ -56,6 +60,9 @@ startServer()
   .then((server) => {
     console.log(
       `🚀 GraphQL server ready at http://localhost:${PORT}${server.graphqlPath}`
+    );
+    console.log(
+      `🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`
     );
   })
   .catch((error) => {

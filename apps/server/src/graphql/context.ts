@@ -31,7 +31,8 @@ export const buildContext = async ({
   req: express.Request;
   res: express.Response;
 }): Promise<Context | AuthenticatedContext> => {
-  const authToken = getAuthTokenFromRequest(req);
+  // TODO: Fix ws authentication
+  const authToken = req && getAuthTokenFromRequest(req);
 
   const currentUser = authToken
     ? await tradeAuthTokenForUser(authToken).catch(() => undefined)

@@ -255,6 +255,12 @@ export type ReturnBookCopyResult = BookCopy | MutationError;
 
 export type BookResult = Book | ResourceNotFoundError;
 
+export type Subscription = {
+  readonly __typename?: "Subscription";
+  readonly bookCopyBorrowed: BookCopy;
+  readonly bookCopyReturned: BookCopy;
+};
+
 export type Timestampable = {
   readonly createdAt: Scalars["ISODateString"];
   readonly updatedAt: Scalars["ISODateString"];
@@ -506,6 +512,7 @@ export type ResolversTypes = {
     | ResolversTypes["BookCopy"]
     | ResolversTypes["MutationError"];
   BookResult: ResolversTypes["Book"] | ResolversTypes["ResourceNotFoundError"];
+  Subscription: ResolverTypeWrapper<{}>;
   ExternalID: ResolverTypeWrapper<Scalars["ExternalID"]>;
   ISODateString: ResolverTypeWrapper<Scalars["ISODateString"]>;
   Timestampable:
@@ -604,6 +611,7 @@ export type ResolversParentTypes = {
   BookResult:
     | ResolversParentTypes["Book"]
     | ResolversParentTypes["ResourceNotFoundError"];
+  Subscription: {};
   ExternalID: Scalars["ExternalID"];
   ISODateString: Scalars["ISODateString"];
   Timestampable:
@@ -1087,6 +1095,24 @@ export type BookResultResolvers<
   >;
 };
 
+export type SubscriptionResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes["Subscription"] = ResolversParentTypes["Subscription"]
+> = {
+  bookCopyBorrowed?: SubscriptionResolver<
+    ResolversTypes["BookCopy"],
+    "bookCopyBorrowed",
+    ParentType,
+    ContextType
+  >;
+  bookCopyReturned?: SubscriptionResolver<
+    ResolversTypes["BookCopy"],
+    "bookCopyReturned",
+    ParentType,
+    ContextType
+  >;
+};
+
 export interface ExternalIdScalarConfig
   extends GraphQLScalarTypeConfig<ResolversTypes["ExternalID"], any> {
   name: "ExternalID";
@@ -1303,6 +1329,7 @@ export type Resolvers<ContextType = Context> = {
   BorrowBookCopyResult?: BorrowBookCopyResultResolvers<ContextType>;
   ReturnBookCopyResult?: ReturnBookCopyResultResolvers<ContextType>;
   BookResult?: BookResultResolvers<ContextType>;
+  Subscription?: SubscriptionResolvers<ContextType>;
   ExternalID?: GraphQLScalarType;
   ISODateString?: GraphQLScalarType;
   Timestampable?: TimestampableResolvers<ContextType>;
