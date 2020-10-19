@@ -34,12 +34,18 @@ export const createContext = async ({
   res: express.Response;
   connection?: ExecutionParams;
 }): Promise<Context | AuthenticatedContext> => {
-  // TODO: Implement ws authentication
-  const authToken = connection ? undefined : getAuthTokenFromRequest(req);
+  // TODO: Refactor
+  let currentUser;
 
-  const currentUser = authToken
-    ? await tradeAuthTokenForUser(authToken).catch(() => undefined)
-    : undefined;
+  if (connection) {
+    currentUser = connection.context.currentUser;
+  } else {
+    const authToken = getAuthTokenFromRequest(req);
+
+    currentUser = authToken
+      ? await tradeAuthTokenForUser(authToken).catch(() => undefined)
+      : undefined;
+  }
 
   return {
     assetsBaseUrl: ASSETS_BASE_URL,

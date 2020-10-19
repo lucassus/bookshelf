@@ -1,4 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
+import cookie from "cookie";
 import cookieParser from "cookie-parser";
 import express from "express";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
@@ -8,7 +9,11 @@ import "reflect-metadata";
 import { Container } from "typedi";
 import { Connection, useContainer } from "typeorm";
 
-import { ENVIRONMENT, Environment, PORT } from "./config";
+import {
+  getAuthTokenFromRequest,
+  tradeAuthTokenForUser
+} from "./common/authentication";
+import { AUTH_COOKIE_NAME, ENVIRONMENT, Environment, PORT } from "./config";
 import { createConnection } from "./database/createConnection";
 import { createContext } from "./graphql/context";
 import { rootSchema } from "./graphql/rootSchema";
@@ -26,6 +31,19 @@ const startServer = async () => {
   const apolloServer = new ApolloServer({
     schema: rootSchema,
     context: createContext,
+    subscriptions: {
+      onConnect: async (params, ws, context) => {
+        // TODO: Refactor it
+        const { [AUTH_COOKIE_NAME]: authToken } =
+          cookie.parse(context.request.headers.cookie || "") || {};
+
+        const currentUser = authToken
+          ? await tradeAuthTokenForUser(authToken).catch(() => undefined)
+          : undefined;
+
+        return { currentUser };
+      }
+    },
     debug: ENVIRONMENT === Environment.development,
     introspection: true,
     playground: true,
