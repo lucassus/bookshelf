@@ -1,58 +1,24 @@
 import * as Types from "../types.generated";
 
+import { BookCopyCardFragment } from "./BookCopyCard/BookCopyCard.fragment.generated";
 import { gql } from "@apollo/client";
+import { BookCopyCardFragmentDoc } from "./BookCopyCard/BookCopyCard.fragment.generated";
 import * as Apollo from "@apollo/client";
 export type BookCopyReturnedSubscriptionVariables = Types.Exact<{
   [key: string]: never;
 }>;
 
 export type BookCopyReturnedSubscription = { __typename?: "Subscription" } & {
-  bookCopyReturned: { __typename?: "BookCopy" } & Pick<
-    Types.BookCopy,
-    "id" | "borrowedAt"
-  > & {
-      book: { __typename?: "Book" } & Pick<Types.Book, "id" | "title">;
-      owner:
-        | ({ __typename?: "PublicUser" } & Pick<
-            Types.PublicUser,
-            "id" | "name"
-          >)
-        | ({ __typename?: "ProtectedUser" } & Pick<
-            Types.ProtectedUser,
-            "id" | "name"
-          >);
-      borrower: Types.Maybe<
-        | ({ __typename?: "PublicUser" } & Pick<
-            Types.PublicUser,
-            "id" | "name"
-          >)
-        | ({ __typename?: "ProtectedUser" } & Pick<
-            Types.ProtectedUser,
-            "id" | "name"
-          >)
-      >;
-    };
+  bookCopyReturned: { __typename?: "BookCopy" } & BookCopyCardFragment;
 };
 
 export const BookCopyReturnedDocument = gql`
   subscription BookCopyReturned {
     bookCopyReturned {
-      id
-      book {
-        id
-        title
-      }
-      owner {
-        id
-        name
-      }
-      borrower {
-        id
-        name
-      }
-      borrowedAt
+      ...BookCopyCard
     }
   }
+  ${BookCopyCardFragmentDoc}
 `;
 
 /**
