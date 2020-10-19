@@ -34,7 +34,8 @@ export const createContext = async ({
   res: express.Response;
   connection?: ExecutionParams;
 }): Promise<Context | AuthenticatedContext> => {
-  // TODO: Refactor
+  // TODO: Refactor it
+  // TODO: Create a separate context for ws
   let currentUser;
 
   if (connection) {

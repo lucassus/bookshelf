@@ -1,4 +1,6 @@
+import cookie from "cookie";
 import express from "express";
+import { IncomingMessage } from "http";
 import jwt from "jsonwebtoken";
 import { getRepository } from "typeorm";
 
@@ -19,9 +21,11 @@ export const generateAuthToken = (user: User): string =>
   });
 
 export const getAuthTokenFromRequest = (
-  req: express.Request
+  req: express.Request | IncomingMessage
 ): undefined | string => {
-  const { [AUTH_COOKIE_NAME]: authToken } = req.cookies || {};
+  const { [AUTH_COOKIE_NAME]: authToken } =
+    cookie.parse(req.headers.cookie || "") || {};
+
   return authToken;
 };
 

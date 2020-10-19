@@ -1,6 +1,4 @@
 import { ApolloServer } from "apollo-server-express";
-import cookie from "cookie";
-import cookieParser from "cookie-parser";
 import express from "express";
 import { express as voyagerMiddleware } from "graphql-voyager/middleware";
 import http from "http";
@@ -13,7 +11,7 @@ import {
   getAuthTokenFromRequest,
   tradeAuthTokenForUser
 } from "./common/authentication";
-import { AUTH_COOKIE_NAME, ENVIRONMENT, Environment, PORT } from "./config";
+import { ENVIRONMENT, Environment, PORT } from "./config";
 import { createConnection } from "./database/createConnection";
 import { createContext } from "./graphql/context";
 import { rootSchema } from "./graphql/rootSchema";
@@ -25,17 +23,13 @@ const startServer = async () => {
   const connection = await createConnection();
   Container.set(Connection, connection);
 
-  const app = express();
-  app.use(cookieParser());
-
   const apolloServer = new ApolloServer({
     schema: rootSchema,
     context: createContext,
     subscriptions: {
       onConnect: async (params, ws, context) => {
-        // TODO: Refactor it
-        const { [AUTH_COOKIE_NAME]: authToken } =
-          cookie.parse(context.request.headers.cookie || "") || {};
+        // TODO: Refactor it, for example getCurrentUserForRequest
+        const authToken = getAuthTokenFromRequest(context.request);
 
         const currentUser = authToken
           ? await tradeAuthTokenForUser(authToken).catch(() => undefined)
@@ -55,6 +49,8 @@ const startServer = async () => {
           }
         : false
   });
+
+  const app = express();
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 
