@@ -1,3 +1,4 @@
+import { PubSub } from "apollo-server-express";
 import express from "express";
 import { ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
@@ -11,6 +12,8 @@ import { ASSETS_BASE_URL } from "../config";
 import { User } from "../database/entity";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
 
+const pubsub = new PubSub();
+
 export interface Context {
   req: express.Request;
   res: express.Response;
@@ -18,6 +21,7 @@ export interface Context {
   connection: Connection;
   assetsBaseUrl: string;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
+  pubsub: PubSub;
   currentUser?: User;
 }
 
@@ -54,6 +58,7 @@ export const createContext = async ({
     container: Container,
     connection: Container.get(Connection),
     currentUser,
+    pubsub,
     req,
     res
   };

@@ -1,4 +1,3 @@
-import { PubSub } from "apollo-server-express";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
@@ -10,9 +9,6 @@ import { BooksService } from "./services/BooksService";
 
 const BOOK_COPY_BORROWED = "bookCopyBorrowed";
 const BOOK_COPY_RETURNED = "bookCopyReturned";
-
-// TODO: Add it to the context
-const pubsub = new PubSub();
 
 const resolvers: Resolvers = {
   Book: {
@@ -127,7 +123,11 @@ const resolvers: Resolvers = {
       }
     },
 
-    borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+    borrowBookCopy: async (
+      rootValue,
+      { id },
+      { container, currentUser, pubsub }
+    ) => {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
@@ -146,7 +146,11 @@ const resolvers: Resolvers = {
       }
     },
 
-    returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+    returnBookCopy: async (
+      rootValue,
+      { id },
+      { container, currentUser, pubsub }
+    ) => {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
@@ -173,13 +177,13 @@ const resolvers: Resolvers = {
   // TODO: Figure out how to test subscriptions
   Subscription: {
     bookCopyBorrowed: {
-      subscribe: () => {
+      subscribe: (rootValue, args, { pubsub }) => {
         return pubsub.asyncIterator(BOOK_COPY_BORROWED);
       }
     },
 
     bookCopyReturned: {
-      subscribe: () => {
+      subscribe: (rootValue, args, { pubsub }) => {
         return pubsub.asyncIterator(BOOK_COPY_RETURNED);
       }
     }
