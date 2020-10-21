@@ -7,8 +7,7 @@ import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
-const BOOK_COPY_BORROWED = "bookCopyBorrowed";
-const BOOK_COPY_RETURNED = "bookCopyReturned";
+const BOOK_COPY_UPDATED = "bookCopyUpdated";
 
 const resolvers: Resolvers = {
   Book: {
@@ -133,8 +132,8 @@ const resolvers: Resolvers = {
           .get(BookCopiesService)
           .borrow(id, currentUser.id);
 
-        await pubsub.publish(BOOK_COPY_BORROWED, {
-          bookCopyBorrowed: bookCopy
+        await pubsub.publish(BOOK_COPY_UPDATED, {
+          bookCopyUpdated: bookCopy
         });
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
@@ -156,8 +155,8 @@ const resolvers: Resolvers = {
           .get(BookCopiesService)
           .return(id, currentUser.id);
 
-        await pubsub.publish(BOOK_COPY_RETURNED, {
-          bookCopyReturned: bookCopy
+        await pubsub.publish(BOOK_COPY_UPDATED, {
+          bookCopyUpdated: bookCopy
         });
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
@@ -176,15 +175,9 @@ const resolvers: Resolvers = {
 
   // TODO: Figure out how to test subscriptions
   Subscription: {
-    bookCopyBorrowed: {
+    bookCopyUpdated: {
       subscribe: (rootValue, args, { pubsub }) => {
-        return pubsub.asyncIterator(BOOK_COPY_BORROWED);
-      }
-    },
-
-    bookCopyReturned: {
-      subscribe: (rootValue, args, { pubsub }) => {
-        return pubsub.asyncIterator(BOOK_COPY_RETURNED);
+        return pubsub.asyncIterator(BOOK_COPY_UPDATED);
       }
     }
   }

@@ -257,8 +257,7 @@ export type BookResult = Book | ResourceNotFoundError;
 
 export type Subscription = {
   readonly __typename?: "Subscription";
-  readonly bookCopyBorrowed: BookCopy;
-  readonly bookCopyReturned: BookCopy;
+  readonly bookCopyUpdated: BookCopy;
 };
 
 export type Timestampable = {
@@ -1099,15 +1098,9 @@ export type SubscriptionResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes["Subscription"] = ResolversParentTypes["Subscription"]
 > = {
-  bookCopyBorrowed?: SubscriptionResolver<
+  bookCopyUpdated?: SubscriptionResolver<
     ResolversTypes["BookCopy"],
-    "bookCopyBorrowed",
-    ParentType,
-    ContextType
-  >;
-  bookCopyReturned?: SubscriptionResolver<
-    ResolversTypes["BookCopy"],
-    "bookCopyReturned",
+    "bookCopyUpdated",
     ParentType,
     ContextType
   >;

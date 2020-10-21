@@ -1,5 +1,0 @@
-subscription BookCopyBorrowed {
-  bookCopyBorrowed {
-    ...BookCopyCard
-  }
-}

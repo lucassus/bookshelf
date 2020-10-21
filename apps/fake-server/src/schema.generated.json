@@ -2063,23 +2063,7 @@
         "description": null,
         "fields": [
           {
-            "name": "bookCopyBorrowed",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "BookCopy",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "bookCopyReturned",
+            "name": "bookCopyUpdated",
             "description": null,
             "args": [],
             "type": {

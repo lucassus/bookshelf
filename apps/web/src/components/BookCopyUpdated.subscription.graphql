@@ -1,0 +1,5 @@
+subscription BookCopyUpdated {
+  bookCopyUpdated {
+    ...BookCopyCard
+  }
+}

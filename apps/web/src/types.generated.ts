@@ -239,8 +239,7 @@ export type BookResult = Book | ResourceNotFoundError;
 
 export type Subscription = {
   __typename?: "Subscription";
-  bookCopyBorrowed: BookCopy;
-  bookCopyReturned: BookCopy;
+  bookCopyUpdated: BookCopy;
 };
 
 export type Timestampable = {

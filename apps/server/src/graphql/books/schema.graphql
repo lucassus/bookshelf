@@ -59,6 +59,5 @@ extend type Mutation {
 }
 
 extend type Subscription {
-  bookCopyBorrowed: BookCopy!
-  bookCopyReturned: BookCopy!
+  bookCopyUpdated: BookCopy!
 }
