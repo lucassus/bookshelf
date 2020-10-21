@@ -13,15 +13,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import { BookCopySubscription } from "./components/BookCopySubscription";
 import { CurrentUserProvider } from "./components/CurrentUserProvider";
-import { GRAPHQL_ENDPOINT } from "./config";
+import { GRAPHQL_URI, GRAPHQL_SUBSCRIPTIONS_URI } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
 function createApolloClient() {
-  const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
+  const httpLink = new HttpLink({ uri: GRAPHQL_URI });
 
   const wsLink = new WebSocketLink({
-    // TODO: Move it to the config
-    uri: "ws://localhost:4000/graphql",
+    uri: GRAPHQL_SUBSCRIPTIONS_URI,
     options: {
       reconnect: true
     }
