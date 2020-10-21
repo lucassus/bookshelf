@@ -16,35 +16,39 @@ import { CurrentUserProvider } from "./components/CurrentUserProvider";
 import { GRAPHQL_ENDPOINT } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
-const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
+function createApolloClient() {
+  const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT });
 
-const wsLink = new WebSocketLink({
-  // TODO: Move it to the config
-  uri: "ws://localhost:4000/graphql",
-  options: {
-    reconnect: true
-  }
-});
+  const wsLink = new WebSocketLink({
+    // TODO: Move it to the config
+    uri: "ws://localhost:4000/graphql",
+    options: {
+      reconnect: true
+    }
+  });
 
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === "OperationDefinition" &&
-      definition.operation === "subscription"
-    );
-  },
-  wsLink,
-  httpLink
-);
+  const splitLink = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === "OperationDefinition" &&
+        definition.operation === "subscription"
+      );
+    },
+    wsLink,
+    httpLink
+  );
 
-const client = new ApolloClient({
-  cache: new InMemoryCache({
-    addTypename: true,
-    possibleTypes: introspectionResult.possibleTypes
-  }),
-  link: splitLink
-});
+  return new ApolloClient({
+    cache: new InMemoryCache({
+      addTypename: true,
+      possibleTypes: introspectionResult.possibleTypes
+    }),
+    link: splitLink
+  });
+}
+
+const client = createApolloClient();
 
 export const AppProviders: React.FunctionComponent = ({ children }) => (
   <Router>
