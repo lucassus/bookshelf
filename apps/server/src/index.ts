@@ -29,6 +29,15 @@ const startServer = async () => {
         return { currentUser };
       }
     },
+    plugins: [
+      {
+        requestDidStart: (requestContext) => {
+          console.log(
+            `\n\nGraphQL operation started: ${requestContext.request.operationName}`
+          );
+        }
+      }
+    ],
     debug: ENVIRONMENT === Environment.development,
     introspection: true,
     playground: true,
