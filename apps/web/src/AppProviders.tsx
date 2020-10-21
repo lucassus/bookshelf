@@ -53,8 +53,10 @@ export const AppProviders: React.FunctionComponent = ({ children }) => (
   <Router>
     <CloudinaryContext cloudName="lucassus">
       <ApolloProvider client={client}>
-        <BookCopySubscription />
-        <CurrentUserProvider>{children}</CurrentUserProvider>
+        <CurrentUserProvider>
+          <BookCopySubscription />
+          {children}
+        </CurrentUserProvider>
       </ApolloProvider>
     </CloudinaryContext>
   </Router>

@@ -5,5 +5,5 @@ export const GRAPHQL_URI =
 
 export const GRAPHQL_SUBSCRIPTIONS_URI =
   process.env.NODE_ENV === "production"
-    ? "ws://graphql-bookshelf.herokuapp.com/graphql"
+    ? "wss://graphql-bookshelf.herokuapp.com/graphql"
     : "ws://localhost:4000/graphql";
