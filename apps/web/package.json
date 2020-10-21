@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "3.2.4",
+    "cloudinary-react": "1.6.7",
     "formik": "2.2.0",
     "graphql": "15.3.0",
     "history": "5.0.0",

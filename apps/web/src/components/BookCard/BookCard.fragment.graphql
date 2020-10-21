@@ -6,8 +6,9 @@ fragment BookCard on Book {
   ...FavouriteBookButton
 
   cover {
-    url
+    path
   }
+
   author {
     id
     name

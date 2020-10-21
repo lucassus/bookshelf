@@ -17,8 +17,7 @@ describe("<BookCard />", () => {
       name: "Andrzej Sapkowski"
     },
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
+      path: "/bookshelf/covers/witcher1.jpg"
     }
   };
 

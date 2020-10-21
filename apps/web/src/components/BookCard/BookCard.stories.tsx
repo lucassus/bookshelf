@@ -43,8 +43,7 @@ export const Basic = () => {
       name: text("Author Name", "Andrzej Sapkowski")
     },
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
+      path: "/bookshelf/covers/witcher1.jpg"
     }
   };
 

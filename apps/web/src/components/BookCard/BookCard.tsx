@@ -1,3 +1,4 @@
+import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -16,7 +17,9 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   return (
     <div className={styles.container} data-testid={`book-card:${book.title}`}>
       <Link to={`/books/${book.id}`}>
-        <img src={book.cover.url} alt="Book cover" />
+        <Image publicId={book.cover.path} alt="Book cover">
+          <Transformation height={150} crop="scale" />
+        </Image>
       </Link>
 
       <div>

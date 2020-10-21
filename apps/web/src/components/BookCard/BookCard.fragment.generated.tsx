@@ -7,7 +7,7 @@ export type BookCardFragment = { __typename?: "Book" } & Pick<
   Types.Book,
   "id" | "title" | "isFavourite"
 > & {
-    cover: { __typename?: "Image" } & Pick<Types.Image, "url">;
+    cover: { __typename?: "Image" } & Pick<Types.Image, "path">;
     author: { __typename?: "Author" } & Pick<Types.Author, "id" | "name">;
   } & FavouriteBookButtonFragment;
 
@@ -18,7 +18,7 @@ export const BookCardFragmentDoc = gql`
     isFavourite
     ...FavouriteBookButton
     cover {
-      url
+      path
     }
     author {
       id

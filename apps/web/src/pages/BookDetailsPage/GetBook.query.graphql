@@ -17,9 +17,11 @@ query GetBook($id: ExternalID!) {
         id
         name
       }
+
       cover {
-        url
+        path
       }
+
       copies {
         ...BookCopyCard
       }

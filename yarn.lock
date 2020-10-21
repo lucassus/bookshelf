@@ -1701,7 +1701,7 @@ __metadata:
     "@bookshelf/string-utils": "workspace:*"
     "@graphql-tools/mock": 6.2.4
     "@graphql-tools/schema": 6.2.4
-    "@types/eslint-plugin-prettier": ^3.1.0
+    "@types/eslint-plugin-prettier": 3.1.0
     "@types/faker": 5.1.2
     "@types/prettier": 2.1.5
     "@types/rimraf": 3.0.0
@@ -1728,7 +1728,7 @@ __metadata:
   dependencies:
     "@types/jest": 26.0.14
     "@types/node": 14.11.10
-    "@types/rimraf": ^3.0.0
+    "@types/rimraf": 3.0.0
     "@typescript-eslint/eslint-plugin": 4.4.1
     eslint: 7.11.0
     eslint-config-airbnb-typescript: 11.2.1
@@ -1870,6 +1870,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 4.4.1
     babel-loader: 8.1.0
     clean-webpack-plugin: 3.0.0
+    cloudinary-react: 1.6.7
     core-js: 3.6.5
     css-loader: 4.3.0
     eslint: 7.11.0
@@ -4975,7 +4976,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint-plugin-prettier@npm:3.1.0, @types/eslint-plugin-prettier@npm:^3.1.0":
+"@types/eslint-plugin-prettier@npm:3.1.0":
   version: 3.1.0
   resolution: "@types/eslint-plugin-prettier@npm:3.1.0"
   dependencies:
@@ -5577,7 +5578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/rimraf@npm:3.0.0, @types/rimraf@npm:^3.0.0":
+"@types/rimraf@npm:3.0.0":
   version: 3.0.0
   resolution: "@types/rimraf@npm:3.0.0"
   dependencies:
@@ -8848,6 +8849,27 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: aaaa58f9906002d9c07630682536cb00581ee02d7a76cfa8573ad59784add4d5d6d4afe894c21899b974044f153f8c5c6419ffc8b1cdde61bf104ad52e3a185d
+  languageName: node
+  linkType: hard
+
+"cloudinary-core@npm:^2.11.3":
+  version: 2.11.3
+  resolution: "cloudinary-core@npm:2.11.3"
+  peerDependencies:
+    lodash: ">=4.0"
+  checksum: 4574514da172d1cf364a3b67f2adf02c06ce7bef87d712abab94e1ae6366a137ca2669f26776908f29e3e1fb85e1d2b6b0046230bddaef9421c5d3a75e022cc3
+  languageName: node
+  linkType: hard
+
+"cloudinary-react@npm:1.6.7":
+  version: 1.6.7
+  resolution: "cloudinary-react@npm:1.6.7"
+  dependencies:
+    cloudinary-core: ^2.11.3
+    prop-types: ^15.6.2
+  peerDependencies:
+    react: ^16.3.3
+  checksum: 676a98063ae76c7e9c824a50ea63f818b9c5329061e1507c28648eead29a0d374df08c7c8915c7c355698bc2fd5e11c4c6e8f5baca02cf026d819356540a1221
   languageName: node
   linkType: hard
 

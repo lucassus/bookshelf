@@ -11,7 +11,7 @@ export type BookCopyCardFragment = { __typename: "BookCopy" } & Pick<
   "id" | "borrowedAt"
 > & {
     book: { __typename?: "Book" } & Pick<Types.Book, "title" | "id"> & {
-        cover: { __typename?: "Image" } & Pick<Types.Image, "url">;
+        cover: { __typename?: "Image" } & Pick<Types.Image, "path">;
       };
     owner:
       | ({ __typename?: "PublicUser" } & BookCopyUser_PublicUser_Fragment)
@@ -32,7 +32,7 @@ export const BookCopyCardFragmentDoc = gql`
       title
       id
       cover {
-        url
+        path
       }
     }
     owner {

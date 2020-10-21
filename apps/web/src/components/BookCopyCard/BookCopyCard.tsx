@@ -1,3 +1,4 @@
+import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -11,6 +12,7 @@ type Props = {
   bookCopy: BookCopyCardFragment;
 };
 
+// TODO: Equal sizes for book and book copy covers
 export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const currentUser = useCurrentUser();
 
@@ -21,7 +23,9 @@ export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
     >
       <div className={styles.bookCoverWithAvatars}>
         <Link to={`/books/${bookCopy.book.id}`}>
-          <img src={bookCopy.book.cover.url} alt={bookCopy.book.title} />
+          <Image publicId={bookCopy.book.cover.path} alt="Book cover">
+            <Transformation height={200} crop="scale" />
+          </Image>
         </Link>
 
         <div className={styles.ownerAvatar} data-testid="book-copy-card-owner">
