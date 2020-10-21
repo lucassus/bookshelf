@@ -27,7 +27,7 @@
     "@testing-library/react": "11.1.0",
     "@testing-library/user-event": "12.1.8",
     "@types/graphql": "14.5.0",
-    "@types/jest": "26.0.14",
+    "@types/jest": "26.0.15",
     "@types/react": "16.9.53",
     "@types/react-dom": "16.9.8",
     "@types/react-icons": "3.0.0",
