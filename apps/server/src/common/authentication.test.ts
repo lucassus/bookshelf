@@ -1,3 +1,4 @@
+import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import httpMocks from "node-mocks-http";
 import { getRepository } from "typeorm";
@@ -15,8 +16,8 @@ import { hashPassword } from "./passwords";
 describe(".getAuthTokenFromRequest", () => {
   it("returns token when a cookie is set", () => {
     const req = httpMocks.createRequest({
-      cookies: {
-        [AUTH_COOKIE_NAME]: "the token"
+      headers: {
+        cookie: cookie.serialize(AUTH_COOKIE_NAME, "the token")
       }
     });
 

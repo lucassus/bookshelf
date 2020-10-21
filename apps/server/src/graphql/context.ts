@@ -4,10 +4,7 @@ import { ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
-import {
-  getAuthTokenFromRequest,
-  tradeAuthTokenForUser
-} from "../common/authentication";
+import { authenticateRequest } from "../common/authentication";
 import { ASSETS_BASE_URL } from "../config";
 import { User } from "../database/entity";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
@@ -38,19 +35,9 @@ export const createContext = async ({
   res: express.Response;
   connection?: ExecutionParams;
 }): Promise<Context | AuthenticatedContext> => {
-  // TODO: Refactor it
-  // TODO: Create a separate context for ws
-  let currentUser;
-
-  if (connection) {
-    currentUser = connection.context.currentUser;
-  } else {
-    const authToken = getAuthTokenFromRequest(req);
-
-    currentUser = authToken
-      ? await tradeAuthTokenForUser(authToken).catch(() => undefined)
-      : undefined;
-  }
+  const currentUser = connection
+    ? connection.context.currentUser
+    : await authenticateRequest(req);
 
   return {
     assetsBaseUrl: ASSETS_BASE_URL,

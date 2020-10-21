@@ -1,3 +1,4 @@
+import cookie from "cookie";
 import express from "express";
 import request from "supertest";
 
@@ -13,13 +14,11 @@ export function createRestTestClient({
   const app = express();
 
   app.use((req, res, next) => {
-    if (authToken) {
-      req.cookies = { [AUTH_COOKIE_NAME]: authToken };
-    }
+    const token = authToken || (currentUser && generateAuthToken(currentUser));
 
-    if (currentUser) {
-      req.cookies = {
-        [AUTH_COOKIE_NAME]: generateAuthToken(currentUser)
+    if (token) {
+      req.headers = {
+        cookie: cookie.serialize(AUTH_COOKIE_NAME, token)
       };
     }
 

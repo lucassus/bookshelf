@@ -7,10 +7,7 @@ import "reflect-metadata";
 import { Container } from "typedi";
 import { Connection, useContainer } from "typeorm";
 
-import {
-  getAuthTokenFromRequest,
-  tradeAuthTokenForUser
-} from "./common/authentication";
+import { authenticateRequest } from "./common/authentication";
 import { ENVIRONMENT, Environment, PORT } from "./config";
 import { createConnection } from "./database/createConnection";
 import { createContext } from "./graphql/context";
@@ -28,13 +25,7 @@ const startServer = async () => {
     context: createContext,
     subscriptions: {
       onConnect: async (params, ws, context) => {
-        // TODO: Refactor it, for example getCurrentUserForRequest
-        const authToken = getAuthTokenFromRequest(context.request);
-
-        const currentUser = authToken
-          ? await tradeAuthTokenForUser(authToken).catch(() => undefined)
-          : undefined;
-
+        const currentUser = await authenticateRequest(context.request);
         return { currentUser };
       }
     },

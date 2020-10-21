@@ -3,6 +3,7 @@ import {
   ApolloServerTestClient,
   createTestClient as createApolloTestClient
 } from "apollo-server-testing";
+import cookie from "cookie";
 import express from "express";
 import httpMocks from "node-mocks-http";
 
@@ -25,8 +26,11 @@ export function createTestClient({
       const req = httpMocks.createRequest();
 
       if (currentUser) {
-        req.cookies = {
-          [AUTH_COOKIE_NAME]: generateAuthToken(currentUser)
+        req.headers = {
+          cookie: cookie.serialize(
+            AUTH_COOKIE_NAME,
+            generateAuthToken(currentUser)
+          )
         };
       }
 

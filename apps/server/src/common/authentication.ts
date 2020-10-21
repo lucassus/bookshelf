@@ -53,6 +53,18 @@ export async function tradeAuthTokenForUser(authToken: string): Promise<User> {
   });
 }
 
+export const authenticateRequest = async (
+  req: express.Request | IncomingMessage
+): Promise<undefined | User> => {
+  const authToken = getAuthTokenFromRequest(req);
+
+  if (!authToken) {
+    return undefined;
+  }
+
+  return tradeAuthTokenForUser(authToken).catch(() => undefined);
+};
+
 export const sendAuthCookie = (res: express.Response, user: User) => {
   const authToken = generateAuthToken(user);
 

@@ -1793,6 +1793,7 @@ __metadata:
     reflect-metadata: 0.1.13
     rimraf: 3.0.2
     sqlite3: 5.0.0
+    subscriptions-transport-ws: 0.9.18
     supertest: 5.0.0
     ts-jest: 26.4.1
     ts-node: 9.0.0
