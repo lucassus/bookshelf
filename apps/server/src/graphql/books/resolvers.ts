@@ -14,7 +14,6 @@ const resolvers: Resolvers = {
     author: (book, args, { authorsLoader }) =>
       authorsLoader.load(book.authorId),
 
-    // TODO: Remove assetsBaseUrl, migrate it Cloudinary
     cover: ({ coverPath: path }, args, { assetsBaseUrl }) => ({
       path,
       url: assetsBaseUrl + path
