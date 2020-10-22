@@ -8,6 +8,7 @@ type Props = {
   author: AuthorCardFragment;
 };
 
+// TODO: Migrate to Cloudinary
 export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => (
   <div className={styles.container}>
     {author.photo && <img src={author.photo.url} alt={author.name} />}

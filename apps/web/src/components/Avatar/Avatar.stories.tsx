@@ -18,15 +18,15 @@ export const Basic = () => {
   const avatar: AvatarFragment = {
     __typename: "Avatar",
     image: {
-      url: select(
-        "Image URL",
+      path: select(
+        "Image",
         [
-          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/w13.png",
-          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m10.png",
-          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/w2.png",
-          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m25.png"
+          "/bookshelf/users/w13.png",
+          "/bookshelf/users/m10.png",
+          "/bookshelf/users/w2.png",
+          "/bookshelf/users/m25.png"
         ],
-        "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m25.png"
+        "/bookshelf/users/m25.png"
       )
     },
     color: select(
