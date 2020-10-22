@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+import { CloudinaryContext } from "cloudinary-react";
 import React from "react";
 
 import { UserCard } from "./UserCard";
@@ -16,11 +17,17 @@ describe("<UserCard />", () => {
     }
   };
 
-  it("renders and matches the snapshot", () => {
-    const { getByText, rerender } = render(<UserCard user={user} />);
+  it("renders with success", () => {
+    const wrapper = ({ children }) => (
+      <CloudinaryContext cloudName="lucassus">{children}</CloudinaryContext>
+    );
+
+    const { getByText, rerender } = render(<UserCard user={user} />, {
+      wrapper
+    });
     expect(getByText("Bob")).toBeInTheDocument();
 
-    rerender(<UserCard user={{ ...user, name: "John" }} />);
+    rerender(<UserCard user={{ ...user, name: "John" }} />, { wrapper });
     expect(getByText("John")).toBeInTheDocument();
   });
 });
