@@ -2,8 +2,8 @@ import { text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
-import { Author } from "../../types.generated";
 import { AuthorCard } from "./AuthorCard";
+import { AuthorCardFragment } from "./AuthorCard.fragment.generated";
 
 export default {
   title: "AuthorCard",
@@ -12,18 +12,12 @@ export default {
 };
 
 export const Basic = () => {
-  const author: Author = {
+  const author: AuthorCardFragment = {
     id: "1",
     name: text("Author Name", "J. K. Rowling"),
-    bio: "Lorem ipsum",
     photo: {
-      path: "/book-authors/j-k-rowling.jpg",
-      url:
-        "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
-    },
-    createdAt: "2020-07-19T14:00:00.00Z",
-    updatedAt: "2020-07-19T14:00:00.00Z",
-    books: []
+      path: "/bookshelf/authors/JK%20Rowling.jpg"
+    }
   };
 
   return (

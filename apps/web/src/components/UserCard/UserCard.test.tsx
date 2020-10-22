@@ -10,7 +10,7 @@ describe("<UserCard />", () => {
     avatar: {
       __typename: "Avatar",
       image: {
-        url: "https://example.com/avatar.png"
+        path: "/bookshelf/users/avatar.png"
       },
       color: "blue"
     }

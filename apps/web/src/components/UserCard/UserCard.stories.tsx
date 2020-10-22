@@ -16,8 +16,7 @@ export const Basic = () => {
     avatar: {
       __typename: "Avatar",
       image: {
-        url:
-          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m25.png"
+        path: "/bookshelf/users/m25.png"
       },
       color: select(
         "Avatar Color",

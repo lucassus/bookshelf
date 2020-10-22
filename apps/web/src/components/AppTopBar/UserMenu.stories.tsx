@@ -22,8 +22,7 @@ export const Basic = () => {
     avatar: {
       __typename: "Avatar",
       image: {
-        url:
-          "https://res.cloudinary.com/lucassus/image/upload/bookshelf/users/m10.png"
+        path: "/bookshelf/users/m10.png"
       },
       color: "yellow"
     }
