@@ -1,3 +1,4 @@
+import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -33,7 +34,10 @@ export const AuthorDetailsPage: React.FunctionComponent = () => {
       <h2>{author.name}</h2>
 
       <div className={styles.info}>
-        <img src={author.photo.url} alt={author.name} />
+        <Image publicId={author.photo.path} alt={author.name}>
+          <Transformation height={300} crop="scale" />
+        </Image>
+
         <article>{author.bio}</article>
       </div>
 

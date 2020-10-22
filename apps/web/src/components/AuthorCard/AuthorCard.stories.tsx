@@ -12,6 +12,7 @@ export default {
 };
 
 export const Basic = () => {
+  // TODO: Migrate to Cloudinary
   const author: Author = {
     id: "1",
     name: text("Author Name", "J. K. Rowling"),
