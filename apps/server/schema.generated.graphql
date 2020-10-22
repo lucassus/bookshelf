@@ -134,7 +134,7 @@ union BorrowBookCopyResult = BookCopy | MutationError
 union ReturnBookCopyResult = BookCopy | MutationError
 union BookResult = Book | ResourceNotFoundError
 type Subscription {
-  bookCopyUpdated: BookCopy!
+  bookCopyUpdated(id: ExternalID!): BookCopy!
 }
 scalar ExternalID
 scalar ISODateString

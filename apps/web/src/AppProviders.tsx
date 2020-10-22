@@ -5,13 +5,12 @@ import {
   InMemoryCache,
   split
 } from "@apollo/client";
-import { CloudinaryContext } from "cloudinary-react";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { CloudinaryContext } from "cloudinary-react";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { BookCopySubscription } from "./components/BookCopySubscription";
 import { CurrentUserProvider } from "./components/CurrentUserProvider";
 import { GRAPHQL_URI, GRAPHQL_SUBSCRIPTIONS_URI } from "./config";
 import introspectionResult from "./introspectionResult.generated";
@@ -53,10 +52,7 @@ export const AppProviders: React.FunctionComponent = ({ children }) => (
   <Router>
     <CloudinaryContext cloudName="lucassus">
       <ApolloProvider client={client}>
-        <CurrentUserProvider>
-          <BookCopySubscription />
-          {children}
-        </CurrentUserProvider>
+        <CurrentUserProvider>{children}</CurrentUserProvider>
       </ApolloProvider>
     </CloudinaryContext>
   </Router>

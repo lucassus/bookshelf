@@ -6,15 +6,21 @@ import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
 import { BookCopyCardFragment } from "./BookCopyCard.fragment.generated";
 import styles from "./BookCopyCard.scss";
+import { useBookCopyUpdatedSubscription } from "./BookCopyUpdated.subscription.generated";
 import { BookCopyUser } from "./BookCopyUser";
 
 type Props = {
   bookCopy: BookCopyCardFragment;
 };
 
-// TODO: Equal sizes for book and book copy covers
 export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const currentUser = useCurrentUser();
+
+  // TODO: Does it unsubscribe on unmount?
+  // TODO: Check this out https://github.com/apollographql/react-apollo/issues/3577#issuecomment-583173418
+  useBookCopyUpdatedSubscription({
+    variables: { id: bookCopy.id }
+  });
 
   return (
     <div

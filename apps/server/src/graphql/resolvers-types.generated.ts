@@ -260,6 +260,10 @@ export type Subscription = {
   readonly bookCopyUpdated: BookCopy;
 };
 
+export type SubscriptionBookCopyUpdatedArgs = {
+  id: Scalars["ExternalID"];
+};
+
 export type Timestampable = {
   readonly createdAt: Scalars["ISODateString"];
   readonly updatedAt: Scalars["ISODateString"];
@@ -1102,7 +1106,8 @@ export type SubscriptionResolvers<
     ResolversTypes["BookCopy"],
     "bookCopyUpdated",
     ParentType,
-    ContextType
+    ContextType,
+    RequireFields<SubscriptionBookCopyUpdatedArgs, "id">
   >;
 };
 

@@ -242,6 +242,10 @@ export type Subscription = {
   bookCopyUpdated: BookCopy;
 };
 
+export type SubscriptionBookCopyUpdatedArgs = {
+  id: Scalars["ExternalID"];
+};
+
 export type Timestampable = {
   createdAt: Scalars["ISODateString"];
   updatedAt: Scalars["ISODateString"];

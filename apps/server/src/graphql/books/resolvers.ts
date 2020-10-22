@@ -1,3 +1,4 @@
+import { withFilter } from "apollo-server-express";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
@@ -173,12 +174,20 @@ const resolvers: Resolvers = {
     }
   },
 
-  // TODO: Figure out how to test subscriptions
+  // TODO: Pass currentUser to this subscription
   Subscription: {
     bookCopyUpdated: {
-      subscribe: (rootValue, args, { pubsub }) => {
-        return pubsub.asyncIterator(BOOK_COPY_UPDATED);
-      }
+      subscribe: withFilter(
+        (rootValue, args, { pubsub }) => {
+          return pubsub.asyncIterator(BOOK_COPY_UPDATED);
+        },
+        (
+          { bookCopyUpdated }: { bookCopyUpdated: BookCopy },
+          { id }: { id: string }
+        ) => {
+          return bookCopyUpdated.id === parseInt(id, 10);
+        }
+      )
     }
   }
 };

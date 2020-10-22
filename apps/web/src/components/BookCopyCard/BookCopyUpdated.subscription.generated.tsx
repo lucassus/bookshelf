@@ -1,11 +1,11 @@
-import * as Types from "../types.generated";
+import * as Types from "../../types.generated";
 
-import { BookCopyCardFragment } from "./BookCopyCard/BookCopyCard.fragment.generated";
+import { BookCopyCardFragment } from "./BookCopyCard.fragment.generated";
 import { gql } from "@apollo/client";
-import { BookCopyCardFragmentDoc } from "./BookCopyCard/BookCopyCard.fragment.generated";
+import { BookCopyCardFragmentDoc } from "./BookCopyCard.fragment.generated";
 import * as Apollo from "@apollo/client";
 export type BookCopyUpdatedSubscriptionVariables = Types.Exact<{
-  [key: string]: never;
+  id: Types.Scalars["ExternalID"];
 }>;
 
 export type BookCopyUpdatedSubscription = { __typename?: "Subscription" } & {
@@ -13,8 +13,8 @@ export type BookCopyUpdatedSubscription = { __typename?: "Subscription" } & {
 };
 
 export const BookCopyUpdatedDocument = gql`
-  subscription BookCopyUpdated {
-    bookCopyUpdated {
+  subscription BookCopyUpdated($id: ExternalID!) {
+    bookCopyUpdated(id: $id) {
       ...BookCopyCard
     }
   }
@@ -33,6 +33,7 @@ export const BookCopyUpdatedDocument = gql`
  * @example
  * const { data, loading, error } = useBookCopyUpdatedSubscription({
  *   variables: {
+ *      id: // value for 'id'
  *   },
  * });
  */

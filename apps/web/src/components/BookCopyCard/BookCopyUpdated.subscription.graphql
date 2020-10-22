@@ -1,0 +1,5 @@
+subscription BookCopyUpdated($id: ExternalID!) {
+  bookCopyUpdated(id: $id) {
+    ...BookCopyCard
+  }
+}
