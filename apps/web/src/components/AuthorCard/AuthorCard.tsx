@@ -1,3 +1,4 @@
+import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -10,7 +11,11 @@ type Props = {
 
 export const AuthorCard: React.FunctionComponent<Props> = ({ author }) => (
   <div className={styles.container}>
-    {author.photo && <img src={author.photo.url} alt={author.name} />}
+    {author.photo && (
+      <Image publicId={author.photo.path} alt={author.name}>
+        <Transformation height={300} crop="scale" />
+      </Image>
+    )}
 
     <h3>
       <Link to={`/authors/${author.id}`}>{author.name}</Link>

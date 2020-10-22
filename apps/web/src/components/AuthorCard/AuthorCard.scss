@@ -1,10 +1,6 @@
 .container {
   composes: card from "../../styles/layout.scss";
 
-  img {
-    height: 200px;
-  }
-
   h3 {
     margin-top: 0.5em;
   }

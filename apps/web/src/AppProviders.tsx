@@ -4,6 +4,7 @@ import {
   HttpLink,
   InMemoryCache
 } from "@apollo/client";
+import { CloudinaryContext } from "cloudinary-react";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -21,8 +22,10 @@ const client = new ApolloClient({
 
 export const AppProviders: React.FunctionComponent = ({ children }) => (
   <Router>
-    <ApolloProvider client={client}>
-      <CurrentUserProvider>{children}</CurrentUserProvider>
-    </ApolloProvider>
+    <CloudinaryContext cloudName="lucassus">
+      <ApolloProvider client={client}>
+        <CurrentUserProvider>{children}</CurrentUserProvider>
+      </ApolloProvider>
+    </CloudinaryContext>
   </Router>
 );

@@ -1,7 +1,7 @@
 import { Book, User } from "../database/entity";
 
 // TODO: Naive serialization, find a better solution
-// TODO: See https://www.npmjs.com/package/class-transformer
+//  See https://www.npmjs.com/package/class-transformer
 //  or https://docs.nestjs.com/techniques/serialization
 
 export const serializeUser = async (user: User) => {

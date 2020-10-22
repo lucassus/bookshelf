@@ -1,3 +1,4 @@
+import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 
 import { AvatarFragment } from "./Avatar.fragment.generated";
@@ -11,10 +12,10 @@ type Props = {
   avatar: AvatarFragment;
 };
 
-const AVATAR_SIZES: Record<AvatarSize, string> = {
-  "x-small": "32px",
-  small: "50px",
-  medium: "160px"
+const AVATAR_SIZES: Record<AvatarSize, number> = {
+  "x-small": 32,
+  small: 32,
+  medium: 160
 };
 
 export const Avatar: React.FunctionComponent<Props> = ({
@@ -22,24 +23,25 @@ export const Avatar: React.FunctionComponent<Props> = ({
   size = "medium",
   avatar
 }) => {
-  const src =
+  const path =
     avatar.__typename === "FlaggedAvatarError"
-      ? "https://res.cloudinary.com/lucassus/image/upload/v1598608061/bookshelf/users/avatar-placeholder.png"
-      : avatar.image.url;
+      ? "/bookshelf/users/avatar-placeholder.png"
+      : avatar.image.path;
 
   const backgroundColor =
     avatar.__typename === "FlaggedAvatarError" ? "red" : avatar.color;
 
   return (
-    <img
-      data-testid={`avatar:${label}`}
+    <Image
       className={styles.container}
-      src={src}
-      alt={label}
+      data-testid={`avatar:${label}`}
+      publicId={path}
       style={{
-        backgroundColor,
-        height: AVATAR_SIZES[size]
+        backgroundColor
       }}
-    />
+      alt={label}
+    >
+      <Transformation width={AVATAR_SIZES[size]} crop="scale" />
+    </Image>
   );
 };

@@ -1,4 +1,3 @@
 fragment ResourceImageFragment on Image {
   path
-  url
 }

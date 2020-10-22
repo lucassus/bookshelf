@@ -35,7 +35,6 @@ export const MyProfilePage: React.FunctionComponent<Props> = ({
     setSubmitting(true);
 
     try {
-      // TODO: Does apollo mutation throw an error?
       const { data } = await updateProfile({ variables: { input: values } });
       const result = data!.updateProfile;
 

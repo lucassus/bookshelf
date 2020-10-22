@@ -1,5 +1,6 @@
 import { MockedProvider } from "@apollo/client/testing";
 import { render, screen } from "@testing-library/react";
+import { CloudinaryContext } from "cloudinary-react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
@@ -17,17 +18,18 @@ describe("<BookCard />", () => {
       name: "Andrzej Sapkowski"
     },
     cover: {
-      url:
-        "http://examples.devmastery.pl/assets/images/book-covers/witcher1.jpg"
+      path: "/bookshelf/covers/witcher1.jpg"
     }
   };
 
   it("displays author's name", () => {
     render(
       <MemoryRouter>
-        <MockedProvider>
-          <BookCard book={book} />
-        </MockedProvider>
+        <CloudinaryContext cloudName="lucassus">
+          <MockedProvider>
+            <BookCard book={book} />
+          </MockedProvider>
+        </CloudinaryContext>
       </MemoryRouter>
     );
 

@@ -17,7 +17,7 @@ export type GetBookQuery = { __typename?: "Query" } & {
         "id" | "title" | "description"
       > & {
           author: { __typename?: "Author" } & Pick<Types.Author, "id" | "name">;
-          cover: { __typename?: "Image" } & Pick<Types.Image, "url">;
+          cover: { __typename?: "Image" } & Pick<Types.Image, "path">;
           copies: Array<{ __typename?: "BookCopy" } & BookCopyCardFragment>;
         } & FavouriteBookButtonFragment)
     | ({ __typename: "ResourceNotFoundError" } & Pick<
@@ -43,7 +43,7 @@ export const GetBookDocument = gql`
           name
         }
         cover {
-          url
+          path
         }
         copies {
           ...BookCopyCard

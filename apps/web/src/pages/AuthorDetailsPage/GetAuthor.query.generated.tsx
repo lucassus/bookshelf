@@ -11,7 +11,7 @@ export type GetAuthorQueryVariables = Types.Exact<{
 export type GetAuthorQuery = { __typename?: "Query" } & {
   author:
     | ({ __typename: "Author" } & Pick<Types.Author, "id" | "name" | "bio"> & {
-          photo: { __typename?: "Image" } & Pick<Types.Image, "url">;
+          photo: { __typename?: "Image" } & Pick<Types.Image, "path">;
           books: Array<{ __typename?: "Book" } & BookCardFragment>;
         })
     | ({ __typename: "ResourceNotFoundError" } & Pick<
@@ -32,7 +32,7 @@ export const GetAuthorDocument = gql`
         name
         bio
         photo {
-          url
+          path
         }
         books {
           ...BookCard

@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 export type Avatar_Avatar_Fragment = { __typename: "Avatar" } & Pick<
   Types.Avatar,
   "color"
-> & { image: { __typename?: "Image" } & Pick<Types.Image, "url"> };
+> & { image: { __typename?: "Image" } & Pick<Types.Image, "path"> };
 
 export type Avatar_FlaggedAvatarError_Fragment = {
   __typename: "FlaggedAvatarError";
@@ -22,7 +22,7 @@ export const AvatarFragmentDoc = gql`
     }
     ... on Avatar {
       image {
-        url
+        path
       }
       color
     }
