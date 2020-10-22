@@ -5,9 +5,9 @@ __metadata:
   version: 4
   cacheKey: 6
 
-"@apollo/client@npm:3.2.4":
-  version: 3.2.4
-  resolution: "@apollo/client@npm:3.2.4"
+"@apollo/client@npm:3.2.5":
+  version: 3.2.5
+  resolution: "@apollo/client@npm:3.2.5"
   dependencies:
     "@graphql-typed-document-node/core": ^3.0.0
     "@types/zen-observable": ^0.8.0
@@ -19,7 +19,6 @@ __metadata:
     optimism: ^0.13.0
     prop-types: ^15.7.2
     symbol-observable: ^2.0.0
-    terser: ^5.2.0
     ts-invariant: ^0.4.4
     tslib: ^1.10.0
     zen-observable: ^0.8.14
@@ -32,7 +31,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: e2f29711525e7e20d29416866c3a91b0bd6b92afaae6e86fad929a9ab3ad30d915fcf2b561110e39294bef90146b26a3f72852fb4f404abf9d02a13bd9240c4f
+  checksum: 0dc20d1c452cb6a8411b034d91d8fd34d242fd5e9493b68aaf80b0979a46f9ef6bf2668a5b30b81247171792a0426c716dcaecc094bb78592fef5451769eb4e7
   languageName: node
   linkType: hard
 
@@ -1702,7 +1701,7 @@ __metadata:
     "@graphql-tools/mock": 6.2.4
     "@graphql-tools/schema": 6.2.4
     "@types/eslint-plugin-prettier": 3.1.0
-    "@types/faker": 5.1.2
+    "@types/faker": 5.1.3
     "@types/prettier": 2.1.5
     "@types/rimraf": 3.0.0
     "@typescript-eslint/eslint-plugin": 4.4.1
@@ -1761,7 +1760,7 @@ __metadata:
     "@types/bcrypt": 3.0.0
     "@types/cookie-parser": 1.4.2
     "@types/express": 4.17.8
-    "@types/faker": 5.1.2
+    "@types/faker": 5.1.3
     "@types/jest": 26.0.14
     "@types/jsonwebtoken": 8.5.0
     "@types/lodash.merge": 4.6.6
@@ -1847,7 +1846,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@bookshelf/web@workspace:apps/web"
   dependencies:
-    "@apollo/client": 3.2.4
+    "@apollo/client": 3.2.5
     "@babel/core": 7.12.3
     "@storybook/addon-actions": 6.0.26
     "@storybook/addon-info": 5.3.21
@@ -2187,15 +2186,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-cli/codegen@npm:1.17.10":
-  version: 1.17.10
-  resolution: "@graphql-cli/codegen@npm:1.17.10"
+"@graphql-cli/codegen@npm:1.17.11":
+  version: 1.17.11
+  resolution: "@graphql-cli/codegen@npm:1.17.11"
   dependencies:
-    "@graphql-cli/common": 4.0.0
-    "@graphql-codegen/cli": 1.17.10
+    "@graphql-cli/common": 4.1.0
+    "@graphql-codegen/cli": 1.18.0
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
-  checksum: 80bede102065001a94decfd42195c3392ec06db5fd2df5e719df476f367aac3798ee412a74f46decc29c76f3de3a8154a79329979057babcd5e4dad4b8d04e6e
+  checksum: 6be178f5e5410ffbe2bd0c772604879daf5f62154afb1beb0f1df68d3848ddfd1f59f0113b07e2a7a8b43dd502cd0cc3de6fd7967847023f1087fe5e0600a1f0
   languageName: node
   linkType: hard
 
@@ -2336,9 +2335,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/cli@npm:1.17.10":
-  version: 1.17.10
-  resolution: "@graphql-codegen/cli@npm:1.17.10"
+"@graphql-codegen/cli@npm:1.18.0":
+  version: 1.18.0
+  resolution: "@graphql-codegen/cli@npm:1.18.0"
   dependencies:
     "@graphql-codegen/core": 1.17.8
     "@graphql-codegen/plugin-helpers": ^1.17.9
@@ -2355,7 +2354,7 @@ __metadata:
     ansi-escapes: ^4.3.1
     camel-case: ^4.1.1
     chalk: ^4.1.0
-    chokidar: ^3.4.2
+    chokidar: ^3.4.3
     common-tags: ^1.8.0
     constant-case: ^3.0.3
     cosmiconfig: ^7.0.0
@@ -2390,7 +2389,7 @@ __metadata:
     gql-gen: bin.js
     graphql-code-generator: bin.js
     graphql-codegen: bin.js
-  checksum: f21ec5949a529a3debe5b6fdbd7732ecba32eb283f44f4028f3d3b431b26fe8d3a2e181f91ff74aed91e2b499b51d8973ae354b758986b53f438b553cf621c9f
+  checksum: fb75a7b60a127d129c4209b1e3b906f63609469d5d82b8616dcc9fb0705b412645f2c964f5d97b312ed26946b870493a42793831bc002ff81a72284c8ef449f9
   languageName: node
   linkType: hard
 
@@ -2550,7 +2549,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript@npm:1.17.10, @graphql-codegen/typescript@npm:^1.17.10":
+"@graphql-codegen/typescript@npm:1.17.11":
+  version: 1.17.11
+  resolution: "@graphql-codegen/typescript@npm:1.17.11"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^1.17.9
+    "@graphql-codegen/visitor-plugin-common": ^1.17.16
+    auto-bind: ~4.0.0
+    tslib: ~2.0.1
+  peerDependencies:
+    graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 8d849c062c89cc0e538bfc06a74fa6814ed4dd9c0cf7f10f06d904a5aa0e93995a8ca50e4e602d7c3eda9182aede0623458e5c7783cc8b360b4fb9127917504d
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/typescript@npm:^1.17.10":
   version: 1.17.10
   resolution: "@graphql-codegen/typescript@npm:1.17.10"
   dependencies:
@@ -2613,6 +2626,25 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
   checksum: c22ed563577bacd77f0092dc1441340d73a6a4e8b4d198f8697e64ea3a2837799a30b9ed5abd8c631c27c68881fb79b29b1643a6c286eb868dc0bd9f1ed55dab
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/visitor-plugin-common@npm:^1.17.16":
+  version: 1.17.16
+  resolution: "@graphql-codegen/visitor-plugin-common@npm:1.17.16"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^1.17.9
+    "@graphql-tools/relay-operation-optimizer": ^6
+    array.prototype.flatmap: ^1.2.3
+    auto-bind: ~4.0.0
+    dependency-graph: ^0.9.0
+    graphql-tag: ^2.11.0
+    parse-filepath: ^1.0.2
+    pascal-case: ^3.1.1
+    tslib: ~2.0.1
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 9dfdaf03b5064ebe8441cc5b604038c2592b58139e47e16b4051c31c221402d337d164076957a10f580da63a6d5de277f1ab6662e78a72d65f605c6c7e5c9216
   languageName: node
   linkType: hard
 
@@ -5048,10 +5080,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/faker@npm:5.1.2":
-  version: 5.1.2
-  resolution: "@types/faker@npm:5.1.2"
-  checksum: 3a7b0191b7d2e3677231339ce5a9dab6a628e7a25c2d7112166609f248a7e3cf02d1bb9fbcb84e5fdb78e56554a3c01cfe6f7651683c7e7fc65f5dead9c641ca
+"@types/faker@npm:5.1.3":
+  version: 5.1.3
+  resolution: "@types/faker@npm:5.1.3"
+  checksum: 8af11ad8e5ad54029cd5e2cbc08809087976cb0c2a55ed8a9003ae198ef382c005031e7129005ddaa6e8155e74d19346a5e89f7a5341ed3b9e29dbfb892da501
   languageName: node
   linkType: hard
 
@@ -7905,17 +7937,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bookshelf@workspace:."
   dependencies:
-    "@graphql-cli/codegen": 1.17.10
+    "@graphql-cli/codegen": 1.17.11
     "@graphql-cli/coverage": 2.1.0
     "@graphql-cli/diff": 2.1.0
     "@graphql-cli/similar": 2.1.0
     "@graphql-cli/validate": 2.1.0
-    "@graphql-codegen/cli": 1.17.10
+    "@graphql-codegen/cli": 1.18.0
     "@graphql-codegen/fragment-matcher": 1.17.8
     "@graphql-codegen/introspection": 1.18.0
     "@graphql-codegen/near-operation-file-preset": 1.17.11
     "@graphql-codegen/schema-ast": 1.17.8
-    "@graphql-codegen/typescript": 1.17.10
+    "@graphql-codegen/typescript": 1.17.11
     "@graphql-codegen/typescript-operations": 1.17.8
     "@graphql-codegen/typescript-react-apollo": 2.0.7
     "@graphql-codegen/typescript-resolvers": 1.17.10
@@ -8548,7 +8580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:>=2.0.0 <4.0.0, chokidar@npm:^3.3.0, chokidar@npm:^3.4.0, chokidar@npm:^3.4.1, chokidar@npm:^3.4.2":
+"chokidar@npm:>=2.0.0 <4.0.0, chokidar@npm:^3.3.0, chokidar@npm:^3.4.0, chokidar@npm:^3.4.1":
   version: 3.4.2
   resolution: "chokidar@npm:3.4.2"
   dependencies:
@@ -8587,6 +8619,25 @@ __metadata:
     fsevents:
       optional: true
   checksum: 0758dcc7c6c7ace5924cf3c68088210932d391ab41026376b0adb8e07013ac87232e029f13468dfc9ca4dd59adae62a2b7eaedebb6c4e4f0ba92cbf3ac9e3721
+  languageName: node
+  linkType: hard
+
+"chokidar@npm:^3.4.3":
+  version: 3.4.3
+  resolution: "chokidar@npm:3.4.3"
+  dependencies:
+    anymatch: ~3.1.1
+    braces: ~3.0.2
+    fsevents: ~2.1.2
+    glob-parent: ~5.1.0
+    is-binary-path: ~2.1.0
+    is-glob: ~4.0.1
+    normalize-path: ~3.0.0
+    readdirp: ~3.5.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: b5a566b31267b1a71c2e7544fbf8c21f597883515d9bfc0356719be6c3b34ee51b0329f3ee5f5d98060ce2930be68f8c33b53f8b3659dc101fd51be265831deb
   languageName: node
   linkType: hard
 
@@ -19422,6 +19473,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"readdirp@npm:~3.5.0":
+  version: 3.5.0
+  resolution: "readdirp@npm:3.5.0"
+  dependencies:
+    picomatch: ^2.2.1
+  checksum: a64fe5606937d9655252230003362d95da05dbfd3baecedb4bb8c1bc0df497d051a192f9b75345c944e58a0b362c68349be602d6dbf05d03770e510b35a9f80f
+  languageName: node
+  linkType: hard
+
 "recast@npm:^0.14.7":
   version: 0.14.7
   resolution: "recast@npm:0.14.7"
@@ -21642,19 +21702,6 @@ fsevents@^1.2.7:
   bin:
     terser: bin/terser
   checksum: d7ab95898b40e2aa3513b02fc74f520f8e65072a19d7f687b8224af01512ad4d2227bc1375c22cd050f67eb1ca3e440b4f09652c5f48f13ed9ee81c0c26015a3
-  languageName: node
-  linkType: hard
-
-"terser@npm:^5.2.0":
-  version: 5.3.0
-  resolution: "terser@npm:5.3.0"
-  dependencies:
-    commander: ^2.20.0
-    source-map: ~0.6.1
-    source-map-support: ~0.5.12
-  bin:
-    terser: bin/terser
-  checksum: 43f35f253f0fa1d4fd5f8629b433d5cf61957a921bf93c8990088348f636797aa2ff59e1b9a083bf01a178e4b65be48a2a58e70958f4f869525ca8c2bf02dd70
   languageName: node
   linkType: hard
 
