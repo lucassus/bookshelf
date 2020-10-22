@@ -161,8 +161,8 @@ declare module "cloudinary-react" {
     color?: string;
     colorSpace?: ColorSpace;
     crop?: CropMode;
-    //customFunction: any; Can't find anything about this in core types
-    //customPreFunction: any; Can't find anything about this in core types
+    // customFunction: any; Can't find anything about this in core types
+    // customPreFunction: any; Can't find anything about this in core types
     defaultImage?: string;
     delay?: string;
     density?: number | string;
@@ -187,6 +187,7 @@ declare module "cloudinary-react" {
     opacity?: number | string;
     overlay?: string | string;
     page?: number | string;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     poster?: string | Object;
     prefix?: string;
     quality?: string | number;
@@ -201,6 +202,7 @@ declare module "cloudinary-react" {
     underlay?: string;
     variable?: [string, any];
     variables?: Array<[string, any]>;
+    // eslint-disable-next-line @typescript-eslint/ban-types
     videoCodec?: string | Object;
     videoSampling?: number | string;
     width?: string | number;
@@ -208,8 +210,8 @@ declare module "cloudinary-react" {
     y?: number | string;
     zoom?: number | string;
     apiKey?: string;
-    //apiSecret?: string; SHOULD NEVER BE USED IN FRONTEND
-    //callback; Can't find anything about this in core types
+    // apiSecret?: string; SHOULD NEVER BE USED IN FRONTEND
+    // callback; Can't find anything about this in core types
     cdnSubdomain?: boolean;
     cloudName?: string;
     cname?: string;

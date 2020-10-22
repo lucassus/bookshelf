@@ -1,5 +1,6 @@
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { render, waitForElementToBeRemoved } from "@testing-library/react";
+import { CloudinaryContext } from "cloudinary-react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
@@ -21,8 +22,7 @@ export const GetAuthorsDocumentMock: MockedResponse<{
           id: "1",
           name: "J. K. Rowling",
           photo: {
-            url:
-              "http://examples.devmastery.pl/assets/images/book-authors/j-k-rowling.jpg"
+            path: "/bookshelf/book-authors/j-k-rowling.jpg"
           }
         },
         {
@@ -30,8 +30,7 @@ export const GetAuthorsDocumentMock: MockedResponse<{
           id: "2",
           name: "Andrzej Sapkowski",
           photo: {
-            url:
-              "http://examples.devmastery.pl/assets/images/book-authors/sapkowski.jpg"
+            path: "/bookshelf/book-authors/sapkowski.jpg"
           }
         }
       ]
@@ -50,9 +49,11 @@ describe("<AuthorsPage />", () => {
   const renderComponent = ({ mocks }: { mocks: MockedResponse[] }) =>
     render(<AuthorsPage />, {
       wrapper: ({ children }) => (
-        <MockedProvider mocks={mocks}>
-          <MemoryRouter>{children}</MemoryRouter>
-        </MockedProvider>
+        <CloudinaryContext cloudName="lucassus">
+          <MockedProvider mocks={mocks}>
+            <MemoryRouter>{children}</MemoryRouter>
+          </MockedProvider>
+        </CloudinaryContext>
       )
     });
 

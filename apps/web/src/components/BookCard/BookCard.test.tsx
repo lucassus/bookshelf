@@ -1,5 +1,6 @@
 import { MockedProvider } from "@apollo/client/testing";
 import { render, screen } from "@testing-library/react";
+import { CloudinaryContext } from "cloudinary-react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
@@ -24,9 +25,11 @@ describe("<BookCard />", () => {
   it("displays author's name", () => {
     render(
       <MemoryRouter>
-        <MockedProvider>
-          <BookCard book={book} />
-        </MockedProvider>
+        <CloudinaryContext cloudName="lucassus">
+          <MockedProvider>
+            <BookCard book={book} />
+          </MockedProvider>
+        </CloudinaryContext>
       </MemoryRouter>
     );
 
