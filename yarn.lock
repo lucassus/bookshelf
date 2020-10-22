@@ -1862,7 +1862,6 @@ __metadata:
     "@types/react": 16.9.53
     "@types/react-dom": 16.9.8
     "@types/react-icons": 3.0.0
-    "@types/react-router-dom": 5.1.6
     "@types/rimraf": 3.0.0
     "@types/testing-library__jest-dom": 5.9.5
     "@types/webpack": 4.41.23
@@ -5521,27 +5520,6 @@ __metadata:
   dependencies:
     react-icons: "*"
   checksum: bc53a7ebde39466a22bf546441a67ea8121fb32b4d060728b5720ee3652558304b4887d0b8c3c87337a38b549b58a5cdcb83f5dae1db52b897e8f492460bc398
-  languageName: node
-  linkType: hard
-
-"@types/react-router-dom@npm:5.1.6":
-  version: 5.1.6
-  resolution: "@types/react-router-dom@npm:5.1.6"
-  dependencies:
-    "@types/history": "*"
-    "@types/react": "*"
-    "@types/react-router": "*"
-  checksum: dcff1d613899af1cbfb003eb3994f7ebce5f2633e0018588008be39af8e15971041644b7c99e6448122d661d509ee7cafce7bb5972598e8bb6701e77c9431def
-  languageName: node
-  linkType: hard
-
-"@types/react-router@npm:*":
-  version: 5.1.8
-  resolution: "@types/react-router@npm:5.1.8"
-  dependencies:
-    "@types/history": "*"
-    "@types/react": "*"
-  checksum: 8b4c8fefdba877971aeaa642d81074d0fda0db9d8891709071c8586c32c75afca1baf478c3b26bcbd404503304599d8ea3243beb4e01080ee77f48f56815ee73
   languageName: node
   linkType: hard
 
