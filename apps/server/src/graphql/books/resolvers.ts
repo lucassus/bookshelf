@@ -3,6 +3,7 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
 import { Book, BookCopy } from "../../database/entity";
+import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
@@ -174,7 +175,6 @@ const resolvers: Resolvers = {
     }
   },
 
-  // TODO: Pass currentUser to this subscription
   Subscription: {
     bookCopyUpdated: {
       subscribe: withFilter(
@@ -182,10 +182,15 @@ const resolvers: Resolvers = {
           return pubsub.asyncIterator(BOOK_COPY_UPDATED);
         },
         (
-          { bookCopyUpdated }: { bookCopyUpdated: BookCopy },
-          { id }: { id: string }
+          { bookCopyUpdated: bookCopy }: { bookCopyUpdated: BookCopy },
+          { id }: { id: string },
+          { currentUser }: Context
         ) => {
-          return bookCopyUpdated.id === parseInt(id, 10);
+          if (!currentUser) {
+            return false;
+          }
+
+          return bookCopy.id === parseInt(id, 10);
         }
       )
     }

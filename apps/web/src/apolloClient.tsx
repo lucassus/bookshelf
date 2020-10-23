@@ -1,6 +1,7 @@
 import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { SubscriptionClient } from "subscriptions-transport-ws";
 
 import { GRAPHQL_SUBSCRIPTIONS_URI, GRAPHQL_URI } from "./config";
 import introspectionResult from "./introspectionResult.generated";
@@ -33,3 +34,12 @@ export const apolloClient = new ApolloClient({
   }),
   link: splitLink
 });
+
+// Forces re-authenticate the websocket connection
+export const resetWsConnection = () => {
+  const {
+    subscriptionClient
+  }: { subscriptionClient: SubscriptionClient } = wsLink;
+
+  subscriptionClient.close(false, false);
+};

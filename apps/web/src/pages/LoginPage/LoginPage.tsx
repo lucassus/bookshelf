@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
 
+import { resetWsConnection } from "../../apolloClient";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useLoginMutation } from "./Login.mutation.generated";
 import styles from "./LoginPage.scss";
@@ -36,6 +37,7 @@ export const LoginPage: React.FunctionComponent = () => {
 
       if (result.__typename === "LoginSuccess") {
         navigate("/");
+        resetWsConnection();
       }
 
       if (result.__typename === "LoginFailure") {

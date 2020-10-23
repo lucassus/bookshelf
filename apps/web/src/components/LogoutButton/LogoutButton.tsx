@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router";
 
+import { resetWsConnection } from "../../apolloClient";
 import { useLogoutMutation } from "./Logout.mutation.generated";
 
 type Props = {
@@ -18,6 +19,7 @@ export const LogoutButton: React.FunctionComponent<Props> = ({
   const handleClick = useCallback(async () => {
     await logout();
     navigate("/");
+    resetWsConnection();
     onSuccess();
   }, [logout, navigate, onSuccess]);
 
