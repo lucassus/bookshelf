@@ -39,6 +39,7 @@ const startServer = async () => {
       }
     ],
     debug: ENVIRONMENT === Environment.development,
+    tracing: ENVIRONMENT === Environment.development,
     introspection: true,
     playground: true,
     engine:
