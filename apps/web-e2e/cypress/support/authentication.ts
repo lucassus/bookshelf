@@ -1,4 +1,3 @@
-import { print } from "graphql";
 import gql from "graphql-tag";
 
 const login = ({ as = "user" }: { as?: "user" | "admin" } = {}) => {
@@ -12,19 +11,15 @@ const login = ({ as = "user" }: { as?: "user" | "admin" } = {}) => {
     });
 
     return cy
-      .request({
-        url: `${Cypress.config().baseUrl}/graphql`,
-        method: "POST",
-        body: {
-          query: print(gql`
-            mutation($input: LoginInput!) {
-              login(input: $input) {
-                __typename
-              }
+      .gqlRequest({
+        query: gql`
+          mutation($input: LoginInput!) {
+            login(input: $input) {
+              __typename
             }
-          `),
-          variables: { input: { email, password } }
-        }
+          }
+        `,
+        variables: { input: { email, password } }
       })
       .then(() => log.end());
   });
