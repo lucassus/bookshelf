@@ -26,7 +26,7 @@ if (NODE_ENV === "development") {
   module.exports = {
     ...DEFAULTS,
     url: "postgres://localhost:5432/bookshelf_development",
-    logging: false
+    logging: true
   };
 }
 
