@@ -5,8 +5,8 @@
   "dependencies": {
     "@bookshelf/secure-id": "workspace:*",
     "@bookshelf/string-utils": "workspace:*",
-    "@graphql-tools/mock": "6.2.4",
-    "@graphql-tools/schema": "6.2.4",
+    "@graphql-tools/mock": "7.0.0",
+    "@graphql-tools/schema": "7.0.0",
     "@types/faker": "5.1.3",
     "apollo-server": "2.18.2",
     "faker": "5.1.0",
