@@ -9,7 +9,7 @@
     "@graphql-tools/load": "6.2.4",
     "@graphql-tools/load-files": "6.2.4",
     "@graphql-tools/merge": "6.2.4",
-    "@graphql-tools/schema": "6.2.4",
+    "@graphql-tools/schema": "7.0.0",
     "@graphql-tools/utils": "6.2.4",
     "apollo-server-express": "2.18.2",
     "bcrypt": "5.0.0",
