@@ -41,7 +41,11 @@ const startServer = async () => {
     debug: ENVIRONMENT === Environment.development,
     tracing: ENVIRONMENT === Environment.development,
     introspection: true,
-    playground: true,
+    playground: {
+      settings: {
+        "request.credentials": "include"
+      }
+    },
     engine:
       ENVIRONMENT === Environment.production
         ? {
