@@ -1,3 +1,5 @@
+import gql from "graphql-tag";
+
 describe("My books page", () => {
   beforeEach(() => {
     cy.login();
@@ -117,6 +119,80 @@ describe("My books page", () => {
 
       cy.findByText("Borrowed book copies (2)").should("exist");
       cy.findBookCopyCards("Children of Dune").should("have.length", 0);
+    });
+  });
+
+  it("subscribes for book copy updates", () => {
+    cy.findByTestId("owned-book-copies-list").within(() => {
+      cy.findBookCopyCards("Blood of Elves")
+        .first()
+        .within(() => {
+          cy.findBookCopyBorrowerAvatar("Alice").should("exist");
+        });
+    });
+
+    // Find a book copy id to return
+    cy.gqlRequest({
+      query: gql`
+        query {
+          users {
+            name
+            ownedBookCopies {
+              id
+              borrower {
+                name
+              }
+            }
+          }
+        }
+      `
+    })
+      .then((data: any) => {
+        const userBob = data.users.find(({ name }) => name === "Bob");
+
+        const bookCopyBorrowedByAlice = userBob.ownedBookCopies.find(
+          ({ borrower }) => borrower.name === "Alice"
+        );
+
+        return bookCopyBorrowedByAlice;
+      })
+      .as("bookCopy");
+
+    // Login as other user
+    cy.gqlRequest({
+      query: gql`
+        mutation($input: LoginInput!) {
+          login(input: $input) {
+            __typename
+          }
+        }
+      `,
+      variables: {
+        input: { email: "alice@example.com", password: "password" }
+      }
+    });
+
+    // Return the book copy as the other user
+    cy.get("@bookCopy").then((bookCopy) => {
+      cy.gqlRequest({
+        query: gql`
+          mutation($id: ExternalID!) {
+            returnBookCopy(id: $id) {
+              __typename
+            }
+          }
+        `,
+        variables: { id: bookCopy.id }
+      });
+    });
+
+    // Verify that the book copy card has been updated in the app
+    cy.findByTestId("owned-book-copies-list").within(() => {
+      cy.findBookCopyCards("Blood of Elves")
+        .first()
+        .within(() => {
+          cy.findBookCopyBorrowerAvatar("Alice").should("not.exist");
+        });
     });
   });
 
