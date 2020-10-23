@@ -3,7 +3,6 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
 import { Book, BookCopy } from "../../database/entity";
-import { Context } from "../context";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
@@ -183,14 +182,10 @@ const resolvers: Resolvers = {
         },
         (
           { bookCopyUpdated: bookCopy }: { bookCopyUpdated: BookCopy },
-          { id }: { id: string },
-          { currentUser }: Context
+          { id }: { id: number }
         ) => {
-          if (!currentUser) {
-            return false;
-          }
-
-          return bookCopy.id === parseInt(id, 10);
+          // Client will receive updated only for book copies that are visible on the screen
+          return bookCopy.id === id;
         }
       )
     }
