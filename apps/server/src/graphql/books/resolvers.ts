@@ -1,3 +1,4 @@
+import { withFilter } from "apollo-server-express";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
@@ -6,6 +7,8 @@ import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
+
+const BOOK_COPY_UPDATED = "bookCopyUpdated";
 
 const resolvers: Resolvers = {
   Book: {
@@ -120,11 +123,19 @@ const resolvers: Resolvers = {
       }
     },
 
-    borrowBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+    borrowBookCopy: async (
+      rootValue,
+      { id },
+      { container, currentUser, pubsub }
+    ) => {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
           .borrow(id, currentUser.id);
+
+        await pubsub.publish(BOOK_COPY_UPDATED, {
+          bookCopyUpdated: bookCopy
+        });
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {
@@ -135,11 +146,19 @@ const resolvers: Resolvers = {
       }
     },
 
-    returnBookCopy: async (rootValue, { id }, { container, currentUser }) => {
+    returnBookCopy: async (
+      rootValue,
+      { id },
+      { container, currentUser, pubsub }
+    ) => {
       try {
         const bookCopy = await container
           .get(BookCopiesService)
           .return(id, currentUser.id);
+
+        await pubsub.publish(BOOK_COPY_UPDATED, {
+          bookCopyUpdated: bookCopy
+        });
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
       } catch (error) {
@@ -152,6 +171,23 @@ const resolvers: Resolvers = {
 
         throw error;
       }
+    }
+  },
+
+  Subscription: {
+    bookCopyUpdated: {
+      subscribe: withFilter(
+        (rootValue, args, { pubsub }) => {
+          return pubsub.asyncIterator(BOOK_COPY_UPDATED);
+        },
+        (
+          { bookCopyUpdated: bookCopy }: { bookCopyUpdated: BookCopy },
+          { id }: { id: number }
+        ) => {
+          // Client will receive updated only for book copies that are visible on the screen
+          return bookCopy.id === id;
+        }
+      )
     }
   }
 };

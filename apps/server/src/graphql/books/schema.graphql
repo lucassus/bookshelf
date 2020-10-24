@@ -57,3 +57,7 @@ extend type Mutation {
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
   returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
 }
+
+extend type Subscription {
+  bookCopyUpdated(id: ExternalID!): BookCopy!
+}

@@ -3,6 +3,7 @@
   "includes": [
     "apps/server/src/graphql/**/*.graphql",
     "apps/server/src/graphql/**/*.test.ts",
-    "apps/web/src/**/*.graphql"
+    "apps/web/src/**/*.graphql",
+    "apps/web-e2e/cypress/**/*_spec.ts"
   ]
 }

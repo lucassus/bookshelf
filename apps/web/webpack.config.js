@@ -65,7 +65,10 @@ const config = {
     historyApiFallback: true,
     proxy: {
       "/api/*": "http://localhost:4000",
-      "/graphql": "http://localhost:4000",
+      "/graphql": {
+        target: "http://localhost:4000",
+        ws: true
+      },
       "/voyager": "http://localhost:4000"
     }
   }

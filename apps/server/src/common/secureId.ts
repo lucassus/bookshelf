@@ -7,7 +7,8 @@ const secureId = new SecureId<string>({
 export const toInternalIdAndType = (id: string) =>
   secureId.toInternalAndType(id);
 
-export const toInternalId = (id: string) => secureId.toInternal(id);
+export const toInternalId = (id: string): number =>
+  Number(secureId.toInternal(id));
 
 export const toExternalId = (entity: { id: number }): string =>
   secureId.toExternal(

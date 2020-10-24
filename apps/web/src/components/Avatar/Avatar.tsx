@@ -14,7 +14,7 @@ type Props = {
 
 const AVATAR_SIZES: Record<AvatarSize, number> = {
   "x-small": 32,
-  small: 32,
+  small: 50,
   medium: 160
 };
 
