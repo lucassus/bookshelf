@@ -1706,7 +1706,7 @@ __metadata:
     "@types/rimraf": 3.0.0
     "@typescript-eslint/eslint-plugin": 4.5.0
     apollo-server: 2.18.2
-    eslint: 7.11.0
+    eslint: 7.12.0
     eslint-config-prettier: 6.14.0
     eslint-plugin-import: 2.22.1
     eslint-plugin-jsx-a11y: 6.3.1
@@ -1729,7 +1729,7 @@ __metadata:
     "@types/node": 14.14.2
     "@types/rimraf": 3.0.0
     "@typescript-eslint/eslint-plugin": 4.5.0
-    eslint: 7.11.0
+    eslint: 7.12.0
     eslint-config-airbnb-typescript: 12.0.0
     eslint-config-prettier: 6.14.0
     eslint-plugin-import: 2.22.1
@@ -1740,7 +1740,7 @@ __metadata:
     jest: 26.6.1
     prettier: 2.1.2
     rimraf: 3.0.2
-    ts-jest: 26.4.1
+    ts-jest: 26.4.2
     typescript: 4.0.3
   languageName: unknown
   linkType: soft
@@ -1766,14 +1766,14 @@ __metadata:
     "@types/lodash.merge": 4.6.6
     "@types/rimraf": 3.0.0
     "@types/supertest": 2.0.10
-    "@types/ws": ^7
+    "@types/ws": 7.2.7
     "@typescript-eslint/eslint-plugin": 4.5.0
     apollo-server-express: 2.18.2
     apollo-server-testing: 2.18.2
     bcrypt: 5.0.0
     cookie: 0.4.1
     dataloader: 2.0.0
-    eslint: 7.11.0
+    eslint: 7.12.0
     eslint-config-airbnb-typescript: 12.0.0
     eslint-config-prettier: 6.14.0
     eslint-plugin-import: 2.22.1
@@ -1796,7 +1796,7 @@ __metadata:
     sqlite3: 5.0.0
     subscriptions-transport-ws: 0.9.18
     supertest: 5.0.0
-    ts-jest: 26.4.1
+    ts-jest: 26.4.2
     ts-node: 9.0.0
     ts-node-dev: 1.0.0-pre.63
     typedi: 0.8.0
@@ -1814,7 +1814,7 @@ __metadata:
     "@types/jest": 26.0.15
     "@types/rimraf": 3.0.0
     "@typescript-eslint/eslint-plugin": 4.5.0
-    eslint: 7.11.0
+    eslint: 7.12.0
     eslint-config-airbnb-typescript: 12.0.0
     eslint-config-prettier: 6.14.0
     eslint-plugin-import: 2.22.1
@@ -1825,7 +1825,7 @@ __metadata:
     jest: 26.6.1
     prettier: 2.1.2
     rimraf: 3.0.2
-    ts-jest: 26.4.1
+    ts-jest: 26.4.2
     typescript: 4.0.3
   languageName: unknown
   linkType: soft
@@ -1837,7 +1837,7 @@ __metadata:
     "@testing-library/cypress": 7.0.1
     "@types/testing-library__cypress": 5.0.8
     cypress: 5.1.0
-    eslint: 7.11.0
+    eslint: 7.12.0
     eslint-plugin-cypress: 2.11.2
     graphql: 15.3.0
     graphql-tag: 2.11.0
@@ -1874,7 +1874,7 @@ __metadata:
     cloudinary-react: 1.6.7
     core-js: 3.6.5
     css-loader: 4.3.0
-    eslint: 7.11.0
+    eslint: 7.12.0
     eslint-config-airbnb: 18.2.0
     eslint-config-airbnb-typescript: 12.0.0
     eslint-config-prettier: 6.14.0
@@ -1886,7 +1886,7 @@ __metadata:
     eslint-plugin-react-hooks: 4.2.0
     eslint-plugin-testing-library: 3.9.2
     file-loader: 6.1.1
-    formik: 2.2.0
+    formik: 2.2.1
     graphql: 15.3.0
     history: 5.0.0
     html-webpack-plugin: 4.5.0
@@ -1904,8 +1904,8 @@ __metadata:
     sass-loader: 10.0.4
     style-loader: 1.3.0
     subscriptions-transport-ws: 0.9.18
-    ts-jest: 26.4.1
-    ts-loader: 8.0.6
+    ts-jest: 26.4.2
+    ts-loader: 8.0.7
     typescript: 4.0.3
     webpack: 4.44.2
     webpack-cli: 3.3.12
@@ -2114,9 +2114,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@eslint/eslintrc@npm:0.1.3"
+"@eslint/eslintrc@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@eslint/eslintrc@npm:0.2.0"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.1.1
@@ -2128,7 +2128,7 @@ __metadata:
     lodash: ^4.17.19
     minimatch: ^3.0.4
     strip-json-comments: ^3.1.1
-  checksum: e9c5eaa5e706bcedbba6e7e1a2bc85faa7e3a9edbe71375e07240d1b6540fbb88d907bd5e5841b42c2a7a9683dcf031ea052c447c3c9d81ba4d0b74f0dd67e5f
+  checksum: bdc8346add0fe57337c09134f19e693fa8a3c03357bf54c05de2270388774b0469b6d6dbd9f368cbd5de53919c4c9e8b644177acc417ea1ff4f99cbf32feefa6
   languageName: node
   linkType: hard
 
@@ -3559,6 +3559,13 @@ __metadata:
     slash: ^3.0.0
     strip-ansi: ^6.0.0
   checksum: 6cfe819b33d96a72823383e828ad55319d4fecdf8048f0a950bce6dabc82dfca32bd5147988ea9e632c3251a06886a48615913131bef840b0db713b6ec204bb9
+  languageName: node
+  linkType: hard
+
+"@jest/create-cache-key-function@npm:^26.5.0":
+  version: 26.5.0
+  resolution: "@jest/create-cache-key-function@npm:26.5.0"
+  checksum: 7012579ed9e7ee8ad3d87f492a8d54c47d00dc9cf9acd0146d5bc47c49c2d91f822ab857e9f58541b877fe421247fef56ba8eaaac3071e85f95767c4648d7b36
   languageName: node
   linkType: hard
 
@@ -5847,7 +5854,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:^7":
+"@types/ws@npm:7.2.7":
   version: 7.2.7
   resolution: "@types/ws@npm:7.2.7"
   dependencies:
@@ -11265,12 +11272,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:7.11.0":
-  version: 7.11.0
-  resolution: "eslint@npm:7.11.0"
+"eslint@npm:7.12.0":
+  version: 7.12.0
+  resolution: "eslint@npm:7.12.0"
   dependencies:
     "@babel/code-frame": ^7.0.0
-    "@eslint/eslintrc": ^0.1.3
+    "@eslint/eslintrc": ^0.2.0
     ajv: ^6.10.0
     chalk: ^4.0.0
     cross-spawn: ^7.0.2
@@ -11308,7 +11315,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 45ef6dc7b31684ca0f383ed9c6224e763197e1d49745542f4440e37286c947973388a6a7ebbf103eeee91ddb4af2652c5d22718f4130bfbbf4bd16a04103f82a
+  checksum: 22f86c0ebaf75993d197d230a8c35f11ba4ffc7cd0b280aeecb28a04c26446b9e6906eedee264a445311a3b9b31f9bca787ee58546acc087cb2c1056ca89f624
   languageName: node
   linkType: hard
 
@@ -12229,9 +12236,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formik@npm:2.2.0":
-  version: 2.2.0
-  resolution: "formik@npm:2.2.0"
+"formik@npm:2.2.1":
+  version: 2.2.1
+  resolution: "formik@npm:2.2.1"
   dependencies:
     deepmerge: ^2.1.1
     hoist-non-react-statics: ^3.3.0
@@ -12243,7 +12250,7 @@ __metadata:
     tslib: ^1.10.0
   peerDependencies:
     react: ">=16.8.0"
-  checksum: 11a90c4dcf44ff4b8dccc1ff98e4ba3a3afb08bc7a1cea8d21736282d71adaf9461f4f559c9337fa5479c09b7b9fae9278d8cd7dd66af0eab0718c926c934fb6
+  checksum: a84f6e8422cfa6c86cdab05d0b12a616bd6826ac8e32806bc1085bb8b3153864556efd3298a39c2bfb287f8decaac8c26e19e05e29cbaf5e05407951080a0e47
   languageName: node
   linkType: hard
 
@@ -22166,10 +22173,11 @@ resolve@^1.18.1:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:26.4.1":
-  version: 26.4.1
-  resolution: "ts-jest@npm:26.4.1"
+"ts-jest@npm:26.4.2":
+  version: 26.4.2
+  resolution: "ts-jest@npm:26.4.2"
   dependencies:
+    "@jest/create-cache-key-function": ^26.5.0
     "@types/jest": 26.x
     bs-logger: 0.x
     buffer-from: 1.x
@@ -22186,13 +22194,13 @@ resolve@^1.18.1:
     typescript: ">=3.8 <5.0"
   bin:
     ts-jest: cli.js
-  checksum: d57275098b82156a75fd4b67903822ea9fa2d523d2ec0ef407bb7eb60f611af1b5a0f7d25531dbfc436e29c3baa7e0fcdeeb2f4b19d94b1aa70a3566114c132f
+  checksum: 2ca4f4bc0e1501608d68a0c5f1965aab3e9d2996885b0fb94e910957eb58f60906c8b71b280c519a7be6631db2bb9836451534bda130f95cbc3b3d23a359ef1f
   languageName: node
   linkType: hard
 
-"ts-loader@npm:8.0.6":
-  version: 8.0.6
-  resolution: "ts-loader@npm:8.0.6"
+"ts-loader@npm:8.0.7":
+  version: 8.0.7
+  resolution: "ts-loader@npm:8.0.7"
   dependencies:
     chalk: ^2.3.0
     enhanced-resolve: ^4.0.0
@@ -22201,7 +22209,7 @@ resolve@^1.18.1:
     semver: ^6.0.0
   peerDependencies:
     typescript: "*"
-  checksum: c4721e9857c3d4e8faba811550592e07d702e47bb6116ba57432259dc1aa5792bf069caebd30d39c36e4bba1175b6e46bea75d10bf1d3df3dcbb242df0fc58fd
+  checksum: 062143ef35d5ee064244fb5de934d3db8460737168dbf88d19655498cc39cad8bac742c785ec5ed16600c21d2fa9e6acbba28032cdeae469992444fd8e3fa96c
   languageName: node
   linkType: hard
 

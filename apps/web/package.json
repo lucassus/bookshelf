@@ -5,7 +5,7 @@
   "dependencies": {
     "@apollo/client": "3.2.5",
     "cloudinary-react": "1.6.7",
-    "formik": "2.2.0",
+    "formik": "2.2.1",
     "graphql": "15.3.0",
     "history": "5.0.0",
     "react": "17.0.1",
@@ -14,7 +14,7 @@
     "react-router": "6.0.0-beta.0",
     "react-router-dom": "6.0.0-beta.0",
     "subscriptions-transport-ws": "0.9.18",
-    "ts-jest": "26.4.1",
+    "ts-jest": "26.4.2",
     "yup": "0.29.3"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
     "clean-webpack-plugin": "3.0.0",
     "core-js": "3.6.5",
     "css-loader": "4.3.0",
-    "eslint": "7.11.0",
+    "eslint": "7.12.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-typescript": "12.0.0",
     "eslint-config-prettier": "6.14.0",
@@ -62,8 +62,8 @@
     "sass": "1.27.0",
     "sass-loader": "10.0.4",
     "style-loader": "1.3.0",
-    "ts-jest": "26.4.1",
-    "ts-loader": "8.0.6",
+    "ts-jest": "26.4.2",
+    "ts-loader": "8.0.7",
     "typescript": "4.0.3",
     "webpack": "4.44.2",
     "webpack-cli": "3.3.12",
