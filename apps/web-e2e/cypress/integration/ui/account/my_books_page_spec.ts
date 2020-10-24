@@ -148,10 +148,10 @@ describe("My books page", () => {
       `
     })
       .then((data: any) => {
-        const userBob = data.users.find(({ name }) => name === "Bob");
+        const userBob = data.users.find((user: any) => user.name === "Bob");
 
         const bookCopyBorrowedByAlice = userBob.ownedBookCopies.find(
-          ({ borrower }) => borrower.name === "Alice"
+          (bookCopy: any) => bookCopy.borrower.name === "Alice"
         );
 
         return bookCopyBorrowedByAlice;
@@ -173,7 +173,7 @@ describe("My books page", () => {
     });
 
     // Return the book copy as the other user
-    cy.get("@bookCopy").then((bookCopy) => {
+    cy.get("@bookCopy").then((bookCopy: any) => {
       cy.gqlRequest({
         query: gql`
           mutation($id: ExternalID!) {
