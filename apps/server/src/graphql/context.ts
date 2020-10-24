@@ -1,6 +1,6 @@
 import { PubSub } from "apollo-server-express";
 import express from "express";
-import { ExecutionParams } from "subscriptions-transport-ws";
+import { ConnectionContext, ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
@@ -8,6 +8,9 @@ import { authenticateRequest } from "../common/authentication";
 import { ASSETS_BASE_URL } from "../config";
 import { User } from "../database/entity";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
+
+// eslint-disable-next-line import/order
+import WebSocket = require("ws");
 
 const pubsub = new PubSub();
 
@@ -25,6 +28,15 @@ export interface Context {
 export interface AuthenticatedContext extends Context {
   currentUser: User;
 }
+
+export const onSubscriptionConnect = async (
+  params: any,
+  ws: WebSocket,
+  context: ConnectionContext
+) => {
+  const currentUser = await authenticateRequest(context.request);
+  return { currentUser };
+};
 
 export const createContext = async ({
   req,

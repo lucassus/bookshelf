@@ -1,8 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
 
-import { authenticateRequest } from "../common/authentication";
 import { Environment, ENVIRONMENT } from "../config";
-import { createContext } from "./context";
+import { createContext, onSubscriptionConnect } from "./context";
 import { rootSchema } from "./rootSchema";
 
 export const createApolloServer = () =>
@@ -10,10 +9,7 @@ export const createApolloServer = () =>
     schema: rootSchema,
     context: createContext,
     subscriptions: {
-      onConnect: async (params, ws, context) => {
-        const currentUser = await authenticateRequest(context.request);
-        return { currentUser };
-      }
+      onConnect: onSubscriptionConnect
     },
     plugins: [
       {
