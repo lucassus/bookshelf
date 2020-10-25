@@ -4,7 +4,6 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 import { toExternalId } from "../../common/secureId";
 import { Book, BookCopy } from "../../database/entity";
 import { Resolvers } from "../resolvers-types.generated";
-import { UsersService } from "../users/UsersService";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
@@ -39,13 +38,14 @@ const resolvers: Resolvers = {
 
     id: (bookCopy) => toExternalId(bookCopy),
 
-    owner: (bookCopy, args, { container }) =>
-      container.get(UsersService).findByIdOrFail(bookCopy.ownerId),
+    book: (bookCopy, args, { booksLoader }) =>
+      booksLoader.load(bookCopy.bookId),
 
-    borrower: (bookCopy, args, { container }) =>
-      bookCopy.borrowerId
-        ? container.get(UsersService).findByIdOrFail(bookCopy.borrowerId)
-        : null
+    owner: (bookCopy, args, { usersLoader }) =>
+      usersLoader.load(bookCopy.ownerId),
+
+    borrower: (bookCopy, args, { usersLoader }) =>
+      bookCopy.borrowerId ? usersLoader.load(bookCopy.borrowerId) : null
   },
 
   Query: {
