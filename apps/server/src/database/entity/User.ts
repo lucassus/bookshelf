@@ -15,6 +15,7 @@ import {
 import { Avatar } from "./Avatar";
 import { Book } from "./Book";
 import { BookCopy } from "./BookCopy";
+import { Review } from "./Review";
 
 @Entity({ name: "users" })
 export class User {
@@ -57,6 +58,9 @@ export class User {
     inverseJoinColumn: { name: "book_id" }
   })
   favouriteBooks: Promise<Book[]>;
+
+  @OneToMany(() => Review, (review) => review.author)
+  reviews: Promise<Review[]>;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
