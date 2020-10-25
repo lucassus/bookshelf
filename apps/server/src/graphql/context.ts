@@ -8,6 +8,8 @@ import { authenticateRequest } from "../common/authentication";
 import { ASSETS_BASE_URL } from "../config";
 import { User } from "../database/entity";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
+import { buildBooksLoader } from "./books/booksLoader";
+import { buildUsersLoader } from "./users/usersLoader";
 
 // eslint-disable-next-line import/order
 import WebSocket = require("ws");
@@ -21,6 +23,8 @@ export interface Context {
   connection: Connection;
   assetsBaseUrl: string;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
+  booksLoader: ReturnType<typeof buildBooksLoader>;
+  usersLoader: ReturnType<typeof buildUsersLoader>;
   pubsub: PubSub;
   currentUser?: User;
 }
@@ -54,6 +58,8 @@ export const createContext = async ({
   return {
     assetsBaseUrl: ASSETS_BASE_URL,
     authorsLoader: buildAuthorsLoader(),
+    booksLoader: buildBooksLoader(),
+    usersLoader: buildUsersLoader(),
     container: Container,
     connection: Container.get(Connection),
     currentUser,
