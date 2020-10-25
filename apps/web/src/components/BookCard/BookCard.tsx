@@ -19,7 +19,7 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
     <Card className={styles.container} data-testid={`book-card:${book.title}`}>
       <Link to={`/books/${book.id}`}>
         <Image publicId={book.cover.path} alt="Book cover">
-          <Transformation height={150} crop="scale" />
+          <Transformation width={100} height={150} crop="scale" />
         </Image>
       </Link>
 

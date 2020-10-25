@@ -29,7 +29,7 @@ export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
       <div className={styles.bookCoverWithAvatars}>
         <Link to={`/books/${bookCopy.book.id}`}>
           <Image publicId={bookCopy.book.cover.path} alt="Book cover">
-            <Transformation height={200} crop="scale" />
+            <Transformation width={130} height={200} crop="scale" />
           </Image>
         </Link>
 
