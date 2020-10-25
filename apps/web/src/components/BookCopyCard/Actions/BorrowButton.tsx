@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Button } from "../../Button";
 import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
 import { useBorrowBookCopyMutation } from "./BorrowBookCopy.mutation.generated";
 
@@ -13,8 +14,8 @@ export const BorrowButton: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const handleClick = () => borrowBookCopy({ variables: { id: bookCopy.id } });
 
   return (
-    <button disabled={loading} onClick={handleClick}>
+    <Button disabled={loading} onClick={handleClick}>
       borrow
-    </button>
+    </Button>
   );
 };

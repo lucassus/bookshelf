@@ -2,6 +2,7 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import React from "react";
 import * as yup from "yup";
 
+import { Button } from "../../components/Button";
 import { CurrentUserFragment } from "../../components/CurrentUserProvider/CurrentUser.fragment.generated";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import styles from "../LoginPage/LoginPage.scss";
@@ -79,9 +80,9 @@ export const MyProfilePage: React.FunctionComponent<Props> = ({
               <p>{errors.info}</p>
             </div>
 
-            <button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting}>
               Update
-            </button>
+            </Button>
           </Form>
         )}
       />

@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { useNavigate } from "react-router";
 
 import { resetWsConnection } from "../../apolloClient";
+import { Button } from "../Button";
 import { useLogoutMutation } from "./Logout.mutation.generated";
 
 type Props = {
@@ -23,5 +24,5 @@ export const LogoutButton: React.FunctionComponent<Props> = ({
     onSuccess();
   }, [logout, navigate, onSuccess]);
 
-  return <button onClick={handleClick}>{children}</button>;
+  return <Button onClick={handleClick}>{children}</Button>;
 };

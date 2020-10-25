@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
 
+import { Button } from "../../components/Button";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useRegisterMutation } from "./Register.mutation.generated";
 import styles from "./SignupPage.scss";
@@ -95,9 +96,9 @@ export const SignupPage: React.FunctionComponent = () => {
               <p>{errors.passwordConfirmation}</p>
             </div>
 
-            <button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting}>
               Signup
-            </button>
+            </Button>
           </Form>
         )}
       />

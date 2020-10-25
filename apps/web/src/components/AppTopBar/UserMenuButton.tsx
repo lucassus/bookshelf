@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Avatar } from "../Avatar";
+import { Button } from "../Button";
 import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { UserMenu } from "./UserMenu";
 import styles from "./UserMenuButton.scss";
@@ -19,13 +20,13 @@ export const UserMenuButton: React.FunctionComponent<Props> = ({
 
   return (
     <li className={styles.container}>
-      <button onClick={handleClick}>
+      <Button onClick={handleClick}>
         <Avatar
           size="x-small"
           label={currentUser.name}
           avatar={currentUser.avatar}
         />
-      </button>
+      </Button>
 
       {isOpen && <UserMenu onClose={handleClose} currentUser={currentUser} />}
     </li>
