@@ -117,9 +117,6 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Build storybbok
-        run: yarn workspace @bookshelf/web storybook:build
-
   db-seed:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
