@@ -16,8 +16,6 @@ type Props = {
 export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const currentUser = useCurrentUser();
 
-  // TODO: Does it unsubscribe on unmount?
-  // TODO: Check this out https://github.com/apollographql/react-apollo/issues/3577#issuecomment-583173418
   useBookCopyUpdatedSubscription({
     variables: { id: bookCopy.id }
   });
