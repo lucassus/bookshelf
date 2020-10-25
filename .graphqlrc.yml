@@ -43,6 +43,7 @@ extensions:
             BookCopy: ../database/entity#BookCopy
             PublicUser: ../database/entity#User
             ProtectedUser: ../database/entity#User
+            Review: ../database/entity#Review
           mapperTypeSuffix: Entity
           optionalResolveType: true
           scalars:

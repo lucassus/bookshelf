@@ -1,0 +1,16 @@
+type Review implements Resource & Timestampable {
+  id: ExternalID!
+
+  author: User!
+  book: Book!
+
+  text: String
+  rating: Int
+
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+extend type Book {
+  reviews: [Review!]!
+}

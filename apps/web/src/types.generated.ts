@@ -174,6 +174,7 @@ export type Book = Resource &
     isFavourite?: Maybe<Scalars["Boolean"]>;
     createdAt: Scalars["ISODateString"];
     updatedAt: Scalars["ISODateString"];
+    reviews: Array<Review>;
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
@@ -219,6 +220,7 @@ export type ProtectedUser = User &
     ownedBookCopies: Array<BookCopy>;
     borrowedBookCopies: Array<BookCopy>;
     favouriteBooks: Array<Book>;
+    review: Array<Review>;
     id: Scalars["ExternalID"];
     name: Scalars["String"];
     info: Scalars["String"];
@@ -294,6 +296,18 @@ export type ResourceNotFoundError = Error & {
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
+
+export type Review = Resource &
+  Timestampable & {
+    __typename?: "Review";
+    id: Scalars["ExternalID"];
+    author: User;
+    book: Book;
+    text?: Maybe<Scalars["String"]>;
+    rating?: Maybe<Scalars["Int"]>;
+    createdAt: Scalars["ISODateString"];
+    updatedAt: Scalars["ISODateString"];
+  };
 
 export type Avatar = {
   __typename?: "Avatar";

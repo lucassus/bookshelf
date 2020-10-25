@@ -87,6 +87,7 @@ type Book implements Resource & Timestampable {
   isFavourite: Boolean
   createdAt: ISODateString!
   updatedAt: ISODateString!
+  reviews: [Review!]!
 }
 union AuthorResponse = Author | ResourceNotFoundError
 type BookCopy implements Timestampable {
@@ -120,6 +121,7 @@ type ProtectedUser implements User & Resource & Timestampable {
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
   favouriteBooks: [Book!]!
+  review: [Review!]!
   id: ExternalID!
   name: String!
   info: String!
@@ -176,6 +178,15 @@ type ResourceNotFoundError implements Error {
   message: String!
 }
 union Anything = PublicUser | ProtectedUser | Author | Book
+type Review implements Resource & Timestampable {
+  id: ExternalID!
+  author: User!
+  book: Book!
+  text: String
+  rating: Int
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
 type Avatar {
   image: Image!
   color: String!

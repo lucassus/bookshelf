@@ -41,11 +41,17 @@ export type ResourceCard_ProtectedUser_Fragment = {
       | { __typename?: "FlaggedAvatarError" };
   };
 
+export type ResourceCard_Review_Fragment = { __typename: "Review" } & Pick<
+  Types.Review,
+  "id"
+>;
+
 export type ResourceCardFragment =
   | ResourceCard_Author_Fragment
   | ResourceCard_Book_Fragment
   | ResourceCard_PublicUser_Fragment
-  | ResourceCard_ProtectedUser_Fragment;
+  | ResourceCard_ProtectedUser_Fragment
+  | ResourceCard_Review_Fragment;
 
 export const ResourceCardFragmentDoc = gql`
   fragment ResourceCard on Resource {
