@@ -1860,7 +1860,6 @@ __metadata:
     "@testing-library/jest-dom": 5.11.5
     "@testing-library/react": 11.1.0
     "@testing-library/user-event": 12.1.10
-    "@types/classnames": 2.2.6
     "@types/graphql": 14.5.0
     "@types/jest": 26.0.15
     "@types/react": 16.9.53
@@ -1871,9 +1870,9 @@ __metadata:
     "@types/webpack": 4.41.23
     "@typescript-eslint/eslint-plugin": 4.5.0
     babel-loader: 8.1.0
-    classnames: 2.2.6
     clean-webpack-plugin: 3.0.0
     cloudinary-react: 1.6.7
+    clsx: 1.1.1
     core-js: 3.6.5
     css-loader: 4.3.0
     eslint: 7.12.0
@@ -5027,13 +5026,6 @@ __metadata:
   version: 3.0.0
   resolution: "@types/braces@npm:3.0.0"
   checksum: 4bebd28e5b04c7e4930997017343516a2ab8fab2bcc64095da1e3b927c173f48c4bc3c75f3ef8037e9e8c7a54e0133b8705887ae52c8f9adb11dfb8d32cd9b78
-  languageName: node
-  linkType: hard
-
-"@types/classnames@npm:2.2.6":
-  version: 2.2.6
-  resolution: "@types/classnames@npm:2.2.6"
-  checksum: 20cde05770a3809bd88b5c68b605c2b68a244d7404a988d38901aef2599a488b201e2720e9b0b4190e4597cf96f38f9c48e8f00ebdab9cc8648df97d350fc9ab
   languageName: node
   linkType: hard
 
@@ -8796,7 +8788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:2.2.6, classnames@npm:^2.2.5, classnames@npm:^2.2.6":
+"classnames@npm:^2.2.5, classnames@npm:^2.2.6":
   version: 2.2.6
   resolution: "classnames@npm:2.2.6"
   checksum: 490eaeca5931846737ffd33e472a701d268d5b8bc5717dd4cf108a127b06e86e05350e06799abbbe763a0e4c945b4217f6700b7ae00ddc703505682c370e5cf2
@@ -9017,6 +9009,13 @@ __metadata:
   peerDependencies:
     react: ^16.3.3
   checksum: 676a98063ae76c7e9c824a50ea63f818b9c5329061e1507c28648eead29a0d374df08c7c8915c7c355698bc2fd5e11c4c6e8f5baca02cf026d819356540a1221
+  languageName: node
+  linkType: hard
+
+"clsx@npm:1.1.1":
+  version: 1.1.1
+  resolution: "clsx@npm:1.1.1"
+  checksum: d8ae10ac0546da19fe8c9516886f6582a64a382cf4d09ea7d36d5287cafbdab1192ab249adc2cdf0310e0b0aeac4f4142cf7c738c98d9cb68c19ba24b6f673d5
   languageName: node
   linkType: hard
 
