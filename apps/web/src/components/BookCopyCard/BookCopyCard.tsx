@@ -2,6 +2,7 @@ import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Card } from "../Card";
 import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
 import { BookCopyCardFragment } from "./BookCopyCard.fragment.generated";
@@ -21,7 +22,7 @@ export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
   });
 
   return (
-    <div
+    <Card
       className={styles.container}
       data-testid={`book-copy-card:${bookCopy.book.title}`}
     >
@@ -47,6 +48,6 @@ export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
       </div>
 
       {currentUser && <Actions currentUser={currentUser} bookCopy={bookCopy} />}
-    </div>
+    </Card>
   );
 };
