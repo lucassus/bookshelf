@@ -32,6 +32,7 @@ module.exports = {
       { props: true, ignorePropertyModificationsFor: ["draft"] }
     ],
     "react/button-has-type": "off",
+    "react/jsx-props-no-spreading": ["error", { html: "ignore" }],
     "react/prop-types": "off"
   }
 };
