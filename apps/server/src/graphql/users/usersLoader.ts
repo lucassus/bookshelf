@@ -7,8 +7,8 @@ import { normalize } from "../../database/normalize";
 const batchLoadUsers: DataLoader.BatchLoadFn<string | number, User> = async (
   ids
 ) => {
-  const authors = await getRepository(User).findByIds(ids as any[]);
-  const byId = normalize<User>(authors);
+  const users = await getRepository(User).findByIds(ids as any[]);
+  const byId = normalize<User>(users);
 
   return ids.map((id) => byId[id]);
 };
