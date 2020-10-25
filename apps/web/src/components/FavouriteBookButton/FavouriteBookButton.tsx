@@ -1,6 +1,7 @@
 import React from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 
+import { Button } from "../Button";
 import { useAddBookToFavouritesMutation } from "./AddBookToFavourites.generated";
 import { FavouriteBookButtonFragment } from "./FavouriteBookButton.fragment.generated";
 import styles from "./FavouriteBookButton.scss";
@@ -45,13 +46,13 @@ export const FavouriteBookButton: React.FunctionComponent<Props> = ({
     });
 
   return (
-    <button
+    <Button
       onClick={isFavourite ? handleRemoveFromFavourites : handleAddToFavourites}
       aria-label={isFavourite ? "Remove from favourites" : "Add to favourites"}
       data-testid="favourite-book-button"
       className={styles.container}
     >
       {isFavourite ? <FaHeart /> : <FaRegHeart />}
-    </button>
+    </Button>
   );
 };

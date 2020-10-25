@@ -2,6 +2,7 @@ import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Card } from "../Card";
 import { useCurrentUser } from "../CurrentUserProvider";
 import { Actions } from "./Actions";
 import { BookCopyCardFragment } from "./BookCopyCard.fragment.generated";
@@ -16,21 +17,19 @@ type Props = {
 export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
   const currentUser = useCurrentUser();
 
-  // TODO: Does it unsubscribe on unmount?
-  // TODO: Check this out https://github.com/apollographql/react-apollo/issues/3577#issuecomment-583173418
   useBookCopyUpdatedSubscription({
     variables: { id: bookCopy.id }
   });
 
   return (
-    <div
+    <Card
       className={styles.container}
       data-testid={`book-copy-card:${bookCopy.book.title}`}
     >
       <div className={styles.bookCoverWithAvatars}>
         <Link to={`/books/${bookCopy.book.id}`}>
           <Image publicId={bookCopy.book.cover.path} alt="Book cover">
-            <Transformation height={200} crop="scale" />
+            <Transformation width={130} height={200} crop="scale" />
           </Image>
         </Link>
 
@@ -49,6 +48,6 @@ export const BookCopyCard: React.FunctionComponent<Props> = ({ bookCopy }) => {
       </div>
 
       {currentUser && <Actions currentUser={currentUser} bookCopy={bookCopy} />}
-    </div>
+    </Card>
   );
 };

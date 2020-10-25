@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import { Avatar } from "../Avatar";
+import { Button } from "../Button";
 import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { LogoutButton } from "../LogoutButton";
 import { useClickAway } from "./useClickAway";
@@ -25,9 +26,9 @@ export const UserMenu: React.FunctionComponent<Props> = ({
     <section className={styles.container} ref={ref} data-testid="user-menu">
       <header>
         {currentUser.isAdmin ? <div>Admin Account</div> : <div>Account</div>}
-        <button onClick={onClose}>
+        <Button onClick={onClose}>
           <FaTimes />
-        </button>
+        </Button>
       </header>
       <div>
         <nav>

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Alert } from "../Alert";
+import { Button } from "../Button";
 
 type Props = {
   message: string;
@@ -15,7 +16,7 @@ export const ErrorAlert: React.FunctionComponent<Props> = ({
 }) => (
   <Alert
     severity="error"
-    action={onRetry && <button onClick={onRetry}>{retryButtonLabel}</button>}
+    action={onRetry && <Button onClick={onRetry}>{retryButtonLabel}</Button>}
   >
     {message}
   </Alert>

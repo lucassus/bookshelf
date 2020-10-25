@@ -1,8 +1,6 @@
 @value x-small as bp-x-small, small as bp-small, medium as bp-medium, large as bp-large from "../../styles/breakpoints.scss";
 
 .container {
-  composes: card from "../../styles/layout.scss";
-
   display: flex;
   flex-direction: row;
 

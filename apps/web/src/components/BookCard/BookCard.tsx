@@ -2,6 +2,7 @@ import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Card } from "../Card";
 import { useCurrentUser } from "../CurrentUserProvider";
 import { FavouriteBookButton } from "../FavouriteBookButton";
 import { BookCardFragment } from "./BookCard.fragment.generated";
@@ -15,10 +16,10 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
   const currentUser = useCurrentUser();
 
   return (
-    <div className={styles.container} data-testid={`book-card:${book.title}`}>
+    <Card className={styles.container} data-testid={`book-card:${book.title}`}>
       <Link to={`/books/${book.id}`}>
         <Image publicId={book.cover.path} alt="Book cover">
-          <Transformation height={150} crop="scale" />
+          <Transformation width={100} height={150} crop="scale" />
         </Image>
       </Link>
 
@@ -38,6 +39,6 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
           </div>
         )}
       </div>
-    </div>
+    </Card>
   );
 };

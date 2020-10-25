@@ -1872,6 +1872,7 @@ __metadata:
     babel-loader: 8.1.0
     clean-webpack-plugin: 3.0.0
     cloudinary-react: 1.6.7
+    clsx: 1.1.1
     core-js: 3.6.5
     css-loader: 4.3.0
     eslint: 7.12.0
@@ -9008,6 +9009,13 @@ __metadata:
   peerDependencies:
     react: ^16.3.3
   checksum: 676a98063ae76c7e9c824a50ea63f818b9c5329061e1507c28648eead29a0d374df08c7c8915c7c355698bc2fd5e11c4c6e8f5baca02cf026d819356540a1221
+  languageName: node
+  linkType: hard
+
+"clsx@npm:1.1.1":
+  version: 1.1.1
+  resolution: "clsx@npm:1.1.1"
+  checksum: d8ae10ac0546da19fe8c9516886f6582a64a382cf4d09ea7d36d5287cafbdab1192ab249adc2cdf0310e0b0aeac4f4142cf7c738c98d9cb68c19ba24b6f673d5
   languageName: node
   linkType: hard
 

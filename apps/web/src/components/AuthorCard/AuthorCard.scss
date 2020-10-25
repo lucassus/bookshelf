@@ -1,6 +1,4 @@
 .container {
-  composes: card from "../../styles/layout.scss";
-
   h3 {
     margin-top: 0.5em;
   }

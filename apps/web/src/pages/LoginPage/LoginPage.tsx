@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import * as yup from "yup";
 
 import { resetWsConnection } from "../../apolloClient";
+import { Button } from "../../components/Button";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useLoginMutation } from "./Login.mutation.generated";
 import styles from "./LoginPage.scss";
@@ -73,9 +74,9 @@ export const LoginPage: React.FunctionComponent = () => {
               <p>{errors.password}</p>
             </div>
 
-            <button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting}>
               Login
-            </button>
+            </Button>
           </Form>
         )}
       />
