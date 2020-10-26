@@ -27,6 +27,7 @@ test("book query", async () => {
             id
             title
             reviewsCount
+            averageRating
             reviews {
               id
               author {
@@ -50,6 +51,7 @@ test("book query", async () => {
       id: toExternalId(book),
       title: book.title,
       reviewsCount: 2,
+      averageRating: 9,
       reviews: [
         {
           id: toExternalId(review1),
