@@ -12,12 +12,12 @@
     "libs/*"
   ],
   "devDependencies": {
-    "@graphql-cli/codegen": "1.17.11",
+    "@graphql-cli/codegen": "1.17.12",
     "@graphql-cli/coverage": "2.1.0",
     "@graphql-cli/diff": "2.1.0",
     "@graphql-cli/similar": "2.1.0",
     "@graphql-cli/validate": "2.1.0",
-    "@graphql-codegen/cli": "1.18.0",
+    "@graphql-codegen/cli": "1.19.0",
     "@graphql-codegen/fragment-matcher": "1.17.8",
     "@graphql-codegen/introspection": "1.18.0",
     "@graphql-codegen/near-operation-file-preset": "1.17.11",
