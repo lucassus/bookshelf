@@ -88,6 +88,8 @@ type Book implements Resource & Timestampable {
   createdAt: ISODateString!
   updatedAt: ISODateString!
   reviews: [Review!]!
+  reviewsCount: Int!
+  averageRating: Float
 }
 union AuthorResponse = Author | ResourceNotFoundError
 type BookCopy implements Timestampable {

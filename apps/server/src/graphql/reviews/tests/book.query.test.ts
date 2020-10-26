@@ -12,7 +12,9 @@ test("book query", async () => {
   // Given
   const book = await createBook({ title: "Dune" });
   const user = await createUser({ name: "Bob" });
-  const review = await createReview({ book, author: user });
+
+  const review1 = await createReview({ book, author: user });
+  const review2 = await createReview({ book, rating: 8 });
 
   // When
   const resp = await createTestClient().query({
@@ -23,6 +25,8 @@ test("book query", async () => {
             __typename
             id
             title
+            reviewsCount
+            averageRating
             reviews {
               id
               author {
@@ -36,9 +40,7 @@ test("book query", async () => {
         }
       }
     `,
-    variables: {
-      id: toExternalId(book)
-    }
+    variables: { id: toExternalId(book) }
   });
 
   // Then
@@ -47,15 +49,21 @@ test("book query", async () => {
     book: {
       id: toExternalId(book),
       title: book.title,
+      reviewsCount: 2,
+      averageRating: 9,
       reviews: [
         {
-          id: toExternalId(review),
+          id: toExternalId(review1),
           author: {
             id: toExternalId(user),
             name: user.name
           },
-          text: review.text,
-          rating: review.rating
+          text: review1.text,
+          rating: review1.rating
+        },
+        {
+          text: review2.text,
+          rating: review2.rating
         }
       ]
     }

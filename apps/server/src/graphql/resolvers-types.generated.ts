@@ -195,7 +195,7 @@ export type Book = Resource &
     readonly updatedAt: Scalars["ISODateString"];
     readonly reviews: ReadonlyArray<Review>;
     readonly reviewsCount: Scalars["Int"];
-    readonly avarageRating?: Maybe<Scalars["Float"]>;
+    readonly averageRating?: Maybe<Scalars["Float"]>;
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
@@ -951,7 +951,7 @@ export type BookResolvers<
     ContextType
   >;
   reviewsCount?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
-  avarageRating?: Resolver<
+  averageRating?: Resolver<
     Maybe<ResolversTypes["Float"]>,
     ParentType,
     ContextType

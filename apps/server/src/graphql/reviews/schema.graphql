@@ -13,6 +13,9 @@ type Review implements Resource & Timestampable {
 
 extend type Book {
   reviews: [Review!]!
+
+  reviewsCount: Int!
+  averageRating: Float
 }
 
 extend type ProtectedUser {

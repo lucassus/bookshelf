@@ -175,6 +175,8 @@ export type Book = Resource &
     createdAt: Scalars["ISODateString"];
     updatedAt: Scalars["ISODateString"];
     reviews: Array<Review>;
+    reviewsCount: Scalars["Int"];
+    averageRating?: Maybe<Scalars["Float"]>;
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
