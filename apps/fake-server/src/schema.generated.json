@@ -1339,7 +1339,7 @@
             "deprecationReason": null
           },
           {
-            "name": "avarageRating",
+            "name": "averageRating",
             "description": null,
             "args": [],
             "type": {
