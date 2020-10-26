@@ -14,3 +14,7 @@ type Review implements Resource & Timestampable {
 extend type Book {
   reviews: [Review!]!
 }
+
+extend type ProtectedUser {
+  reviews: [Review!]!
+}

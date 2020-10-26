@@ -121,7 +121,7 @@ type ProtectedUser implements User & Resource & Timestampable {
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
   favouriteBooks: [Book!]!
-  review: [Review!]!
+  reviews: [Review!]!
   id: ExternalID!
   name: String!
   info: String!

@@ -194,6 +194,8 @@ export type Book = Resource &
     readonly createdAt: Scalars["ISODateString"];
     readonly updatedAt: Scalars["ISODateString"];
     readonly reviews: ReadonlyArray<Review>;
+    readonly reviewsCount: Scalars["Int"];
+    readonly avarageRating?: Maybe<Scalars["Float"]>;
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
@@ -239,7 +241,7 @@ export type ProtectedUser = User &
     readonly ownedBookCopies: ReadonlyArray<BookCopy>;
     readonly borrowedBookCopies: ReadonlyArray<BookCopy>;
     readonly favouriteBooks: ReadonlyArray<Book>;
-    readonly review: ReadonlyArray<Review>;
+    readonly reviews: ReadonlyArray<Review>;
     readonly id: Scalars["ExternalID"];
     readonly name: Scalars["String"];
     readonly info: Scalars["String"];
@@ -513,6 +515,7 @@ export type ResolversTypes = {
   LoginResult: ResolversTypes["LoginSuccess"] | ResolversTypes["LoginFailure"];
   Author: ResolverTypeWrapper<AuthorEntity>;
   Book: ResolverTypeWrapper<BookEntity>;
+  Float: ResolverTypeWrapper<Scalars["Float"]>;
   AuthorResponse:
     | ResolversTypes["Author"]
     | ResolversTypes["ResourceNotFoundError"];
@@ -611,6 +614,7 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["LoginFailure"];
   Author: AuthorEntity;
   Book: BookEntity;
+  Float: Scalars["Float"];
   AuthorResponse:
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["ResourceNotFoundError"];
@@ -946,6 +950,12 @@ export type BookResolvers<
     ParentType,
     ContextType
   >;
+  reviewsCount?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
+  avarageRating?: Resolver<
+    Maybe<ResolversTypes["Float"]>,
+    ParentType,
+    ContextType
+  >;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1061,7 +1071,7 @@ export type ProtectedUserResolvers<
     ParentType,
     ContextType
   >;
-  review?: Resolver<
+  reviews?: Resolver<
     ReadonlyArray<ResolversTypes["Review"]>,
     ParentType,
     ContextType

@@ -220,7 +220,7 @@ export type ProtectedUser = User &
     ownedBookCopies: Array<BookCopy>;
     borrowedBookCopies: Array<BookCopy>;
     favouriteBooks: Array<Book>;
-    review: Array<Review>;
+    reviews: Array<Review>;
     id: Scalars["ExternalID"];
     name: Scalars["String"];
     info: Scalars["String"];
