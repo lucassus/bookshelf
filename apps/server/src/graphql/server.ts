@@ -22,7 +22,7 @@ export const createApolloServer = () =>
     ],
     debug: ENVIRONMENT === Environment.development,
     tracing: ENVIRONMENT === Environment.development,
-    introspection: true,
+    introspection: ENVIRONMENT !== Environment.production,
     playground: {
       settings: {
         "request.credentials": "include"
