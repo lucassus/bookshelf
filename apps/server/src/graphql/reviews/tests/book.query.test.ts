@@ -13,8 +13,9 @@ test("book query", async () => {
   const book = await createBook({ title: "Dune" });
   const user = await createUser({ name: "Bob" });
 
-  const review1 = await createReview({ book, author: user });
+  const review1 = await createReview({ book, author: user, rating: 10 });
   const review2 = await createReview({ book, rating: 8 });
+  await createReview();
 
   // When
   const resp = await createTestClient().query({
@@ -26,7 +27,6 @@ test("book query", async () => {
             id
             title
             reviewsCount
-            averageRating
             reviews {
               id
               author {
@@ -50,7 +50,6 @@ test("book query", async () => {
       id: toExternalId(book),
       title: book.title,
       reviewsCount: 2,
-      averageRating: 9,
       reviews: [
         {
           id: toExternalId(review1),

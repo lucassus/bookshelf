@@ -1,4 +1,4 @@
-import { Book } from "../../database/entity";
+import { Review } from "../../database/entity";
 import { Resolvers } from "../resolvers-types.generated";
 
 export const resolvers: Resolvers = {
@@ -6,7 +6,7 @@ export const resolvers: Resolvers = {
     averageRating: () => 0,
 
     reviewsCount: (book, args, { connection }) =>
-      connection.getRepository(Book).count({
+      connection.getRepository(Review).count({
         where: { bookId: book.id }
       })
   }
