@@ -1,12 +1,16 @@
 import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
+import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import { sha256 } from "crypto-hash";
 import { SubscriptionClient } from "subscriptions-transport-ws";
 
 import { GRAPHQL_SUBSCRIPTIONS_URI, GRAPHQL_URI } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
-const httpLink = new HttpLink({ uri: GRAPHQL_URI });
+const httpLink = createPersistedQueryLink({ sha256 }).concat(
+  new HttpLink({ uri: GRAPHQL_URI })
+);
 
 const wsLink = new WebSocketLink({
   uri: GRAPHQL_SUBSCRIPTIONS_URI,

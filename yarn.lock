@@ -1860,6 +1860,7 @@ __metadata:
     "@testing-library/jest-dom": 5.11.5
     "@testing-library/react": 11.1.0
     "@testing-library/user-event": 12.1.10
+    "@types/crypto-hash": ^1
     "@types/graphql": 14.5.0
     "@types/jest": 26.0.15
     "@types/react": 16.9.53
@@ -1874,6 +1875,7 @@ __metadata:
     cloudinary-react: 1.6.7
     clsx: 1.1.1
     core-js: 3.6.5
+    crypto-hash: 1.3.0
     css-loader: 4.3.0
     eslint: 7.12.0
     eslint-config-airbnb: 18.2.0
@@ -5105,6 +5107,13 @@ __metadata:
   dependencies:
     "@types/express": "*"
   checksum: 5a2f88615b6ca26f354adf1b1f06eb304c2c78278225c903d6ade68fb5390727a717c33dd4e49d241a2ad01b2ddb020cc2ea87fa354233adbf7d27c52720013c
+  languageName: node
+  linkType: hard
+
+"@types/crypto-hash@npm:^1":
+  version: 1.0.0
+  resolution: "@types/crypto-hash@npm:1.0.0"
+  checksum: 4e8edecdbe6370dfdca7d01f262dfae564a012a5a333c4e68e0aa2b76b438793e24ea138837b54c10c5986e60a551f66e98e4ba314a3e10a8c60d6f78b927096
   languageName: node
   linkType: hard
 
@@ -9641,6 +9650,13 @@ __metadata:
     randombytes: ^2.0.0
     randomfill: ^1.0.3
   checksum: 8b558367b3759652b7c8dfd8fa0dc55a69362ae3efe039ac44d4b010bc63143708f4748ef8efc079945bf61dbc53c829cda968cd2abc1f34fcf43f669a414f73
+  languageName: node
+  linkType: hard
+
+"crypto-hash@npm:1.3.0":
+  version: 1.3.0
+  resolution: "crypto-hash@npm:1.3.0"
+  checksum: 3d0817091b1fa37dfd47680186439dc752ad224d7da55ae21923be3242c1315c1ac953841a026966fc251d5022e4c534192d1cd4591e1c1cc427ce5498a857c4
   languageName: node
   linkType: hard
 
