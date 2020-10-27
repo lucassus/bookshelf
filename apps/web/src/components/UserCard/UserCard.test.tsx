@@ -18,7 +18,7 @@ describe("<UserCard />", () => {
   };
 
   it("renders with success", () => {
-    const wrapper = ({ children }) => (
+    const wrapper: React.FunctionComponent = ({ children }) => (
       <CloudinaryContext cloudName="lucassus">{children}</CloudinaryContext>
     );
 
@@ -27,7 +27,7 @@ describe("<UserCard />", () => {
     });
     expect(getByText("Bob")).toBeInTheDocument();
 
-    rerender(<UserCard user={{ ...user, name: "John" }} />, { wrapper });
+    rerender(<UserCard user={{ ...user, name: "John" }} />);
     expect(getByText("John")).toBeInTheDocument();
   });
 });

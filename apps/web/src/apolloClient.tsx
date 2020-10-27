@@ -43,7 +43,7 @@ export const apolloClient = new ApolloClient({
 export const resetWsConnection = () => {
   const {
     subscriptionClient
-  }: { subscriptionClient: SubscriptionClient } = wsLink;
+  }: { subscriptionClient: SubscriptionClient } = wsLink as any;
 
   subscriptionClient.close(false, false);
 };
