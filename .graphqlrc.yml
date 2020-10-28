@@ -67,8 +67,6 @@ extensions:
       apps/web/src/introspectionResult.generated.ts:
         plugins:
           - fragment-matcher
-        config:
-          apolloClientVersion: 3
 
       apps/web/src/types.generated.ts:
         plugins:
