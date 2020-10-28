@@ -2,7 +2,6 @@ import { PubSub } from "apollo-server-express";
 import express from "express";
 import { ConnectionContext, ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
-import { Connection } from "typeorm";
 
 import { authenticateRequest } from "../common/authentication";
 import { ASSETS_BASE_URL } from "../config";
@@ -20,7 +19,6 @@ export interface Context {
   req: express.Request;
   res: express.Response;
   container: typeof Container;
-  connection: Connection;
   assetsBaseUrl: string;
   authorsLoader: ReturnType<typeof buildAuthorsLoader>;
   booksLoader: ReturnType<typeof buildBooksLoader>;
@@ -61,7 +59,6 @@ export const createContext = async ({
     booksLoader: buildBooksLoader(),
     usersLoader: buildUsersLoader(),
     container: Container,
-    connection: Container.get(Connection),
     currentUser,
     pubsub,
     req,

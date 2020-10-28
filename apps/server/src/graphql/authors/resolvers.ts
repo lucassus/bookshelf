@@ -1,5 +1,6 @@
 import { Author } from "../../database/entity";
 import { Resolvers } from "../resolvers-types.generated";
+import { AuthorsService } from "./AuthorsService";
 
 const resolvers: Resolvers = {
   Author: {
@@ -14,8 +15,8 @@ const resolvers: Resolvers = {
   },
 
   Query: {
-    authors: (rootValue, args, { connection }) =>
-      connection.getRepository(Author).find(),
+    authors: (rootValue, args, { container }) =>
+      container.get(AuthorsService).findAll(),
 
     author: async (rootValue, { id }, { authorsLoader }) => {
       const author = await authorsLoader.load(id);
