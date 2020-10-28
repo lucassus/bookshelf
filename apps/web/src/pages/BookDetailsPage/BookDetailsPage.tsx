@@ -86,7 +86,7 @@ export const BookDetailsPage: React.FunctionComponent = () => {
         </div>
       )}
 
-      {canAddReview && <ReviewForm bookId={book.id} />}
+      {canAddReview && <ReviewForm book={book} />}
     </div>
   );
 };

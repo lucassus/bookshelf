@@ -318,8 +318,8 @@ export type Review = Resource &
 
 export type CreateReviewInput = {
   bookId: Scalars["ExternalID"];
-  text?: Maybe<Scalars["String"]>;
-  rating?: Maybe<Scalars["Int"]>;
+  text: Scalars["String"];
+  rating: Scalars["Int"];
 };
 
 export type Avatar = {

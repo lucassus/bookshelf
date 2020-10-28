@@ -337,8 +337,8 @@ export type Review = Resource &
 
 export type CreateReviewInput = {
   readonly bookId: Scalars["ExternalID"];
-  readonly text?: Maybe<Scalars["String"]>;
-  readonly rating?: Maybe<Scalars["Int"]>;
+  readonly text: Scalars["String"];
+  readonly rating: Scalars["Int"];
 };
 
 export type Avatar = {

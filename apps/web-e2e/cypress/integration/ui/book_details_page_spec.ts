@@ -128,6 +128,18 @@ describe("Book details page", () => {
         "Remove from favourites"
       );
     });
+
+    it("allows to add a review", () => {
+      cy.get("form").within(() => {
+        cy.findByLabelText("Text").clear().type("Awesome book!");
+        cy.findByLabelText("Rating").select("10");
+        cy.findByText("Add a review").click();
+      });
+
+      cy.get("form").should("not.exist");
+
+      cy.findByText("Awesome book!").should("exist");
+    });
   });
 
   it("displays 404 error page when a book cannot be found", () => {

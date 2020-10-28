@@ -3,26 +3,49 @@ import React from "react";
 import * as yup from "yup";
 
 import { Button } from "../../../../components/Button";
+import { Book } from "../../../../types.generated";
 import styles from "../../../LoginPage/LoginPage.scss";
+import { ReviewFragmentDoc } from "../Review/Review.fragment.generated";
 import { useCreateReviewMutation } from "./CreateReview.mutation.generated";
 
 const schema = yup.object().shape({});
 
 type Props = {
-  bookId: string;
+  book: Book;
 };
 
 type Values = {
-  rating?: string;
-  text?: string;
+  rating: string;
+  text: string;
 };
 
-// TODO: Hide it when logged out
-// TODO: Hide it when already reviewed
-export const ReviewForm: React.FunctionComponent<Props> = ({ bookId }) => {
-  const [createReview] = useCreateReviewMutation();
+export const ReviewForm: React.FunctionComponent<Props> = ({ book }) => {
+  const [createReview] = useCreateReviewMutation({
+    update(cache, result) {
+      const review = result.data?.createReview;
 
-  const initialValues: Values = { rating: undefined, text: undefined };
+      if (!review) {
+        return;
+      }
+
+      cache.modify({
+        id: cache.identify(book),
+        fields: {
+          reviews(existingReviewRefs) {
+            const newReviewRef = cache.writeFragment({
+              data: review,
+              fragment: ReviewFragmentDoc,
+              fragmentName: "Review"
+            });
+
+            return [...existingReviewRefs, newReviewRef];
+          }
+        }
+      });
+    }
+  });
+
+  const initialValues: Values = { rating: "", text: "" };
 
   const handleSubmit = async (
     values: Values,
@@ -31,12 +54,11 @@ export const ReviewForm: React.FunctionComponent<Props> = ({ bookId }) => {
     setSubmitting(true);
 
     try {
-      // TODO: Update the cached query
       await createReview({
         variables: {
           input: {
-            bookId,
-            rating: values.rating ? Number(values.rating) : null,
+            bookId: book.id,
+            rating: Number(values.rating),
             text: values.text
           }
         }

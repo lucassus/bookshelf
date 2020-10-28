@@ -7,7 +7,9 @@ query GetBook($id: ExternalID!) {
     }
 
     ... on Book {
+      __typename
       id
+
       title
       description
 

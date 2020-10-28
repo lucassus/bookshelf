@@ -24,8 +24,8 @@ extend type ProtectedUser {
 
 input CreateReviewInput {
   bookId: ExternalID!
-  text: String
-  rating: Int
+  text: String!
+  rating: Int!
 }
 
 extend type Mutation {

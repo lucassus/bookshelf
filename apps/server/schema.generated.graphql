@@ -192,8 +192,8 @@ type Review implements Resource & Timestampable {
 }
 input CreateReviewInput {
   bookId: ExternalID!
-  text: String
-  rating: Int
+  text: String!
+  rating: Int!
 }
 type Avatar {
   image: Image!
