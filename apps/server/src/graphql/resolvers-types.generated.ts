@@ -102,6 +102,7 @@ export type Mutation = {
   readonly removeBookFromFavourites: BookResult;
   readonly borrowBookCopy: BorrowBookCopyResult;
   readonly returnBookCopy: ReturnBookCopyResult;
+  readonly createReview: Review;
   readonly createUser: CreateUserResult;
   readonly updateUser: UpdateUserResult;
   readonly deleteUser: DeleteUserResult;
@@ -133,6 +134,10 @@ export type MutationBorrowBookCopyArgs = {
 
 export type MutationReturnBookCopyArgs = {
   id: Scalars["ExternalID"];
+};
+
+export type MutationCreateReviewArgs = {
+  input: CreateReviewInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -329,6 +334,12 @@ export type Review = Resource &
     readonly createdAt: Scalars["ISODateString"];
     readonly updatedAt: Scalars["ISODateString"];
   };
+
+export type CreateReviewInput = {
+  readonly bookId: Scalars["ExternalID"];
+  readonly text?: Maybe<Scalars["String"]>;
+  readonly rating?: Maybe<Scalars["Int"]>;
+};
 
 export type Avatar = {
   readonly __typename?: "Avatar";
@@ -568,6 +579,7 @@ export type ResolversTypes = {
     | ResolversTypes["Author"]
     | ResolversTypes["Book"];
   Review: ResolverTypeWrapper<ReviewEntity>;
+  CreateReviewInput: CreateReviewInput;
   Avatar: ResolverTypeWrapper<AvatarEntity>;
   FlaggedAvatarError: ResolverTypeWrapper<FlaggedAvatarError>;
   AvatarResult: ResolversTypes["Avatar"] | ResolversTypes["FlaggedAvatarError"];
@@ -671,6 +683,7 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["Book"];
   Review: ReviewEntity;
+  CreateReviewInput: CreateReviewInput;
   Avatar: AvatarEntity;
   FlaggedAvatarError: FlaggedAvatarError;
   AvatarResult:
@@ -834,6 +847,12 @@ export type MutationResolvers<
     ParentType,
     AuthenticatedContext,
     RequireFields<MutationReturnBookCopyArgs, "id">
+  >;
+  createReview?: Resolver<
+    ResolversTypes["Review"],
+    ParentType,
+    AuthenticatedContext,
+    RequireFields<MutationCreateReviewArgs, "input">
   >;
   createUser?: Resolver<
     ResolversTypes["CreateUserResult"],

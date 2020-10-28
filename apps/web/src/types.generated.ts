@@ -83,6 +83,7 @@ export type Mutation = {
   removeBookFromFavourites: BookResult;
   borrowBookCopy: BorrowBookCopyResult;
   returnBookCopy: ReturnBookCopyResult;
+  createReview: Review;
   createUser: CreateUserResult;
   updateUser: UpdateUserResult;
   deleteUser: DeleteUserResult;
@@ -114,6 +115,10 @@ export type MutationBorrowBookCopyArgs = {
 
 export type MutationReturnBookCopyArgs = {
   id: Scalars["ExternalID"];
+};
+
+export type MutationCreateReviewArgs = {
+  input: CreateReviewInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -310,6 +315,12 @@ export type Review = Resource &
     createdAt: Scalars["ISODateString"];
     updatedAt: Scalars["ISODateString"];
   };
+
+export type CreateReviewInput = {
+  bookId: Scalars["ExternalID"];
+  text?: Maybe<Scalars["String"]>;
+  rating?: Maybe<Scalars["Int"]>;
+};
 
 export type Avatar = {
   __typename?: "Avatar";

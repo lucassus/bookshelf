@@ -21,3 +21,13 @@ extend type Book {
 extend type ProtectedUser {
   reviews: [Review!]!
 }
+
+input CreateReviewInput {
+  bookId: ExternalID!
+  text: String
+  rating: Int
+}
+
+extend type Mutation {
+  createReview(input: CreateReviewInput!): Review! @requireAuthorization
+}

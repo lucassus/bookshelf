@@ -46,6 +46,7 @@ type Mutation {
   removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
   returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
+  createReview(input: CreateReviewInput!): Review! @requireAuthorization
   createUser(input: CreateUserInput!): CreateUserResult!
     @requireAuthorization(role: Admin)
   updateUser(input: UpdateUserInput!): UpdateUserResult!
@@ -188,6 +189,11 @@ type Review implements Resource & Timestampable {
   rating: Int
   createdAt: ISODateString!
   updatedAt: ISODateString!
+}
+input CreateReviewInput {
+  bookId: ExternalID!
+  text: String
+  rating: Int
 }
 type Avatar {
   image: Image!

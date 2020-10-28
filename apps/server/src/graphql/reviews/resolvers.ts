@@ -23,5 +23,20 @@ export const resolvers: Resolvers = {
 
   Review: {
     author: (review, args, { usersLoader }) => usersLoader.load(review.authorId)
+  },
+
+  Mutation: {
+    createReview: (rootValue, args, { currentUser, connection }) => {
+      const { bookId, rating, text } = args.input;
+
+      const review = connection.manager.create(Review, {
+        authorId: currentUser.id,
+        bookId,
+        rating,
+        text
+      });
+
+      return connection.manager.save(review);
+    }
   }
 };
