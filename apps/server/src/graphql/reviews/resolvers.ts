@@ -19,5 +19,9 @@ export const resolvers: Resolvers = {
       connection.getRepository(Review).count({
         where: { bookId: book.id }
       })
+  },
+
+  Review: {
+    author: (review, args, { usersLoader }) => usersLoader.load(review.authorId)
   }
 };
