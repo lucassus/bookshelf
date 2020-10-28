@@ -37,6 +37,7 @@ export const GetBookDocument = gql`
         message
       }
       ... on Book {
+        __typename
         id
         title
         description

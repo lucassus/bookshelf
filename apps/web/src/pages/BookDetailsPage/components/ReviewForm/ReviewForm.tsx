@@ -8,10 +8,13 @@ import styles from "../../../LoginPage/LoginPage.scss";
 import { ReviewFragmentDoc } from "../Review/Review.fragment.generated";
 import { useCreateReviewMutation } from "./CreateReview.mutation.generated";
 
-const schema = yup.object().shape({});
+const schema = yup.object().shape({
+  rating: yup.number().required(),
+  text: yup.string().required().min(16)
+});
 
 type Props = {
-  book: Book;
+  book: Pick<Book, "__typename" | "id">;
 };
 
 type Values = {

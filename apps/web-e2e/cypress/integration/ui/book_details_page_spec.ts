@@ -129,16 +129,27 @@ describe("Book details page", () => {
       );
     });
 
+    it("validates the review form", () => {
+      cy.get("form").within(() => {
+        cy.findByText("Add a review").click();
+        cy.findByText("rating is a required field");
+        cy.findByText("text is a required field");
+
+        cy.findByLabelText("Text").clear().type("too short");
+        cy.findByText("text must be at least 16 characters");
+      });
+    });
+
     it("allows to add a review", () => {
       cy.get("form").within(() => {
-        cy.findByLabelText("Text").clear().type("Awesome book!");
-        cy.findByLabelText("Rating").select("10");
+        cy.findByLabelText("Text").clear().type("This is awesome book!");
+        cy.findByLabelText("Rating").select("9");
         cy.findByText("Add a review").click();
       });
 
       cy.get("form").should("not.exist");
-
-      cy.findByText("Awesome book!").should("exist");
+      cy.findByText("This is awesome book!").should("exist");
+      cy.findByText("rated this book 9/10").should("exist");
     });
   });
 
