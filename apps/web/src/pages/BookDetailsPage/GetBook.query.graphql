@@ -25,6 +25,10 @@ query GetBook($id: ExternalID!) {
       copies {
         ...BookCopyCard
       }
+
+      reviews {
+        ...Review
+      }
     }
   }
 }

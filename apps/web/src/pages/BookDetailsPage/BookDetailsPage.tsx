@@ -8,6 +8,7 @@ import { ErrorAlert } from "../../components/ErrorAlert";
 import { FavouriteBookButton } from "../../components/FavouriteBookButton";
 import { NotFoundPage } from "../NotFoundPage";
 import styles from "./BookDetailsPage.scss";
+import { Review } from "./components/Review";
 import { useGetBookQuery } from "./GetBook.query.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
@@ -65,6 +66,18 @@ export const BookDetailsPage: React.FunctionComponent = () => {
         <div className={styles.bookCopiesContainer}>
           <h3>Copies</h3>
           <BookCopiesList bookCopies={book.copies} />
+        </div>
+      )}
+
+      {book.reviews.length > 0 && (
+        <div>
+          <h2>Reviews</h2>
+
+          <dl>
+            {book.reviews.map((review) => (
+              <Review key={review.id} review={review} />
+            ))}
+          </dl>
         </div>
       )}
     </div>
