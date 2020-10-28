@@ -8,11 +8,11 @@ export const resolvers: Resolvers = {
       const raw = await connection
         .getRepository(Review)
         .createQueryBuilder()
-        .select("AVG(rating) AS averageRating")
+        .select("AVG(rating) AS avg")
         .where({ bookId: book.id })
         .getRawOne();
 
-      return raw.averageRating;
+      return raw.avg;
     },
 
     reviewsCount: (book, args, { connection }) =>
