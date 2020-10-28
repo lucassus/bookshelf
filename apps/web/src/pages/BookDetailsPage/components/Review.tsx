@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Avatar } from "../../../components/Avatar";
 import { ReviewFragment } from "./Review.fragment.generated";
@@ -8,21 +9,22 @@ type Props = {
 };
 
 export const Review: React.FunctionComponent<Props> = ({ review }) => (
-  <>
-    <dt>Author</dt>
-    <dd>
-      <Avatar
-        avatar={review.author.avatar}
-        label={review.author.name}
-        size="x-small"
-      />
-      {review.author.name}
-    </dd>
+  <div>
+    <div>
+      <Link to={`/users/${review.author.id}`}>
+        <Avatar
+          avatar={review.author.avatar}
+          label={review.author.name}
+          size="x-small"
+        />
+        <span>{review.author.name}</span>
+      </Link>
 
-    <dt>Rating</dt>
-    <dd>{review.rating}</dd>
+      {review.rating !== null && (
+        <span>rated this book {review.rating}/10</span>
+      )}
+    </div>
 
-    <dt>Text</dt>
-    <dd>{review.text}</dd>
-  </>
+    <div>{review.text}</div>
+  </div>
 );
