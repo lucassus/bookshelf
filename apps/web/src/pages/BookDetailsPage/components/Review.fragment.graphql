@@ -1,6 +1,16 @@
 fragment Review on Review {
   __typename
   id
+
+  author {
+    __typename
+    id
+    name
+    avatar {
+      ...Avatar
+    }
+  }
+
   text
   rating
 }
