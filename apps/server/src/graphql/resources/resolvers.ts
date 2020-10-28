@@ -1,24 +1,19 @@
 import { GraphQLScalarType } from "graphql";
 
 import { toExternalId, toInternalId } from "../../common/secureId";
-import { Author, Book, User } from "../../database/entity";
-import { findAnythingOrFail } from "../../database/findAnythingOrFail";
 import { Resolvers } from "../resolvers-types.generated";
+import { ResourcesService } from "./ResourcesService";
 
 const resolvers: Resolvers = {
   Query: {
-    resources: (rootValue, args, { connection }) =>
-      Promise.all([
-        connection.getRepository(User).find(),
-        connection.getRepository(Author).find(),
-        connection.getRepository(Book).find()
-      ]).then(([users, authors, books]) => [...users, ...authors, ...books]),
+    resources: (rootValue, args, { container }) =>
+      container.get(ResourcesService).findAll(),
 
-    resource: (rootValue, { id }, { connection }) =>
-      findAnythingOrFail(id, connection),
+    resource: (rootValue, { id }, { container }) =>
+      container.get(ResourcesService).findResourceOrFail(id),
 
-    anything: (rootValue, { id }, { connection }) =>
-      findAnythingOrFail(id, connection)
+    anything: (rootValue, { id }, { container }) =>
+      container.get(ResourcesService).findResourceOrFail(id)
   },
 
   ExternalID: new GraphQLScalarType({
