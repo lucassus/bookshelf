@@ -42,33 +42,31 @@ export const BookDetailsPage: React.FunctionComponent = () => {
     <div className={styles.container}>
       <h2>{book.title}</h2>
 
-      <div>
-        <Image
-          className={styles.bookCover}
-          publicId={book.cover.path}
-          alt="Book cover"
-        >
-          <Transformation height={400} crop="scale" />
-        </Image>
-
+      <div className={styles.book}>
         <div>
+          <Image
+            className={styles.bookCover}
+            publicId={book.cover.path}
+            alt="Book cover"
+          >
+            <Transformation height={400} crop="scale" />
+          </Image>
+        </div>
+
+        <div className={styles.details}>
           <h3>
             Written by{" "}
             <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
           </h3>
 
           <p>{book.description}</p>
-        </div>
 
-        {currentUser && (
-          <div>
-            <FavouriteBookButton book={book} />
-          </div>
-        )}
+          {currentUser && <FavouriteBookButton book={book} />}
+        </div>
       </div>
 
       {book.copies.length > 0 && (
-        <div className={styles.bookCopiesContainer}>
+        <div className={styles.bookCopies}>
           <h3>Copies</h3>
           <BookCopiesList bookCopies={book.copies} />
         </div>

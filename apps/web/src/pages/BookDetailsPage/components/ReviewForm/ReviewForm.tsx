@@ -72,39 +72,37 @@ export const ReviewForm: React.FunctionComponent<Props> = ({ book }) => {
   };
 
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, isSubmitting }) => (
-          <Form className={styles.form}>
-            <div>
-              <label htmlFor="rating-field">Rating</label>
-              <Field name="rating" as="select" id="rating-field">
-                <option value="">-</option>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </Field>
-              <p>{errors.rating}</p>
-            </div>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      {({ errors, isSubmitting }) => (
+        <Form className={styles.form}>
+          <div>
+            <label htmlFor="rating-field">Rating</label>
+            <Field name="rating" as="select" id="rating-field">
+              <option value="">-</option>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </Field>
+            <p>{errors.rating}</p>
+          </div>
 
-            <div>
-              <label htmlFor="text-field">Text</label>
-              <Field name="text" type="text" id="text-field" />
-              <p>{errors.text}</p>
-            </div>
+          <div>
+            <label htmlFor="text-field">Text</label>
+            <Field name="text" type="text" id="text-field" />
+            <p>{errors.text}</p>
+          </div>
 
-            <Button type="submit" disabled={isSubmitting}>
-              Add a review
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          <Button type="submit" disabled={isSubmitting}>
+            Add a review
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };

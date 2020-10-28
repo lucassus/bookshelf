@@ -21,10 +21,8 @@ export const Review: React.FunctionComponent<Props> = ({ review }) => (
       </Link>
 
       <div className={styles.rating}>
-        <div>
-          <Link to={`/users/${review.author.id}`}>{review.author.name}</Link>
-        </div>
-        {review.rating && <div>rated this book {review.rating}/10</div>}
+        <Link to={`/users/${review.author.id}`}>{review.author.name}</Link>
+        {review.rating && <span> rated this book {review.rating}/10</span>}
       </div>
     </div>
 
