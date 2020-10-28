@@ -83,7 +83,7 @@ export const ReviewForm: React.FunctionComponent<Props> = ({ book }) => {
             <div>
               <label htmlFor="rating-field">Rating</label>
               <Field name="rating" as="select" id="rating-field">
-                <option value="" />
+                <option value="">-</option>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
                   <option key={value} value={value}>
                     {value}
