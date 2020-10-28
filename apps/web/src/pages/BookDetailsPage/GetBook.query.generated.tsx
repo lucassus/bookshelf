@@ -2,11 +2,11 @@ import * as Types from "../../types.generated";
 
 import { FavouriteBookButtonFragment } from "../../components/FavouriteBookButton/FavouriteBookButton.fragment.generated";
 import { BookCopyCardFragment } from "../../components/BookCopyCard/BookCopyCard.fragment.generated";
-import { ReviewFragment } from "./components/Review.fragment.generated";
+import { ReviewFragment } from "./components/Review/Review.fragment.generated";
 import { gql } from "@apollo/client";
 import { FavouriteBookButtonFragmentDoc } from "../../components/FavouriteBookButton/FavouriteBookButton.fragment.generated";
 import { BookCopyCardFragmentDoc } from "../../components/BookCopyCard/BookCopyCard.fragment.generated";
-import { ReviewFragmentDoc } from "./components/Review.fragment.generated";
+import { ReviewFragmentDoc } from "./components/Review/Review.fragment.generated";
 import * as Apollo from "@apollo/client";
 export type GetBookQueryVariables = Types.Exact<{
   id: Types.Scalars["ExternalID"];

@@ -1,0 +1,18 @@
+.container {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+
+    .rating {
+      margin-left: 1em;
+    }
+  }
+
+  .body {
+    margin-top: 0.5em;
+  }
+}

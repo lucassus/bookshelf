@@ -33,9 +33,9 @@ export const BookCard: React.FunctionComponent<Props> = ({ book }) => {
           <Link to={`/authors/${book.author.id}`}>{book.author.name}</Link>
         </div>
 
-        {book.averageRating !== null && (
+        {book.averageRating && (
           <div>
-            {book.averageRating} ({book.reviewsCount} ratings)
+            {book.averageRating.toFixed(1)} ({book.reviewsCount} ratings)
           </div>
         )}
 

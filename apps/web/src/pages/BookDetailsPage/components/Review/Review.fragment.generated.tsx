@@ -1,11 +1,11 @@
-import * as Types from "../../../types.generated";
+import * as Types from "../../../../types.generated";
 
 import {
   Avatar_Avatar_Fragment,
   Avatar_FlaggedAvatarError_Fragment
-} from "../../../components/Avatar/Avatar.fragment.generated";
+} from "../../../../components/Avatar/Avatar.fragment.generated";
 import { gql } from "@apollo/client";
-import { AvatarFragmentDoc } from "../../../components/Avatar/Avatar.fragment.generated";
+import { AvatarFragmentDoc } from "../../../../components/Avatar/Avatar.fragment.generated";
 export type ReviewFragment = { __typename: "Review" } & Pick<
   Types.Review,
   "id" | "text" | "rating"
