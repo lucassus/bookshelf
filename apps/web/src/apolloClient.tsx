@@ -8,9 +8,10 @@ import { SubscriptionClient } from "subscriptions-transport-ws";
 import { GRAPHQL_SUBSCRIPTIONS_URI, GRAPHQL_URI } from "./config";
 import introspectionResult from "./introspectionResult.generated";
 
-const httpLink = createPersistedQueryLink({ sha256 }).concat(
-  new HttpLink({ uri: GRAPHQL_URI })
-);
+const httpLink = createPersistedQueryLink({
+  useGETForHashedQueries: true,
+  sha256
+}).concat(new HttpLink({ uri: GRAPHQL_URI }));
 
 const wsLink = new WebSocketLink({
   uri: GRAPHQL_SUBSCRIPTIONS_URI,

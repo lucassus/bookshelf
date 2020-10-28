@@ -35,7 +35,9 @@ const configureAndStartServer = async () => {
   httpServer.listen(PORT);
 
   console.log(
-    `🚀 GraphQL server ready at http://localhost:${PORT}${apolloServer.graphqlPath}\n`,
+    `🚀 GraphQL server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`
+  );
+  console.log(
     `🚀 Subscriptions ready at ws://localhost:${PORT}${apolloServer.subscriptionsPath}`
   );
 };
