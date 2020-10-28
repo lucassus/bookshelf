@@ -2,9 +2,11 @@ import * as Types from "../../types.generated";
 
 import { FavouriteBookButtonFragment } from "../../components/FavouriteBookButton/FavouriteBookButton.fragment.generated";
 import { BookCopyCardFragment } from "../../components/BookCopyCard/BookCopyCard.fragment.generated";
+import { ReviewFragment } from "./components/Review/Review.fragment.generated";
 import { gql } from "@apollo/client";
 import { FavouriteBookButtonFragmentDoc } from "../../components/FavouriteBookButton/FavouriteBookButton.fragment.generated";
 import { BookCopyCardFragmentDoc } from "../../components/BookCopyCard/BookCopyCard.fragment.generated";
+import { ReviewFragmentDoc } from "./components/Review/Review.fragment.generated";
 import * as Apollo from "@apollo/client";
 export type GetBookQueryVariables = Types.Exact<{
   id: Types.Scalars["ExternalID"];
@@ -19,6 +21,7 @@ export type GetBookQuery = { __typename?: "Query" } & {
           author: { __typename?: "Author" } & Pick<Types.Author, "id" | "name">;
           cover: { __typename?: "Image" } & Pick<Types.Image, "path">;
           copies: Array<{ __typename?: "BookCopy" } & BookCopyCardFragment>;
+          reviews: Array<{ __typename?: "Review" } & ReviewFragment>;
         } & FavouriteBookButtonFragment)
     | ({ __typename: "ResourceNotFoundError" } & Pick<
         Types.ResourceNotFoundError,
@@ -34,6 +37,7 @@ export const GetBookDocument = gql`
         message
       }
       ... on Book {
+        __typename
         id
         title
         description
@@ -48,11 +52,15 @@ export const GetBookDocument = gql`
         copies {
           ...BookCopyCard
         }
+        reviews {
+          ...Review
+        }
       }
     }
   }
   ${FavouriteBookButtonFragmentDoc}
   ${BookCopyCardFragmentDoc}
+  ${ReviewFragmentDoc}
 `;
 
 /**

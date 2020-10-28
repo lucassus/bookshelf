@@ -64,7 +64,8 @@ export const SignupPage: React.FunctionComponent = () => {
         }}
         validationSchema={schema}
         onSubmit={handleSubmit}
-        render={({ errors, isSubmitting }) => (
+      >
+        {({ errors, isSubmitting }) => (
           <Form className={styles.form}>
             <div>
               <label htmlFor="name-field">Name</label>
@@ -101,7 +102,7 @@ export const SignupPage: React.FunctionComponent = () => {
             </Button>
           </Form>
         )}
-      />
+      </Formik>
     </div>
   );
 };

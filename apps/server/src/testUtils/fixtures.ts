@@ -1,3 +1,4 @@
+import faker from "faker";
 import { getConnection } from "typeorm";
 
 import { Author, Book, User } from "../database/entity";
@@ -5,6 +6,7 @@ import {
   createAuthor,
   createBook,
   createBookCopy,
+  createReview,
   createUser
 } from "./factories";
 
@@ -462,10 +464,31 @@ async function createFavouriteBooks() {
   await manager.save(userBob);
 }
 
+async function createReviews() {
+  const { manager } = getConnection();
+
+  const books = await manager.find(Book);
+  const users = await manager.find(User);
+
+  await Promise.all(
+    books.map((book) => {
+      const authors = faker.random.arrayElements(
+        users,
+        faker.random.number({ min: 0, max: users.length })
+      );
+
+      return Promise.all(
+        authors.map((author) => createReview({ book, author }))
+      );
+    })
+  );
+}
+
 export async function loadFixtures(): Promise<void> {
   await createAuthors();
   await createBooks();
   await createUsers();
   await createBookCopies();
   await createFavouriteBooks();
+  await createReviews();
 }

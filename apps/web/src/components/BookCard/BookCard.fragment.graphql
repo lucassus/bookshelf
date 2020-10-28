@@ -3,6 +3,9 @@ fragment BookCard on Book {
   title
   isFavourite
 
+  averageRating
+  reviewsCount
+
   ...FavouriteBookButton
 
   cover {

@@ -1,0 +1,33 @@
+type Review implements Resource & Timestampable {
+  id: ExternalID!
+
+  author: User!
+  book: Book!
+
+  text: String
+  rating: Int
+
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+
+extend type Book {
+  reviews: [Review!]!
+
+  reviewsCount: Int!
+  averageRating: Float
+}
+
+extend type ProtectedUser {
+  reviews: [Review!]!
+}
+
+input CreateReviewInput {
+  bookId: ExternalID!
+  text: String!
+  rating: Int!
+}
+
+extend type Mutation {
+  createReview(input: CreateReviewInput!): Review! @requireAuthorization
+}

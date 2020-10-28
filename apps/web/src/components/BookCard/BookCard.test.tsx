@@ -13,6 +13,8 @@ describe("<BookCard />", () => {
     id: "1",
     title: "Test book",
     isFavourite: false,
+    averageRating: 7.5,
+    reviewsCount: 2,
     author: {
       id: "1",
       name: "Andrzej Sapkowski"

@@ -8,7 +8,8 @@ import {
   Avatar as AvatarEntity,
   Book as BookEntity,
   BookCopy as BookCopyEntity,
-  User as UserEntity
+  User as UserEntity,
+  Review as ReviewEntity
 } from "../database/entity";
 import { Context, AuthenticatedContext } from "./context";
 export type Maybe<T> = T | null;
@@ -101,6 +102,7 @@ export type Mutation = {
   readonly removeBookFromFavourites: BookResult;
   readonly borrowBookCopy: BorrowBookCopyResult;
   readonly returnBookCopy: ReturnBookCopyResult;
+  readonly createReview: Review;
   readonly createUser: CreateUserResult;
   readonly updateUser: UpdateUserResult;
   readonly deleteUser: DeleteUserResult;
@@ -132,6 +134,10 @@ export type MutationBorrowBookCopyArgs = {
 
 export type MutationReturnBookCopyArgs = {
   id: Scalars["ExternalID"];
+};
+
+export type MutationCreateReviewArgs = {
+  input: CreateReviewInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -192,6 +198,9 @@ export type Book = Resource &
     readonly isFavourite?: Maybe<Scalars["Boolean"]>;
     readonly createdAt: Scalars["ISODateString"];
     readonly updatedAt: Scalars["ISODateString"];
+    readonly reviews: ReadonlyArray<Review>;
+    readonly reviewsCount: Scalars["Int"];
+    readonly averageRating?: Maybe<Scalars["Float"]>;
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
@@ -237,6 +246,7 @@ export type ProtectedUser = User &
     readonly ownedBookCopies: ReadonlyArray<BookCopy>;
     readonly borrowedBookCopies: ReadonlyArray<BookCopy>;
     readonly favouriteBooks: ReadonlyArray<Book>;
+    readonly reviews: ReadonlyArray<Review>;
     readonly id: Scalars["ExternalID"];
     readonly name: Scalars["String"];
     readonly info: Scalars["String"];
@@ -312,6 +322,24 @@ export type ResourceNotFoundError = Error & {
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
+
+export type Review = Resource &
+  Timestampable & {
+    readonly __typename?: "Review";
+    readonly id: Scalars["ExternalID"];
+    readonly author: User;
+    readonly book: Book;
+    readonly text?: Maybe<Scalars["String"]>;
+    readonly rating?: Maybe<Scalars["Int"]>;
+    readonly createdAt: Scalars["ISODateString"];
+    readonly updatedAt: Scalars["ISODateString"];
+  };
+
+export type CreateReviewInput = {
+  readonly bookId: Scalars["ExternalID"];
+  readonly text: Scalars["String"];
+  readonly rating: Scalars["Int"];
+};
 
 export type Avatar = {
   readonly __typename?: "Avatar";
@@ -498,6 +526,7 @@ export type ResolversTypes = {
   LoginResult: ResolversTypes["LoginSuccess"] | ResolversTypes["LoginFailure"];
   Author: ResolverTypeWrapper<AuthorEntity>;
   Book: ResolverTypeWrapper<BookEntity>;
+  Float: ResolverTypeWrapper<Scalars["Float"]>;
   AuthorResponse:
     | ResolversTypes["Author"]
     | ResolversTypes["ResourceNotFoundError"];
@@ -523,7 +552,8 @@ export type ResolversTypes = {
     | ResolversTypes["Book"]
     | ResolversTypes["BookCopy"]
     | ResolversTypes["PublicUser"]
-    | ResolversTypes["ProtectedUser"];
+    | ResolversTypes["ProtectedUser"]
+    | ResolversTypes["Review"];
   Image: ResolverTypeWrapper<Image>;
   Error:
     | ResolversTypes["MutationError"]
@@ -540,13 +570,16 @@ export type ResolversTypes = {
     | ResolversTypes["Author"]
     | ResolversTypes["Book"]
     | ResolversTypes["PublicUser"]
-    | ResolversTypes["ProtectedUser"];
+    | ResolversTypes["ProtectedUser"]
+    | ResolversTypes["Review"];
   ResourceNotFoundError: ResolverTypeWrapper<ResourceNotFoundError>;
   Anything:
     | ResolversTypes["PublicUser"]
     | ResolversTypes["ProtectedUser"]
     | ResolversTypes["Author"]
     | ResolversTypes["Book"];
+  Review: ResolverTypeWrapper<ReviewEntity>;
+  CreateReviewInput: CreateReviewInput;
   Avatar: ResolverTypeWrapper<AvatarEntity>;
   FlaggedAvatarError: ResolverTypeWrapper<FlaggedAvatarError>;
   AvatarResult: ResolversTypes["Avatar"] | ResolversTypes["FlaggedAvatarError"];
@@ -593,6 +626,7 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["LoginFailure"];
   Author: AuthorEntity;
   Book: BookEntity;
+  Float: Scalars["Float"];
   AuthorResponse:
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["ResourceNotFoundError"];
@@ -622,7 +656,8 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["Book"]
     | ResolversParentTypes["BookCopy"]
     | ResolversParentTypes["PublicUser"]
-    | ResolversParentTypes["ProtectedUser"];
+    | ResolversParentTypes["ProtectedUser"]
+    | ResolversParentTypes["Review"];
   Image: Image;
   Error:
     | ResolversParentTypes["MutationError"]
@@ -639,13 +674,16 @@ export type ResolversParentTypes = {
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["Book"]
     | ResolversParentTypes["PublicUser"]
-    | ResolversParentTypes["ProtectedUser"];
+    | ResolversParentTypes["ProtectedUser"]
+    | ResolversParentTypes["Review"];
   ResourceNotFoundError: ResourceNotFoundError;
   Anything:
     | ResolversParentTypes["PublicUser"]
     | ResolversParentTypes["ProtectedUser"]
     | ResolversParentTypes["Author"]
     | ResolversParentTypes["Book"];
+  Review: ReviewEntity;
+  CreateReviewInput: CreateReviewInput;
   Avatar: AvatarEntity;
   FlaggedAvatarError: FlaggedAvatarError;
   AvatarResult:
@@ -810,6 +848,12 @@ export type MutationResolvers<
     AuthenticatedContext,
     RequireFields<MutationReturnBookCopyArgs, "id">
   >;
+  createReview?: Resolver<
+    ResolversTypes["Review"],
+    ParentType,
+    AuthenticatedContext,
+    RequireFields<MutationCreateReviewArgs, "input">
+  >;
   createUser?: Resolver<
     ResolversTypes["CreateUserResult"],
     ParentType,
@@ -917,6 +961,17 @@ export type BookResolvers<
   >;
   updatedAt?: Resolver<
     ResolversTypes["ISODateString"],
+    ParentType,
+    ContextType
+  >;
+  reviews?: Resolver<
+    ReadonlyArray<ResolversTypes["Review"]>,
+    ParentType,
+    ContextType
+  >;
+  reviewsCount?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
+  averageRating?: Resolver<
+    Maybe<ResolversTypes["Float"]>,
     ParentType,
     ContextType
   >;
@@ -1035,6 +1090,11 @@ export type ProtectedUserResolvers<
     ParentType,
     ContextType
   >;
+  reviews?: Resolver<
+    ReadonlyArray<ResolversTypes["Review"]>,
+    ParentType,
+    ContextType
+  >;
   id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
   name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
   info?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
@@ -1126,7 +1186,7 @@ export type TimestampableResolvers<
   ParentType extends ResolversParentTypes["Timestampable"] = ResolversParentTypes["Timestampable"]
 > = {
   __resolveType?: TypeResolveFn<
-    "Author" | "Book" | "BookCopy" | "PublicUser" | "ProtectedUser",
+    "Author" | "Book" | "BookCopy" | "PublicUser" | "ProtectedUser" | "Review",
     ParentType,
     ContextType
   >;
@@ -1213,7 +1273,7 @@ export type ResourceResolvers<
   ParentType extends ResolversParentTypes["Resource"] = ResolversParentTypes["Resource"]
 > = {
   __resolveType?: TypeResolveFn<
-    "Author" | "Book" | "PublicUser" | "ProtectedUser",
+    "Author" | "Book" | "PublicUser" | "ProtectedUser" | "Review",
     ParentType,
     ContextType
   >;
@@ -1237,6 +1297,28 @@ export type AnythingResolvers<
     ParentType,
     ContextType
   >;
+};
+
+export type ReviewResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes["Review"] = ResolversParentTypes["Review"]
+> = {
+  id?: Resolver<ResolversTypes["ExternalID"], ParentType, ContextType>;
+  author?: Resolver<ResolversTypes["User"], ParentType, ContextType>;
+  book?: Resolver<ResolversTypes["Book"], ParentType, ContextType>;
+  text?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
+  rating?: Resolver<Maybe<ResolversTypes["Int"]>, ParentType, ContextType>;
+  createdAt?: Resolver<
+    ResolversTypes["ISODateString"],
+    ParentType,
+    ContextType
+  >;
+  updatedAt?: Resolver<
+    ResolversTypes["ISODateString"],
+    ParentType,
+    ContextType
+  >;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type AvatarResolvers<
@@ -1340,6 +1422,7 @@ export type Resolvers<ContextType = Context> = {
   Resource?: ResourceResolvers<ContextType>;
   ResourceNotFoundError?: ResourceNotFoundErrorResolvers<ContextType>;
   Anything?: AnythingResolvers<ContextType>;
+  Review?: ReviewResolvers<ContextType>;
   Avatar?: AvatarResolvers<ContextType>;
   FlaggedAvatarError?: FlaggedAvatarErrorResolvers<ContextType>;
   AvatarResult?: AvatarResultResolvers<ContextType>;

@@ -36,6 +36,7 @@ extensions:
             - Mutation.returnBookCopy#./context#AuthenticatedContext
             - Mutation.addBookToFavourites#./context#AuthenticatedContext
             - Mutation.removeBookFromFavourites#./context#AuthenticatedContext
+            - Mutation.createReview#./context#AuthenticatedContext
           mappers:
             Author: ../database/entity#Author
             Avatar: ../database/entity#Avatar
@@ -43,6 +44,7 @@ extensions:
             BookCopy: ../database/entity#BookCopy
             PublicUser: ../database/entity#User
             ProtectedUser: ../database/entity#User
+            Review: ../database/entity#Review
           mapperTypeSuffix: Entity
           optionalResolveType: true
           scalars:

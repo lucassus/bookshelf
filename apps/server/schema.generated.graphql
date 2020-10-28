@@ -46,6 +46,7 @@ type Mutation {
   removeBookFromFavourites(id: ExternalID!): BookResult! @requireAuthorization
   borrowBookCopy(id: ExternalID!): BorrowBookCopyResult! @requireAuthorization
   returnBookCopy(id: ExternalID!): ReturnBookCopyResult! @requireAuthorization
+  createReview(input: CreateReviewInput!): Review! @requireAuthorization
   createUser(input: CreateUserInput!): CreateUserResult!
     @requireAuthorization(role: Admin)
   updateUser(input: UpdateUserInput!): UpdateUserResult!
@@ -87,6 +88,9 @@ type Book implements Resource & Timestampable {
   isFavourite: Boolean
   createdAt: ISODateString!
   updatedAt: ISODateString!
+  reviews: [Review!]!
+  reviewsCount: Int!
+  averageRating: Float
 }
 union AuthorResponse = Author | ResourceNotFoundError
 type BookCopy implements Timestampable {
@@ -120,6 +124,7 @@ type ProtectedUser implements User & Resource & Timestampable {
   ownedBookCopies: [BookCopy!]!
   borrowedBookCopies: [BookCopy!]!
   favouriteBooks: [Book!]!
+  reviews: [Review!]!
   id: ExternalID!
   name: String!
   info: String!
@@ -176,6 +181,20 @@ type ResourceNotFoundError implements Error {
   message: String!
 }
 union Anything = PublicUser | ProtectedUser | Author | Book
+type Review implements Resource & Timestampable {
+  id: ExternalID!
+  author: User!
+  book: Book!
+  text: String
+  rating: Int
+  createdAt: ISODateString!
+  updatedAt: ISODateString!
+}
+input CreateReviewInput {
+  bookId: ExternalID!
+  text: String!
+  rating: Int!
+}
 type Avatar {
   image: Image!
   color: String!

@@ -38,6 +38,8 @@ export const Basic = () => {
     id: "1",
     title: text("Title", "Blood of Elves"),
     isFavourite: false,
+    averageRating: 7.5,
+    reviewsCount: 2,
     author: {
       id: "1",
       name: text("Author Name", "Andrzej Sapkowski")

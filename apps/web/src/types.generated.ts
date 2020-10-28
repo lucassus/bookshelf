@@ -83,6 +83,7 @@ export type Mutation = {
   removeBookFromFavourites: BookResult;
   borrowBookCopy: BorrowBookCopyResult;
   returnBookCopy: ReturnBookCopyResult;
+  createReview: Review;
   createUser: CreateUserResult;
   updateUser: UpdateUserResult;
   deleteUser: DeleteUserResult;
@@ -114,6 +115,10 @@ export type MutationBorrowBookCopyArgs = {
 
 export type MutationReturnBookCopyArgs = {
   id: Scalars["ExternalID"];
+};
+
+export type MutationCreateReviewArgs = {
+  input: CreateReviewInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -174,6 +179,9 @@ export type Book = Resource &
     isFavourite?: Maybe<Scalars["Boolean"]>;
     createdAt: Scalars["ISODateString"];
     updatedAt: Scalars["ISODateString"];
+    reviews: Array<Review>;
+    reviewsCount: Scalars["Int"];
+    averageRating?: Maybe<Scalars["Float"]>;
   };
 
 export type AuthorResponse = Author | ResourceNotFoundError;
@@ -219,6 +227,7 @@ export type ProtectedUser = User &
     ownedBookCopies: Array<BookCopy>;
     borrowedBookCopies: Array<BookCopy>;
     favouriteBooks: Array<Book>;
+    reviews: Array<Review>;
     id: Scalars["ExternalID"];
     name: Scalars["String"];
     info: Scalars["String"];
@@ -294,6 +303,24 @@ export type ResourceNotFoundError = Error & {
 };
 
 export type Anything = PublicUser | ProtectedUser | Author | Book;
+
+export type Review = Resource &
+  Timestampable & {
+    __typename?: "Review";
+    id: Scalars["ExternalID"];
+    author: User;
+    book: Book;
+    text?: Maybe<Scalars["String"]>;
+    rating?: Maybe<Scalars["Int"]>;
+    createdAt: Scalars["ISODateString"];
+    updatedAt: Scalars["ISODateString"];
+  };
+
+export type CreateReviewInput = {
+  bookId: Scalars["ExternalID"];
+  text: Scalars["String"];
+  rating: Scalars["Int"];
+};
 
 export type Avatar = {
   __typename?: "Avatar";

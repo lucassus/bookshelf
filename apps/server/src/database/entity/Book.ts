@@ -11,6 +11,7 @@ import {
 
 import { Author } from "./Author";
 import { BookCopy } from "./BookCopy";
+import { Review } from "./Review";
 
 @Entity({ name: "books", orderBy: { title: "ASC" } })
 export class Book {
@@ -35,6 +36,9 @@ export class Book {
 
   @OneToMany(() => BookCopy, (bookCopy) => bookCopy.book)
   copies: Promise<BookCopy[]>;
+
+  @OneToMany(() => Review, (review) => review.book)
+  reviews: Promise<Review[]>;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

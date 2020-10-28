@@ -19,7 +19,8 @@ const result: PossibleTypesResultData = {
       "Book",
       "BookCopy",
       "PublicUser",
-      "ProtectedUser"
+      "ProtectedUser",
+      "Review"
     ],
     Error: [
       "MutationError",
@@ -28,7 +29,7 @@ const result: PossibleTypesResultData = {
       "FlaggedAvatarError"
     ],
     MutationResponse: ["CreateUserResult", "DeleteUserResult"],
-    Resource: ["Author", "Book", "PublicUser", "ProtectedUser"],
+    Resource: ["Author", "Book", "PublicUser", "ProtectedUser", "Review"],
     Anything: ["PublicUser", "ProtectedUser", "Author", "Book"],
     AvatarResult: ["Avatar", "FlaggedAvatarError"],
     UserResult: ["PublicUser", "ProtectedUser", "ResourceNotFoundError"],

@@ -50,7 +50,7 @@ export const LoginPage: React.FunctionComponent = () => {
     }
   };
 
-  const initialValues = { email: "", password: "" };
+  const initialValues: Values = { email: "", password: "" };
 
   return (
     <div>
@@ -60,7 +60,8 @@ export const LoginPage: React.FunctionComponent = () => {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
-        render={({ errors, isSubmitting }) => (
+      >
+        {({ errors, isSubmitting }) => (
           <Form className={styles.form}>
             <div>
               <label htmlFor="email-field">Email</label>
@@ -79,7 +80,7 @@ export const LoginPage: React.FunctionComponent = () => {
             </Button>
           </Form>
         )}
-      />
+      </Formik>
 
       <h3>Example credentials</h3>
       <ul>
