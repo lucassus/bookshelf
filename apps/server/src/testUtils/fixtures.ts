@@ -470,17 +470,18 @@ async function createReviews() {
   const books = await manager.find(Book);
   const users = await manager.find(User);
 
-  // TODO: Refactor
-  for (const book of books) {
-    for (
-      let i = 0;
-      i < faker.random.number({ min: 0, max: users.length });
-      i += 1
-    ) {
-      // TODO: Randomize the order of users
-      await createReview({ book, author: users[i] });
-    }
-  }
+  await Promise.all(
+    books.map((book) => {
+      const authors = faker.random.arrayElements(
+        users,
+        faker.random.number({ min: 0, max: users.length })
+      );
+
+      return Promise.all(
+        authors.map((author) => createReview({ book, author }))
+      );
+    })
+  );
 }
 
 export async function loadFixtures(): Promise<void> {
