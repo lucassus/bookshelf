@@ -9,6 +9,7 @@ import { FavouriteBookButton } from "../../components/FavouriteBookButton";
 import { NotFoundPage } from "../NotFoundPage";
 import styles from "./BookDetailsPage.scss";
 import { Review } from "./components/Review";
+import { ReviewForm } from "./components/ReviewForm";
 import { useGetBookQuery } from "./GetBook.query.generated";
 
 export const BookDetailsPage: React.FunctionComponent = () => {
@@ -32,6 +33,10 @@ export const BookDetailsPage: React.FunctionComponent = () => {
   if (book.__typename === "ResourceNotFoundError") {
     return <NotFoundPage message={book.message} />;
   }
+
+  const canAddReview =
+    currentUser &&
+    !book.reviews.map((review) => review.author.id).includes(currentUser.id);
 
   return (
     <div className={styles.container}>
@@ -80,6 +85,8 @@ export const BookDetailsPage: React.FunctionComponent = () => {
           </dl>
         </div>
       )}
+
+      {canAddReview && <ReviewForm bookId={book.id} />}
     </div>
   );
 };

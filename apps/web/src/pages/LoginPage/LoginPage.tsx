@@ -50,7 +50,7 @@ export const LoginPage: React.FunctionComponent = () => {
     }
   };
 
-  const initialValues = { email: "", password: "" };
+  const initialValues: Values = { email: "", password: "" };
 
   return (
     <div>
