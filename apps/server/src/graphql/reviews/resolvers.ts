@@ -1,24 +1,13 @@
-import { Review } from "../../database/entity";
 import { Resolvers } from "../resolvers-types.generated";
+import { ReviewsService } from "./ReviewsService";
 
-// TODO: Refactor these queries
 export const resolvers: Resolvers = {
   Book: {
-    averageRating: async (book, args, { connection }) => {
-      const raw = await connection
-        .getRepository(Review)
-        .createQueryBuilder()
-        .select("AVG(rating) AS avg")
-        .where({ bookId: book.id })
-        .getRawOne();
+    averageRating: async (book, args, { container }) =>
+      container.get(ReviewsService).getAverageRating(book.id),
 
-      return raw.avg;
-    },
-
-    reviewsCount: (book, args, { connection }) =>
-      connection.getRepository(Review).count({
-        where: { bookId: book.id }
-      })
+    reviewsCount: (book, args, { container }) =>
+      container.get(ReviewsService).countReviews(book.id)
   },
 
   Review: {
@@ -26,17 +15,15 @@ export const resolvers: Resolvers = {
   },
 
   Mutation: {
-    createReview: (rootValue, args, { currentUser, connection }) => {
+    createReview: (rootValue, args, { currentUser, container }) => {
       const { bookId, rating, text } = args.input;
 
-      const review = connection.manager.create(Review, {
+      return container.get(ReviewsService).create({
         authorId: currentUser.id,
-        bookId,
+        bookId: Number(bookId),
         rating,
         text
       });
-
-      return connection.manager.save(review);
     }
   }
 };
