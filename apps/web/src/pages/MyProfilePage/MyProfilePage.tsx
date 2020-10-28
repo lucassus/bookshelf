@@ -60,7 +60,8 @@ export const MyProfilePage: React.FunctionComponent<Props> = ({
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
-        render={({ errors, isSubmitting }) => (
+      >
+        {({ errors, isSubmitting }) => (
           <Form className={styles.form}>
             <div>
               <label htmlFor="email-field">Email</label>
@@ -85,7 +86,7 @@ export const MyProfilePage: React.FunctionComponent<Props> = ({
             </Button>
           </Form>
         )}
-      />
+      </Formik>
     </div>
   );
 };

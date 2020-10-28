@@ -74,7 +74,8 @@ export const ReviewForm: React.FunctionComponent<Props> = ({ book }) => {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
-        render={({ errors, isSubmitting }) => (
+      >
+        {({ errors, isSubmitting }) => (
           <Form className={styles.form}>
             <div>
               <label htmlFor="rating-field">Rating</label>
@@ -100,7 +101,7 @@ export const ReviewForm: React.FunctionComponent<Props> = ({ book }) => {
             </Button>
           </Form>
         )}
-      />
+      </Formik>
     </div>
   );
 };
