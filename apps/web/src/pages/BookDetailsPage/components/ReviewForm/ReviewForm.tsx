@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 import { Button } from "../../../../components/Button";
 import { Book } from "../../../../types.generated";
-import styles from "../../../LoginPage/LoginPage.scss";
+import styles from "../../../LoginPage/LoginPage.module.scss";
 import { ReviewFragmentDoc } from "../Review/Review.fragment.generated";
 import { useCreateReviewMutation } from "./CreateReview.mutation.generated";
 

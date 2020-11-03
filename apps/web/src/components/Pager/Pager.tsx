@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./Pager.scss";
+import styles from "./Pager.module.scss";
 
 type Props = {
   currentPage: number;

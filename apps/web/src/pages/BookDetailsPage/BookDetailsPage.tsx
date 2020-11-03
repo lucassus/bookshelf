@@ -7,7 +7,7 @@ import { useCurrentUser } from "../../components/CurrentUserProvider";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { FavouriteBookButton } from "../../components/FavouriteBookButton";
 import { NotFoundPage } from "../NotFoundPage";
-import styles from "./BookDetailsPage.scss";
+import styles from "./BookDetailsPage.module.scss";
 import { Review } from "./components/Review";
 import { ReviewForm } from "./components/ReviewForm";
 import { useGetBookQuery } from "./GetBook.query.generated";

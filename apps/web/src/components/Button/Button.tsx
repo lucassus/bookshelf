@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { ButtonHTMLAttributes } from "react";
 
-import styles from "./Button.scss";
+import styles from "./Button.module.scss";
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 

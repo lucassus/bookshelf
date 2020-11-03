@@ -2,7 +2,7 @@ import React from "react";
 
 import { BookCard } from "../BookCard";
 import { BookCardFragment } from "../BookCard/BookCard.fragment.generated";
-import styles from "./BooksList.scss";
+import styles from "./BooksList.module.scss";
 
 type Props = {
   books: BookCardFragment[];

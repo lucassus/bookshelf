@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { HTMLAttributes } from "react";
 
-import styles from "./Card.scss";
+import styles from "./Card.module.scss";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 

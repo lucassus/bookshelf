@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { ResourceCardFragment } from "./ResourceCard.fragment.generated";
-import styles from "./ResourceCard.scss";
+import styles from "./ResourceCard.module.scss";
 import { ResourceImage } from "./ResourceImage";
 
 const linkToResource = (resource: ResourceCardFragment) => {

@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { Button } from "../../components/Button";
 import { normalizeValidationErrors } from "../../utils/normalizeValidationErrors";
 import { useRegisterMutation } from "./Register.mutation.generated";
-import styles from "./SignupPage.scss";
+import styles from "./SignupPage.module.scss";
 
 type Values = {
   name: string;

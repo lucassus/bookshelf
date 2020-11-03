@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ErrorAlert } from "../../components/ErrorAlert";
 import { UserCard } from "../../components/UserCard";
 import { useGetUsersQuery } from "./GetUsers.query.generated";
-import styles from "./UsersPage.scss";
+import styles from "./UsersPage.module.scss";
 
 export const UsersPage: React.FunctionComponent = () => {
   const { loading, error, data } = useGetUsersQuery();

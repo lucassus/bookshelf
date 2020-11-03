@@ -4,7 +4,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { Button } from "../Button";
 import { useAddBookToFavouritesMutation } from "./AddBookToFavourites.generated";
 import { FavouriteBookButtonFragment } from "./FavouriteBookButton.fragment.generated";
-import styles from "./FavouriteBookButton.scss";
+import styles from "./FavouriteBookButton.module.scss";
 import { useRemoveBookFromFavouritesMutation } from "./RemoveBookFromFavourites.generated";
 
 type Props = {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Card } from "../Card";
 import { AuthorCardFragment } from "./AuthorCard.fragment.generated";
-import styles from "./AuthorCard.scss";
+import styles from "./AuthorCard.module.scss";
 
 type Props = {
   author: AuthorCardFragment;

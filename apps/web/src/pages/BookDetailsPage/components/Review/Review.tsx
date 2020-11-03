@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Avatar } from "../../../../components/Avatar";
 import { ReviewFragment } from "./Review.fragment.generated";
-import styles from "./Review.scss";
+import styles from "./Review.module.scss";
 
 type Props = {
   review: ReviewFragment;
