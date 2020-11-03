@@ -7,12 +7,10 @@
   "engines": {
     "node": "15.0.1"
   },
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "libs/*"
-    ]
-  },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "devDependencies": {
     "@graphql-cli/codegen": "1.17.12",
     "@graphql-cli/coverage": "2.1.0",
@@ -41,18 +39,18 @@
     "graphql": "15.4.0",
     "graphql-cli": "4.1.0",
     "jest": "26.6.2",
+    "lerna": "3.22.1",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
     "typescript": "4.0.5"
   },
   "scripts": {
     "clean": "yarn workspaces foreach --verbose run clean",
-    "build": "yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
+    "build": "yarn lerna run build",
     "typecheck": "yarn workspaces run typecheck",
     "lint": "yarn workspaces run lint",
     "test": "yarn jest",
     "start": "yarn workspace @bookshelf/server start",
-    "predev": "yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build",
     "dev-server": "yarn workspace @bookshelf/server dev",
     "dev-web": "yarn workspace @bookshelf/web dev",
     "dev": "concurrently --kill-others-on-fail 'yarn:dev-*'"

@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@bookshelf/*": ["libs/*/src"]
+    },
     "skipLibCheck": true,
     "strict": true,
     "noImplicitAny": false,
