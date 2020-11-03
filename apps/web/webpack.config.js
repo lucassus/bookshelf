@@ -1,6 +1,8 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+
+// TODO: Remove it
 const PnpWebpackPlugin = require("pnp-webpack-plugin");
 
 const config = {

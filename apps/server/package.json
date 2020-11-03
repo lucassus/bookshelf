@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@bookshelf/secure-id": "workspace:*",
-    "@bookshelf/string-utils": "workspace:*",
+    "@bookshelf/secure-id": "1.0.0",
+    "@bookshelf/string-utils": "1.0.0",
     "@graphql-tools/graphql-file-loader": "6.2.5",
     "@graphql-tools/load": "6.2.5",
     "@graphql-tools/load-files": "6.2.4",
