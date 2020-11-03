@@ -48,8 +48,8 @@
   "scripts": {
     "clean": "yarn workspaces foreach --verbose run clean",
     "build": "yarn workspace @bookshelf/fake-server build && yarn workspace @bookshelf/server build && yarn workspace @bookshelf/web build",
-    "typecheck": "yarn workspaces foreach --verbose run typecheck",
-    "lint": "yarn workspaces foreach --verbose run lint",
+    "typecheck": "yarn workspaces run typecheck",
+    "lint": "yarn workspaces run lint",
     "test": "yarn jest",
     "start": "yarn workspace @bookshelf/server start",
     "predev": "yarn workspace @bookshelf/string-utils build && yarn workspace @bookshelf/secure-id build",
