@@ -2,9 +2,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-// TODO: Remove it
-const PnpWebpackPlugin = require("pnp-webpack-plugin");
-
 const config = {
   mode: "none",
   entry: ["./src/index.tsx"],
@@ -27,13 +24,6 @@ const config = {
     }
   },
   target: "web",
-  resolve: {
-    plugins: [PnpWebpackPlugin],
-    extensions: [".ts", ".tsx", ".js"]
-  },
-  resolveLoader: {
-    plugins: [PnpWebpackPlugin.moduleLoader(module)]
-  },
   module: {
     rules: [
       {

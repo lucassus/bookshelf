@@ -1,5 +1,4 @@
 const path = require("path");
-const PnpWebpackPlugin = require("pnp-webpack-plugin");
 
 module.exports = {
   stories: ["../src/**/*.stories.tsx"],
@@ -24,9 +23,7 @@ module.exports = {
       use: ["ts-loader"]
     });
 
-    config.resolve.plugins.push(PnpWebpackPlugin);
     config.resolve.extensions.push(".ts", ".tsx");
-    config.resolveLoader.plugins.push(PnpWebpackPlugin.moduleLoader(module));
 
     return config;
   }
