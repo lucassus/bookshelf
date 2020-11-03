@@ -10,7 +10,7 @@ module.exports = {
     "^.+\\.(css|scss)$": "<rootDir>/__mocks__/cssTransform.js"
   },
   setupFilesAfterEnv: ["./src/testUtils/setup.ts"],
-  testPathIgnorePatterns: ["/dist/"],
+  testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },

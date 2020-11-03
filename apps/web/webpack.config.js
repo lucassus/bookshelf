@@ -24,6 +24,9 @@ const config = {
     }
   },
   target: "web",
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"]
+  },
   module: {
     rules: [
       {
@@ -45,7 +48,8 @@ const config = {
             loader: "ts-loader",
             options: { transpileOnly: true }
           }
-        ]
+        ],
+        exclude: "/node_modules/"
       }
     ]
   },
