@@ -27,7 +27,7 @@
     "typescript": "4.0.5"
   },
   "scripts": {
-    "clean": "yarn rimraf dist && yarn rimraf covarage",
+    "clean": "yarn rimraf covarage dist tsconfig.tsbuildinfo",
     "compile": "yarn tsc --build tsconfig.json",
     "build": "yarn clean && yarn compile",
     "typecheck": "yarn tsc --noEmit",
