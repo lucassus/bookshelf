@@ -68,7 +68,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "clean": "yarn rimraf dist && yarn rimraf coverage",
+    "clean": "yarn rimraf build && yarn rimraf coverage",
     "compile": "yarn webpack --config webpack.config.js --mode production",
     "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts,.tsx",
