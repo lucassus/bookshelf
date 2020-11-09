@@ -2,7 +2,7 @@ import React from "react";
 
 import { BookCopyCard } from "../BookCopyCard";
 import { BookCopyCardFragment } from "../BookCopyCard/BookCopyCard.fragment.generated";
-import styles from "./BookCopiesList.module.scss";
+import styles from "./BookCopiesList.scss";
 
 type Props = {
   bookCopies: BookCopyCardFragment[];

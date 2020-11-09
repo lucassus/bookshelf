@@ -4,7 +4,7 @@ import { Avatar } from "../Avatar";
 import { Button } from "../Button";
 import { CurrentUserFragment } from "../CurrentUserProvider/CurrentUser.fragment.generated";
 import { UserMenu } from "./UserMenu";
-import styles from "./UserMenuButton.module.scss";
+import styles from "./UserMenuButton.scss";
 
 type Props = {
   currentUser: CurrentUserFragment;

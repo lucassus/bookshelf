@@ -2,7 +2,7 @@ import React from "react";
 
 import { CurrentUserFragment } from "../../CurrentUserProvider/CurrentUser.fragment.generated";
 import { BookCopyCardFragment } from "../BookCopyCard.fragment.generated";
-import styles from "./Actions.module.scss";
+import styles from "./Actions.scss";
 import { BorrowButton } from "./BorrowButton";
 import { ReturnButton } from "./ReturnButton";
 

@@ -2,7 +2,7 @@ import { Image, Transformation } from "cloudinary-react";
 import React from "react";
 
 import { AvatarFragment } from "./Avatar.fragment.generated";
-import styles from "./Avatar.module.scss";
+import styles from "./Avatar.scss";
 
 type AvatarSize = "x-small" | "small" | "medium";
 

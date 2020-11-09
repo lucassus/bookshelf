@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.module.scss";
+import "./App.scss";
 
 import { AppTopBar } from "./components/AppTopBar";
 import { useCurrentUser } from "./components/CurrentUserProvider";

@@ -23,7 +23,7 @@ const configureAndStartServer = async () => {
   app.use("/", routes);
 
   if (ENVIRONMENT === Environment.production) {
-    const distDir = path.join(__dirname, "../../../web/build");
+    const distDir = path.join(__dirname, "../../../web/dist");
     app.use(express.static(distDir));
     app.get("/*", (req, res) => {
       res.sendFile(path.join(distDir, "index.html"));

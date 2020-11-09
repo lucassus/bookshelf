@@ -6,7 +6,7 @@ import { Card } from "../Card";
 import { useCurrentUser } from "../CurrentUserProvider";
 import { FavouriteBookButton } from "../FavouriteBookButton";
 import { BookCardFragment } from "./BookCard.fragment.generated";
-import styles from "./BookCard.module.scss";
+import styles from "./BookCard.scss";
 
 type Props = {
   book: BookCardFragment;
