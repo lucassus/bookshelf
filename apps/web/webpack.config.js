@@ -1,7 +1,6 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const PnpWebpackPlugin = require("pnp-webpack-plugin");
 
 const config = {
   mode: "none",
@@ -26,11 +25,7 @@ const config = {
   },
   target: "web",
   resolve: {
-    plugins: [PnpWebpackPlugin],
     extensions: [".ts", ".tsx", ".js"]
-  },
-  resolveLoader: {
-    plugins: [PnpWebpackPlugin.moduleLoader(module)]
   },
   module: {
     rules: [
@@ -53,7 +48,8 @@ const config = {
             loader: "ts-loader",
             options: { transpileOnly: true }
           }
-        ]
+        ],
+        exclude: "/node_modules/"
       }
     ]
   },

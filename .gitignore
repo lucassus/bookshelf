@@ -1,14 +1,6 @@
-.yarn/*
-!.yarn/cache
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-
-node_modules
-
 .idea
 coverage
 dist
+node_modules
 README.local.md
 tsconfig.tsbuildinfo

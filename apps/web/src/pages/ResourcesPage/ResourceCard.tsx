@@ -26,32 +26,38 @@ type Props = {
   resource: ResourceCardFragment;
 };
 
-export const ResourceCard: React.FunctionComponent<Props> = ({ resource }) => (
-  <div className={styles.container}>
-    <div>
-      {resource.__typename === "PublicUser" ||
-        (resource.__typename === "ProtectedUser" &&
-          resource.avatar.__typename === "Avatar" && (
-            <ResourceImage image={resource.avatar.image} />
-          ))}
+export const ResourceCard: React.FunctionComponent<Props> = ({ resource }) => {
+  if (resource.__typename === "Review") {
+    return null;
+  }
 
-      {(resource.__typename === "Author" || resource.__typename === "Book") &&
-        resource.image.__typename === "Image" && (
-          <ResourceImage image={resource.image} />
-        )}
+  return (
+    <div className={styles.container}>
+      <div>
+        {resource.__typename === "PublicUser" ||
+          (resource.__typename === "ProtectedUser" &&
+            resource.avatar.__typename === "Avatar" && (
+              <ResourceImage image={resource.avatar.image} />
+            ))}
+
+        {(resource.__typename === "Author" || resource.__typename === "Book") &&
+          resource.image.__typename === "Image" && (
+            <ResourceImage image={resource.image} />
+          )}
+      </div>
+
+      <dl key={resource.id}>
+        <dt>Id</dt>
+        <dd>
+          <Link to={linkToResource(resource)}>{resource.id}</Link>
+        </dd>
+
+        <dt>Name</dt>
+        <dd>{resource.name}</dd>
+
+        <dt>Description</dt>
+        <dd>{resource.description}</dd>
+      </dl>
     </div>
-
-    <dl key={resource.id}>
-      <dt>Id</dt>
-      <dd>
-        <Link to={linkToResource(resource)}>{resource.id}</Link>
-      </dd>
-
-      <dt>Name</dt>
-      <dd>{resource.name}</dd>
-
-      <dt>Description</dt>
-      <dd>{resource.description}</dd>
-    </dl>
-  </div>
-);
+  );
+};
