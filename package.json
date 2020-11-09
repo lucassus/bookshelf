@@ -7,10 +7,12 @@
   "engines": {
     "node": "15.0.1"
   },
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "libs/*"
+    ]
+  },
   "devDependencies": {
     "@graphql-cli/codegen": "1.17.12",
     "@graphql-cli/coverage": "2.1.0",

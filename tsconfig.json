@@ -11,13 +11,16 @@
     "target": "ES2017",
     "sourceMap": true,
     "declaration": true,
+    "declarationMap": true,
 
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+
+    "composite": true
   },
 
   "exclude": ["node_modules", "dist"]
