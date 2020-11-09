@@ -1,4 +1,16 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["scripts/**/*", "src/**/*"]
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    "composite": true,
+    "outDir": "./dist",
+    "rootDir": "."
+  },
+  "include": ["scripts/**/*", "./src/**/*"],
+  "references": [
+    { "path": "../../libs/secure-id" },
+    { "path": "../../libs/string-utils" }
+  ]
 }

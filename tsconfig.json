@@ -1,27 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@bookshelf/*": ["libs/*/src"]
-    },
-    "skipLibCheck": true,
-    "strict": true,
-    "noImplicitAny": false,
+    /* Basic Options */
     "module": "commonjs",
     "target": "ES2017",
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
-
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "declarationMap": true, // Fixes go-to-definition in code editors
     "strictPropertyInitialization": false,
 
-    "composite": true
-  },
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
 
-  "exclude": ["node_modules", "dist"]
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@sandbox/*": ["./packages/*/src"]
+    }
+  }
 }

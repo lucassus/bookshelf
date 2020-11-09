@@ -4,7 +4,8 @@
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "@types/testing-library__cypress"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "./dist"
   },
   "include": ["cypress/**/*"]
 }
