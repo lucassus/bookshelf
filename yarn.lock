@@ -4466,12 +4466,12 @@ apollo-server-plugin-base@^0.10.2:
   dependencies:
     apollo-server-types "^0.6.1"
 
-apollo-server-testing@2.18.2:
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/apollo-server-testing/-/apollo-server-testing-2.18.2.tgz#7b72e73d6ea21b5a6e24fac6e07b5408daa728fa"
-  integrity sha512-4qoJ8AYUKolqV397G7XXRjOCM1ADQB66ReL/B5NxdoROWTvxIOW2m1NOrmvMX1w6AmpSUD5APRM27I7fC3f65g==
+apollo-server-testing@2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/apollo-server-testing/-/apollo-server-testing-2.19.0.tgz#b068a2c80afffc4180268337ef1011a28be2b913"
+  integrity sha512-ZrFflLC84ZzBZCfJehC2gLodkb5wwlwYLg+wMXZfDZpBIXDbC0Y9zR0zGqOYhrDMpmI1yIt3fUade33Y4UrNpA==
   dependencies:
-    apollo-server-core "^2.18.2"
+    apollo-server-core "^2.19.0"
 
 apollo-server-types@^0.6.0, apollo-server-types@^0.6.1:
   version "0.6.1"
