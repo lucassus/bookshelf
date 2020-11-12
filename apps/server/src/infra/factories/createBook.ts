@@ -1,9 +1,9 @@
-import { Author, Book } from "@/infra/database/entity";
 import { titleizeSentence } from "@bookshelf/string-utils";
 import faker from "faker";
 
 import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";
+import { Author, Book } from "~/infra/database/entity";
 
 const BOOK_COVERS = [
   "/covers/harry1.jpg",

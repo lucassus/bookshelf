@@ -10,6 +10,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-var-requires": "off",
     "global-require": "off",
+    "import/extensions": "off", // TODO: Figure out why it does not work with "~/" import prefix
     "import/no-extraneous-dependencies": [
       "error",
       {

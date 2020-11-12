@@ -1,6 +1,3 @@
-import { AUTH_COOKIE_NAME } from "@/infra/config";
-import { User } from "@/infra/database/entity";
-import { createUser } from "@/infra/factories";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import httpMocks from "node-mocks-http";
@@ -12,6 +9,9 @@ import {
   getAuthTokenFromRequest
 } from "./authentication";
 import { hashPassword } from "./passwords";
+import { AUTH_COOKIE_NAME } from "~/infra/config";
+import { User } from "~/infra/database/entity";
+import { createUser } from "~/infra/factories";
 
 describe(".getAuthTokenFromRequest", () => {
   it("returns token when a cookie is set", () => {

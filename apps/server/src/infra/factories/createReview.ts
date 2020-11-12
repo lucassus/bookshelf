@@ -1,9 +1,9 @@
-import { Book, Review, User } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
 import { createUser, CreateUserAttributes } from "./createUser";
+import { Book, Review, User } from "~/infra/database/entity";
 
 type CreateReviewAttributes = Omit<Partial<Review>, "author" | "book"> & {
   book?: Book;

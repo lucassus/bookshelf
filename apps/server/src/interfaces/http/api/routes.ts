@@ -1,8 +1,3 @@
-import { Environment } from "@/infra/config";
-import {
-  authenticationMiddleware,
-  adminAuthenticationMiddleware
-} from "@/interfaces/http/middlewares";
 import express from "express";
 
 import { me } from "./accounts/routes";
@@ -10,6 +5,11 @@ import { admin } from "./admin";
 import { auth } from "./authentication/routes";
 import { books } from "./books/routes";
 import { seed } from "./seed/routes";
+import { Environment } from "~/infra/config";
+import {
+  authenticationMiddleware,
+  adminAuthenticationMiddleware
+} from "~/interfaces/http/middlewares";
 
 const routes = express.Router();
 

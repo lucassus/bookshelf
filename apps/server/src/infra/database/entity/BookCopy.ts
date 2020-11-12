@@ -1,4 +1,3 @@
-import { Environment } from "@/infra/config";
 import {
   Column,
   CreateDateColumn,
@@ -11,6 +10,7 @@ import {
 
 import { Book } from "./Book";
 import { User } from "./User";
+import { Environment } from "~/infra/config";
 
 @Entity({ name: "book_copies" })
 export class BookCopy {

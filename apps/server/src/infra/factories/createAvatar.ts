@@ -1,7 +1,7 @@
-import { Avatar } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createEntity } from "./createEntity";
+import { Avatar } from "~/infra/database/entity";
 
 const AVATAR_IMAGES = [
   "/users/w13.png",

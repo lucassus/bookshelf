@@ -1,6 +1,3 @@
-import { AUTH_COOKIE_NAME } from "@/infra/config";
-import { User } from "@/infra/database/entity";
-import { generateAuthToken } from "@/infra/support/authentication";
 import { ApolloServer } from "apollo-server-express";
 import {
   ApolloServerTestClient,
@@ -12,6 +9,9 @@ import httpMocks from "node-mocks-http";
 
 import { createContext } from "./context";
 import { rootSchema } from "./rootSchema";
+import { AUTH_COOKIE_NAME } from "~/infra/config";
+import { User } from "~/infra/database/entity";
+import { generateAuthToken } from "~/infra/support/authentication";
 
 export function createTestClient({
   currentUser,

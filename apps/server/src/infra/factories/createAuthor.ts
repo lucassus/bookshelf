@@ -1,7 +1,7 @@
-import { Author } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createEntity } from "./createEntity";
+import { Author } from "~/infra/database/entity";
 
 const AUTHOR_PHOTOS = [
   "/authors/JK%20Rowling.jpg",

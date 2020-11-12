@@ -9,9 +9,9 @@
     "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
-      "@/infra/*": ["infra/*"],
-      "@/interfaces/*": ["interfaces/*"],
-      "@/types/*": ["types/*"]
+      "~/infra/*": ["infra/*"],
+      "~/interfaces/*": ["interfaces/*"],
+      "~/types/*": ["types/*"]
     }
   },
   "include": ["./src/**/*"],

@@ -1,7 +1,6 @@
-import { User } from "@/infra/database/entity";
-import { Resolvers } from "@/types/resolvers.generated";
-
 import { canSeeProtectedUserFields } from "./canSeeProtectedUserFields";
+import { User } from "~/infra/database/entity";
+import { Resolvers } from "~/types/resolvers.generated";
 
 const resolvers: Resolvers = {
   Avatar: {

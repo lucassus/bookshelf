@@ -1,7 +1,8 @@
-import { Author } from "@/infra/database/entity";
-import { normalize } from "@/infra/support/normalize";
 import DataLoader from "dataloader";
 import { getRepository } from "typeorm";
+
+import { Author } from "~/infra/database/entity";
+import { normalize } from "~/infra/support/normalize";
 
 const batchLoadAuthors: DataLoader.BatchLoadFn<
   string | number,

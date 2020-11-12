@@ -1,8 +1,9 @@
-import { createBook, createUser } from "@/infra/factories";
-import { toExternalId } from "@/infra/support/secureId";
-import { createTestClient } from "@/interfaces/graphql/createTestClient";
 import { gql } from "apollo-server-express";
 import { getConnection } from "typeorm";
+
+import { createBook, createUser } from "~/infra/factories";
+import { toExternalId } from "~/infra/support/secureId";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 test("removeBookFromFavourites mutation", async () => {
   // Given

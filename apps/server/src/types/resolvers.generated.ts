@@ -10,8 +10,8 @@ import {
   BookCopy as BookCopyEntity,
   User as UserEntity,
   Review as ReviewEntity
-} from "@/infra/database/entity";
-import { Context, AuthenticatedContext } from "@/interfaces/graphql/context";
+} from "~/infra/database/entity";
+import { Context, AuthenticatedContext } from "~/interfaces/graphql/context";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];

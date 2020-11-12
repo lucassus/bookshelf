@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { Context } from "@/interfaces/graphql/context";
-import { Role } from "@/types/resolvers.generated";
 import { SchemaDirectiveVisitor } from "@graphql-tools/utils";
 import { AuthenticationError, ForbiddenError } from "apollo-server-express";
 import { defaultFieldResolver, GraphQLObjectType } from "graphql";
+
+import { Context } from "~/interfaces/graphql/context";
+import { Role } from "~/types/resolvers.generated";
 
 export class RequireAuthorizationDirective extends SchemaDirectiveVisitor<
   { role: Role },

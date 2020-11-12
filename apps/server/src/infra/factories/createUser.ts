@@ -1,9 +1,9 @@
-import { User } from "@/infra/database/entity";
-import { hashPassword } from "@/infra/support/passwords";
 import faker from "faker";
 
 import { createAvatar, CreateAvatarAttributes } from "./createAvatar";
 import { createEntity } from "./createEntity";
+import { User } from "~/infra/database/entity";
+import { hashPassword } from "~/infra/support/passwords";
 
 export type CreateUserAttributes = Partial<User> & {
   password?: string;

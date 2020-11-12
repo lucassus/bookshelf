@@ -1,7 +1,7 @@
-import { createUser } from "@/infra/factories";
 import { Container } from "typedi";
 
 import { UsersService } from "./UsersService";
+import { createUser } from "~/infra/factories";
 
 describe("UsersService", () => {
   let service: UsersService;
