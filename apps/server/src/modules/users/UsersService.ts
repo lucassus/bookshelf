@@ -2,8 +2,8 @@ import { Service } from "typedi";
 import { Connection, Repository } from "typeorm";
 import { InjectConnection, InjectRepository } from "typeorm-typedi-extensions";
 
-import { hashPassword } from "../../common/passwords";
 import { Avatar, User } from "../../infra/database/entity";
+import { hashPassword } from "../../infra/support/passwords";
 
 @Service()
 export class UsersService {

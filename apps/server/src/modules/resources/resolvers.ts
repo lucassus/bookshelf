@@ -1,7 +1,7 @@
 import { GraphQLScalarType } from "graphql";
 
 import { toExternalId, toInternalId } from "../../infra/support/secureId";
-import { Resolvers } from "../resolvers-types.generated";
+import { Resolvers } from "../../types/resolvers.generated";
 import { ResourcesService } from "./ResourcesService";
 
 const resolvers: Resolvers = {

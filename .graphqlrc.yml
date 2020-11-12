@@ -24,7 +24,7 @@ extensions:
         config:
           includeDirectives: true
 
-      apps/server/src/graphql/resolvers-types.generated.ts:
+      apps/server/src/types/resolvers.generated.ts:
         plugins:
           - typescript
           - typescript-resolvers

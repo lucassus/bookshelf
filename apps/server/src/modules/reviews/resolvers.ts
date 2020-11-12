@@ -1,4 +1,4 @@
-import { Resolvers } from "../resolvers-types.generated";
+import { Resolvers } from "../../types/resolvers.generated";
 import { ReviewsService } from "./ReviewsService";
 
 export const resolvers: Resolvers = {

@@ -3,7 +3,7 @@ import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { Book, BookCopy } from "../../infra/database/entity";
 import { toExternalId } from "../../infra/support/secureId";
-import { Resolvers } from "../resolvers-types.generated";
+import { Resolvers } from "../../types/resolvers.generated";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";
 
