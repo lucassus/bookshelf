@@ -57,7 +57,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "clean": "yarn rimraf dist && yarn rimraf coverage",
+    "clean": "yarn rimraf coverage dist storybook-static",
     "compile": "yarn webpack --config webpack.config.js --mode production",
     "build": "yarn clean && yarn compile",
     "dev": "yarn webpack-dev-server --mode development",
