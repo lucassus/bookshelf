@@ -1,8 +1,8 @@
 import express from "express";
 import { Container } from "typedi";
 
-import { serializeUsers } from "../../../../infra/serializers";
-import { UsersService } from "../../../graphql/users/UsersService";
+import { UsersService } from "../../../../infra/services/UsersService";
+import { serializeUsers } from "../serializers";
 
 const router = express.Router();
 

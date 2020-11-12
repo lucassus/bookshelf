@@ -2,8 +2,8 @@ import { Service } from "typedi";
 import { Connection, ObjectType } from "typeorm";
 import { InjectConnection } from "typeorm-typedi-extensions";
 
-import { Author, Book, User } from "../../../infra/database/entity";
-import { toInternalIdAndType } from "../../../infra/support/secureId";
+import { Author, Book, User } from "../database/entity";
+import { toInternalIdAndType } from "../support/secureId";
 
 @Service()
 export class ResourcesService {

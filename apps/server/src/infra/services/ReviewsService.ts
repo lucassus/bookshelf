@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { Connection, Repository } from "typeorm";
 import { InjectConnection, InjectRepository } from "typeorm-typedi-extensions";
 
-import { Review } from "../../../infra/database/entity";
+import { Review } from "../database/entity";
 
 @Service()
 export class ReviewsService {

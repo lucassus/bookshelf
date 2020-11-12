@@ -1,6 +1,6 @@
 import { Author } from "../../../infra/database/entity";
+import { AuthorsService } from "../../../infra/services/AuthorsService";
 import { Resolvers } from "../../../types/resolvers.generated";
-import { AuthorsService } from "./AuthorsService";
 
 const resolvers: Resolvers = {
   Author: {

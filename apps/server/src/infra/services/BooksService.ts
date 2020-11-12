@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { EntityManager, Repository } from "typeorm";
 import { InjectManager, InjectRepository } from "typeorm-typedi-extensions";
 
-import { Book, User } from "../../../../infra/database/entity";
+import { Book, User } from "../database/entity";
 
 @Service()
 export class BooksService {
@@ -16,7 +16,7 @@ export class BooksService {
     return this.repository.count();
   }
 
-  paginate(take: number, skip: number): Promise<Book[]> {
+  paginate({ take, skip }: { take?: number; skip?: number }): Promise<Book[]> {
     return this.repository.find({ order: { title: "ASC" }, take, skip });
   }
 

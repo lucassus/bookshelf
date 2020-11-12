@@ -1,5 +1,5 @@
+import { ReviewsService } from "../../../infra/services/ReviewsService";
 import { Resolvers } from "../../../types/resolvers.generated";
-import { ReviewsService } from "./ReviewsService";
 
 export const resolvers: Resolvers = {
   Book: {

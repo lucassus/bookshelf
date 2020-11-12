@@ -2,10 +2,10 @@ import { withFilter } from "apollo-server-express";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { Book, BookCopy } from "../../../infra/database/entity";
+import { BookCopiesService } from "../../../infra/services/BookCopiesService";
+import { BooksService } from "../../../infra/services/BooksService";
 import { toExternalId } from "../../../infra/support/secureId";
 import { Resolvers } from "../../../types/resolvers.generated";
-import { BookCopiesService } from "./services/BookCopiesService";
-import { BooksService } from "./services/BooksService";
 
 const BOOK_COPY_UPDATED = "bookCopyUpdated";
 
@@ -53,7 +53,7 @@ const resolvers: Resolvers = {
       container.get(BooksService).count(),
 
     books: (rootValue, { limit: take, offset: skip }, { container }) =>
-      container.get(BooksService).paginate(take, skip),
+      container.get(BooksService).paginate({ take, skip }),
 
     book: async (rootValue, { id }, { container }) => {
       try {

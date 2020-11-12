@@ -1,7 +1,7 @@
+import { UsersService } from "../../../infra/services/UsersService";
 import { sendAuthCookie } from "../../../infra/support/authentication";
 import { Resolvers } from "../../../types/resolvers.generated";
 import { authenticateContext } from "../authentication/authenticateContext";
-import { UsersService } from "../users/UsersService";
 
 const resolvers: Resolvers = {
   Query: {

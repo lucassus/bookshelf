@@ -1,18 +1,14 @@
 import express from "express";
 import { Container } from "typedi";
-import { Connection } from "typeorm";
 
-import { Book } from "../../../../infra/database/entity";
-import { serializeBooks } from "../../../../infra/serializers";
+import { BooksService } from "../../../../infra/services/BooksService";
+import { serializeBooks } from "../serializers";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const books = await Container.get(Connection)
-    .getRepository(Book)
-    .createQueryBuilder("books")
-    .leftJoinAndSelect("books.author", "author")
-    .getMany();
+  const booksService = Container.get(BooksService);
+  const books = await booksService.paginate({ take: 10 });
 
   const booksJson = await serializeBooks(books);
   res.json(booksJson);

@@ -12,7 +12,7 @@ module.exports = {
     "global-require": "off",
     "import/no-extraneous-dependencies": [
       "error",
-      { devDependencies: ["**/*.test.ts", "src/testUtils/**/*.ts"] }
+      { devDependencies: ["**/*.test.ts", "src/infra/testing/**/*.ts"] }
     ]
   }
 };

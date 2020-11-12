@@ -2,9 +2,9 @@ import { QueryFailedError } from "typeorm";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { User } from "../../../infra/database/entity";
+import { UsersService } from "../../../infra/services/UsersService";
 import { Resolvers } from "../../../types/resolvers.generated";
 import { canSeeProtectedUserFields } from "./canSeeProtectedUserFields";
-import { UsersService } from "./UsersService";
 
 const resolvers: Resolvers = {
   Avatar: {
