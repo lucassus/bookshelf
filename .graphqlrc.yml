@@ -1,4 +1,4 @@
-schema: apps/server/src/graphql/**/*.graphql
+schema: apps/server/src/modules/**/*.graphql
 
 documents: apps/web/src/**/*.graphql
 
@@ -29,22 +29,22 @@ extensions:
           - typescript
           - typescript-resolvers
         config:
-          contextType: ./context#Context
+          contextType: ../modules/context#Context
           fieldContextTypes:
-            - Mutation.updateProfile#./context#AuthenticatedContext
-            - Mutation.borrowBookCopy#./context#AuthenticatedContext
-            - Mutation.returnBookCopy#./context#AuthenticatedContext
-            - Mutation.addBookToFavourites#./context#AuthenticatedContext
-            - Mutation.removeBookFromFavourites#./context#AuthenticatedContext
-            - Mutation.createReview#./context#AuthenticatedContext
+            - Mutation.updateProfile#../modules/context#AuthenticatedContext
+            - Mutation.borrowBookCopy#../modules/context#AuthenticatedContext
+            - Mutation.returnBookCopy#../modules/context#AuthenticatedContext
+            - Mutation.addBookToFavourites#../modules/context#AuthenticatedContext
+            - Mutation.removeBookFromFavourites#../modules/context#AuthenticatedContext
+            - Mutation.createReview#../modules/context#AuthenticatedContext
           mappers:
-            Author: ../database/entity#Author
-            Avatar: ../database/entity#Avatar
-            Book: ../database/entity#Book
-            BookCopy: ../database/entity#BookCopy
-            PublicUser: ../database/entity#User
-            ProtectedUser: ../database/entity#User
-            Review: ../database/entity#Review
+            Author: ../infra/database/entity#Author
+            Avatar: ../infra/database/entity#Avatar
+            Book: ../infra/database/entity#Book
+            BookCopy: ../infra/database/entity#BookCopy
+            PublicUser: ../infra/database/entity#User
+            ProtectedUser: ../infra/database/entity#User
+            Review: ../infra/database/entity#Review
           mapperTypeSuffix: Entity
           optionalResolveType: true
           scalars:
