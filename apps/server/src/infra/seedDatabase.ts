@@ -467,7 +467,8 @@ async function seedFavouriteBooks() {
 async function seedReviews() {
   const { manager } = getConnection();
 
-  const books = await manager.find(Book);
+  const books = await manager.find(Book, { order: { title: "ASC" } });
+
   const users = await manager.find(User, {
     where: { email: Not("bob@example.com") },
     order: { email: "ASC" }
