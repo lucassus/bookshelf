@@ -149,7 +149,7 @@ describe("Book details page", () => {
 
       cy.get("form").should("not.exist");
       cy.findByText("This is awesome book!").should("exist");
-      cy.findByText("rated this book 9/10").should("exist");
+      cy.findAllByText("rated this book 9/10").should("exist");
     });
   });
 

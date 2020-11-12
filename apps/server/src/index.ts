@@ -6,10 +6,10 @@ import "reflect-metadata";
 import { Container } from "typedi";
 import { Connection, useContainer } from "typeorm";
 
-import { Environment, ENVIRONMENT, PORT } from "./config";
-import { createConnection } from "./database/createConnection";
-import { createApolloServer } from "./graphql/server";
-import { routes } from "./rest";
+import { Environment, ENVIRONMENT, PORT } from "./infra/config";
+import { createConnection } from "./infra/database/createConnection";
+import { createApolloServer } from "./interfaces/graphql/createApolloServer";
+import { api as apiRoutes } from "./interfaces/http/api/routes";
 
 useContainer(Container);
 
@@ -20,7 +20,7 @@ const configureAndStartServer = async () => {
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 
-  app.use("/", routes);
+  app.use("/api", apiRoutes);
 
   if (ENVIRONMENT === Environment.production) {
     const distDir = path.join(__dirname, "../../../web/dist");

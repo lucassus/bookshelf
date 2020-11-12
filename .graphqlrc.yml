@@ -1,4 +1,4 @@
-schema: apps/server/src/graphql/**/*.graphql
+schema: apps/server/src/interfaces/graphql/**/*.graphql
 
 documents: apps/web/src/**/*.graphql
 
@@ -24,27 +24,27 @@ extensions:
         config:
           includeDirectives: true
 
-      apps/server/src/graphql/resolvers-types.generated.ts:
+      apps/server/src/types/resolvers.generated.ts:
         plugins:
           - typescript
           - typescript-resolvers
         config:
-          contextType: ./context#Context
+          contextType: ../interfaces/graphql/context#Context
           fieldContextTypes:
-            - Mutation.updateProfile#./context#AuthenticatedContext
-            - Mutation.borrowBookCopy#./context#AuthenticatedContext
-            - Mutation.returnBookCopy#./context#AuthenticatedContext
-            - Mutation.addBookToFavourites#./context#AuthenticatedContext
-            - Mutation.removeBookFromFavourites#./context#AuthenticatedContext
-            - Mutation.createReview#./context#AuthenticatedContext
+            - Mutation.updateProfile#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.borrowBookCopy#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.returnBookCopy#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.addBookToFavourites#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.removeBookFromFavourites#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.createReview#../interfaces/graphql/context#AuthenticatedContext
           mappers:
-            Author: ../database/entity#Author
-            Avatar: ../database/entity#Avatar
-            Book: ../database/entity#Book
-            BookCopy: ../database/entity#BookCopy
-            PublicUser: ../database/entity#User
-            ProtectedUser: ../database/entity#User
-            Review: ../database/entity#Review
+            Author: ../infra/database/entity#Author
+            Avatar: ../infra/database/entity#Avatar
+            Book: ../infra/database/entity#Book
+            BookCopy: ../infra/database/entity#BookCopy
+            PublicUser: ../infra/database/entity#User
+            ProtectedUser: ../infra/database/entity#User
+            Review: ../infra/database/entity#Review
           mapperTypeSuffix: Entity
           optionalResolveType: true
           scalars:

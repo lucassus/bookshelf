@@ -4,12 +4,12 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 
 const DEFAULTS = {
   type: "postgres",
-  entities: [path.join(__dirname, "src/database/entity/**/*.ts")],
+  entities: [path.join(__dirname, "src/infra/database/entity/**/*.ts")],
   synchronize: false,
   logging: false,
   cli: {
-    entitiesDir: "src/database/entity",
-    migrationsDir: "src/database/migrations"
+    entitiesDir: "src/infra/database/entity",
+    migrationsDir: "src/infra/database/migrations"
   }
 };
 
@@ -35,7 +35,7 @@ if (NODE_ENV === "production") {
     ...DEFAULTS,
     url: process.env.DATABASE_URL,
     logging: true,
-    entities: [path.join(__dirname, "dist/src/database/entity/**/*.js")],
+    entities: [path.join(__dirname, "dist/database/entity/**/*.js")],
 
     // TODO: A workaround for heroku and ssl issues,
     //  see https://github.com/typeorm/typeorm/issues/278#issuecomment-614345011

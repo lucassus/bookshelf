@@ -38,7 +38,7 @@ export const BookCopyUpdatedDocument = gql`
  * });
  */
 export function useBookCopyUpdatedSubscription(
-  baseOptions?: Apollo.SubscriptionHookOptions<
+  baseOptions: Apollo.SubscriptionHookOptions<
     BookCopyUpdatedSubscription,
     BookCopyUpdatedSubscriptionVariables
   >

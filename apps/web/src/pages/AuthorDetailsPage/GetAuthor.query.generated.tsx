@@ -60,7 +60,7 @@ export const GetAuthorDocument = gql`
  * });
  */
 export function useGetAuthorQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetAuthorQuery, GetAuthorQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<GetAuthorQuery, GetAuthorQueryVariables>
 ) {
   return Apollo.useQuery<GetAuthorQuery, GetAuthorQueryVariables>(
     GetAuthorDocument,

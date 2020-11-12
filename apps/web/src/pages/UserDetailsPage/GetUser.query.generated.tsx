@@ -82,7 +82,7 @@ export const GetUserDocument = gql`
  * });
  */
 export function useGetUserQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables>
 ) {
   return Apollo.useQuery<GetUserQuery, GetUserQueryVariables>(
     GetUserDocument,
