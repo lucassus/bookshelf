@@ -1,9 +1,8 @@
+import { User } from "@bookshelf/server/infra/database/entity";
+import { isPasswordValid } from "@bookshelf/server/infra/support/passwords";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
-
-import { User } from "../database/entity";
-import { isPasswordValid } from "../support/passwords";
 
 export class InvalidEmailOrPasswordError extends Error {}
 

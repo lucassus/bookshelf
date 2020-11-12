@@ -6,7 +6,13 @@
 
     "composite": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "@bookshelf/server/infra/*": ["infra/*"],
+      "@bookshelf/server/interfaces/*": ["interfaces/*"],
+      "@bookshelf/server/types/*": ["types/*"]
+    }
   },
   "include": ["./src/**/*"],
   "references": [

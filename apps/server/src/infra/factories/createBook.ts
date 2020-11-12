@@ -1,7 +1,7 @@
+import { Author, Book } from "@bookshelf/server/infra/database/entity";
 import { titleizeSentence } from "@bookshelf/string-utils";
 import faker from "faker";
 
-import { Author, Book } from "../database/entity";
 import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";
 

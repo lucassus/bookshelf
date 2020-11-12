@@ -1,6 +1,6 @@
-import { UsersService } from "../../../../infra/services/UsersService";
-import { sendAuthCookie } from "../../../../infra/support/authentication";
-import { Resolvers } from "../../../../types/resolvers.generated";
+import { UsersService } from "@bookshelf/server/infra/services/UsersService";
+import { sendAuthCookie } from "@bookshelf/server/infra/support/authentication";
+import { Resolvers } from "@bookshelf/server/types/resolvers.generated";
 
 const updateProfileResolver: Resolvers = {
   Mutation: {

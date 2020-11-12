@@ -1,3 +1,4 @@
+import { User } from "@bookshelf/server/infra/database/entity";
 import cookie from "cookie";
 import express from "express";
 import { IncomingMessage } from "http";
@@ -10,7 +11,6 @@ import {
   AUTH_TOKEN_SECRET_KEY,
   Environment
 } from "../config";
-import { User } from "../database/entity";
 
 const getAuthTokenSecretFor = (user: User) =>
   [user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");

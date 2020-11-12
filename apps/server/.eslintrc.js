@@ -20,6 +20,7 @@ module.exports = {
           "src/interfaces/http/createTestClient.ts"
         ]
       }
-    ]
+    ],
+    "import/no-relative-parent-imports": "error"
   }
 };

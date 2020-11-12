@@ -1,10 +1,10 @@
+import { User } from "@bookshelf/server/infra/database/entity";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import httpMocks from "node-mocks-http";
 import { getRepository } from "typeorm";
 
 import { AUTH_COOKIE_NAME } from "../config";
-import { User } from "../database/entity";
 import { createUser } from "../factories";
 import {
   tradeAuthTokenForUser,
