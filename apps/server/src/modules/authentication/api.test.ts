@@ -1,5 +1,5 @@
-import { HttpStatusCodes } from "../../http-status-codes";
 import { createUser } from "../../infra/factories";
+import { HttpStatusCodes } from "../../infra/HttpStatusCodes";
 import { createRestTestClient } from "../../infra/testing/createRestTestClient";
 
 describe("POST /api/auth/logout", () => {

@@ -1,4 +1,4 @@
-import { clearAuthCookie } from "../../common/authentication";
+import { clearAuthCookie } from "../../infra/support/authentication";
 import { Resolvers } from "../resolvers-types.generated";
 import { authenticateContext } from "./authenticateContext";
 import {

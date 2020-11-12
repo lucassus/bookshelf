@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 import httpMocks from "node-mocks-http";
 
-import { AUTH_COOKIE_NAME } from "../../../config";
+import { AUTH_COOKIE_NAME } from "../../../infra/config";
 import { createUser } from "../../../infra/factories";
 import { createTestClient } from "../../../infra/testing/createTestClient";
 

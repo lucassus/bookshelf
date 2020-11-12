@@ -1,10 +1,10 @@
 import { RequestHandler } from "express";
 
+import { HttpStatusCodes } from "./HttpStatusCodes";
 import {
   getAuthTokenFromRequest,
   tradeAuthTokenForUser
-} from "../common/authentication";
-import { HttpStatusCodes } from "../http-status-codes";
+} from "./support/authentication";
 
 export const authenticationMiddleware: RequestHandler = async (
   req,

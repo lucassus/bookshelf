@@ -3,9 +3,9 @@ import express from "express";
 import { ConnectionContext, ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
 
-import { authenticateRequest } from "../common/authentication";
-import { ASSETS_BASE_URL } from "../config";
+import { ASSETS_BASE_URL } from "../infra/config";
 import { User } from "../infra/database/entity";
+import { authenticateRequest } from "../infra/support/authentication";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
 import { buildBooksLoader } from "./books/booksLoader";
 import { buildUsersLoader } from "./users/usersLoader";

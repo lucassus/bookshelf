@@ -1,4 +1,4 @@
-import { sendAuthCookie } from "../../common/authentication";
+import { sendAuthCookie } from "../../infra/support/authentication";
 import { authenticateContext } from "../authentication/authenticateContext";
 import { Resolvers } from "../resolvers-types.generated";
 import { UsersService } from "../users/UsersService";

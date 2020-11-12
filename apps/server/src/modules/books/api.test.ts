@@ -1,5 +1,5 @@
-import { HttpStatusCodes } from "../../http-status-codes";
 import { createBook } from "../../infra/factories";
+import { HttpStatusCodes } from "../../infra/HttpStatusCodes";
 import { createRestTestClient } from "../../infra/testing/createRestTestClient";
 
 test("GET /api/books", async () => {

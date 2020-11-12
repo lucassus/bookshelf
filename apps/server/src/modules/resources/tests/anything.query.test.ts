@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
-import { toExternalId } from "../../../common/secureId";
 import { createAuthor, createBook, createUser } from "../../../infra/factories";
+import { toExternalId } from "../../../infra/support/secureId";
 import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("anything query", () => {

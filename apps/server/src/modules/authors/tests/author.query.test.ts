@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
-import { toExternalId } from "../../../common/secureId";
 import { Author } from "../../../infra/database/entity";
 import { createAuthor } from "../../../infra/factories";
+import { toExternalId } from "../../../infra/support/secureId";
 import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("author query", () => {

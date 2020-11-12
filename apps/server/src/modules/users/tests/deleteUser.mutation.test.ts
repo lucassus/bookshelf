@@ -2,9 +2,9 @@ import { gql } from "apollo-server-express";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
-import { toExternalId } from "../../../common/secureId";
 import { User } from "../../../infra/database/entity";
 import { createUser } from "../../../infra/factories";
+import { toExternalId } from "../../../infra/support/secureId";
 import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("deleteUser mutation", () => {

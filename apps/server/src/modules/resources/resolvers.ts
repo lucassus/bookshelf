@@ -1,6 +1,6 @@
 import { GraphQLScalarType } from "graphql";
 
-import { toExternalId, toInternalId } from "../../common/secureId";
+import { toExternalId, toInternalId } from "../../infra/support/secureId";
 import { Resolvers } from "../resolvers-types.generated";
 import { ResourcesService } from "./ResourcesService";
 

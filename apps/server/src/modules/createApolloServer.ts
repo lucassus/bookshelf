@@ -1,6 +1,6 @@
 import { ApolloServer } from "apollo-server-express";
 
-import { Environment, ENVIRONMENT } from "../config";
+import { Environment, ENVIRONMENT } from "../infra/config";
 import { createContext, onSubscriptionConnect } from "./context";
 import { rootSchema } from "./rootSchema";
 

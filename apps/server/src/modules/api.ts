@@ -1,6 +1,6 @@
 import express from "express";
 
-import { Environment } from "../config";
+import { Environment } from "../infra/config";
 import {
   authenticationMiddleware,
   adminAuthenticationMiddleware

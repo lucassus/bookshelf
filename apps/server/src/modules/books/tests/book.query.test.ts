@@ -1,7 +1,6 @@
 import { gql } from "apollo-server-express";
 import { getConnection } from "typeorm";
 
-import { toExternalId } from "../../../common/secureId";
 import { Book } from "../../../infra/database/entity";
 import {
   createAuthor,
@@ -9,6 +8,7 @@ import {
   createBookCopy,
   createUser
 } from "../../../infra/factories";
+import { toExternalId } from "../../../infra/support/secureId";
 import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("book query", () => {
