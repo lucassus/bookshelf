@@ -7,10 +7,10 @@ import {
   Review,
   User
 } from "../infrastucture/database/entity";
-import { loadFixtures } from "./fixtures";
+import { seedDatabase } from "./seedDatabase";
 
-test(".loadFixtures", async () => {
-  await loadFixtures();
+test(".seedDatabase", async () => {
+  await seedDatabase();
 
   const connection = getConnection();
   expect(await connection.getRepository(User).count()).toBe(5);

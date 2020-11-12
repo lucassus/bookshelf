@@ -10,7 +10,7 @@ import {
   Review,
   User
 } from "../../infrastucture/database/entity";
-import { loadFixtures } from "../../testUtils/fixtures";
+import { seedDatabase } from "../../testUtils/seedDatabase";
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
   tables.push("users_favourite_books");
 
   await connection.query(`TRUNCATE TABLE ${tables.join(", ")};`);
-  await loadFixtures();
+  await seedDatabase();
 
   res.sendStatus(HttpStatusCodes.OK);
 });

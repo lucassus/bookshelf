@@ -1,14 +1,14 @@
 import "reflect-metadata";
 
 import { createConnection } from "../src/infrastucture/database/createConnection";
-import { loadFixtures } from "../src/testUtils/fixtures";
+import { seedDatabase } from "../src/testUtils/seedDatabase";
 
 const seed = async () => {
   const connection = await createConnection();
   await connection.dropDatabase();
   await connection.synchronize(true);
 
-  await loadFixtures();
+  await seedDatabase();
 };
 
 seed()
