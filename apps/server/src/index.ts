@@ -7,7 +7,7 @@ import { Container } from "typedi";
 import { Connection, useContainer } from "typeorm";
 
 import { Environment, ENVIRONMENT, PORT } from "./config";
-import { createApolloServer } from "./graphql/server";
+import { createApolloServer } from "./modules/server";
 import { createConnection } from "./infra/database/createConnection";
 import { routes } from "./rest";
 

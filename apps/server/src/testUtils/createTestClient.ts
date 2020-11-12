@@ -9,8 +9,8 @@ import httpMocks from "node-mocks-http";
 
 import { generateAuthToken } from "../common/authentication";
 import { AUTH_COOKIE_NAME } from "../config";
-import { createContext } from "../graphql/context";
-import { rootSchema } from "../graphql/rootSchema";
+import { createContext } from "../modules/context";
+import { rootSchema } from "../modules/rootSchema";
 import { User } from "../infra/database/entity";
 
 export function createTestClient({
