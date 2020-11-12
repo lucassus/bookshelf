@@ -13,7 +13,7 @@ const schema = loadSchemaSync(path.join(__dirname, "./**/schema.graphql"), {
 });
 
 const resolvers = mergeResolvers(
-  loadFilesSync(path.join(__dirname, "./**/resolvers.{js,ts}"))
+  loadFilesSync(path.join(__dirname, "./**/(*.resolver|resolvers).{ts,js}"))
 );
 
 const rootSchema = addResolversToSchema({
