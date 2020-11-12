@@ -6,6 +6,9 @@ module.exports = {
     name: package.name
   },
   testEnvironment: "node",
+  moduleNameMapper: {
+    "~/(.*)": "<rootDir>/src/$1"
+  },
   maxWorkers: 1,
   setupFilesAfterEnv: ["./src/infra/setupTests.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
