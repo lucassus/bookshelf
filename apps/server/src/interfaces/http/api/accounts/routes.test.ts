@@ -1,6 +1,6 @@
 import { createBookCopy, createUser } from "@/infra/factories";
 import { createTestClient } from "@/interfaces/http/createTestClient";
-import { HttpStatusCodes } from "@/interfaces/http/HttpStatusCodes";
+import { StatusCodes } from "@/interfaces/http/StatusCodes";
 
 describe("GET /api/me", () => {
   it("returns the current user", async () => {
@@ -22,7 +22,7 @@ describe("GET /api/me", () => {
     const response = await createTestClient({ currentUser }).get("/api/me");
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.OK);
+    expect(response.status).toBe(StatusCodes.OK);
     expect(response.body).toMatchObject({
       id: expect.any(Number),
       name: "Luke",
@@ -45,7 +45,7 @@ describe("GET /api/me", () => {
     const response = await createTestClient().get("/api/me");
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.Unauthorized);
+    expect(response.status).toBe(StatusCodes.Unauthorized);
     expect(response.text).toBe("Missing authentication token");
   });
 
@@ -56,7 +56,7 @@ describe("GET /api/me", () => {
     );
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.Unauthorized);
+    expect(response.status).toBe(StatusCodes.Unauthorized);
     expect(response.text).toBe("Invalid authentication token");
   });
 });

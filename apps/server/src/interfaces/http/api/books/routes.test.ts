@@ -1,6 +1,6 @@
 import { createBook } from "@/infra/factories";
 import { createTestClient } from "@/interfaces/http/createTestClient";
-import { HttpStatusCodes } from "@/interfaces/http/HttpStatusCodes";
+import { StatusCodes } from "@/interfaces/http/StatusCodes";
 
 test("GET /api/books", async () => {
   // Given
@@ -18,7 +18,7 @@ test("GET /api/books", async () => {
   const response = await createTestClient().get("/api/books");
 
   // Then
-  expect(response.status).toBe(HttpStatusCodes.OK);
+  expect(response.status).toBe(StatusCodes.OK);
   expect(response.body).toMatchObject([
     {
       id: 1,

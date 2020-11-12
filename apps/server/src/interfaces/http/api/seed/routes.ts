@@ -7,7 +7,7 @@ import {
   User
 } from "@/infra/database/entity";
 import { seedDatabase } from "@/infra/seedDatabase";
-import { HttpStatusCodes } from "@/interfaces/http/HttpStatusCodes";
+import { StatusCodes } from "@/interfaces/http/StatusCodes";
 import express from "express";
 import { getConnection } from "typeorm";
 
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   await connection.query(`TRUNCATE TABLE ${tables.join(", ")};`);
   await seedDatabase();
 
-  res.sendStatus(HttpStatusCodes.OK);
+  res.sendStatus(StatusCodes.OK);
 });
 
 export { router as seed };
