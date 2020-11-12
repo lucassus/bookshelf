@@ -2,8 +2,8 @@ import { gql } from "apollo-server-express";
 import { getConnection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
+import { createBook, createUser } from "../../../infra/factories";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { createBook, createUser } from "../../../testUtils/factories";
 
 test("removeBookFromFavourites mutation", async () => {
   // Given

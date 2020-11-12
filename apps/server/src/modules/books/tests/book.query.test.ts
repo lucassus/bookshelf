@@ -3,13 +3,13 @@ import { getConnection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
 import { Book } from "../../../infra/database/entity";
-import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../../../testUtils/factories";
+} from "../../../infra/factories";
+import { createTestClient } from "../../../testUtils/createTestClient";
 
 describe("book query", () => {
   it("fetches a book", async () => {

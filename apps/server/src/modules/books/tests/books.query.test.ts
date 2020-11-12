@@ -1,12 +1,12 @@
 import { gql } from "apollo-server-express";
 
-import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../../../testUtils/factories";
+} from "../../../infra/factories";
+import { createTestClient } from "../../../testUtils/createTestClient";
 
 describe("books query", () => {
   it("fetches books", async () => {

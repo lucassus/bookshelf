@@ -1,6 +1,6 @@
 import { HttpStatusCodes } from "../../http-status-codes";
+import { createUser } from "../../infra/factories";
 import { createRestTestClient } from "../../testUtils/createRestTestClient";
-import { createUser } from "../../testUtils/factories";
 
 describe("POST /api/auth/logout", () => {
   it("allows to log out a user", async () => {

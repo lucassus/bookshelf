@@ -1,12 +1,8 @@
 import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
+import { createBook, createReview, createUser } from "../../../infra/factories";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import {
-  createBook,
-  createReview,
-  createUser
-} from "../../../testUtils/factories";
 
 test("book query", async () => {
   // Given

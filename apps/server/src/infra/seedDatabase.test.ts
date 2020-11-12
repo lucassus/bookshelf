@@ -1,12 +1,6 @@
 import { getConnection } from "typeorm";
 
-import {
-  Author,
-  Book,
-  BookCopy,
-  Review,
-  User
-} from "../infra/database/entity";
+import { Author, Book, BookCopy, Review, User } from "./database/entity";
 import { seedDatabase } from "./seedDatabase";
 
 test(".seedDatabase", async () => {

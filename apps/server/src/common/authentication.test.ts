@@ -5,7 +5,7 @@ import { getRepository } from "typeorm";
 
 import { AUTH_COOKIE_NAME } from "../config";
 import { User } from "../infra/database/entity";
-import { createUser } from "../testUtils/factories";
+import { createUser } from "../infra/factories";
 import {
   tradeAuthTokenForUser,
   generateAuthToken,

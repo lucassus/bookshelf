@@ -1,7 +1,7 @@
 import faker from "faker";
 
 import { hashPassword } from "../../common/passwords";
-import { User } from "../../infra/database/entity";
+import { User } from "../database/entity";
 import { createAvatar, CreateAvatarAttributes } from "./createAvatar";
 import { createEntity } from "./createEntity";
 

@@ -10,7 +10,7 @@ import {
   Review,
   User
 } from "../../infra/database/entity";
-import { seedDatabase } from "../../testUtils/seedDatabase";
+import { seedDatabase } from "../../infra/seedDatabase";
 
 const router = express.Router();
 

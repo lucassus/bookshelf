@@ -3,12 +3,12 @@ import { getManager } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
 import { BookCopy } from "../../../infra/database/entity";
-import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createBook,
   createBookCopy,
   createUser
-} from "../../../testUtils/factories";
+} from "../../../infra/factories";
+import { createTestClient } from "../../../testUtils/createTestClient";
 
 describe("returnBookCopy mutation", () => {
   const ReturnBookCopyMutation = gql`

@@ -1,12 +1,8 @@
 import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
+import { createAuthor, createBook, createUser } from "../../../infra/factories";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import {
-  createAuthor,
-  createBook,
-  createUser
-} from "../../../testUtils/factories";
 
 describe("anything query", () => {
   const GetAnythingQuery = gql`

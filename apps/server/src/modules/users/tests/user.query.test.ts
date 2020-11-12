@@ -3,12 +3,12 @@ import { getConnection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
 import { User } from "../../../infra/database/entity";
-import { createTestClient } from "../../../testUtils/createTestClient";
 import {
   createBook,
   createBookCopy,
   createUser
-} from "../../../testUtils/factories";
+} from "../../../infra/factories";
+import { createTestClient } from "../../../testUtils/createTestClient";
 
 describe("user query", () => {
   const GetUserQuery = gql`

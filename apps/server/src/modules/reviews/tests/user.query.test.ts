@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
+import { createReview, createUser } from "../../../infra/factories";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { createReview, createUser } from "../../../testUtils/factories";
 
 test("user query", async () => {
   // Given

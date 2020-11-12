@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
+import { createBookCopy, createUser } from "../../../infra/factories";
 import { createTestClient } from "../../../testUtils/createTestClient";
-import { createBookCopy, createUser } from "../../../testUtils/factories";
 
 test("ISODateString scalar", async () => {
   // Given

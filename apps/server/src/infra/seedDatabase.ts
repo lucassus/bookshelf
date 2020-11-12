@@ -1,7 +1,7 @@
 import faker from "faker";
 import { getConnection } from "typeorm";
 
-import { Author, Book, User } from "../infra/database/entity";
+import { Author, Book, User } from "./database/entity";
 import {
   createAuthor,
   createBook,
