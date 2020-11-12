@@ -1,7 +1,7 @@
 import express from "express";
 
-import { HttpStatusCodes } from "../../infra/HttpStatusCodes";
-import { clearAuthCookie } from "../../infra/support/authentication";
+import { clearAuthCookie } from "../../../../infra/support/authentication";
+import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 const router = express.Router();
 

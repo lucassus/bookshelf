@@ -2,7 +2,7 @@ import cookie from "cookie";
 import express from "express";
 import request from "supertest";
 
-import { api as apiRoutes } from "../../modules/api";
+import { api as apiRoutes } from "../../interfaces/http/api/routes";
 import { AUTH_COOKIE_NAME } from "../config";
 import { User } from "../database/entity";
 import { generateAuthToken } from "../support/authentication";

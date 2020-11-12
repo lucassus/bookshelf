@@ -1,6 +1,6 @@
-import { createBook } from "../../infra/factories";
-import { HttpStatusCodes } from "../../infra/HttpStatusCodes";
-import { createRestTestClient } from "../../infra/testing/createRestTestClient";
+import { createBook } from "../../../../infra/factories";
+import { createRestTestClient } from "../../../../infra/testing/createRestTestClient";
+import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 test("GET /api/books", async () => {
   // Given

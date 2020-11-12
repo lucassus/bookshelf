@@ -1,6 +1,6 @@
-import { createBookCopy, createUser } from "../../infra/factories";
-import { HttpStatusCodes } from "../../infra/HttpStatusCodes";
-import { createRestTestClient } from "../../infra/testing/createRestTestClient";
+import { createBookCopy, createUser } from "../../../../infra/factories";
+import { createRestTestClient } from "../../../../infra/testing/createRestTestClient";
+import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 describe("GET /api/me", () => {
   it("returns the current user", async () => {

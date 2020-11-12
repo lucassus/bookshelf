@@ -1,6 +1,6 @@
 import express from "express";
 
-import { serializeUser } from "../../infra/serializers";
+import { serializeUser } from "../../../../infra/serializers";
 
 const router = express.Router();
 

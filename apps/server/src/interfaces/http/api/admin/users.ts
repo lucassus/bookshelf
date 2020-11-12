@@ -1,8 +1,8 @@
 import express from "express";
 import { Container } from "typedi";
 
-import { serializeUsers } from "../../infra/serializers";
-import { UsersService } from "../users/UsersService";
+import { serializeUsers } from "../../../../infra/serializers";
+import { UsersService } from "../../../../modules/users/UsersService";
 
 const router = express.Router();
 

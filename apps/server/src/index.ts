@@ -8,7 +8,7 @@ import { Connection, useContainer } from "typeorm";
 
 import { Environment, ENVIRONMENT, PORT } from "./infra/config";
 import { createConnection } from "./infra/database/createConnection";
-import { api as apiRoutes } from "./modules/api";
+import { api as apiRoutes } from "./interfaces/http/api/routes";
 import { createApolloServer } from "./modules/createApolloServer";
 
 useContainer(Container);

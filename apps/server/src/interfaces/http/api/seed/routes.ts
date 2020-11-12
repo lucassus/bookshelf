@@ -8,9 +8,9 @@ import {
   BookCopy,
   Review,
   User
-} from "../../infra/database/entity";
-import { HttpStatusCodes } from "../../infra/HttpStatusCodes";
-import { seedDatabase } from "../../infra/seedDatabase";
+} from "../../../../infra/database/entity";
+import { seedDatabase } from "../../../../infra/seedDatabase";
+import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 const router = express.Router();
 
