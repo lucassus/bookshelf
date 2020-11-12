@@ -142,4 +142,4 @@ jobs:
         env:
           NODE_ENV: production
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: yarn workspace @bookshelf/server node ./dist/scripts/seed.js
+        run: yarn workspace @bookshelf/server node ./dist/interfaces/cli/seed.js
