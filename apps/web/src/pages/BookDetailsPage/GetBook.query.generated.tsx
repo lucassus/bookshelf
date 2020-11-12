@@ -80,7 +80,7 @@ export const GetBookDocument = gql`
  * });
  */
 export function useGetBookQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetBookQuery, GetBookQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<GetBookQuery, GetBookQueryVariables>
 ) {
   return Apollo.useQuery<GetBookQuery, GetBookQueryVariables>(
     GetBookDocument,
