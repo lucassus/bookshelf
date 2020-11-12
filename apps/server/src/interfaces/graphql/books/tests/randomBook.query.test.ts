@@ -3,7 +3,7 @@ import { Container } from "typedi";
 
 import { createBook } from "../../../../infra/factories";
 import { BooksService } from "../../../../infra/services/BooksService";
-import { createTestClient } from "../../../../infra/testing/createTestClient";
+import { createTestClient } from "../../createTestClient";
 
 test("randomBook query", async () => {
   // Given

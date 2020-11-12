@@ -1,5 +1,5 @@
 import { createBook } from "../../../../infra/factories";
-import { createRestTestClient } from "../../../../infra/testing/createRestTestClient";
+import { createTestClient } from "../../createTestClient";
 import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 test("GET /api/books", async () => {
@@ -15,7 +15,7 @@ test("GET /api/books", async () => {
   });
 
   // When
-  const response = await createRestTestClient().get("/api/books");
+  const response = await createTestClient().get("/api/books");
 
   // Then
   expect(response.status).toBe(HttpStatusCodes.OK);

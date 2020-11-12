@@ -1,5 +1,5 @@
 import { createUser } from "../../../../infra/factories";
-import { createRestTestClient } from "../../../../infra/testing/createRestTestClient";
+import { createTestClient } from "../../createTestClient";
 import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 describe("POST /api/auth/logout", () => {
@@ -11,7 +11,7 @@ describe("POST /api/auth/logout", () => {
     });
 
     // When
-    const response = await createRestTestClient({ currentUser }).post(
+    const response = await createTestClient({ currentUser }).post(
       "/api/auth/logout"
     );
 
@@ -24,7 +24,7 @@ describe("POST /api/auth/logout", () => {
 
   it("allows to log out with invalid auth token", async () => {
     // When
-    const response = await createRestTestClient({ authToken: "invalid" }).post(
+    const response = await createTestClient({ authToken: "invalid" }).post(
       "/api/auth/logout"
     );
 

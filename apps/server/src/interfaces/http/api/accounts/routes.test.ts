@@ -1,5 +1,5 @@
 import { createBookCopy, createUser } from "../../../../infra/factories";
-import { createRestTestClient } from "../../../../infra/testing/createRestTestClient";
+import { createTestClient } from "../../createTestClient";
 import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 describe("GET /api/me", () => {
@@ -19,7 +19,7 @@ describe("GET /api/me", () => {
     });
 
     // When
-    const response = await createRestTestClient({ currentUser }).get("/api/me");
+    const response = await createTestClient({ currentUser }).get("/api/me");
 
     // Then
     expect(response.status).toBe(HttpStatusCodes.OK);
@@ -42,7 +42,7 @@ describe("GET /api/me", () => {
 
   it("returns an error when not authorized", async () => {
     // When
-    const response = await createRestTestClient().get("/api/me");
+    const response = await createTestClient().get("/api/me");
 
     // Then
     expect(response.status).toBe(HttpStatusCodes.Unauthorized);
@@ -51,7 +51,7 @@ describe("GET /api/me", () => {
 
   it("returns a error when auth token is invalid", async () => {
     // When
-    const response = await createRestTestClient({ authToken: "invalid" }).get(
+    const response = await createTestClient({ authToken: "invalid" }).get(
       "/api/me"
     );
 

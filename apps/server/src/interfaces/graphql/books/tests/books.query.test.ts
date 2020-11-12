@@ -6,7 +6,7 @@ import {
   createBookCopy,
   createUser
 } from "../../../../infra/factories";
-import { createTestClient } from "../../../../infra/testing/createTestClient";
+import { createTestClient } from "../../createTestClient";
 
 describe("books query", () => {
   it("fetches books", async () => {

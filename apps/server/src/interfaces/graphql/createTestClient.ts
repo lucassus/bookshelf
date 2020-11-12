@@ -7,11 +7,11 @@ import cookie from "cookie";
 import express from "express";
 import httpMocks from "node-mocks-http";
 
-import { createContext } from "../../interfaces/graphql/context";
-import { rootSchema } from "../../interfaces/graphql/rootSchema";
-import { AUTH_COOKIE_NAME } from "../config";
-import { User } from "../database/entity";
-import { generateAuthToken } from "../support/authentication";
+import { AUTH_COOKIE_NAME } from "../../infra/config";
+import { User } from "../../infra/database/entity";
+import { generateAuthToken } from "../../infra/support/authentication";
+import { createContext } from "./context";
+import { rootSchema } from "./rootSchema";
 
 export function createTestClient({
   currentUser,

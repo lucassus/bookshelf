@@ -2,12 +2,12 @@ import cookie from "cookie";
 import express from "express";
 import request from "supertest";
 
-import { api as apiRoutes } from "../../interfaces/http/api/routes";
-import { AUTH_COOKIE_NAME } from "../config";
-import { User } from "../database/entity";
-import { generateAuthToken } from "../support/authentication";
+import { AUTH_COOKIE_NAME } from "../../infra/config";
+import { User } from "../../infra/database/entity";
+import { generateAuthToken } from "../../infra/support/authentication";
+import { api as apiRoutes } from "./api/routes";
 
-export function createRestTestClient({
+export function createTestClient({
   authToken,
   currentUser
 }: { currentUser?: User; authToken?: string } = {}) {

@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { createBook, createUser } from "../../../../infra/factories";
 import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../../../infra/testing/createTestClient";
+import { createTestClient } from "../../createTestClient";
 
 test("addBookToFavourites mutation", async () => {
   // Given

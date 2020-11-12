@@ -1,5 +1,5 @@
 import { createUser } from "../../../../infra/factories";
-import { createRestTestClient } from "../../../../infra/testing/createRestTestClient";
+import { createTestClient } from "../../createTestClient";
 import { HttpStatusCodes } from "../../HttpStatusCodes";
 
 describe("GET /api/admin/users", () => {
@@ -14,7 +14,7 @@ describe("GET /api/admin/users", () => {
     await createUser({ name: "Anna", email: "anna@email.com" });
 
     // When
-    const response = await createRestTestClient({ currentUser }).get(
+    const response = await createTestClient({ currentUser }).get(
       "/api/admin/users"
     );
 
@@ -40,13 +40,13 @@ describe("GET /api/admin/users", () => {
   });
 
   it("responds with error when not authenticated", async () => {
-    const response = await createRestTestClient().get("/api/admin/users");
+    const response = await createTestClient().get("/api/admin/users");
     expect(response.status).toBe(HttpStatusCodes.Unauthorized);
     expect(response.text).toBe("Missing authentication token");
   });
 
   it("responds with error when auth token is invalid", async () => {
-    const response = await createRestTestClient({ authToken: "invalid" }).get(
+    const response = await createTestClient({ authToken: "invalid" }).get(
       "/api/admin/users"
     );
     expect(response.status).toBe(HttpStatusCodes.Unauthorized);
@@ -55,7 +55,7 @@ describe("GET /api/admin/users", () => {
 
   it("responds with error when not authenticated as admin", async () => {
     const currentUser = await createUser({ isAdmin: false });
-    const response = await createRestTestClient({ currentUser }).get(
+    const response = await createTestClient({ currentUser }).get(
       "/api/admin/users"
     );
     expect(response.status).toBe(HttpStatusCodes.Forbidden);

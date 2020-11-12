@@ -8,7 +8,7 @@ import {
   createUser
 } from "../../../../infra/factories";
 import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../../../infra/testing/createTestClient";
+import { createTestClient } from "../../createTestClient";
 
 describe("returnBookCopy mutation", () => {
   const ReturnBookCopyMutation = gql`
