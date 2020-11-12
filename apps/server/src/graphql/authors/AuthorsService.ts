@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
-import { Author } from "../../infrastucture/database/entity";
+import { Author } from "../../infra/database/entity";
 
 @Service()
 export class AuthorsService {

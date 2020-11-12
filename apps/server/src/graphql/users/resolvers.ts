@@ -1,7 +1,7 @@
 import { QueryFailedError } from "typeorm";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
-import { User } from "../../infrastucture/database/entity";
+import { User } from "../../infra/database/entity";
 import { Resolvers } from "../resolvers-types.generated";
 import { canSeeProtectedUserFields } from "./canSeeProtectedUserFields";
 import { UsersService } from "./UsersService";

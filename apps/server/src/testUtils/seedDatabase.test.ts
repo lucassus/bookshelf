@@ -6,7 +6,7 @@ import {
   BookCopy,
   Review,
   User
-} from "../infrastucture/database/entity";
+} from "../infra/database/entity";
 import { seedDatabase } from "./seedDatabase";
 
 test(".seedDatabase", async () => {

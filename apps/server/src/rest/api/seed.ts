@@ -9,7 +9,7 @@ import {
   BookCopy,
   Review,
   User
-} from "../../infrastucture/database/entity";
+} from "../../infra/database/entity";
 import { seedDatabase } from "../../testUtils/seedDatabase";
 
 const router = express.Router();

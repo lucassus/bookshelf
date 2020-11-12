@@ -1,7 +1,7 @@
 import { Container } from "typedi";
 import { getManager } from "typeorm";
 
-import { BookCopy } from "../../../infrastucture/database/entity";
+import { BookCopy } from "../../../infra/database/entity";
 import { createBookCopy, createUser } from "../../../testUtils/factories";
 import { BookCopiesService } from "./BookCopiesService";
 

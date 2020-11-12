@@ -3,7 +3,7 @@ import { Container } from "typedi";
 import { Connection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
-import { User } from "../../../infrastucture/database/entity";
+import { User } from "../../../infra/database/entity";
 import { createTestClient } from "../../../testUtils/createTestClient";
 import { createUser } from "../../../testUtils/factories";
 

@@ -2,7 +2,7 @@ import { withFilter } from "apollo-server-express";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { toExternalId } from "../../common/secureId";
-import { Book, BookCopy } from "../../infrastucture/database/entity";
+import { Book, BookCopy } from "../../infra/database/entity";
 import { Resolvers } from "../resolvers-types.generated";
 import { BookCopiesService } from "./services/BookCopiesService";
 import { BooksService } from "./services/BooksService";

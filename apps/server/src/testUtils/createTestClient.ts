@@ -11,7 +11,7 @@ import { generateAuthToken } from "../common/authentication";
 import { AUTH_COOKIE_NAME } from "../config";
 import { createContext } from "../graphql/context";
 import { rootSchema } from "../graphql/rootSchema";
-import { User } from "../infrastucture/database/entity";
+import { User } from "../infra/database/entity";
 
 export function createTestClient({
   currentUser,

@@ -3,7 +3,7 @@ import { Connection, Repository } from "typeorm";
 import { InjectConnection, InjectRepository } from "typeorm-typedi-extensions";
 
 import { hashPassword } from "../../common/passwords";
-import { Avatar, User } from "../../infrastucture/database/entity";
+import { Avatar, User } from "../../infra/database/entity";
 
 @Service()
 export class UsersService {

@@ -1,6 +1,6 @@
 import faker from "faker";
 
-import { Author } from "../../infrastucture/database/entity";
+import { Author } from "../../infra/database/entity";
 import { createEntity } from "./createEntity";
 
 const AUTHOR_PHOTOS = [

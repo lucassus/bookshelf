@@ -1,5 +1,5 @@
 import { sendAuthCookie } from "../../common/authentication";
-import { User } from "../../infrastucture/database/entity";
+import { User } from "../../infra/database/entity";
 import { Context } from "../context";
 
 export function authenticateContext(context: Context, user: User): void {
