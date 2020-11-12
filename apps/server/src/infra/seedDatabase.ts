@@ -1,5 +1,5 @@
 import faker from "faker";
-import { getConnection } from "typeorm";
+import { getConnection, Not } from "typeorm";
 
 import { Author, Book, User } from "./database/entity";
 import {
@@ -468,7 +468,10 @@ async function seedReviews() {
   const { manager } = getConnection();
 
   const books = await manager.find(Book);
-  const users = await manager.find(User);
+  const users = await manager.find(User, {
+    where: { email: Not("bob@example.com") },
+    order: { email: "ASC" }
+  });
 
   await Promise.all(
     books.map((book) => {
