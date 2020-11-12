@@ -35,7 +35,7 @@ if (NODE_ENV === "production") {
     ...DEFAULTS,
     url: process.env.DATABASE_URL,
     logging: true,
-    entities: [path.join(__dirname, "dist/src/database/entity/**/*.js")],
+    entities: [path.join(__dirname, "dist/database/entity/**/*.js")],
 
     // TODO: A workaround for heroku and ssl issues,
     //  see https://github.com/typeorm/typeorm/issues/278#issuecomment-614345011

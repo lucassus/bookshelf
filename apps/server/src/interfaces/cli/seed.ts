@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
-import { createConnection } from "../src/infra/database/createConnection";
-import { seedDatabase } from "../src/infra/seedDatabase";
+import { createConnection } from "../../infra/database/createConnection";
+import { seedDatabase } from "../../infra/seedDatabase";
 
 const seed = async () => {
   const connection = await createConnection();

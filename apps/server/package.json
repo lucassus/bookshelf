@@ -47,12 +47,12 @@
     "clean": "yarn rimraf coverage dist *.tsbuildinfo",
     "copy-graphql": "./copy-graphql.sh",
     "build": "yarn tsc --build && yarn copy-graphql",
-    "start": "yarn node dist/src/index.js",
+    "start": "yarn node ./dist/index.js",
     "dev": "yarn ts-node-dev --no-notify --respawn --transpile-only ./src/index.ts",
     "typecheck": "yarn tsc --noEmit",
     "lint": "yarn eslint . --ext .ts",
     "test": "yarn jest",
     "typeorm": "yarn ts-node ./node_modules/typeorm/cli.js",
-    "db:seed": "yarn ts-node ./scripts/seed.ts"
+    "db:seed": "yarn ts-node ./src/interfaces/cli/seed.ts"
   }
 }
