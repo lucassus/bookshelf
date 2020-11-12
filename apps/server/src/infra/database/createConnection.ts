@@ -5,7 +5,7 @@ import {
 } from "typeorm";
 
 const optionsReader = new ConnectionOptionsReader({
-  root: path.join(__dirname, "..", "..")
+  root: path.join(__dirname, "..", "..", "..")
 });
 
 export const createConnection = async () => {

@@ -4,12 +4,12 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 
 const DEFAULTS = {
   type: "postgres",
-  entities: [path.join(__dirname, "src/database/entity/**/*.ts")],
+  entities: [path.join(__dirname, "src/infra/database/entity/**/*.ts")],
   synchronize: false,
   logging: false,
   cli: {
-    entitiesDir: "src/database/entity",
-    migrationsDir: "src/database/migrations"
+    entitiesDir: "src/infra/database/entity",
+    migrationsDir: "src/infra/database/migrations"
   }
 };
 
