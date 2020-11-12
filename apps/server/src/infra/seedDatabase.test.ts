@@ -11,5 +11,5 @@ test(".seedDatabase", async () => {
   expect(await connection.getRepository(Author).count()).toBe(4);
   expect(await connection.getRepository(Book).count()).toBe(24);
   expect(await connection.getRepository(BookCopy).count()).toBe(20);
-  expect(await connection.getRepository(Review).count()).toBe(64);
+  expect(await connection.getRepository(Review).count()).toBe(56);
 });
