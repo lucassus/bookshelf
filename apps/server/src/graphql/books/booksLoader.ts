@@ -2,7 +2,7 @@ import DataLoader from "dataloader";
 import { getRepository } from "typeorm";
 
 import { Book } from "../../database/entity";
-import { normalize } from "../../database/normalize";
+import { normalize } from "../../common/normalize";
 
 const batchLoadBooks: DataLoader.BatchLoadFn<string | number, Book> = async (
   ids
