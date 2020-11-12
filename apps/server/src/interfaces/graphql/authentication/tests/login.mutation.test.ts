@@ -1,9 +1,9 @@
 import { gql } from "apollo-server-express";
 import httpMocks from "node-mocks-http";
 
-import { AUTH_COOKIE_NAME } from "../../../../infra/config";
-import { createUser } from "../../../../infra/factories";
-import { createTestClient } from "../../createTestClient";
+import { AUTH_COOKIE_NAME } from "~/infra/config";
+import { createUser } from "~/infra/factories";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 describe("login mutation", () => {
   const validEmail = "valid@email.com";

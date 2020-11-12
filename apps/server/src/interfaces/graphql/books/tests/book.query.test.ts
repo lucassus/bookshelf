@@ -1,15 +1,15 @@
 import { gql } from "apollo-server-express";
 import { getConnection } from "typeorm";
 
-import { Book } from "../../../../infra/database/entity";
+import { Book } from "~/infra/database/entity";
 import {
   createAuthor,
   createBook,
   createBookCopy,
   createUser
-} from "../../../../infra/factories";
-import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../createTestClient";
+} from "~/infra/factories";
+import { toExternalId } from "~/infra/support/secureId";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 describe("book query", () => {
   it("fetches a book", async () => {

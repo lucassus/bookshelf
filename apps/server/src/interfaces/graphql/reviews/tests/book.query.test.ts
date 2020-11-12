@@ -1,12 +1,8 @@
 import { gql } from "apollo-server-express";
 
-import {
-  createBook,
-  createReview,
-  createUser
-} from "../../../../infra/factories";
-import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../createTestClient";
+import { createBook, createReview, createUser } from "~/infra/factories";
+import { toExternalId } from "~/infra/support/secureId";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 test("book query", async () => {
   // Given

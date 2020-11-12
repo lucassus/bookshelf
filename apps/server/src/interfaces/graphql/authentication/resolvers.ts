@@ -1,10 +1,10 @@
+import { authenticateContext } from "./authenticateContext";
 import {
   AuthenticationService,
   InvalidEmailOrPasswordError
-} from "../../../infra/services/AuthenticationService";
-import { clearAuthCookie } from "../../../infra/support/authentication";
-import { Resolvers } from "../../../types/resolvers.generated";
-import { authenticateContext } from "./authenticateContext";
+} from "~/infra/services/AuthenticationService";
+import { clearAuthCookie } from "~/infra/support/authentication";
+import { Resolvers } from "~/types/resolvers.generated";
 
 const resolvers: Resolvers = {
   Mutation: {

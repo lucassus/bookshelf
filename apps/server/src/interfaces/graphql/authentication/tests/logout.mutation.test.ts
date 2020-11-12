@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-express";
 import httpMocks from "node-mocks-http";
 
-import { AUTH_COOKIE_NAME } from "../../../../infra/config";
-import { createTestClient } from "../../createTestClient";
+import { AUTH_COOKIE_NAME } from "~/infra/config";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 test("logout mutation", async () => {
   // Given

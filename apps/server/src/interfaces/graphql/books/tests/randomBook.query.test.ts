@@ -1,9 +1,9 @@
 import { gql } from "apollo-server-express";
 import { Container } from "typedi";
 
-import { createBook } from "../../../../infra/factories";
-import { BooksService } from "../../../../infra/services/BooksService";
-import { createTestClient } from "../../createTestClient";
+import { createBook } from "~/infra/factories";
+import { BooksService } from "~/infra/services/BooksService";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 test("randomBook query", async () => {
   // Given

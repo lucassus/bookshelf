@@ -9,8 +9,8 @@ import {
   AUTH_TOKEN_EXPIRES_IN_SECONDS,
   AUTH_TOKEN_SECRET_KEY,
   Environment
-} from "../config";
-import { User } from "../database/entity";
+} from "~/infra/config";
+import { User } from "~/infra/database/entity";
 
 const getAuthTokenSecretFor = (user: User) =>
   [user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");

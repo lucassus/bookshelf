@@ -1,4 +1,4 @@
-import { User } from "../../../infra/database/entity";
+import { User } from "~/infra/database/entity";
 
 export function canSeeProtectedUserFields({
   currentUser,

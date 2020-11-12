@@ -2,10 +2,10 @@ import cookie from "cookie";
 import express from "express";
 import request from "supertest";
 
-import { AUTH_COOKIE_NAME } from "../../infra/config";
-import { User } from "../../infra/database/entity";
-import { generateAuthToken } from "../../infra/support/authentication";
 import { api as apiRoutes } from "./api/routes";
+import { AUTH_COOKIE_NAME } from "~/infra/config";
+import { User } from "~/infra/database/entity";
+import { generateAuthToken } from "~/infra/support/authentication";
 
 export function createTestClient({
   authToken,

@@ -7,11 +7,11 @@ import cookie from "cookie";
 import express from "express";
 import httpMocks from "node-mocks-http";
 
-import { AUTH_COOKIE_NAME } from "../../infra/config";
-import { User } from "../../infra/database/entity";
-import { generateAuthToken } from "../../infra/support/authentication";
 import { createContext } from "./context";
 import { rootSchema } from "./rootSchema";
+import { AUTH_COOKIE_NAME } from "~/infra/config";
+import { User } from "~/infra/database/entity";
+import { generateAuthToken } from "~/infra/support/authentication";
 
 export function createTestClient({
   currentUser,

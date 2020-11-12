@@ -1,8 +1,8 @@
 import { QueryFailedError } from "typeorm";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
-import { UsersService } from "../../../../infra/services/UsersService";
-import { Resolvers } from "../../../../types/resolvers.generated";
+import { UsersService } from "~/infra/services/UsersService";
+import { Resolvers } from "~/types/resolvers.generated";
 
 const updateUserResolver: Resolvers = {
   Mutation: {

@@ -1,4 +1,4 @@
-import { Book, User } from "../../../infra/database/entity";
+import { Book, User } from "~/infra/database/entity";
 
 // TODO: Naive serialization, find a better solution
 //  See https://www.npmjs.com/package/class-transformer

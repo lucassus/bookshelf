@@ -1,10 +1,10 @@
 import { RequestHandler } from "express";
 
+import { StatusCodes } from "./StatusCodes";
 import {
   getAuthTokenFromRequest,
   tradeAuthTokenForUser
-} from "../../infra/support/authentication";
-import { HttpStatusCodes } from "./HttpStatusCodes";
+} from "~/infra/support/authentication";
 
 export const authenticationMiddleware: RequestHandler = async (
   req,
@@ -15,7 +15,7 @@ export const authenticationMiddleware: RequestHandler = async (
 
   if (!authToken) {
     return res
-      .status(HttpStatusCodes.Unauthorized)
+      .status(StatusCodes.Unauthorized)
       .send("Missing authentication token");
   }
 
@@ -24,7 +24,7 @@ export const authenticationMiddleware: RequestHandler = async (
     return next();
   } catch {
     return res
-      .status(HttpStatusCodes.Unauthorized)
+      .status(StatusCodes.Unauthorized)
       .send("Invalid authentication token");
   }
 };
@@ -37,7 +37,7 @@ export const adminAuthenticationMiddleware: RequestHandler = (
   const { currentUser } = req;
 
   if (!currentUser!.isAdmin) {
-    return res.sendStatus(HttpStatusCodes.Forbidden);
+    return res.sendStatus(StatusCodes.Forbidden);
   }
 
   return next();

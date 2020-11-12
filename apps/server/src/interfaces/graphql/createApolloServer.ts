@@ -1,8 +1,8 @@
 import { ApolloServer } from "apollo-server-express";
 
-import { Environment, ENVIRONMENT } from "../../infra/config";
 import { createContext, onSubscriptionConnect } from "./context";
 import { rootSchema } from "./rootSchema";
+import { Environment, ENVIRONMENT } from "~/infra/config";
 
 export const createApolloServer = () =>
   new ApolloServer({

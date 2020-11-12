@@ -6,7 +6,13 @@
 
     "composite": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "~/infra/*": ["infra/*"],
+      "~/interfaces/*": ["interfaces/*"],
+      "~/types/*": ["types/*"]
+    }
   },
   "include": ["./src/**/*"],
   "references": [

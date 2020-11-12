@@ -1,6 +1,6 @@
-import { createUser } from "../../../../infra/factories";
-import { createTestClient } from "../../createTestClient";
-import { HttpStatusCodes } from "../../HttpStatusCodes";
+import { createUser } from "~/infra/factories";
+import { createTestClient } from "~/interfaces/http/createTestClient";
+import { StatusCodes } from "~/interfaces/http/StatusCodes";
 
 describe("POST /api/auth/logout", () => {
   it("allows to log out a user", async () => {
@@ -16,7 +16,7 @@ describe("POST /api/auth/logout", () => {
     );
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.OK);
+    expect(response.status).toBe(StatusCodes.OK);
     expect(response.headers["set-cookie"][0]).toContain(
       "bookshelf:authToken=;"
     );
@@ -29,7 +29,7 @@ describe("POST /api/auth/logout", () => {
     );
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.OK);
+    expect(response.status).toBe(StatusCodes.OK);
     expect(response.headers["set-cookie"][0]).toContain(
       "bookshelf:authToken=;"
     );

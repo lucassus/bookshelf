@@ -8,9 +8,9 @@ import {
   UpdateDateColumn
 } from "typeorm";
 
-import { Environment } from "../../config";
 import { Book } from "./Book";
 import { User } from "./User";
+import { Environment } from "~/infra/config";
 
 @Entity({ name: "book_copies" })
 export class BookCopy {

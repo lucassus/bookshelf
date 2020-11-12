@@ -29,22 +29,22 @@ extensions:
           - typescript
           - typescript-resolvers
         config:
-          contextType: ../interfaces/graphql/context#Context
+          contextType: "~/interfaces/graphql/context#Context"
           fieldContextTypes:
-            - Mutation.updateProfile#../interfaces/graphql/context#AuthenticatedContext
-            - Mutation.borrowBookCopy#../interfaces/graphql/context#AuthenticatedContext
-            - Mutation.returnBookCopy#../interfaces/graphql/context#AuthenticatedContext
-            - Mutation.addBookToFavourites#../interfaces/graphql/context#AuthenticatedContext
-            - Mutation.removeBookFromFavourites#../interfaces/graphql/context#AuthenticatedContext
-            - Mutation.createReview#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.updateProfile#~/interfaces/graphql/context#AuthenticatedContext
+            - Mutation.borrowBookCopy#~/interfaces/graphql/context#AuthenticatedContext
+            - Mutation.returnBookCopy#~/interfaces/graphql/context#AuthenticatedContext
+            - Mutation.addBookToFavourites#~/interfaces/graphql/context#AuthenticatedContext
+            - Mutation.removeBookFromFavourites#~/interfaces/graphql/context#AuthenticatedContext
+            - Mutation.createReview#~/interfaces/graphql/context#AuthenticatedContext
           mappers:
-            Author: ../infra/database/entity#Author
-            Avatar: ../infra/database/entity#Avatar
-            Book: ../infra/database/entity#Book
-            BookCopy: ../infra/database/entity#BookCopy
-            PublicUser: ../infra/database/entity#User
-            ProtectedUser: ../infra/database/entity#User
-            Review: ../infra/database/entity#Review
+            Author: "~/infra/database/entity#Author"
+            Avatar: "~/infra/database/entity#Avatar"
+            Book: "~/infra/database/entity#Book"
+            BookCopy: "~/infra/database/entity#BookCopy"
+            PublicUser: "~/infra/database/entity#User"
+            ProtectedUser: "~/infra/database/entity#User"
+            Review: "~/infra/database/entity#Review"
           mapperTypeSuffix: Entity
           optionalResolveType: true
           scalars:

@@ -3,8 +3,8 @@ import { SchemaDirectiveVisitor } from "@graphql-tools/utils";
 import { AuthenticationError, ForbiddenError } from "apollo-server-express";
 import { defaultFieldResolver, GraphQLObjectType } from "graphql";
 
-import { Role } from "../../../types/resolvers.generated";
-import { Context } from "../context";
+import { Context } from "~/interfaces/graphql/context";
+import { Role } from "~/types/resolvers.generated";
 
 export class RequireAuthorizationDirective extends SchemaDirectiveVisitor<
   { role: Role },

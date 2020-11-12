@@ -1,4 +1,4 @@
-export enum HttpStatusCodes {
+export enum StatusCodes {
   // The HTTP 200 OK success status response code indicates that the request has succeeded.
   OK = 200,
 

@@ -1,6 +1,6 @@
-import { createUser } from "../../../../infra/factories";
-import { createTestClient } from "../../createTestClient";
-import { HttpStatusCodes } from "../../HttpStatusCodes";
+import { createUser } from "~/infra/factories";
+import { createTestClient } from "~/interfaces/http/createTestClient";
+import { StatusCodes } from "~/interfaces/http/StatusCodes";
 
 describe("GET /api/admin/users", () => {
   it("responds with users when authenticated", async () => {
@@ -19,7 +19,7 @@ describe("GET /api/admin/users", () => {
     );
 
     // Then
-    expect(response.status).toBe(HttpStatusCodes.OK);
+    expect(response.status).toBe(StatusCodes.OK);
     expect(response.body).toMatchObject([
       {
         id: 1,
@@ -41,7 +41,7 @@ describe("GET /api/admin/users", () => {
 
   it("responds with error when not authenticated", async () => {
     const response = await createTestClient().get("/api/admin/users");
-    expect(response.status).toBe(HttpStatusCodes.Unauthorized);
+    expect(response.status).toBe(StatusCodes.Unauthorized);
     expect(response.text).toBe("Missing authentication token");
   });
 
@@ -49,7 +49,7 @@ describe("GET /api/admin/users", () => {
     const response = await createTestClient({ authToken: "invalid" }).get(
       "/api/admin/users"
     );
-    expect(response.status).toBe(HttpStatusCodes.Unauthorized);
+    expect(response.status).toBe(StatusCodes.Unauthorized);
     expect(response.text).toBe("Invalid authentication token");
   });
 
@@ -58,7 +58,7 @@ describe("GET /api/admin/users", () => {
     const response = await createTestClient({ currentUser }).get(
       "/api/admin/users"
     );
-    expect(response.status).toBe(HttpStatusCodes.Forbidden);
+    expect(response.status).toBe(StatusCodes.Forbidden);
     expect(response.text).toBe("Forbidden");
   });
 });

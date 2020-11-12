@@ -5,8 +5,8 @@ import {
   createBook,
   createBookCopy,
   createUser
-} from "../../../../infra/factories";
-import { createTestClient } from "../../createTestClient";
+} from "~/infra/factories";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 describe("books query", () => {
   it("fetches books", async () => {

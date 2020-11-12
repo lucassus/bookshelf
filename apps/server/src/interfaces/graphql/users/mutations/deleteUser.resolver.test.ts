@@ -2,10 +2,10 @@ import { gql } from "apollo-server-express";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
-import { User } from "../../../../infra/database/entity";
-import { createUser } from "../../../../infra/factories";
-import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../createTestClient";
+import { User } from "~/infra/database/entity";
+import { createUser } from "~/infra/factories";
+import { toExternalId } from "~/infra/support/secureId";
+import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 describe("deleteUser mutation", () => {
   let user: User;

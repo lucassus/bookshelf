@@ -8,9 +8,9 @@ import {
   BookCopy,
   Review,
   User
-} from "../../../../infra/database/entity";
-import { seedDatabase } from "../../../../infra/seedDatabase";
-import { HttpStatusCodes } from "../../HttpStatusCodes";
+} from "~/infra/database/entity";
+import { seedDatabase } from "~/infra/seedDatabase";
+import { StatusCodes } from "~/interfaces/http/StatusCodes";
 
 const router = express.Router();
 
@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
   await connection.query(`TRUNCATE TABLE ${tables.join(", ")};`);
   await seedDatabase();
 
-  res.sendStatus(HttpStatusCodes.OK);
+  res.sendStatus(StatusCodes.OK);
 });
 
 export { router as seed };
