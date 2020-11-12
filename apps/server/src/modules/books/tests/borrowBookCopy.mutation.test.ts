@@ -8,7 +8,7 @@ import {
   createBookCopy,
   createUser
 } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("borrowBookCopy mutation", () => {
   const BorrowBookCopyMutation = gql`

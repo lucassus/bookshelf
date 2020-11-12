@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 import { createUser } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("register mutation", () => {
   const mutation = gql`

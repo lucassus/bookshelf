@@ -5,7 +5,7 @@ import { Connection } from "typeorm";
 import { toExternalId } from "../../../common/secureId";
 import { User } from "../../../infra/database/entity";
 import { createUser } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("deleteUser mutation", () => {
   let user: User;

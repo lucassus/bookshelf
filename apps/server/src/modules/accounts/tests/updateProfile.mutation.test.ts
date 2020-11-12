@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 import { toExternalId } from "../../../common/secureId";
 import { createUser } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("updateProfile mutation", () => {
   const mutation = gql`

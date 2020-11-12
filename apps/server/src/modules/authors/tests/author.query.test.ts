@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 import { toExternalId } from "../../../common/secureId";
 import { Author } from "../../../infra/database/entity";
 import { createAuthor } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("author query", () => {
   const GetAuthorQuery = gql`

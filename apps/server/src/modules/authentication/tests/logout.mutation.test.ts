@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 import httpMocks from "node-mocks-http";
 
 import { AUTH_COOKIE_NAME } from "../../../config";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 test("logout mutation", async () => {
   // Given

@@ -2,10 +2,10 @@ import cookie from "cookie";
 import express from "express";
 import request from "supertest";
 
-import { generateAuthToken } from "../common/authentication";
-import { AUTH_COOKIE_NAME } from "../config";
-import { User } from "../infra/database/entity";
-import { api as apiRoutes } from "../modules/api";
+import { generateAuthToken } from "../../common/authentication";
+import { AUTH_COOKIE_NAME } from "../../config";
+import { api as apiRoutes } from "../../modules/api";
+import { User } from "../database/entity";
 
 export function createRestTestClient({
   authToken,

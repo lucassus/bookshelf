@@ -2,7 +2,7 @@ import { Container } from "typedi";
 import { getManager } from "typeorm";
 
 import { BookCopy } from "../../../infra/database/entity";
-import { createBookCopy, createUser } from "../../../testUtils/factories";
+import { createBookCopy, createUser } from "../../../infra/factories";
 import { BookCopiesService } from "./BookCopiesService";
 
 describe("BookCopiesService", () => {

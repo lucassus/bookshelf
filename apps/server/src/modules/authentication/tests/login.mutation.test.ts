@@ -3,7 +3,7 @@ import httpMocks from "node-mocks-http";
 
 import { AUTH_COOKIE_NAME } from "../../../config";
 import { createUser } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("login mutation", () => {
   const validEmail = "valid@email.com";

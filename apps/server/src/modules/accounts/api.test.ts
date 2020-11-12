@@ -1,6 +1,6 @@
 import { HttpStatusCodes } from "../../http-status-codes";
 import { createBookCopy, createUser } from "../../infra/factories";
-import { createRestTestClient } from "../../testUtils/createRestTestClient";
+import { createRestTestClient } from "../../infra/testing/createRestTestClient";
 
 describe("GET /api/me", () => {
   it("returns the current user", async () => {

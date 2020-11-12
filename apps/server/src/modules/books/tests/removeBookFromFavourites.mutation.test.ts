@@ -3,7 +3,7 @@ import { getConnection } from "typeorm";
 
 import { toExternalId } from "../../../common/secureId";
 import { createBook, createUser } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 test("removeBookFromFavourites mutation", async () => {
   // Given

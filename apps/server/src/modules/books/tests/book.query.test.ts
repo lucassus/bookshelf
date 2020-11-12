@@ -9,7 +9,7 @@ import {
   createBookCopy,
   createUser
 } from "../../../infra/factories";
-import { createTestClient } from "../../../testUtils/createTestClient";
+import { createTestClient } from "../../../infra/testing/createTestClient";
 
 describe("book query", () => {
   it("fetches a book", async () => {
