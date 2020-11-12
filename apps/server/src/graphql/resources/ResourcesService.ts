@@ -3,7 +3,7 @@ import { Connection, ObjectType } from "typeorm";
 import { InjectConnection } from "typeorm-typedi-extensions";
 
 import { toInternalIdAndType } from "../../common/secureId";
-import { Author, Book, User } from "../../database/entity";
+import { Author, Book, User } from "../../infrastucture/database/entity";
 
 @Service()
 export class ResourcesService {

@@ -1,6 +1,12 @@
 import { getConnection } from "typeorm";
 
-import { Author, Book, BookCopy, Review, User } from "../database/entity";
+import {
+  Author,
+  Book,
+  BookCopy,
+  Review,
+  User
+} from "../infrastucture/database/entity";
 import { loadFixtures } from "./fixtures";
 
 test(".loadFixtures", async () => {

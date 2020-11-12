@@ -2,7 +2,7 @@ import express from "express";
 import { Container } from "typedi";
 import { Connection } from "typeorm";
 
-import { Book } from "../../database/entity";
+import { Book } from "../../infrastucture/database/entity";
 import { serializeBooks } from "../serializers";
 
 const router = express.Router();

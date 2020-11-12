@@ -1,8 +1,8 @@
 import DataLoader from "dataloader";
 import { getRepository } from "typeorm";
 
-import { User } from "../../database/entity";
 import { normalize } from "../../common/normalize";
+import { User } from "../../infrastucture/database/entity";
 
 const batchLoadUsers: DataLoader.BatchLoadFn<string | number, User> = async (
   ids

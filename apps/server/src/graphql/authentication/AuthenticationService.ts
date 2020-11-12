@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
 
 import { isPasswordValid } from "../../common/passwords";
-import { User } from "../../database/entity";
+import { User } from "../../infrastucture/database/entity";
 
 export class InvalidEmailOrPasswordError extends Error {}
 

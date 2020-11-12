@@ -4,7 +4,7 @@ import httpMocks from "node-mocks-http";
 import { getRepository } from "typeorm";
 
 import { AUTH_COOKIE_NAME } from "../config";
-import { User } from "../database/entity";
+import { User } from "../infrastucture/database/entity";
 import { createUser } from "../testUtils/factories";
 import {
   tradeAuthTokenForUser,

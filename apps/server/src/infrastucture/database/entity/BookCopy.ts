@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from "typeorm";
 
-import { Environment } from "../../config";
+import { Environment } from "../../../config";
 import { Book } from "./Book";
 import { User } from "./User";
 

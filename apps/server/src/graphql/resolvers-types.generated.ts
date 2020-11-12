@@ -10,7 +10,7 @@ import {
   BookCopy as BookCopyEntity,
   User as UserEntity,
   Review as ReviewEntity
-} from "../database/entity";
+} from "../infrastucture/database/entity";
 import { Context, AuthenticatedContext } from "./context";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {

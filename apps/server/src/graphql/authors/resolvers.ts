@@ -1,4 +1,4 @@
-import { Author } from "../../database/entity";
+import { Author } from "../../infrastucture/database/entity";
 import { Resolvers } from "../resolvers-types.generated";
 import { AuthorsService } from "./AuthorsService";
 

@@ -4,7 +4,7 @@ import request from "supertest";
 
 import { generateAuthToken } from "../common/authentication";
 import { AUTH_COOKIE_NAME } from "../config";
-import { User } from "../database/entity";
+import { User } from "../infrastucture/database/entity";
 import { routes } from "../rest";
 
 export function createRestTestClient({

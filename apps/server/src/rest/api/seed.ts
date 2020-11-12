@@ -1,6 +1,7 @@
 import express from "express";
 import { getConnection } from "typeorm";
 
+import { HttpStatusCodes } from "../../http-status-codes";
 import {
   Author,
   Avatar,
@@ -8,8 +9,7 @@ import {
   BookCopy,
   Review,
   User
-} from "../../database/entity";
-import { HttpStatusCodes } from "../../http-status-codes";
+} from "../../infrastucture/database/entity";
 import { loadFixtures } from "../../testUtils/fixtures";
 
 const router = express.Router();

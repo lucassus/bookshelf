@@ -5,7 +5,7 @@ import { Container } from "typedi";
 
 import { authenticateRequest } from "../common/authentication";
 import { ASSETS_BASE_URL } from "../config";
-import { User } from "../database/entity";
+import { User } from "../infrastucture/database/entity";
 import { buildAuthorsLoader } from "./authors/authorsLoader";
 import { buildBooksLoader } from "./books/booksLoader";
 import { buildUsersLoader } from "./users/usersLoader";

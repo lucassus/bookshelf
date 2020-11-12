@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { createConnection } from "../src/database/createConnection";
+import { createConnection } from "../src/infrastucture/database/createConnection";
 import { loadFixtures } from "../src/testUtils/fixtures";
 
 const seed = async () => {

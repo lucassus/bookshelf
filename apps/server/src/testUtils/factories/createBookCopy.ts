@@ -1,6 +1,6 @@
 import faker from "faker";
 
-import { Book, BookCopy, User } from "../../database/entity";
+import { Book, BookCopy, User } from "../../infrastucture/database/entity";
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
 import { createUser, CreateUserAttributes } from "./createUser";
