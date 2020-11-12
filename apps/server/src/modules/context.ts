@@ -5,10 +5,12 @@ import { Container } from "typedi";
 
 import { ASSETS_BASE_URL } from "../infra/config";
 import { User } from "../infra/database/entity";
+import {
+  buildAuthorsLoader,
+  buildBooksLoader,
+  buildUsersLoader
+} from "../infra/dataLoaders";
 import { authenticateRequest } from "../infra/support/authentication";
-import { buildAuthorsLoader } from "./authors/authorsLoader";
-import { buildBooksLoader } from "./books/booksLoader";
-import { buildUsersLoader } from "./users/usersLoader";
 
 // eslint-disable-next-line import/order
 import WebSocket = require("ws");
