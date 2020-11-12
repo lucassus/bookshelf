@@ -7,8 +7,8 @@ import cookie from "cookie";
 import express from "express";
 import httpMocks from "node-mocks-http";
 
-import { createContext } from "../../modules/context";
-import { rootSchema } from "../../modules/rootSchema";
+import { createContext } from "../../interfaces/graphql/context";
+import { rootSchema } from "../../interfaces/graphql/rootSchema";
 import { AUTH_COOKIE_NAME } from "../config";
 import { User } from "../database/entity";
 import { generateAuthToken } from "../support/authentication";

@@ -1,4 +1,4 @@
-schema: apps/server/src/modules/**/*.graphql
+schema: apps/server/src/interfaces/graphql/**/*.graphql
 
 documents: apps/web/src/**/*.graphql
 
@@ -29,14 +29,14 @@ extensions:
           - typescript
           - typescript-resolvers
         config:
-          contextType: ../modules/context#Context
+          contextType: ../interfaces/graphql/context#Context
           fieldContextTypes:
-            - Mutation.updateProfile#../modules/context#AuthenticatedContext
-            - Mutation.borrowBookCopy#../modules/context#AuthenticatedContext
-            - Mutation.returnBookCopy#../modules/context#AuthenticatedContext
-            - Mutation.addBookToFavourites#../modules/context#AuthenticatedContext
-            - Mutation.removeBookFromFavourites#../modules/context#AuthenticatedContext
-            - Mutation.createReview#../modules/context#AuthenticatedContext
+            - Mutation.updateProfile#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.borrowBookCopy#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.returnBookCopy#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.addBookToFavourites#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.removeBookFromFavourites#../interfaces/graphql/context#AuthenticatedContext
+            - Mutation.createReview#../interfaces/graphql/context#AuthenticatedContext
           mappers:
             Author: ../infra/database/entity#Author
             Avatar: ../infra/database/entity#Avatar

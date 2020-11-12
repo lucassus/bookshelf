@@ -1,8 +1,8 @@
 {
   "name": "Bookshelf GraphQL Schema",
   "includes": [
-    "apps/server/src/modules/**/*.graphql",
-    "apps/server/src/modules/**/*.test.ts",
+    "apps/server/src/interfaces/graphql/**/*.graphql",
+    "apps/server/src/interfaces/graphql/**/*.test.ts",
     "apps/web/src/**/*.graphql",
     "apps/web-e2e/cypress/**/*_spec.ts"
   ]
