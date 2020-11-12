@@ -1,5 +1,5 @@
-import { Avatar, User } from "@bookshelf/server/infra/database/entity";
-import { hashPassword } from "@bookshelf/server/infra/support/passwords";
+import { Avatar, User } from "@/infra/database/entity";
+import { hashPassword } from "@/infra/support/passwords";
 import { Service } from "typedi";
 import { Connection, Repository } from "typeorm";
 import { InjectConnection, InjectRepository } from "typeorm-typedi-extensions";

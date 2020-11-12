@@ -1,14 +1,9 @@
+import { User } from "@/infra/database/entity";
+import { createBook, createBookCopy, createUser } from "@/infra/factories";
+import { toExternalId } from "@/infra/support/secureId";
+import { createTestClient } from "@/interfaces/graphql/createTestClient";
 import { gql } from "apollo-server-express";
 import { getConnection } from "typeorm";
-
-import { User } from "../../../../infra/database/entity";
-import {
-  createBook,
-  createBookCopy,
-  createUser
-} from "../../../../infra/factories";
-import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../createTestClient";
 
 describe("user query", () => {
   const GetUserQuery = gql`

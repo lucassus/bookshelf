@@ -1,3 +1,4 @@
+import { Environment } from "@/infra/config";
 import {
   Column,
   CreateDateColumn,
@@ -8,7 +9,6 @@ import {
   UpdateDateColumn
 } from "typeorm";
 
-import { Environment } from "../../config";
 import { Book } from "./Book";
 import { User } from "./User";
 

@@ -1,4 +1,4 @@
-import { BookCopy } from "@bookshelf/server/infra/database/entity";
+import { BookCopy } from "@/infra/database/entity";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";

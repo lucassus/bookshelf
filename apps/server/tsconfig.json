@@ -9,9 +9,9 @@
     "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
-      "@bookshelf/server/infra/*": ["infra/*"],
-      "@bookshelf/server/interfaces/*": ["interfaces/*"],
-      "@bookshelf/server/types/*": ["types/*"]
+      "@/infra/*": ["infra/*"],
+      "@/interfaces/*": ["interfaces/*"],
+      "@/types/*": ["types/*"]
     }
   },
   "include": ["./src/**/*"],

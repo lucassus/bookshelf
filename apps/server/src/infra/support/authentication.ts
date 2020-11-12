@@ -1,16 +1,15 @@
-import { User } from "@bookshelf/server/infra/database/entity";
-import cookie from "cookie";
-import express from "express";
-import { IncomingMessage } from "http";
-import jwt from "jsonwebtoken";
-import { getRepository } from "typeorm";
-
 import {
   AUTH_COOKIE_NAME,
   AUTH_TOKEN_EXPIRES_IN_SECONDS,
   AUTH_TOKEN_SECRET_KEY,
   Environment
-} from "../config";
+} from "@/infra/config";
+import { User } from "@/infra/database/entity";
+import cookie from "cookie";
+import express from "express";
+import { IncomingMessage } from "http";
+import jwt from "jsonwebtoken";
+import { getRepository } from "typeorm";
 
 const getAuthTokenSecretFor = (user: User) =>
   [user.passwordHash, AUTH_TOKEN_SECRET_KEY].join(".");

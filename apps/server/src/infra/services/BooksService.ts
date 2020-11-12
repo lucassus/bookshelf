@@ -1,4 +1,4 @@
-import { Book, User } from "@bookshelf/server/infra/database/entity";
+import { Book, User } from "@/infra/database/entity";
 import { Service } from "typedi";
 import { EntityManager, Repository } from "typeorm";
 import { InjectManager, InjectRepository } from "typeorm-typedi-extensions";

@@ -1,6 +1,3 @@
-import express from "express";
-import { getConnection } from "typeorm";
-
 import {
   Author,
   Avatar,
@@ -8,9 +5,11 @@ import {
   BookCopy,
   Review,
   User
-} from "../../../../infra/database/entity";
-import { seedDatabase } from "../../../../infra/seedDatabase";
-import { HttpStatusCodes } from "../../HttpStatusCodes";
+} from "@/infra/database/entity";
+import { seedDatabase } from "@/infra/seedDatabase";
+import { HttpStatusCodes } from "@/interfaces/http/HttpStatusCodes";
+import express from "express";
+import { getConnection } from "typeorm";
 
 const router = express.Router();
 

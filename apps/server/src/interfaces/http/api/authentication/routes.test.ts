@@ -1,6 +1,6 @@
-import { createUser } from "../../../../infra/factories";
-import { createTestClient } from "../../createTestClient";
-import { HttpStatusCodes } from "../../HttpStatusCodes";
+import { createUser } from "@/infra/factories";
+import { createTestClient } from "@/interfaces/http/createTestClient";
+import { HttpStatusCodes } from "@/interfaces/http/HttpStatusCodes";
 
 describe("POST /api/auth/logout", () => {
   it("allows to log out a user", async () => {

@@ -1,4 +1,4 @@
-import { Author } from "@bookshelf/server/infra/database/entity";
+import { Author } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createEntity } from "./createEntity";

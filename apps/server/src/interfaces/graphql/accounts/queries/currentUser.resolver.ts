@@ -1,4 +1,4 @@
-import { Resolvers } from "../../../../types/resolvers.generated";
+import { Resolvers } from "@/types/resolvers.generated";
 
 const currentUserResolver: Resolvers = {
   Query: {

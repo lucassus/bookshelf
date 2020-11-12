@@ -1,6 +1,6 @@
-import { UsersService } from "@bookshelf/server/infra/services/UsersService";
-import { authenticateContext } from "@bookshelf/server/interfaces/graphql/authentication/authenticateContext";
-import { Resolvers } from "@bookshelf/server/types/resolvers.generated";
+import { UsersService } from "@/infra/services/UsersService";
+import { authenticateContext } from "@/interfaces/graphql/authentication/authenticateContext";
+import { Resolvers } from "@/types/resolvers.generated";
 
 const registerResolver: Resolvers = {
   Mutation: {

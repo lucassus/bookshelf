@@ -1,5 +1,5 @@
-import { User } from "@bookshelf/server/infra/database/entity";
-import { isPasswordValid } from "@bookshelf/server/infra/support/passwords";
+import { User } from "@/infra/database/entity";
+import { isPasswordValid } from "@/infra/support/passwords";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";

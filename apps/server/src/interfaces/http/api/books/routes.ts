@@ -1,8 +1,7 @@
+import { BooksService } from "@/infra/services/BooksService";
+import { serializeBooks } from "@/interfaces/http/api/serializers";
 import express from "express";
 import { Container } from "typedi";
-
-import { BooksService } from "../../../../infra/services/BooksService";
-import { serializeBooks } from "../serializers";
 
 const router = express.Router();
 

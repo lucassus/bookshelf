@@ -1,11 +1,10 @@
+import { Book, BookCopy } from "@/infra/database/entity";
+import { BookCopiesService } from "@/infra/services/BookCopiesService";
+import { BooksService } from "@/infra/services/BooksService";
+import { toExternalId } from "@/infra/support/secureId";
+import { Resolvers } from "@/types/resolvers.generated";
 import { withFilter } from "apollo-server-express";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
-
-import { Book, BookCopy } from "../../../infra/database/entity";
-import { BookCopiesService } from "../../../infra/services/BookCopiesService";
-import { BooksService } from "../../../infra/services/BooksService";
-import { toExternalId } from "../../../infra/support/secureId";
-import { Resolvers } from "../../../types/resolvers.generated";
 
 const BOOK_COPY_UPDATED = "bookCopyUpdated";
 

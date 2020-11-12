@@ -1,8 +1,8 @@
-import { BookCopy } from "@bookshelf/server/infra/database/entity";
+import { BookCopy } from "@/infra/database/entity";
+import { createBookCopy, createUser } from "@/infra/factories";
 import { Container } from "typedi";
 import { getManager } from "typeorm";
 
-import { createBookCopy, createUser } from "../factories";
 import { BookCopiesService } from "./BookCopiesService";
 
 describe("BookCopiesService", () => {

@@ -1,18 +1,15 @@
-import { PubSub } from "apollo-server-express";
-import express from "express";
-import { ConnectionContext, ExecutionParams } from "subscriptions-transport-ws";
-import { Container } from "typedi";
-
-import { ASSETS_BASE_URL } from "../../infra/config";
-import { User } from "../../infra/database/entity";
+import { ASSETS_BASE_URL } from "@/infra/config";
+import { User } from "@/infra/database/entity";
 import {
   buildAuthorsLoader,
   buildBooksLoader,
   buildUsersLoader
-} from "../../infra/dataLoaders";
-import { authenticateRequest } from "../../infra/support/authentication";
-
-// eslint-disable-next-line import/order
+} from "@/infra/dataLoaders";
+import { authenticateRequest } from "@/infra/support/authentication";
+import { PubSub } from "apollo-server-express";
+import express from "express";
+import { ConnectionContext, ExecutionParams } from "subscriptions-transport-ws";
+import { Container } from "typedi";
 import WebSocket = require("ws");
 
 const pubsub = new PubSub();

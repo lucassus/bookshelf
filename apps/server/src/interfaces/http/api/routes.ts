@@ -1,10 +1,10 @@
-import express from "express";
-
-import { Environment } from "../../../infra/config";
+import { Environment } from "@/infra/config";
 import {
   authenticationMiddleware,
   adminAuthenticationMiddleware
-} from "../middlewares";
+} from "@/interfaces/http/middlewares";
+import express from "express";
+
 import { me } from "./accounts/routes";
 import { admin } from "./admin";
 import { auth } from "./authentication/routes";

@@ -1,7 +1,6 @@
+import { createAuthor, createBook } from "@/infra/factories";
+import { createTestClient } from "@/interfaces/graphql/createTestClient";
 import { gql } from "apollo-server-express";
-
-import { createAuthor, createBook } from "../../../../infra/factories";
-import { createTestClient } from "../../createTestClient";
 
 test("authors query", async () => {
   // Given

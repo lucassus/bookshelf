@@ -1,5 +1,5 @@
-import { User } from "@bookshelf/server/infra/database/entity";
-import { hashPassword } from "@bookshelf/server/infra/support/passwords";
+import { User } from "@/infra/database/entity";
+import { hashPassword } from "@/infra/support/passwords";
 import faker from "faker";
 
 import { createAvatar, CreateAvatarAttributes } from "./createAvatar";

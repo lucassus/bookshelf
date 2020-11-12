@@ -1,6 +1,5 @@
+import { serializeUser } from "@/interfaces/http/api/serializers";
 import express from "express";
-
-import { serializeUser } from "../serializers";
 
 const router = express.Router();
 

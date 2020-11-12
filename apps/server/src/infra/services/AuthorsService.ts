@@ -1,4 +1,4 @@
-import { Author } from "@bookshelf/server/infra/database/entity";
+import { Author } from "@/infra/database/entity";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";

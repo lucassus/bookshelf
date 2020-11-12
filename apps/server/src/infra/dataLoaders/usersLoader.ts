@@ -1,5 +1,5 @@
-import { User } from "@bookshelf/server/infra/database/entity";
-import { normalize } from "@bookshelf/server/infra/support/normalize";
+import { User } from "@/infra/database/entity";
+import { normalize } from "@/infra/support/normalize";
 import DataLoader from "dataloader";
 import { getRepository } from "typeorm";
 

@@ -1,4 +1,4 @@
-import { Book, BookCopy, User } from "@bookshelf/server/infra/database/entity";
+import { Book, BookCopy, User } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createBook, CreateBookAttributes } from "./createBook";

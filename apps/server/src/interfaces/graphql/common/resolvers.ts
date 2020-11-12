@@ -1,6 +1,5 @@
+import { Resolvers } from "@/types/resolvers.generated";
 import { GraphQLScalarType } from "graphql";
-
-import { Resolvers } from "../../../types/resolvers.generated";
 
 const resolvers: Resolvers = {
   ISODateString: new GraphQLScalarType({

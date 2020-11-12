@@ -1,11 +1,11 @@
-import { User } from "@bookshelf/server/infra/database/entity";
+import { AUTH_COOKIE_NAME } from "@/infra/config";
+import { User } from "@/infra/database/entity";
+import { createUser } from "@/infra/factories";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import httpMocks from "node-mocks-http";
 import { getRepository } from "typeorm";
 
-import { AUTH_COOKIE_NAME } from "../config";
-import { createUser } from "../factories";
 import {
   tradeAuthTokenForUser,
   generateAuthToken,

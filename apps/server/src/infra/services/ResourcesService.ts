@@ -1,5 +1,5 @@
-import { Author, Book, User } from "@bookshelf/server/infra/database/entity";
-import { toInternalIdAndType } from "@bookshelf/server/infra/support/secureId";
+import { Author, Book, User } from "@/infra/database/entity";
+import { toInternalIdAndType } from "@/infra/support/secureId";
 import { Service } from "typedi";
 import { Connection, ObjectType } from "typeorm";
 import { InjectConnection } from "typeorm-typedi-extensions";

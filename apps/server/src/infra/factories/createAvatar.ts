@@ -1,4 +1,4 @@
-import { Avatar } from "@bookshelf/server/infra/database/entity";
+import { Avatar } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createEntity } from "./createEntity";

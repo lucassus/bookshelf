@@ -1,9 +1,8 @@
+import { Author } from "@/infra/database/entity";
+import { createAuthor } from "@/infra/factories";
+import { toExternalId } from "@/infra/support/secureId";
+import { createTestClient } from "@/interfaces/graphql/createTestClient";
 import { gql } from "apollo-server-express";
-
-import { Author } from "../../../../infra/database/entity";
-import { createAuthor } from "../../../../infra/factories";
-import { toExternalId } from "../../../../infra/support/secureId";
-import { createTestClient } from "../../createTestClient";
 
 describe("author query", () => {
   const GetAuthorQuery = gql`

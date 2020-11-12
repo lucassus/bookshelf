@@ -1,5 +1,5 @@
-import { UsersService } from "../../../../infra/services/UsersService";
-import { Resolvers } from "../../../../types/resolvers.generated";
+import { UsersService } from "@/infra/services/UsersService";
+import { Resolvers } from "@/types/resolvers.generated";
 
 const usersResolver: Resolvers = {
   Query: {

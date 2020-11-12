@@ -1,4 +1,4 @@
-import { Author, Book } from "@bookshelf/server/infra/database/entity";
+import { Author, Book } from "@/infra/database/entity";
 import { titleizeSentence } from "@bookshelf/string-utils";
 import faker from "faker";
 

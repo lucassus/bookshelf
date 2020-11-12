@@ -1,7 +1,6 @@
+import { UsersService } from "@/infra/services/UsersService";
+import { Resolvers } from "@/types/resolvers.generated";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
-
-import { UsersService } from "../../../../infra/services/UsersService";
-import { Resolvers } from "../../../../types/resolvers.generated";
 
 const userResolver: Resolvers = {
   Query: {

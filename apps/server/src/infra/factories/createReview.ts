@@ -1,4 +1,4 @@
-import { Book, Review, User } from "@bookshelf/server/infra/database/entity";
+import { Book, Review, User } from "@/infra/database/entity";
 import faker from "faker";
 
 import { createBook, CreateBookAttributes } from "./createBook";
