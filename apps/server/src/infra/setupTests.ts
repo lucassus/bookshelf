@@ -2,7 +2,7 @@ import faker from "faker";
 import { Container } from "typedi";
 import { useContainer, Connection } from "typeorm";
 
-import { createConnection } from "../database/createConnection";
+import { createConnection } from "./database/createConnection";
 
 useContainer(Container);
 
