@@ -1,6 +1,6 @@
-import { HttpStatusCodes } from "../../../http-status-codes";
-import { createRestTestClient } from "../../../testUtils/createRestTestClient";
-import { createUser } from "../../../testUtils/factories";
+import { HttpStatusCodes } from "../../http-status-codes";
+import { createRestTestClient } from "../../testUtils/createRestTestClient";
+import { createUser } from "../../testUtils/factories";
 
 describe("GET /api/admin/users", () => {
   it("responds with users when authenticated", async () => {

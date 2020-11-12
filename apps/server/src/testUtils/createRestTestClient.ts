@@ -5,7 +5,7 @@ import request from "supertest";
 import { generateAuthToken } from "../common/authentication";
 import { AUTH_COOKIE_NAME } from "../config";
 import { User } from "../infra/database/entity";
-import { routes } from "../rest";
+import { api as apiRoutes } from "../modules/api";
 
 export function createRestTestClient({
   authToken,
@@ -25,7 +25,7 @@ export function createRestTestClient({
     next();
   });
 
-  app.use("/", routes);
+  app.use("/api", apiRoutes);
 
   return request(app);
 }

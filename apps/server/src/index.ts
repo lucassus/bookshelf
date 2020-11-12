@@ -7,9 +7,9 @@ import { Container } from "typedi";
 import { Connection, useContainer } from "typeorm";
 
 import { Environment, ENVIRONMENT, PORT } from "./config";
-import { createApolloServer } from "./modules/server";
 import { createConnection } from "./infra/database/createConnection";
-import { routes } from "./rest";
+import { api as apiRoutes } from "./modules/api";
+import { createApolloServer } from "./modules/server";
 
 useContainer(Container);
 
@@ -20,7 +20,7 @@ const configureAndStartServer = async () => {
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 
-  app.use("/", routes);
+  app.use("/api", apiRoutes);
 
   if (ENVIRONMENT === Environment.production) {
     const distDir = path.join(__dirname, "../../../web/dist");

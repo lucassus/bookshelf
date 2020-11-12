@@ -1,15 +1,15 @@
 import express from "express";
 
-import { Environment } from "../../config";
+import { Environment } from "../config";
 import {
   authenticationMiddleware,
   adminAuthenticationMiddleware
-} from "../middlewares";
+} from "../infra/middlewares";
+import { me } from "./accounts/api";
 import { admin } from "./admin";
-import { auth } from "./auth";
-import { books } from "./books";
-import { me } from "./me";
-import { seed } from "./seed";
+import { auth } from "./authentication/api";
+import { books } from "./books/api";
+import { seed } from "./seed/api";
 
 const routes = express.Router();
 
