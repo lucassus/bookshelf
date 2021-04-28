@@ -1,0 +1,100 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@storybook/react"
+    versions:
+    - 6.1.14
+    - 6.1.15
+    - 6.1.16
+    - 6.1.17
+    - 6.1.18
+    - 6.1.20
+    - 6.1.21
+    - 6.2.1
+    - 6.2.2
+    - 6.2.7
+    - 6.2.8
+  - dependency-name: "@storybook/addon-knobs"
+    versions:
+    - 6.1.15
+    - 6.1.16
+    - 6.1.17
+    - 6.1.18
+    - 6.1.20
+    - 6.1.21
+    - 6.2.1
+    - 6.2.3
+    - 6.2.6
+    - 6.2.8
+  - dependency-name: "@storybook/addon-links"
+    versions:
+    - 6.1.15
+    - 6.1.16
+    - 6.1.17
+    - 6.1.18
+    - 6.1.19
+    - 6.1.20
+    - 6.1.21
+    - 6.2.1
+    - 6.2.2
+    - 6.2.5
+    - 6.2.7
+    - 6.2.8
+  - dependency-name: "@storybook/addon-actions"
+    versions:
+    - 6.1.15
+    - 6.1.16
+    - 6.1.17
+    - 6.1.18
+    - 6.1.19
+    - 6.1.20
+    - 6.1.21
+    - 6.2.1
+    - 6.2.3
+    - 6.2.5
+    - 6.2.7
+    - 6.2.8
+  - dependency-name: "@storybook/addons"
+    versions:
+    - 6.1.15
+    - 6.1.16
+    - 6.1.17
+    - 6.1.18
+    - 6.1.19
+    - 6.1.20
+    - 6.1.21
+    - 6.2.1
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.2.6
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: webpack
+    versions:
+    - 5.16.0
+    - 5.18.0
+    - 5.22.0
+    - 5.23.0
+  - dependency-name: "@testing-library/react"
+    versions:
+    - 11.2.3
+    - 11.2.5
+  - dependency-name: webpack-cli
+    versions:
+    - 4.4.0
+    - 4.5.0
+  - dependency-name: sass-loader
+    versions:
+    - 10.1.1
+  - dependency-name: node-notifier
+    versions:
+    - 8.0.1
