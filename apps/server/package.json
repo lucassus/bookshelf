@@ -19,7 +19,7 @@
     "faker": "5.1.0",
     "graphql": "15.4.0",
     "graphql-voyager": "1.0.0-rc.31",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "pg": "8.5.0",
     "reflect-metadata": "0.1.13",
     "subscriptions-transport-ws": "0.9.18",
