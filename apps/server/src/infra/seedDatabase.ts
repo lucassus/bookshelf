@@ -452,9 +452,12 @@ async function seedFavouriteBooks() {
   const userBob = await manager.findOneOrFail(User, { name: "Bob" });
 
   const books = await Promise.all(
-    ["Dune", "Dune Messiah", "Children of Dune", "Blood of Elves"].map(
-      (title) => manager.findOneOrFail(Book, { title })
-    )
+    [
+      "Dune",
+      "Dune Messiah",
+      "Children of Dune",
+      "Blood of Elves"
+    ].map((title) => manager.findOneOrFail(Book, { title }))
   );
 
   userBob.favouriteBooks = Promise.resolve(books);

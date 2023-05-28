@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`anything query fetches Author 1`] = `
-Object {
-  "anything": Object {
+{
+  "anything": {
     "__typename": "Author",
-    "books": Array [
-      Object {
+    "books": [
+      {
         "description": "Natus aliquam iste rem.",
         "id": "Mi1Cb29r",
         "title": "Dolorem Alias Qui Asperiores",
       },
-      Object {
+      {
         "description": "Ipsa reiciendis nam.",
         "id": "MS1Cb29r",
         "title": "Fugit Facilis Mollitia",
       },
-      Object {
+      {
         "description": "Iste aliquid odit aperiam dolore voluptatibus nemo.",
         "id": "My1Cb29r",
         "title": "Sit Dolore",
@@ -28,8 +28,8 @@ Object {
 `;
 
 exports[`anything query fetches Book 1`] = `
-Object {
-  "anything": Object {
+{
+  "anything": {
     "__typename": "Book",
     "description": "Ipsa reiciendis nam.",
     "id": "MS1Cb29r",
@@ -39,19 +39,19 @@ Object {
 `;
 
 exports[`fetches with aliases 1`] = `
-Object {
-  "author": Object {
+{
+  "author": {
     "description": "Iste rem consequatur eum sit.",
     "headline": "Mr. Leonard Deckow V",
     "id": "Mi1BdXRob3I=",
   },
-  "something": Object {
+  "something": {
     "description": "Ipsa reiciendis nam.",
     "externalId": "MS1Cb29r",
     "headline": "Fugit Facilis Mollitia",
     "id": "MS1Cb29r",
   },
-  "user": Object {
+  "user": {
     "description": "Laudantium maiores provident quam aperiam nulla.",
     "headline": "Christina Greenholt III",
     "id": "MS1Vc2Vy",

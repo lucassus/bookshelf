@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`books query fetches books along with authors and books again 1`] = `
-Object {
-  "books": Array [
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
+{
+  "books": [
+    {
+      "author": {
+        "books": [
+          {
             "title": "Dolorem Alias Qui Asperiores",
           },
-          Object {
+          {
             "title": "Fugit Facilis Mollitia",
           },
         ],
@@ -17,13 +17,13 @@ Object {
       },
       "title": "Dolorem Alias Qui Asperiores",
     },
-    Object {
-      "author": Object {
-        "books": Array [
-          Object {
+    {
+      "author": {
+        "books": [
+          {
             "title": "Dolorem Alias Qui Asperiores",
           },
-          Object {
+          {
             "title": "Fugit Facilis Mollitia",
           },
         ],
@@ -36,34 +36,34 @@ Object {
 `;
 
 exports[`books query fetches books with authors 1`] = `
-Object {
-  "books": Array [
-    Object {
-      "author": Object {
+{
+  "books": [
+    {
+      "author": {
         "id": "MS1BdXRob3I=",
         "name": "Tolkien",
       },
       "id": "MS1Cb29r",
       "title": "Hobbit",
     },
-    Object {
-      "author": Object {
+    {
+      "author": {
         "id": "My1BdXRob3I=",
         "name": "Wilbur Klein",
       },
       "id": "NC1Cb29r",
       "title": "Laboriosam Aliquam Aut Quasi",
     },
-    Object {
-      "author": Object {
+    {
+      "author": {
         "id": "MS1BdXRob3I=",
         "name": "Tolkien",
       },
       "id": "Mi1Cb29r",
       "title": "Lord of the Rings",
     },
-    Object {
-      "author": Object {
+    {
+      "author": {
         "id": "Mi1BdXRob3I=",
         "name": "Nancy Leffler",
       },

@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`authors query 1`] = `
-Object {
-  "authors": Array [
-    Object {
-      "books": Array [
-        Object {
+{
+  "authors": [
+    {
+      "books": [
+        {
           "description": "Natus aliquam iste rem.",
           "id": "Mi1Cb29r",
           "title": "Dolorem Alias Qui Asperiores",
         },
-        Object {
+        {
           "description": "Ipsa reiciendis nam.",
           "id": "MS1Cb29r",
           "title": "Fugit Facilis Mollitia",
         },
-        Object {
+        {
           "description": "Iste aliquid odit aperiam dolore voluptatibus nemo.",
           "id": "My1Cb29r",
           "title": "Sit Dolore",
@@ -24,14 +24,14 @@ Object {
       "id": "MS1BdXRob3I=",
       "name": "Miss Sadie Deckow-Reynolds",
     },
-    Object {
-      "books": Array [
-        Object {
+    {
+      "books": [
+        {
           "description": "Tenetur hic delectus.",
           "id": "NC1Cb29r",
           "title": "Dolores In Quae",
         },
-        Object {
+        {
           "description": "Fuga adipisci reprehenderit fuga.",
           "id": "NS1Cb29r",
           "title": "Laboriosam Aliquam Aut Quasi",

@@ -6,7 +6,7 @@ import { createTestClient } from "~/interfaces/graphql/createTestClient";
 
 describe("anything query", () => {
   const GetAnythingQuery = gql`
-    query ($id: ID!) {
+    query($id: ID!) {
       anything(id: $id) {
         __typename
 
@@ -107,7 +107,7 @@ it("fetches with aliases", async () => {
   // When
   const res = await createTestClient().query({
     query: gql`
-      query (
+      query(
         $bookId: ExternalID!
         $authorId: ExternalID!
         $userId: ExternalID!
