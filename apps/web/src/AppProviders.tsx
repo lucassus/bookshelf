@@ -6,7 +6,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { apolloClient } from "./apolloClient";
 import { CurrentUserProvider } from "./components/CurrentUserProvider";
 
-export const AppProviders: React.FunctionComponent = ({ children }) => (
+type Props = {
+  children: React.ReactNode;
+};
+
+export const AppProviders: React.FunctionComponent<Props> = ({ children }) => (
   <Router>
     <CloudinaryContext cloudName="lucassus">
       <ApolloProvider client={apolloClient}>

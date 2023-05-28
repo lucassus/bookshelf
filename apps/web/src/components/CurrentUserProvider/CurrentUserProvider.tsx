@@ -9,7 +9,13 @@ const CurrentUserContext = React.createContext<null | CurrentUserFragment>(
 
 export const useCurrentUser = () => useContext(CurrentUserContext);
 
-export const CurrentUserProvider: React.FunctionComponent = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const CurrentUserProvider: React.FunctionComponent<Props> = ({
+  children
+}) => {
   const { data, loading } = useGetCurrentUserQuery();
 
   if (loading || data === undefined) {

@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
+import { PubSub } from "apollo-server-express";
 import express from "express";
-import { PubSub } from "graphql-subscriptions";
 import { ConnectionContext, ExecutionParams } from "subscriptions-transport-ws";
 import { Container } from "typedi";
 import WebSocket = require("ws");
