@@ -5,7 +5,7 @@
   "author": "Łukasz Bandzarewicz <lukasz.bandzarewicz@gmail.com>",
   "private": true,
   "engines": {
-    "node": "15.0.1"
+    "node": "18.15.0"
   },
   "workspaces": {
     "packages": [
