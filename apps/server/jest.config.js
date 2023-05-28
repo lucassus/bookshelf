@@ -13,7 +13,7 @@ module.exports = {
   setupFilesAfterEnv: ["./src/infra/setupTests.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.ts$": ["ts-jest", { isolatedModules: true }],
+    "^.+\\.ts$": ["ts-jest", { isolatedModules: true }]
   },
   watchPlugins: [
     "jest-watch-typeahead/filename",

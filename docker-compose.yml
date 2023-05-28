@@ -1,7 +1,6 @@
 name: bookshelf
 
 services:
-
   db-development:
     image: postgres:15.2
     hostname: postgres
