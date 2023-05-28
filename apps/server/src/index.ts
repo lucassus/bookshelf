@@ -17,6 +17,7 @@ const configureAndStartServer = async () => {
   const apolloServer = createApolloServer();
 
   const app = express();
+  // @ts-ignore
   apolloServer.applyMiddleware({ app });
   app.use("/voyager", voyagerMiddleware({ endpointUrl: "/graphql" }));
 

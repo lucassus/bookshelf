@@ -9,6 +9,7 @@ export const createApolloServer = () =>
     schema: rootSchema,
     context: createContext,
     subscriptions: {
+      // @ts-ignore
       onConnect: onSubscriptionConnect
     },
     plugins: [
