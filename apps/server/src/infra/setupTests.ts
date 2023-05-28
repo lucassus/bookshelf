@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 import { Container } from "typedi";
 import { useContainer, Connection } from "typeorm";
 
@@ -8,7 +8,6 @@ useContainer(Container);
 
 beforeEach(() => {
   faker.seed(42);
-  faker.locale = "en";
 });
 
 let connection: Connection;

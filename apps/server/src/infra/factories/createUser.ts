@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 import { createAvatar, CreateAvatarAttributes } from "./createAvatar";
 import { createEntity } from "./createEntity";
@@ -15,10 +15,11 @@ export async function createUser(
 ): Promise<User> {
   const { avatarAttributes, password, ...userAttributes } = attributes;
 
-  const avatar = await createAvatar(avatarAttributes);
+  const avatar =
+    userAttributes.avatar || (await createAvatar(avatarAttributes));
 
   const user = await createEntity(User, {
-    name: faker.name.findName(),
+    name: faker.person.fullName(),
     email: faker.internet.email(),
     info: faker.lorem.sentence(),
     passwordHash: hashPassword(password || "password"),

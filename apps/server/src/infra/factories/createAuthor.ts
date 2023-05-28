@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 import { createEntity } from "./createEntity";
 import { Author } from "~/infra/database/entity";
@@ -16,9 +16,9 @@ export function createAuthor(
   attributes: CreateAuthorAttributes = {}
 ): Promise<Author> {
   return createEntity(Author, {
-    name: faker.name.findName(),
+    name: faker.person.fullName(),
     bio: faker.lorem.sentence(),
-    photoPath: faker.random.arrayElement(AUTHOR_PHOTOS),
+    photoPath: faker.helpers.arrayElement(AUTHOR_PHOTOS),
     ...attributes
   });
 }

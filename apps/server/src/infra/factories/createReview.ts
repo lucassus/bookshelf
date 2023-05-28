@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
@@ -38,10 +38,7 @@ export async function createReview(
 
   return createEntity(Review, {
     text: faker.lorem.paragraph(),
-    rating: faker.random.number({
-      min: 1,
-      max: 10
-    }),
+    rating: faker.number.int({ min: 1, max: 10 }),
     ...reviewAttributes
   });
 }

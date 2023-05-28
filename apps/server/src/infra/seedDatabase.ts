@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 import { getConnection, Not } from "typeorm";
 
 import { Author, Book, User } from "./database/entity";
@@ -452,12 +452,9 @@ async function seedFavouriteBooks() {
   const userBob = await manager.findOneOrFail(User, { name: "Bob" });
 
   const books = await Promise.all(
-    [
-      "Dune",
-      "Dune Messiah",
-      "Children of Dune",
-      "Blood of Elves"
-    ].map((title) => manager.findOneOrFail(Book, { title }))
+    ["Dune", "Dune Messiah", "Children of Dune", "Blood of Elves"].map(
+      (title) => manager.findOneOrFail(Book, { title })
+    )
   );
 
   userBob.favouriteBooks = Promise.resolve(books);
@@ -476,9 +473,9 @@ async function seedReviews() {
 
   await Promise.all(
     books.map((book) => {
-      const authors = faker.random.arrayElements(
+      const authors = faker.helpers.arrayElements(
         users,
-        faker.random.number({ min: 0, max: users.length })
+        faker.number.int({ min: 0, max: users.length })
       );
 
       return Promise.all(

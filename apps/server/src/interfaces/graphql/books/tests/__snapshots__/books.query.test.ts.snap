@@ -7,29 +7,29 @@ Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Sit Et Corporis Laborum",
+            "title": "Dolorem Alias Qui Asperiores",
           },
           Object {
-            "title": "Suscipit Animi Qui Impedit",
+            "title": "Fugit Facilis Mollitia",
           },
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Sit Et Corporis Laborum",
+      "title": "Dolorem Alias Qui Asperiores",
     },
     Object {
       "author": Object {
         "books": Array [
           Object {
-            "title": "Sit Et Corporis Laborum",
+            "title": "Dolorem Alias Qui Asperiores",
           },
           Object {
-            "title": "Suscipit Animi Qui Impedit",
+            "title": "Fugit Facilis Mollitia",
           },
         ],
         "name": "Andrzej Sapkowski",
       },
-      "title": "Suscipit Animi Qui Impedit",
+      "title": "Fugit Facilis Mollitia",
     },
   ],
 }
@@ -48,6 +48,14 @@ Object {
     },
     Object {
       "author": Object {
+        "id": "My1BdXRob3I=",
+        "name": "Wilbur Klein",
+      },
+      "id": "NC1Cb29r",
+      "title": "Laboriosam Aliquam Aut Quasi",
+    },
+    Object {
+      "author": Object {
         "id": "MS1BdXRob3I=",
         "name": "Tolkien",
       },
@@ -56,19 +64,11 @@ Object {
     },
     Object {
       "author": Object {
-        "id": "My1BdXRob3I=",
-        "name": "Katie Haag",
-      },
-      "id": "NC1Cb29r",
-      "title": "Nobis Quia",
-    },
-    Object {
-      "author": Object {
         "id": "Mi1BdXRob3I=",
-        "name": "Mrs. Boyd Hilll",
+        "name": "Nancy Leffler",
       },
       "id": "My1Cb29r",
-      "title": "Totam Quae Eos",
+      "title": "Porro",
     },
   ],
   "booksCount": 4,

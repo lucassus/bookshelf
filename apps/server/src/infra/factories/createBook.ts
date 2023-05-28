@@ -1,5 +1,5 @@
 import { titleizeSentence } from "@bookshelf/string-utils";
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 import { createAuthor, CreateAuthorAttributes } from "./createAuthor";
 import { createEntity } from "./createEntity";
@@ -46,10 +46,10 @@ export async function createBook(
 
   return createEntity(Book, {
     title: titleizeSentence(
-      faker.lorem.words(faker.random.number({ min: 1, max: 4 }))
+      faker.lorem.words(faker.number.int({ min: 1, max: 4 }))
     ),
     description: faker.lorem.sentence(),
-    coverPath: faker.random.arrayElement(BOOK_COVERS),
+    coverPath: faker.helpers.arrayElement(BOOK_COVERS),
     ...bookAttributes
   });
 }

@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 import { createBook, CreateBookAttributes } from "./createBook";
 import { createEntity } from "./createEntity";
@@ -46,7 +46,7 @@ export async function createBookCopy(
       ? borrower.id
       : (await createUser(borrowerAttributes)).id;
 
-    bookCopyAttributes.borrowedAt ??= faker.date.recent(28);
+    bookCopyAttributes.borrowedAt ??= faker.date.recent({ days: 28 });
   }
 
   return createEntity(BookCopy, bookCopyAttributes);
