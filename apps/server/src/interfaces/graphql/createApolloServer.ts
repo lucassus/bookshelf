@@ -1,25 +1,16 @@
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer } from "@apollo/server";
 
-import { createContext, onSubscriptionConnect } from "./context";
+import { Context, createContext, onSubscriptionConnect } from "./context";
 import { rootSchema } from "./rootSchema";
 import { Environment, ENVIRONMENT } from "~/infra/config";
 
 export const createApolloServer = () =>
-  new ApolloServer({
+  new ApolloServer<Context>({
     schema: rootSchema,
     context: createContext,
     subscriptions: {
       onConnect: onSubscriptionConnect
     },
-    plugins: [
-      {
-        requestDidStart: (requestContext) => {
-          console.log(
-            `\n\n${requestContext.request.operationName} operation started`
-          );
-        }
-      }
-    ],
     debug: ENVIRONMENT === Environment.development,
     tracing: ENVIRONMENT === Environment.development,
     introspection: ENVIRONMENT !== Environment.production,

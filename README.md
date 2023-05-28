@@ -13,6 +13,11 @@ https://graphql-bookshelf.herokuapp.com/
 2. Running PostgreSQL on port `5432`.
 3. Create `bookshelf_development` database with current user access.
 
+```
+psql --host localhost --port 5432 --user postgres
+CREATE DATABASE bookshelf_development;
+```
+
 ## Installation and running
 
 1. `yarn install`

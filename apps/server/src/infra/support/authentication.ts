@@ -32,7 +32,7 @@ export const getAuthTokenFromRequest = (
 export async function tradeAuthTokenForUser(authToken: string): Promise<User> {
   const payload = jwt.decode(authToken);
 
-  if (!payload || !payload.sub) {
+  if (!payload || typeof payload.sub !== "string") {
     throw new Error("Invalid token payload");
   }
 
