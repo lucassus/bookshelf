@@ -1,4 +1,4 @@
-import { withFilter } from "apollo-server-express";
+import { withFilter } from "graphql-subscriptions";
 import { EntityNotFoundError } from "typeorm/error/EntityNotFoundError";
 
 import { Book, BookCopy } from "~/infra/database/entity";
