@@ -9,11 +9,6 @@ module.exports = {
   maxWorkers: 1,
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.ts$": "ts-jest"
-  },
-  globals: {
-    "ts-jest": {
-      isolatedModules: true
-    }
+    "^.+\\.ts$": ["ts-jest", { isolatedModules: true }]
   }
 };

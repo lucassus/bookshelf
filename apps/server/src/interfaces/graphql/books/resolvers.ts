@@ -138,7 +138,7 @@ const resolvers: Resolvers = {
         });
 
         return Object.assign(bookCopy, { __typename: "BookCopy" });
-      } catch (error) {
+      } catch (error: any) {
         return {
           __typename: "MutationError",
           message: error.message

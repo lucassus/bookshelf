@@ -19,7 +19,7 @@ const resolvers: Resolvers = {
   ExternalID: new GraphQLScalarType({
     name: "ExternalID",
     // `serialize` is handled by `Resource.id` resolver, because it requires object type
-    parseValue: (externalId) => toInternalId(externalId)
+    parseValue: (externalId: any) => toInternalId(externalId)
   }),
 
   Resource: {

@@ -9,9 +9,14 @@ https://graphql-bookshelf.herokuapp.com/
 
 ## Prerequisites
 
-1. Install Node.js version 15.0.1.
+1. Install Node.js version 18.15.0.
 2. Running PostgreSQL on port `5432`.
 3. Create `bookshelf_development` database with current user access.
+
+```
+psql --host localhost --port 5432 --user postgres
+CREATE DATABASE bookshelf_development;
+```
 
 ## Installation and running
 

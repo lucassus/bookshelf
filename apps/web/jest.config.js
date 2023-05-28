@@ -9,15 +9,11 @@ module.exports = {
   moduleNameMapper: {
     "^.+\\.(css|scss)$": "<rootDir>/__mocks__/cssTransform.js"
   },
+  testEnvironment: "jsdom",
   setupFilesAfterEnv: ["./src/testUtils/setup.ts"],
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
-  },
-  globals: {
-    "ts-jest": {
-      isolatedModules: true
-    }
+    "^.+\\.(ts|tsx)$": ["ts-jest", { isolatedModules: true }]
   },
   watchPlugins: [
     "jest-watch-typeahead/filename",

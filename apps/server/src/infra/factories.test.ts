@@ -13,7 +13,7 @@ test("createUser factory", async () => {
   const user = await createUser({ name: "Bob", avatar });
 
   expect(user.name).toBe("Bob");
-  expect(user.email).toBe("Alycia.Greenholt23@gmail.com");
+  expect(user.email).toBe("Aubree_Mosciski@gmail.com");
   expect(user.avatar.color).toBe("yellow");
 });
 
@@ -44,8 +44,8 @@ test("createBookCopy factory", async () => {
   });
 
   const owner = await bookCopy.owner;
-  expect(owner.name).toBe("Everett Durgan");
-  expect(owner.email).toBe("Kenyatta96@yahoo.com");
+  expect(owner.name).toBe("Andy Bartell PhD");
+  expect(owner.email).toBe("Ophelia_Weimann59@yahoo.com");
 
   const book = await bookCopy.book;
   expect(book.title).toBe("Ubik");

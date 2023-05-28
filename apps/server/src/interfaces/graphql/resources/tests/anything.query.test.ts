@@ -90,8 +90,8 @@ describe("anything query", () => {
       anything: {
         __typename: "ProtectedUser",
         id: expect.any(String),
-        name: "Randolph Satterfield",
-        email: "Lauryn.Crist@yahoo.com",
+        name: "Shawn Satterfield",
+        email: "Lavada5@gmail.com",
         isAdmin: false
       }
     });

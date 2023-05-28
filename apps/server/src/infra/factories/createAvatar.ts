@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 
 import { createEntity } from "./createEntity";
 import { Avatar } from "~/infra/database/entity";
@@ -26,8 +26,8 @@ export function createAvatar(
   attributes: CreateAvatarAttributes = {}
 ): Promise<Avatar> {
   return createEntity(Avatar, {
-    imagePath: faker.random.arrayElement(AVATAR_IMAGES),
-    color: faker.random.arrayElement(AVATAR_COLORS),
+    imagePath: faker.helpers.arrayElement(AVATAR_IMAGES),
+    color: faker.helpers.arrayElement(AVATAR_COLORS),
     ...attributes
   });
 }
